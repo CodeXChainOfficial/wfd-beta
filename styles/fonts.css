@@ -1,0 +1,65 @@
+@font-face {
+    font-family: "Monoton";
+    src: local("Monoton"), url("../fonts/Monoton-Regular.woff") format("woff");
+    /* other formats include: "woff2", "truetype, "opentype",
+                            "embedded-opentype", and "svg" */
+}
+
+@font-face {
+    font-family: "Sk-Modernist-Bold";
+    src: local("Sk-Modernist-Bold"),
+        url("../fonts/Sk-Modernist/Sk-Modernist-Bold.otf") format("opentype");
+}
+@font-face {
+    font-family: "Sk-Modernist-Regular";
+    src: local("Sk-Modernist-Regular"),
+        url("../fonts/Sk-Modernist/Sk-Modernist-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "PilatExtended-Black";
+    src: local("PilatExtended-Black"),
+        url("../fonts/Pilat Extended/PilatExtended-Black.ttf") format("TrueType");
+}
+
+@font-face {
+    font-family: "PilatExtended-Bold";
+    src: local("PilatExtended-Bold"),
+        url("../fonts/Pilat Extended/PilatExtended-Bold.ttf") format("TrueType");
+}
+
+@font-face {
+    font-family: "PilatExtended-Book";
+    src: local("PilatExtended-Book"),
+        url("../fonts/Pilat Extended/PilatExtended-Book.ttf") format("TrueType");
+}
+
+@font-face {
+    font-family: "PilatExtended-DemiBold";
+    src: local("PilatExtended-DemiBold"),
+        url("../fonts/Pilat Extended/PilatExtended-DemiBold.ttf") format("TrueType");
+}
+
+@font-face {
+    font-family: "PilatExtended-Heavy";
+    src: local("PilatExtended-Heavy"),
+        url("../fonts/Pilat Extended/PilatExtended-Heavy.ttf") format("TrueType");
+}
+
+@font-face {
+    font-family: "PilatExtended-Light";
+    src: local("PilatExtended-Light"),
+        url("../fonts/Pilat Extended/PilatExtended-Light.ttf") format("TrueType");
+}
+
+@font-face {
+    font-family: "PilatExtended-Regular";
+    src: local("PilatExtended-Regular"),
+        url("../fonts/Pilat Extended/PilatExtended-Regular.ttf") format("TrueType");
+}
+
+@font-face {
+    font-family: "PilatExtended-Thin";
+    src: local("PilatExtended-Thin"),
+        url("../fonts/Pilat Extended/PilatExtended-Thin.ttf") format("TrueType");
+}

@@ -1,0 +1,24 @@
+.normal{
+   opacity:1;
+   transition: opacity 1s ease 0.2s;
+}
+.transited{
+   opacity:0;
+   transition: opacity 1s ease 0.2s;
+}
+
+.movingup_normal{
+   top:0;
+   transition: top 2s ease 1s; 
+}
+.movingup_transited{
+   top:-1024px;
+}
+
+.hidden{
+   opacity:0;
+   transition: opacity 1s ease 0.2s;
+}
+.hidden_show{
+   opacity:1;
+}

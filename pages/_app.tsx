@@ -1,8 +1,9 @@
 import React from "react";
+import { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "../theme";
-
-import { AppProps } from "next/app";
+import "../styles/fonts.css";
+import "../styles/CreateProject.css";
 
 function App({ Component, pageProps }: AppProps): React.ReactNode {
   return (
