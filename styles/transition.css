@@ -1,0 +1,1480 @@
+body {
+  background-image: linear-gradient(#1e0024, #150049) !important;
+}
+html {
+  scroll-behavior: smooth;
+}
+#utilityToken:hover {
+  background-image: linear-gradient(#1c83bd, #210656);
+}
+#HowItWorkBg {
+  background-image: linear-gradient(
+    rgba(10, 37, 49, 1%),
+    rgba(21, 191, 228, 81%),
+    rgba(141, 52, 255, 66%),
+    rgba(42, 10, 49, 0%)
+  );
+}
+#rotate180 {
+  transform: rotate(180deg);
+} /* disable Carousel original black background color*/
+#ProjectInMobile {
+  display: none;
+}
+#Splash {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+.loaderContainer {
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeOut 1s forwards;
+  animation-delay: 2.5s;
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.loader {
+  border: 4px solid rgba(151, 175, 213, 0.3);
+  width: 300px;
+  height: 300px;
+  display: flex;
+  border-radius: 50%;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  border-top: 4px solid #ac51c6;
+  border-bottom: 4px solid #ac51c6;
+  animation: spin 1.5s linear infinite;
+}
+.loader2 {
+  border: 4px solid rgba(151, 175, 213, 0.3);
+  width: 230px;
+  height: 230px;
+  display: flex;
+  border-radius: 50%;
+  position: relative;
+  align-items: center;
+  border-left: 4px solid #ac51c6;
+  border-right: 4px solid #ac51c6;
+  animation: spin2 0.5s linear infinite;
+}
+#SplashLoaderLogo {
+  width: 100px;
+  position: absolute;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+#projectpad {
+  width: 100%;
+  display: flex;
+  transition: 1s;
+  font-size: 14px;
+  margin-top: 70px;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.footerIcon {
+  font-size: 20px;
+}
+#FooterTextWork {
+  font-size: 20px;
+  font-weight: 500;
+  align-items: center;
+  font-family: 'PilatExtended-Regular';
+}
+#FooterTextWork2 {
+  font-size: 18px;
+  font-weight: 500;
+  align-items: center;
+  font-family: 'PilatExtended-Regular';
+}
+#footerBottomStyle {
+  z-index: 5;
+  width: 100%;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  flex-direction: space-between;
+  background: linear-gradient(90deg, #360847, #18075b);
+}
+#footerBottomInnerStyleBox,
+#footerBottomInnerStyleBox2 {
+  width: 100%;
+  padding: 2em 15%;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: 'PilatExtended-Bold';
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+#comunityBackgroundHeight {
+  width: 100%;
+  height: 600px;
+  margin: 50px 0;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.LeftRadiusAboutUs {
+  border-top-left-radius: 50px;
+}
+.RightRadiusAboutUs {
+  border-top-right-radius: 50px;
+}
+.LeftBottomRadiusAboutUs {
+  border-bottom-left-radius: 50px;
+}
+.RightBottomRadiusAboutUs {
+  border-bottom-right-radius: 50px;
+}
+.aboutUsSectionBoxesTexts {
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: 700;
+}
+#displayNoneInDesktop {
+  display: none;
+}
+#aboutUsPageHeadingHead {
+  font-family: 'PilatExtended-Regular';
+  font-weight: 700;
+  font-size: 31px;
+  color: white;
+}
+#aboutUsPageHeadingDesc {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+}
+#aboutUsPageNumber1 {
+  height: 65px;
+}
+#aboutUsPageLable {
+  font-size: 18px;
+  font-weight: 400;
+  color: #ffffff8a;
+  font-family: 'PilatExtended-Regular';
+}
+#headingIndustry {
+  width: 100%;
+  font-size: 35px;
+  text-align: center;
+  font-weight: bolder;
+  align-items: center;
+  justify-content: center;
+  font-family: 'PilatExtended-Bold';
+}
+#projectIndustryContainer {
+  width: 70em;
+  margin-top: 150px;
+  flex-direction: column;
+  justify-content: center;
+}
+.aboutUsSectionImages {
+  width: 60px;
+  height: 60px;
+}
+.aboutUsBox {
+  width: 220px;
+  height: 178px;
+  padding: 20px;
+  filter: blur(5);
+  overflow: hidden;
+  text-align: left;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.aboutUsBox:hover {
+  background: linear-gradient(180deg, #00a3ff 0%, #0047ff 100%);
+}
+#RoadMapMobile {
+  display: none;
+}
+#RoadMapDesktop {
+  margin-top: 2em;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.RoadmapContent {
+  width: 50%;
+  text-align: left;
+  padding-left: 1em;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.RoadmapContent2 {
+  width: 50%;
+  text-align: right;
+  padding-right: 1em;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.RoadmapHeading {
+  font-size: 22px;
+  color: #fe8600;
+  margin-top: -10px;
+  margin-bottom: 5px;
+  font-weight: bolder;
+  font-family: 'PilatExtended-Bold';
+}
+.RoadmapTitle {
+  color: white;
+  font-size: 18px;
+  margin-top: -5px;
+  font-weight: bolder;
+  margin-bottom: 15px;
+  font-family: 'Sk-Modernist-Bold';
+}
+.RoadmapDesc {
+  font-size: 18px;
+  color: #aea3b2;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  margin-right: 15px;
+  font-family: 'Sk-Modernist-Regular';
+}
+.RoadmapDesc li {
+  list-style: none;
+  line-height: 1.2em;
+  margin-bottom: 10px;
+}
+#roadmapBox1,
+#roadmapBox2,
+#roadmapBox3,
+#roadmapBox4,
+#roadmapBox5,
+#roadmapBox6,
+#roadmapBox7,
+#roadmapBox8,
+#roadmapBox9,
+#roadmapBox10 {
+  width: 50em;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+#circleD {
+  width: 1em;
+  height: 1em;
+}
+#roadmapBox1 {
+  top: 3%;
+}
+#roadmapBox2 {
+  top: 22%;
+}
+#roadmapBox3 {
+  top: 29%;
+}
+#roadmapBox4 {
+  top: 37%;
+}
+#roadmapBox5 {
+  top: 44%;
+}
+#roadmapBox6 {
+  top: 56%;
+}
+#roadmapBox7 {
+  top: 64%;
+}
+#roadmapBox8 {
+  top: 71%;
+}
+#roadmapBox9 {
+  top: 80%;
+}
+#roadmapBox10 {
+  top: 88%;
+}
+#rotateHandGo {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+#emailInnerBox {
+  width: 70em;
+  z-index: 5;
+  height: 350px;
+  display: flex;
+  padding: 70px 0;
+  align-self: center;
+  position: relative;
+  border-radius: 50px;
+  align-items: center;
+  flex-direction: column;
+  background-size: cover;
+  background-repeat: no-repeat;
+  justify-content: space-between;
+  background-image: url('/media/saft2.svg');
+}
+.emailInnerBoxTitle {
+  font-size: 25px;
+  text-align: center;
+  font-weight: bolder;
+  justify-content: center;
+  font-family: 'PilatExtended-Bold';
+}
+#missionList {
+  max-width: 70em;
+  padding-left: 10px;
+  padding-right: 10px;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.teamCard:hover {
+  background-image: linear-gradient(#1c83bd, #0048ff5b);
+}
+.missionCard {
+  width: 30%;
+  padding: 10px;
+  margin: 2em 1.5%;
+  position: relative;
+  z-index: 5;
+  border-radius: 10px;
+  flex-direction: column;
+  background: linear-gradient(45deg, #360847, #18075b);
+}
+.missionCard:hover {
+  position: relative;
+  z-index: 5;
+  background: linear-gradient(180deg, #00a3ff 0%, #0048ff5b 100%);
+}
+.missionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 20px;
+  margin-top: 10px;
+  font-family: 'PilatExtended-Regular';
+}
+.missionDesc {
+  width: 100%;
+  padding-top: 0;
+  font-size: 15px;
+  margin-top: 10px;
+  font-weight: 400;
+  font-family: 'Sk-Modernist-Regular';
+}
+.missionImage {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+#heroSection {
+  width: 100%;
+  height: 50em;
+  display: flex;
+  padding-top: 120px;
+  position: relative;
+  align-items: center;
+}
+#heroHeading {
+  z-index: 2;
+  font-size: 55px;
+  margin-top: 20px;
+  line-height: 70px;
+  position: relative;
+  font-weight: bolder;
+  text-align: center;
+  font-family: 'PilatExtended-Bold';
+}
+#heroLogo {
+  width: 12em;
+}
+.projectTitle {
+  font-weight: 700;
+  line-height: 23px;
+  font-size: 22px;
+}
+.projectDesc {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+.projectLabel {
+  font-size: 14px;
+}
+.projectItemContentCol {
+  width: 63%;
+  /* align-items: flex-end; */
+  flex-direction: column;
+  justify-content: space-between;
+}
+.projectItemImageCol {
+  width: 35%;
+}
+.PROJECT_ITEMS_ROW1 {
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  margin-bottom: 5em;
+  border-radius: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.PROJECT_ITEMS_ROW2 {
+  width: 100%;
+  padding: 10px;
+  text-align: right;
+  margin-bottom: 5em;
+  border-radius: 20px;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.EmailBg {
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 600px;
+  position: absolute;
+}
+#starsBg {
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+#cloudBg {
+  top: -100px;
+  width: 100%;
+  position: absolute;
+}
+#stageBg {
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+#ArrowDownButton {
+  bottom: 5%;
+  z-index: 3;
+  width: 100%;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+}
+
+#ArrowDownButton {
+  animation: rocket 0.8s infinite alternate;
+  -webkit-animation: rocket 0.8s infinite alternate;
+}
+
+#aboutSection {
+  z-index: 2;
+  width: 100%;
+  margin-top: 120px;
+  position: relative;
+  margin-bottom: 80px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Sk-Modernist-Regular';
+}
+
+#aboutFirstSection {
+  max-width: 70em;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#aboutFirstSection1 {
+  width: 55%;
+  height: 100%;
+  flex-direction: column;
+}
+
+#aboutFirstSection2 {
+  width: 40%;
+  height: 100%;
+  flex-direction: column;
+}
+
+#sphere {
+  width: 50%;
+  animation: sphere 1s infinite alternate;
+  -webkit-animation: sphere 1s infinite alternate;
+}
+
+#rocket {
+  height: 240px;
+  animation: sphere 2s infinite alternate;
+  -webkit-animation: sphere 2s infinite alternate;
+}
+
+@-webkit-keyframes rocket {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-30px);
+  }
+}
+
+@keyframes rocket {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-30px);
+  }
+}
+
+@-webkit-keyframes sphere {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(42px, 62px, -135px);
+  }
+}
+
+@keyframes sphere {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(42px, 62px, -135px);
+  }
+}
+
+#aboutSectionCircle {
+  top: 40%;
+  position: absolute;
+}
+#aboutSectionCircleImage {
+  width: 130px;
+}
+#aboutSectionTitle {
+  font-size: 25px;
+  margin-top: 10px;
+  line-height: 35px;
+}
+
+.circleAboutText {
+  margin-top: 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+#YieldBenefit {
+  left: 0;
+  bottom: 25%;
+  width: 200px;
+  align-items: center;
+  position: absolute;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+}
+#LowRisk {
+  align-items: center;
+  top: 25%;
+  left: 14%;
+  width: 200px;
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+#SecureStable {
+  top: 0;
+  left: 28%;
+  width: 200px;
+  align-items: center;
+  position: absolute;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+#GovernanceVoting {
+  top: 0;
+  align-items: center;
+  right: 28%;
+  width: 200px;
+  justify-content: center;
+  position: absolute;
+  flex-direction: column;
+  text-align: center;
+}
+#DeflationaryToken {
+  top: 25%;
+  right: 14%;
+  align-items: center;
+  width: 200px;
+  justify-content: center;
+  position: absolute;
+  flex-direction: column;
+  text-align: center;
+}
+#NFTMirror {
+  right: 0;
+  align-items: center;
+  bottom: 25%;
+  width: 200px;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  flex-direction: column;
+}
+#Section7 {
+  bottom: 0;
+  left: 25%;
+  width: 200px;
+  justify-content: center;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+#Section8 {
+  bottom: 0;
+  right: 25%;
+  width: 200px;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+.roundCirclesStyling {
+  width: 120px;
+  height: 120px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline {
+  height: 100px;
+  border: 2px dashed white;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  color: #150047;
+  font-weight: bold;
+  border-radius: 50%;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  background-color: #fe8501;
+  font-family: 'PilatExtended-Regular';
+}
+
+.circleWrapper {
+  position: relative;
+}
+
+.message {
+  top: 0;
+  left: 130%;
+  min-width: 400px;
+  font-weight: bold;
+  position: absolute;
+}
+
+@media only screen and (max-width: 1300px) {
+  #footerBottomInnerStyleBox,
+  #footerBottomInnerStyleBox2 {
+    padding: 2em 5%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #ProjectInMobile {
+    width: 100%;
+    display: flex;
+    transition: 1s;
+    font-size: 14px;
+    margin-top: 70px;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #footerBottomInnerStyleBox,
+  #footerBottomInnerStyleBox2 {
+    width: 100%;
+    padding: 2em;
+    height: 10em;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-family: 'PilatExtended-Bold';
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  #emailInnerBox {
+    width: 80%;
+    height: 250px;
+    padding: 40px 0;
+  }
+  .emailInnerBoxTitle {
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: 'PilatExtended-Bold';
+  }
+  .aboutUsSectionImages {
+    width: 90px;
+    height: 90px;
+  }
+  #aboutFirstSection {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  #missionList {
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  #projectIndustryContainer {
+    width: 80%;
+  }
+  #rocket {
+    display: none;
+  }
+  #aboutFirstSection1 {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
+  .PROJECT_ITEMS_ROW1,
+  .PROJECT_ITEMS_ROW2 {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    margin-bottom: 5em;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .projectItemContentCol {
+    width: 100%;
+    z-index: 3;
+    padding: 20px;
+    height: 300px;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .projectItemImageCol {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    border-radius: 25px;
+    justify-content: center;
+    height: 300px;
+    align-items: center;
+    position: absolute;
+  }
+  .projectItemImageCol img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.3);
+  }
+  #aboutFirstSection2 {
+    width: 100%;
+    height: 100%;
+    margin-top: 50px;
+    flex-direction: column;
+  }
+  .aboutUsBox {
+    width: 50%;
+    height: 200px;
+    padding: 20px;
+    filter: blur(5);
+    text-align: left;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .aboutUsBoxLast {
+    width: 100%;
+    height: 200px;
+    padding: 20px;
+    filter: blur(5);
+    text-align: left;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  #roadmapBox1,
+  #roadmapBox2,
+  #roadmapBox3,
+  #roadmapBox4,
+  #roadmapBox5,
+  #roadmapBox6,
+  #roadmapBox7,
+  #roadmapBox8,
+  #roadmapBox9,
+  #roadmapBox10 {
+    width: 45em;
+  }
+  #sphere {
+    width: 40%;
+  }
+  #heroSection {
+    height: 35em;
+    padding-top: 120px;
+  }
+  #heroHeading {
+    font-size: 35px;
+    margin-top: 20px;
+    line-height: 40px;
+  }
+  #heroLogo {
+    width: 25%;
+  }
+  .projectTitle {
+    line-height: 27px;
+    font-size: 25px;
+  }
+  .projectDesc {
+    width: 100%;
+  }
+  .projectLabel {
+    font-size: 13px;
+  }
+  #ArrowDownButtonImage {
+    width: 100px;
+  }
+  #projectpad {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .emailInnerBoxTitle {
+    font-size: 17px;
+    font-weight: bolder;
+    font-family: 'PilatExtended-Bold';
+  }
+  #emailInnerBox {
+    height: 220px;
+    padding: 30px 0;
+  }
+  #roadmapBox1,
+  #roadmapBox2,
+  #roadmapBox3,
+  #roadmapBox4,
+  #roadmapBox5,
+  #roadmapBox6,
+  #roadmapBox7,
+  #roadmapBox8,
+  #roadmapBox9,
+  #roadmapBox10 {
+    width: 40em;
+  }
+  #sphere {
+    display: none;
+  }
+  #heroSection {
+    height: 26em;
+    padding-top: 70px;
+  }
+  #heroHeading {
+    font-size: 30px;
+    line-height: 35px;
+  }
+  #heroLogo {
+    width: 10em;
+  }
+  #ArrowDownButton {
+    bottom: 0%;
+  }
+  #aboutSection {
+    padding: 68px 40px;
+  }
+
+  .circleAboutText {
+    font-size: 13px;
+    margin-top: 5px;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  .projectTitle {
+    font-size: 30px;
+    line-height: 32px;
+  }
+  .projectDesc {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+  .projectLabel {
+    font-size: 15px;
+  }
+  #projectIndustryContainer {
+    margin-top: 70px;
+  }
+  .projectItemImageCol {
+    width: 100%;
+  }
+  #headingIndustry {
+    font-size: 25px;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .emailInnerBoxTitle {
+    font-size: 12px;
+  }
+  #emailInnerBox {
+    height: 200px;
+    padding: 20px 0;
+  }
+  #RoadMapDesktop {
+    display: none;
+  }
+  #aboutSection {
+    margin-top: 60px;
+    margin-bottom: 50px;
+  }
+  #RoadMapMobile {
+    width: 85%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .RoadmapContent {
+    width: 100%;
+    text-align: left;
+    padding-right: 1em;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  #roadmapBox1,
+  #roadmapBox2,
+  #roadmapBox3,
+  #roadmapBox4,
+  #roadmapBox5,
+  #roadmapBox6,
+  #roadmapBox8,
+  #roadmapBox9,
+  #roadmapBox10 {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  #footerBottomInnerStyleBox {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    font-family: 'PilatExtended-Bold';
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  #footerBottomInnerStyleBox2 {
+    width: 100%;
+    height: 8em;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    font-family: 'PilatExtended-Bold';
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .FlexViewMobile {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  #FooterTextWork {
+    font-size: 16px;
+    font-weight: 500;
+    align-items: flex-start;
+    font-family: 'PilatExtended-Regular';
+  }
+  #FooterTextWork2 {
+    font-size: 15px;
+  }
+  .footerButton {
+    margin-top: 10px;
+  }
+  .SUbscriptInputFooter {
+    height: 6em;
+    margin-top: 2em;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #heroHeading {
+    font-size: 25px;
+    margin-top: 15px;
+    line-height: 30px;
+  }
+  #ArrowDownButton {
+    bottom: 0%;
+  }
+  #ArrowDownButtonImage {
+    width: 80px;
+  }
+  #stageBg {
+    top: 30%;
+    width: 100%;
+    height: 70%;
+    position: absolute;
+  }
+  #heroSection {
+    width: 100%;
+    height: 30em;
+    display: flex;
+    padding-top: 120px;
+    position: relative;
+    align-items: center;
+  }
+  #cloudBg {
+    top: 0;
+    width: 100%;
+    position: absolute;
+  }
+  #aboutSection {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-top: 3em;
+    margin-bottom: 50px;
+  }
+  #aboutFirstSection {
+    width: 90%;
+  }
+  #aboutFirstSection1 {
+    width: 100%;
+    height: 100%;
+  }
+  #aboutFirstSection2 {
+    width: 100%;
+    height: 100%;
+  }
+  #aboutUsPageLable {
+    font-size: 12px;
+  }
+  #aboutUsPageNumber1 {
+    height: 40px;
+  }
+  #aboutUsPageHeadingHead {
+    font-size: 18px;
+  }
+  #aboutUsPageHeadingDesc {
+    font-size: 13px;
+    line-height: 16px;
+  }
+  #displayNoneInMobile {
+    display: none;
+  }
+  #displayNoneInDesktop {
+    display: flex;
+  }
+  .aboutUsSectionImages {
+    width: auto;
+    height: 30px;
+  }
+  .aboutUsSectionBoxesTexts {
+    margin-top: 12px;
+    font-weight: 700;
+    font-size: 10px;
+  }
+  .aboutUsBox {
+    width: 50%;
+    height: 120px;
+    padding: 15px;
+    text-align: left;
+    backdrop-filter: 5px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .aboutUsBoxLast {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    text-align: left;
+    backdrop-filter: 5px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  .LeftRadiusAboutUs {
+    border-top-left-radius: 10px;
+  }
+  .RightRadiusAboutUs {
+    border-top-right-radius: 10px;
+  }
+  .LeftBottomRadiusAboutUs {
+    border-bottom-left-radius: 10px;
+  }
+  .RightBottomRadiusAboutUs {
+    border-bottom-right-radius: 10px;
+  }
+  #headingIndustry {
+    font-size: 18px;
+  }
+  .projectTitle {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  /* .projectDesc {
+    font-size: 13px;
+    padding-top: 5px;
+    margin-bottom: 10px;
+  } */
+  .RoadmapHeading {
+    font-size: 13px;
+  }
+  #RoadMapMobile {
+    margin-top: 2em;
+    margin-bottom: 0;
+  }
+  .projectLabel {
+    font-size: 10px;
+  }
+  /* .projectDesc {
+    padding-top: 10px;
+    margin-top: 0px;
+    font-size: 10px;
+    width: 100%;
+  } */
+  #missionList {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .missionCard {
+    margin: 0;
+    width: 100%;
+    padding: 5px;
+    margin-top: 1em;
+    border-radius: 5px;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  .missionTitle {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    margin-top: 10px;
+    font-family: 'PilatExtended-Regular';
+  }
+  .missionDesc {
+    width: 100%;
+    padding-top: 0;
+    font-size: 11px;
+    margin-top: 10px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    font-family: 'Sk-Modernist-Regular';
+  }
+  .missionImage {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  #projectIndustryContainer {
+    width: 95%;
+  }
+  #comunityBackgroundHeight {
+    width: 100%;
+    height: 250px;
+    margin-top: 50px;
+    margin-bottom: 0;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #emailInnerBox {
+    width: 95%;
+    height: 150px;
+    padding: 20px 0;
+    border-radius: 5px;
+  }
+  .emailInnerBoxTitle {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 22px;
+    margin: 0 !important;
+    font-family: 'PilatExtended-Bold';
+  }
+  .EmailBg {
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 250px;
+    position: absolute;
+  }
+  /* .PROJECT_ITEMS_ROW1,
+  .PROJECT_ITEMS_ROW2 {
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    text-align: left;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  .projectItemContentCol {
+    width: 100%;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .projectItemImageCol {
+    width: 100%;
+    height: 250px;
+  }
+  .projectItemImageCol img {
+    border-radius: 10px !important;
+    object-fit: cover !important;
+  } */
+  /* 
+  .projectState {
+    font-size: 9px !important;
+    line-height: 10px;
+    font-weight: 400;
+  }*/
+  .projectTitle {
+    font-weight: 700;
+    line-height: 16px;
+    font-size: 15px;
+  }
+  .projectLabel {
+    font-size: 11px;
+  }
+  .projectDesc {
+    font-size: 14px !important;
+    line-height: 15px;
+    font-weight: 400;
+    margin-top: -5px;
+    margin-bottom: 5px;
+  }
+  #roadMapLineId {
+    height: 70em;
+  }
+  #roadmapBox1,
+  #roadmapBox2,
+  #roadmapBox3,
+  #roadmapBox4,
+  #roadmapBox5,
+  #roadmapBox6,
+  #roadmapBox7,
+  #roadmapBox8,
+  #roadmapBox9,
+  #roadmapBox10 {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .RoadmapTitle {
+    color: white;
+    font-size: 13px;
+    margin-top: -5px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    font-family: 'Sk-Modernist-Bold';
+  }
+  .RoadmapDesc {
+    font-size: 11px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+  }
+  .RoadmapDesc li {
+    line-height: 1em;
+    margin-bottom: 5px;
+  }
+  #circleD {
+    width: 0.8em;
+    height: 0.8em;
+  }
+  #roadmapBox1 {
+    top: 4%;
+  }
+  #roadmapBox2 {
+    top: 23%;
+  }
+  #roadmapBox3 {
+    top: 30%;
+  }
+  #roadmapBox4 {
+    top: 38%;
+  }
+  #roadmapBox5 {
+    top: 45%;
+  }
+  #roadmapBox6 {
+    top: 57%;
+  }
+  #roadmapBox7 {
+    top: 66%;
+  }
+  #roadmapBox8 {
+    top: 75%;
+  }
+  #roadmapBox9 {
+    top: 82%;
+  }
+  #roadmapBox10 {
+    top: 92%;
+  }
+  .FlexViewMobile {
+    height: 10em;
+    margin-top: 1em;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  #FooterTextWork {
+    font-size: 18px;
+    font-weight: 500;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: 'PilatExtended-Regular';
+  }
+  #FooterTextWork2 {
+    font-size: 11px;
+  }
+  .footerButton {
+    margin-top: 15px;
+  }
+  .SUbscriptInputFooter {
+    width: 100%;
+    height: 5.8em;
+    margin-top: 1.5em;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .PROJECT_ITEMS_ROW1,
+  .PROJECT_ITEMS_ROW2 {
+    width: 100%;
+    height: 370px;
+    position: relative;
+    margin-bottom: 2em;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .projectItemContentCol {
+    z-index: 3;
+    width: 100%;
+    height: 370px;
+    display: flex;
+    text-align: left;
+    padding: 10px 5px;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .projectItemImageCol {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 370px;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+  }
+  .loader {
+    border: 4px solid rgba(151, 175, 213, 0.3);
+    width: 200px;
+    height: 200px;
+    display: flex;
+    border-radius: 50%;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    border-top: 4px solid #ac51c6;
+    border-bottom: 4px solid #ac51c6;
+    animation: spin 1.5s linear infinite;
+  }
+  .loader2 {
+    border: 4px solid rgba(151, 175, 213, 0.3);
+    width: 150px;
+    height: 150px;
+    display: flex;
+    border-radius: 50%;
+    position: relative;
+    align-items: center;
+    border-left: 4px solid #ac51c6;
+    border-right: 4px solid #ac51c6;
+    animation: spin2 0.5s linear infinite;
+  }
+  #SplashLoaderLogo {
+    width: 70px;
+    position: absolute;
+  }
+  .footerIcon {
+    font-size: 14px;
+  }
+}
