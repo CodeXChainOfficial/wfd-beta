@@ -1,6 +1,4 @@
-import Link from "next/link";
-import Layout from "../components/Layout";
-import Container from "../components/Landing/Container";
+import Container from "../components/Container";
 import Hero from "../components/Landing/Hero";
 import About from "../components/Landing/About";
 import Litepaper from "../components/Landing/Litepaper";

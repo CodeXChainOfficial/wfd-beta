@@ -7,12 +7,17 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import "../styles/fonts.css";
 import "../styles/CreateProject.css";
 import "../styles/transition.css";
+import "../styles/ConnectWallet.css";
+
+import Layout from "../components/Layout";
 
 function App({ Component, pageProps }: AppProps): React.ReactNode {
   return (
     <ChakraProvider resetCSS theme={theme}>
       <ParallaxProvider>
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ParallaxProvider>
     </ChakraProvider>
   );
