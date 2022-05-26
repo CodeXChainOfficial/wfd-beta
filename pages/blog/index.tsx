@@ -39,6 +39,7 @@ const BlogPage = function (props: BlogPageProps) {
 
       if (status !== 'ok') {
         // Failed get feed
+        return
       }
 
       const {avatar, link} = data.feed
@@ -52,23 +53,6 @@ const BlogPage = function (props: BlogPageProps) {
 
       setItems(posts)
 
-      
-      // const avatar = data.feed.image;
-      // const profileLink = data.feed.link;
-      // const res = data.items; //This is an array with the content. No feed, no info about author etc..
-      // const posts = res.filter((item) => item.categories.length > 0);
-
-      // this.setState({ avatar: avatar, profileLink: profileLink });
-      // const itemRows = [];
-      // posts.forEach((item, i) => {
-      //   item["avatar"] = this.state.avatar; // push avatar inside the json
-      //   item["profilelink"] = this.state.profileLink; // push profile link inside the JSON
-      //   const row = Math.floor(i / 3);
-      //   if (!itemRows[row]) itemRows[row] = [];
-      //   itemRows[row].push(item);
-      // });
-
-      // this.setState({ itemRows: itemRows });
     } catch(e) {
 
     }
