@@ -70,7 +70,7 @@ const projects = [
   
 ]
 
-function ProjectItem(props: { name?: any; status?: any; image?: any; registration_start?: any; platform_raise?: any; link?: any; selected?: any; }) {
+function ProjectItem(props: { name?: string; status?: string; image?: string; registration_start?: string; platform_raise?: string; link?: string; selected?: boolean;  }) {
   const {name, status, image, registration_start, platform_raise, link} = props
   const {selected = false} = props
   

@@ -68,7 +68,7 @@ const sales = [
   }
 ]
 
-function SaleItem(props: { image?: any; name?: any; registration_start?: any; platform_raise?: any; ath_since_tge?: any; link?: any; selected?: any; }) {
+function SaleItem(props: { image?: string; name?: string; registration_start?: string; platform_raise?: string; ath_since_tge?: string; link?: string; selected?: boolean; }) {
   const {image, name, registration_start, platform_raise, ath_since_tge, link} = props;
   const {selected = false} = props;
   return (
