@@ -153,6 +153,10 @@ const NAV_ITEMS = [
     href: "/",
   },
   {
+    label: "About",
+    href: "/about",
+  },
+  {
     label: "Projects",
     href: "/explorer",
   },
