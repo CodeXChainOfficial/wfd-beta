@@ -12,8 +12,9 @@ import { toast } from 'react-toastify'
 
 import { useNavigate } from '@reach/router'
 
+import { useStore } from '../store'
 import Footer from '../../components/Footer'
-import PageLayout from '../components/PageLayout'
+import PageLayout from '../../components/PageLayout'
 import ProjectTitle from '../../components/ProjectDetail/ProjectTitle'
 import ProjectStatusButtons from '../../components/ProjectDetail/ProjectStatusButtons'
 import ProjectMainButtons from '../../components/ProjectDetail/ProjectMainButtons'
@@ -31,7 +32,7 @@ import {
   ParseParam,
   errorOption,
   successOption
-  }  from '../components/Util'
+  }  from '../../components/Util'
 
 export default function ProjectDetail() {
   const { state, dispatch } = useStore()

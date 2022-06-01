@@ -1,5 +1,6 @@
 import React from 'react'
-import { Flex,
+import { 
+  Flex,
   Button,
   Text,  
   Modal,
@@ -11,16 +12,10 @@ import { Flex,
   ModalCloseButton
 } from '@chakra-ui/react'
 
-import { useStore } from '../../store'
+//import { useStore } from '../../store'
 
-export default function VoteModal({
-  data,
-  onClose,
-  isOpen,
-  MilestoneVote
-}) 
+export default function VoteModal({data,WefundApprove,onNext,MilestoneVote}:{data:any,WefundApprove:any,onNext:any,MilestoneVote:any}) 
 {
-  const { state, dispatch } = useStore()
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered>
       <ModalOverlay />

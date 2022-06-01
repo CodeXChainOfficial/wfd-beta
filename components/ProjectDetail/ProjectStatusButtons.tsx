@@ -1,27 +1,18 @@
 import React from 'react'
 import { Flex } from '@chakra-ui/react'
 
-import {
-  isWefundWallet,
-  isCommunityWallet,
-  isBackerWallet, 
-  }  from '../../components/Util'
+//import {isWefundWallet,isCommunityWallet,isBackerWallet, }  from '../../components/Util'
 
 import { ButtonTransition } from '../../components/ImageTransition'
-import { useStore } from '../../store'
+//import { useStore } from '../../store'
 
-export default function ProjectStatusButtons({
-  data,
-  WefundApprove,
-  onNext,
-  MilestoneVote
-}) 
+export default function ProjectStatusButtons({data,WefundApprove,onNext,MilestoneVote}:{data:any,WefundApprove:any,onNext:any,MilestoneVote:any}) 
 {
-  const { state, dispatch } = useStore()
   return (
     <>
       <Flex alignSelf={{ base: 'center', md: 'center', lg: 'flex-start'}} >
-        {data.project_status === 'WefundVote' && isWefundWallet(state) && (
+        {data.project_status === 'WefundVote' //&& isWefundWallet(state)
+         && (
           <Flex justify={'center'}>
             <ButtonTransition
               unitid='Approve'
@@ -49,7 +40,8 @@ export default function ProjectStatusButtons({
             Back Project
           </ButtonTransition>
         )}
-        {data.project_status === 'Releasing' &&  isBackerWallet(state, data.project_id) && (
+        {data.project_status === 'Releasing' //&&  isBackerWallet(state, data.project_id) 
+        && (
           <Flex justify={'center'}>
             <ButtonTransition
               unitid='milestonevoteyes'

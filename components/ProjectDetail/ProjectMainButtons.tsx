@@ -4,7 +4,6 @@ import { ImageTransition } from '../ImageTransition'
 import { BsArrowUpRight } from 'react-icons/bs'
 export default function ProjectMainButtons({ data, onNext }: {data:any, onNext:any}) 
 {
-  const { state, dispatch } = useStore()
   return (
     <>
       <Flex

@@ -22,15 +22,15 @@ export default function Navbar() {
 
   return (
     <Container>
-      <VStack display={{ base: "none", md: "none", lg: "block" }}>
+      <VStack display={{ base: "none", md: "none", lg: "block" }} >
         <Flex
+          position={{ base: "relative", md: "relative", lg: "fixed" }}
           direction="row"
           justify="space-between"
           h="80px"
           zIndex="99"
           w="100%"
-          position="relative"
-          backdropFilter="blur(54px)"
+          backdropFilter="blur(100px)"
           borderBottom="2px solid rgba(255, 255, 255, 0.103)"
         >
           <Flex w="50%" h="100%" align="center" justify="space-between">
