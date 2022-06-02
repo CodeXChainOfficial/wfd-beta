@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { FunctionComponent, useEffect, useState } from "react";
 
 import {

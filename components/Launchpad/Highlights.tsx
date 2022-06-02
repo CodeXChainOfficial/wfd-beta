@@ -1,8 +1,8 @@
 import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
-import { Flex, Text, Image, Button, Link } from '@chakra-ui/react'
+import { Flex, Text, Image, Button, Link } from "@chakra-ui/react";
 
-import Carousel from 'react-multi-carousel'
-import 'react-multi-carousel/lib/styles.css'
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const responsive = {
   superLargeDesktop: {
@@ -21,7 +21,7 @@ const responsive = {
     breakpoint: { max: 464, min: 0 },
     items: 1,
   },
-}
+};
 
 export default function Highlights() {
   return (
@@ -30,17 +30,17 @@ export default function Highlights() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      my={{ base: '5em', md: '8em', lg: '10em' }}
+      my={{ base: "5em", md: "8em", lg: "10em" }}
     >
       <Text
-        fontSize={{base:'20px', md:'48px'}}
-        fontWeight='700'
-        color='#6ACEF5'
+        fontSize={{ base: "20px", md: "48px" }}
+        fontWeight="700"
+        color="#6ACEF5"
       >
         HIGHLIGHTS
       </Text>
       <Flex
-        mt='28px'
+        mt="28px"
         pb="2em"
         width="100%"
         position="relative"
@@ -54,7 +54,7 @@ export default function Highlights() {
           autoPlay={false}
           swipeable={true}
           draggable={true}
-          showThumbs={false}
+          // showThumbs={false}
           autoPlaySpeed={3000}
           keyBoardControl={true}
           responsive={responsive}
@@ -64,97 +64,102 @@ export default function Highlights() {
         >
           {projects.map((item, index) => (
             <Flex
-              zIndex={'4'}
+              zIndex={"4"}
               margin="0 auto"
-              border='3px solid #69E4FF'
+              border="3px solid #69E4FF"
               borderRadius="20px"
-              alignItems={'center'}
-              position={'relative'}
-              flexDirection={{ base: 'column', md: 'column', lg: 'row' }}
-              justifyContent={'center'}
+              alignItems={"center"}
+              position={"relative"}
+              flexDirection={{ base: "column", md: "column", lg: "row" }}
+              justifyContent={"center"}
               // width={{ base: '95%', md: '90%', lg: '65em' }}
-              mx={{ base: '20px', md: '20px', lg: '120px' }}
+              mx={{ base: "20px", md: "20px", lg: "120px" }}
               key={index}
             >
               <Flex
-                display={{sm:'flex', md:'flex', lg:'none'}}
-                w='100%'
-                p = '6px'
+                display={{ sm: "flex", md: "flex", lg: "none" }}
+                w="100%"
+                p="6px"
               >
                 <Image src={item.img} />
               </Flex>
-              <Flex 
-                direction='column'
-                px={{ base: '11px', md: '11px', lg: '60px' }}
-                py={{ base:'19px', md:'19px', lg:'19px'}}
+              <Flex
+                direction="column"
+                px={{ base: "11px", md: "11px", lg: "60px" }}
+                py={{ base: "19px", md: "19px", lg: "19px" }}
               >
-                <Text 
-                  fontFamily='PilatExtended-Bold' 
-                  fontSize={{sm:'18px', md:'15px', lg:'32px' }}
-                  fontWeight='400'
+                <Text
+                  fontFamily="PilatExtended-Bold"
+                  fontSize={{ sm: "18px", md: "15px", lg: "32px" }}
+                  fontWeight="400"
                 >
                   {item.title}
                 </Text>
-                <Text 
-                  fontFamily={'Sk-Modernist-Regular'} 
-                  fontSize={{sm:'14px', md:'8px', lg:'20px' }}
-                  textAlign='justify'
-                  mt='43px'
+                <Text
+                  fontFamily={"Sk-Modernist-Regular"}
+                  fontSize={{ sm: "14px", md: "8px", lg: "20px" }}
+                  textAlign="justify"
+                  mt="43px"
                 >
                   {item.description}
                 </Text>
-                <Flex w='100%' justify={'center'}>
-                <Link href={item.link}>
-                  <Button
-                    mt='48px'
-                    mb= {{base:'20px', md: '5px'}}
-                    w={{sm:'139px', md: '139px', lg: '243px'}}
-                    h={{sm:'33px', md:'33px', lg: '43px'}}
-                    bg={'linear-gradient(180deg, #6ACEF5 0%, #4C9BE8 100%)'}
-                    rounded='33px'
-                  >
-                    <Text fontFamily={'Gilroy'} fontWeight='800' fontSize='20px'>
-                      Join us
-                    </Text>
-                  </Button>
-                </Link>
+                <Flex w="100%" justify={"center"}>
+                  <Link href={item.link}>
+                    <Button
+                      mt="48px"
+                      mb={{ base: "20px", md: "5px" }}
+                      w={{ sm: "139px", md: "139px", lg: "243px" }}
+                      h={{ sm: "33px", md: "33px", lg: "43px" }}
+                      bg={"linear-gradient(180deg, #6ACEF5 0%, #4C9BE8 100%)"}
+                      rounded="33px"
+                    >
+                      <Text
+                        fontFamily={"Gilroy"}
+                        fontWeight="800"
+                        fontSize="20px"
+                      >
+                        Join us
+                      </Text>
+                    </Button>
+                  </Link>
                 </Flex>
               </Flex>
               <Flex
-                display={{base:'none', lg:'flex'}}
-                rounded='20px'
-                minW='407px'
-                p='19px'
+                display={{ base: "none", lg: "flex" }}
+                rounded="20px"
+                minW="407px"
+                p="19px"
               >
                 <Image src={item.img} />
               </Flex>
             </Flex>
           ))}
-          
         </Carousel>
       </Flex>
     </Flex>
-  )
+  );
 }
 
 const projects = [
   {
-    title: 'WeFund Beta Testing with Angel Protocol',
-    description: 'WeFund will enter the testing phase with Angel Protocol to ensure WeFund functionality in a public test while raising funds for charity.',
-    img: 'media/partners/Angelcampaign.png',
-    link: '/angel-campaign'
+    title: "WeFund Beta Testing with Angel Protocol",
+    description:
+      "WeFund will enter the testing phase with Angel Protocol to ensure WeFund functionality in a public test while raising funds for charity.",
+    img: "media/partners/Angelcampaign.png",
+    link: "/angel-campaign",
   },
   {
-    title: 'WeFund Beta Testing with Angel Protocol',
-    description: 'WeFund will enter the testing phase with Angel Protocol to ensure WeFund functionality in a public test while raising funds for charity.',
-    img: 'media/partners/Angelcampaign.png',
-    link: '/angel-campaign'
+    title: "WeFund Beta Testing with Angel Protocol",
+    description:
+      "WeFund will enter the testing phase with Angel Protocol to ensure WeFund functionality in a public test while raising funds for charity.",
+    img: "media/partners/Angelcampaign.png",
+    link: "/angel-campaign",
   },
   {
-    title: 'WeFund Beta Testing with Angel Protocol',
-    description: 'WeFund will enter the testing phase with Angel Protocol to ensure WeFund functionality in a public test while raising funds for charity.',
-    img: 'media/partners/Angelcampaign.png',
-    link: '/angel-campaign'
+    title: "WeFund Beta Testing with Angel Protocol",
+    description:
+      "WeFund will enter the testing phase with Angel Protocol to ensure WeFund functionality in a public test while raising funds for charity.",
+    img: "media/partners/Angelcampaign.png",
+    link: "/angel-campaign",
   },
-
-]
+];
