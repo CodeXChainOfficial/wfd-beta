@@ -9,12 +9,16 @@ export interface AppContextInterface {
   net: string;
   activeProjectData: any;
   projectData: any;
+
+  presale: boolean
 }
 
 const initialState: AppContextInterface = {
   net: "testnet",
   activeProjectData: [],
   projectData: [],
+
+  presale: false
 };
 
 export enum ActionKind {
