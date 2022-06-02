@@ -152,3 +152,4 @@ const Milestones: FunctionComponent<Props> = ({
     </>
   );
 };
+export default Milestones;

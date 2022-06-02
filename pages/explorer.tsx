@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React, {
   useRef,
   useState,
@@ -85,16 +86,16 @@ export default function ExplorerProject() {
   }
 
   //-----------fetch project data=-------------------------
-  async function fetchContractQuery(force = false) { }
+  async function fetchContractQuery(force = false) {}
 
   //------------Wefund Approve-----------------
-  async function WefundApprove(project_id) { }
-  async function OpenWhitelist(project_id) { }
-  async function CloseWhitelist(project_id) { }
-  async function JoinWhitelist(project_id) { }
-  async function MilestoneVote(project_id, voted) { }
+  async function WefundApprove(project_id) {}
+  async function OpenWhitelist(project_id) {}
+  async function CloseWhitelist(project_id) {}
+  async function JoinWhitelist(project_id) {}
+  async function MilestoneVote(project_id, voted) {}
 
-  async function NextFundraisingStage(project_id, curStage) { }
+  async function NextFundraisingStage(project_id, curStage) {}
   //---------initialize fetching---------------------
   useEffect(() => {
     fetchContractQuery();

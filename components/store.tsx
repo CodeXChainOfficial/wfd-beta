@@ -8,23 +8,33 @@ interface Action {
 export interface AppContextInterface {
   net: string;
   activeProjectData: any;
-  projectData: any;
-
-  presale: boolean
+  projectData: any[];
+  communityData: any[];
+  address: any;
+  referralCount: number;
+  referralLink: string;
+  presale: boolean;
 }
 
 const initialState: AppContextInterface = {
   net: "testnet",
   activeProjectData: [],
   projectData: [],
-
-  presale: false
+  presale: false,
+  communityData: [],
+  address: null,
+  referralCount: 0,
+  referralLink: "",
 };
 
 export enum ActionKind {
   setNet,
   setActiveProjectData,
   setProjectData,
+  setCommunityData,
+  setAddress,
+  setReferralCount,
+  setReferralLink,
 }
 
 const StoreContext = createContext<{
@@ -43,6 +53,14 @@ export const reducer = (state: AppContextInterface, action: Action) => {
       return { ...state, activeProjectData: action.payload };
     case ActionKind.setProjectData:
       return { ...state, projectData: action.payload };
+    case ActionKind.setCommunityData:
+      return { ...state, communityData: action.payload };
+    case ActionKind.setAddress:
+      return { ...state, address: action.payload };
+    case ActionKind.setReferralCount:
+      return { ...state, referralCount: action.payload };
+    case ActionKind.setReferralLink:
+      return { ...state, referralLink: action.payload };
     default:
       return state;
   }

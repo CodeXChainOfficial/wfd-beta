@@ -1,5 +1,6 @@
 import React from "react";
 import { toast } from "react-toastify";
+import { wefundId } from "./Constants";
 
 export const successOption: any = {
   position: "top-right",
@@ -109,7 +110,10 @@ export async function FetchData(
   dispatch: React.Dispatch<any>,
   force = false
 ) {
-  let projectData, communityData, configData;
+  const projectData: any[] = [],
+    communityData: any[] = [],
+    configData: any[] = [];
+
   return { projectData, communityData, configData };
 }
 export function GetOneProject(projectData: any, project_id: any) {
@@ -130,12 +134,12 @@ export function isCardHolder(state: any, project_id: number) {
 
   for (let i = 0; i < one.whitelist.length; i++) {
     const info = one.whitelist[i];
-    if (info.wallet == state.connectedWallet.walletAddress) return false;
+    if (info.wallet == state.address) return false;
   }
   return true;
 }
 export function isBackable(state: any, project_id: number) {
-  if (project_id == state.wefundID)
+  if (project_id == wefundId)
     //WFD
     return true;
 
@@ -144,10 +148,7 @@ export function isBackable(state: any, project_id: number) {
 
   for (let i = 0; i < one.whitelist.length; i++) {
     const info = one.whitelist[i];
-    if (
-      info.wallet == state.connectedWallet.walletAddress &&
-      info.backed < info.allocation
-    ) {
+    if (info.wallet == state.address && info.backed < info.allocation) {
       return true;
     }
   }
@@ -156,17 +157,17 @@ export function isBackable(state: any, project_id: number) {
 }
 export function getAllocation(state: any, project_id: number) {
   const one = GetOneProject(state.projectData, project_id);
-  if (project_id == state.wefundID)
+  if (project_id == wefundId)
     //WFD
     return parseInt(one.project_collected);
 
   if (one == "") return 0;
 
-  console.log(state.connectedWallet.walletAddress);
+  console.log(state.address);
   for (let i = 0; i < one.whitelist.length; i++) {
     const info = one.whitelist[i];
     if (
-      info.wallet == state.connectedWallet.walletAddress &&
+      info.wallet == state.address &&
       parseInt(info.backed) < parseInt(info.allocation)
     ) {
       return (
@@ -183,7 +184,7 @@ export function isCommunityWallet(state: any) {
   if (state.communityData == "") return false;
 
   for (let j = 0; j < state.communityData.length; j++) {
-    if (state.connectedWallet.walletAddress == state.communityData[j]) {
+    if (state.address == state.communityData[j]) {
       return true;
     }
   }
@@ -194,7 +195,7 @@ export function isCreatorWallet(state: any, project_id: number) {
   const one = GetOneProject(state.projectData, project_id);
   if (one == "") return false;
 
-  if (one.creator_wallet == state.connectedWallet.walletAddress) return true;
+  if (one.creator_wallet == state.address) return true;
 
   return false;
 }
@@ -205,9 +206,7 @@ export function isBackerWallet(state: any, project_id: number) {
   if (isCommunityWallet(state)) return false;
 
   for (let j = 0; j < one.backer_states.length; j++) {
-    if (
-      state.connectedWallet.walletAddress == one.backer_states[j].backer_wallet
-    ) {
+    if (state.address == one.backer_states[j].backer_wallet) {
       return true;
     }
   }
@@ -261,18 +260,18 @@ export function getVal(val: any) {
   return isNull(val) ? "" : val;
 }
 export function getInteger(val: any) {
-  return isNull(val) ? "0" : parseInt(val).toString();
+  return isNull(val) ? 0 : parseInt(val);
 }
 export function getMultiplyInteger(val: any) {
-  return isNull(val) ? "0" : Math.floor(parseFloat(val) * 100).toString();
+  return isNull(val) ? 0 : Math.floor(parseFloat(val) * 100);
 }
 export function getSeconds(val: any) {
   const month = 60 * 60 * 24 * 30;
-  return (parseInt(getInteger(val)) * month).toString();
+  return getInteger(val) * month;
 }
 export function getMonth(val: any) {
   const month = 60 * 60 * 24 * 30;
-  return (parseInt(getInteger(val)) / month).toString();
+  return getInteger(val) / month;
 }
 export function getStageTitle(data: any) {
   const index = parseInt(data.fundraising_stage);
@@ -280,14 +279,14 @@ export function getStageTitle(data: any) {
 }
 export async function getTokenInfo(state: any, tokenAddress: string) {
   const tokenInfo = { symbol: "exmaple" };
-  let balance;
+  let balance = 0;
   // try {
   //   tokenInfo = await api.contractQuery(tokenAddress, {
   //     token_info: {},
   //   });
   //   console.log(tokenInfo);
   //   let res = await api.contractQuery(tokenAddress, {
-  //     balance: { address: state.connectedWallet.walletAddress },
+  //     balance: { address: state.address },
   //   });
   //   console.log(res);
   //   balance = parseInt(res.balance) / 10 ** parseInt(tokenInfo.decimals);

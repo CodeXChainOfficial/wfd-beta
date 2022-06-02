@@ -195,7 +195,7 @@ export default function CompletedProject() {
             justifyItems={"center"}
           >
             {projects.map((project, i) => (
-              <ProjectItem {...project} selected={selected === i} />
+              <ProjectItem {...project} selected={selected === i} key={i} />
             ))}
           </SimpleGrid>
         </Box>
