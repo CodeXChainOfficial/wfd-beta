@@ -132,7 +132,7 @@ export default function ConnectWallet() {
   //     let coins;
   //     try {
   //       const api = new WasmAPI(lcd.apiRequester);
-  //       coins = await lcd.bank.balance(connectedWallet.walletAddress);
+  //       coins = await lcd.bank.balance(address);
   //     } catch (e) {
   //       console.log(e);
   //     }
@@ -231,7 +231,7 @@ export default function ConnectWallet() {
   // async function confirmReferral() {
   //   let referralLink =
   //     "https://wefund.app/?referral=" +
-  //     encrypt3DES(connectedWallet.walletAddress, "wefundkeyreferral");
+  //     encrypt3DES(address, "wefundkeyreferral");
   //   dispatch({ type: "setReferralLink", message: referralLink });
 
   //   let queryString, urlParams, referral_code;
@@ -252,7 +252,7 @@ export default function ConnectWallet() {
 
   //     var formData = new FormData();
   //     formData.append("base", base);
-  //     formData.append("referred", connectedWallet.walletAddress);
+  //     formData.append("referred", address);
 
   //     const requestOptions = {
   //       method: "POST",

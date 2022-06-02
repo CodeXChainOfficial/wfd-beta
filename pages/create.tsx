@@ -251,7 +251,7 @@ export default function CreateProject() {
 
     const AddProjectMsg = {
       add_project: {
-        // creator_wallet: state.connectedWallet.walletAddress,
+        // creator_wallet: state.address,
         project_id: _projectID,
         project_company: company,
         project_title: title,
