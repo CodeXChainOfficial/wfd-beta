@@ -1,5 +1,5 @@
 import { Box, Button, Center, Container, Stack, Text, chakra } from '@chakra-ui/react';
-import React from 'react';
+import React, { FunctionComponent, Dispatch, SetStateAction } from "react";;
 
 
 export default function KYCBanner() {

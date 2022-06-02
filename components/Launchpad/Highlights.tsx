@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
 import { Flex, Text, Image, Button, Link } from '@chakra-ui/react'
 
 import Carousel from 'react-multi-carousel'

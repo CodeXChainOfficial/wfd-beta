@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent, Dispatch, SetStateAction } from "react";;
 import { Box, Button, Center, Container, Divider, HStack, Image, VStack, chakra, SimpleGrid, Text, Stack, Hide } from '@chakra-ui/react';
 
 const sales = [

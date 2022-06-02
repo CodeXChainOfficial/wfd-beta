@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
 import { HStack, Image, Flex, Text, Stack, Container, Box } from '@chakra-ui/react'
 import { ImageTransition } from '../ImageTransition'
 

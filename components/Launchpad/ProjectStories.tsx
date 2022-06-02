@@ -1,5 +1,5 @@
 import { Box, Button, Center, Circle, Container, Heading, HStack, Image, Stack, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { FunctionComponent, Dispatch, SetStateAction } from "react";;
 
 const stories = [
   {
