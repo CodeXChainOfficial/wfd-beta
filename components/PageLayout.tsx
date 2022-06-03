@@ -1,3 +1,4 @@
+
 import React, { FunctionComponent } from "react";
 import { ChakraProvider, Flex, Box, Text } from "@chakra-ui/react";
 import theme from "../theme";
@@ -42,10 +43,12 @@ const PageLayout: FunctionComponent<Props> = (props) => {
               Home &gt;&nbsp;
             </Text>
             <Text fontSize="16px" color={"rgba(255, 255, 255, 0.84)"}>
+
               {props.title}
             </Text>
           </Flex>
           <Flex
+
             mt="11px"
             pb="55px"
             mb="20px"
@@ -59,11 +62,14 @@ const PageLayout: FunctionComponent<Props> = (props) => {
               {props.subTitle1}
             </Text>
             <Text fontSize={{ base: "20px", md: "25px", lg: "40px" }}>
+
               &nbsp;{props.subTitle2}
             </Text>
           </Flex>
         </Flex>
+
         <Box w="100%" justify="center" align="center">
+
           {props.children}
         </Box>
       </Flex>
@@ -72,3 +78,4 @@ const PageLayout: FunctionComponent<Props> = (props) => {
 };
 
 export default PageLayout;
+

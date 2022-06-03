@@ -35,7 +35,7 @@ export default function Hero() {
             textTransform={"uppercase"}
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
           >
-            Crowdfunding
+            Multichain Community
           </Text>
           <Text
             fontFamily="PilatExtended-Black"
