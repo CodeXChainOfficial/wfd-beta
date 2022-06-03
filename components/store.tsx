@@ -13,12 +13,14 @@ export interface AppContextInterface {
   address: any;
   referralCount: number;
   referralLink: string;
+  presale: boolean;
 }
 
 const initialState: AppContextInterface = {
   net: "testnet",
   activeProjectData: [],
   projectData: [],
+  presale: false,
   communityData: [],
   address: null,
   referralCount: 0,
