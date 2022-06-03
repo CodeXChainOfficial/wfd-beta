@@ -34,7 +34,7 @@ export default function Navbar() {
           borderBottom="2px solid rgba(255, 255, 255, 0.103)"
         >
           <Flex w="50%" h="100%" align="center" justify="space-between">
-            <Flex ml="90px">
+            <Flex ml="90px" cursor="pointer">
               <Link className="navbar-brand" href="/">
                 <Image
                   alt="WeFund"
@@ -64,7 +64,11 @@ export default function Navbar() {
               <ConnectWallet />
             </Flex>
             <Link href="walletInfo">
-              <Icon as={RiAccountPinBoxFill} fontSize={"45px"} />
+              <Icon
+                as={RiAccountPinBoxFill}
+                fontSize={"45px"}
+                cursor="pointer"
+              />
             </Link>
           </Flex>
         </Flex>
@@ -80,7 +84,7 @@ export default function Navbar() {
           backdropFilter="blur(54px)"
           borderBottom="2px solid rgba(255, 255, 255, 0.103)"
         >
-          <Flex ml="30px" align="center">
+          <Flex ml="30px" align="center" cursor="pointer">
             <Link className="navbar-brand" href="/">
               <Image alt="WeFund" src="/media/WeFund-Logos-only.png" h="25px" />
             </Link>
@@ -99,7 +103,11 @@ export default function Navbar() {
                 <Image alt="menu2" src="/media/menuButton2.svg" h="20px" />
               </Flex>
               <Link href="walletInfo">
-                <Icon as={RiAccountPinBoxFill} fontSize={"30px"} />
+                <Icon
+                  as={RiAccountPinBoxFill}
+                  fontSize={"30px"}
+                  cursor="pointer"
+                />
               </Link>
               <div className="dropdown-content">
                 {NAV_ITEMS.map((navItem, index) => (
@@ -162,7 +170,7 @@ const NAV_ITEMS = [
   },
   {
     label: "Invest in WeFund",
-    href: "/invest_step0",
+    href: "/invest/step0",
   },
   // {
   //   label: 'Dashboard',

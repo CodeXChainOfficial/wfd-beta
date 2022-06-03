@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
+    "@chakra-ui/icons": "^2.0.1",
     "@chakra-ui/react": "^2.0.2",
+    "@choc-ui/paginator": "^3.4.0",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@reach/router": "^1.3.4",
@@ -30,13 +32,17 @@
     "react-multi-carousel": "^2.8.0",
     "react-scripts": "4.0.3",
     "react-scroll-parallax": "^3.2.0",
-    "react-toastify": "^9.0.2",
+
+    "react-signature-canvas": "^1.0.5",
+    "react-toastify": "^9.0.3",
+
     "typescript": "^4.3.2"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
+    "@types/react-signature-canvas": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
     "eslint": "^7.3.1",
