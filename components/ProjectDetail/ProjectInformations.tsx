@@ -56,7 +56,7 @@ export default function ProjectInformations({ data, totalBackedMoney, totalBacke
             fontFamily={'Pilat-Extended'}
             fontWeight={'700'}
             fontSize={'18px'}>
-            {data.project_ecosystem}
+            data.project_ecosystem
           </Text>
         </Flex>
       </HStack>
@@ -75,7 +75,7 @@ export default function ProjectInformations({ data, totalBackedMoney, totalBacke
             fontFamily={'Pilat-Extended'}
             fontWeight={'700'}
             fontSize={'18px'}>
-            {data.backer_states?.length}
+            data.backer_states?.length
           </Text>
         </Flex>
       </HStack>
@@ -94,7 +94,7 @@ export default function ProjectInformations({ data, totalBackedMoney, totalBacke
             fontFamily={'Pilat-Extended'}
             fontWeight={'700'}
             fontSize={'18px'}>
-            {data.project_collected}
+            data.project_collected
           </Text>
         </Flex>
       </HStack>
@@ -129,7 +129,7 @@ export default function ProjectInformations({ data, totalBackedMoney, totalBacke
           <Flex>
             <Text>
               Progress: {totalBackedMoney} out of{' '}
-              {data.project_collected} UST
+              data.project_collected USD
             </Text>
           </Flex>
           <Flex
@@ -140,12 +140,12 @@ export default function ProjectInformations({ data, totalBackedMoney, totalBacke
             }}
           >
             <CircularProgress
-              value={totalBackedPercent}
+              value="12"
               size="120px"
               color="#00A3FF;"
             >
               <CircularProgressLabel>
-                {totalBackedPercent}%
+                totalBackedPercent%
               </CircularProgressLabel>
             </CircularProgress>
             {/* The progress - Replace with functional ones*/}

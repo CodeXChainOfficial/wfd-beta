@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react'
 
 
-export default function ProjectTitle({data}) 
+export default function ProjectTitle({data}:{data:any}) 
 {
   return (
     <>
@@ -21,7 +21,7 @@ export default function ProjectTitle({data})
         <Text fontSize="40px" fontWeight={'900'}
           textAlign={{base:'center', lg:'left'}}
         >
-          {data.project_title}
+          data.project_title
         </Text>
       </Flex>
       <Flex>
@@ -30,7 +30,7 @@ export default function ProjectTitle({data})
           fontWeight= '400' 
           fontSize={{base:'16px', md:'16px', lg:'18px'}}
         >
-          {data.project_description}
+          data.project_description
         </Text>
       </Flex>
     </>

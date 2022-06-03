@@ -1,7 +1,7 @@
 import React from 'react'
 import { chakra, Flex } from '@chakra-ui/react'
 
-export default function WeFundDescription({ data }) 
+export default function WeFundDescription({ data }:{data:any}) 
 {
   return (
     <Flex
@@ -53,7 +53,7 @@ export default function WeFundDescription({ data })
         marginBottom={'20px'}
         color={'rgba(255, 255, 255, 0.5)'}
       >
-        {data.project_description}
+        data.project_description
       </chakra.p>
     </Flex>
   )

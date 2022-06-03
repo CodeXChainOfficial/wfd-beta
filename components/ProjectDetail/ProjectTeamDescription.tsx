@@ -1,7 +1,7 @@
 import React from 'react'
 import { VStack, Stack, Flex, Text, Box, HStack } from '@chakra-ui/react'
 
-export default function ProjectTeamDescription({ data }) 
+export default function ProjectTeamDescription({ data }:{data:any}) 
 {
   return (
     <Flex
@@ -47,25 +47,24 @@ export default function ProjectTeamDescription({ data })
           paddingTop={'35px'}
           paddingBottom={'35px'}
         >
-          {data?.teammember_states?.map((item, index) => {
-            return (
+         
               <VStack mt='10px'>
                 <Text
                   fontWeight={'bold'}
                   textAlign={'left'}
                   alignSelf={'flex-start'}
                 >
-                  {item.teammember_role}
+                  item.teammember_role
                 </Text>
                 <Text textAlign={'left'} fontWeight={'100'}>
-                  {item.teammember_description}
+                  item.teammember_description
                 </Text>
                 <Text textAlign={'left'} fontWeight={'100'}>
-                  {item.teammember_linkedin}
+                  item.teammember_linkedin
                 </Text>
               </VStack>
-            )}
-          )}
+          
+          )
 {/* 
           <Text
             fontWeight={'bold'}

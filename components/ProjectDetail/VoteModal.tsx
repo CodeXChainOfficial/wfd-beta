@@ -9,13 +9,15 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton
+  ModalCloseButton,
+  useDisclosure
 } from '@chakra-ui/react'
 
 //import { useStore } from '../../store'
 
 export default function VoteModal({data,WefundApprove,onNext,MilestoneVote}:{data:any,WefundApprove:any,onNext:any,MilestoneVote:any}) 
 {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered>
       <ModalOverlay />

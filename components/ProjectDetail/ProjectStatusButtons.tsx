@@ -11,8 +11,6 @@ export default function ProjectStatusButtons({data,WefundApprove,onNext,Mileston
   return (
     <>
       <Flex alignSelf={{ base: 'center', md: 'center', lg: 'flex-start'}} >
-        {data.project_status === 'WefundVote' //&& isWefundWallet(state)
-         && (
           <Flex justify={'center'}>
             <ButtonTransition
               unitid='Approve'
@@ -20,13 +18,11 @@ export default function ProjectStatusButtons({data,WefundApprove,onNext,Mileston
               width="160px"
               height="50px"
               rounded="33px"
-              onClick={() => WefundApprove(data.project_id)}
+              // onClick={() => WefundApprove(data.project_id)}
             >
               Approve Project
             </ButtonTransition>
           </Flex>
-        )}
-        {data.project_status === 'Fundraising' && (
           <ButtonTransition
             unitid='backproject'
             width="160px"
@@ -35,13 +31,11 @@ export default function ProjectStatusButtons({data,WefundApprove,onNext,Mileston
             rounded="33px"
             mt="15px"
             mb="10px"
-            onClick={onNext}
+            // onClick={onNext}
           >
             Back Project
           </ButtonTransition>
-        )}
-        {data.project_status === 'Releasing' //&&  isBackerWallet(state, data.project_id) 
-        && (
+        
           <Flex justify={'center'}>
             <ButtonTransition
               unitid='milestonevoteyes'
@@ -49,7 +43,7 @@ export default function ProjectStatusButtons({data,WefundApprove,onNext,Mileston
               height="50px"
               selected={false}
               rounded="33px"
-              onClick={() => MilestoneVote(data.project_id, true)}
+              // onClick={() => MilestoneVote(data.project_id, true)}
             >
               Vote Yes
             </ButtonTransition>
@@ -60,12 +54,12 @@ export default function ProjectStatusButtons({data,WefundApprove,onNext,Mileston
               width="160px"
               height="50px"
               rounded="33px"
-              onClick={() => MilestoneVote(data.project_id, false)}
+              // onClick={() => MilestoneVote(data.project_id, false)}
             >
               Vote No
             </ButtonTransition>
           </Flex>
-        )}
+        )
       </Flex>
     </>
   )

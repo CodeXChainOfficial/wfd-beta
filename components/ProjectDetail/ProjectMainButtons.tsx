@@ -32,13 +32,13 @@ export default function ProjectMainButtons({ data, onNext }: {data:any, onNext:a
             width="200px"
             height="50px"
             rounded="33px"
-            onClick={() => {
-              window.open(
-                data.project_website,
-                '_blank',
-                'noopener,noreferrer',
-              )
-            }}
+            // onClick={() => {
+            //   window.open(
+            //     data.project_website,
+            //     '_blank',
+            //     'noopener,noreferrer',
+            //   )
+            // }}
           >
             <Box
               color="white"
@@ -69,7 +69,7 @@ export default function ProjectMainButtons({ data, onNext }: {data:any, onNext:a
             rounded="33px"
             onClick={() => {}}
           >
-            <a href={ state.request + '/download?filename=' + data.project_whitepaper}>
+            <a href='#'>
             <Box
               variant="solid"
               color="white"
@@ -107,7 +107,7 @@ export default function ProjectMainButtons({ data, onNext }: {data:any, onNext:a
               align="center"
               onClick={onNext}
             >
-              Back {data.project_title}
+              {/* Back {data.project_title} */}
             </Box>
           </ImageTransition>
         </Flex>

@@ -1,8 +1,7 @@
 import React from 'react'
 import { Flex, Text, Button, Table, Thead, Tbody, Tr, Th, Td, TableCaption } from '@chakra-ui/react'
-import { useStore } from '../../store'
 
-export default function ProjectMileStones({ data, onOpen }) 
+export default function ProjectMileStones({ data, onOpen }:{data:any, onOpen:any}) 
 {
   return (
     <Flex
@@ -46,21 +45,18 @@ export default function ProjectMileStones({ data, onOpen })
             </Tr>
           </Thead>
           <Tbody bgColor={' rgba(196, 196, 196, 0.08)'} borderRadius={'10px 10px 0px 0px'}> 
-            {data != '' && 
-            data.milestone_states.map((milestone, index) => (
-            <Tr key={index}>
-              <Td >{milestone.milestone_step}</Td>
-              <Td >{milestone.milestone_name} </Td>
-              <Td >{milestone.milestone_startdate}</Td>
-              <Td >{milestone.milestone_enddate}</Td>
-              <Td >{milestone.milestone_amount}</Td>
+            <Tr>
+              <Td >milestone_step</Td>
+              <Td >milestone.milestone_name </Td>
+              <Td >milestone.milestone_startdate</Td>
+              <Td >milestone.milestone_enddate</Td>
+              <Td >milestone.milestone_amount</Td>
               <Td >
-                {milestone.milestone_votingavailable &&
+                milestone.milestone_votingavailable 
                 <Button onClick={onOpen} colorScheme={'teal'}>Vote &amp; Details</Button>}
               </Td>
-              <Td >{milestone.milestone_statusmessage}</Td>
+              <Td >Status</Td>
             </Tr>
-            ))}
           </Tbody>
         </Table>
       </Flex>
