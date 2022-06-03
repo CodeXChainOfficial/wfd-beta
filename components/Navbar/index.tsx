@@ -166,7 +166,7 @@ const NAV_ITEMS = [
   },
   {
     label: "Invest in WeFund",
-    href: "/invest_step0",
+    href: "/invest/step0",
   },
   // {
   //   label: 'Dashboard',
