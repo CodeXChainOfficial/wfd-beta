@@ -15,14 +15,14 @@ import {
 import { RiAccountPinBoxFill } from "react-icons/ri";
 import Container from "../Container";
 import { ButtonBackTransition } from "../ImageTransition";
-// import { useStore } from "../store";
+import { useStore } from "../store";
 
 export default function Navbar() {
-  // const { state, dispatch } = useStore();
+  const { state, dispatch } = useStore();
 
   return (
-    <Container>
-      <VStack display={{ base: "none", md: "none", lg: "block" }} >
+    <Flex w="100%" direction="column">
+      <VStack display={{ base: "none", md: "none", lg: "block" }}>
         <Flex
           position={{ base: "relative", md: "relative", lg: "fixed" }}
           direction="row"
@@ -68,6 +68,7 @@ export default function Navbar() {
                 as={RiAccountPinBoxFill}
                 fontSize={"45px"}
                 cursor="pointer"
+                color="white"
               />
             </Link>
           </Flex>
@@ -98,18 +99,11 @@ export default function Navbar() {
                 <ConnectWallet />
               </div>
             </Flex>
-            <Flex pr="30px" className="dropdown">
+            <Flex pr="10px" className="dropdown2">
               <Flex className="dropbtn" mr={"20px"}>
                 <Image alt="menu2" src="/media/menuButton2.svg" h="20px" />
               </Flex>
-              <Link href="walletInfo">
-                <Icon
-                  as={RiAccountPinBoxFill}
-                  fontSize={"30px"}
-                  cursor="pointer"
-                />
-              </Link>
-              <div className="dropdown-content">
+              <div className="dropdown-content2">
                 {NAV_ITEMS.map((navItem, index) => (
                   <Link href={navItem.href} key={index}>
                     {navItem.label}
@@ -117,6 +111,16 @@ export default function Navbar() {
                 ))}
                 <Link href="/create">Create Project</Link>
               </div>
+            </Flex>
+            <Flex pr="30px" className="dropdown2">
+              <Link href="walletInfo">
+                <Icon
+                  as={RiAccountPinBoxFill}
+                  fontSize={"30px"}
+                  cursor="pointer"
+                  color="white"
+                />
+              </Link>
             </Flex>
           </HStack>
         </Flex>
@@ -132,7 +136,7 @@ export default function Navbar() {
           Testnet
         </Flex>
       )} */}
-    </Container>
+    </Flex>
   );
 }
 const DesktopNav = () => {

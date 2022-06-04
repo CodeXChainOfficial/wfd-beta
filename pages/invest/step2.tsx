@@ -264,9 +264,7 @@ export default function InvestStep2() {
             rounded="33px"
             onClick={() => onNext()}
           >
-            <Box variant="solid" color="white" justify="center" align="center">
-              Invest
-            </Box>
+            <Box color="white">Invest</Box>
           </ImageTransition>
         </Flex>
       </Box>

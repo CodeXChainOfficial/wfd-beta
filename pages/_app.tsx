@@ -10,7 +10,7 @@ import "../styles/transition.css";
 import "../styles/ConnectWallet.css";
 
 import Layout from "../components/Layout";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 
 function App({ Component, pageProps }: AppProps): React.ReactNode {
@@ -19,10 +19,12 @@ function App({ Component, pageProps }: AppProps): React.ReactNode {
       <ParallaxProvider>
         <Layout>
           <Component {...pageProps} />
-          
-          <ToastContainer position="top-right"
+
+          <ToastContainer
+            position="top-right"
             autoClose={5000}
-            hideProgressBar={false} />
+            hideProgressBar={false}
+          />
         </Layout>
       </ParallaxProvider>
     </ChakraProvider>

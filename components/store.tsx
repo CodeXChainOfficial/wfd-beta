@@ -7,7 +7,7 @@ interface Action {
 
 export interface AppContextInterface {
   net: string;
-  activeProjectData: any;
+  activeProjectData: any[];
   projectData: any[];
   communityData: any[];
   address: any;

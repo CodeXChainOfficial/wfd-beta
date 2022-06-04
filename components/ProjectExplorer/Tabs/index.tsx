@@ -15,7 +15,8 @@ const Tabs: FunctionComponent<Props> = ({ activeTab, onChangeActivetab }) => {
         fontSize={{ base: "14px", md: "18px" }}
       >
         Project Status: Under&nbsp;
-        {GetProjectStatusString(GetProjectStatus(activeTab))}
+        {/* {GetProjectStatusString(GetProjectStatus(activeTab))} */}
+        {activeTab}
       </Text>
 
       <Flex

@@ -1,24 +1,29 @@
-import React from 'react'
-import { Flex, Box, Icon } from '@chakra-ui/react'
-import { ImageTransition } from '../ImageTransition'
-import { BsArrowUpRight } from 'react-icons/bs'
-export default function ProjectMainButtons({ data, onNext }: {data:any, onNext:any}) 
-{
+/* eslint-disable @typescript-eslint/no-empty-function */
+import React from "react";
+import { Flex, Box, Icon } from "@chakra-ui/react";
+import { ImageTransition } from "../ImageTransition";
+import { BsArrowUpRight } from "react-icons/bs";
+export default function ProjectMainButtons({
+  data,
+  onNext,
+}: {
+  data: any;
+  onNext: any;
+}) {
   return (
     <>
       <Flex
         alignSelf={{
-          base: 'center',
-          md: 'center',
-          lg: 'flex-start',
+          base: "center",
+          md: "center",
+          lg: "flex-start",
         }}
-        spacing={5}
-        direction={{ base: 'column', md: 'column', lg: 'row' }}
+        direction={{ base: "column", md: "column", lg: "row" }}
       >
         <Flex
-          mt={{ base: '20px', md: '20px', lg: '30px' }}
-          ml={{ base: '0px', md: '0px', lg: '0px' }}
-          alignSelf={{ base: 'center', md: 'center', lg: 'flex-start'}}
+          mt={{ base: "20px", md: "20px", lg: "30px" }}
+          ml={{ base: "0px", md: "0px", lg: "0px" }}
+          alignSelf={{ base: "center", md: "center", lg: "flex-start" }}
         >
           <ImageTransition
             unitid="visit"
@@ -40,20 +45,15 @@ export default function ProjectMainButtons({ data, onNext }: {data:any, onNext:a
             //   )
             // }}
           >
-            <Box
-              color="white"
-              justify="center"
-              align="center"
-            >
-              Visit Website{' '}
-              <Icon as={BsArrowUpRight} h={4} w={4} mr={3} />
+            <Box color="white">
+              Visit Website <Icon as={BsArrowUpRight} h={4} w={4} mr={3} />
             </Box>
           </ImageTransition>
         </Flex>
         <Flex
-          mt={{ base: '20px', md: '20px', lg: '30px' }}
-          ml={{ base: '0px', md: '0px', lg: '10px' }}
-          alignSelf={{ base: 'center', md: 'center', lg: 'flex-start'}}
+          mt={{ base: "20px", md: "20px", lg: "30px" }}
+          ml={{ base: "0px", md: "0px", lg: "10px" }}
+          alignSelf={{ base: "center", md: "center", lg: "flex-start" }}
         >
           <ImageTransition
             unitid="view"
@@ -69,23 +69,16 @@ export default function ProjectMainButtons({ data, onNext }: {data:any, onNext:a
             rounded="33px"
             onClick={() => {}}
           >
-            <a href='#'>
-            <Box
-              variant="solid"
-              color="white"
-              justify="center"
-              align="center"
-            >
-              See Whitepaper
-            </Box>
+            <a href="#">
+              <Box color="white">See Whitepaper</Box>
             </a>
           </ImageTransition>
         </Flex>
         <Flex
-          mt={{ base: '20px', md: '20px', lg: '30px' }}
-          mb={{ base: '40px', md: '40px', lg: '20px' }}
-          ml={{ base: '0px', md: '0px', lg: '10px' }}
-          alignSelf={{ base: 'center', md: 'center', lg: 'flex-start'}}
+          mt={{ base: "20px", md: "20px", lg: "30px" }}
+          mb={{ base: "40px", md: "40px", lg: "20px" }}
+          ml={{ base: "0px", md: "0px", lg: "10px" }}
+          alignSelf={{ base: "center", md: "center", lg: "flex-start" }}
         >
           <ImageTransition
             unitid="back"
@@ -100,18 +93,12 @@ export default function ProjectMainButtons({ data, onNext }: {data:any, onNext:a
             height="50px"
             rounded="33px"
           >
-            <Box
-              variant="solid"
-              color="white"
-              justify="center"
-              align="center"
-              onClick={onNext}
-            >
-              {/* Back {data.project_title} */}
+            <Box color="white" onClick={onNext}>
+              Back {data.project_title}
             </Box>
           </ImageTransition>
         </Flex>
       </Flex>
     </>
-  )
-};
+  );
+}

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, {
   useRef,
@@ -75,7 +76,7 @@ export default function ExplorerProject() {
   const pageSize = 3;
 
   function onChangePaginator(page: number) {
-    if (state.activeProjectData == "") {
+    if (state.activeProjectData == []) {
       setPostProjectData(null);
       return;
     }
@@ -86,16 +87,32 @@ export default function ExplorerProject() {
   }
 
   //-----------fetch project data=-------------------------
-  async function fetchContractQuery(force = false) {}
+  async function fetchContractQuery(force = false) {
+    try {
+      const { projectData } = await FetchData(state, dispatch, force);
+      //-----------------initialize--------------------------
+      console.log(projectData);
+
+      const activeProjectData = projectData.filter(
+        (project) => project.project_status == GetProjectStatus(activeTab)
+      );
+
+      dispatch({ type: "setActiveProjectData", message: activeProjectData });
+      setPostProjectData(activeProjectData.slice(0, pageSize));
+      setCurrent(1);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   //------------Wefund Approve-----------------
-  async function WefundApprove(project_id) {}
-  async function OpenWhitelist(project_id) {}
-  async function CloseWhitelist(project_id) {}
-  async function JoinWhitelist(project_id) {}
-  async function MilestoneVote(project_id, voted) {}
+  async function WefundApprove(project_id: number) {}
+  async function OpenWhitelist(project_id: number) {}
+  async function CloseWhitelist(project_id: number) {}
+  async function JoinWhitelist(project_id: number) {}
+  async function MilestoneVote(project_id: number, voted: boolean) {}
 
-  async function NextFundraisingStage(project_id, curStage) {}
+  async function NextFundraisingStage(project_id: number, curStage: string) {}
   //---------initialize fetching---------------------
   useEffect(() => {
     fetchContractQuery();
@@ -266,8 +283,7 @@ export default function ExplorerProject() {
         </Box>
       </Flex>
       <Whitelist
-        projectID={projectID}
-        fetch={fetchContractQuery}
+        projectId={projectID}
         isOpen={isOpenCloseWhitelist}
         onClose={onCloseCloseWhitelist}
       />

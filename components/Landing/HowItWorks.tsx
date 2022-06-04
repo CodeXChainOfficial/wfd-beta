@@ -135,7 +135,7 @@ export default function Works() {
           swipeable={true}
           draggable={true}
           centerMode={true}
-          showThumbs={false}
+          // showThumbs={false}
           autoPlaySpeed={2000}
           keyBoardControl={true}
           responsive={responsive}

@@ -85,7 +85,7 @@ export default function UserSideSnippet() {
     if (CheckNetwork(state) == false) return false;
   }
   return (
-    <Box color={"white"} padding={"5%"}>
+    <Box color={"white"} padding={"5%"} mt="150px">
       <Flex
         mb="20px"
         fontSize={"18px"}

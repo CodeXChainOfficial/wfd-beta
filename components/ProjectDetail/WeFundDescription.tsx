@@ -1,26 +1,25 @@
-import React from 'react'
-import { chakra, Flex } from '@chakra-ui/react'
+import React from "react";
+import { chakra, Flex } from "@chakra-ui/react";
 
-export default function WeFundDescription({ data }:{data:any}) 
-{
+export default function WeFundDescription({ data }: { data: any }) {
   return (
     <Flex
       mt="40px"
-      px={{base:'10px', md:'10px', lg:'20px'}}
+      px={{ base: "10px", md: "10px", lg: "20px" }}
       borderRadius="25px"
       flexDirection="column"
-      background={'rgba(255, 255, 255, 0.05)'}
-      border={'1.5px solid rgba(255, 255, 255, 0.15)'}
-      fontSize={{base:'15px',md:'15px', lg:'18px'}}
-      w='100%'
+      background={"rgba(255, 255, 255, 0.05)"}
+      border={"1.5px solid rgba(255, 255, 255, 0.15)"}
+      fontSize={{ base: "15px", md: "15px", lg: "18px" }}
+      w="100%"
     >
       <chakra.h2
-        fontSize={'22px'}
+        fontSize={"22px"}
         fontWeight="bold"
-        marginBottom={'20px'}
-        color={'rgba(255, 255, 255, 1)'}
-        mt='20px'
-        style={{ fontFamily: 'PilatExtended-Bold' }}
+        marginBottom={"20px"}
+        color={"rgba(255, 255, 255, 1)"}
+        mt="20px"
+        style={{ fontFamily: "PilatExtended-Bold" }}
       >
         Introduction
       </chakra.h2>
@@ -49,12 +48,9 @@ export default function WeFundDescription({ data }:{data:any})
       >
         Project funds managed exclusively on Terra's Anchor protocol using smart contracts and following project milestones.
       </chakra.p> */}
-      <chakra.p
-        marginBottom={'20px'}
-        color={'rgba(255, 255, 255, 0.5)'}
-      >
-        data.project_description
+      <chakra.p marginBottom={"20px"} color={"rgba(255, 255, 255, 0.5)"}>
+        {data.project_description}
       </chakra.p>
     </Flex>
-  )
-};
+  );
+}
