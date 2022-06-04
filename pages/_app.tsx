@@ -1,7 +1,7 @@
 import React from "react";
 import { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
-import theme from "../theme";
+import theme from "../components/theme";
 import { ParallaxProvider } from "react-scroll-parallax";
 
 import "../styles/fonts.css";

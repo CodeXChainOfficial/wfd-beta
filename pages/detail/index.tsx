@@ -1,5 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import theme from "../theme";
+import theme from "../../components/theme";
 import { Box, Flex, VStack, useDisclosure } from "@chakra-ui/react";
 import React, {
   useEffect,
