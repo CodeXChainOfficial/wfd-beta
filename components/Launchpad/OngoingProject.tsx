@@ -20,7 +20,7 @@ import React, { useState } from "react";
 const projects = [
   {
     image: "/media/partners/lynx-dark.png",
-    name: "Lynx Verse",
+    name: "Lynxverse",
     status: "Coming Soon",
     registration_start: "TBA",
     platform_raise: "TBA",

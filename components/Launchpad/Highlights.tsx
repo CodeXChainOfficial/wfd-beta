@@ -142,24 +142,17 @@ export default function Highlights() {
 
 const projects = [
   {
-    title: "WeFund Beta Testing with Angel Protocol",
+    title: "WeFund to Go Multichain",
     description:
-      "WeFund will enter the testing phase with Angel Protocol to ensure WeFund functionality in a public test while raising funds for charity.",
-    img: "media/partners/Angelcampaign.png",
-    link: "/angel-campaign",
+      "WeFund will fulfill its mission to being multichain with Polygon Studios, entering Polygon ecosystem and subsequently Ethereum L1",
+    img: "media/partners/WFD-Polygon.jpg",
+    link: "#",
   },
   {
-    title: "WeFund Beta Testing with Angel Protocol",
+    title: "WeFund Multichain Migration to Juno",
     description:
-      "WeFund will enter the testing phase with Angel Protocol to ensure WeFund functionality in a public test while raising funds for charity.",
-    img: "media/partners/Angelcampaign.png",
-    link: "/angel-campaign",
-  },
-  {
-    title: "WeFund Beta Testing with Angel Protocol",
-    description:
-      "WeFund will enter the testing phase with Angel Protocol to ensure WeFund functionality in a public test while raising funds for charity.",
-    img: "media/partners/Angelcampaign.png",
-    link: "/angel-campaign",
+      "Both utilizing CosmWasm, WeFund is making migration to Juno and subsequently becames Multichain with Loop Finance structural assistance.",
+    img: "media/partners/WFD-Juno.jpg",
+    link: "#",
   },
 ];

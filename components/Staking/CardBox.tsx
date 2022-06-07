@@ -30,7 +30,7 @@ export default function CardBox({ data }: { data: any }) {
   }
   return (
     <VStack spacing="10px" justify="center">
-      <Image src={url} h="200px" />
+      <Image src={url} h={{base:"200px", md:"150px", lg:"200px"}} />
       <Text fontSize="30px">{data.card_type}&nbsp;Card</Text>
       <Text fontSize="12px">Validated staked amount</Text>
       <Text fontSize="24px">{data.amount}&nbsp;WFD</Text>

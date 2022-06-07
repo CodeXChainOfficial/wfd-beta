@@ -32,14 +32,14 @@ export default function Hero() {
       />
       <Container
         position={"relative"}
-        mt={{ base: "15vh", lg: "20vh" }}
+        mt={{ base: "10vh", md: "14vh", lg: "20vh" }}
         zIndex={"3"}
         maxW="container.lg"
       >
         <Stack>
           <Text
             fontFamily="PilatExtended-Bold"
-            fontSize={{ base: "16px", md: "58px" }}
+            fontSize={{ base: "16px", md: "48px" }}
             lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
             letterSpacing={{ base: "0.1em" }}
             textTransform={"uppercase"}
@@ -49,7 +49,7 @@ export default function Hero() {
           </Text>
           <Text
             fontFamily="PilatExtended-Black"
-            fontSize={{ base: "20px", md: "64px" }}
+            fontSize={{ base: "20px", md: "48px" }}
             lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
             letterSpacing={{ base: "0.1em" }}
             textTransform={"uppercase"}
@@ -60,7 +60,7 @@ export default function Hero() {
           </Text>
           <Text
             fontFamily="PilatExtended-Black"
-            fontSize={{ base: "20px", md: "64px" }}
+            fontSize={{ base: "20px", md: "48px" }}
             lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
             letterSpacing={{ base: "0.1em" }}
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
@@ -79,14 +79,14 @@ export default function Hero() {
             border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
             background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
             selected={false}
-            width={{ sm: "148px", md: "148px", lg: "242px" }}
-            height={{ sm: "34px", md: "34px", lg: "35px" }}
+            width={{ base: "148px", md: "148px", lg: "242px" }}
+            height={{ base: "32px", md: "34px", lg: "35px" }}
             rounded={"33px"}
             onClick={() => {}}
           >
             <Text
               w="100%"
-              fontSize={{ base: "10px", sm: "15px", md: "15px", lg: "15px" }}
+              fontSize={{ base: "14px", sm: "15px", md: "15px", lg: "15px" }}
               fontFamily={"Gilroy"}
               fontWeight={"800"}
               color="#002E87"
@@ -105,14 +105,14 @@ export default function Hero() {
             border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
             background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
             selected={false}
-            width={{ sm: "148px", md: "148px", lg: "242px" }}
-            height={{ sm: "34px", md: "34px", lg: "35px" }}
+            width={{ base: "148px", md: "148px", lg: "242px" }}
+            height={{ base: "34px", md: "34px", lg: "35px" }}
             rounded={"33px"}
             onClick={() => {}}
           >
             <Text
               w="100%"
-              fontSize={{ base: "10px", sm: "15px", md: "15px", lg: "15px" }}
+              fontSize={{ base: "14px", sm: "15px", md: "15px", lg: "15px" }}
               fontFamily={"Gilroy"}
               fontWeight={"800"}
               color="#FFFFFF"

@@ -13,9 +13,11 @@ export default function Card({ img, title }: { img: string; title: string }) {
   return (
     <Flex
       direction="column"
-      minW={{ base: "118px", lg: "261px" }}
+      minW={{ base: "128px", lg: "200px" }}
       w={{ base: "118px", lg: "261px" }}
       py={{ base: "20px", lg: "39px" }}
+      mx={{base:"10px", md:"17px"}}
+      
     >
       <Image src={img} width="100%" />
       <Text mt="32px" fontSize={{ base: "12px", lg: "20px" }} fontWeight="900">
@@ -27,6 +29,8 @@ export default function Card({ img, title }: { img: string; title: string }) {
         p="10px"
         rounded={"20px"}
         py={{ base: "13px", lg: "31px" }}
+        ml="10%"
+        width="80%"
         spacing={"10px"}
         align="center"
         mt={{ base: "10px", lg: "27px" }}

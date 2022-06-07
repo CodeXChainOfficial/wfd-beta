@@ -172,10 +172,6 @@ const NAV_ITEMS = [
     label: "Projects",
     href: "/explorer",
   },
-  {
-    label: "Invest in WeFund",
-    href: "/invest/step0",
-  },
   // {
   //   label: 'Dashboard',
   //   href: 'dashboard',
@@ -195,11 +191,7 @@ const NAV_ITEMS = [
   {
     label: "Staking",
     href: "/staking",
-  },
-  {
-    label: "Card Holders",
-    href: "/cards",
-  },
+  }
   // {
   //   label: 'FAQ',
   //   href: 'faq',

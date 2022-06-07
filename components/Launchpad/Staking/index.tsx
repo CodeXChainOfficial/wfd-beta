@@ -33,7 +33,7 @@ export default function Staking() {
         justify={"center"}
       >
         <Text
-          fontSize={{ sm: "20px", md: "20px", lg: "48px" }}
+          fontSize={{ sm: "20px", md: "20px", lg: "40px" }}
           fontWeight="700"
           color="#1F196B"
         >
@@ -64,14 +64,14 @@ export default function Staking() {
           border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
           background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
           selected={false}
-          width={{ sm: "148px", md: "148px", lg: "274px" }}
-          height={{ sm: "34px", md: "34px", lg: "52px" }}
+          width={{ base:"148px", sm: "158px", md: "148px", lg: "274px" }}
+          height={{ base:"32px", sm: "34px", md: "34px", lg: "52px" }}
           rounded={"33px"}
           onClick={() => {}}
         >
           <Text
             w="100%"
-            fontSize={{ sm: "8px", md: "8px", lg: "15px" }}
+            fontSize={{ base: "12px", md: "14px", lg: "15px" }}
             fontFamily={"Gilroy"}
             fontWeight={"800"}
             color="#002E87"
@@ -90,14 +90,14 @@ export default function Staking() {
           border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
           background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
           selected={false}
-          width={{ sm: "148px", md: "148px", lg: "274px" }}
-          height={{ sm: "34px", md: "34px", lg: "52px" }}
+          width={{ base:"148px", sm: "158px", md: "148px", lg: "274px" }}
+          height={{ base:"32px", sm: "34px", md: "34px", lg: "52px" }}
           rounded={"33px"}
           onClick={() => {}}
         >
           <Text
             w="100%"
-            fontSize={{ sm: "8px", md: "8px", lg: "15px" }}
+            fontSize={{ base: "12px", md: "14px", lg: "15px" }}
             fontFamily={"Gilroy"}
             fontWeight={"800"}
             color="#FFFFFF"
@@ -113,8 +113,8 @@ export default function Staking() {
         mt={{ base: "60px", lg: "110px" }}
         backgroundImage={"/media/Home/grid-2.svg"}
         flexWrap="wrap"
-        justify="space-between"
-        px={{ sm: "36px", md: "36px", lg: "132px" }}
+        justify="center"
+        px={{ base: "2px", md: "36px", lg: "132px" }}
       >
         <Card img="/media/Card/Platinum.png" title="PLATINUM" />
         <Card img="/media/Card/Gold.png" title="GOLD" />

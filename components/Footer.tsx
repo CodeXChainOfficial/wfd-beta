@@ -96,6 +96,9 @@ const PagesLinks = () => (
     <Link href="/blog" mr="20px">
       Blog
     </Link>
+    <Link href="/cards" mr="20px">
+      Card Holders
+    </Link>
     {/* <Link href="faq" mr="20px">
       FAQ
     </Link> */}
