@@ -6,6 +6,7 @@ interface Action {
 }
 
 export interface AppContextInterface {
+  walletType: "metamask" | "trust" | "keplr" | undefined;
   net: string;
   activeProjectData: any[];
   projectData: any[];
@@ -17,6 +18,7 @@ export interface AppContextInterface {
 }
 
 const initialState: AppContextInterface = {
+  walletType: undefined,
   net: "testnet",
   activeProjectData: [],
   projectData: [],
@@ -28,6 +30,7 @@ const initialState: AppContextInterface = {
 };
 
 export enum ActionKind {
+  setWalletType,
   setNet,
   setActiveProjectData,
   setProjectData,
@@ -47,6 +50,8 @@ const StoreContext = createContext<{
 
 export const reducer = (state: AppContextInterface, action: Action) => {
   switch (action.type) {
+    case ActionKind.setWalletType:
+      return { ...state, walletType: action.payload };
     case ActionKind.setNet:
       return { ...state, net: action.payload };
     case ActionKind.setActiveProjectData:

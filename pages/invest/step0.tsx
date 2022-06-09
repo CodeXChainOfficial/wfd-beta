@@ -8,7 +8,7 @@ import {
   InputTransition,
   ButtonTransition,
 } from "../../components/ImageTransition";
-import { useStore } from "../../components/store";
+import { useStore } from "../../contexts/store";
 import { useRouter } from "next/router";
 
 export default function InvestStep1() {

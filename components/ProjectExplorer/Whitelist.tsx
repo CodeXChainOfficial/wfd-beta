@@ -15,7 +15,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-import { ShortenAddress } from "../Util";
+import { ShortenAddress } from "../../utils/Util";
 
 interface Props {
   projectId: number;

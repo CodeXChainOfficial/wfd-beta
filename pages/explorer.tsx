@@ -15,9 +15,9 @@ import {
   CheckNetwork,
   GetProjectStatus,
   GetOneProject,
-} from "../components/Util";
+} from "../utils/Util";
 
-import { useStore } from "../components/store";
+import { useStore } from "../contexts/store";
 import Footer from "../components/Footer";
 import PageLayout from "../components/PageLayout";
 

@@ -10,7 +10,7 @@ import {
 
 import { InputTransition } from "../../ImageTransition";
 
-import { isNull } from "../../Util";
+import { isNull } from "../../../utils/Util";
 
 interface Props {
   index: number;

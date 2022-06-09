@@ -11,7 +11,7 @@ import {
 import { toast } from "react-toastify";
 import { InputTransition } from "../../ImageTransition";
 
-import { isNull, getVal, errorOption } from "../../Util";
+import { isNull, getVal, errorOption } from "../../../utils/Util";
 
 interface Props {
   index: number;

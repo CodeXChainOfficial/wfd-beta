@@ -14,7 +14,7 @@ import React, { useEffect, useState, useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
 
-import { wefundId } from "../../components/Constants";
+import { wefundId } from "../../config/Constants";
 import {
   ImageTransition,
   ButtonTransition,
@@ -28,8 +28,8 @@ import {
   GetOneProject,
   errorOption,
   successOption,
-} from "../../components/Util";
-import { useStore } from "../../components/store";
+} from "../../utils/Util";
+import { useStore } from "../../contexts/store";
 import { useRouter } from "next/router";
 import ReactSignatureCanvas from "react-signature-canvas";
 

@@ -2,13 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { REQUEST_ENDPOINT } from "../components/Constants";
+import { REQUEST_ENDPOINT } from "../config/Constants";
 
 import {
   ButtonBackTransition,
   ButtonTransition,
 } from "../components/ImageTransition";
-import { useStore } from "../components/store";
+import { useStore } from "../contexts/store";
 import Footer from "../components/Footer";
 import {
   EstimateSend,
@@ -26,7 +26,7 @@ import {
   ParseParam,
   GetOneProject,
   getTokenInfo,
-} from "../components/Util";
+} from "../utils/Util";
 
 import PageLayout from "../components/PageLayout";
 

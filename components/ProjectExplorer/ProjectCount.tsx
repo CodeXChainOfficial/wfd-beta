@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, Text } from "@chakra-ui/react";
-import { useStore } from "../store";
+import { useStore } from "../../contexts/store";
 
 export default function ProjectCount() {
   const { state, dispatch } = useStore();

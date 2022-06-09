@@ -7,7 +7,7 @@ import {
   ButtonBackTransition,
   ButtonTransition,
 } from "../components/ImageTransition";
-import { useStore } from "../components/store";
+import { useStore } from "../contexts/store";
 import Footer from "../components/Footer";
 import {
   EstimateSend,
@@ -17,8 +17,8 @@ import {
   errorOption,
   successOption,
   ParseParam,
-} from "../components/Util";
-import { REQUEST_ENDPOINT } from "../components/Constants";
+} from "../utils/Util";
+import { REQUEST_ENDPOINT } from "../config/Constants";
 
 import PageLayout from "../components/PageLayout";
 

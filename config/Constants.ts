@@ -1,4 +1,29 @@
 export const wefundId = 1;
+export const REQUEST_ENDPOINT =
+  "https://wefund-nodejs-gwb6v.ondigitalocean.app";
+
+export const successOption: any = {
+  position: "top-right",
+  type: "success",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
+export const errorOption: any = {
+  position: "top-right",
+  type: "error",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 export const WEFUND = {
   project_status: "WefundApproval",
   cofounder_name: "",

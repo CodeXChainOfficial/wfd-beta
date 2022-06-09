@@ -10,10 +10,10 @@ import {
   getStageTitle,
   isCardHolder,
   isBackable,
-} from "../Util";
+} from "../../utils/Util";
 
 import { ButtonTransition } from "../ImageTransition";
-import { useStore } from "../store";
+import { useStore } from "../../contexts/store";
 
 interface Props {
   index: number;

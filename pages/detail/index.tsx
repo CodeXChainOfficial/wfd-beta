@@ -11,7 +11,7 @@ import React, {
 import { toast } from "react-toastify";
 
 import { useRouter } from "next/router";
-import { useStore } from "../../components/store";
+import { useStore } from "../../contexts/store";
 import Footer from "../../components/Footer";
 import PageLayout from "../../components/PageLayout";
 import ProjectTitle from "../../components/ProjectDetail/ProjectTitle";
@@ -23,15 +23,13 @@ import ProjectTeamDescription from "../../components/ProjectDetail/ProjectTeamDe
 import ProjectMileStones from "../../components/ProjectDetail/ProjectMilestones";
 import VoteModal from "../../components/ProjectDetail/VoteModal";
 
+import { successOption, errorOption } from "../../config/Constants";
 import {
-  EstimateSend,
   CheckNetwork,
   FetchData,
   GetOneProject,
   ParseParam,
-  errorOption,
-  successOption,
-} from "../../components/Util";
+} from "../../utils/Util";
 
 export default function ProjectDetail() {
   const { state, dispatch } = useStore();

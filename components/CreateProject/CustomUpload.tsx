@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import { IoCloudUploadOutline, IoCheckbox } from "react-icons/io5";
-import { isNull } from "../Util";
+import { isNull } from "../../utils/Util";
 
 interface Props {
   typeText: string;

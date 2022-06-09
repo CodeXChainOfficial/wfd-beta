@@ -1,30 +1,6 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { wefundId } from "./Constants";
-
-export const successOption: any = {
-  position: "top-right",
-  type: "success",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-};
-
-export const errorOption: any = {
-  position: "top-right",
-  type: "error",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-};
-
-export async function EstimateSend(msgs: any, message: string, memo = "") {}
+import { wefundId } from "../config/Constants";
 
 export function GetProjectStatusString(mode: string) {
   let projectstatus = "Error";
@@ -117,6 +93,7 @@ export async function FetchData(
   projectData = AddExtraInfo(projectData);
   return { projectData, communityData, configData };
 }
+
 export function GetOneProject(projectData: any, project_id: any) {
   if (projectData == "") return "";
   const isProject = (element: any) => element.project_id == project_id;
@@ -124,9 +101,11 @@ export function GetOneProject(projectData: any, project_id: any) {
   if (index == -1) return "";
   return projectData[index];
 }
+
 export function isWefundWallet(state: any) {
   return false;
 }
+
 export function isCardHolder(state: any, project_id: number) {
   if (state.cardInfo == "") return false;
 
@@ -139,6 +118,7 @@ export function isCardHolder(state: any, project_id: number) {
   }
   return true;
 }
+
 export function isBackable(state: any, project_id: number) {
   if (project_id == wefundId)
     //WFD
@@ -156,6 +136,7 @@ export function isBackable(state: any, project_id: number) {
 
   return false;
 }
+
 export function getAllocation(state: any, project_id: number) {
   const one = GetOneProject(state.projectData, project_id);
   if (project_id == wefundId)
@@ -181,6 +162,7 @@ export function getAllocation(state: any, project_id: number) {
 
   return 0;
 }
+
 export function isCommunityWallet(state: any) {
   if (state.communityData == "") return false;
 
@@ -192,6 +174,7 @@ export function isCommunityWallet(state: any) {
 
   return false;
 }
+
 export function isCreatorWallet(state: any, project_id: number) {
   const one = GetOneProject(state.projectData, project_id);
   if (one == "") return false;
@@ -200,6 +183,7 @@ export function isCreatorWallet(state: any, project_id: number) {
 
   return false;
 }
+
 export function isBackerWallet(state: any, project_id: number) {
   const one = GetOneProject(state.projectData, project_id);
   if (one == "") return false;

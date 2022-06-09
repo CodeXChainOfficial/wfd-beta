@@ -12,22 +12,25 @@ import "../styles/ConnectWallet.css";
 import Layout from "../components/Layout";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { WalletProvider } from "../contexts/wallet";
 
 function App({ Component, pageProps }: AppProps): React.ReactNode {
   return (
-    <ChakraProvider resetCSS theme={theme}>
-      <ParallaxProvider>
-        <Layout>
-          <Component {...pageProps} />
+    <WalletProvider>
+      <ChakraProvider resetCSS theme={theme}>
+        <ParallaxProvider>
+          <Layout>
+            <Component {...pageProps} />
 
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-          />
-        </Layout>
-      </ParallaxProvider>
-    </ChakraProvider>
+            <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+            />
+          </Layout>
+        </ParallaxProvider>
+      </ChakraProvider>
+    </WalletProvider>
   );
 }
 

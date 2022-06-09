@@ -8,9 +8,8 @@ import {
   VStack,
   HStack,
 } from "@chakra-ui/react";
+import { useWallet, useWalletStore } from "../../../contexts/wallet";
 
-// import { LCDClient, WasmAPI } from "@terra-money/terra.js";
-// import { useWallet, useConnectedWallet } from "@terra-money/wallet-provider";
 // import { BigNumber, ethers } from "ethers";
 // import WalletConnect from "@walletconnect/client";
 // import QRCodeModal from "@walletconnect/qrcode-modal";
@@ -19,55 +18,20 @@ import { Wallet, CaretRight, Power, Check } from "phosphor-react";
 import numeral from "numeral";
 // import { useStore } from "../store";
 
-// const connector = new WalletConnect({
-//   bridge: "https://bridge.walletconnect.org", // Required
-//   qrcodeModal: QRCodeModal,
-// });
-
-// Check if connection is already established
-// if (!connector.connected) {
-//   // create new session
-//   connector.createSession();
-// }
-
-// // Subscribe to connection events
-// connector.on("connect", (error, payload) => {
-//   if (error) {
-//     throw error;
-//   }
-
-//   // Get provided accounts and chainId
-//   const { accounts, chainId } = payload.params[0];
-// });
-
-// connector.on("session_update", (error, payload) => {
-//   if (error) {
-//     throw error;
-//   }
-
-//   // Get updated accounts and chainId
-//   const { accounts, chainId } = payload.params[0];
-// });
-
-// connector.on("disconnect", (error, payload) => {
-//   if (error) {
-//     throw error;
-//   }
-
-//   // Delete connector
-// });
-
 export default function ConnectWallet() {
+  const {
+    address,
+    balance,
+    connect,
+    disconnect,
+    initializing: isLoading,
+    initialized: isReady,
+  } = useWallet();
+
   // let connectedWallet = "";
   const [bank, setBank] = useState();
   const [connected, setConnected] = useState(false);
   // const { state, dispatch } = useStore();
-
-  // let wallet = "";
-  // if (typeof document !== "undefined") {
-  //   wallet = useWallet();
-  //   connectedWallet = useConnectedWallet();
-  // }
 
   // const lcd = useMemo(() => {
   //   if (!connectedWallet) {
@@ -93,36 +57,61 @@ export default function ConnectWallet() {
   // }, [connectedWallet]);
 
   async function connectTo(to: string) {
-    // if (to == "extension") {
-    //   wallet.connect(wallet.availableConnectTypes[1]);
-    // } else if (to == "mobile") {
-    //   wallet.connect(wallet.availableConnectTypes[2]);
-    // } else if (to == "disconnect") {
-    //   wallet.disconnect();
-    //   dispatch({ type: "setWallet", message: {} });
-    // } else if (to == "metamask") {
-    //   const provider = new ethers.providers.Web3Provider(window.ethereum);
-    //   const accounts = await provider.send("eth_requestAccounts", []);
-    //   const account = accounts[0];
-    //   const { chainId } = await provider.getNetwork();
-    //   let balance = await provider.getBalance(account);
-    //   // dispatch({ type: ActionKind.setEthBalance, payload: balance });
-    //   // dispatch({ type: ActionKind.setMetamaskConnected, payload: true });
-    // } else if (to == "trust") {
-    //   const request = connector._formatRequest({
-    //     method: "get_accounts",
-    //   });
-    //   connector
-    //     ._sendCallRequest(request)
-    //     .then((result) => {
-    //       // Returns the accounts
-    //       console.log(result);
-    //     })
-    //     .catch((error) => {
-    //       // Error returned when rejected
-    //       console.error(error);
-    //     });
-    // }
+    if (to == "metamask") {
+      // const provider = new ethers.providers.Web3Provider(window.ethereum);
+      // const accounts = await provider.send("eth_requestAccounts", []);
+      // const account = accounts[0];
+      // const { chainId } = await provider.getNetwork();
+      // let balance = await provider.getBalance(account);
+      // dispatch({ type: ActionKind.setEthBalance, payload: balance });
+      // dispatch({ type: ActionKind.setMetamaskConnected, payload: true });
+    } else if (to == "trust") {
+      // const connector = new WalletConnect({
+      //   bridge: "https://bridge.walletconnect.org", // Required
+      //   qrcodeModal: QRCodeModal,
+      // });
+      // Check if connection is already established
+      // if (!connector.connected) {
+      //   // create new session
+      //   connector.createSession();
+      // }
+      // // Subscribe to connection events
+      // connector.on("connect", (error, payload) => {
+      //   if (error) {
+      //     throw error;
+      //   }
+      //   // Get provided accounts and chainId
+      //   const { accounts, chainId } = payload.params[0];
+      // });
+      // connector.on("session_update", (error, payload) => {
+      //   if (error) {
+      //     throw error;
+      //   }
+      //   // Get updated accounts and chainId
+      //   const { accounts, chainId } = payload.params[0];
+      // });
+      // connector.on("disconnect", (error, payload) => {
+      //   if (error) {
+      //     throw error;
+      //   }
+      //   // Delete connector
+      // });
+      // const request = connector._formatRequest({
+      //   method: "get_accounts",
+      // });
+      // connector
+      //   ._sendCallRequest(request)
+      //   .then((result) => {
+      //     // Returns the accounts
+      //     console.log(result);
+      //   })
+      //   .catch((error) => {
+      //     // Error returned when rejected
+      //     console.error(error);
+      //   });
+    } else if (to == "keplr") {
+      connect();
+    }
   }
 
   // async function contactBalance() {
@@ -154,40 +143,6 @@ export default function ConnectWallet() {
   //     dispatch({ type: "setWallet", message: {} });
   //   }
   // }
-
-  function returnBank() {
-    return (
-      <>
-        <Wallet
-          size={24}
-          // color="#0F0038"
-          color="white"
-          style={{ display: "inline-block", marginTop: "-3px" }}
-        />
-        {bank ? (
-          <>
-            &nbsp;&nbsp;
-            <Check
-              size={16}
-              // color="#0F0038"
-              color="white"
-              weight="bold"
-              style={{
-                display: "inline-block",
-                marginTop: "-8px",
-                marginLeft: "-5px",
-              }}
-            />
-            &nbsp;&nbsp;
-          </>
-        ) : (
-          <div className="spinner-border spinner-border-sm" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        )}
-      </>
-    );
-  }
 
   // const [scrolled, setScrolled] = useState(false)
   // const handleScroll = () => {
@@ -282,6 +237,40 @@ export default function ConnectWallet() {
   //   // window.addEventListener('scroll', handleScroll)
   // }, [connectedWallet]);
 
+  function returnBank() {
+    return (
+      <>
+        <Wallet
+          size={24}
+          // color="#0F0038"
+          color="white"
+          style={{ display: "inline-block", marginTop: "-3px" }}
+        />
+        {bank ? (
+          <>
+            &nbsp;&nbsp;
+            <Check
+              size={16}
+              // color="#0F0038"
+              color="white"
+              weight="bold"
+              style={{
+                display: "inline-block",
+                marginTop: "-8px",
+                marginLeft: "-5px",
+              }}
+            />
+            &nbsp;&nbsp;
+          </>
+        ) : (
+          <div className="spinner-border spinner-border-sm" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        )}
+      </>
+    );
+  }
+
   const ConnectionItem = ({ label, link }: { label: string; link: string }) => {
     return (
       <button
@@ -314,13 +303,16 @@ export default function ConnectWallet() {
                 className="dropdown_content"
                 aria-labelledby="dropdownMenuButton1"
               >
-                <ConnectionItem
-                  label="Terra Station (Browser)"
-                  link="extension"
-                />
-                <ConnectionItem label="Terra Station (QR Code)" link="mobile" />
-                <ConnectionItem label="Metamask" link="metamask" />
+                {WalletList.map((item, index) => (
+                  <ConnectionItem
+                    label={item.name}
+                    link={item.link}
+                    key={index}
+                  />
+                ))}
+                {/* <ConnectionItem label="Metamask" link="metamask" />
                 <ConnectionItem label="TrustWallet" link="trust" />
+                <ConnectionItem label="Keplr" link="keplr" /> */}
               </ul>
             </div>
           )}
@@ -378,12 +370,11 @@ export default function ConnectWallet() {
       <VStack display={{ base: "block", md: "block", lg: "none" }}>
         {!connected && (
           <div className="dropdown-content3">
-            <button onClick={() => connectTo("extension")}>
-              <CaretRight size={16} /> Terra Station (Browser)
-            </button>
-            <button onClick={() => connectTo("mobile")}>
-              <CaretRight size={16} /> Terra Station (QR Code)
-            </button>
+            {WalletList.map((item, index) => (
+              <button onClick={() => connectTo(item.link)} key={index}>
+                <CaretRight size={16} /> {item.name}
+              </button>
+            ))}
           </div>
         )}
         {connected && (
@@ -411,3 +402,18 @@ export default function ConnectWallet() {
     </>
   );
 }
+
+const WalletList = [
+  {
+    name: "Metamask",
+    link: "metamask",
+  },
+  {
+    name: "TrustWallet",
+    link: "trust",
+  },
+  {
+    name: "Keplr",
+    link: "keplr",
+  },
+];

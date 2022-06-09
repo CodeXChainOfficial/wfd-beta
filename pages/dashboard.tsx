@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import Pagination from "@choc-ui/paginator";
 
-import { useStore } from "../components/store";
+import { useStore } from "../contexts/store";
 import {
   InputTransition,
   ButtonTransition,
@@ -25,7 +25,7 @@ import {
   FetchData,
   Set2Mainnet,
   Set2Testnet,
-} from "../components/Util";
+} from "../utils/Util";
 
 export default function Dashboard() {
   const { state, dispatch } = useStore();

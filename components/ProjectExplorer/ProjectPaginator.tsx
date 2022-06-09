@@ -11,7 +11,7 @@ import { Flex, Button, Icon } from "@chakra-ui/react";
 
 import Pagination from "@choc-ui/paginator";
 
-import { useStore } from "../store";
+import { useStore } from "../../contexts/store";
 
 interface Props {
   current: number;

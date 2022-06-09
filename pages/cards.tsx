@@ -14,7 +14,7 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import { IoBan } from "react-icons/io5";
-import { useStore } from "../components/store";
+import { useStore } from "../contexts/store";
 import {
   InputTransition,
   ButtonTransition,
@@ -27,7 +27,7 @@ import {
   FetchData,
   Set2Mainnet,
   Set2Testnet,
-} from "../components/Util";
+} from "../utils/Util";
 
 export default function Cards() {
   const [cards, setCards] = useState(constants);

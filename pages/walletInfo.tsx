@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { Box, Flex, Text, Button, HStack } from "@chakra-ui/react";
 import { toast } from "react-toastify";
-import { wefundId } from "../components/Constants";
+import { wefundId } from "../config/Constants";
 
 import {
   FetchData,
@@ -13,8 +13,8 @@ import {
   CheckNetwork,
   errorOption,
   successOption,
-} from "../components/Util";
-import { useStore } from "../components/store";
+} from "../utils/Util";
+import { useStore } from "../contexts/store";
 
 export default function UserSideSnippet() {
   const { state, dispatch } = useStore();

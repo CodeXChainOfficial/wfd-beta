@@ -2,9 +2,9 @@ import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
 import { Flex, Text, InputGroup, Input, Box } from "@chakra-ui/react";
 
 import { toast } from "react-toastify";
-import { errorOption, getTokenInfo } from "../Util";
+import { errorOption, getTokenInfo } from "../../utils/Util";
 import { InputTransition } from "../ImageTransition";
-import { useStore } from "../store";
+import { useStore } from "../../contexts/store";
 
 interface Props {
   typeText: string;

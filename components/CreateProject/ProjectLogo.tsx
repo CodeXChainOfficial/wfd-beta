@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import { IoCloudUploadOutline, IoCheckbox } from "react-icons/io5";
-import { useStore } from "../store";
+import { useStore } from "../../contexts/store";
 
 interface Props {
   logo: any;

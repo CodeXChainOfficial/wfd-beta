@@ -5,10 +5,10 @@ import {
   isWefundWallet,
   isCommunityWallet,
   isBackerWallet,
-} from "../../components/Util";
+} from "../../utils/Util";
 
 import { ButtonTransition } from "../../components/ImageTransition";
-import { useStore } from "../../components/store";
+import { useStore } from "../../contexts/store";
 
 interface Props {
   data: any;

@@ -27,7 +27,7 @@ import {
   Set2Mainnet,
   Set2Testnet,
   CheckNetwork,
-} from "../../components/Util";
+} from "../../utils/Util";
 
 export default function Staking() {
   const [userInfo, setUserInfo] = useState({

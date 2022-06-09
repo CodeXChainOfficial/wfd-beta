@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { Box, chakra } from "@chakra-ui/react";
-import { GetProjectStatus, GetProjectStatusString } from "../Util";
+import { GetProjectStatus, GetProjectStatusString } from "../../utils/Util";
 
 interface Props {
   data: any;

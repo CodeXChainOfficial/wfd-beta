@@ -12,14 +12,11 @@ import {
   ChakraProvider,
 } from "@chakra-ui/react";
 
+import NavbarMobile from "./mobile";
 import { RiAccountPinBoxFill } from "react-icons/ri";
-import Container from "../Container";
 import { ButtonBackTransition } from "../ImageTransition";
-import { useStore } from "../store";
 
 export default function Navbar() {
-  const { state, dispatch } = useStore();
-
   return (
     <Flex w="100%" direction="column">
       <VStack display={{ base: "none", md: "none", lg: "block" }}>
@@ -74,57 +71,7 @@ export default function Navbar() {
           </Flex>
         </Flex>
       </VStack>
-      <VStack display={{ base: "block", md: "block", lg: "none" }}>
-        <Flex
-          h="60px"
-          w="100%"
-          zIndex="99"
-          direction="row"
-          position="relative"
-          justify="space-between"
-          backdropFilter="blur(54px)"
-          borderBottom="2px solid rgba(255, 255, 255, 0.103)"
-        >
-          <Flex ml="30px" align="center" cursor="pointer">
-            <Link className="navbar-brand" href="/">
-              <Image alt="WeFund" src="/media/WeFund-Logos-only.png" h="25px" />
-            </Link>
-          </Flex>
-          <HStack>
-            <Flex mr="10px" className="dropdown2">
-              <Flex className="dropbtn">
-                <Image alt="menu1" src="/media/menuButton1.svg" h="20px" />
-              </Flex>
-              <div className="dropdown-content2">
-                <ConnectWallet />
-              </div>
-            </Flex>
-            <Flex pr="10px" className="dropdown2">
-              <Flex className="dropbtn" mr={"20px"}>
-                <Image alt="menu2" src="/media/menuButton2.svg" h="20px" />
-              </Flex>
-              <div className="dropdown-content2">
-                {NAV_ITEMS.map((navItem, index) => (
-                  <Link href={navItem.href} key={index}>
-                    {navItem.label}
-                  </Link>
-                ))}
-                <Link href="/create">Create Project</Link>
-              </div>
-            </Flex>
-            <Flex pr="30px" className="dropdown2">
-              <Link href="walletInfo">
-                <Icon
-                  as={RiAccountPinBoxFill}
-                  fontSize={"30px"}
-                  cursor="pointer"
-                  color="white"
-                />
-              </Link>
-            </Flex>
-          </HStack>
-        </Flex>
-      </VStack>
+      <NavbarMobile />
       {/* {state.net == "testnet" && (
         <Flex
           w="100%"
@@ -159,7 +106,7 @@ const DesktopNav = () => {
   );
 };
 
-const NAV_ITEMS = [
+export const NAV_ITEMS = [
   {
     label: "Home",
     href: "/",
@@ -191,7 +138,7 @@ const NAV_ITEMS = [
   {
     label: "Staking",
     href: "/staking",
-  }
+  },
   // {
   //   label: 'FAQ',
   //   href: 'faq',
