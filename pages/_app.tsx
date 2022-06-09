@@ -12,11 +12,11 @@ import "../styles/ConnectWallet.css";
 import Layout from "../components/Layout";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { WalletProvider } from "../contexts/wallet";
+import { KeplrWalletProvider } from "../contexts/keplrWallet";
 
 function App({ Component, pageProps }: AppProps): React.ReactNode {
   return (
-    <WalletProvider>
+    <KeplrWalletProvider>
       <ChakraProvider resetCSS theme={theme}>
         <ParallaxProvider>
           <Layout>
@@ -30,7 +30,7 @@ function App({ Component, pageProps }: AppProps): React.ReactNode {
           </Layout>
         </ParallaxProvider>
       </ChakraProvider>
-    </WalletProvider>
+    </KeplrWalletProvider>
   );
 }
 

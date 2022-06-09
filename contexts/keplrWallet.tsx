@@ -17,6 +17,7 @@ declare let window: any;
 const NETWORK = "testnet";
 
 export interface KeplrWalletStore {
+  connected: boolean;
   accountNumber: number;
   address: string;
   balance: Coin[];
@@ -46,6 +47,7 @@ export interface KeplrWalletStore {
 export type WalletContextType = KeplrWalletStore;
 
 const defaultStates = {
+  connected: false,
   accountNumber: 0,
   address: "",
   balance: [],
@@ -58,7 +60,7 @@ const defaultStates = {
   signer: undefined,
 };
 
-export const useWalletStore = create(
+export const useKeplrWalletStore = create(
   subscribeWithSelector<KeplrWalletStore>((set, get) => ({
     ...defaultStates,
     clear: () => set({ ...defaultStates }),
@@ -67,6 +69,8 @@ export const useWalletStore = create(
         if (walletChange !== "focus") set({ initializing: true });
         const { config, init } = get();
         const signer = await loadKeplrWallet(config);
+        set({ connected: true });
+
         init(signer);
         if (walletChange) set({ initializing: false });
       } catch (err: any) {
@@ -78,6 +82,7 @@ export const useWalletStore = create(
       window.localStorage.clear();
       get().clear();
       set({ initializing: false });
+      set({ connected: false });
     },
     getClient: () => get().client!,
     getSigner: () => get().signer!,
@@ -87,7 +92,7 @@ export const useWalletStore = create(
       balance = get().balance
     ) => {
       const { client, config } = get();
-console.log(client)
+      console.log(client)
       if (!client) return;
       balance.length = 0;
       for (const denom in config.coinMap) {
@@ -96,7 +101,7 @@ console.log(client)
         if (coin) balance.push(coin);
       }
       set({ balance });
-console.log(balance)
+      console.log(balance)
     },
     setNetwork: (network) => set({ network }),
     updateSigner: (signer) => set({ signer }),
@@ -106,27 +111,27 @@ console.log(balance)
 /**
  * Proxied keplr wallet store which only rerenders on called state values.
  *
- * Recommended if only consuming state; to set states, use {@link useWalletStore.setState}.
+ * Recommended if only consuming state; to set states, use {@link useKeplrWalletStore.setState}.
  *
  * @example
  *
  * ```ts
  * // this will rerender if any state values has changed
- * const { name } = useWalletStore()
+ * const { name } = useKeplrWalletStore()
  *
  * // this will rerender if only `name` has changed
  * const { name } = useWallet()
  * ```
  */
-export const useWallet =
-  createTrackedSelector<KeplrWalletStore>(useWalletStore);
+export const useKeplrWallet =
+  createTrackedSelector<KeplrWalletStore>(useKeplrWalletStore);
 
 /**
  * Keplr wallet store provider to easily mount {@link WalletSubscription}
  * to listen/subscribe various state changes.
  *
  */
-export const WalletProvider = ({ children }: { children: ReactNode }) => {
+export const KeplrWalletProvider = ({ children }: { children: ReactNode }) => {
   return (
     <>
       {children}
@@ -148,16 +153,16 @@ const WalletSubscription = () => {
   useEffect(() => {
     const walletAddress = window.localStorage.getItem("wallet_address");
     if (walletAddress) {
-      void useWalletStore.getState().connect();
+      void useKeplrWalletStore.getState().connect();
     } else {
-      useWalletStore.setState({ initializing: false });
+      useKeplrWalletStore.setState({ initializing: false });
     }
 
     const listenChange = () => {
-      void useWalletStore.getState().connect(true);
+      void useKeplrWalletStore.getState().connect(true);
     };
     const listenFocus = () => {
-      if (walletAddress) void useWalletStore.getState().connect("focus");
+      if (walletAddress) void useKeplrWalletStore.getState().connect("focus");
     };
 
     window.addEventListener("keplr_keystorechange", listenChange);
@@ -175,13 +180,13 @@ const WalletSubscription = () => {
    * @see https://github.com/CosmosContracts/juno-tools/blob/41c256f71d2b8b55fade12fae3b8c6a493a1e3ce/contexts/wallet.tsx#L95-L105
    */
   useEffect(() => {
-    return useWalletStore.subscribe(
+    return useKeplrWalletStore.subscribe(
       (x) => x.signer,
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       async (signer) => {
         if (!signer) return;
         try {
-          useWalletStore.setState({
+          useKeplrWalletStore.setState({
             client: await createClient({ signer }),
           });
         } catch (error) {
@@ -197,11 +202,11 @@ const WalletSubscription = () => {
    * @see https://github.com/CosmosContracts/juno-tools/blob/41c256f71d2b8b55fade12fae3b8c6a493a1e3ce/contexts/wallet.tsx#L107-L139
    */
   useEffect(() => {
-    return useWalletStore.subscribe(
+    return useKeplrWalletStore.subscribe(
       (x) => x.client,
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       async (client) => {
-        const { config, refreshBalance, signer } = useWalletStore.getState();
+        const { config, refreshBalance, signer } = useKeplrWalletStore.getState();
         if (!signer || !client) return;
         if (!window.keplr) {
           throw new Error("window.keplr not found");
@@ -212,7 +217,7 @@ const WalletSubscription = () => {
         const key = await window.keplr.getKey(config.chainId);
         await refreshBalance(address, balance);
         window.localStorage.setItem("wallet_address", address);
-        useWalletStore.setState({
+        useKeplrWalletStore.setState({
           accountNumber: account?.accountNumber || 0,
           address,
           balance,
@@ -228,14 +233,14 @@ const WalletSubscription = () => {
 };
 
 /**
- * Function to create signing client based on {@link useWalletStore} resolved
+ * Function to create signing client based on {@link useKeplrWalletStore} resolved
  * config state.
  *
  * @see https://github.com/CosmosContracts/juno-tools/blob/41c256f71d2b8b55fade12fae3b8c6a493a1e3ce/services/keplr.ts#L9-L21
  * @param arg - Object argument requiring `signer`
  */
 const createClient = ({ signer }: { signer: OfflineSigner }) => {
-  const { config } = useWalletStore.getState();
+  const { config } = useKeplrWalletStore.getState();
   return SigningCosmWasmClient.connectWithSigner(config.rpcUrl, signer, {
     gasPrice: {
       amount: Decimal.fromUserInput("0.0025", 100),
@@ -258,7 +263,7 @@ const loadKeplrWallet = async (config: AppConfig) => {
   ) {
     throw new Error("Keplr extension is not available");
   }
-console.log(config)
+
   await window.keplr.experimentalSuggestChain(keplrConfig(config));
   await window.keplr.enable(config.chainId);
 
