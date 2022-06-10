@@ -25,6 +25,7 @@
     "@types/numeral": "^2.0.2",
     "@walletconnect/client": "^1.7.8",
     "@walletconnect/qrcode-modal": "^1.7.8",
+    "@walletconnect/web3-provider": "^1.7.8",
     "aos": "^2.3.4",
     "axios": "^0.27.2",
     "crypto": "^1.0.1",
@@ -43,6 +44,8 @@
     "react-toastify": "^9.0.3",
     "react-tracked": "^1.7.9",
     "typescript": "^4.3.2",
+    "web3": "^1.7.3",
+    "web3modal": "^1.9.7",
     "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {

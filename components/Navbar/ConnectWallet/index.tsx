@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useMemo,
-  useRef,
-  FunctionComponent,
-  ReactNode,
-} from "react";
+import React, { FunctionComponent } from "react";
 import {
   Image,
   Button,
@@ -22,13 +15,10 @@ import {
 
 import { useKeplrWallet } from "../../../contexts/keplrWallet";
 import { useMetamaskWallet } from "../../../contexts/Metamask";
+import { useTrustWallet } from "../../../contexts/TrustWallet";
 // import { BigNumber, ethers } from "ethers";
 
-import {
-  MdOutlineAccountBalanceWallet,
-  MdCheck,
-  MdOutlinePowerSettingsNew,
-} from "react-icons/md";
+import { MdOutlineAccountBalanceWallet, MdCheck } from "react-icons/md";
 import { BsCaretRight } from "react-icons/bs";
 
 import { useStore, ActionKind } from "../../../contexts/store";
@@ -38,11 +28,14 @@ export default function ConnectWallet() {
   const { state, dispatch } = useStore();
   const keplr = useKeplrWallet();
   const metamask = useMetamaskWallet();
+  const trust = useTrustWallet();
+
   const { onOpen, onClose, isOpen } = useDisclosure();
 
   let wallet: any;
   if (state.walletType == "metamask") wallet = metamask;
   else if (state.walletType == "keplr") wallet = keplr;
+  else if (state.walletType == "trust") wallet = trust;
 
   const connected = wallet ? wallet.connected : false;
   const initialized = wallet ? wallet.initialized : false;
@@ -53,7 +46,9 @@ export default function ConnectWallet() {
       dispatch({ type: ActionKind.setWalletType, payload: "metamask" });
       dispatch({ type: ActionKind.setWallet, payload: metamask });
     } else if (to == "trust") {
-      console.log("trust");
+      trust.connect();
+      dispatch({ type: ActionKind.setWalletType, payload: "trust" });
+      dispatch({ type: ActionKind.setWallet, payload: trust });
     } else if (to == "keplr") {
       keplr.connect();
       dispatch({ type: ActionKind.setWalletType, payload: "keplr" });
@@ -89,7 +84,7 @@ export default function ConnectWallet() {
       <Flex
         align="center"
         cursor="pointer"
-        py="5px"
+        py="10px"
         rounded="10px"
         _hover={{ background: "black" }}
         onClick={() => {
