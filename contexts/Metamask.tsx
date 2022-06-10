@@ -57,7 +57,11 @@ export const useMetamaskStore = create(
         set({ initializing: false });
       }
     },
-    disconnect: () => {
+    disconnect: async () => {
+      await window.ethereum.request({
+        method: "eth_requestAccounts",
+        params: [{ eth_accounts: {} }],
+      });
       set({
         connected: false,
       });
