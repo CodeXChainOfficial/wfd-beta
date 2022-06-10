@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import React, { useEffect } from "react";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 import { Decimal } from "@cosmjs/math";
 import type { OfflineSigner } from "@cosmjs/proto-signing";
@@ -11,6 +11,7 @@ import type { State } from "zustand";
 import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
+import { BigNumber } from "ethers";
 
 declare let window: any;
 
@@ -42,6 +43,8 @@ export interface KeplrWalletStore {
   ) => Promise<void>;
   readonly setNetwork: (network: string) => void;
   readonly updateSigner: (singer: OfflineSigner) => void;
+  readonly getBalance: () => BigNumber;
+  readonly getBalanceString: () => string;
 }
 
 export type WalletContextType = KeplrWalletStore;
@@ -92,7 +95,6 @@ export const useKeplrWalletStore = create(
       balance = get().balance
     ) => {
       const { client, config } = get();
-      console.log(client)
       if (!client) return;
       balance.length = 0;
       for (const denom in config.coinMap) {
@@ -101,36 +103,23 @@ export const useKeplrWalletStore = create(
         if (coin) balance.push(coin);
       }
       set({ balance });
-      console.log(balance)
     },
     setNetwork: (network) => set({ network }),
     updateSigner: (signer) => set({ signer }),
+    getBalance: () => {
+      return BigNumber.from(get().balance[0].amount);
+    },
+    getBalanceString: () => {
+      if (get().balance.length > 0)
+        return get().balance[0].amount.toString() + " keplr";
+      return "0 keplr";
+    },
   }))
 );
 
-/**
- * Proxied keplr wallet store which only rerenders on called state values.
- *
- * Recommended if only consuming state; to set states, use {@link useKeplrWalletStore.setState}.
- *
- * @example
- *
- * ```ts
- * // this will rerender if any state values has changed
- * const { name } = useKeplrWalletStore()
- *
- * // this will rerender if only `name` has changed
- * const { name } = useWallet()
- * ```
- */
 export const useKeplrWallet =
   createTrackedSelector<KeplrWalletStore>(useKeplrWalletStore);
 
-/**
- * Keplr wallet store provider to easily mount {@link WalletSubscription}
- * to listen/subscribe various state changes.
- *
- */
 export const KeplrWalletProvider = ({ children }: { children: ReactNode }) => {
   return (
     <>
@@ -140,29 +129,20 @@ export const KeplrWalletProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-/**
- * Keplr wallet subscriptions (side effects)
- */
 const WalletSubscription = () => {
-  /**
-   * Dispatch reconnecting wallet on first mount and register events to refresh
-   * on keystore change and window refocus.
-   *
-   * @see https://github.com/CosmosContracts/juno-tools/blob/41c256f71d2b8b55fade12fae3b8c6a493a1e3ce/pages/_app.tsx#L19-L35
-   */
   useEffect(() => {
-    const walletAddress = window.localStorage.getItem("wallet_address");
-    if (walletAddress) {
-      void useKeplrWalletStore.getState().connect();
-    } else {
-      useKeplrWalletStore.setState({ initializing: false });
-    }
+    // const walletAddress = window.localStorage.getItem("wallet_address");
+    // if (walletAddress) {
+    //   void useKeplrWalletStore.getState().connect();
+    // } else {
+    //   useKeplrWalletStore.setState({ initializing: false });
+    // }
 
     const listenChange = () => {
       void useKeplrWalletStore.getState().connect(true);
     };
     const listenFocus = () => {
-      if (walletAddress) void useKeplrWalletStore.getState().connect("focus");
+      // if (walletAddress) void useKeplrWalletStore.getState().connect("focus");
     };
 
     window.addEventListener("keplr_keystorechange", listenChange);
@@ -174,11 +154,6 @@ const WalletSubscription = () => {
     };
   }, []);
 
-  /**
-   * Watch signer changes to initialize client state.
-   *
-   * @see https://github.com/CosmosContracts/juno-tools/blob/41c256f71d2b8b55fade12fae3b8c6a493a1e3ce/contexts/wallet.tsx#L95-L105
-   */
   useEffect(() => {
     return useKeplrWalletStore.subscribe(
       (x) => x.signer,
@@ -196,17 +171,13 @@ const WalletSubscription = () => {
     );
   }, []);
 
-  /**
-   * Watch client changes to refresh balance and sync wallet states.
-   *
-   * @see https://github.com/CosmosContracts/juno-tools/blob/41c256f71d2b8b55fade12fae3b8c6a493a1e3ce/contexts/wallet.tsx#L107-L139
-   */
   useEffect(() => {
     return useKeplrWalletStore.subscribe(
       (x) => x.client,
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       async (client) => {
-        const { config, refreshBalance, signer } = useKeplrWalletStore.getState();
+        const { config, refreshBalance, signer } =
+          useKeplrWalletStore.getState();
         if (!signer || !client) return;
         if (!window.keplr) {
           throw new Error("window.keplr not found");
@@ -232,13 +203,6 @@ const WalletSubscription = () => {
   return null;
 };
 
-/**
- * Function to create signing client based on {@link useKeplrWalletStore} resolved
- * config state.
- *
- * @see https://github.com/CosmosContracts/juno-tools/blob/41c256f71d2b8b55fade12fae3b8c6a493a1e3ce/services/keplr.ts#L9-L21
- * @param arg - Object argument requiring `signer`
- */
 const createClient = ({ signer }: { signer: OfflineSigner }) => {
   const { config } = useKeplrWalletStore.getState();
   return SigningCosmWasmClient.connectWithSigner(config.rpcUrl, signer, {
@@ -249,12 +213,6 @@ const createClient = ({ signer }: { signer: OfflineSigner }) => {
   });
 };
 
-/**
- * Function to load keplr wallet signer.
- *
- * @see https://github.com/CosmosContracts/juno-tools/blob/41c256f71d2b8b55fade12fae3b8c6a493a1e3ce/services/keplr.ts#L23-L38
- * @param config - Application configuration
- */
 const loadKeplrWallet = async (config: AppConfig) => {
   if (
     !window.getOfflineSigner ||

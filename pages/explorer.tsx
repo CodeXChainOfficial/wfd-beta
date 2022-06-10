@@ -97,7 +97,7 @@ export default function ExplorerProject() {
         (project) => project.project_status == GetProjectStatus(activeTab)
       );
 
-      dispatch({ type: "setActiveProjectData", message: activeProjectData });
+      dispatch({ type: "setActiveProjectData", payload: activeProjectData });
       setPostProjectData(activeProjectData.slice(0, pageSize));
       setCurrent(1);
     } catch (e) {

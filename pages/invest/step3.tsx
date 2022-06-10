@@ -88,7 +88,7 @@ export default function Invest_step3() {
       );
       dispatch({
         type: "setInvestsignature",
-        message: e.target.files[0],
+        payload: e.target.files[0],
       });
 
       const reader = new FileReader();

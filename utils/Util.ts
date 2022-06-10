@@ -286,7 +286,7 @@ export function Set2Mainnet(dispatch: React.Dispatch<any>) {
   console.log("set to mainnet");
   dispatch({
     type: "setNet",
-    message: "mainnet",
+    payload: "mainnet",
   });
 }
 
@@ -295,7 +295,7 @@ export function Set2Testnet(dispatch: React.Dispatch<any>) {
   console.log("set to testnet");
   dispatch({
     type: "setNet",
-    message: "testnet",
+    payload: "testnet",
   });
 }
 

@@ -34,13 +34,8 @@ export default function NavbarMobile() {
           </Link>
         </Flex>
         <HStack>
-          <Flex mr="10px" className="dropdown2">
-            <Flex className="dropbtn">
-              <Image alt="menu1" src="/media/menuButton1.svg" h="20px" />
-            </Flex>
-            <div className="dropdown-content2">
-              <ConnectWallet />
-            </div>
+          <Flex mr="10px">
+            <ConnectWallet />
           </Flex>
           <Flex pr="10px" className="dropdown2">
             <Flex className="dropbtn" mr={"20px"}>

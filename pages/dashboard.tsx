@@ -115,19 +115,19 @@ export default function Dashboard() {
     }
     dispatch({
       type: "setProjectData",
-      message: "",
+      payload: "",
     });
     dispatch({
       type: "setConfigData",
-      message: "",
+      payload: "",
     });
     dispatch({
       type: "setCommunityData",
-      message: "",
+      payload: "",
     });
     dispatch({
       type: "setActiveProjectData",
-      message: "",
+      payload: "",
     });
     // navigate("/");
   }
