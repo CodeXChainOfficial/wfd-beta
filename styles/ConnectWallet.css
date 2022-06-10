@@ -1,0 +1,105 @@
+/* Dropdown Button */
+.dropbtn {
+  color: white;
+  align-items: center;
+  border: solid 1px orange;
+  border-radius: 30px;
+  padding: 5px 15px 5px 15px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-item {
+  width: 100%
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown_content {
+  display: none;
+  position: absolute;
+  min-width: 240px;
+  z-index: 1;
+  right: 0;
+  top: 35px;
+
+  background: linear-gradient(328.75deg, #493c85 -5.49%, #0f0038 104.44%);
+  border-radius: 10px;
+  box-shadow: 0px 28px 48px #0f0038;
+  color: #fff;
+}
+
+/* Links inside the dropdown */
+.dropdown_content button {
+  color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown_content button:hover {background: #0f0038;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown_content {display: block;}
+
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown2 {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content2 {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+  top: 30px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content2 a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content2 a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown2:hover .dropdown-content2 {display: block;}
+
+.dropdown-content3 {
+  position: absolute;
+  min-width: 230px;
+  z-index: 1;
+  right: 0;
+  top: 0px;
+
+  background: linear-gradient(328.75deg, #493c85 -5.49%, #0f0038 104.44%);
+  border-radius: 10px;
+  box-shadow: 0px 28px 48px #0f0038;
+  color: #fff;
+}
+
+/* Links inside the dropdown */
+.dropdown-content3 button {
+  color: #fff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+/* Change color of dropdown links on hover */
+.dropdown-content3 button:hover {background-color: #0f0038;}

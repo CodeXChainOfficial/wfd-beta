@@ -62,9 +62,10 @@ export const useMetamaskStore = create(
         method: "eth_requestAccounts",
         params: [{ eth_accounts: {} }],
       });
-      set({
-        connected: false,
-      });
+      window.localStorage.clear();
+      get().clear();
+      set({ initializing: false });
+      set({ connected: false });
     },
     getBalance: () => get().balance!,
     getBalanceString: () => {

@@ -5,6 +5,7 @@ import theme from "../components/theme";
 import { ParallaxProvider } from "react-scroll-parallax";
 
 import "../styles/global.css";
+import "../styles/ConnectWallet.css";
 import "../styles/fonts.css";
 import "../styles/CreateProject.css";
 import "../styles/transition.css";
