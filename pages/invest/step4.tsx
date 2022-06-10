@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 
 import { ImageTransition } from "../../components/ImageTransition";
 import PageLayout from "../../components/PageLayout";
-import { ParseParam, successOption } from "../../utils/Util";
+import { successOption } from "../../config/Constants";
 import { useRouter } from "next/router";
 
 export default function InvestStep4() {

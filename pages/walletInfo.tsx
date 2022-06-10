@@ -7,13 +7,8 @@ import { Box, Flex, Text, Button, HStack } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 import { wefundId } from "../config/Constants";
 
-import {
-  FetchData,
-  EstimateSend,
-  CheckNetwork,
-  errorOption,
-  successOption,
-} from "../utils/Util";
+import { FetchData, CheckNetwork } from "../utils/Util";
+import { successOption } from "../config/Constants";
 import { useStore } from "../contexts/store";
 
 export default function UserSideSnippet() {

@@ -22,13 +22,8 @@ import {
 } from "../../components/ImageTransition";
 import Faq from "../../components/Faq";
 import PageLayout from "../../components/PageLayout";
-import {
-  ParseParam,
-  FetchData,
-  GetOneProject,
-  errorOption,
-  successOption,
-} from "../../utils/Util";
+import { ParseParam } from "../../utils/Util";
+import { errorOption, successOption } from "../../config/Constants";
 import { useStore } from "../../contexts/store";
 import { useRouter } from "next/router";
 import ReactSignatureCanvas from "react-signature-canvas";

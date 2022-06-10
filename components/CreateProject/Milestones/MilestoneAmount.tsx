@@ -10,8 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 import { InputTransition } from "../../ImageTransition";
-
-import { isNull, getVal, errorOption } from "../../../utils/Util";
+import { errorOption } from "../../../config/Constants";
+import { isNull } from "../../../utils/Util";
 
 interface Props {
   index: number;

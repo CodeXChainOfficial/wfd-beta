@@ -9,15 +9,8 @@ import {
 } from "../components/ImageTransition";
 import { useStore } from "../contexts/store";
 import Footer from "../components/Footer";
-import {
-  EstimateSend,
-  CheckNetwork,
-  FetchData,
-  isNull,
-  errorOption,
-  successOption,
-  ParseParam,
-} from "../utils/Util";
+import { CheckNetwork, FetchData, isNull, ParseParam } from "../utils/Util";
+import { successOption, errorOption } from "../config/Constants";
 import { REQUEST_ENDPOINT } from "../config/Constants";
 
 import PageLayout from "../components/PageLayout";

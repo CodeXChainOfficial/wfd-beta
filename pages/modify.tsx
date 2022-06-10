@@ -11,7 +11,6 @@ import {
 import { useStore } from "../contexts/store";
 import Footer from "../components/Footer";
 import {
-  EstimateSend,
   CheckNetwork,
   FetchData,
   Sleep,
@@ -21,13 +20,11 @@ import {
   getInteger,
   getSeconds,
   getMonth,
-  errorOption,
-  successOption,
   ParseParam,
   GetOneProject,
   getTokenInfo,
 } from "../utils/Util";
-
+import { successOption, errorOption } from "../config/Constants";
 import PageLayout from "../components/PageLayout";
 
 import Payment from "../components/CreateProject/Payment";

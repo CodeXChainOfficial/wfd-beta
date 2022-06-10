@@ -9,7 +9,6 @@ import {
 } from "../../components/ImageTransition";
 
 import PageLayout from "../../components/PageLayout";
-import { ParseParam, errorOption } from "../../utils/Util";
 // import SAFTTemplate from '../../components/SAFTTemplate';
 
 export default function InvestStep1() {

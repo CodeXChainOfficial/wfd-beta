@@ -17,7 +17,7 @@ import {
 } from "../../components/ImageTransition";
 import { useStore } from "../../contexts/store";
 import PageLayout from "../../components/PageLayout";
-import { errorOption, getAllocation } from "../../utils/Util";
+import { getAllocation } from "../../utils/Util";
 import { useRouter } from "next/router";
 
 export default function InvestStep2() {
