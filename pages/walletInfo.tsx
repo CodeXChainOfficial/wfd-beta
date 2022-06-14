@@ -5,11 +5,11 @@ import Link from "next/link";
 
 import { Box, Flex, Text, Button, HStack } from "@chakra-ui/react";
 import { toast } from "react-toastify";
-import { wefundId } from "../config/Constants";
+import { WEFUND_ID } from "../config/Constants";
 
-import { FetchData, CheckNetwork } from "../utils/Util";
+import { CheckNetwork } from "../utils/Util";
 import { successOption } from "../config/Constants";
-import { useStore } from "../contexts/store";
+import { useCommunityData, useProjectData, useStore } from "../contexts/store";
 
 export default function UserSideSnippet() {
   const { state, dispatch } = useStore();
@@ -17,11 +17,11 @@ export default function UserSideSnippet() {
   const [projectCount, setProjectCount] = useState(0);
   const [activeTab, setActiveTab] = useState("Account");
   const [tokens, setTokens] = useState<any[]>([]);
+  const projectData = useProjectData();
+  const communityData = useCommunityData();
 
   async function fetchContractQuery() {
     try {
-      const { projectData } = await FetchData(state, dispatch);
-
       let projectCount = 0;
       let totalbacked = 0;
       const tokens: any[] = [];
@@ -35,7 +35,7 @@ export default function UserSideSnippet() {
           }
         }
 
-        if (one.project_id != wefundId && one.token_addr != "") {
+        if (one.project_id != WEFUND_ID && one.token_addr != "") {
           const userInfo: any = {};
           const pending: any = {};
           const tokenInfo: any = {};
@@ -61,8 +61,6 @@ export default function UserSideSnippet() {
 
   async function addCommunityMember() {
     if (CheckNetwork(state) == false) return false;
-
-    const { communityData } = await FetchData(state, dispatch);
 
     for (let i = 0; i < communityData.length; i++) {
       if (communityData[i] == state.address) {

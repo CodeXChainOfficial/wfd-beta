@@ -9,7 +9,7 @@ import {
 } from "../components/ImageTransition";
 import { useStore } from "../contexts/store";
 import Footer from "../components/Footer";
-import { CheckNetwork, FetchData, isNull, ParseParam } from "../utils/Util";
+import { CheckNetwork, isNull, ParseParam } from "../utils/Util";
 import { successOption, errorOption } from "../config/Constants";
 import { REQUEST_ENDPOINT } from "../config/Constants";
 

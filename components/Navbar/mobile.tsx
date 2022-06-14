@@ -26,6 +26,7 @@ export default function NavbarMobile() {
         position="relative"
         justify="space-between"
         backdropFilter="blur(54px)"
+        bg="linear-gradient(90deg, #1F0021 0%, #120054 104.34%)"
         borderBottom="2px solid rgba(255, 255, 255, 0.103)"
       >
         <Flex ml="30px" align="center" cursor="pointer">

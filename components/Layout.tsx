@@ -1,13 +1,15 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import Head from "next/head";
 import { Flex, Text } from "@chakra-ui/react";
 import Navbar from "./Navbar";
 import Container from "./Container";
+import { FetchData } from "../utils/Util";
+import { useStore } from "../contexts/store";
 type Props = {
   children?: ReactNode;
 };
 
-const Layout = ({ children }: Props) => (
+const Layout = ({ children }: Props) => {
   // const [scrolled, setScrolled] = useState(false)
   // const handleScroll = () => {
   //   const offset = window.scrollY
@@ -101,10 +103,18 @@ const Layout = ({ children }: Props) => (
   //   // window.addEventListener('scroll', handleScroll)
   // }, [connectedWallet]);
 
-  <Container>
-    <Navbar />
-    {children}
-  </Container>
-);
+  const { state, dispatch } = useStore();
+
+  useEffect(() => {
+    FetchData(state, dispatch);
+  }, []);
+
+  return (
+    <Container>
+      <Navbar />
+      {children}
+    </Container>
+  );
+};
 
 export default Layout;

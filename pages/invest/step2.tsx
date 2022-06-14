@@ -15,9 +15,11 @@ import {
   ImageTransition,
   InputTransition,
 } from "../../components/ImageTransition";
-import { useStore } from "../../contexts/store";
+import { WEFUND_ID } from "../../config/Constants";
+import { ActionKind, useProjectData, useStore } from "../../contexts/store";
 import PageLayout from "../../components/PageLayout";
-import { getAllocation } from "../../utils/Util";
+import { getAllocation, ParseParam } from "../../utils/Util";
+import { errorOption } from "../../config/Constants";
 import { useRouter } from "next/router";
 
 export default function InvestStep2() {
@@ -25,21 +27,22 @@ export default function InvestStep2() {
   const [wfdAmount, setWfdamount] = useState(0.0);
   const [max, setMax] = useState(0);
   const [allocation, setAllocation] = useState(0);
-  const { state } = useStore();
+  const { state, dispatch } = useStore();
   const router = useRouter();
 
-  //------------parse URL for project id----------------------------
-  let projectId: number;
-  if (Array.isArray(router.query["project_id"])) {
-    projectId = parseInt(router.query["project_id"][0]);
-  } else {
-    projectId = parseInt(router.query["project_id"]);
-  }
+  const projectId = ParseParam();
 
   useEffect(() => {
-    setAllocation(getAllocation(state, projectId));
-    setMax(allocation >= 100 ? (allocation * 100) / 95 : allocation + 5);
-  }, []);
+    const allocation = getAllocation(state, projectId);
+    setAllocation(allocation);
+    const max =
+      projectId == WEFUND_ID
+        ? allocation
+        : allocation >= 100
+        ? (allocation * 100) / 95
+        : allocation + 5;
+    setMax(Math.floor(max));
+  }, [state.projectData]);
 
   function onChangeBackamount(val: string) {
     const amount = parseInt(val);
@@ -49,14 +52,22 @@ export default function InvestStep2() {
   }
 
   function onNext() {
-    // if (allocation == 0) {
-    //   toast("Have no allocation any more!", errorOption);
-    //   return;
-    // }
-    // if (parseInt(backAmount) > max) {
-    //   toast("Exceed the allocation!", errorOption);
-    //   return;
-    // }
+    if (allocation == 0) {
+      toast("Have no allocation any more!", errorOption);
+      return;
+    }
+    if (parseInt(backAmount) > max) {
+      toast("Exceed the allocation!", errorOption);
+      return;
+    }
+    dispatch({
+      type: ActionKind.setInvestAmount,
+      payload: backAmount,
+    });
+    dispatch({
+      type: ActionKind.setInvestWFDAmount,
+      payload: wfdAmount,
+    });
     router.push({
       pathname: "/invest/step3",
       query: {
@@ -186,18 +197,16 @@ export default function InvestStep2() {
           >
             <InputGroup
               size={{ base: "200px", lg: "sm" }}
-              style={{ border: "0", background: "rgba(255, 255, 255, 0.05)" }}
+              bg="transparent"
+              h="100%"
+              alignItems="center"
             >
               <Input
-                type="text"
-                h="55px"
-                style={{
-                  border: "0",
-                  background: "transparent",
-                  paddingLeft: "25px",
-                }}
-                focusBorderColor="purple.800"
+                h="100%"
+                pl="25px"
+                border="solid 0px"
                 rounded="md"
+                _focusVisible={{ border: "solid 0px" }}
                 value={backAmount}
                 onChange={(e) => onChangeBackamount(e.target.value)}
               />
@@ -206,8 +215,9 @@ export default function InvestStep2() {
                 h="55px"
                 pr={{ base: "15px", lg: "5px" }}
                 pointerEvents="none"
-                children={<Text>UST</Text>}
-              />
+              >
+                <Text>UST</Text>
+              </InputRightElement>
             </InputGroup>
           </InputTransition>
           <Text mb="42px">Max: {max} UST</Text>
@@ -223,28 +233,27 @@ export default function InvestStep2() {
           >
             <InputGroup
               size={{ base: "200px", lg: "sm" }}
-              style={{ border: "0", background: "rgba(255, 255, 255, 0.05)" }}
+              bg="transparent"
+              h="100%"
+              alignItems="center"
             >
               <Input
-                type="text"
-                h="55px"
-                style={{
-                  border: "0",
-                  background: "transparent",
-                  paddingLeft: "25px",
-                }}
-                focusBorderColor="purple.800"
+                h="100%"
+                pl="25px"
+                border="solid 0px"
+                _focusVisible={{ border: "solid 0px" }}
                 rounded="md"
                 value={wfdAmount}
-                onChange={(e) => {}}
+                onChange={(e) => { }}
               />
               <InputRightElement
                 w={{ base: "40px", lg: "60px" }}
                 h="55px"
                 pr={{ base: "15px", lg: "5px" }}
                 pointerEvents="none"
-                children={<Text>WFD</Text>}
-              />
+              >
+                <Text>WFD</Text>
+              </InputRightElement>
             </InputGroup>
           </InputTransition>
         </Flex>

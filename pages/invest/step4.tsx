@@ -16,46 +16,55 @@ import {
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
+import { useStore } from "../../contexts/store";
+import { ParseParam } from "../../utils/Util";
 import { ImageTransition } from "../../components/ImageTransition";
 import PageLayout from "../../components/PageLayout";
-import { successOption } from "../../config/Constants";
+import {
+  successOption,
+  WEFUND_ID,
+  REQUEST_ENDPOINT,
+} from "../../config/Constants";
 import { useRouter } from "next/router";
 
 export default function InvestStep4() {
   const router = useRouter();
-  const [investment, setInvestment] = useState({
-    investDate: "",
-    investAmount: 0,
-    investWfdamount: 0,
-  });
+  const { state, dispatch } = useStore();
+  const project_id = ParseParam();
 
   //---------------notification setting---------------------------------
   function download_pdf() {
-    if (window) {
-      window.URL = window.URL || window.webkitURL;
-      toast("Downloading", successOption);
-      // Dummy download
-      setTimeout(() => {
-        toast.dismiss();
-      }, 2000);
-    }
+    window.URL = window.URL || window.webkitURL;
+    toast("Downloading", successOption);
 
-    // var xhr = new XMLHttpRequest(),
-    //       a = document.createElement('a'), file;
+    const xhr = new XMLHttpRequest();
+    const a = document.createElement("a");
 
-    // if(project_id = state.wefundID)
-    //   xhr.open('GET', state.request + '/download_pdf?filename='+state.pdfFile, true);
-    // else
-    //   xhr.open('GET', state.request + '/download_docx?filename='+state.docxFile, true);
+    if (project_id == WEFUND_ID)
+      xhr.open(
+        "GET",
+        REQUEST_ENDPOINT + "/download_pdf?filename=" + state.pdfFile,
+        true
+      );
+    else
+      xhr.open(
+        "GET",
+        REQUEST_ENDPOINT + "/download_docx?filename=" + state.docxFile,
+        true
+      );
 
-    // xhr.responseType = 'blob';
-    // xhr.onload = function () {
-    //     file = new Blob([xhr.response], { type : 'application/octet-stream' });
-    //     a.href = window.URL.createObjectURL(file);
-    //     a.download = 'confirm.pdf';
-    //     a.click();
-    // };
-    // xhr.send();
+    xhr.responseType = "blob";
+    xhr.onload = function () {
+      const file = new Blob([xhr.response], {
+        type: "application/octet-stream",
+      });
+      a.href = window.URL.createObjectURL(file);
+      a.download = "confirm.pdf";
+      a.click();
+    };
+    xhr.send();
+
+    toast.dismiss();
   }
 
   useEffect(() => {
@@ -224,18 +233,18 @@ export default function InvestStep4() {
               borderRadius={"10px 10px 0px 0px"}
             >
               <Tr>
-                <Td>{investment.investDate}</Td>
+                <Td>{state.investDate}</Td>
                 <Td
                   borderLeft={"1px solid rgba(255, 255, 255, 0.1)"}
                   borderRight={"1px solid rgba(255, 255, 255, 0.1)"}
                 >
-                  {investment.investAmount}
+                  {state.investAmount}
                 </Td>
                 <Td
                   borderLeft={"1px solid rgba(255, 255, 255, 0.1)"}
                   borderRight={"1px solid rgba(255, 255, 255, 0.1)"}
                 >
-                  {investment.investWfdamount}
+                  {state.investWFDAmount}
                 </Td>
                 <Td cursor="pointer">
                   {/* <a href={state.request+"/download_pdf?filename=" + state.pdfFile} 
@@ -282,7 +291,7 @@ export default function InvestStep4() {
                 borderRadius={"0px 10px 0px 0px"}
                 borderLeft={"1px solid rgba(255, 255, 255, 0.1)"}
               >
-                {investment.investDate}
+                {state.investDate}
               </Td>
             </Tr>
             <Tr>
@@ -293,7 +302,7 @@ export default function InvestStep4() {
                 bgColor={" rgba(196, 196, 196, 0.08)"}
                 borderLeft={"1px solid rgba(255, 255, 255, 0.1)"}
               >
-                {investment.investAmount}
+                {state.investAmount}
               </Td>
             </Tr>
             <Tr>
@@ -304,7 +313,7 @@ export default function InvestStep4() {
                 bgColor={" rgba(196, 196, 196, 0.08)"}
                 borderLeft={"1px solid rgba(255, 255, 255, 0.1)"}
               >
-                {investment.investWfdamount}
+                {state.investWFDAmount}
               </Td>
             </Tr>
             <Tr borderColor={"transparent !important"}>

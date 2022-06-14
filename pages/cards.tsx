@@ -23,8 +23,6 @@ import CardBox from "../components/Staking/CardBox";
 import PageLayout from "../components/PageLayout";
 import Footer from "../components/Footer";
 import {
-  EstimateSend,
-  FetchData,
   Set2Mainnet,
   Set2Testnet,
 } from "../utils/Util";

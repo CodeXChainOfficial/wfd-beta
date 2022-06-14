@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import Pagination from "@choc-ui/paginator";
 
-import { useStore } from "../contexts/store";
+import { useStore, useCommunityData } from "../contexts/store";
 import {
   InputTransition,
   ButtonTransition,
@@ -20,12 +20,7 @@ import {
 
 import PageLayout from "../components/PageLayout";
 import Footer from "../components/Footer";
-import {
-  EstimateSend,
-  FetchData,
-  Set2Mainnet,
-  Set2Testnet,
-} from "../utils/Util";
+import { Set2Mainnet, Set2Testnet } from "../utils/Util";
 
 export default function Dashboard() {
   const { state, dispatch } = useStore();
@@ -57,7 +52,7 @@ export default function Dashboard() {
     }
   };
   function onChangePaginator(page: number) {
-    if (state.communityData == "") {
+    if (state.communityData == []) {
       setPostCommunityData([]);
       return;
     }
@@ -82,15 +77,11 @@ export default function Dashboard() {
     };
   }
 
+  const communityData = useCommunityData();
   //---------initialize fetching---------------------
   useEffect(() => {
     async function fetchContractQuery() {
       try {
-        const { projectData, communityData, configData } = await FetchData(
-          state,
-          dispatch
-        );
-
         setCurrent(1);
         setPostCommunityData(communityData.slice(0, pageSize));
       } catch (e) {
@@ -217,7 +208,7 @@ export default function Dashboard() {
             current={current}
             onChange={(page: any) => onChangePaginator(page)}
             pageSize={pageSize}
-            total={state.communityData == "" ? 0 : state.communityData.length}
+            total={communityData == [] ? 0 : state.communityData.length}
             itemRender={itemRender}
             paginationProps={{ display: "flex" }}
           />

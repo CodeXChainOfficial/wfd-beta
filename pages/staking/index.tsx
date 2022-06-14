@@ -21,13 +21,7 @@ import CardBox from "../../components/Staking/CardBox";
 import PageLayout from "../../components/PageLayout";
 import Footer from "../../components/Footer";
 
-import {
-  EstimateSend,
-  FetchData,
-  Set2Mainnet,
-  Set2Testnet,
-  CheckNetwork,
-} from "../../utils/Util";
+import { Set2Mainnet, Set2Testnet, CheckNetwork } from "../../utils/Util";
 
 export default function Staking() {
   const [userInfo, setUserInfo] = useState({

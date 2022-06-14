@@ -92,10 +92,9 @@ export default function ProjectMainButtons({
             width="200px"
             height="50px"
             rounded="33px"
+            onClick={onNext}
           >
-            <Box color="white" onClick={onNext}>
-              Back {data.project_title}
-            </Box>
+            <Box color="white">Back {data.project_title}</Box>
           </ImageTransition>
         </Flex>
       </Flex>

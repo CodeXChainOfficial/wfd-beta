@@ -28,7 +28,6 @@ function App({ Component, pageProps }: AppProps): React.ReactNode {
               <ParallaxProvider>
                 <Layout>
                   <Component {...pageProps} />
-
                   <ToastContainer
                     position="top-right"
                     autoClose={5000}

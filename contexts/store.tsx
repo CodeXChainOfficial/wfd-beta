@@ -12,10 +12,20 @@ export interface AppContextInterface {
   activeProjectData: any[];
   projectData: any[];
   communityData: any[];
+  configData: any[];
   address: any;
   referralCount: number;
   referralLink: string;
   presale: boolean;
+
+  investAmount: number;
+  investWFDAmount: number;
+  investName: string;
+  investEmail: string;
+  investTitle: string;
+  investDate: string;
+  pdfFile: string;
+  docxFile: string;
 }
 
 const initialState: AppContextInterface = {
@@ -24,11 +34,21 @@ const initialState: AppContextInterface = {
   net: "testnet",
   activeProjectData: [],
   projectData: [],
-  presale: false,
   communityData: [],
+  configData: [],
   address: null,
   referralCount: 0,
   referralLink: "",
+  presale: true,
+
+  investAmount: 0,
+  investWFDAmount: 0,
+  investName: "",
+  investEmail: "",
+  investTitle: "",
+  investDate: "",
+  pdfFile: "",
+  docxFile: "",
 };
 
 export enum ActionKind {
@@ -38,9 +58,20 @@ export enum ActionKind {
   setActiveProjectData,
   setProjectData,
   setCommunityData,
+  setConfigData,
   setAddress,
   setReferralCount,
   setReferralLink,
+  setPresale,
+
+  setInvestAmount,
+  setInvestWFDAmount,
+  setInvestName,
+  setInvestEmail,
+  setInvestTitle,
+  setInvestDate,
+  setPdfFile,
+  setDocxFile,
 }
 
 const StoreContext = createContext<{
@@ -65,12 +96,38 @@ export const reducer = (state: AppContextInterface, action: Action) => {
       return { ...state, projectData: action.payload };
     case ActionKind.setCommunityData:
       return { ...state, communityData: action.payload };
+    case ActionKind.setConfigData:
+      return { ...state, configData: action.payload };
     case ActionKind.setAddress:
       return { ...state, address: action.payload };
     case ActionKind.setReferralCount:
       return { ...state, referralCount: action.payload };
     case ActionKind.setReferralLink:
       return { ...state, referralLink: action.payload };
+    case ActionKind.setPresale:
+      return { ...state, presale: action.payload };
+
+    case ActionKind.setInvestAmount:
+      return { ...state, investAmount: action.payload };
+    case ActionKind.setInvestWFDAmount:
+      return { ...state, investWFDAmount: action.payload };
+
+    case ActionKind.setInvestAmount:
+      return { ...state, investAmount: action.payload };
+    case ActionKind.setInvestWFDAmount:
+      return { ...state, investWFDAmount: action.payload };
+    case ActionKind.setInvestName:
+      return { ...state, investName: action.payload };
+    case ActionKind.setInvestEmail:
+      return { ...state, investEmail: action.payload };
+    case ActionKind.setInvestTitle:
+      return { ...state, investTitle: action.payload };
+    case ActionKind.setInvestDate:
+      return { ...state, investDate: action.payload };
+    case ActionKind.setPdfFile:
+      return { ...state, pdfFile: action.payload };
+    case ActionKind.setDocxFile:
+      return { ...state, docxFile: action.payload };
     default:
       return state;
   }
@@ -91,4 +148,19 @@ export const useStore = () => useContext(StoreContext);
 export const useWallet = () => {
   const { state, dispatch } = useStore();
   return state.activeProjectData;
+};
+
+export const useProjectData = () => {
+  const { state, dispatch } = useStore();
+  return state.projectData;
+};
+
+export const useCommunityData = () => {
+  const { state, dispatch } = useStore();
+  return state.communityData;
+};
+
+export const useConfigData = () => {
+  const { state, dispatch } = useStore();
+  return state.configData;
 };

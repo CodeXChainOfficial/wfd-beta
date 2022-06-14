@@ -10,14 +10,12 @@ import React, {
 import { Box, Flex, HStack, VStack, useDisclosure } from "@chakra-ui/react";
 import {
   Sleep,
-  FetchData,
-  EstimateSend,
   CheckNetwork,
   GetProjectStatus,
   GetOneProject,
 } from "../utils/Util";
 
-import { useStore } from "../contexts/store";
+import { useProjectData, useStore } from "../contexts/store";
 import Footer from "../components/Footer";
 import PageLayout from "../components/PageLayout";
 
@@ -55,6 +53,7 @@ export default function ExplorerProject() {
   } = useDisclosure();
 
   const [projectID, setProjectID] = useState(0);
+  const projectData = useProjectData();
 
   let activeTab = "WeFundApproval";
   //------------extract active mode----------------------------
@@ -86,25 +85,6 @@ export default function ExplorerProject() {
     );
   }
 
-  //-----------fetch project data=-------------------------
-  async function fetchContractQuery(force = false) {
-    try {
-      const { projectData } = await FetchData(state, dispatch, force);
-      //-----------------initialize--------------------------
-      console.log(projectData);
-
-      const activeProjectData = projectData.filter(
-        (project) => project.project_status == GetProjectStatus(activeTab)
-      );
-
-      dispatch({ type: "setActiveProjectData", payload: activeProjectData });
-      setPostProjectData(activeProjectData.slice(0, pageSize));
-      setCurrent(1);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
   //------------Wefund Approve-----------------
   async function WefundApprove(project_id: number) {}
   async function OpenWhitelist(project_id: number) {}
@@ -115,6 +95,20 @@ export default function ExplorerProject() {
   async function NextFundraisingStage(project_id: number, curStage: string) {}
   //---------initialize fetching---------------------
   useEffect(() => {
+    //-----------fetch project data=-------------------------
+    async function fetchContractQuery(force = false) {
+      try {
+        const activeProjectData = projectData.filter(
+          (project) => project.project_status == GetProjectStatus(activeTab)
+        );
+
+        dispatch({ type: "setActiveProjectData", payload: activeProjectData });
+        setPostProjectData(activeProjectData.slice(0, pageSize));
+        setCurrent(1);
+      } catch (e) {
+        console.log(e);
+      }
+    }
     fetchContractQuery();
   }, [activeTab, state.net]);
 

@@ -1,4 +1,4 @@
-export const wefundId = 1;
+export const WEFUND_ID = 1;
 export const REQUEST_ENDPOINT =
   "https://wefund-nodejs-gwb6v.ondigitalocean.app";
 
@@ -24,8 +24,10 @@ export const errorOption: any = {
   progress: undefined,
 };
 
-export const WEFUND = {
-  project_status: "WefundApproval",
+export const WEFUND: any = {
+  project_status: "WefundVote",
+  backerbacked_amount: "180000000000",
+
   cofounder_name: "",
   country: "",
   creator_wallet: "terra1qvyj7tqs35hckd395rglc7lsyf2acuhgdcmj77",

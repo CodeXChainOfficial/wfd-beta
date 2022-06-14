@@ -42,7 +42,6 @@ const ProjectInformations: FunctionComponent<Props> = ({
             fontSize={"18px"}
           >
             {GetProjectStatusString(data.project_status)}
-            PROJECT STATUS
           </Text>
         </Flex>
       </HStack>

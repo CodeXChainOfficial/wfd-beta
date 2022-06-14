@@ -8,11 +8,10 @@ import {
   ButtonBackTransition,
   ButtonTransition,
 } from "../components/ImageTransition";
-import { useStore } from "../contexts/store";
+import { useCommunityData, useProjectData, useStore } from "../contexts/store";
 import Footer from "../components/Footer";
 import {
   CheckNetwork,
-  FetchData,
   Sleep,
   isNull,
   getVal,
@@ -46,6 +45,9 @@ import Stages from "../components/CreateProject/Stage/Stages";
 
 export default function ModifyProject() {
   const { state, dispatch } = useStore();
+  const projectData = useProjectData();
+  const communityData = useCommunityData();
+
   const router = useRouter();
   const [isUST, setIsUST] = useState(true);
 
@@ -103,11 +105,6 @@ export default function ModifyProject() {
 
   async function fillItems() {
     if (project_id == null) return;
-
-    const { projectData, communityData, configData } = await FetchData(
-      state,
-      dispatch
-    );
 
     const data = GetOneProject(projectData, project_id);
     setCompany(data.project_company);
@@ -193,12 +190,7 @@ export default function ModifyProject() {
   const checkInvalidation = async () => {
     if (CheckNetwork(state) == false) return false;
 
-    const { projectData, communityData, configData } = await FetchData(
-      state,
-      dispatch
-    );
-
-    if (communityData == "") {
+    if (communityData == []) {
       toast("There are no community members!", errorOption);
       return false;
     }

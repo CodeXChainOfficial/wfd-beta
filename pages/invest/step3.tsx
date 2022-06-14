@@ -14,7 +14,7 @@ import React, { useEffect, useState, useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
 
-import { wefundId } from "../../config/Constants";
+import { REQUEST_ENDPOINT, WEFUND_ID } from "../../config/Constants";
 import {
   ImageTransition,
   ButtonTransition,
@@ -22,89 +22,74 @@ import {
 } from "../../components/ImageTransition";
 import Faq from "../../components/Faq";
 import PageLayout from "../../components/PageLayout";
-import { ParseParam } from "../../utils/Util";
+import { ParseParam, GetOneProject, CheckNetwork } from "../../utils/Util";
 import { errorOption, successOption } from "../../config/Constants";
-import { useStore } from "../../contexts/store";
+import { ActionKind, useProjectData, useStore } from "../../contexts/store";
 import { useRouter } from "next/router";
-import ReactSignatureCanvas from "react-signature-canvas";
 
 export default function Invest_step3() {
-  const router = useRouter();
   const [signature, setSignature] = useState("");
   const [InsTitle, setInsTitle] = useState("");
   const [InsName, setInsName] = useState("");
   const [InsEmail, setInsEmail] = useState("");
   const [chain, setChain] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
-  const [oneprojectData, setOneprojectData] = useState({
-    project_collected: 0.1,
-    backerbacked_amount: 0.01,
-  });
-
-  const projectId = router.query["project_id"];
-  const [investAmount, setInvestAmount] = useState(0);
+  const [oneprojectData, setOneprojectData] = useState<any>(null);
 
   const { state, dispatch } = useStore();
-  const canvasRef = useRef<any>();
-  const fileUploaderRef = useRef<any>();
+  const canvasRef = useRef({});
+  const router = useRouter();
 
   //------------parse URL for project id----------------------------
   const project_id = ParseParam();
+  const projectData = useProjectData();
+
   useEffect(() => {
     async function fetchData() {
-      // let { projectData, communityData, configData } = await FetchData(api, state, dispatch);
-      // const oneprojectData = GetOneProject(projectData, project_id);
-      // if (oneprojectData == '') {
-      //   toast("Can't fetch project data", errorOption);
-      //   return '';
-      // }
+      const oneprojectData = GetOneProject(projectData, project_id);
+      if (oneprojectData == null) {
+        toast("Can't fetch project data", errorOption);
+        console.log("can't fetch project data");
+        return "";
+      }
+      setOneprojectData(oneprojectData);
+      setChain(oneprojectData.project_ecosystem);
     }
     fetchData();
-  }, [project_id]);
+  }, [state.projectData, project_id]);
 
   //----------------upload signature----------------------------
   function openUpload() {
-    if (
-      typeof document !== "undefined" &&
-      fileUploaderRef.current !== undefined
-    ) {
-      fileUploaderRef.current.click();
+    if (typeof document !== "undefined") {
+      const fileSelector = document.getElementById("fileSelector");
+      fileSelector?.click();
     }
   }
 
-  function onChangeSignature(e) {
-    if (
-      typeof document !== "undefined" &&
-      fileUploaderRef.current !== undefined
-    ) {
-      const fileName = fileUploaderRef.current.value;
+  function onChangeSignature(e: any) {
+    if (typeof document !== "undefined") {
+      const fileName = e.target.value;
       setSignature(
         fileName.substr(fileName.lastIndexOf("\\") + 1, fileName.length - 1)
       );
-      dispatch({
-        type: "setInvestsignature",
-        payload: e.target.files[0],
-      });
 
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = function () {
-        if (canvasRef.current)
-          canvasRef.current.fromDataURL(reader.result as any);
+        (canvasRef.current as any).fromDataURL(reader.result);
       };
     }
   }
   //---------------on next------------------------------------
   function checkValication() {
-    if (investAmount <= 0) {
-      toast("Please input UST amount", errorOption);
+    if (CheckNetwork(state) == false) return false;
+
+    if (state.investAmount <= 0) {
+      toast("Please input amount", errorOption);
       return false;
     }
-    if (state.presale == false && investAmount < 20000) {
-      toast(
-        "Input UST amount for private sale of at least 20,000",
-        errorOption
-      );
+    if (state.presale == false && state.investAmount < 20000) {
+      toast("Input amount for private sale of at least 20,000", errorOption);
       return false;
     }
     return true;
@@ -115,11 +100,10 @@ export default function Invest_step3() {
     formData.append("investName", InsName);
     formData.append("investTitle", InsTitle);
     formData.append("investEmail", InsEmail);
-    formData.append("investAmount", investAmount.toString());
+    formData.append("investAmount", state.investAmount.toString());
     formData.append("investDate", date);
-    formData.append("investSignature", canvasRef?.current?.toDataURL());
-    formData.append("presale", state.presale ? "1" : "0");
-    // formData.append("file", state.investSignature);
+    formData.append("investSignature", (canvasRef.current as any).toDataURL());
+    formData.append("presale", state.presale.toString());
 
     const requestOptions = {
       method: "POST",
@@ -127,26 +111,31 @@ export default function Invest_step3() {
     };
 
     toast("Uploading", successOption);
-    // Dummy Upload
-    setTimeout(() => {
-      toast.dismiss();
-    }, 2000);
+
+    await fetch(REQUEST_ENDPOINT + "/pdfmake", requestOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        toast.dismiss();
+        dispatch({
+          type: ActionKind.setPdfFile,
+          payload: data.data,
+        });
+        console.log(data);
+      })
+      .catch((e) => {
+        console.log("Error:" + e);
+      });
   }
   async function createSAFTDocx(date: string) {
-    let signatureUrl;
     const formData = new FormData();
-    if (canvasRef.current) {
-      signatureUrl = canvasRef.current.toDataURL();
-    } else {
-      return;
-    }
-    // formData.append("docxTemplate", oneprojectData.project_saft);
+    formData.append("docxTemplate", oneprojectData?.project_saft);
     formData.append("purchaserName", InsName);
     formData.append("purchaserTitle", InsTitle);
     formData.append("purchaserEmail", InsEmail);
-    formData.append("purchaserAmount", investAmount.toString());
+    formData.append("purchaserAmount", state.investAmount.toString());
     formData.append("purchaserDate", date);
-    formData.append("purchaserSignature", signatureUrl);
+    const canvas: any = canvasRef.current;
+    formData.append("purchaserSignature", canvas.toDataURL());
 
     const requestOptions = {
       method: "POST",
@@ -154,23 +143,79 @@ export default function Invest_step3() {
     };
 
     toast("Uploading", successOption);
+
+    await fetch(REQUEST_ENDPOINT + "/docxmake", requestOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        toast.dismiss();
+        dispatch({
+          type: "setDocxfile",
+          message: data.data,
+        });
+        console.log(data);
+      })
+      .catch((e) => {
+        console.log("Error:" + e);
+      });
   }
   async function onNext() {
-    // get validation
+    //----------verify connection--------------------------------
+    if (checkValication() == false) return false;
 
-    // get form data
-    createSAFTDocx("");
-
-    router.push({
-      pathname: "/invest/step4",
-      query: {
-        project_id: projectId,
-      },
+    dispatch({
+      type: ActionKind.setInvestName,
+      payload: InsName,
     });
+    dispatch({
+      type: ActionKind.setInvestEmail,
+      payload: InsEmail,
+    });
+    dispatch({
+      type: ActionKind.setInvestTitle,
+      payload: InsTitle,
+    });
+
+    const currentDate = new Date();
+    const date =
+      currentDate.getDate() +
+      "/" +
+      (currentDate.getMonth() + 1) +
+      "/" +
+      currentDate.getFullYear();
+
+    dispatch({
+      type: ActionKind.setInvestDate,
+      payload: date,
+    });
+
+    if (project_id == WEFUND_ID) {
+      await createSAFTPdf(date);
+
+      const amount = state.investAmount * 10 ** 6;
+      //   const msg = new MsgSend(
+      //     state.connectedWallet.walletAddress,
+      //     "terra1zjwrdt4rm69d84m9s9hqsrfuchnaazhxf2ywpc",
+      //     { uusd: amount }
+      //   );
+      //   let memo = state.presale ? "Presale" : "Private sale";
+      const res = true;
+      //   let res = await EstimateSend(
+      //     state.connectedWallet,
+      //     state.lcd_client,
+      //     [msg],
+      //     "Invest success ",
+      //     memo
+      //   );
+      if (res == true) router.push("/invest/step4?project_id=" + project_id);
+    } else {
+      //   await createSAFTDocx(date);
+      //   let res = await backProject();
+      //   if (res == true) navigate("/invest_step4?project_id=" + project_id);
+    }
   }
 
   async function backProject() {
-    const targetAmount = oneprojectData.project_collected * 10 ** 6;
+    const targetAmount = parseInt(oneprojectData.project_collected) * 10 ** 6;
 
     const leftAmount = targetAmount - oneprojectData.backerbacked_amount;
 
@@ -182,15 +227,49 @@ export default function Invest_step3() {
       return false;
     }
 
-    const amount = investAmount * 10 ** 6;
+    const amount = state.investAmount * 10 ** 6;
+    // let maxAmount;
+    // if(leftAmount >= 100_000_000)
+    //   maxAmount = leftAmount * 100 / 95 + 1_000_000;
+    // else
+    //   maxAmount = leftAmount + 5_000_000;
 
     if (amount < 6_000_000) {
       toast("Investment amount should be at least 6 UST.", errorOption);
       return false;
     }
+    // if (amount > maxAmount) {
+    //   toast("Investment amount should be less than " + (maxAmount/10**6).toString() + " UST", errorOption);
+    //   return false;
+    // }
 
-    return Promise.resolve();
+    // let wefundContractAddress = state.WEFundContractAddress;
+    // let BackProjectMsg = {
+    //   back2_project: {
+    //     project_id: `${project_id}`,
+    //     backer_wallet: state.connectedWallet.walletAddress,
+    //     fundraising_stage: oneprojectData.fundraising_stage,
+    //     token_amount: `${state.investWfdamount}`,
+    //     otherchain: chain,
+    //     otherchain_wallet: walletAddress,
+    //   },
+    // };
+
+    // let msg = new MsgExecuteContract(
+    //   state.connectedWallet.walletAddress,
+    //   wefundContractAddress,
+    //   BackProjectMsg,
+    //   { uusd: amount }
+    // );
+
+    // return await EstimateSend(
+    //   state.connectedWallet,
+    //   state.lcd_client,
+    //   [msg],
+    //   "Back to Project Success"
+    // );
   }
+
   const OtherChainWallet = () => {
     return (
       <Flex
@@ -509,7 +588,7 @@ export default function Invest_step3() {
             <Box>
               <Flex justify="center" w="300px" rounded="md" bg="white">
                 <SignatureCanvas
-                  ref={canvasRef}
+                  ref={canvasRef as any}
                   penColor="black"
                   canvasProps={{ width: 300, height: 100 }}
                 />
@@ -527,7 +606,7 @@ export default function Invest_step3() {
                   height="40px"
                   rounded="20px"
                   onClick={() => {
-                    if (canvasRef.current) canvasRef.current.clear();
+                    if (canvasRef.current) (canvasRef.current as any).clear();
                   }}
                 >
                   <Box>Clear</Box>
@@ -548,14 +627,13 @@ export default function Invest_step3() {
             <input
               type="file"
               id="fileSelector"
-              ref={fileUploaderRef}
               name="userFile"
               style={{ display: "none" }}
               onChange={(e) => onChangeSignature(e)}
             />
           </Box>
         </Flex>
-        {wefundId != project_id && <OtherChainWallet />}
+        {WEFUND_ID != project_id && <OtherChainWallet />}
 
         <Flex w="100%" mt="60px" justify="center" mb="170px">
           <ImageTransition

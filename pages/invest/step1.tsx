@@ -7,15 +7,17 @@ import {
   ImageTransition,
   InputTransition,
 } from "../../components/ImageTransition";
-
+import { useStore } from "../../contexts/store";
 import PageLayout from "../../components/PageLayout";
-// import SAFTTemplate from '../../components/SAFTTemplate';
+import SAFTTemplate from "../../components/Invest/SAFTTemplate";
+import { ParseParam } from "../../utils/Util";
 
 export default function InvestStep1() {
+  const { state, dispatch } = useStore();
   const [condition, setCondition] = useState(false);
   const router = useRouter();
 
-  const projectId = router.query["project_id"];
+  const projectId = ParseParam();
 
   function onNext() {
     if (condition)
@@ -160,7 +162,7 @@ export default function InvestStep1() {
             </ImageTransition>
           </Flex>
           <Flex>
-            {/* <SAFTTemplate presale={state.presale} project_id={project_id} /> */}
+            <SAFTTemplate presale={state.presale} project_id={projectId} />
           </Flex>
         </Flex>
       </Box>

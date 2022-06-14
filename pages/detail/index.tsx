@@ -11,7 +11,7 @@ import React, {
 import { toast } from "react-toastify";
 
 import { useRouter } from "next/router";
-import { useStore } from "../../contexts/store";
+import { useProjectData, useStore } from "../../contexts/store";
 import Footer from "../../components/Footer";
 import PageLayout from "../../components/PageLayout";
 import ProjectTitle from "../../components/ProjectDetail/ProjectTitle";
@@ -24,12 +24,7 @@ import ProjectMileStones from "../../components/ProjectDetail/ProjectMilestones"
 import VoteModal from "../../components/ProjectDetail/VoteModal";
 
 import { successOption, errorOption } from "../../config/Constants";
-import {
-  CheckNetwork,
-  FetchData,
-  GetOneProject,
-  ParseParam,
-} from "../../utils/Util";
+import { CheckNetwork, GetOneProject, ParseParam } from "../../utils/Util";
 
 export default function ProjectDetail() {
   const { state, dispatch } = useStore();
@@ -37,6 +32,7 @@ export default function ProjectDetail() {
   const [totalBackedMoney, setTotalBackedMoney] = useState(0);
   const [totalBackedPercent, setTotalBackedPercent] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const projectData = useProjectData();
 
   const router = useRouter();
 
@@ -44,7 +40,7 @@ export default function ProjectDetail() {
   const project_id = ParseParam();
 
   function onNext() {
-    router.push("/invest_step1?project_id=" + oneprojectData.project_id);
+    router.push("/invest/step1?project_id=" + oneprojectData.project_id);
   }
   //------------fectch project data------------------------------------
   async function fetchContractQuery() {
@@ -52,8 +48,6 @@ export default function ProjectDetail() {
     if (project_id != null) _project_id = project_id;
 
     try {
-      const { projectData } = await FetchData(state, dispatch);
-
       const oneprojectData = GetOneProject(projectData, _project_id);
       if (oneprojectData == "") {
         toast("Can't fetch Project Data", errorOption);

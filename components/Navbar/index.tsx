@@ -28,6 +28,7 @@ export default function Navbar() {
           zIndex="99"
           w="100%"
           backdropFilter="blur(100px)"
+          bg="linear-gradient(90deg, #1F0021 0%, #120054 104.34%)"
           borderBottom="2px solid rgba(255, 255, 255, 0.103)"
         >
           <Flex w="50%" h="100%" align="center" justify="space-between">
