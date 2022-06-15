@@ -12,15 +12,14 @@ import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import { BigNumber } from "ethers";
+import { NETWORK } from "../config/Constants";
 
 declare let window: any;
-
-const NETWORK = "testnet";
 
 export interface KeplrWalletStore {
   connected: boolean;
   accountNumber: number;
-  address: string;
+  account: string;
   balance: Coin[];
   client: SigningCosmWasmClient | undefined;
   config: AppConfig;
@@ -45,6 +44,7 @@ export interface KeplrWalletStore {
   readonly updateSigner: (singer: OfflineSigner) => void;
   readonly getBalance: () => BigNumber;
   readonly getBalanceString: () => string;
+  readonly sendTokens: (amount: number, denom: string, account: string) => void;
 }
 
 export type WalletContextType = KeplrWalletStore;
@@ -52,7 +52,7 @@ export type WalletContextType = KeplrWalletStore;
 const defaultStates = {
   connected: false,
   accountNumber: 0,
-  address: "",
+  account: "",
   balance: [],
   client: undefined,
   config: getConfig(NETWORK),
@@ -73,7 +73,6 @@ export const useKeplrWalletStore = create(
         const { config, init } = get();
         const signer = await loadKeplrWallet(config);
         set({ connected: true });
-
         init(signer);
         if (walletChange) set({ initializing: false });
       } catch (err: any) {
@@ -91,7 +90,7 @@ export const useKeplrWalletStore = create(
     getSigner: () => get().signer!,
     init: (signer) => set({ signer }),
     refreshBalance: async (
-      address = get().address,
+      address = get().account,
       balance = get().balance
     ) => {
       const { client, config } = get();
@@ -102,6 +101,7 @@ export const useKeplrWalletStore = create(
         const coin = await client.getBalance(address, denom);
         if (coin) balance.push(coin);
       }
+
       set({ balance });
     },
     setNetwork: (network) => set({ network }),
@@ -113,6 +113,18 @@ export const useKeplrWalletStore = create(
       if (get().balance.length > 0)
         return get().balance[0].amount.toString() + " keplr";
       return "0 keplr";
+    },
+    sendTokens: async (amount: number, denom: string, address: string) => {
+      const client = get().client;
+      const account = get().account;
+      if (!client) return;
+
+      await client?.sendTokens(
+        account,
+        "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu",
+        [{ amount: amount.toString(), denom: denom }],
+        "auto"
+      );
     },
   }))
 );
@@ -190,7 +202,7 @@ const WalletSubscription = () => {
         window.localStorage.setItem("wallet_address", address);
         useKeplrWalletStore.setState({
           accountNumber: account?.accountNumber || 0,
-          address,
+          account: address,
           balance,
           initialized: true,
           initializing: false,

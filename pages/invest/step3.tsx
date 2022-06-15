@@ -22,9 +22,19 @@ import {
 } from "../../components/ImageTransition";
 import Faq from "../../components/Faq";
 import PageLayout from "../../components/PageLayout";
-import { ParseParam, GetOneProject, CheckNetwork } from "../../utils/Util";
+import {
+  ParseParam,
+  GetOneProject,
+  CheckNetwork,
+  LookForTokenInfo,
+} from "../../utils/Util";
 import { errorOption, successOption } from "../../config/Constants";
-import { ActionKind, useProjectData, useStore } from "../../contexts/store";
+import {
+  ActionKind,
+  useProjectData,
+  useStore,
+  useWallet,
+} from "../../contexts/store";
 import { useRouter } from "next/router";
 
 export default function Invest_step3() {
@@ -32,14 +42,13 @@ export default function Invest_step3() {
   const [InsTitle, setInsTitle] = useState("");
   const [InsName, setInsName] = useState("");
   const [InsEmail, setInsEmail] = useState("");
-  const [chain, setChain] = useState("");
-  const [walletAddress, setWalletAddress] = useState("");
+
   const [oneprojectData, setOneprojectData] = useState<any>(null);
 
   const { state, dispatch } = useStore();
   const canvasRef = useRef({});
   const router = useRouter();
-
+  const wallet = useWallet();
   //------------parse URL for project id----------------------------
   const project_id = ParseParam();
   const projectData = useProjectData();
@@ -53,7 +62,6 @@ export default function Invest_step3() {
         return "";
       }
       setOneprojectData(oneprojectData);
-      setChain(oneprojectData.project_ecosystem);
     }
     fetchData();
   }, [state.projectData, project_id]);
@@ -83,7 +91,6 @@ export default function Invest_step3() {
   //---------------on next------------------------------------
   function checkValication() {
     if (CheckNetwork(state) == false) return false;
-
     if (state.investAmount <= 0) {
       toast("Please input amount", errorOption);
       return false;
@@ -191,22 +198,23 @@ export default function Invest_step3() {
     if (project_id == WEFUND_ID) {
       await createSAFTPdf(date);
 
-      const amount = state.investAmount * 10 ** 6;
-      //   const msg = new MsgSend(
-      //     state.connectedWallet.walletAddress,
-      //     "terra1zjwrdt4rm69d84m9s9hqsrfuchnaazhxf2ywpc",
-      //     { uusd: amount }
-      //   );
-      //   let memo = state.presale ? "Presale" : "Private sale";
-      const res = true;
-      //   let res = await EstimateSend(
-      //     state.connectedWallet,
-      //     state.lcd_client,
-      //     [msg],
-      //     "Invest success ",
-      //     memo
-      //   );
-      if (res == true) router.push("/invest/step4?project_id=" + project_id);
+      const chain = state.investChain;
+      const token = state.investToken;
+      const tokenInfo = LookForTokenInfo(chain, token);
+
+      const amount = tokenInfo?.decimals
+        ? state.investAmount * 10 ** tokenInfo?.decimals
+        : 0;
+
+      try {
+        await wallet.sendTokens(amount, tokenInfo?.denom, tokenInfo?.address);
+        toast("Deposit Success", successOption);
+        router.push("/invest/step4?project_id=" + project_id);
+      } catch (e) {
+        console.log(typeof e);
+        console.log(e);
+        toast("Failed", errorOption);
+      }
     } else {
       //   await createSAFTDocx(date);
       //   let res = await backProject();
@@ -269,81 +277,6 @@ export default function Invest_step3() {
     //   "Back to Project Success"
     // );
   }
-
-  const OtherChainWallet = () => {
-    return (
-      <Flex
-        direction={{ base: "column", md: "column", lg: "row" }}
-        mt="40px"
-        justify="center"
-        align="center"
-      >
-        <Box ml={{ base: "0px", md: "0px", lg: "0px" }}>
-          <Flex>
-            <Text mb="20px">Select Chain</Text>
-          </Flex>
-          <InputTransition
-            unitid="chaintransition"
-            selected={false}
-            width="300px"
-            height="45px"
-            rounded="md"
-          >
-            <Select
-              id="chainselect"
-              style={{ background: "transparent", border: "0" }}
-              h="45px"
-              shadow="sm"
-              size="sm"
-              w="100%"
-              value={chain}
-              rounded="md"
-              onChange={(e) => {
-                setChain(e.target.value);
-              }}
-            >
-              <option style={{ backgroundColor: "#1B0645" }}>Ethereum</option>
-              <option style={{ backgroundColor: "#1B0645" }}>BSC</option>
-              <option style={{ backgroundColor: "#1B0645" }}>Solana</option>
-              <option style={{ backgroundColor: "#1B0645" }}>Harmony</option>
-              <option style={{ backgroundColor: "#1B0645" }}>Osmis</option>
-              <option style={{ backgroundColor: "#1B0645" }}>Algorand</option>
-              <option style={{ backgroundColor: "#1B0645" }}>Terra</option>
-              <option style={{ backgroundColor: "#1B0645" }}>Avalanche</option>
-            </Select>
-          </InputTransition>
-        </Box>
-        <Box ml={{ base: "0px", md: "0px", lg: "30px" }}>
-          <Flex mt={{ base: "40px", md: "40px", lg: "0px" }}>
-            <Text mb="20px">Wallet Address</Text>
-          </Flex>
-          <Box>
-            <InputTransition
-              unitid="inputwallet"
-              selected={false}
-              width="300px"
-              height="45px"
-              rounded="md"
-            >
-              <Input
-                background={"transparent"}
-                border="0px"
-                h="45px"
-                type="text"
-                placeholder="Paste wallet address here"
-                boxShadow={""}
-                rounded="md"
-                value={walletAddress}
-                onChange={(e) => {
-                  setWalletAddress(e.target.value);
-                }}
-              />
-            </InputTransition>
-          </Box>
-        </Box>
-      </Flex>
-    );
-  };
 
   return (
     <PageLayout
@@ -633,7 +566,6 @@ export default function Invest_step3() {
             />
           </Box>
         </Flex>
-        {WEFUND_ID != project_id && <OtherChainWallet />}
 
         <Flex w="100%" mt="60px" justify="center" mb="170px">
           <ImageTransition

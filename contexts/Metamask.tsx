@@ -16,7 +16,7 @@ declare let window: any;
 
 export interface MetamaskStore {
   connected: boolean;
-  address: string;
+  account: string;
   balance: BigNumber;
   initialized: boolean;
   initializing: boolean;
@@ -32,7 +32,7 @@ export type WalletContextType = MetamaskStore;
 
 const defaultStates = {
   connected: false,
-  address: "",
+  account: "",
   balance: BigNumber.from("0"),
   initialized: false,
   initializing: true,
@@ -49,7 +49,7 @@ export const useMetamaskStore = create(
         const account = accounts[0];
         set({
           connected: true,
-          address: account,
+          account: account,
         });
         // const { chainId } = await provider.getNetwork();
       } catch (err: any) {
@@ -93,7 +93,7 @@ const WalletSubscription = () => {
       async (connected) => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const balance = await provider.getBalance(
-          useMetamaskStore.getState().address
+          useMetamaskStore.getState().account
         );
 
         useMetamaskStore.setState({ balance: balance });

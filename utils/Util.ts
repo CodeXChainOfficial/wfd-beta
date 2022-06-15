@@ -1,6 +1,6 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { WEFUND_ID, WEFUND } from "../config/Constants";
+import { WEFUND_ID, WEFUND, TOKEN_LIST } from "../config/Constants";
 import { ActionKind } from "../contexts/store";
 
 export function GetProjectStatusString(mode: string) {
@@ -56,7 +56,7 @@ export function AddExtraInfo(projectData: any) {
       (backer_backedAmount /
         10 ** 6 /
         parseInt(projectData[i].project_collected)) *
-        100
+      100
     );
 
     let released = 0;
@@ -73,7 +73,18 @@ export function AddExtraInfo(projectData: any) {
   return projectData;
 }
 export function CheckNetwork(state: any) {
-  return true;
+  if (state.walletType == undefined || state.wallet == null) {
+    toast("Please connect to wallet");
+    return false;
+  }
+  if (state.investChain.toLowerCase() == "juno" && state.walletType == "Keplr")
+    return true;
+  if (state.investChain.toLowerCase() == "bnb" && state.walletType != "Keplr")
+    return true;
+  if (state.investChain.toLowerCase() == "tron" && state.walletType != "Keplr")
+    return true;
+
+  return false;
 }
 
 export function GetProjectIndex(projectData: any, project_id: number) {
@@ -302,4 +313,14 @@ export function Set2Testnet(dispatch: React.Dispatch<any>) {
     type: "setNet",
     payload: "testnet",
   });
+}
+
+export function LookForTokenInfo(chain: string, token: string) {
+  const list = TOKEN_LIST.filter(
+    (one) =>
+      one.chain.toLowerCase() == chain.toLowerCase() &&
+      one.name.toLowerCase() == token.toLowerCase()
+  );
+  if (list.length == 0) return null;
+  return list[0];
 }

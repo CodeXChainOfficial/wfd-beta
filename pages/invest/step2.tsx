@@ -21,8 +21,11 @@ import PageLayout from "../../components/PageLayout";
 import { getAllocation, ParseParam } from "../../utils/Util";
 import { errorOption } from "../../config/Constants";
 import { useRouter } from "next/router";
+import OtherChainWallet from "../../components/Invest/OtherChainWallet";
 
 export default function InvestStep2() {
+  const [chain, setChain] = useState("Juno");
+  const [token, setToken] = useState("");
   const [backAmount, setBackAmount] = useState("");
   const [wfdAmount, setWfdamount] = useState(0.0);
   const [max, setMax] = useState(0);
@@ -60,6 +63,14 @@ export default function InvestStep2() {
       toast("Exceed the allocation!", errorOption);
       return;
     }
+    dispatch({
+      type: ActionKind.setInvestChain,
+      payload: chain,
+    });
+    dispatch({
+      type: ActionKind.setInvestToken,
+      payload: token,
+    });
     dispatch({
       type: ActionKind.setInvestAmount,
       payload: backAmount,
@@ -174,10 +185,18 @@ export default function InvestStep2() {
             mt={"20px"}
             textAlign={"center"}
           >
-            Please enter UST amount and we will convert the WFD amount for you
+            Please select the chain and tokens, enter amount and we will convert
+            the WFD amount for you
           </Text>
         </Flex>
         {/* --------amount to back----------- */}
+        <OtherChainWallet
+          token={token}
+          setToken={setToken}
+          chain={chain}
+          setChain={setChain}
+        />
+
         <Flex
           direction={{ base: "column", md: "column", lg: "column" }}
           ml={{ base: "0px", md: "0px", lg: "0px" }}
@@ -186,7 +205,7 @@ export default function InvestStep2() {
           align="center"
         >
           <Flex>
-            <Text mb="20px">UST amount you want to invest</Text>
+            <Text mb="20px">Token amount you want to invest</Text>
           </Flex>
           <InputTransition
             unitid="backamount"
@@ -216,11 +235,14 @@ export default function InvestStep2() {
                 pr={{ base: "15px", lg: "5px" }}
                 pointerEvents="none"
               >
-                <Text>UST</Text>
+                <Text>{token}</Text>
               </InputRightElement>
             </InputGroup>
           </InputTransition>
-          <Text mb="42px">Max: {max} UST</Text>
+
+          <Text mb="42px">
+            Max: {max}&nbsp;{token}
+          </Text>
           <Flex>
             <Text mb="20px">WFD tokens you will receive</Text>
           </Flex>
@@ -244,7 +266,7 @@ export default function InvestStep2() {
                 _focusVisible={{ border: "solid 0px" }}
                 rounded="md"
                 value={wfdAmount}
-                onChange={(e) => { }}
+                // onChange={(e) => { }}
               />
               <InputRightElement
                 w={{ base: "40px", lg: "60px" }}

@@ -18,6 +18,8 @@ export interface AppContextInterface {
   referralLink: string;
   presale: boolean;
 
+  investChain: string;
+  investToken: string;
   investAmount: number;
   investWFDAmount: number;
   investName: string;
@@ -41,6 +43,8 @@ const initialState: AppContextInterface = {
   referralLink: "",
   presale: true,
 
+  investChain: "Juno",
+  investToken: "JUNO",
   investAmount: 0,
   investWFDAmount: 0,
   investName: "",
@@ -64,6 +68,8 @@ export enum ActionKind {
   setReferralLink,
   setPresale,
 
+  setInvestChain,
+  setInvestToken,
   setInvestAmount,
   setInvestWFDAmount,
   setInvestName,
@@ -107,11 +113,10 @@ export const reducer = (state: AppContextInterface, action: Action) => {
     case ActionKind.setPresale:
       return { ...state, presale: action.payload };
 
-    case ActionKind.setInvestAmount:
-      return { ...state, investAmount: action.payload };
-    case ActionKind.setInvestWFDAmount:
-      return { ...state, investWFDAmount: action.payload };
-
+    case ActionKind.setInvestChain:
+      return { ...state, investChain: action.payload };
+    case ActionKind.setInvestToken:
+      return { ...state, investToken: action.payload };
     case ActionKind.setInvestAmount:
       return { ...state, investAmount: action.payload };
     case ActionKind.setInvestWFDAmount:
@@ -147,7 +152,7 @@ export const useStore = () => useContext(StoreContext);
 
 export const useWallet = () => {
   const { state, dispatch } = useStore();
-  return state.activeProjectData;
+  return state.wallet;
 };
 
 export const useProjectData = () => {

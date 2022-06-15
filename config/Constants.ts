@@ -1,7 +1,64 @@
+export const NETWORK = "testnet";
 export const WEFUND_ID = 1;
 export const REQUEST_ENDPOINT =
   "https://wefund-nodejs-gwb6v.ondigitalocean.app";
 
+export const TOKEN_LIST = [
+  {
+    chain: "Juno",
+    name: "JUNO",
+    denom: NETWORK == "mainnet" ? "ujuno" : "ujunox",
+    decimals: 6,
+    native: true,
+  },
+  {
+    chain: "Juno",
+    name: "USDC",
+    denom: "ibc/EAC38D55372F38F1AFD68DF7FE9EF762DCF69F26520643CF3F9D292A738D8034",
+    decimals: 6,
+    native: false,
+  },
+  {
+    chain: "BSC",
+    name: "BNB",
+    decimals: 8,
+    native: true,
+  },
+  {
+    chain: "BSC",
+    name: "USDC",
+    decimals: 6,
+    native: false,
+    address: "",
+  },
+  {
+    chain: "BSC",
+    name: "USDT",
+    decimals: 6,
+    native: false,
+    address: "",
+  },
+  {
+    chain: "Tron",
+    name: "TRX",
+    decimals: 18,
+    native: true,
+  },
+  {
+    chain: "Tron",
+    name: "USDD",
+    decimals: 6,
+    native: false,
+    address: "",
+  },
+  {
+    chain: "Tron",
+    name: "USDT",
+    decimals: 6,
+    native: false,
+    address: "",
+  },
+];
 export const successOption: any = {
   position: "top-right",
   type: "success",

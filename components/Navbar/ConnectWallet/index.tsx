@@ -68,7 +68,7 @@ export default function ConnectWallet() {
         {initialized ? (
           <Flex h="100%" align="center">
             <MdCheck size={16} />
-            <Text>{ShortenAddress(wallet?.address)}</Text>
+            <Text>{ShortenAddress(wallet?.account)}</Text>
           </Flex>
         ) : (
           <div className="spinner-border spinner-border-sm" role="status">
@@ -146,7 +146,7 @@ export default function ConnectWallet() {
         <PopoverBody p="20px">
           {connected && initialized && (
             <Flex justify={"space-between"} mb="20px">
-              <Text>{ShortenAddress(wallet?.address)}</Text>
+              <Text>{ShortenAddress(wallet?.account)}</Text>
               <Link>
                 <Text
                   onClick={() => {

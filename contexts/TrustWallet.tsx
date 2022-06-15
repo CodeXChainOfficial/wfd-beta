@@ -23,7 +23,7 @@ const providerOptions = {
 
 export interface TrustWalletStore {
   connected: boolean;
-  address: string;
+  account: string;
   balance: BigNumber;
   initialized: boolean;
   initializing: boolean;
@@ -40,7 +40,7 @@ export type WalletContextType = TrustWalletStore;
 
 const defaultStates = {
   connected: false,
-  address: "",
+  account: "",
   balance: BigNumber.from("0"),
   initialized: false,
   initializing: true,
@@ -70,7 +70,7 @@ export const useTrustWalletStore = create(
 
         set({
           connected: true,
-          address: accounts[0],
+          account: accounts[0],
           web3: newWeb3,
         });
       } catch (err: any) {
@@ -114,7 +114,7 @@ const WalletSubscription = () => {
     return useTrustWalletStore.subscribe(
       (x) => x.connected,
       async (connected) => {
-        const { web3, address } = useTrustWalletStore.getState();
+        const { web3, account: address } = useTrustWalletStore.getState();
 console.log(address)
         await web3?.eth.getBalance(address).then((res) => {
           console.log(web3.utils.fromWei(res));
