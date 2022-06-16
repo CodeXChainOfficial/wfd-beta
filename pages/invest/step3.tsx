@@ -91,6 +91,7 @@ export default function Invest_step3() {
   //---------------on next------------------------------------
   function checkValication() {
     if (CheckNetwork(state) == false) return false;
+
     if (state.investAmount <= 0) {
       toast("Please input amount", errorOption);
       return false;
@@ -168,7 +169,6 @@ export default function Invest_step3() {
   async function onNext() {
     //----------verify connection--------------------------------
     if (checkValication() == false) return false;
-
     dispatch({
       type: ActionKind.setInvestName,
       payload: InsName,
@@ -207,12 +207,17 @@ export default function Invest_step3() {
         : 0;
 
       try {
-        await wallet.sendTokens(amount, tokenInfo?.denom, tokenInfo?.address);
+        await wallet.sendTokens(
+          amount,
+          tokenInfo?.denom,
+          tokenInfo?.address,
+          tokenInfo?.native
+        );
+
         toast("Deposit Success", successOption);
         router.push("/invest/step4?project_id=" + project_id);
       } catch (e) {
-        console.log(typeof e);
-        console.log(e);
+        console.log(e)
         toast("Failed", errorOption);
       }
     } else {
@@ -412,7 +417,7 @@ export default function Invest_step3() {
                   pointerEvents="none"
                   color="gray.300"
                   fontSize="1.2em"
-                  // children=" "
+                // children=" "
                 />
                 <Input
                   style={{}}
@@ -451,7 +456,7 @@ export default function Invest_step3() {
                   pointerEvents="none"
                   color="gray.300"
                   fontSize="1.2em"
-                  // children=" "
+                // children=" "
                 />
                 <Input
                   style={{}}
@@ -498,7 +503,7 @@ export default function Invest_step3() {
                   pointerEvents="none"
                   color="gray.300"
                   fontSize="1.2em"
-                  // children=" "
+                // children=" "
                 />
                 <Input
                   style={{}}

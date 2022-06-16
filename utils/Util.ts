@@ -77,12 +77,25 @@ export function CheckNetwork(state: any) {
     toast("Please connect to wallet");
     return false;
   }
-  if (state.investChain.toLowerCase() == "juno" && state.walletType == "Keplr")
+
+  if (
+    state.investChain.toLowerCase() == "juno" &&
+    state.walletType == "keplr"
+  ) {
     return true;
-  if (state.investChain.toLowerCase() == "bnb" && state.walletType != "Keplr")
+  }
+  if (
+    state.investChain.toLowerCase() == "bsc" &&
+    (state.walletType == "metamask" || state.walletType == "trust")
+  ) {
     return true;
-  if (state.investChain.toLowerCase() == "tron" && state.walletType != "Keplr")
+  }
+  if (
+    state.investChain.toLowerCase() == "tron" &&
+    state.walletType == "keplr"
+  ) {
     return true;
+  }
 
   return false;
 }

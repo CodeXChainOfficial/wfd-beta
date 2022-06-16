@@ -1,7 +1,38 @@
-export const NETWORK = "testnet";
+export const NETWORK = "mainnet";
 export const WEFUND_ID = 1;
 export const REQUEST_ENDPOINT =
   "https://wefund-nodejs-gwb6v.ondigitalocean.app";
+
+export const WEFUND_JUNO_ADDRESS =
+  "juno1gc3lpde7nx8khqfafw3st7j4ptd6qfccu6y04a";
+export const WEFUND_BSC_ADDRESS = "0x0dc488021475739820271d595a624892264ca641";
+export const WEFUND_TRON_WALLET = "TSAi16seGKMoygZGof4zETf4r4X6fAdrnR";
+export const WEFUND_POLYGON_WALLET =
+  "0x10411e941395301eecea63bc068383b801e01e0a";
+export const WEFUND_TRUST_BNB_WALLET =
+  "bnb1na0j6fvjwgxrd4g6stu32wquwgce54msly0tth";
+
+export const successOption: any = {
+  position: "bottom-right",
+  type: "success",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
+export const errorOption: any = {
+  position: "bottom-right",
+  type: "error",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 export const TOKEN_LIST = [
   {
@@ -16,28 +47,42 @@ export const TOKEN_LIST = [
     name: "USDC",
     denom: "ibc/EAC38D55372F38F1AFD68DF7FE9EF762DCF69F26520643CF3F9D292A738D8034",
     decimals: 6,
-    native: false,
+    native: true,
   },
   {
     chain: "BSC",
     name: "BNB",
-    decimals: 8,
+    denom: "BNB",
+    decimals: 18,
     native: true,
   },
   {
     chain: "BSC",
     name: "USDC",
-    decimals: 6,
+    decimals: 18,
     native: false,
-    address: "",
+    address:
+      NETWORK == "mainnet"
+        ? "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d"
+        : "0x64544969ed7EBf5f083679233325356EbE738930",
   },
   {
     chain: "BSC",
     name: "USDT",
-    decimals: 6,
+    decimals: 18,
     native: false,
-    address: "",
+    address:
+      NETWORK == "mainnet"
+        ? "0x55d398326f99059ff775485246999027b3197955"
+        : "0x49d5cC521F75e13fa8eb4E89E9D381352C897c96",
   },
+  // {
+  //   chain: "BSC",
+  //   name: "USDT",
+  //   decimals: 6,
+  //   native: false,
+  //   address: "0x49d5cC521F75e13fa8eb4E89E9D381352C897c96",
+  // },
   {
     chain: "Tron",
     name: "TRX",
@@ -59,27 +104,13 @@ export const TOKEN_LIST = [
     address: "",
   },
 ];
-export const successOption: any = {
-  position: "top-right",
-  type: "success",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-};
-
-export const errorOption: any = {
-  position: "top-right",
-  type: "error",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-};
+export const ERC20_ABI = [
+  "function name() view returns (string)",
+  "function symbol() view returns (string)",
+  "function balanceOf(address) view returns (uint)",
+  "function transfer(address to, uint amount)",
+  "event Transfer(address indexed from, address indexed to, uint amount)",
+];
 
 export const WEFUND: any = {
   project_status: "WefundVote",

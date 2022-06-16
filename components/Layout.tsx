@@ -49,59 +49,62 @@ const Layout = ({ children }: Props) => {
   //   return encrypted;
   // }
 
-  // async function confirmReferral() {
-  //   let referralLink =
-  //     "https://wefund.app/?referral=" +
-  //     encrypt3DES(address, "wefundkeyreferral");
-  //   dispatch({ type: "setReferralLink", payload: referralLink });
+  async function confirmReferral() {
+    const response = await fetch("/api/checkreferral");
+    const res = await response.json();
+    console.log(res);
+    //   let referralLink =
+    //     "https://wefund.app/?referral=" +
+    //     encrypt3DES(address, "wefundkeyreferral");
+    //   dispatch({ type: "setReferralLink", payload: referralLink });
 
-  //   let queryString, urlParams, referral_code;
-  //   if (typeof window != "undefined") {
-  //     queryString = window.location.search;
-  //     urlParams = new URLSearchParams(queryString);
-  //     referral_code = urlParams.get("referral");
+    //   let queryString, urlParams, referral_code;
+    //   if (typeof window != "undefined") {
+    //     queryString = window.location.search;
+    //     urlParams = new URLSearchParams(queryString);
+    //     referral_code = urlParams.get("referral");
 
-  //     let base = "";
-  //     if (referral_code != null) {
-  //       referral_code = referral_code.split(" ").join("+");
-  //       try {
-  //         base = decrypt3DES(referral_code, "wefundkeyreferral");
-  //       } catch (e) {
-  //         console.log(e);
-  //       }
-  //     }
+    //     let base = "";
+    //     if (referral_code != null) {
+    //       referral_code = referral_code.split(" ").join("+");
+    //       try {
+    //         base = decrypt3DES(referral_code, "wefundkeyreferral");
+    //       } catch (e) {
+    //         console.log(e);
+    //       }
+    //     }
 
-  //     var formData = new FormData();
-  //     formData.append("base", base);
-  //     formData.append("referred", address);
+    //     var formData = new FormData();
+    //     formData.append("base", base);
+    //     formData.append("referred", address);
 
-  //     const requestOptions = {
-  //       method: "POST",
-  //       body: formData,
-  //     };
+    //     const requestOptions = {
+    //       method: "POST",
+    //       body: formData,
+    //     };
 
-  //     await fetch(state.request + "/checkreferral", requestOptions)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         dispatch({
-  //           type: "setReferralCount",
-  //           payload: data.data,
-  //         });
-  //       })
-  //       .catch((e) => {
-  //         console.log("Error:" + e);
-  //       });
-  //   }
-  // }
+    //     await fetch(state.request + "/checkreferral", requestOptions)
+    //       .then((res) => res.json())
+    //       .then((data) => {
+    //         dispatch({
+    //           type: "setReferralCount",
+    //           payload: data.data,
+    //         });
+    //       })
+    //       .catch((e) => {
+    //         console.log("Error:" + e);
+    //       });
+    //   }
+  }
 
-  // useEffect(() => {
-  //   if (connectedWallet) {
-  //     contactBalance();
-  //     confirmReferral();
-  //   }
+  useEffect(() => {
+    // if (connectedWallet) {
+    //     contactBalance();
+    confirmReferral();
+    // }
 
-  //   // window.addEventListener('scroll', handleScroll)
-  // }, [connectedWallet]);
+    //   // window.addEventListener('scroll', handleScroll)
+  }, []);
 
   const { state, dispatch } = useStore();
 

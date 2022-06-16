@@ -16,7 +16,9 @@ interface Props {
 }
 const PDFTemplate: FunctionComponent<Props> = ({ presale, project_id }) => {
   const isWeFund = WEFUND_ID == project_id;
-  const [src, setSrc] = useState("https://squid-app-ozvk2.ondigitalocean.app/PDFTemplate_presale.pdf");
+  const [src, setSrc] = useState(
+    "https://squid-app-ozvk2.ondigitalocean.app/PDFTemplate_presale.pdf"
+  );
   const projectData = useProjectData();
 
   async function fetchData() {
@@ -37,7 +39,11 @@ const PDFTemplate: FunctionComponent<Props> = ({ presale, project_id }) => {
   useEffect(() => {
     if (!isWeFund) fetchData();
     else {
-      setSrc(presale == true ? "https://squid-app-ozvk2.ondigitalocean.app/PDFTemplate_presale.pdf" : "https://squid-app-ozvk2.ondigitalocean.app/PDFTemplate.pdf");
+      setSrc(
+        presale == true
+          ? "https://squid-app-ozvk2.ondigitalocean.app/PDFTemplate_presale.pdf"
+          : "https://squid-app-ozvk2.ondigitalocean.app/PDFTemplate.pdf"
+      );
     }
   }, []);
 

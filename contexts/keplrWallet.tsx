@@ -13,6 +13,7 @@ import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import { BigNumber } from "ethers";
 import { NETWORK } from "../config/Constants";
+import { WEFUND_JUNO_ADDRESS } from "../config/Constants";
 
 declare let window: any;
 
@@ -44,7 +45,12 @@ export interface KeplrWalletStore {
   readonly updateSigner: (singer: OfflineSigner) => void;
   readonly getBalance: () => BigNumber;
   readonly getBalanceString: () => string;
-  readonly sendTokens: (amount: number, denom: string, account: string) => void;
+  readonly sendTokens: (
+    amount: number,
+    denom: string,
+    account: string,
+    native: boolean
+  ) => void;
 }
 
 export type WalletContextType = KeplrWalletStore;
@@ -114,14 +120,19 @@ export const useKeplrWalletStore = create(
         return get().balance[0].amount.toString() + " keplr";
       return "0 keplr";
     },
-    sendTokens: async (amount: number, denom: string, address: string) => {
+    sendTokens: async (
+      amount: number,
+      denom: string,
+      address: string,
+      native: boolean
+    ) => {
       const client = get().client;
       const account = get().account;
       if (!client) return;
 
       await client?.sendTokens(
         account,
-        "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu",
+        WEFUND_JUNO_ADDRESS,
         [{ amount: amount.toString(), denom: denom }],
         "auto"
       );

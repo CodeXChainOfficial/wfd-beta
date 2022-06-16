@@ -48,7 +48,7 @@ export default function InvestStep2() {
   }, [state.projectData]);
 
   function onChangeBackamount(val: string) {
-    const amount = parseInt(val);
+    const amount = parseFloat(val);
     const wefundRate = state.presale ? 0.09 : 0.06;
     setWfdamount(amount / wefundRate);
     setBackAmount(val);
@@ -266,6 +266,7 @@ export default function InvestStep2() {
                 _focusVisible={{ border: "solid 0px" }}
                 rounded="md"
                 value={wfdAmount}
+                readOnly
                 // onChange={(e) => { }}
               />
               <InputRightElement

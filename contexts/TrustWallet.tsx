@@ -8,6 +8,10 @@ import { BigNumber } from "ethers";
 import Web3 from "web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3Modal from "web3modal";
+import { AbiItem, Parse } from "web3-utils";
+import { WEFUND_BSC_ADDRESS } from "../config/Constants";
+import ERC20_ABI from "../config/ERC20.json";
+import { sendError } from "next/dist/server/api-utils";
 
 const providerOptions = {
   walletconnect: {
@@ -34,6 +38,12 @@ export interface TrustWalletStore {
   readonly disconnect: () => void | Promise<void>;
   readonly getBalance: () => BigNumber;
   readonly getBalanceString: () => string;
+  readonly sendTokens: (
+    amount: number,
+    denom: string,
+    account: string,
+    native: boolean
+  ) => void;
 }
 
 export type WalletContextType = TrustWalletStore;
@@ -94,6 +104,45 @@ export const useTrustWalletStore = create(
     getBalanceString: () => {
       return get().balance.toString() + " metamask";
     },
+    sendTokens: async (
+      amount: number,
+      denom: string,
+      address: string,
+      native: boolean
+    ) => {
+      const web3 = get().web3;
+      if (!web3) return false;
+console.log(web3);
+      const sender = get().account;
+console.log(sender)
+      const nonce = await web3.eth.getTransactionCount(sender);
+console.log(nonce)
+console.log(amount)
+      if (native) {
+        const tx = {
+          from: sender,
+          to: WEFUND_BSC_ADDRESS,
+          value: amount.toString(),
+          nonce: nonce,
+          // gasLimit: ethers.utils.hexlify(gas_limit), // 100000
+          // gasPrice: gas_price,
+        };
+        await web3.eth
+          .sendTransaction(tx)
+          .on("transactionHash", function (hash) {})
+          .on("receipt", function (receipt) {})
+          .on("confirmation", function (confirmationNumber, receipt) {})
+          .on("error", console.error); // If a out of gas error, the second parameter is the receipt.
+      } else {
+        const contract = new web3.eth.Contract(
+          ERC20_ABI.abi as AbiItem[],
+          address
+        );
+        await contract.methods
+          .transfer(WEFUND_BSC_ADDRESS, amount)
+          .send({ from: get().account });
+      }
+    },
   }))
 );
 
@@ -115,7 +164,6 @@ const WalletSubscription = () => {
       (x) => x.connected,
       async (connected) => {
         const { web3, account: address } = useTrustWalletStore.getState();
-console.log(address)
         await web3?.eth.getBalance(address).then((res) => {
           console.log(web3.utils.fromWei(res));
         });
