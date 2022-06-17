@@ -6,7 +6,7 @@ export const REQUEST_ENDPOINT =
 export const WEFUND_JUNO_ADDRESS =
   "juno1gc3lpde7nx8khqfafw3st7j4ptd6qfccu6y04a";
 export const WEFUND_BSC_ADDRESS = "0x0dc488021475739820271d595a624892264ca641";
-export const WEFUND_TRON_WALLET = "TSAi16seGKMoygZGof4zETf4r4X6fAdrnR";
+export const WEFUND_TRON_WALLET = "TPa37RK8E7YtvkDevG84XerrGXDGAnyxRj";
 export const WEFUND_POLYGON_WALLET =
   "0x10411e941395301eecea63bc068383b801e01e0a";
 export const WEFUND_TRUST_BNB_WALLET =
@@ -86,7 +86,7 @@ export const TOKEN_LIST = [
   {
     chain: "Tron",
     name: "TRX",
-    decimals: 18,
+    decimals: 6,
     native: true,
   },
   {
@@ -94,14 +94,17 @@ export const TOKEN_LIST = [
     name: "USDD",
     decimals: 6,
     native: false,
-    address: "",
+    address: "TPYmHEhy5n8TCEfYGqW2rPxsghSfzghPDn",
   },
   {
     chain: "Tron",
     name: "USDT",
     decimals: 6,
     native: false,
-    address: "",
+    address:
+      NETWORK == "mainnet"
+        ? "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"
+        : "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs",
   },
 ];
 export const ERC20_ABI = [

@@ -90,13 +90,11 @@ export function CheckNetwork(state: any) {
   ) {
     return true;
   }
-  if (
-    state.investChain.toLowerCase() == "tron" &&
-    state.walletType == "keplr"
-  ) {
+  if (state.investChain.toLowerCase() == "tron" && state.walletType == "tron") {
     return true;
   }
 
+  toast("Please use the proper wallet");
   return false;
 }
 

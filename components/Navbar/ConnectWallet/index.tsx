@@ -16,6 +16,7 @@ import {
 import { useKeplrWallet } from "../../../contexts/keplrWallet";
 import { useMetamaskWallet } from "../../../contexts/Metamask";
 import { useTrustWallet } from "../../../contexts/TrustWallet";
+import { useTronLink } from "../../../contexts/TronLink";
 // import { BigNumber, ethers } from "ethers";
 
 import { MdOutlineAccountBalanceWallet, MdCheck } from "react-icons/md";
@@ -29,6 +30,7 @@ export default function ConnectWallet() {
   const keplr = useKeplrWallet();
   const metamask = useMetamaskWallet();
   const trust = useTrustWallet();
+  const tronLink = useTronLink();
 
   const { onOpen, onClose, isOpen } = useDisclosure();
 
@@ -36,6 +38,7 @@ export default function ConnectWallet() {
   if (state.walletType == "metamask") wallet = metamask;
   else if (state.walletType == "keplr") wallet = keplr;
   else if (state.walletType == "trust") wallet = trust;
+  else if (state.walletType == "tron") wallet = tronLink;
 
   const connected = wallet ? wallet.connected : false;
   const initialized = wallet ? wallet.initialized : false;
@@ -53,6 +56,10 @@ export default function ConnectWallet() {
       keplr.connect();
       dispatch({ type: ActionKind.setWalletType, payload: "keplr" });
       dispatch({ type: ActionKind.setWallet, payload: keplr });
+    } else if (to == "tron") {
+      tronLink.connect();
+      dispatch({ type: ActionKind.setWalletType, payload: "tron" });
+      dispatch({ type: ActionKind.setWallet, payload: tronLink });
     }
   }
 
@@ -180,5 +187,9 @@ const WalletList = [
   {
     name: "Keplr",
     link: "keplr",
+  },
+  {
+    name: "TronLink",
+    link: "tron",
   },
 ];

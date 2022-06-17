@@ -16,29 +16,32 @@ import { ToastContainer } from "react-toastify";
 import { KeplrWalletProvider } from "../contexts/keplrWallet";
 import { MetamaskProvider } from "../contexts/Metamask";
 import { TrustWalletProvider } from "../contexts/TrustWallet";
+import { TronLinkProvider } from "../contexts/TronLink";
 import { StoreProvider } from "../contexts/store";
 
 function App({ Component, pageProps }: AppProps): React.ReactNode {
   return (
     <StoreProvider>
-      <TrustWalletProvider>
-        <KeplrWalletProvider>
-          <MetamaskProvider>
-            <ChakraProvider resetCSS theme={theme}>
-              <ParallaxProvider>
-                <Layout>
-                  <Component {...pageProps} />
-                  <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                  />
-                </Layout>
-              </ParallaxProvider>
-            </ChakraProvider>
-          </MetamaskProvider>
-        </KeplrWalletProvider>
-      </TrustWalletProvider>
+      <TronLinkProvider>
+        <TrustWalletProvider>
+          <KeplrWalletProvider>
+            <MetamaskProvider>
+              <ChakraProvider resetCSS theme={theme}>
+                <ParallaxProvider>
+                  <Layout>
+                    <Component {...pageProps} />
+                    <ToastContainer
+                      position="top-right"
+                      autoClose={5000}
+                      hideProgressBar={false}
+                    />
+                  </Layout>
+                </ParallaxProvider>
+              </ChakraProvider>
+            </MetamaskProvider>
+          </KeplrWalletProvider>
+        </TrustWalletProvider>
+      </TronLinkProvider>
     </StoreProvider>
   );
 }
