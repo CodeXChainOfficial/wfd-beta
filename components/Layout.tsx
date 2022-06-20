@@ -1,15 +1,20 @@
 import React, { ReactNode, useEffect } from "react";
-import Head from "next/head";
-import { Flex, Text } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+
 import Navbar from "./Navbar";
 import Container from "./Container";
-import { FetchData } from "../utils/Util";
-import { useStore } from "../contexts/store";
+import { FetchData, ParseParam } from "../utils/Util";
+import { toast } from "react-toastify";
+import { successOption } from "../config/Constants";
+import { useStore, ActionKind } from "../contexts/store";
+import { useNearWallet } from "../contexts/NearWallet";
+
 type Props = {
   children?: ReactNode;
 };
 
 const Layout = ({ children }: Props) => {
+  const router = useRouter();
   // const [scrolled, setScrolled] = useState(false)
   // const handleScroll = () => {
   //   const offset = window.scrollY
@@ -110,6 +115,31 @@ const Layout = ({ children }: Props) => {
 
   useEffect(() => {
     FetchData(state, dispatch);
+  }, []);
+
+  const near = useNearWallet();
+  const project_id = ParseParam();
+
+  useEffect(() => {
+    const initialize = () => {
+      window.localStorage.removeItem("action");
+    };
+
+    const checkTransaction = async () => {
+      const action = window.localStorage.getItem("action");
+      if (action != "investing") return;
+
+      initialize();
+      near.connect();
+      dispatch({ type: ActionKind.setWalletType, payload: "near" });
+      dispatch({ type: ActionKind.setWallet, payload: near });
+
+      toast("Invest Success", successOption);
+      router.push("/invest/step4?project_id=" + project_id);
+    };
+    setTimeout(() => {
+      checkTransaction();
+    }, 500);
   }, []);
 
   return (

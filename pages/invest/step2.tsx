@@ -63,22 +63,11 @@ export default function InvestStep2() {
       toast("Exceed the allocation!", errorOption);
       return;
     }
-    dispatch({
-      type: ActionKind.setInvestChain,
-      payload: chain,
-    });
-    dispatch({
-      type: ActionKind.setInvestToken,
-      payload: token,
-    });
-    dispatch({
-      type: ActionKind.setInvestAmount,
-      payload: backAmount,
-    });
-    dispatch({
-      type: ActionKind.setInvestWFDAmount,
-      payload: wfdAmount,
-    });
+    window.localStorage.setItem("invest_chain", chain);
+    window.localStorage.setItem("invest_token", token);
+    window.localStorage.setItem("invest_amount", backAmount);
+    window.localStorage.setItem("invest_wfdamount", wfdAmount.toString());
+
     router.push({
       pathname: "/invest/step3",
       query: {

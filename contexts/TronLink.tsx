@@ -100,7 +100,6 @@ export const useTronLinkStore = create(
         const signedTx = await tronWeb.trx.sign(tx);
         const broastTx = await tronWeb.trx.sendRawTransaction(signedTx);
       } else {
-console.log(address)
         const contract = await tronWeb.contract().at(address);
 
         // const balance = await contract.balanceOf(account).call();

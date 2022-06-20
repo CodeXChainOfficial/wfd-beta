@@ -6,7 +6,7 @@ interface Action {
 }
 
 export interface AppContextInterface {
-  walletType: "metamask" | "trust" | "keplr" | undefined;
+  walletType: "metamask" | "trust" | "keplr" | "tron" | "near" | undefined;
   wallet: any;
   net: string;
   activeProjectData: any[];
@@ -17,17 +17,6 @@ export interface AppContextInterface {
   referralCount: number;
   referralLink: string;
   presale: boolean;
-
-  investChain: string;
-  investToken: string;
-  investAmount: number;
-  investWFDAmount: number;
-  investName: string;
-  investEmail: string;
-  investTitle: string;
-  investDate: string;
-  pdfFile: string;
-  docxFile: string;
 }
 
 const initialState: AppContextInterface = {
@@ -42,17 +31,6 @@ const initialState: AppContextInterface = {
   referralCount: 0,
   referralLink: "",
   presale: true,
-
-  investChain: "Juno",
-  investToken: "JUNO",
-  investAmount: 0,
-  investWFDAmount: 0,
-  investName: "",
-  investEmail: "",
-  investTitle: "",
-  investDate: "",
-  pdfFile: "",
-  docxFile: "",
 };
 
 export enum ActionKind {
@@ -113,26 +91,6 @@ export const reducer = (state: AppContextInterface, action: Action) => {
     case ActionKind.setPresale:
       return { ...state, presale: action.payload };
 
-    case ActionKind.setInvestChain:
-      return { ...state, investChain: action.payload };
-    case ActionKind.setInvestToken:
-      return { ...state, investToken: action.payload };
-    case ActionKind.setInvestAmount:
-      return { ...state, investAmount: action.payload };
-    case ActionKind.setInvestWFDAmount:
-      return { ...state, investWFDAmount: action.payload };
-    case ActionKind.setInvestName:
-      return { ...state, investName: action.payload };
-    case ActionKind.setInvestEmail:
-      return { ...state, investEmail: action.payload };
-    case ActionKind.setInvestTitle:
-      return { ...state, investTitle: action.payload };
-    case ActionKind.setInvestDate:
-      return { ...state, investDate: action.payload };
-    case ActionKind.setPdfFile:
-      return { ...state, pdfFile: action.payload };
-    case ActionKind.setDocxFile:
-      return { ...state, docxFile: action.payload };
     default:
       return state;
   }

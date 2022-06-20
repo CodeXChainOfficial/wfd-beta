@@ -78,24 +78,7 @@ export function CheckNetwork(state: any) {
     return false;
   }
 
-  if (
-    state.investChain.toLowerCase() == "juno" &&
-    state.walletType == "keplr"
-  ) {
-    return true;
-  }
-  if (
-    state.investChain.toLowerCase() == "bsc" &&
-    (state.walletType == "metamask" || state.walletType == "trust")
-  ) {
-    return true;
-  }
-  if (state.investChain.toLowerCase() == "tron" && state.walletType == "tron") {
-    return true;
-  }
-
-  toast("Please use the proper wallet");
-  return false;
+  return true;
 }
 
 export function GetProjectIndex(projectData: any, project_id: number) {

@@ -17,31 +17,34 @@ import { KeplrWalletProvider } from "../contexts/keplrWallet";
 import { MetamaskProvider } from "../contexts/Metamask";
 import { TrustWalletProvider } from "../contexts/TrustWallet";
 import { TronLinkProvider } from "../contexts/TronLink";
+import { NearWalletProvider } from "../contexts/NearWallet";
 import { StoreProvider } from "../contexts/store";
 
 function App({ Component, pageProps }: AppProps): React.ReactNode {
   return (
     <StoreProvider>
-      <TronLinkProvider>
-        <TrustWalletProvider>
-          <KeplrWalletProvider>
-            <MetamaskProvider>
-              <ChakraProvider resetCSS theme={theme}>
-                <ParallaxProvider>
-                  <Layout>
-                    <Component {...pageProps} />
-                    <ToastContainer
-                      position="top-right"
-                      autoClose={5000}
-                      hideProgressBar={false}
-                    />
-                  </Layout>
-                </ParallaxProvider>
-              </ChakraProvider>
-            </MetamaskProvider>
-          </KeplrWalletProvider>
-        </TrustWalletProvider>
-      </TronLinkProvider>
+      <NearWalletProvider>
+        <TronLinkProvider>
+          <TrustWalletProvider>
+            <KeplrWalletProvider>
+              <MetamaskProvider>
+                <ChakraProvider resetCSS theme={theme}>
+                  <ParallaxProvider>
+                    <Layout>
+                      <Component {...pageProps} />
+                      <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                      />
+                    </Layout>
+                  </ParallaxProvider>
+                </ChakraProvider>
+              </MetamaskProvider>
+            </KeplrWalletProvider>
+          </TrustWalletProvider>
+        </TronLinkProvider>
+      </NearWalletProvider>
     </StoreProvider>
   );
 }

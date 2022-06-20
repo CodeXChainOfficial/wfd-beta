@@ -24,6 +24,7 @@ import { BsCaretRight } from "react-icons/bs";
 
 import { useStore, ActionKind } from "../../../contexts/store";
 import { ShortenAddress } from "../../../utils/Util";
+import { useNearWallet } from "../../../contexts/NearWallet";
 
 export default function ConnectWallet() {
   const { state, dispatch } = useStore();
@@ -31,6 +32,7 @@ export default function ConnectWallet() {
   const metamask = useMetamaskWallet();
   const trust = useTrustWallet();
   const tronLink = useTronLink();
+  const near = useNearWallet();
 
   const { onOpen, onClose, isOpen } = useDisclosure();
 
@@ -39,6 +41,7 @@ export default function ConnectWallet() {
   else if (state.walletType == "keplr") wallet = keplr;
   else if (state.walletType == "trust") wallet = trust;
   else if (state.walletType == "tron") wallet = tronLink;
+  else if (state.walletType == "near") wallet = near;
 
   const connected = wallet ? wallet.connected : false;
   const initialized = wallet ? wallet.initialized : false;
@@ -60,6 +63,10 @@ export default function ConnectWallet() {
       tronLink.connect();
       dispatch({ type: ActionKind.setWalletType, payload: "tron" });
       dispatch({ type: ActionKind.setWallet, payload: tronLink });
+    } else if (to == "near") {
+      near.connect();
+      dispatch({ type: ActionKind.setWalletType, payload: "near" });
+      dispatch({ type: ActionKind.setWallet, payload: near });
     }
   }
 
@@ -191,5 +198,9 @@ const WalletList = [
   {
     name: "TronLink",
     link: "tron",
+  },
+  {
+    name: "NearWallet",
+    link: "near",
   },
 ];

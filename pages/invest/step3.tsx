@@ -39,9 +39,9 @@ import { useRouter } from "next/router";
 
 export default function Invest_step3() {
   const [signature, setSignature] = useState("");
-  const [InsTitle, setInsTitle] = useState("");
-  const [InsName, setInsName] = useState("");
-  const [InsEmail, setInsEmail] = useState("");
+  const [investTitle, setInsTitle] = useState("");
+  const [investName, setInsName] = useState("");
+  const [investEmail, setInsEmail] = useState("");
 
   const [oneprojectData, setOneprojectData] = useState<any>(null);
 
@@ -64,7 +64,7 @@ export default function Invest_step3() {
       setOneprojectData(oneprojectData);
     }
     fetchData();
-  }, [state.projectData, project_id]);
+  }, [projectData, project_id]);
 
   //----------------upload signature----------------------------
   function openUpload() {
@@ -90,13 +90,36 @@ export default function Invest_step3() {
   }
   //---------------on next------------------------------------
   function checkValication() {
-    if (CheckNetwork(state) == false) return false;
+    const investChain = window.localStorage.getItem("invest_chain") ?? "";
+    const investAmount = window.localStorage.getItem("invest_amount") ?? "";
 
-    if (state.investAmount <= 0) {
+    if (CheckNetwork(state) == false) return false;
+    let proper = false;
+    if (investChain.toLowerCase() == "juno" && state.walletType == "keplr") {
+      proper = true;
+    }
+    if (
+      investChain.toLowerCase() == "bsc" &&
+      (state.walletType == "metamask" || state.walletType == "trust")
+    ) {
+      proper = true;
+    }
+    if (investChain.toLowerCase() == "tron" && state.walletType == "tron") {
+      proper = true;
+    }
+    if (investChain.toLowerCase() == "near" && state.walletType == "near") {
+      proper = true;
+    }
+    if (!proper) {
+      toast("Please use the proper wallet");
+      return false;
+    }
+
+    if (parseFloat(investAmount) <= 0) {
       toast("Please input amount", errorOption);
       return false;
     }
-    if (state.presale == false && state.investAmount < 20000) {
+    if (state.presale == false && parseFloat(investAmount) < 20000) {
       toast("Input amount for private sale of at least 20,000", errorOption);
       return false;
     }
@@ -104,11 +127,13 @@ export default function Invest_step3() {
   }
 
   async function createSAFTPdf(date: string) {
+    const investAmount = window.localStorage.getItem("invest_amount") ?? "";
+
     const formData = new FormData();
-    formData.append("investName", InsName);
-    formData.append("investTitle", InsTitle);
-    formData.append("investEmail", InsEmail);
-    formData.append("investAmount", state.investAmount.toString());
+    formData.append("investName", investName);
+    formData.append("investTitle", investTitle);
+    formData.append("investEmail", investEmail);
+    formData.append("investAmount", investAmount);
     formData.append("investDate", date);
     formData.append("investSignature", (canvasRef.current as any).toDataURL());
     formData.append("presale", state.presale.toString());
@@ -124,10 +149,8 @@ export default function Invest_step3() {
       .then((res) => res.json())
       .then((data) => {
         toast.dismiss();
-        dispatch({
-          type: ActionKind.setPdfFile,
-          payload: data.data,
-        });
+
+        window.localStorage.setItem("pdf_file", data.data);
         console.log(data);
       })
       .catch((e) => {
@@ -137,10 +160,10 @@ export default function Invest_step3() {
   async function createSAFTDocx(date: string) {
     const formData = new FormData();
     formData.append("docxTemplate", oneprojectData?.project_saft);
-    formData.append("purchaserName", InsName);
-    formData.append("purchaserTitle", InsTitle);
-    formData.append("purchaserEmail", InsEmail);
-    formData.append("purchaserAmount", state.investAmount.toString());
+    formData.append("purchaserName", investName);
+    formData.append("purchaserTitle", investTitle);
+    formData.append("purchaserEmail", investEmail);
+    formData.append("purchaserAmount", investAmount);
     formData.append("purchaserDate", date);
     const canvas: any = canvasRef.current;
     formData.append("purchaserSignature", canvas.toDataURL());
@@ -156,10 +179,8 @@ export default function Invest_step3() {
       .then((res) => res.json())
       .then((data) => {
         toast.dismiss();
-        dispatch({
-          type: "setDocxfile",
-          message: data.data,
-        });
+
+        window.localStorage.setItem("docx_file", data.data);
         console.log(data);
       })
       .catch((e) => {
@@ -167,20 +188,14 @@ export default function Invest_step3() {
       });
   }
   async function onNext() {
+    const investChain = window.localStorage.getItem("invest_chain") ?? "";
+    const investAmount = window.localStorage.getItem("invest_amount") ?? "";
+    const investToken = window.localStorage.getItem("invest_token") ?? "";
     //----------verify connection--------------------------------
     if (checkValication() == false) return false;
-    dispatch({
-      type: ActionKind.setInvestName,
-      payload: InsName,
-    });
-    dispatch({
-      type: ActionKind.setInvestEmail,
-      payload: InsEmail,
-    });
-    dispatch({
-      type: ActionKind.setInvestTitle,
-      payload: InsTitle,
-    });
+    window.localStorage.setItem("invest_name", investName);
+    window.localStorage.setItem("invest_email", investEmail);
+    window.localStorage.setItem("invest_title", investTitle);
 
     const currentDate = new Date();
     const date =
@@ -190,23 +205,18 @@ export default function Invest_step3() {
       "/" +
       currentDate.getFullYear();
 
-    dispatch({
-      type: ActionKind.setInvestDate,
-      payload: date,
-    });
+    window.localStorage.setItem("invest_date", date);
 
     if (project_id == WEFUND_ID) {
       await createSAFTPdf(date);
 
-      const chain = state.investChain;
-      const token = state.investToken;
-      const tokenInfo = LookForTokenInfo(chain, token);
-
+      const tokenInfo = LookForTokenInfo(investChain, investToken);
       const amount = tokenInfo?.decimals
-        ? state.investAmount * 10 ** tokenInfo?.decimals
+        ? Math.floor(parseFloat(investAmount) * 10 ** tokenInfo?.decimals)
         : 0;
 
       try {
+        window.localStorage.setItem("action", "investing");
         await wallet.sendTokens(
           amount,
           tokenInfo?.denom,
@@ -214,11 +224,12 @@ export default function Invest_step3() {
           tokenInfo?.native
         );
 
-        toast("Deposit Success", successOption);
+        toast("Invest Success", successOption);
         router.push("/invest/step4?project_id=" + project_id);
       } catch (e) {
-        console.log(e)
+        window.localStorage.removeItem("action");
         toast("Failed", errorOption);
+        console.log(e);
       }
     } else {
       //   await createSAFTDocx(date);
@@ -228,6 +239,8 @@ export default function Invest_step3() {
   }
 
   async function backProject() {
+    const investAmount = window.localStorage.getItem("invest_amount") ?? "";
+
     const targetAmount = parseInt(oneprojectData.project_collected) * 10 ** 6;
 
     const leftAmount = targetAmount - oneprojectData.backerbacked_amount;
@@ -240,7 +253,7 @@ export default function Invest_step3() {
       return false;
     }
 
-    const amount = state.investAmount * 10 ** 6;
+    const amount = parseFloat(investAmount) * 10 ** 6;
     // let maxAmount;
     // if(leftAmount >= 100_000_000)
     //   maxAmount = leftAmount * 100 / 95 + 1_000_000;
@@ -403,7 +416,7 @@ export default function Invest_step3() {
             </Flex>
             <InputTransition
               unitid="investorname"
-              selected={InsName == "" ? false : true}
+              selected={investName == "" ? false : true}
               height="55px"
               rounded="md"
               width="290px"
@@ -425,7 +438,7 @@ export default function Invest_step3() {
                   h="55px"
                   placeholder="Type Name"
                   rounded="md"
-                  value={InsName}
+                  value={investName}
                   onChange={(e) => {
                     setInsName(e.target.value);
                   }}
@@ -442,7 +455,7 @@ export default function Invest_step3() {
             </Flex>
             <InputTransition
               unitid="investortitle"
-              selected={InsTitle == "" ? false : true}
+              selected={investTitle == "" ? false : true}
               height="55px"
               rounded="md"
               width="290px"
@@ -464,7 +477,7 @@ export default function Invest_step3() {
                   h="55px"
                   placeholder="Your title"
                   rounded="md"
-                  value={InsTitle}
+                  value={investTitle}
                   onChange={(e) => {
                     setInsTitle(e.target.value);
                   }}
@@ -489,7 +502,7 @@ export default function Invest_step3() {
             </Flex>
             <InputTransition
               unitid="investoremail"
-              selected={InsEmail == "" ? false : true}
+              selected={investEmail == "" ? false : true}
               height="55px"
               rounded="md"
               width="290px"
@@ -511,7 +524,7 @@ export default function Invest_step3() {
                   h="55px"
                   placeholder="example@email.com"
                   rounded="md"
-                  value={InsEmail}
+                  value={investEmail}
                   onChange={(e) => {
                     setInsEmail(e.target.value);
                   }}

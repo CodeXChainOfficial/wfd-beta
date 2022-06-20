@@ -29,8 +29,20 @@ import { useRouter } from "next/router";
 
 export default function InvestStep4() {
   const router = useRouter();
-  const { state, dispatch } = useStore();
   const project_id = ParseParam();
+
+  const investChain = window.localStorage.getItem("invest_chain") ?? "";
+  const investToken = window.localStorage.getItem("invest_token") ?? "";
+  const investAmount = window.localStorage.getItem("invest_amount") ?? "";
+  const investWfdAmount = window.localStorage.getItem("invest_wfdamount") ?? "";
+
+  const investName = window.localStorage.getItem("invest_name");
+  const investEmail = window.localStorage.getItem("invest_email");
+  const investTitle = window.localStorage.getItem("invest_title");
+  const investDate = window.localStorage.getItem("invest_date");
+
+  const pdfFile = window.localStorage.getItem("pdf_file");
+  const docxFile = window.localStorage.getItem("docx_file");
 
   //---------------notification setting---------------------------------
   function download_pdf() {
@@ -43,13 +55,13 @@ export default function InvestStep4() {
     if (project_id == WEFUND_ID)
       xhr.open(
         "GET",
-        REQUEST_ENDPOINT + "/download_pdf?filename=" + state.pdfFile,
+        REQUEST_ENDPOINT + "/download_pdf?filename=" + pdfFile,
         true
       );
     else
       xhr.open(
         "GET",
-        REQUEST_ENDPOINT + "/download_docx?filename=" + state.docxFile,
+        REQUEST_ENDPOINT + "/download_docx?filename=" + docxFile,
         true
       );
 
@@ -233,18 +245,18 @@ export default function InvestStep4() {
               borderRadius={"10px 10px 0px 0px"}
             >
               <Tr>
-                <Td>{state.investDate}</Td>
+                <Td>{investDate}</Td>
                 <Td
                   borderLeft={"1px solid rgba(255, 255, 255, 0.1)"}
                   borderRight={"1px solid rgba(255, 255, 255, 0.1)"}
                 >
-                  {state.investAmount}
+                  {investAmount}
                 </Td>
                 <Td
                   borderLeft={"1px solid rgba(255, 255, 255, 0.1)"}
                   borderRight={"1px solid rgba(255, 255, 255, 0.1)"}
                 >
-                  {state.investWFDAmount}
+                  {investWfdAmount}
                 </Td>
                 <Td cursor="pointer">
                   {/* <a href={state.request+"/download_pdf?filename=" + state.pdfFile} 
@@ -291,7 +303,7 @@ export default function InvestStep4() {
                 borderRadius={"0px 10px 0px 0px"}
                 borderLeft={"1px solid rgba(255, 255, 255, 0.1)"}
               >
-                {state.investDate}
+                {investDate}
               </Td>
             </Tr>
             <Tr>
@@ -302,7 +314,7 @@ export default function InvestStep4() {
                 bgColor={" rgba(196, 196, 196, 0.08)"}
                 borderLeft={"1px solid rgba(255, 255, 255, 0.1)"}
               >
-                {state.investAmount}
+                {investAmount}
               </Td>
             </Tr>
             <Tr>
@@ -313,7 +325,7 @@ export default function InvestStep4() {
                 bgColor={" rgba(196, 196, 196, 0.08)"}
                 borderLeft={"1px solid rgba(255, 255, 255, 0.1)"}
               >
-                {state.investWFDAmount}
+                {investWfdAmount}
               </Td>
             </Tr>
             <Tr borderColor={"transparent !important"}>
