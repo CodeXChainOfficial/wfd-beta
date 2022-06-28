@@ -31,22 +31,24 @@ export default function InvestStep4() {
   const router = useRouter();
   const project_id = ParseParam();
 
-  const investChain = window.localStorage.getItem("invest_chain") ?? "";
-  const investToken = window.localStorage.getItem("invest_token") ?? "";
-  const investAmount = window.localStorage.getItem("invest_amount") ?? "";
-  const investWfdAmount = window.localStorage.getItem("invest_wfdamount") ?? "";
+  let investAmount = "",
+    investWfdAmount = "",
+    investDate = "",
+    pdfFile = "",
+    docxFile = "";
 
-  const investName = window.localStorage.getItem("invest_name");
-  const investEmail = window.localStorage.getItem("invest_email");
-  const investTitle = window.localStorage.getItem("invest_title");
-  const investDate = window.localStorage.getItem("invest_date");
+  useEffect(() => {
+    if (window != undefined) {
+      investAmount = window.localStorage.getItem("invest_amount") ?? "";
+      investWfdAmount = window.localStorage.getItem("invest_wfdamount") ?? "";
+      investDate = window.localStorage.getItem("invest_date") ?? "";
 
-  const pdfFile = window.localStorage.getItem("pdf_file");
-  const docxFile = window.localStorage.getItem("docx_file");
-
+      pdfFile = window.localStorage.getItem("pdf_file") ?? "";
+      docxFile = window.localStorage.getItem("docx_file") ?? "";
+    }
+  }, []);
   //---------------notification setting---------------------------------
   function download_pdf() {
-    window.URL = window.URL || window.webkitURL;
     toast("Downloading", successOption);
 
     const xhr = new XMLHttpRequest();
@@ -70,6 +72,7 @@ export default function InvestStep4() {
       const file = new Blob([xhr.response], {
         type: "application/octet-stream",
       });
+      window.URL = window.URL || window.webkitURL;
       a.href = window.URL.createObjectURL(file);
       a.download = "confirm.pdf";
       a.click();
