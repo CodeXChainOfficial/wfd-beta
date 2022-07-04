@@ -10,12 +10,12 @@ import React, {
 import { Box, Flex, HStack, VStack, useDisclosure } from "@chakra-ui/react";
 import {
   Sleep,
-  CheckNetwork,
+  checkJunoConnection,
   GetProjectStatus,
   GetOneProject,
 } from "../utils/Util";
 
-import { useProjectData, useStore } from "../contexts/store";
+import { useJunoConnection, useProjectData, useStore } from "../contexts/store";
 import Footer from "../components/Footer";
 import PageLayout from "../components/PageLayout";
 
@@ -41,6 +41,8 @@ import MobileInformations from "../components/ProjectExplorer/Mobile/Information
 import MobileMainButtons from "../components/ProjectExplorer/Mobile/MainButtons";
 
 import { toast } from "react-toastify";
+import { WEFUND_CONTRACT } from "../config/Constants";
+import { fetchData } from "../utils/fetch";
 
 export default function ExplorerProject() {
   const router = useRouter();
@@ -70,6 +72,24 @@ export default function ExplorerProject() {
     router.push("/explorer?activetab=" + mode);
   }
 
+  //---------initialize fetching---------------------
+  useEffect(() => {
+    async function fetchContractQuery(force = false) {
+      try {
+        const activeProjectData = projectData.filter(
+          (project) => project.project_status == GetProjectStatus(activeTab)
+        );
+
+        dispatch({ type: "setActiveProjectData", payload: activeProjectData });
+        setPostProjectData(activeProjectData.slice(0, pageSize));
+        setCurrent(1);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetchContractQuery();
+  }, [state.projectData, activeTab, state.net]);
+
   //-------------paginator-----------------------------------
   const [current, setCurrent] = useState(1);
   const pageSize = 3;
@@ -86,31 +106,142 @@ export default function ExplorerProject() {
   }
 
   //------------Wefund Approve-----------------
-  async function WefundApprove(project_id: number) {}
-  async function OpenWhitelist(project_id: number) {}
-  async function CloseWhitelist(project_id: number) {}
-  async function JoinWhitelist(project_id: number) {}
-  async function MilestoneVote(project_id: number, voted: boolean) {}
+  const junoConnection = useJunoConnection();
+  const client = junoConnection?.getClient();
+  const address = junoConnection?.account;
 
-  async function NextFundraisingStage(project_id: number, curStage: string) {}
-  //---------initialize fetching---------------------
-  useEffect(() => {
-    //-----------fetch project data=-------------------------
-    async function fetchContractQuery(force = false) {
-      try {
-        const activeProjectData = projectData.filter(
-          (project) => project.project_status == GetProjectStatus(activeTab)
-        );
+  async function WefundApprove(project_id: number) {
+    if (!checkJunoConnection(state)) return;
 
-        dispatch({ type: "setActiveProjectData", payload: activeProjectData });
-        setPostProjectData(activeProjectData.slice(0, pageSize));
-        setCurrent(1);
-      } catch (e) {
-        console.log(e);
-      }
+    try {
+      const deadline = Date.now() + 1000 * 60 * 60 * 24 * 15; //for 15days
+      const result = await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        {
+          wefund_approve: {
+            project_id: project_id,
+            deadline: `${deadline}`,
+          },
+        },
+        "auto"
+      );
+      toast("Wefund Approve success");
+      fetchData(state, dispatch, true);
+      console.log(result);
+    } catch (e) {
+      console.log(e);
     }
-    fetchContractQuery();
-  }, [activeTab, state.net]);
+  }
+  async function OpenWhitelist(project_id: number) {
+    if (!checkJunoConnection(state)) return;
+
+    try {
+      const result = await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        {
+          open_whitelist: {
+            project_id: project_id,
+            holder_alloc: "80",
+          },
+        },
+        "auto"
+      );
+      toast("Open whitelist success");
+      fetchData(state, dispatch, true);
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  async function CloseWhitelist(project_id: number) {
+    if (!checkJunoConnection(state)) return;
+
+    setProjectID(project_id);
+    onOpenCloseWhitelist();
+  }
+  async function confirmCloseWhitelist(project_id: number) {
+console.log(project_id)
+    try {
+      const result = await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        {
+          close_whitelist: {
+            project_id: project_id,
+          },
+        },
+        "auto"
+      );
+      toast("Close whitelist success");
+      fetchData(state, dispatch, true);
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  async function JoinWhitelist(project_id: number) {
+    if (!checkJunoConnection(state)) return;
+
+    try {
+      const result = await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        {
+          register_whitelist: {
+            project_id: project_id,
+            card_type: state.cardInfo.card_type,
+          },
+        },
+        "auto"
+      );
+      toast("Register on whitelist success");
+      fetchData(state, dispatch, true);
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  async function MilestoneVote(project_id: number, voted: boolean) {
+    if (!checkJunoConnection(state)) return;
+
+    try {
+      const result = await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        { set_milestone_vote: { project_id, wallet: address, voted } },
+        "auto"
+      );
+      toast("Milestone vote success");
+      fetchData(state, dispatch, true);
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function NextFundraisingStage(project_id: number, curStage: string) {
+    let stage = parseInt(curStage);
+    const data = GetOneProject(projectData, project_id);
+
+    if (stage < data.vesting.length - 1) stage = stage + 1;
+    else return false;
+
+    try {
+      const result = await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        { set_fundraising_stage: { project_id, stage: stage.toString() } },
+        "auto"
+      );
+      toast("Set Fundraising stage success");
+      fetchData(state, dispatch, true);
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   function Modify(project_id: number) {
     router.push("/modify?project_id=" + project_id);
@@ -279,6 +410,7 @@ export default function ExplorerProject() {
       <Whitelist
         projectId={projectID}
         isOpen={isOpenCloseWhitelist}
+        closeWhitelist={confirmCloseWhitelist}
         onClose={onCloseCloseWhitelist}
       />
       <Footer />

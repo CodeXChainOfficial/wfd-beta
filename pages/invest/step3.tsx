@@ -49,6 +49,9 @@ export default function Invest_step3() {
   const canvasRef = useRef({});
   const router = useRouter();
   const wallet = useWallet();
+  useEffect(() => {
+    console.log(wallet)
+  }, [wallet]);
   //------------parse URL for project id----------------------------
   const project_id = ParseParam();
   const projectData = useProjectData();
@@ -158,6 +161,8 @@ export default function Invest_step3() {
       });
   }
   async function createSAFTDocx(date: string) {
+    const investAmount = window.localStorage.getItem("invest_amount") ?? "";
+
     const formData = new FormData();
     formData.append("docxTemplate", oneprojectData?.project_saft);
     formData.append("purchaserName", investName);

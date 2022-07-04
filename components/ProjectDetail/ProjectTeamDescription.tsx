@@ -29,7 +29,6 @@ export default function ProjectTeamDescription({ data }: { data: any }) {
           paddingTop={"35px"}
           paddingBottom={"35px"}
         >
-          {console.log(data.t)}
           {data?.project_teammembers?.map((item: any, index: number) => {
             return (
               <VStack mt="10px" color="white" key={index}>

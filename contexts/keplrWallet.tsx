@@ -57,6 +57,7 @@ export type WalletContextType = KeplrWalletStore;
 
 const defaultStates = {
   connected: false,
+  ready: false,
   accountNumber: 0,
   account: "",
   balance: [],
@@ -211,6 +212,7 @@ const WalletSubscription = () => {
         const key = await window.keplr.getKey(config.chainId);
         await refreshBalance(address, balance);
         window.localStorage.setItem("wallet_address", address);
+
         useKeplrWalletStore.setState({
           accountNumber: account?.accountNumber || 0,
           account: address,

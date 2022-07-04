@@ -3,11 +3,13 @@ import { useRouter } from "next/router";
 
 import Navbar from "./Navbar";
 import Container from "./Container";
-import { FetchData, ParseParam } from "../utils/Util";
+import { ParseParam } from "../utils/Util";
+import { fetchData } from "../utils/fetch";
 import { toast } from "react-toastify";
 import { successOption } from "../config/Constants";
-import { useStore, ActionKind } from "../contexts/store";
+import { useStore, ActionKind, useJunoConnection } from "../contexts/store";
 import { useNearWallet } from "../contexts/NearWallet";
+import { useKeplrWallet } from "../contexts/keplrWallet";
 
 type Props = {
   children?: ReactNode;
@@ -111,12 +113,29 @@ const Layout = ({ children }: Props) => {
     //   // window.addEventListener('scroll', handleScroll)
   }, []);
 
+  //------Juno connection-----------------------------
   const { state, dispatch } = useStore();
+  const keplrWallet = useKeplrWallet();
 
   useEffect(() => {
-    FetchData(state, dispatch);
+    keplrWallet.connect();
   }, []);
 
+  useEffect(() => {
+    if (keplrWallet.initialized)
+      dispatch({ type: ActionKind.setJunoConnection, payload: keplrWallet });
+  }, [keplrWallet, keplrWallet.initialized]);
+
+  const junoConnection = useJunoConnection();
+  useEffect(() => {
+    const fetch = async () => {
+      fetchData(state, dispatch, true);
+    };
+
+    fetch();
+  }, [junoConnection, junoConnection?.initialized]);
+
+  //-------Near connection--------------------------------------------------
   const near = useNearWallet();
   const project_id = ParseParam();
 

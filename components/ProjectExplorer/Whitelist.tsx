@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { FunctionComponent, useEffect, useState } from "react";
-
+import { useStore } from "../../contexts/store";
 import {
   Modal,
   ModalOverlay,
@@ -15,27 +15,33 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-import { ShortenAddress } from "../../utils/Util";
+import { GetOneProject, ShortenAddress } from "../../utils/Util";
 
 interface Props {
   projectId: number;
   isOpen: boolean;
+  closeWhitelist: (projectId: number) => void;
   onClose: () => void;
 }
 
 const Whitelist: FunctionComponent<Props> = ({
   projectId,
   isOpen,
+  closeWhitelist,
   onClose,
 }) => {
   const [data, setData] = useState<any>(null);
+  const { state, dispatch } = useStore();
 
   useEffect(() => {
-    const getData = async () => {};
+    const getData = async () => {
+      const projectData = state.projectData;
+      const data = GetOneProject(projectData, projectId);
+      setData(data);
+    };
     getData();
   }, [projectId]);
 
-  async function confirm() {}
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -55,7 +61,11 @@ const Whitelist: FunctionComponent<Props> = ({
             <Text mt={"30px"}>Are you going to close the Whitelist?</Text>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={confirm}>
+            <Button
+              colorScheme="blue"
+              mr={3}
+              onClick={() => closeWhitelist(projectId)}
+            >
               Yes
             </Button>
             <Button variant="ghost" onClick={onClose}>

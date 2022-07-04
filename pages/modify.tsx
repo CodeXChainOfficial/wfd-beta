@@ -477,7 +477,6 @@ export default function ModifyProject() {
           paddingRight="50px"
           zIndex="1"
         >
-          <Payment isUST={isUST} setIsUST={setIsUST} />
           <CustomInput
             typeText="Company Name"
             type={company}

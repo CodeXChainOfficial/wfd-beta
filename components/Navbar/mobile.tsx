@@ -17,7 +17,7 @@ import { RiAccountPinBoxFill } from "react-icons/ri";
 
 export default function NavbarMobile() {
   return (
-    <VStack display={{ base: "block", md: "block", lg: "none" }}>
+    <VStack display={{ base: "block", md: "none", lg: "none" }}>
       <Flex
         h="60px"
         w="100%"

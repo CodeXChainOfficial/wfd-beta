@@ -1,6 +1,6 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { WEFUND_ID, WEFUND, TOKEN_LIST } from "../config/Constants";
+import { WEFUND_ID, WEFUND_WALLET, TOKEN_LIST } from "../config/Constants";
 import { ActionKind } from "../contexts/store";
 
 export function GetProjectStatusString(mode: string) {
@@ -47,30 +47,13 @@ export function GetProjectStatus(mode: string) {
   return projectstatus;
 }
 
-export function AddExtraInfo(projectData: any) {
-  if (typeof projectData === "undefined" || projectData == "") return "";
-
-  for (let i = 0; i < projectData.length; i++) {
-    const backer_backedAmount = parseInt(projectData[i].backerbacked_amount);
-    projectData[i].backer_backedPercent = Math.floor(
-      (backer_backedAmount /
-        10 ** 6 /
-        parseInt(projectData[i].project_collected)) *
-      100
-    );
-
-    let released = 0;
-    for (let j = 0; j < projectData[i].project_milestones.length; j++) {
-      if (projectData[i].project_milestones[j].milestone_status == 2) {
-        released++;
-      }
-    }
-    projectData[i].releasedPercent = Math.floor(
-      (released / projectData[i].project_milestones.length) * 100
-    );
+export function checkJunoConnection(state: any) {
+  if (!state.junoConnection || !state.junoConnection.connected) {
+    toast("Please connect to Juno Network");
+    return false;
   }
 
-  return projectData;
+  return true;
 }
 export function CheckNetwork(state: any) {
   if (state.walletType == undefined || state.wallet == null) {
@@ -87,22 +70,6 @@ export function GetProjectIndex(projectData: any, project_id: number) {
   return index;
 }
 
-export async function FetchData(
-  state: any,
-  dispatch: React.Dispatch<any>,
-  force = false
-) {
-  let projectData: any[] = [WEFUND];
-  const communityData: any[] = [];
-  const configData: any[] = [];
-
-  projectData = AddExtraInfo(projectData);
-  dispatch({ type: ActionKind.setProjectData, payload: projectData });
-  dispatch({ type: ActionKind.setCommunityData, payload: communityData });
-  dispatch({ type: ActionKind.setConfigData, payload: configData });
-  return { projectData, communityData, configData };
-}
-
 export function GetOneProject(projectData: any, project_id: number) {
   if (projectData == null) return null;
   const isProject = (element: any) =>
@@ -113,11 +80,12 @@ export function GetOneProject(projectData: any, project_id: number) {
 }
 
 export function isWefundWallet(state: any) {
+  if (state.junoConnection?.account == WEFUND_WALLET) return true;
   return false;
 }
 
 export function isCardHolder(state: any, project_id: number) {
-  if (state.cardInfo == "") return false;
+  if (state.cardInfo == undefined) return false;
 
   const one = GetOneProject(state.projectData, project_id);
   if (one == "") return false;
@@ -189,7 +157,7 @@ export function isCreatorWallet(state: any, project_id: number) {
   const one = GetOneProject(state.projectData, project_id);
   if (one == "") return false;
 
-  if (one.creator_wallet == state.address) return true;
+  if (one.creator_wallet == state.junoConnection?.account) return true;
 
   return false;
 }

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
+import { WEFUND } from "../config/Constants";
 
 interface Action {
   type: ActionKind;
@@ -7,6 +8,7 @@ interface Action {
 
 export interface AppContextInterface {
   walletType: "metamask" | "trust" | "keplr" | "tron" | "near" | undefined;
+  junoConnection: any;
   wallet: any;
   net: string;
   activeProjectData: any[];
@@ -17,24 +19,28 @@ export interface AppContextInterface {
   referralCount: number;
   referralLink: string;
   presale: boolean;
+  cardInfo: any;
 }
 
 const initialState: AppContextInterface = {
   walletType: undefined,
+  junoConnection: undefined,
   wallet: undefined,
   net: "testnet",
   activeProjectData: [],
   projectData: [],
   communityData: [],
   configData: [],
-  address: null,
+  address: undefined,
   referralCount: 0,
   referralLink: "",
   presale: true,
+  cardInfo: undefined,
 };
 
 export enum ActionKind {
   setWalletType,
+  setJunoConnection,
   setWallet,
   setNet,
   setActiveProjectData,
@@ -45,17 +51,7 @@ export enum ActionKind {
   setReferralCount,
   setReferralLink,
   setPresale,
-
-  setInvestChain,
-  setInvestToken,
-  setInvestAmount,
-  setInvestWFDAmount,
-  setInvestName,
-  setInvestEmail,
-  setInvestTitle,
-  setInvestDate,
-  setPdfFile,
-  setDocxFile,
+  setCardInfo,
 }
 
 const StoreContext = createContext<{
@@ -70,6 +66,8 @@ export const reducer = (state: AppContextInterface, action: Action) => {
   switch (action.type) {
     case ActionKind.setWalletType:
       return { ...state, walletType: action.payload };
+    case ActionKind.setJunoConnection:
+      return { ...state, junoConnection: action.payload };
     case ActionKind.setWallet:
       return { ...state, wallet: action.payload };
     case ActionKind.setNet:
@@ -90,7 +88,8 @@ export const reducer = (state: AppContextInterface, action: Action) => {
       return { ...state, referralLink: action.payload };
     case ActionKind.setPresale:
       return { ...state, presale: action.payload };
-
+    case ActionKind.setCardInfo:
+      return { ...state, cardInfo: action.payload };
     default:
       return state;
   }
@@ -107,6 +106,11 @@ export const StoreProvider: React.FC = ({ children }) => {
 };
 
 export const useStore = () => useContext(StoreContext);
+
+export const useJunoConnection = () => {
+  const { state, dispatch } = useStore();
+  return state.junoConnection;
+};
 
 export const useWallet = () => {
   const { state, dispatch } = useStore();

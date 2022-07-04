@@ -1,7 +1,18 @@
-export const NETWORK = "mainnet";
+export const NETWORK = "testnet";
 export const WEFUND_ID = 1;
 export const REQUEST_ENDPOINT =
   "https://wefund-nodejs-gwb6v.ondigitalocean.app";
+
+export const WEFUND_WALLET = "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu";
+
+export const WFD_TOKEN =
+  "juno17tk7s9mg2a6uupfljrhf492e7hzhkd89cvzerglyj8xguvzukksq9d75ts";
+export const WEFUND_CONTRACT =
+  "juno10p7f08tjglvghhdpedwhfaqurjevvdgcya5cga9kn9j4z6s4sp8sxxqf8m";
+export const VESTING_CONTRACT =
+  "juno1p85dqt555gnalnca7lppf2kukzmfatj7zvhgvlvu6vhk7l2f46gqyyj9aq";
+export const STAKING_CONTRACT =
+  "juno1xgkahp7cgt53394svy9zxhma82l4a6du6j6sp75rnvqr7t6cgsqss3ve43";
 
 export const WEFUND_JUNO_ADDRESS =
   "juno1gc3lpde7nx8khqfafw3st7j4ptd6qfccu6y04a";

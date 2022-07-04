@@ -19,7 +19,7 @@ import { ButtonBackTransition } from "../ImageTransition";
 export default function Navbar() {
   return (
     <Flex w="100%" direction="column">
-      <VStack display={{ base: "none", md: "none", lg: "block" }}>
+      <VStack display={{ base: "none", md: "block", lg: "block" }}>
         <Flex
           position={{ base: "relative", md: "relative", lg: "fixed" }}
           direction="row"

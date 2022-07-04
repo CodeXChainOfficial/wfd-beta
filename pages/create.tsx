@@ -3,14 +3,15 @@ import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
-import {
-  ButtonBackTransition,
-  ButtonTransition,
-} from "../components/ImageTransition";
-import { useStore } from "../contexts/store";
+import { ButtonTransition } from "../components/ImageTransition";
+import { useStore, useWallet } from "../contexts/store";
 import Footer from "../components/Footer";
 import { CheckNetwork, isNull, ParseParam } from "../utils/Util";
-import { successOption, errorOption } from "../config/Constants";
+import {
+  WEFUND_CONTRACT,
+  successOption,
+  errorOption,
+} from "../config/Constants";
 import { REQUEST_ENDPOINT } from "../config/Constants";
 
 import PageLayout from "../components/PageLayout";
@@ -24,10 +25,12 @@ import CustomSelect from "../components/CreateProject/CustomSelect";
 import CustomEmailInput from "../components/CreateProject/CustomEmailInput";
 import CustomUpload from "../components/CreateProject/CustomUpload";
 import TeamMembers from "../components/CreateProject/TeamMember/TeamMembers";
+import { useKeplrWallet } from "../contexts/keplrWallet";
 
 export default function CreateProject() {
   const { state, dispatch } = useStore();
-  const [isUST, setIsUST] = useState(true);
+  const keplrWallet = useKeplrWallet();
+  const router = useRouter();
 
   const [logo, setLogo] = useState("");
   const [whitepaper, setWhitepaper] = useState("");
@@ -71,16 +74,11 @@ export default function CreateProject() {
   }, []);
 
   //---------------create project---------------------------------
-  const checkInvalidation = async () => {
+  const checkInvalidation = () => {
     if (CheckNetwork(state) == false) return false;
 
     if (title.length == 0) {
       toast("Please fill in project name!", errorOption);
-      return false;
-    }
-
-    if (parseInt(collectedAmount) < 6) {
-      toast("Collected money must be at least 6 UST", errorOption);
       return false;
     }
 
@@ -90,16 +88,12 @@ export default function CreateProject() {
   const createDocxTemplate = async () => {
     const formData = new FormData();
     formData.append("tokenName", tokenName);
-    /*  formData.append('company', company);*/
     formData.append("title", title);
-    /*   formData.append('address', address);*/
     formData.append("description", description);
     formData.append("ecosystem", ecosystem);
     formData.append("priceSeed", stagePrice[0]);
     formData.append("pricePresale", stagePrice[1]);
     formData.append("priceIDO", stagePrice[2]);
-    /*   formData.append('cofounderName', cofounderName);
-    formData.append('country', country);*/
     formData.append("email", email);
     formData.append("file", signature);
 
@@ -180,9 +174,7 @@ export default function CreateProject() {
   };
 
   async function createProject() {
-    if (CheckNetwork(state) == false) return false;
-
-    if ((await checkInvalidation()) == false) return false;
+    if (!checkInvalidation()) return false;
 
     toast("Please wait", successOption);
 
@@ -242,9 +234,12 @@ export default function CreateProject() {
 
     const _projectID = project_id == null ? "0" : project_id.toString();
 
+    const client = keplrWallet.getClient();
+    const address = keplrWallet.account;
+
     const AddProjectMsg = {
       add_project: {
-        // creator_wallet: state.address,
+        creator_wallet: address,
         project_id: _projectID,
         project_company: company,
         project_title: title,
@@ -269,6 +264,23 @@ export default function CreateProject() {
         professional_link: professionallink,
       },
     };
+
+    if (state.walletType != "keplr") {
+      toast("Connect with Keplr");
+      return;
+    }
+    try {
+      const res = await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        AddProjectMsg,
+        "auto"
+      );
+      console.log(res);
+      router.push("/explorer");
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (
@@ -288,7 +300,6 @@ export default function CreateProject() {
           paddingRight="50px"
           zIndex="1"
         >
-          <Payment isUST={isUST} setIsUST={setIsUST} />
           <CustomInput
             typeText="Project Title"
             type={title}

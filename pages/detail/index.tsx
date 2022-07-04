@@ -54,22 +54,21 @@ export default function ProjectDetail() {
         return;
       }
 
-      for (let i = 0; i < oneprojectData.project_milestones.length; i++) {
+      for (let i = 0; i < oneprojectData.milestone_states.length; i++) {
         if (i < oneprojectData.project_milestonestep) {
-          oneprojectData.project_milestones[i].milestone_statusmessage =
+          oneprojectData.milestone_states[i].milestone_statusmessage =
             "Released";
         } else if (i == oneprojectData.project_milestonestep) {
           if (oneprojectData.project_status == "3") {
             //releasing status
-            oneprojectData.project_milestones[i].milestone_statusmessage =
+            oneprojectData.milestone_states[i].milestone_statusmessage =
               "Voting";
-            oneprojectData.project_milestones[i].milestone_votingavailable =
-              true;
+            oneprojectData.milestone_states[i].milestone_votingavailable = true;
           } else
-            oneprojectData.project_milestones[i].milestone_statusmessage =
+            oneprojectData.milestone_states[i].milestone_statusmessage =
               "Not yet";
         } else
-          oneprojectData.project_milestones[i].milestone_statusmessage =
+          oneprojectData.milestone_states[i].milestone_statusmessage =
             "Not yet";
       }
       setOneprojectData(oneprojectData);
