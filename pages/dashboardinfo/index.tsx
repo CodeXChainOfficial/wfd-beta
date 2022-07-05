@@ -15,6 +15,7 @@ import { successOption } from "../../config/Constants";
 import { useCommunityData, useProjectData, useStore } from "../../contexts/store";
 import { IoDownloadOutline, IoWalletOutline} from "react-icons/io5";
 import { RiUpload2Line } from "react-icons/ri";
+import Footer from "../../components/Footer";
 
 export default function UserSideSnippet() {
   const { state, dispatch } = useStore();
@@ -102,6 +103,7 @@ export default function UserSideSnippet() {
     },
   };
   return (
+    <Box>
     <Box color={"white"} padding={"5%"} mt="150px">
       <Flex color="white">
         <Center w="400px">
@@ -297,6 +299,7 @@ export default function UserSideSnippet() {
                     </VStack>
                   </HStack>
                   <Center>
+                    <Link href={"dashboardinfo/details"}>
                     <Button
                     w={'150px'}
                     h={'45px'}
@@ -310,7 +313,8 @@ export default function UserSideSnippet() {
                       >
                         Details
                       </Text>
-                    </Button>
+                    </Button></Link>
+                    
                   </Center>
                
                 </Stack>
@@ -968,12 +972,14 @@ export default function UserSideSnippet() {
                     px={'150px'}
                     py={'20px'}
                     rounded={'lg'}
+                    minH={'136px'}
                     >
                     <Text 
                     mt="10px"
-                    fontWeight= '950'
+                    fontWeight= '500'
                     lineHeight={'160%'}
                     align={'center'}
+                    fontSize={'22px'}
                     >Invite Backers</Text>
                     <Text 
                     mt="10px"
@@ -1001,27 +1007,34 @@ export default function UserSideSnippet() {
                     px={'170px'}
                     py={'20px'}
                     rounded={'lg'}
+                    minH={'136px'}
                     >
                     <Text 
                     mt="10px"
-                    fontWeight= '950'
+                    fontWeight= '500'
                     lineHeight={'160%'}
                     align={'center'}
+                    fontSize={'22px'}
                     >Register to Become Community Member</Text>
-                    <Button
-                    w={'150px'}
-                    h={'45px'}
-                    bgGradient="linear(#21CAFF, #1383D4)"
-                    color={'#002E87'}
-                    fontWeight={'600'}
-                    fontSize={'16px'}
-                  >
-                      <Text
-                        ml={'5px'}
-                      >
-                        Claim
-                      </Text>
-                </Button>
+                    <Center
+                    pt={'25px'}
+                    >
+                        <Button
+                          w={'150px'}
+                          h={'45px'}
+                          bgGradient="linear(#21CAFF, #1383D4)"
+                          color={'#002E87'}
+                          fontWeight={'600'}
+                          fontSize={'16px'}
+                        >
+                            <Text
+                              ml={'5px'}
+                            >
+                              Claim
+                            </Text>
+                        </Button>
+                </Center>
+                   
                     </Box>
                       </Center>
                     
@@ -1183,6 +1196,10 @@ export default function UserSideSnippet() {
           Cancel
         </Button>
       </Flex> */}
+      
+    </Box>
+    
+    <Footer />
     </Box>
   );
 }
