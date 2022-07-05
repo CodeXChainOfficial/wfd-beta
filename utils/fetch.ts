@@ -3,7 +3,7 @@ import {
   STAKING_CONTRACT,
   WFD_TOKEN,
   WEFUND,
-} from "../config/Constants";
+} from "../config/constants";
 import { ActionKind } from "../contexts/store";
 
 export function addExtraInfo(projectData: any) {
@@ -55,7 +55,7 @@ export async function fetchData(
     });
     projectData = addExtraInfo(projectData);
     dispatch({ type: ActionKind.setProjectData, payload: projectData });
-console.log(projectData);
+    console.log(projectData);
   } catch (e) {
     console.log(e);
   }
@@ -83,7 +83,6 @@ console.log(projectData);
     const tokenInfo = await client.queryContractSmart(WFD_TOKEN, {
       token_info: {},
     });
-
     const cardInfo = await client.queryContractSmart(STAKING_CONTRACT, {
       get_user_info: { wallet: state.junoConnection.account },
     });

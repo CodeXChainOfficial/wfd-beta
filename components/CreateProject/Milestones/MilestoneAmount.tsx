@@ -10,8 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 import { InputTransition } from "../../ImageTransition";
-import { errorOption } from "../../../config/Constants";
-import { isNull } from "../../../utils/Util";
+import { ERROR_OPTION } from "../../../config/constants";
+import { isNull } from "../../../utils/utility";
 
 interface Props {
   index: number;
@@ -28,7 +28,7 @@ const MilestoneAmount: FunctionComponent<Props> = ({
       e.target.value != "" &&
       e.target.value != parseInt(e.target.value).toString()
     ) {
-      toast("Please input number only", errorOption);
+      toast("Please input number only", ERROR_OPTION);
       return;
     }
 

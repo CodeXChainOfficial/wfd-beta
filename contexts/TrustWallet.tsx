@@ -9,7 +9,7 @@ import Web3 from "web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3Modal from "web3modal";
 import { AbiItem, Parse } from "web3-utils";
-import { WEFUND_BSC_ADDRESS } from "../config/Constants";
+import { WEFUND_BSC_ADDRESS } from "../config/constants";
 import ERC20_ABI from "../config/ERC20.json";
 import { sendError } from "next/dist/server/api-utils";
 
@@ -112,12 +112,9 @@ export const useTrustWalletStore = create(
     ) => {
       const web3 = get().web3;
       if (!web3) return false;
-console.log(web3);
       const sender = get().account;
-console.log(sender)
       const nonce = await web3.eth.getTransactionCount(sender);
-console.log(nonce)
-console.log(amount)
+
       if (native) {
         const tx = {
           from: sender,

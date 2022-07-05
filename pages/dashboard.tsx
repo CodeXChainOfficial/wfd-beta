@@ -12,7 +12,11 @@ import {
 } from "@chakra-ui/react";
 import Pagination from "@choc-ui/paginator";
 
-import { useStore, useCommunityData } from "../contexts/store";
+import {
+  useStore,
+  useCommunityData,
+  useJunoConnection,
+} from "../contexts/store";
 import {
   InputTransition,
   ButtonTransition,
@@ -20,7 +24,8 @@ import {
 
 import PageLayout from "../components/PageLayout";
 import Footer from "../components/Footer";
-import { Set2Mainnet, Set2Testnet } from "../utils/Util";
+import { Set2Mainnet, Set2Testnet } from "../utils/utility";
+import { WEFUND_CONTRACT } from "../config/constants";
 
 export default function Dashboard() {
   const { state, dispatch } = useStore();
@@ -31,6 +36,10 @@ export default function Dashboard() {
 
   const [postCommunityData, setPostCommunityData] = useState<any[]>([]);
   const [nextNetwork, setNextNetwork] = useState("Test");
+
+  const junoConnection = useJunoConnection();
+  const client = junoConnection?.getClient();
+  const address = junoConnection?.account;
 
   const Prev = forwardRef((props, ref) => (
     <Button ref={ref} {...props}>
@@ -60,27 +69,9 @@ export default function Dashboard() {
     setPostCommunityData(state.communityData.slice(offset, offset + pageSize));
   }
 
-  //------------Add/remove community member-----------------
-  function addCommunityMember() {
-    const CommunityMsg = {
-      add_communitymember: {
-        wallet: wallet,
-      },
-    };
-  }
-
-  function removeCommunityMember(wallet: any) {
-    const CommunityMsg = {
-      remove_communitymember: {
-        wallet: wallet.member,
-      },
-    };
-  }
-
   const communityData = useCommunityData();
-  //---------initialize fetching---------------------
   useEffect(() => {
-    async function fetchContractQuery() {
+    async function fetch() {
       try {
         setCurrent(1);
         setPostCommunityData(communityData.slice(0, pageSize));
@@ -88,8 +79,43 @@ export default function Dashboard() {
         console.log(e);
       }
     }
-    fetchContractQuery();
-  }, [nextNetwork]);
+    fetch();
+  }, [communityData, nextNetwork]);
+
+  //------------Add/remove community member-----------------
+  async function addCommunityMember() {
+    try {
+      await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        {
+          add_communitymember: {
+            wallet: wallet,
+          },
+        },
+        "auto"
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function removeCommunityMember(wallet: any) {
+    try {
+      await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        {
+          remove_communitymember: {
+            wallet: wallet,
+          },
+        },
+        "auto"
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   useEffect(() => {
     if (state.net == "testnet") setNextNetwork("mainnet");
@@ -142,7 +168,7 @@ export default function Dashboard() {
         width={{ base: "90%", md: "70%", lg: "50%" }}
       >
         <SwitchButton />
-        {postCommunityData?.map((member, index) => (
+        {postCommunityData?.map((member: string, index) => (
           <Stack
             w="100%"
             mt="10px"
@@ -159,7 +185,7 @@ export default function Dashboard() {
               width="140px"
               height="35px"
               rounded="33px"
-              onClick={() => removeCommunityMember({ member })}
+              onClick={() => removeCommunityMember(member)}
             >
               Remove
             </ButtonTransition>

@@ -13,27 +13,141 @@ import {
   Checkbox,
 } from "@chakra-ui/react";
 import { IoBan } from "react-icons/io5";
-import {
-  InputTransition,
-  ButtonTransition,
-} from "../../components/ImageTransition";
+
 import CardBox from "../../components/Staking/CardBox";
 import PageLayout from "../../components/PageLayout";
 import Footer from "../../components/Footer";
 
-import { Set2Mainnet, Set2Testnet, CheckNetwork } from "../../utils/Util";
+import { useJunoConnection, useStore } from "../../contexts/store";
+import {
+  STAKING_CONTRACT,
+  WFD_TOKEN,
+  SUCCESS_OPTION,
+} from "../../config/constants";
+import { fetchData } from "../../utils/fetch";
+import { toast } from "react-toastify";
 
 export default function Staking() {
+  const { state, dispatch } = useStore();
   const [userInfo, setUserInfo] = useState({
     amount: "0",
     card_type: "Other",
     card_number: "0",
   });
-  const [balance, setBalance] = useState("");
-  const [amount, setAmount] = useState("");
+  const [balance, setBalance] = useState(0);
+  const [amount, setAmount] = useState(0);
   const [pendingRewards, setPendingRewards] = useState("");
   const [decimals, setDecimals] = useState(1);
 
+  const junoConnection = useJunoConnection();
+  const client = junoConnection?.getClient();
+  const address = junoConnection?.account;
+
+  useEffect(() => {
+    const fetch = async () => {
+      // if (checkJunoConnection(state) == false) return;
+
+      try {
+        const tokenInfo = await client.queryContractSmart(WFD_TOKEN, {
+          token_info: {},
+        });
+        setDecimals(tokenInfo.decimals);
+
+        const res = await client.queryContractSmart(WFD_TOKEN, {
+          balance: { address: address },
+        });
+        console.log(res);
+        setBalance(parseInt(res.balance) / 10 ** parseInt(tokenInfo.decimals));
+
+        const userInfo = await client.queryContractSmart(STAKING_CONTRACT, {
+          get_user_info: { wallet: address },
+        });
+        userInfo.amount =
+          parseInt(userInfo.amount) / 10 ** parseInt(tokenInfo.decimals);
+        setUserInfo(userInfo);
+
+        const pendingRewards = await client.queryContractSmart(
+          STAKING_CONTRACT,
+          {
+            get_pending_rewards: {
+              wallet: address,
+            },
+          }
+        );
+        setPendingRewards(pendingRewards);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    fetch();
+  }, [client]);
+
+  function selectCard(cardType: string) {
+    switch (cardType.toLowerCase()) {
+      case "platium":
+        setAmount(100000);
+        break;
+      case "gold":
+        setAmount(40000);
+        break;
+      case "silver":
+        setAmount(10000);
+        break;
+      case "bronze":
+        setAmount(1000);
+        break;
+    }
+  }
+  async function staking() {
+    const realAmount = amount * 10 ** decimals;
+    try {
+      let res = await client.execute(
+        address,
+        STAKING_CONTRACT,
+        {
+          deposit: {
+            wallet: address,
+            amount: `${realAmount}`,
+          },
+        },
+        "auto"
+      );
+
+      res = await client.execute(
+        address,
+        WFD_TOKEN,
+        {
+          transfer: {
+            recipient: STAKING_CONTRACT,
+            amount: `${amount}`,
+          },
+        },
+        "auto"
+      );
+      toast("WFD token staking success", SUCCESS_OPTION);
+      fetchData(state, dispatch, true);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  async function getRewards() {
+    const res = await client.execute(
+      address,
+      STAKING_CONTRACT,
+      {
+        claim_rewards: {
+          wallet: address,
+        },
+      },
+      "auto"
+    );
+    toast("Claim rewards success", SUCCESS_OPTION);
+    fetchData(state, dispatch, true);
+  }
+  function setMax() {
+    setAmount(balance);
+  }
   return (
     <PageLayout title="Staking" subTitle1="WFD" subTitle2="Staking">
       <VStack spacing="30px" fontFamily="PilatExtended-Bold">
@@ -154,13 +268,17 @@ export default function Staking() {
                   src="/media/Card/Platinum.png"
                   h="100px"
                   _hover={{ border: "1px solid red" }}
-                  //onClick={() => { selectCard("platium") }}
+                  onClick={() => {
+                    selectCard("platium");
+                  }}
                 />
                 <Image
                   src="/media/Card/Gold.png"
                   h="100px"
                   _hover={{ border: "1px solid red" }}
-                  //onClick={() => { selectCard("Gold") }}
+                  onClick={() => {
+                    selectCard("Gold");
+                  }}
                 />
               </HStack>
               <HStack spacing="10px">
@@ -168,13 +286,17 @@ export default function Staking() {
                   src="/media/Card/Silver.png"
                   h="100px"
                   _hover={{ border: "1px solid red" }}
-                  //onClick={() => { selectCard("Silver") }}
+                  onClick={() => {
+                    selectCard("Silver");
+                  }}
                 />
                 <Image
                   src="/media/Card/Bronze.png"
                   h="100px"
                   _hover={{ border: "1px solid red" }}
-                  //onClick={() => { selectCard("bronze") }}
+                  onClick={() => {
+                    selectCard("bronze");
+                  }}
                 />
               </HStack>
             </Stack>
@@ -199,7 +321,7 @@ export default function Staking() {
                   fontSize="12px"
                   value={amount}
                   onChange={(e) => {
-                    setAmount(e.target.value);
+                    setAmount(parseInt(e.target.value));
                   }}
                 />
                 <HStack>
@@ -208,7 +330,7 @@ export default function Staking() {
                     color="gray.300"
                     cursor="pointer"
                     textStyle="underline"
-                    //onClick={setMax}
+                    onClick={setMax}
                   >
                     MAX
                   </Text>
@@ -219,11 +341,7 @@ export default function Staking() {
             <Checkbox onChange={(e) => console.log(e)}>
               <Text fontSize="12px">I agree to WeFund Staking Terms</Text>
             </Checkbox>
-            <Button
-              color="white"
-              //onClick={staking}
-              colorScheme="whiteAlpha"
-            >
+            <Button color="white" onClick={staking} colorScheme="whiteAlpha">
               Approve
             </Button>
           </VStack>

@@ -4,7 +4,7 @@ import { Decimal } from "@cosmjs/math";
 import type { OfflineSigner } from "@cosmjs/proto-signing";
 import type { Coin } from "@cosmjs/stargate";
 import type { AppConfig } from "../config";
-import { getConfig, keplrConfig } from "../config";
+import { getJunoConfig, keplrConfig } from "../config";
 import type { ReactNode } from "react";
 import { createTrackedSelector } from "react-tracked";
 import type { State } from "zustand";
@@ -12,8 +12,8 @@ import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import { BigNumber } from "ethers";
-import { NETWORK } from "../config/Constants";
-import { WEFUND_JUNO_ADDRESS } from "../config/Constants";
+import { NETWORK } from "../config/constants";
+import { WEFUND_JUNO_ADDRESS } from "../config/constants";
 
 declare let window: any;
 
@@ -62,7 +62,7 @@ const defaultStates = {
   account: "",
   balance: [],
   client: undefined,
-  config: getConfig(NETWORK),
+  config: getJunoConfig(NETWORK),
   initialized: false,
   initializing: true,
   name: "",

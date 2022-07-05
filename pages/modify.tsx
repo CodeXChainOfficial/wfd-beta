@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { REQUEST_ENDPOINT } from "../config/Constants";
+import { REQUEST_ENDPOINT } from "../config/constants";
 
 import {
   ButtonBackTransition,
@@ -11,7 +11,7 @@ import {
 import { useCommunityData, useProjectData, useStore } from "../contexts/store";
 import Footer from "../components/Footer";
 import {
-  CheckNetwork,
+  checkNetwork,
   Sleep,
   isNull,
   getVal,
@@ -22,8 +22,8 @@ import {
   ParseParam,
   GetOneProject,
   getTokenInfo,
-} from "../utils/Util";
-import { successOption, errorOption } from "../config/Constants";
+} from "../utils/utility";
+import { SUCCESS_OPTION, ERROR_OPTION } from "../config/constants";
 import PageLayout from "../components/PageLayout";
 
 import Payment from "../components/CreateProject/Payment";
@@ -95,7 +95,7 @@ export default function ModifyProject() {
   const [milestoneEnddate, setMilestoneEnddate] = useState([""]);
 
   useEffect(() => {
-    setTimeout(() => CheckNetwork(state), 1000);
+    setTimeout(() => checkNetwork(state), 1000);
 
     if (project_id > 0) fillItems();
   }, []);
@@ -188,63 +188,63 @@ export default function ModifyProject() {
 
   //---------------create project---------------------------------
   const checkInvalidation = async () => {
-    if (CheckNetwork(state) == false) return false;
+    if (checkNetwork(state) == false) return false;
 
     if (communityData == []) {
-      toast("There are no community members!", errorOption);
+      toast("There are no community members!", ERROR_OPTION);
       return false;
     }
 
     if (title.length == 0) {
-      toast("Please fill in project name!", errorOption);
+      toast("Please fill in project name!", ERROR_OPTION);
       return false;
     }
 
     if (parseInt(collectedAmount) < 6) {
-      toast("Collected money must be at least 6 UST", errorOption);
+      toast("Collected money must be at least 6 UST", ERROR_OPTION);
       return false;
     }
 
     let total_release = 0;
     for (let i = 0; i < milestoneTitle.length; i++) {
       if (milestoneTitle[i] == "") {
-        toast("Please fill in milestone title!", errorOption);
+        toast("Please fill in milestone title!", ERROR_OPTION);
         return false;
       }
       if (milestoneStartdate[i] == "") {
-        toast("Please fill in milestone Start Date!", errorOption);
+        toast("Please fill in milestone Start Date!", ERROR_OPTION);
         return false;
       }
       if (milestoneEnddate[i] == "") {
-        toast("Please fill in milestone End Date!", errorOption);
+        toast("Please fill in milestone End Date!", ERROR_OPTION);
         return false;
       }
       if (parseInt(milestoneAmount[i]) < 6) {
-        toast("Collected money must be at least 6 UST", errorOption);
+        toast("Collected money must be at least 6 UST", ERROR_OPTION);
         return false;
       }
       total_release += parseInt(milestoneAmount[i]);
     }
     if (total_release != parseInt(collectedAmount)) {
-      toast("Milestone total amount must equal collected amount", errorOption);
+      toast("Milestone total amount must equal collected amount", ERROR_OPTION);
       return false;
     }
     if (getInteger(communityAlloc) == 0) {
-      toast("Communit allocation can't be 0");
+      toast("Communit allocation can't be 0", ERROR_OPTION);
       return;
     }
     let distribution_token_amount = 0;
     for (let i = 0; i < stageTitle.length; i++) {
       if (getMultiplyInteger(stagePrice[i]) == 0) {
-        toast("Stage Price can't be zero", errorOption);
+        toast("Stage Price can't be zero", ERROR_OPTION);
         return false;
       }
       if (getInteger(stageAmount[i]) == 0) {
-        toast("Stage token amount can't be zero", errorOption);
+        toast("Stage token amount can't be zero", ERROR_OPTION);
         return false;
       }
       if (getInteger(stageAmount[i]) == 0) {
-        toast("Stage token amount can't be zero", errorOption);
+        toast("Stage token amount can't be zero", ERROR_OPTION);
         return false;
       }
       if (
@@ -252,7 +252,7 @@ export default function ModifyProject() {
         getInteger(stageVestingAfter[i]) == 0 &&
         getInteger(stageVestingPeriod[i]) == 0
       ) {
-        toast("Stage vesting paramebers are invalid", errorOption);
+        toast("Stage vesting paramebers are invalid", ERROR_OPTION);
         return false;
       }
       distribution_token_amount += getInteger(stageAmount[i]);
@@ -297,11 +297,11 @@ export default function ModifyProject() {
       .then((res) => res.json())
       .then((data) => {
         realSAFT = data.data;
-        toast(data.data + "SAFT Success", successOption);
+        toast(data.data + "SAFT Success", SUCCESS_OPTION);
       })
       .catch((e) => {
         console.log("Error:" + e);
-        toast("SAFT failed", errorOption);
+        toast("SAFT failed", ERROR_OPTION);
         err = true;
       });
 
@@ -325,11 +325,11 @@ export default function ModifyProject() {
         .then((res) => res.json())
         .then((data) => {
           realWhitepaper = data.data;
-          toast("Whitepaper upload success", successOption);
+          toast("Whitepaper upload success", SUCCESS_OPTION);
         })
         .catch((e) => {
           console.log("Error:" + e);
-          toast("Whitepaper upload failed", errorOption);
+          toast("Whitepaper upload failed", ERROR_OPTION);
         });
     }
     return realWhitepaper;
@@ -352,22 +352,22 @@ export default function ModifyProject() {
         .then((res) => res.json())
         .then((data) => {
           realLogo = data.data;
-          toast(data.data + "Logo upload success", successOption);
+          toast(data.data + "Logo upload success", SUCCESS_OPTION);
         })
         .catch((e) => {
           console.log("Error:" + e);
-          toast("Logo upload failed", errorOption);
+          toast("Logo upload failed", ERROR_OPTION);
         });
     }
     return realLogo;
   };
 
   async function createProject() {
-    if (CheckNetwork(state) == false) return false;
+    if (checkNetwork(state) == false) return false;
 
     if ((await checkInvalidation()) == false) return false;
 
-    toast("Please wait", successOption);
+    toast("Please wait", SUCCESS_OPTION);
 
     const realSAFT = await createDocxTemplate();
     if (realSAFT == "") return false;

@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect } from "react";
 import { Box, Flex, Input, Text, Select } from "@chakra-ui/react";
 
-import { TOKEN_LIST } from "../../config/Constants";
+import { TOKEN_LIST } from "../../config/constants";
 import { InputTransition } from "../ImageTransition";
 
 interface Props {

@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 
 import Navbar from "./Navbar";
 import Container from "./Container";
-import { ParseParam } from "../utils/Util";
+import { ParseParam } from "../utils/utility";
 import { fetchData } from "../utils/fetch";
 import { toast } from "react-toastify";
-import { successOption } from "../config/Constants";
+import { SUCCESS_OPTION } from "../config/constants";
 import { useStore, ActionKind, useJunoConnection } from "../contexts/store";
-import { useNearWallet } from "../contexts/NearWallet";
+import { useNearWallet } from "../contexts/nearWallet";
 import { useKeplrWallet } from "../contexts/keplrWallet";
 
 type Props = {
@@ -153,7 +153,7 @@ const Layout = ({ children }: Props) => {
       dispatch({ type: ActionKind.setWalletType, payload: "near" });
       dispatch({ type: ActionKind.setWallet, payload: near });
 
-      toast("Invest Success", successOption);
+      toast("Invest Success", SUCCESS_OPTION);
       router.push("/invest/step4?project_id=" + project_id);
     };
     setTimeout(() => {

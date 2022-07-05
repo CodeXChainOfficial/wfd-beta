@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 import { Document, Page, pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.min.js";
 
-import { WEFUND_ID, REQUEST_ENDPOINT } from "../../config/Constants";
+import { WEFUND_ID, REQUEST_ENDPOINT } from "../../config/constants";
 import { useProjectData } from "../../contexts/store";
-import { GetOneProject } from "../../utils/Util";
-import { errorOption } from "../../config/Constants";
+import { GetOneProject } from "../../utils/utility";
+import { ERROR_OPTION } from "../../config/constants";
 
 interface Props {
   presale: boolean;
@@ -24,7 +24,7 @@ const PDFTemplate: FunctionComponent<Props> = ({ presale, project_id }) => {
   async function fetchData() {
     const oneprojectData = GetOneProject(projectData, project_id);
     if (oneprojectData == "") {
-      toast("Can't fetch project data", errorOption);
+      toast("Can't fetch project data", ERROR_OPTION);
       return "";
     }
     // console.log(oneprojectData.project_saft);

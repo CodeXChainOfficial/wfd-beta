@@ -25,7 +25,7 @@ import Footer from "../components/Footer";
 import {
   Set2Mainnet,
   Set2Testnet,
-} from "../utils/Util";
+} from "../utils/utility";
 
 export default function Cards() {
   const [cards, setCards] = useState(constants);

@@ -7,12 +7,13 @@ export const WEFUND_WALLET = "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu";
 
 export const WFD_TOKEN =
   "juno17tk7s9mg2a6uupfljrhf492e7hzhkd89cvzerglyj8xguvzukksq9d75ts";
+
 export const WEFUND_CONTRACT =
-  "juno10p7f08tjglvghhdpedwhfaqurjevvdgcya5cga9kn9j4z6s4sp8sxxqf8m";
+  "juno1gkes5yjxqcscww8wps7de4ccn855gzdmusrmwd682l9yam52sphsy5e93s";
 export const VESTING_CONTRACT =
-  "juno1p85dqt555gnalnca7lppf2kukzmfatj7zvhgvlvu6vhk7l2f46gqyyj9aq";
+  "juno16l28fkhp46lxumj0lsx4gvlw7sx8jrp3pqh6q7xvfvg3pf3nm4esdtctkj";
 export const STAKING_CONTRACT =
-  "juno1xgkahp7cgt53394svy9zxhma82l4a6du6j6sp75rnvqr7t6cgsqss3ve43";
+  "juno1a3t5zwqa87dg6z487gfjw9ag84qy5qtq0adgyputkv73t4q9x66sf8he7s";
 
 export const WEFUND_JUNO_ADDRESS =
   "juno1gc3lpde7nx8khqfafw3st7j4ptd6qfccu6y04a";
@@ -24,18 +25,18 @@ export const WEFUND_TRUST_BNB_WALLET =
   "bnb1na0j6fvjwgxrd4g6stu32wquwgce54msly0tth";
 export const WEFUND_NEAR_WALLET = "staking_treasury.testnet";
 
-export const successOption: any = {
+export const SUCCESS_OPTION: any = {
   position: "bottom-right",
   type: "success",
   autoClose: 5000,
   hideProgressBar: false,
   closeOnClick: true,
-  pauseOnHover: true,
+  pauseOnHover: false,
   draggable: true,
   progress: undefined,
 };
 
-export const errorOption: any = {
+export const ERROR_OPTION: any = {
   position: "bottom-right",
   type: "error",
   autoClose: 5000,

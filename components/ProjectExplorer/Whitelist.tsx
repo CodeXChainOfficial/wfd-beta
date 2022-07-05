@@ -15,7 +15,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-import { GetOneProject, ShortenAddress } from "../../utils/Util";
+import { GetOneProject, ShortenAddress } from "../../utils/utility";
 
 interface Props {
   projectId: number;
@@ -40,7 +40,7 @@ const Whitelist: FunctionComponent<Props> = ({
       setData(data);
     };
     getData();
-  }, [projectId]);
+  }, [state.projectData, projectId]);
 
   return (
     <>
@@ -64,7 +64,10 @@ const Whitelist: FunctionComponent<Props> = ({
             <Button
               colorScheme="blue"
               mr={3}
-              onClick={() => closeWhitelist(projectId)}
+              onClick={() => {
+                onClose();
+                closeWhitelist(projectId);
+              }}
             >
               Yes
             </Button>

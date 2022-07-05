@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { WEFUND } from "../config/Constants";
+import { WEFUND } from "../config/constants";
 
 interface Action {
   type: ActionKind;

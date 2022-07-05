@@ -8,7 +8,7 @@ import {
   CircularProgressLabel,
 } from "@chakra-ui/react";
 
-import { GetProjectStatusString } from "../../utils/Util";
+import { GetProjectStatusString } from "../../utils/utility";
 
 interface Props {
   data: any;

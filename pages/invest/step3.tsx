@@ -14,7 +14,13 @@ import React, { useEffect, useState, useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
 
-import { REQUEST_ENDPOINT, WEFUND_ID } from "../../config/Constants";
+import { getJunoConfig } from "../../config";
+import {
+  REQUEST_ENDPOINT,
+  WEFUND_CONTRACT,
+  WEFUND_ID,
+  NETWORK,
+} from "../../config/constants";
 import {
   ImageTransition,
   ButtonTransition,
@@ -25,17 +31,20 @@ import PageLayout from "../../components/PageLayout";
 import {
   ParseParam,
   GetOneProject,
-  CheckNetwork,
+  checkNetwork,
   LookForTokenInfo,
-} from "../../utils/Util";
-import { errorOption, successOption } from "../../config/Constants";
+  checkJunoConnection,
+} from "../../utils/utility";
+import { ERROR_OPTION, SUCCESS_OPTION } from "../../config/constants";
 import {
   ActionKind,
+  useJunoConnection,
   useProjectData,
   useStore,
   useWallet,
 } from "../../contexts/store";
 import { useRouter } from "next/router";
+import { fetchData } from "../../utils/fetch";
 
 export default function Invest_step3() {
   const [signature, setSignature] = useState("");
@@ -49,9 +58,11 @@ export default function Invest_step3() {
   const canvasRef = useRef({});
   const router = useRouter();
   const wallet = useWallet();
-  useEffect(() => {
-    console.log(wallet)
-  }, [wallet]);
+
+  const junoConnection = useJunoConnection();
+  const client = junoConnection?.getClient();
+  const address = junoConnection?.account;
+
   //------------parse URL for project id----------------------------
   const project_id = ParseParam();
   const projectData = useProjectData();
@@ -60,7 +71,7 @@ export default function Invest_step3() {
     async function fetchData() {
       const oneprojectData = GetOneProject(projectData, project_id);
       if (oneprojectData == null) {
-        toast("Can't fetch project data", errorOption);
+        toast("Can't fetch project data", ERROR_OPTION);
         console.log("can't fetch project data");
         return "";
       }
@@ -96,7 +107,7 @@ export default function Invest_step3() {
     const investChain = window.localStorage.getItem("invest_chain") ?? "";
     const investAmount = window.localStorage.getItem("invest_amount") ?? "";
 
-    if (CheckNetwork(state) == false) return false;
+    if (checkNetwork(state) == false) return false;
     let proper = false;
     if (investChain.toLowerCase() == "juno" && state.walletType == "keplr") {
       proper = true;
@@ -114,16 +125,16 @@ export default function Invest_step3() {
       proper = true;
     }
     if (!proper) {
-      toast("Please use the proper wallet");
+      toast("Please use the proper wallet", ERROR_OPTION);
       return false;
     }
 
     if (parseFloat(investAmount) <= 0) {
-      toast("Please input amount", errorOption);
+      toast("Please input amount", ERROR_OPTION);
       return false;
     }
     if (state.presale == false && parseFloat(investAmount) < 20000) {
-      toast("Input amount for private sale of at least 20,000", errorOption);
+      toast("Input amount for private sale of at least 20,000", ERROR_OPTION);
       return false;
     }
     return true;
@@ -146,7 +157,7 @@ export default function Invest_step3() {
       body: formData,
     };
 
-    toast("Uploading", successOption);
+    toast("Uploading", SUCCESS_OPTION);
 
     await fetch(REQUEST_ENDPOINT + "/pdfmake", requestOptions)
       .then((res) => res.json())
@@ -178,7 +189,7 @@ export default function Invest_step3() {
       body: formData,
     };
 
-    toast("Uploading", successOption);
+    toast("Uploading", SUCCESS_OPTION);
 
     await fetch(REQUEST_ENDPOINT + "/docxmake", requestOptions)
       .then((res) => res.json())
@@ -229,76 +240,80 @@ export default function Invest_step3() {
           tokenInfo?.native
         );
 
-        toast("Invest Success", successOption);
+        toast("Invest Success", SUCCESS_OPTION);
         router.push("/invest/step4?project_id=" + project_id);
       } catch (e) {
         window.localStorage.removeItem("action");
-        toast("Failed", errorOption);
+        toast("Failed", ERROR_OPTION);
         console.log(e);
       }
     } else {
-      //   await createSAFTDocx(date);
-      //   let res = await backProject();
-      //   if (res == true) navigate("/invest_step4?project_id=" + project_id);
+      await createSAFTDocx(date);
+      const res = await backProject();
+      if (res) router.push("/invest/step4?project_id=" + project_id);
     }
   }
 
   async function backProject() {
+    if (!checkJunoConnection(state)) return false;
+
+    const investChain = window.localStorage.getItem("invest_chain") ?? "";
     const investAmount = window.localStorage.getItem("invest_amount") ?? "";
+    const investWFDAmount = window.localStorage.getItem("invest_wfdamount") ?? "";
 
     const targetAmount = parseInt(oneprojectData.project_collected) * 10 ** 6;
-
     const leftAmount = targetAmount - oneprojectData.backerbacked_amount;
 
     if (leftAmount <= 0) {
       toast(
         "Backer allocation has already been collected! You can't back this project.",
-        errorOption
+        ERROR_OPTION
       );
       return false;
     }
 
-    const amount = parseFloat(investAmount) * 10 ** 6;
-    // let maxAmount;
-    // if(leftAmount >= 100_000_000)
-    //   maxAmount = leftAmount * 100 / 95 + 1_000_000;
-    // else
-    //   maxAmount = leftAmount + 5_000_000;
+    const amount = Math.ceil(parseFloat(investAmount) * 10 ** 6);
+    const maxAmount = (leftAmount * 100) / 95;
 
-    if (amount < 6_000_000) {
-      toast("Investment amount should be at least 6 UST.", errorOption);
+    if (amount > maxAmount) {
+      toast(
+        "Investment amount should be less than " +
+          (maxAmount / 10 ** 6).toString() +
+          " JUNO",
+        ERROR_OPTION
+      );
       return false;
     }
-    // if (amount > maxAmount) {
-    //   toast("Investment amount should be less than " + (maxAmount/10**6).toString() + " UST", errorOption);
-    //   return false;
-    // }
 
-    // let wefundContractAddress = state.WEFundContractAddress;
-    // let BackProjectMsg = {
-    //   back2_project: {
-    //     project_id: `${project_id}`,
-    //     backer_wallet: state.connectedWallet.walletAddress,
-    //     fundraising_stage: oneprojectData.fundraising_stage,
-    //     token_amount: `${state.investWfdamount}`,
-    //     otherchain: chain,
-    //     otherchain_wallet: walletAddress,
-    //   },
-    // };
+    const backProjectMsg = {
+      back2_project: {
+        project_id: `${project_id}`,
+        backer_wallet: address,
+        fundraising_stage: oneprojectData.fundraising_stage,
+        token_amount: `${investWFDAmount}`,
+        otherchain: investChain,
+        otherchain_wallet: "walletAddress",
+      },
+    };
 
-    // let msg = new MsgExecuteContract(
-    //   state.connectedWallet.walletAddress,
-    //   wefundContractAddress,
-    //   BackProjectMsg,
-    //   { uusd: amount }
-    // );
+    try {
+      const denom = getJunoConfig(NETWORK).stakingToken;
+      const res = await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        backProjectMsg,
+        "auto",
+        "deposit",
+        [{ denom: denom, amount: amount.toString() }]
+      );
+      toast("Deposit success", SUCCESS_OPTION);
 
-    // return await EstimateSend(
-    //   state.connectedWallet,
-    //   state.lcd_client,
-    //   [msg],
-    //   "Back to Project Success"
-    // );
+      fetchData(state, dispatch, true);
+      return true;
+    } catch (e) {
+      console.log(e);
+    }
+    return false;
   }
 
   return (

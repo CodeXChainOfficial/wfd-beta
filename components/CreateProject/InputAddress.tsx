@@ -2,7 +2,7 @@ import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
 import { Flex, Text, InputGroup, Input, Box } from "@chakra-ui/react";
 
 import { toast } from "react-toastify";
-import { getTokenInfo } from "../../utils/Util";
+import { getTokenInfo } from "../../utils/utility";
 import { InputTransition } from "../ImageTransition";
 import { useStore } from "../../contexts/store";
 

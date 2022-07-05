@@ -17,14 +17,14 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import { useStore } from "../../contexts/store";
-import { ParseParam } from "../../utils/Util";
+import { ParseParam } from "../../utils/utility";
 import { ImageTransition } from "../../components/ImageTransition";
 import PageLayout from "../../components/PageLayout";
 import {
-  successOption,
+  SUCCESS_OPTION,
   WEFUND_ID,
   REQUEST_ENDPOINT,
-} from "../../config/Constants";
+} from "../../config/constants";
 import { useRouter } from "next/router";
 
 export default function InvestStep4() {
@@ -49,7 +49,7 @@ export default function InvestStep4() {
   }, []);
   //---------------notification setting---------------------------------
   function download_pdf() {
-    toast("Downloading", successOption);
+    toast("Downloading", SUCCESS_OPTION);
 
     const xhr = new XMLHttpRequest();
     const a = document.createElement("a");

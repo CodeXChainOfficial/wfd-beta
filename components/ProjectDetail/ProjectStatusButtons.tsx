@@ -5,7 +5,7 @@ import {
   isWefundWallet,
   isCommunityWallet,
   isBackerWallet,
-} from "../../utils/Util";
+} from "../../utils/utility";
 
 import { ButtonTransition } from "../../components/ImageTransition";
 import { useStore } from "../../contexts/store";

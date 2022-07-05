@@ -5,11 +5,16 @@ import Link from "next/link";
 
 import { Box, Flex, Text, Button, HStack } from "@chakra-ui/react";
 import { toast } from "react-toastify";
-import { WEFUND_ID } from "../config/Constants";
+import { WEFUND_CONTRACT, WEFUND_ID } from "../config/constants";
 
-import { CheckNetwork } from "../utils/Util";
-import { successOption } from "../config/Constants";
-import { useCommunityData, useProjectData, useStore } from "../contexts/store";
+import { checkJunoConnection, checkNetwork } from "../utils/utility";
+import { SUCCESS_OPTION } from "../config/constants";
+import {
+  useCommunityData,
+  useJunoConnection,
+  useProjectData,
+  useStore,
+} from "../contexts/store";
 
 export default function UserSideSnippet() {
   const { state, dispatch } = useStore();
@@ -17,65 +22,101 @@ export default function UserSideSnippet() {
   const [projectCount, setProjectCount] = useState(0);
   const [activeTab, setActiveTab] = useState("Account");
   const [tokens, setTokens] = useState<any[]>([]);
+
   const projectData = useProjectData();
   const communityData = useCommunityData();
+  const junoConnection = useJunoConnection();
+  const client = junoConnection?.getClient();
+  const address = junoConnection?.account;
 
-  async function fetchContractQuery() {
-    try {
-      let projectCount = 0;
-      let totalbacked = 0;
-      const tokens: any[] = [];
+  useEffect(() => {
+    async function fetch() {
+      try {
+        let projectCount = 0;
+        let totalbacked = 0;
+        const tokens: any[] = [];
 
-      for (let i = 0; i < projectData.length; i++) {
-        const one = projectData[i];
-        for (let j = 0; j < one.backer_states.length; j++) {
-          if (one.backer_states[j].backer_wallet == state.address) {
-            projectCount++;
-            totalbacked += one.backer_states[j].ust_amount.amount;
+        for (let i = 0; i < projectData.length; i++) {
+          const one = projectData[i];
+          for (let j = 0; j < one.backer_states.length; j++) {
+            if (one.backer_states[j].backer_wallet == state.address) {
+              projectCount++;
+              totalbacked += one.backer_states[j].ust_amount.amount;
+            }
+          }
+
+          if (one.project_id != WEFUND_ID && one.token_addr != "") {
+            const userInfo: any = {};
+            const pending: any = {};
+            const tokenInfo: any = {};
+
+            tokens.push({
+              project_id: one.project_id,
+              symbol: tokenInfo.symbol,
+              amount: userInfo.total_amount - userInfo.released_amount,
+              pendingAmount: pending,
+            });
           }
         }
-
-        if (one.project_id != WEFUND_ID && one.token_addr != "") {
-          const userInfo: any = {};
-          const pending: any = {};
-          const tokenInfo: any = {};
-
-          tokens.push({
-            project_id: one.project_id,
-            symbol: tokenInfo.symbol,
-            amount: userInfo.total_amount - userInfo.released_amount,
-            pendingAmount: pending,
-          });
-        }
+        setProjectCount(projectCount);
+        setContributes(totalbacked / 10 ** 6);
+        setTokens(tokens);
+      } catch (e) {
+        console.log(e);
       }
-      setProjectCount(projectCount);
-      setContributes(totalbacked / 10 ** 6);
-      setTokens(tokens);
+    }
+    fetch();
+  }, [state.address]);
+
+  async function addCommunityMember() {
+    if (checkJunoConnection(state) == false) return false;
+
+    for (let i = 0; i < communityData.length; i++) {
+      if (communityData[i] == state.address) {
+        toast("Already Registered", SUCCESS_OPTION);
+        return;
+      }
+    }
+    try {
+      const res = await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        {
+          add_communitymember: {
+            wallet: address,
+          },
+        },
+        "auto"
+      );
+      toast("Add community member success", SUCCESS_OPTION);
+console.log(res)
     } catch (e) {
       console.log(e);
     }
   }
-  useEffect(() => {
-    fetchContractQuery();
-  }, [state.address]);
 
-  async function addCommunityMember() {
-    if (CheckNetwork(state) == false) return false;
-
-    for (let i = 0; i < communityData.length; i++) {
-      if (communityData[i] == state.address) {
-        toast("Already Registered", successOption);
-        return;
-      }
+  async function removeCommunityMember() {
+    if (checkJunoConnection(state) == false) return false;
+    try {
+      const res = await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        {
+          remove_communitymember: {
+            wallet: address,
+          },
+        },
+        "auto"
+      );
+      toast("Remove community member success", SUCCESS_OPTION);
+console.log(res)
+    } catch (e) {
+      console.log(e);
     }
   }
 
-  function removeCommunityMember() {
-    if (CheckNetwork(state) == false) return false;
-  }
-
   function claim(project_id: number) {
-    if (CheckNetwork(state) == false) return false;
+    if (checkJunoConnection(state) == false) return false;
   }
   return (
     <Box color={"white"} padding={"5%"} mt="150px">

@@ -10,7 +10,7 @@ import {
   getStageTitle,
   isCardHolder,
   isBackable,
-} from "../../utils/Util";
+} from "../../utils/utility";
 
 import { ButtonTransition } from "../ImageTransition";
 import { useStore } from "../../contexts/store";

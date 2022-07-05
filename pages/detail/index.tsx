@@ -23,8 +23,8 @@ import ProjectTeamDescription from "../../components/ProjectDetail/ProjectTeamDe
 import ProjectMileStones from "../../components/ProjectDetail/ProjectMilestones";
 import VoteModal from "../../components/ProjectDetail/VoteModal";
 
-import { successOption, errorOption } from "../../config/Constants";
-import { CheckNetwork, GetOneProject, ParseParam } from "../../utils/Util";
+import { SUCCESS_OPTION, ERROR_OPTION } from "../../config/constants";
+import { checkNetwork, GetOneProject, ParseParam } from "../../utils/utility";
 
 export default function ProjectDetail() {
   const { state, dispatch } = useStore();
@@ -50,7 +50,7 @@ export default function ProjectDetail() {
     try {
       const oneprojectData = GetOneProject(projectData, _project_id);
       if (oneprojectData == "") {
-        toast("Can't fetch Project Data", errorOption);
+        toast("Can't fetch Project Data", ERROR_OPTION);
         return;
       }
 
@@ -92,7 +92,7 @@ export default function ProjectDetail() {
 
   //------------Wefund Approve-----------------
   function WefundApprove(project_id: number) {
-    if (CheckNetwork(state) == false) return false;
+    if (checkNetwork(state) == false) return false;
 
     const deadline = Date.now() + 1000 * 60 * 60 * 24 * 15; //for 15days
     const WefundApproveMsg = {
@@ -104,7 +104,7 @@ export default function ProjectDetail() {
   }
 
   function MilestoneVote(project_id: number, voted: boolean) {
-    if (CheckNetwork(state) == false) return false;
+    if (checkNetwork(state) == false) return false;
   }
   //--Pop Ups for Projects
 

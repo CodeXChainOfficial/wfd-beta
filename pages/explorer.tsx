@@ -13,7 +13,7 @@ import {
   checkJunoConnection,
   GetProjectStatus,
   GetOneProject,
-} from "../utils/Util";
+} from "../utils/utility";
 
 import { useJunoConnection, useProjectData, useStore } from "../contexts/store";
 import Footer from "../components/Footer";
@@ -41,7 +41,7 @@ import MobileInformations from "../components/ProjectExplorer/Mobile/Information
 import MobileMainButtons from "../components/ProjectExplorer/Mobile/MainButtons";
 
 import { toast } from "react-toastify";
-import { WEFUND_CONTRACT } from "../config/Constants";
+import { ERROR_OPTION, SUCCESS_OPTION, WEFUND_CONTRACT } from "../config/constants";
 import { fetchData } from "../utils/fetch";
 
 export default function ExplorerProject() {
@@ -74,7 +74,7 @@ export default function ExplorerProject() {
 
   //---------initialize fetching---------------------
   useEffect(() => {
-    async function fetchContractQuery(force = false) {
+    async function fetch(force = false) {
       try {
         const activeProjectData = projectData.filter(
           (project) => project.project_status == GetProjectStatus(activeTab)
@@ -87,12 +87,12 @@ export default function ExplorerProject() {
         console.log(e);
       }
     }
-    fetchContractQuery();
+    fetch();
   }, [state.projectData, activeTab, state.net]);
 
   //-------------paginator-----------------------------------
   const [current, setCurrent] = useState(1);
-  const pageSize = 3;
+  const pageSize = 5;
 
   function onChangePaginator(page: number) {
     if (state.activeProjectData == []) {
@@ -126,7 +126,7 @@ export default function ExplorerProject() {
         },
         "auto"
       );
-      toast("Wefund Approve success");
+      toast("Wefund Approve success", SUCCESS_OPTION);
       fetchData(state, dispatch, true);
       console.log(result);
     } catch (e) {
@@ -148,7 +148,7 @@ export default function ExplorerProject() {
         },
         "auto"
       );
-      toast("Open whitelist success");
+      toast("Open whitelist success", SUCCESS_OPTION);
       fetchData(state, dispatch, true);
       console.log(result);
     } catch (e) {
@@ -162,7 +162,6 @@ export default function ExplorerProject() {
     onOpenCloseWhitelist();
   }
   async function confirmCloseWhitelist(project_id: number) {
-console.log(project_id)
     try {
       const result = await client.execute(
         address,
@@ -174,10 +173,10 @@ console.log(project_id)
         },
         "auto"
       );
-      toast("Close whitelist success");
+      toast("Close whitelist success", SUCCESS_OPTION);
       fetchData(state, dispatch, true);
       console.log(result);
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
     }
   }
@@ -196,7 +195,7 @@ console.log(project_id)
         },
         "auto"
       );
-      toast("Register on whitelist success");
+      toast("Register on whitelist success", SUCCESS_OPTION);
       fetchData(state, dispatch, true);
       console.log(result);
     } catch (e) {
@@ -213,7 +212,7 @@ console.log(project_id)
         { set_milestone_vote: { project_id, wallet: address, voted } },
         "auto"
       );
-      toast("Milestone vote success");
+      toast("Milestone vote success", SUCCESS_OPTION);
       fetchData(state, dispatch, true);
       console.log(result);
     } catch (e) {
@@ -235,7 +234,7 @@ console.log(project_id)
         { set_fundraising_stage: { project_id, stage: stage.toString() } },
         "auto"
       );
-      toast("Set Fundraising stage success");
+      toast("Set Fundraising stage success", SUCCESS_OPTION);
       fetchData(state, dispatch, true);
       console.log(result);
     } catch (e) {
@@ -251,7 +250,6 @@ console.log(project_id)
     <PageLayout title="Projects" subTitle1="Explore" subTitle2="Projects">
       <Tabs activeTab={activeTab} onChangeActivetab={onChangeActivetab} />
 
-      {/* Projects Incubated */}
       <Flex
         w={{ base: "90%", md: "98%", lg: "80%" }}
         justify="center"

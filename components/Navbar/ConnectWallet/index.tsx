@@ -14,17 +14,17 @@ import {
 } from "@chakra-ui/react";
 
 import { useKeplrWallet } from "../../../contexts/keplrWallet";
-import { useMetamaskWallet } from "../../../contexts/Metamask";
-import { useTrustWallet } from "../../../contexts/TrustWallet";
-import { useTronLink } from "../../../contexts/TronLink";
+import { useMetamaskWallet } from "../../../contexts/metamask";
+import { useTrustWallet } from "../../../contexts/trustWallet";
+import { useTronLink } from "../../../contexts/tronLink";
 // import { BigNumber, ethers } from "ethers";
 
 import { MdOutlineAccountBalanceWallet, MdCheck } from "react-icons/md";
 import { BsCaretRight } from "react-icons/bs";
 
 import { useStore, ActionKind, useWallet } from "../../../contexts/store";
-import { ShortenAddress } from "../../../utils/Util";
-import { useNearWallet } from "../../../contexts/NearWallet";
+import { ShortenAddress } from "../../../utils/utility";
+import { useNearWallet } from "../../../contexts/nearWallet";
 
 export default function ConnectWallet() {
   const { state, dispatch } = useStore();

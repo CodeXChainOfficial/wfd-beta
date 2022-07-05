@@ -1,6 +1,6 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { WEFUND_ID, WEFUND_WALLET, TOKEN_LIST } from "../config/Constants";
+import { WEFUND_ID, WEFUND_WALLET, TOKEN_LIST, SUCCESS_OPTION } from "../config/constants";
 import { ActionKind } from "../contexts/store";
 
 export function GetProjectStatusString(mode: string) {
@@ -55,9 +55,9 @@ export function checkJunoConnection(state: any) {
 
   return true;
 }
-export function CheckNetwork(state: any) {
+export function checkNetwork(state: any) {
   if (state.walletType == undefined || state.wallet == null) {
-    toast("Please connect to wallet");
+    toast("Please connect to wallet", SUCCESS_OPTION);
     return false;
   }
 
@@ -119,21 +119,20 @@ export function getAllocation(state: any, project_id: number) {
   const one = GetOneProject(state.projectData, project_id);
   if (one == null) return 0;
 
-  if (project_id == WEFUND_ID)
-    //WFD
-    return parseInt(one.project_collected);
+  if (project_id == WEFUND_ID) return parseInt(one.project_collected);
 
-  console.log(state.address);
+  const address = state.junoConnection?.account;
+
   for (let i = 0; i < one.whitelist.length; i++) {
     const info = one.whitelist[i];
     if (
-      info.wallet == state.address &&
+      info.wallet == address &&
       parseInt(info.backed) < parseInt(info.allocation)
     ) {
       return (
-        Math.floor(
-          (parseInt(info.allocation) - parseInt(info.backed)) / 10 ** 6
-        ) + 1
+        (((parseInt(info.allocation) - parseInt(info.backed)) / 10 ** 6) *
+          100) /
+        95
       );
     }
   }
@@ -143,9 +142,9 @@ export function getAllocation(state: any, project_id: number) {
 
 export function isCommunityWallet(state: any) {
   if (state.communityData == "") return false;
-
+  const address = state.junoConnection?.account;
   for (let j = 0; j < state.communityData.length; j++) {
-    if (state.address == state.communityData[j]) {
+    if (address == state.communityData[j]) {
       return true;
     }
   }

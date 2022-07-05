@@ -6,13 +6,13 @@ import { toast } from "react-toastify";
 import { ButtonTransition } from "../components/ImageTransition";
 import { useStore, useWallet } from "../contexts/store";
 import Footer from "../components/Footer";
-import { CheckNetwork, isNull, ParseParam } from "../utils/Util";
+import { checkNetwork, isNull, ParseParam } from "../utils/utility";
 import {
   WEFUND_CONTRACT,
-  successOption,
-  errorOption,
-} from "../config/Constants";
-import { REQUEST_ENDPOINT } from "../config/Constants";
+  SUCCESS_OPTION,
+  ERROR_OPTION,
+} from "../config/constants";
+import { REQUEST_ENDPOINT } from "../config/constants";
 
 import PageLayout from "../components/PageLayout";
 
@@ -26,6 +26,7 @@ import CustomEmailInput from "../components/CreateProject/CustomEmailInput";
 import CustomUpload from "../components/CreateProject/CustomUpload";
 import TeamMembers from "../components/CreateProject/TeamMember/TeamMembers";
 import { useKeplrWallet } from "../contexts/keplrWallet";
+import { fetchData } from "../utils/fetch";
 
 export default function CreateProject() {
   const { state, dispatch } = useStore();
@@ -68,17 +69,17 @@ export default function CreateProject() {
   const project_id = ParseParam();
 
   useEffect(() => {
-    setTimeout(() => CheckNetwork(state), 1000);
+    setTimeout(() => checkNetwork(state), 1000);
 
     // if (project_id > 0) fillItems();
   }, []);
 
   //---------------create project---------------------------------
   const checkInvalidation = () => {
-    if (CheckNetwork(state) == false) return false;
+    if (checkNetwork(state) == false) return false;
 
     if (title.length == 0) {
-      toast("Please fill in project name!", errorOption);
+      toast("Please fill in project name!", ERROR_OPTION);
       return false;
     }
 
@@ -108,11 +109,11 @@ export default function CreateProject() {
       .then((res) => res.json())
       .then((data) => {
         realSAFT = data.data;
-        toast(data.data + "SAFT Success", successOption);
+        toast(data.data + "SAFT Success", SUCCESS_OPTION);
       })
       .catch((e) => {
         console.log("Error:" + e);
-        toast("SAFT failed", errorOption);
+        toast("SAFT failed", ERROR_OPTION);
         err = true;
       });
 
@@ -136,11 +137,11 @@ export default function CreateProject() {
         .then((res) => res.json())
         .then((data) => {
           realWhitepaper = data.data;
-          toast("Whitepaper upload success", successOption);
+          toast("Whitepaper upload success", SUCCESS_OPTION);
         })
         .catch((e) => {
           console.log("Error:" + e);
-          toast("Whitepaper upload failed", errorOption);
+          toast("Whitepaper upload failed", ERROR_OPTION);
         });
     }
     return realWhitepaper;
@@ -163,11 +164,11 @@ export default function CreateProject() {
         .then((res) => res.json())
         .then((data) => {
           realLogo = data.data;
-          toast(data.data + "Logo upload success", successOption);
+          toast(data.data + "Logo upload success", SUCCESS_OPTION);
         })
         .catch((e) => {
           console.log("Error:" + e);
-          toast("Logo upload failed", errorOption);
+          toast("Logo upload failed", ERROR_OPTION);
         });
     }
     return realLogo;
@@ -176,7 +177,7 @@ export default function CreateProject() {
   async function createProject() {
     if (!checkInvalidation()) return false;
 
-    toast("Please wait", successOption);
+    toast("Please wait", SUCCESS_OPTION);
 
     const realSAFT = await createDocxTemplate();
     if (realSAFT == "") return false;
@@ -266,7 +267,7 @@ export default function CreateProject() {
     };
 
     if (state.walletType != "keplr") {
-      toast("Connect with Keplr");
+      toast("Connect with Keplr", ERROR_OPTION);
       return;
     }
     try {
@@ -277,6 +278,7 @@ export default function CreateProject() {
         "auto"
       );
       console.log(res);
+      fetchData(state, dispatch, true);
       router.push("/explorer");
     } catch (e) {
       console.log(e);
@@ -338,10 +340,10 @@ export default function CreateProject() {
               type={ecosystem}
               setType={setEcosystem}
               options={[
-                "Terra",
-                "Ethereum",
+                "Juno",
                 "BSC",
-                "Harmony",
+                "Tron",
+                "Near",
                 "Algorand",
                 "Solana",
                 "Avalanche",

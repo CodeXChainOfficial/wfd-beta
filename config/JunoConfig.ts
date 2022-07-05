@@ -39,7 +39,7 @@ export const uniTestnetConfig: AppConfig = {
   },
 };
 
-export const getConfig = (network: string): AppConfig => {
+export const getJunoConfig = (network: string): AppConfig => {
   if (network === "mainnet") return mainnetConfig;
   return uniTestnetConfig;
 };

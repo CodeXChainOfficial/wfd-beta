@@ -29,11 +29,11 @@ const WFD_TOKEN =
   "juno17tk7s9mg2a6uupfljrhf492e7hzhkd89cvzerglyj8xguvzukksq9d75ts";
 
 let WEFUND_CONTRACT =
-  "juno10p7f08tjglvghhdpedwhfaqurjevvdgcya5cga9kn9j4z6s4sp8sxxqf8m";
+  "juno1gkes5yjxqcscww8wps7de4ccn855gzdmusrmwd682l9yam52sphsy5e93s";
 let VESTING_CONTRACT =
-  "juno160kmu4rssf8fgl83zwvy5fxryedy3r8ke6arg402vk0qspa5fr7qdyleuv";
+  "juno16l28fkhp46lxumj0lsx4gvlw7sx8jrp3pqh6q7xvfvg3pf3nm4esdtctkj";
 let STAKING_CONTRACT =
-  "juno1xgkahp7cgt53394svy9zxhma82l4a6du6j6sp75rnvqr7t6cgsqss3ve43";
+  "juno1a3t5zwqa87dg6z487gfjw9ag84qy5qtq0adgyputkv73t4q9x66sf8he7s";
 
 run();
 
@@ -64,7 +64,7 @@ async function run() {
   }
 
   console.log("configuring");
-  await config();
+  // await config();
 
   console.log("reading contract");
   const { signer, client } = await getClient();
@@ -85,7 +85,7 @@ async function run() {
 async function config() {
   console.log("vesting_contract:" + VESTING_CONTRACT);
   console.log("wefund_contract:" + WEFUND_CONTRACT);
-  console.log("staking_contract:" + WEFUND_CONTRACT);
+  console.log("staking_contract:" + STAKING_CONTRACT);
 
   const { signer, client } = await getClient();
   const address = (await signer.getAccounts())[0].address;
@@ -109,7 +109,7 @@ async function config() {
       {
         set_config: {
           vesting_contract: VESTING_CONTRACT,
-          denom: "ujunox-uni3",
+          denom: "ujunox",
           decimals: "6",
         },
       },
@@ -186,7 +186,7 @@ export const initMsg = {
       "WeFund is a community crowdfunding incubator for blockchain and real-world projects. WeFund's mission is to host high-quality projects that align with WeFund's investor community. Community-driven decisions on the platform for 100% transparency. Project funds managed exclusively on Terra's Anchor protocol using smart contracts and following project milestones.\n\n",
     project_ecosystem: "Juno",
     project_email: "",
-    project_id: "1",
+    project_id: "0",
     project_logo: "",
     project_milestones: [
       {

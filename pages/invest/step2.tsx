@@ -15,11 +15,11 @@ import {
   ImageTransition,
   InputTransition,
 } from "../../components/ImageTransition";
-import { WEFUND_ID } from "../../config/Constants";
+import { WEFUND_ID } from "../../config/constants";
 import { ActionKind, useProjectData, useStore } from "../../contexts/store";
 import PageLayout from "../../components/PageLayout";
-import { getAllocation, ParseParam } from "../../utils/Util";
-import { errorOption } from "../../config/Constants";
+import { getAllocation, ParseParam, GetOneProject } from "../../utils/utility";
+import { ERROR_OPTION } from "../../config/constants";
 import { useRouter } from "next/router";
 import OtherChainWallet from "../../components/Invest/OtherChainWallet";
 
@@ -38,14 +38,10 @@ export default function InvestStep2() {
   useEffect(() => {
     const allocation = getAllocation(state, projectId);
     setAllocation(allocation);
-    const max =
-      projectId == WEFUND_ID
-        ? allocation
-        : allocation >= 100
-        ? (allocation * 100) / 95
-        : allocation + 5;
-    setMax(Math.floor(max));
-  }, [state.projectData]);
+
+    const max = allocation;
+    setMax(max);
+  }, [state.projectData, state.address]);
 
   function onChangeBackamount(val: string) {
     const amount = parseFloat(val);
@@ -56,11 +52,11 @@ export default function InvestStep2() {
 
   function onNext() {
     if (allocation == 0) {
-      toast("Have no allocation any more!", errorOption);
+      toast("Have no allocation any more!", ERROR_OPTION);
       return;
     }
     if (parseInt(backAmount) > max) {
-      toast("Exceed the allocation!", errorOption);
+      toast("Exceed the allocation!", ERROR_OPTION);
       return;
     }
     window.localStorage.setItem("invest_chain", chain);
@@ -229,7 +225,7 @@ export default function InvestStep2() {
             </InputGroup>
           </InputTransition>
 
-          <Text mb="42px">
+          <Text mb="42px" onClick={() => setBackAmount(max.toString())}>
             Max: {max}&nbsp;{token}
           </Text>
           <Flex>
@@ -256,7 +252,7 @@ export default function InvestStep2() {
                 rounded="md"
                 value={wfdAmount}
                 readOnly
-                // onChange={(e) => { }}
+              // onChange={(e) => { }}
               />
               <InputRightElement
                 w={{ base: "40px", lg: "60px" }}

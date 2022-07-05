@@ -2,7 +2,7 @@ import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
 import { Box, Flex, Text, Textarea, Input } from "@chakra-ui/react";
 
 import { InputTransition } from "../../ImageTransition";
-import { isNull } from "../../../utils/Util";
+import { isNull } from "../../../utils/utility";
 
 interface Props {
   typeText: string;

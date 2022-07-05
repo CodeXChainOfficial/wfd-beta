@@ -10,7 +10,7 @@ import {
 import { useStore } from "../../contexts/store";
 import PageLayout from "../../components/PageLayout";
 import SAFTTemplate from "../../components/Invest/SAFTTemplate";
-import { ParseParam } from "../../utils/Util";
+import { ParseParam } from "../../utils/utility";
 
 export default function InvestStep1() {
   const { state, dispatch } = useStore();
