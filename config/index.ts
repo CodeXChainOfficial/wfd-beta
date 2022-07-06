@@ -1,3 +1,3 @@
 export * from "./app";
 export * from "./keplr";
-export * from "./junoConfig";
+export * from "./junoConfig1";
