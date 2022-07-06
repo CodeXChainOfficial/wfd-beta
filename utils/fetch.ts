@@ -3,7 +3,7 @@ import {
   STAKING_CONTRACT,
   WFD_TOKEN,
   WEFUND,
-} from "../config/constants1";
+} from "../config/constants";
 import { ActionKind } from "../contexts/store";
 
 export function addExtraInfo(projectData: any) {

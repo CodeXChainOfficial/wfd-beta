@@ -9,7 +9,7 @@ import { BigNumber as NBigNumber } from "bignumber.js"
 import * as nearAPI from "near-api-js";
 
 import { getNearConfig, CONTRACT_NAME } from "../config/nearConfig";
-import { WEFUND_NEAR_WALLET, NETWORK } from "../config/constants1";
+import { WEFUND_NEAR_WALLET, NETWORK } from "../config/constants";
 
 export interface NearWalletStore {
   connected: boolean;

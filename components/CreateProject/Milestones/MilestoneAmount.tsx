@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 import { InputTransition } from "../../ImageTransition";
-import { ERROR_OPTION } from "../../../config/constants1";
+import { ERROR_OPTION } from "../../../config/constants";
 import { isNull } from "../../../utils/utility";
 
 interface Props {

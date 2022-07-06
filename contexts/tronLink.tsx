@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import { BigNumber, ethers } from "ethers";
-import { WEFUND_TRON_WALLET, ERC20_ABI } from "../config/constants1";
+import { WEFUND_TRON_WALLET, ERC20_ABI } from "../config/constants";
 
 declare let window: any;
 

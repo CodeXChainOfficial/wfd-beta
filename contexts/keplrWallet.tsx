@@ -12,8 +12,8 @@ import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import { BigNumber } from "ethers";
-import { NETWORK } from "../config/constants1";
-import { WEFUND_JUNO_ADDRESS } from "../config/constants1";
+import { NETWORK } from "../config/constants";
+import { WEFUND_JUNO_ADDRESS } from "../config/constants";
 
 declare let window: any;
 

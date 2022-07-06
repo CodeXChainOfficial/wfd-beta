@@ -23,7 +23,7 @@ import {
   STAKING_CONTRACT,
   WFD_TOKEN,
   SUCCESS_OPTION,
-} from "../../config/constants1";
+} from "../../config/constants";
 import { fetchData } from "../../utils/fetch";
 import { toast } from "react-toastify";
 

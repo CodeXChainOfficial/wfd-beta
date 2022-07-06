@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 import { Document, Page, pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.min.js";
 
-import { WEFUND_ID, REQUEST_ENDPOINT } from "../../config/constants1";
+import { WEFUND_ID, REQUEST_ENDPOINT } from "../../config/constants";
 import { useProjectData } from "../../contexts/store";
 import { GetOneProject } from "../../utils/utility";
-import { ERROR_OPTION } from "../../config/constants1";
+import { ERROR_OPTION } from "../../config/constants";
 
 interface Props {
   presale: boolean;

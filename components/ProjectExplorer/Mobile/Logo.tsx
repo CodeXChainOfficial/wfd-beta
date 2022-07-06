@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { Flex, Img } from "@chakra-ui/react";
 import { useStore } from "../../../contexts/store";
-import { REQUEST_ENDPOINT } from "../../../config/constants1";
+import { REQUEST_ENDPOINT } from "../../../config/constants";
 
 interface Props {
   data: any;

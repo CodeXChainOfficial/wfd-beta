@@ -6,9 +6,9 @@ import Container from "./Container";
 import { ParseParam } from "../utils/utility";
 import { fetchData } from "../utils/fetch";
 import { toast } from "react-toastify";
-import { SUCCESS_OPTION } from "../config/constants1";
+import { SUCCESS_OPTION } from "../config/constants";
 import { useStore, ActionKind, useJunoConnection } from "../contexts/store";
-import { useNearWallet } from "../contexts/nearWallet1";
+import { useNearWallet } from "../contexts/nearWallet";
 import { useKeplrWallet } from "../contexts/keplrWallet";
 
 type Props = {

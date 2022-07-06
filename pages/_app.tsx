@@ -14,10 +14,10 @@ import Layout from "../components/Layout";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { KeplrWalletProvider } from "../contexts/keplrWallet";
-import { MetamaskProvider } from "../contexts/metamask1";
-import { TrustWalletProvider } from "../contexts/trustWallet1";
-import { TronLinkProvider } from "../contexts/tronLink1";
-import { NearWalletProvider } from "../contexts/nearWallet1";
+import { MetamaskProvider } from "../contexts/metamask";
+import { TrustWalletProvider } from "../contexts/trustWallet";
+import { TronLinkProvider } from "../contexts/tronLink";
+import { NearWalletProvider } from "../contexts/nearWallet";
 import { StoreProvider } from "../contexts/store";
 
 function App({ Component, pageProps }: AppProps): React.ReactNode {
