@@ -5,10 +5,10 @@ import Link from "next/link";
 
 import { Box, Flex, Text, Button, HStack } from "@chakra-ui/react";
 import { toast } from "react-toastify";
-import { WEFUND_CONTRACT, WEFUND_ID } from "../config/constants";
+import { WEFUND_CONTRACT, WEFUND_ID } from "../config/constants1";
 
 import { checkJunoConnection, checkNetwork } from "../utils/utility";
-import { SUCCESS_OPTION } from "../config/constants";
+import { SUCCESS_OPTION } from "../config/constants1";
 import {
   useCommunityData,
   useJunoConnection,

@@ -24,7 +24,7 @@ import {
   SUCCESS_OPTION,
   WEFUND_ID,
   REQUEST_ENDPOINT,
-} from "../../config/constants";
+} from "../../config/constants1";
 import { useRouter } from "next/router";
 
 export default function InvestStep4() {

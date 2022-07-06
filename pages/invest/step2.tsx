@@ -15,11 +15,11 @@ import {
   ImageTransition,
   InputTransition,
 } from "../../components/ImageTransition";
-import { WEFUND_ID } from "../../config/constants";
+import { WEFUND_ID } from "../../config/constants1";
 import { ActionKind, useProjectData, useStore } from "../../contexts/store";
 import PageLayout from "../../components/PageLayout";
 import { getAllocation, ParseParam, GetOneProject } from "../../utils/utility";
-import { ERROR_OPTION } from "../../config/constants";
+import { ERROR_OPTION } from "../../config/constants1";
 import { useRouter } from "next/router";
 import OtherChainWallet from "../../components/Invest/OtherChainWallet";
 

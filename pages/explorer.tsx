@@ -41,7 +41,7 @@ import MobileInformations from "../components/ProjectExplorer/Mobile/Information
 import MobileMainButtons from "../components/ProjectExplorer/Mobile/MainButtons";
 
 import { toast } from "react-toastify";
-import { ERROR_OPTION, SUCCESS_OPTION, WEFUND_CONTRACT } from "../config/constants";
+import { ERROR_OPTION, SUCCESS_OPTION, WEFUND_CONTRACT } from "../config/constants1";
 import { fetchData } from "../utils/fetch";
 
 export default function ExplorerProject() {

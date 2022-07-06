@@ -23,7 +23,7 @@ import ProjectTeamDescription from "../../components/ProjectDetail/ProjectTeamDe
 import ProjectMileStones from "../../components/ProjectDetail/ProjectMilestones";
 import VoteModal from "../../components/ProjectDetail/VoteModal";
 
-import { SUCCESS_OPTION, ERROR_OPTION } from "../../config/constants";
+import { SUCCESS_OPTION, ERROR_OPTION } from "../../config/constants1";
 import { checkNetwork, GetOneProject, ParseParam } from "../../utils/utility";
 
 export default function ProjectDetail() {

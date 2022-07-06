@@ -11,8 +11,8 @@ import {
   WEFUND_CONTRACT,
   SUCCESS_OPTION,
   ERROR_OPTION,
-} from "../config/constants";
-import { REQUEST_ENDPOINT } from "../config/constants";
+} from "../config/constants1";
+import { REQUEST_ENDPOINT } from "../config/constants1";
 
 import PageLayout from "../components/PageLayout";
 

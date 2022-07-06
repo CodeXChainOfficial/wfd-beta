@@ -20,7 +20,7 @@ import {
   WEFUND_CONTRACT,
   WEFUND_ID,
   NETWORK,
-} from "../../config/constants";
+} from "../../config/constants1";
 import {
   ImageTransition,
   ButtonTransition,
@@ -35,7 +35,7 @@ import {
   LookForTokenInfo,
   checkJunoConnection,
 } from "../../utils/utility";
-import { ERROR_OPTION, SUCCESS_OPTION } from "../../config/constants";
+import { ERROR_OPTION, SUCCESS_OPTION } from "../../config/constants1";
 import {
   ActionKind,
   useJunoConnection,

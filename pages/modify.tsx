@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { REQUEST_ENDPOINT } from "../config/constants";
+import { REQUEST_ENDPOINT } from "../config/constants1";
 
 import {
   ButtonBackTransition,
@@ -23,7 +23,7 @@ import {
   GetOneProject,
   getTokenInfo,
 } from "../utils/utility";
-import { SUCCESS_OPTION, ERROR_OPTION } from "../config/constants";
+import { SUCCESS_OPTION, ERROR_OPTION } from "../config/constants1";
 import PageLayout from "../components/PageLayout";
 
 import Payment from "../components/CreateProject/Payment";

@@ -1,6 +1,6 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { WEFUND_ID, WEFUND_WALLET, TOKEN_LIST, SUCCESS_OPTION } from "../config/constants";
+import { WEFUND_ID, WEFUND_WALLET, TOKEN_LIST, SUCCESS_OPTION } from "../config/constants1";
 import { ActionKind } from "../contexts/store";
 
 export function GetProjectStatusString(mode: string) {

@@ -25,7 +25,7 @@ import {
 import PageLayout from "../components/PageLayout";
 import Footer from "../components/Footer";
 import { Set2Mainnet, Set2Testnet } from "../utils/utility";
-import { WEFUND_CONTRACT } from "../config/constants";
+import { WEFUND_CONTRACT } from "../config/constants1";
 
 export default function Dashboard() {
   const { state, dispatch } = useStore();
