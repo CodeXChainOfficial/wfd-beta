@@ -46,7 +46,7 @@ import {
 import { useRouter } from "next/router";
 import { fetchData } from "../../utils/fetch";
 
-export default function Invest_step3() {
+export default function InvestStep3() {
   const [signature, setSignature] = useState("");
   const [investTitle, setInsTitle] = useState("");
   const [investName, setInsName] = useState("");
