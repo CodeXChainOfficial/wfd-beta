@@ -1,4 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Stack } from "@chakra-ui/react";
 import { MsgExecuteContract, WasmAPI } from '@terra-money/terra.js'
 import {
   Box,
@@ -13,77 +13,73 @@ import React, { useEffect, useState, useRef } from 'react';
 import { IoCheckmark } from 'react-icons/io5';
 import { toast } from 'react-toastify';
 
-import { ButtonTransition, InputTransition } from "../../components/ImageTransition";
+import { ButtonBackTransition, ButtonTransition, InputTransition } from "../../components/ImageTransition";
 import theme from '../../theme';
 import Footer from "../../components/Footer"
-
+import CustomCoinInput from "../../components/BackProject/CustomCoinInput";
 export default function BackProject() {
     //----------Declaring State used---
     const [condition, setCondition] = useState(false);
     const [backAmount, setBackAmount] = useState('');
-    const [wfdAmount, setWfdamount] = useState('');
+    const [feeAmount, setFeeAmount] = useState('');
     const [oneprojectData, setOneprojectData] = useState('');
 
     
   return (
     <ChakraProvider resetCSS theme={theme}>
       <div style={{
-        background: "linear-gradient(90deg, #1F0021 0%, #120054 104.34%)",
         width: '100%', color: 'white', fontSize: '18px', fontFamily: 'Sk-Modernist', fontWeight: '700'
       }}>
-        <div style={{ backgroundImage: "url('/media/createproject_banner_emphasis.svg')", width: '100%', zIndex: '10' }}>
-          <div style={{
-            backgroundImage: "url('/media/createproject_banner.svg')", position: 'absolute', top: '80px',
-            width: '100%', zIndex: '11', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover'
-          }}>
-            <Flex pt='95px' justify="center">
-              <Text fontSize='16px' fontWeight='normal' color={'rgba(255, 255, 255, 0.54)'}>Home &gt;&nbsp;</Text>
-              <Text fontSize='16px' color={'rgba(255, 255, 255, 0.84)'}>Back the project</Text>
-            </Flex>
-            <Flex mt='11px' pb='55px' mb="75px" justify='center'
-              style={{ fontFamily: 'PilatExtended-Bold' }}>
-              <Text fontSize={{ base: '25px', md: '25px', lg: '40px' }}>Contribute to &nbsp;</Text>
-              <Text fontSize={{ base: '25px', md: '25px', lg: '40px' }} color='#4790f5'>Project</Text>
-            </Flex>
-          </div>
-        </div>
-        <Flex width='100%' justify='center' mt='80px' px='175px'>
-          <Box width='900px' marginTop='200px' bg='#FFFFFF0D' px='50px' style={{ fontFamily: 'Sk-Modernist' }} >
-            <Flex mt='65px' justify='center' align='center' direction='column'
-              style={{ fontFamily: 'PilatExtended-Regular' }}>
-              <Text fontSize='22px' fontWeight={'300'}>
-                Back the Project</Text>
-              <Text fontSize='28px' color='#4790f5' fontWeight={'bold'}>
-                PROJECT NAME
-              </Text>
-            </Flex>
+        <Flex 
+        pt={'120px'}
+        pb={'25px'} 
+        px={{ base: "40px", md: "80px", lg: "120px" }}
+        direction='column'
+        style={{ fontFamily: 'PilatExtended-Regular' }}
+        >
+          <Flex>
+            <Text fontSize='16px' fontWeight='normal' color={'rgba(255, 255, 255, 0.54)'}>Home &gt;&nbsp;</Text>
+            <Text fontSize='16px' fontWeight='normal' color={'rgba(255, 255, 255, 0.54)'}>Project Detail &gt;&nbsp;</Text>
+            <Text fontSize='16px' color={'rgba(255, 255, 255, 0.84)'}>Back the project</Text>
+          </Flex>
+          <Flex>
+            <Text fontSize='28px' color='#4790f5' fontWeight={'900'}>
+              Back and Contribute to &nbsp;</Text>
+            <Text as={"span"} fontSize='28px'  fontWeight={'900'}>
+              Project Name
+            </Text>
+          </Flex>
+              
+        </Flex>
+        <Flex width='100%' justify='center' pb={'8em'}>
+          <Box w={{ base: "300px", md: "500px", lg: "800px" }} bgGradient={'linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)'} px='0px' style={{ fontFamily: 'Sk-Modernist' }} rounded={'3xl'} >
+            
             {/* --------amount to back----------- */}
             <Flex mt='83px' textAlign={'left'} justify="space-between" align='center' direction='column'>
-              <Text mb='20px' textAlign={'center'} justifyContent={'center'}>Select tokens and enter amount to back</Text>
-              <InputTransition
-                unitid='backamount'
-                selected={backAmount == '' ? false : true}
-                width='300px' height='55px' rounded='md' mb='42px'
-              >
-                <InputGroup size="sm" style={{ border: '0', background: 'rgba(255, 255, 255, 0.05)' }}>
-                  <Input type="text" h='55px' style={{ border: '0', background: 'transparent', paddingLeft: '25px' }} focusBorderColor="purple.800" rounded="md" value={backAmount} />
-                  <InputRightElement w='60px' h='55px' pointerEvents='none' children={<Text>UST</Text>}
-                  />
-                </InputGroup>
-              </InputTransition>
-              <Text mb='20px' textAlign={'left'}>WFD Fees</Text>
-              <InputTransition
-                unitid='WFDamount'
-                selected={backAmount == '' ? false : true}
-                width='300px' height='55px' rounded='md'
-              >
-                <InputGroup size="sm" style={{ border: '0', background: 'rgba(255, 255, 255, 0.05)' }}>
-                  <Input type="text" h='55px' style={{ border: '0', background: 'transparent', paddingLeft: '25px' }} focusBorderColor="purple.800" rounded="md" value={wfdAmount}
-                    onChange={(e) => { }} />
-                  <InputRightElement w='60px' h='55px' pointerEvents='none' children={<Text>WFD</Text>}
-                  />
-                </InputGroup>
-              </InputTransition>
+              <Img src="/media/Launchpad/secret-partner.png">
+              </Img>
+              <Text my='20px' textAlign={'center'} justifyContent={'center'}>Select tokens and enter amount to back</Text>
+              <Stack 
+              align='center' 
+              w={{ base: "100%", md: "100%", lg: "100%" }}
+              spacing={12}
+              
+            >
+              <CustomCoinInput
+              typeText="Amount Required"
+              type={backAmount}
+              setType={setBackAmount}
+              w={{ base: "50%", md: "50%", lg: "50%" }}
+            />
+             <CustomCoinInput
+              typeText="Fees"
+              type={feeAmount}
+              setType={setFeeAmount}
+              w={{ base: "50%", md: "50%", lg: "50%" }}
+            />
+              </Stack>
+            
+             
               <Flex mt='25px' direction="row">
                 <InputTransition
                   unitid='conditioncheck'
@@ -100,27 +96,22 @@ export default function BackProject() {
             </Flex>
             {/* -----------------Back Project----------------- */}
             <Flex w='100%' mt='60px' justify='center' mb='170px'>
-              <ButtonTransition
-                unitid='backproject'
-                border1='linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)'
-                background1='linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)'
-                border2='linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)'
-                background2='linear-gradient(180deg, #1A133E 0%, #1A133E 100%)'
-                border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-                background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
+              <ButtonBackTransition
+                unitid="Back Project"
                 selected={false}
-                width='200px' height='50px' rounded='33px'
+                width="250px"
+                height="45px"
+                rounded="33px"
+                selected={false}
+                width='250px' height='50px' rounded='33px'
                 onClick={() => { BackProject() }} 
               >
                 <Box  color="white" justifyContent='center' alignSelf='center'>
-                  Back Project
+                  Back The Project
                 </Box>
-              </ButtonTransition>
+              </ButtonBackTransition>
+              
             </Flex>
-            {/* -----------------------space line-------------------------------- */}
-            <Img mt='102px' height='1px' objectFit='cover' src='/media/line.svg' alt='UST Avatar' />
-
-            {/* ---------------------------blog------------------------------ */}
 
           </Box>
         </Flex>
