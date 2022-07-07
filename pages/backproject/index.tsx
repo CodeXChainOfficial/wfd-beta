@@ -7,7 +7,7 @@ import {
   Input, 
   InputGroup, 
   InputRightElement, 
-  Img
+  Image
 } from "@chakra-ui/react";
 import React, { useEffect, useState, useRef } from 'react';
 import { IoCheckmark } from 'react-icons/io5';
@@ -51,13 +51,14 @@ export default function BackProject() {
           </Flex>
               
         </Flex>
-        <Flex width='100%' justify='center' pb={'8em'}>
+        <Flex width='100%' justify='center' pb={'8em'} 
+        backgroundImage="url('/media/Home/2.png')">
           <Box w={{ base: "300px", md: "500px", lg: "800px" }} bgGradient={'linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)'} px='0px' style={{ fontFamily: 'Sk-Modernist' }} rounded={'3xl'} >
             
             {/* --------amount to back----------- */}
             <Flex mt='83px' textAlign={'left'} justify="space-between" align='center' direction='column'>
-              <Img src="/media/Launchpad/secret-partner.png">
-              </Img>
+              <Image src="/media/Launchpad/secret-partner.png">
+              </Image>
               <Text my='20px' textAlign={'center'} justifyContent={'center'}>Select tokens and enter amount to back</Text>
               <Stack 
               align='center' 
@@ -110,11 +111,18 @@ export default function BackProject() {
                   Back The Project
                 </Box>
               </ButtonBackTransition>
-              
+             
             </Flex>
 
           </Box>
+         
         </Flex>
+        <Image
+        mt={'-9em'}
+        width="100%"
+        objectFit="contain"
+        src="/media/Home/1.svg"
+      />
         <Footer />
       </div>
     </ChakraProvider>
