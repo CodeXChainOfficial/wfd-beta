@@ -87,8 +87,8 @@ export const InputTransition = (props: any) => {
       unitid={props.unitid}
       border1="linear-gradient(180deg, #00A3FF 0%, rgba(0, 71, 255, 0) 0%)"
       background1="linear-gradient(180deg, #2B226B 0%, #1B0131 100%)"
-      border2="rgba(255, 255, 255, 0.2)"
-      background2="linear-gradient(180deg, #501992 0%, #300F71 1.84%, #09044B 95.22%)"
+      border2="rgba(255, 255, 255, 5%)"
+      background2="linear-gradient(180deg, #501992 0%, #300F71 1.4%, #09044B 95.22%)"
       border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 0%)"
       background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
       selected={props.selected}

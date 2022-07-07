@@ -37,9 +37,16 @@ const CustomCoinInput: FunctionComponent<Props> = ({
 
   return (
     <Box w={w}>
-        <Center><Flex align={'center'}>
-        <Text mb="20px" textAlign={'center'}>{typeText}</Text>
-      </Flex>
+        <Center>
+            <Flex align={'center'}>
+                <Text 
+                mb="20px" 
+                textAlign={'center'}
+                fontSize={{ base: "14px", sm: "14px", md: "16px", lg: "16px" }}
+                >
+                    {typeText}
+                </Text>
+            </Flex>
       </Center>
       <InputTransition
         unitid={"projectamount" + typeText}

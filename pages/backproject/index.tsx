@@ -31,21 +31,38 @@ export default function BackProject() {
         width: '100%', color: 'white', fontSize: '18px', fontFamily: 'Sk-Modernist', fontWeight: '700'
       }}>
         <Flex 
-        pt={'120px'}
-        pb={'25px'} 
-        px={{ base: "40px", md: "80px", lg: "120px" }}
-        direction='column'
-        style={{ fontFamily: 'PilatExtended-Regular' }}
+          pt={'120px'}
+          pb={'25px'} 
+          px={{ base: "40px", md: "80px", lg: "120px" }}
+          direction='column'
+          style={{ fontFamily: 'PilatExtended-Regular' }}
         >
           <Flex>
-            <Text fontSize='16px' fontWeight='normal' color={'rgba(255, 255, 255, 0.54)'}>Home &gt;&nbsp;</Text>
-            <Text fontSize='16px' fontWeight='normal' color={'rgba(255, 255, 255, 0.54)'}>Project Detail &gt;&nbsp;</Text>
-            <Text fontSize='16px' color={'rgba(255, 255, 255, 0.84)'}>Back the project</Text>
+            <Text 
+              fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }} 
+              fontWeight='normal' 
+              color={'rgba(255, 255, 255, 0.54)'}
+            >
+              Home &gt;&nbsp;
+            
+            </Text>
+            <Text 
+            fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
+            fontWeight='normal' 
+            color={'rgba(255, 255, 255, 0.54)'}
+            >
+              Project Detail &gt;&nbsp;
+            </Text>
+            <Text 
+            fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
+            color={'rgba(255, 255, 255, 0.84)'}>
+              Back the project
+            </Text>
           </Flex>
           <Flex>
-            <Text fontSize='28px' color='#4790f5' fontWeight={'900'}>
-              Back and Contribute to &nbsp;</Text>
-            <Text as={"span"} fontSize='28px'  fontWeight={'900'}>
+            <Text fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "28px" }} color='#4790f5' fontWeight={'900'}>
+              Contribute to &nbsp;</Text>
+            <Text as={"span"} fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "28px" }}  fontWeight={'900'}>
               Project Name
             </Text>
           </Flex>
@@ -53,13 +70,19 @@ export default function BackProject() {
         </Flex>
         <Flex width='100%' justify='center' pb={'8em'} 
         backgroundImage="url('/media/Home/2.png')">
-          <Box w={{ base: "300px", md: "500px", lg: "800px" }} bgGradient={'linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)'} px='0px' style={{ fontFamily: 'Sk-Modernist' }} rounded={'3xl'} >
+          <Box w={{ base: "300px", md: "600px", lg: "800px" }} bgGradient={'linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)'} px='0px' style={{ fontFamily: 'Sk-Modernist' }} rounded={'3xl'} >
             
             {/* --------amount to back----------- */}
             <Flex mt='83px' textAlign={'left'} justify="space-between" align='center' direction='column'>
               <Image src="/media/Launchpad/secret-partner.png">
               </Image>
-              <Text my='20px' textAlign={'center'} justifyContent={'center'}>Select tokens and enter amount to back</Text>
+              <Text 
+              my='20px' 
+              textAlign={'center'} 
+              justifyContent={'center'}
+              fontWeight='400'
+              fontSize={{ base: "14px", sm: "14px", md: "16px", lg: "16px" }}
+              >Select tokens and enter amount to back</Text>
               <Stack 
               align='center' 
               w={{ base: "100%", md: "100%", lg: "100%" }}
@@ -70,13 +93,13 @@ export default function BackProject() {
               typeText="Amount Required"
               type={backAmount}
               setType={setBackAmount}
-              w={{ base: "50%", md: "50%", lg: "50%" }}
+              w={{ base: "70%", md: "60%", lg: "50%" }}
             />
              <CustomCoinInput
               typeText="Fees"
               type={feeAmount}
               setType={setFeeAmount}
-              w={{ base: "50%", md: "50%", lg: "50%" }}
+              w={{ base: "70%", md: "60%", lg: "50%" }}
             />
               </Stack>
             
@@ -92,7 +115,7 @@ export default function BackProject() {
                     <IoCheckmark width='24px' height='24px' color='#FE8600'></IoCheckmark>
                   }
                 </InputTransition>
-                <Text ml='10px' fontSize='14px' fontWeight='400'>I agree with all conditions of this project and WeFund</Text>
+                <Text ml='10px' fontSize={{ base: "12px", sm: "14px", md: "16px", lg: "16px" }} fontWeight='400'>I agree with all conditions of this project and WeFund</Text>
               </Flex>
             </Flex>
             {/* -----------------Back Project----------------- */}
@@ -104,10 +127,17 @@ export default function BackProject() {
                 height="45px"
                 rounded="33px"
                 selected={false}
-                width='250px' height='50px' rounded='33px'
+                width='250px' 
+                height='50px' 
+                rounded='33px'
                 onClick={() => { BackProject() }} 
               >
-                <Box  color="white" justifyContent='center' alignSelf='center'>
+                <Box 
+                color="white" 
+                justifyContent='center' 
+                alignSelf='center'
+                fontSize={{ base: "14px", sm: "14px", md: "16px", lg: "16px" }}
+                >
                   Back The Project
                 </Box>
               </ButtonBackTransition>
