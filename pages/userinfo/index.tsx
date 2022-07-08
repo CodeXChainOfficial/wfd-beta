@@ -302,7 +302,7 @@ export default function UserSideSnippet() {
                         </VStack>
                       </HStack>
                       <Center>
-                        <Link href={"dashboardinfo/details"}>
+                        <Link href={"userinfo/details"}>
                           <Button
                             w={"150px"}
                             h={"45px"}
