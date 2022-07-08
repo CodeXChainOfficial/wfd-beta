@@ -8,7 +8,11 @@ import { BigNumber } from "bignumber.js";
 import { WalletProvider } from "@elrondnetwork/erdjs-web-wallet-provider";
 
 import { addressEndpoint, getElrondConfig } from "../config/elrondConfig";
-import { ERROR_OPTION, NETWORK, WEFUND_ELROND_WALLET } from "../config/constants";
+import {
+  ERROR_OPTION,
+  NETWORK,
+  WEFUND_ELROND_WALLET,
+} from "../config/constants";
 import axios from "axios";
 import { ParseParam_ProjectId } from "../utils/utility";
 
@@ -97,25 +101,49 @@ export const useElrondWebStore = create(
       const accountData = await axios.get(configUrl);
       const nonce = accountData.data.data.account.nonce;
 
-      const firstTransaction = {
-        toPlainObject: function () {
-          return {
-            nonce: nonce,
-            value: big_amount.toFixed(),
-            receiver: WEFUND_ELROND_WALLET,
-            gasPrice: 1000000000,
-            gasLimit: 700000,
-            data: "",
-            chainID: config.chainId,
-            version: 1,
-          };
-        },
-      };
+      let transaction;
+      if (native) {
+        transaction = {
+          toPlainObject: function () {
+            return {
+              nonce: nonce,
+              value: big_amount.toFixed(),
+              receiver: WEFUND_ELROND_WALLET,
+              gasPrice: 1000000000,
+              gasLimit: 700000,
+              data: "",
+              chainID: config.chainId,
+              version: 1,
+            };
+          },
+        };
+      } else {
+        const address_encoded = new Buffer(address).toString("hex");
+        const value_encoded = amount.toString(16);
+        let data = "ESDTTransfer@" + address_encoded;
+        if (value_encoded.length % 2 == 0) data += "@" + value_encoded;
+        else data += "@0" + value_encoded;
 
+        transaction = {
+          toPlainObject: function () {
+            return {
+              nonce: nonce,
+              value: 0,
+              sender: account,
+              receiver: WEFUND_ELROND_WALLET,
+              gasPrice: 1000000000,
+              gasLimit: 500000,
+              data: Buffer.from(data).toString("base64"),
+              chainID: config.chainId,
+              version: 1,
+            };
+          },
+        };
+      }
       window.localStorage.setItem("action", "elrond_investing");
       const project_id = ParseParam_ProjectId();
       window.localStorage.setItem("project_id", project_id.toString());
-      await provider.signTransactions([firstTransaction]);
+      await provider.signTransactions([transaction]);
     },
   }))
 );
@@ -144,7 +172,6 @@ const WalletSubscription = () => {
         const configUrl = `${config.apiAddress}/${addressEndpoint}/${account}`;
         try {
           const res = await axios.get(configUrl);
-          console.log(res);
           const amountInElrond = new BigNumber(res.data.data.account.balance);
           useElrondWebStore.setState({ balance: amountInElrond });
           useElrondWebStore.setState({ initialized: true });

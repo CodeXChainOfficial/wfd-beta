@@ -140,8 +140,8 @@ export const TOKEN_LIST = [
     native: false,
     address:
       NETWORK == "mainnet"
-        ? "TSAi16seGKMoygZGof4zETf4r4X6fAdrnR"
-        : "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs",
+        ? "USDC-cbf0b9"
+        : "USDC-cbf0b9",
   },
 ];
 export const ERC20_ABI = [

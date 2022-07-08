@@ -178,10 +178,15 @@ const Layout = ({ children }: Props) => {
         case "elrond_investing":
           dispatch({ type: ActionKind.setWalletType, payload: "elrond" });
           dispatch({ type: ActionKind.setWallet, payload: elrond });
-
+          const sender = ParseParam("sender[0]");
+          if (!sender) break;
+          elrond.setAccount(sender);
           const signed = ParseParam("walletProviderStatus");
-          if (signed == "transactionsSigned") {
-            const firstTransaction = {
+          let data = ParseParam("data[0]");
+          if (signed == "transactionsSigned" && data != null) {
+            data = Buffer.from(data).toString("base64");
+console.log(data)
+            const transaction = {
               toPlainObject: function () {
                 return {
                   nonce: getInteger(ParseParam("nonce[0]")),
@@ -189,7 +194,7 @@ const Layout = ({ children }: Props) => {
                   receiver: ParseParam("receiver[0]"),
                   gasPrice: getInteger(ParseParam("gasPrice[0]")),
                   gasLimit: getInteger(ParseParam("gasLimit[0]")),
-                  // data: ParseParam("nonce[0]"),
+                  data: data,
                   chainID: ParseParam("chainID[0]"),
                   version: getInteger(ParseParam("version[0]")),
                   signature: ParseParam("signature[0]"),
@@ -197,14 +202,14 @@ const Layout = ({ children }: Props) => {
                 };
               },
             };
-
+            console.log(transaction.toPlainObject())
             const config = getElrondConfig(NETWORK);
             const res = await axios.post(
               `${config.apiAddress}/transactions`,
-              firstTransaction.toPlainObject(),
+              transaction.toPlainObject(),
               { timeout: parseInt(config.apiTimeout) }
             );
-
+console.log(res)
             const elrond_address = window.localStorage.getItem("address");
             if (!elrond_address) break;
             elrond.setAccount(elrond_address);
