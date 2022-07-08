@@ -22,10 +22,8 @@ import {
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { toast } from "react-toastify";
-import { WEFUND_ID } from "../../config/Constants";
-
-import { CheckNetwork } from "../../utils/Util";
-import { successOption } from "../../config/Constants";
+import { WEFUND_ID, SUCCESS_OPTION } from "../../config/constants";
+import { checkNetwork } from "../../utils/utility";
 import {
   useCommunityData,
   useProjectData,
@@ -84,22 +82,21 @@ export default function UserSideSnippet() {
   }, [state.address]);
 
   async function addCommunityMember() {
-    if (CheckNetwork(state) == false) return false;
-
-    for (let i = 0; i < communityData.length; i++) {
-      if (communityData[i] == state.address) {
-        toast("Already Registered", successOption);
-        return;
-      }
-    }
+    // if (checkNetwork(state) == false) return false;
+    // for (let i = 0; i < communityData.length; i++) {
+    //   if (communityData[i] == state.address) {
+    //     toast("Already Registered", SUCCESS_OPTION);
+    //     return;
+    //   }
+    // }
   }
 
   function removeCommunityMember() {
-    if (CheckNetwork(state) == false) return false;
+    // if (checkNetwork(state) == false) return false;
   }
 
   function claim(project_id: number) {
-    if (CheckNetwork(state) == false) return false;
+    // if (checkNetwork(state) == false) return false;
   }
 
   const responsive = {
@@ -123,12 +120,16 @@ export default function UserSideSnippet() {
   return (
     <Box width={"100%"}>
       <Box color={"white"} padding={"5%"} mt="150px">
-        <Stack color="white" maxW={"1440px"} direction={{ base: "column", sm:"column", md: "row", lg: "row" }}>
+        <Stack
+          color="white"
+          maxW={"1440px"}
+          direction={{ base: "column", sm: "column", md: "row", lg: "row" }}
+        >
           <Center w={{ base: "100%", sm: "100%", md: "40%", lg: "40%" }}>
-            <VStack 
-              spacing={4} 
-              marginBottom={6} 
-              align="left" 
+            <VStack
+              spacing={4}
+              marginBottom={6}
+              align="left"
               mx={[0, 0, 0]}
               w={{ base: "100%", sm: "100%", md: "100%", lg: "100%" }}
             >
@@ -189,7 +190,12 @@ export default function UserSideSnippet() {
                       </Text>
                       <HStack pt={"3em"}>
                         <Button
-                          w={{ base: "90px", sm: "100px", md: "140px", lg: "150px" }}
+                          w={{
+                            base: "90px",
+                            sm: "100px",
+                            md: "140px",
+                            lg: "150px",
+                          }}
                           h={"45px"}
                           bgGradient="linear(#21CAFF, #1383D4)"
                           color={"#002E87"}
@@ -200,7 +206,12 @@ export default function UserSideSnippet() {
                           <Text ml={"5px"}>Deposit</Text>
                         </Button>
                         <Button
-                          w={{ base: "90px", sm: "100px", md: "140px", lg: "150px" }}
+                          w={{
+                            base: "90px",
+                            sm: "100px",
+                            md: "140px",
+                            lg: "150px",
+                          }}
                           h={"45px"}
                           bgGradient="linear(#21CAFF, #1383D4)"
                           color={"#002E87"}
@@ -761,74 +772,74 @@ export default function UserSideSnippet() {
           <Box px={4} py={5} _hover={{ shadow: "lg" }} position="relative">
             <Flex justifyContent="space-between">
               <Flex color={"white"}>
-                <Stack spacing={2} pl={3} align="center" direction={{ base: "column", md: "row", lg: "row" }}>
-                  
-                    <VStack
-                    w={{base:'100%', md:'50%'}}>
+                <Stack
+                  spacing={2}
+                  pl={3}
+                  align="center"
+                  direction={{ base: "column", md: "row", lg: "row" }}
+                >
+                  <VStack w={{ base: "100%", md: "50%" }}>
+                    <Box
+                      bgGradient="linear(#430E82, #1D0551)"
+                      py={"20px"}
+                      rounded={"lg"}
+                      minH={"136px"}
+                      fontSize={{ base: "14px", md: "18px", lg: "21px" }}
+                    >
+                      <Text
+                        mt="10px"
+                        fontWeight="500"
+                        lineHeight={"160%"}
+                        align={"center"}
+                        fontSize={"22px"}
+                      >
+                        Invite Backers
+                      </Text>
+                      <Text mt="10px" lineHeight={"160%"} align={"center"}>
+                        Earn WFD and other bonuses for referring project
+                        backers.
+                      </Text>
+                      <Box bg={"black"} px={"20px"} py={"5px"} rounded={"lg"}>
+                        <Text mt="10px" align={"center"}>
+                          wfd1rj8wkx2ze4639r........aa55
+                        </Text>
+                      </Box>
+                    </Box>
+                  </VStack>
+
+                  <VStack w={{ base: "100%", md: "50%" }}>
+                    <Center>
                       <Box
                         bgGradient="linear(#430E82, #1D0551)"
                         py={"20px"}
                         rounded={"lg"}
                         minH={"136px"}
-                        fontSize={{ base: "14px", md: "18px", lg: "21px" }}
+                        w={"100%"}
                       >
                         <Text
                           mt="10px"
                           fontWeight="500"
                           lineHeight={"160%"}
                           align={"center"}
-                          fontSize={"22px"}
+                          fontSize={{ base: "14px", md: "18px", lg: "21px" }}
                         >
-                          Invite Backers
+                          Register to Become Community Member
                         </Text>
-                        <Text mt="10px" lineHeight={"160%"} align={"center"}>
-                          Earn WFD and other bonuses for referring project
-                          backers.
-                        </Text>
-                        <Box bg={"black"} px={"20px"} py={"5px"} rounded={"lg"}>
-                          <Text mt="10px" align={"center"}>
-                            wfd1rj8wkx2ze4639r........aa55
-                          </Text>
-                        </Box>
-                      </Box>
-                    </VStack>
-
-                    <VStack
-                    w={{base:'100%', md:'50%'}}
-                    >
-                      <Center>
-                        <Box
-                          bgGradient="linear(#430E82, #1D0551)"
-                          py={"20px"}
-                          rounded={"lg"}
-                          minH={"136px"}
-                          w={'100%'}
-                        >
-                          <Text
-                            mt="10px"
-                            fontWeight="500"
-                            lineHeight={"160%"}
-                            align={"center"}
-                            fontSize={{ base: "14px", md: "18px", lg: "21px" }}
+                        <Center pt={"25px"}>
+                          <Button
+                            w={"150px"}
+                            h={"45px"}
+                            bgGradient="linear(#21CAFF, #1383D4)"
+                            color={"#002E87"}
+                            fontWeight={"600"}
+                            fontSize={"16px"}
                           >
-                            Register to Become Community Member
-                          </Text>
-                          <Center pt={"25px"}>
-                            <Button
-                              w={"150px"}
-                              h={"45px"}
-                              bgGradient="linear(#21CAFF, #1383D4)"
-                              color={"#002E87"}
-                              fontWeight={"600"}
-                              fontSize={"16px"}
-                            >
-                              <Text ml={"5px"}>Claim</Text>
-                            </Button>
-                          </Center>
-                        </Box>
-                      </Center>
-                    </VStack>
-                  
+                            <Text ml={"5px"}>Claim</Text>
+                          </Button>
+                        </Center>
+                      </Box>
+                    </Center>
+                  </VStack>
                 </Stack>
               </Flex>
             </Flex>

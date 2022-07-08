@@ -28,10 +28,10 @@ import {
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { toast } from "react-toastify";
-import { WEFUND_ID } from "../../config/Constants";
+import { WEFUND_ID } from "../../config/constants";
 
-import { CheckNetwork } from "../../utils/Util";
-import { successOption } from "../../config/Constants";
+import { checkNetwork } from "../../utils/utility";
+import { SUCCESS_OPTION } from "../../config/constants";
 import {
   useCommunityData,
   useProjectData,
@@ -90,24 +90,21 @@ export default function UserSideSnippet() {
   }, [state.address]);
 
   async function addCommunityMember() {
-    if (CheckNetwork(state) == false) return false;
-
+    if (checkNetwork(state) == false) return SUCCESS_OPTION
     for (let i = 0; i < communityData.length; i++) {
       if (communityData[i] == state.address) {
-        toast("Already Registered", successOption);
+        toast("Already Registered", SUCCESS_OPTION);
         return;
       }
     }
   }
 
   function removeCommunityMember() {
-    if (CheckNetwork(state) == false) return false;
+    if (checkNetwork(state) == false) return false;
   }
-
   function claim(project_id: number) {
-    if (CheckNetwork(state) == false) return false;
+    if (checkNetwork(state) == false) return false;
   }
-
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 3000, min: 2000 },
