@@ -55,6 +55,7 @@ const OtherChainWallet: FunctionComponent<Props> = ({
             <option style={{ backgroundColor: "#1B0645" }}>BSC</option>
             <option style={{ backgroundColor: "#1B0645" }}>Tron</option>
             <option style={{ backgroundColor: "#1B0645" }}>Near</option>
+            <option style={{ backgroundColor: "#1B0645" }}>Elrond</option>
           </Select>
         </InputTransition>
       </Box>

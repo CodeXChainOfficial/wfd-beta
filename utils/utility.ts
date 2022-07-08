@@ -1,6 +1,11 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { WEFUND_ID, WEFUND_WALLET, TOKEN_LIST, SUCCESS_OPTION } from "../config/constants";
+import {
+  WEFUND_ID,
+  WEFUND_WALLET,
+  TOKEN_LIST,
+  SUCCESS_OPTION,
+} from "../config/constants";
 import { ActionKind } from "../contexts/store";
 
 export function GetProjectStatusString(mode: string) {
@@ -202,17 +207,31 @@ export function ShortenAddress(address: string) {
   }
   return "";
 }
-export function ParseParam() {
+export function ParseParam(key: string) {
   let queryString,
     urlParams,
-    project_id: string | null = null;
+    result: string | null = null;
   if (typeof window != "undefined") {
     queryString = window.location.search;
     urlParams = new URLSearchParams(queryString);
-    project_id = urlParams.get("project_id");
+    result = urlParams.get(key);
   }
-  if (project_id == null) return 0;
-  else return parseInt(project_id);
+  return result;
+}
+export function ParseParam_Address() {
+  return ParseParam("address");
+}
+export function ParseParam_ProjectId() {
+  const result = ParseParam("project_id");
+  if (result == null) {
+    if (typeof window != "undefined") {
+      const res = window.localStorage.getItem("project_id");
+      if (res == null) return 0;
+      else return parseInt(res);
+    } else return 0;
+  } else {
+    return parseInt(result);
+  }
 }
 export function isNull(val: any) {
   if (typeof val == "undefined" || val == "") return true;

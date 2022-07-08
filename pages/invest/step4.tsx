@@ -17,7 +17,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import { useStore } from "../../contexts/store";
-import { ParseParam } from "../../utils/utility";
+import { ParseParam_ProjectId } from "../../utils/utility";
 import { ImageTransition } from "../../components/ImageTransition";
 import PageLayout from "../../components/PageLayout";
 import {
@@ -29,7 +29,7 @@ import { useRouter } from "next/router";
 
 export default function InvestStep4() {
   const router = useRouter();
-  const project_id = ParseParam();
+  const project_id = ParseParam_ProjectId();
 
   let investAmount = "",
     investWfdAmount = "",

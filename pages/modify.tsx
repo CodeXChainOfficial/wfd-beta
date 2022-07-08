@@ -19,7 +19,7 @@ import {
   getInteger,
   getSeconds,
   getMonth,
-  ParseParam,
+  ParseParam_ProjectId,
   GetOneProject,
   getTokenInfo,
 } from "../utils/utility";
@@ -101,7 +101,7 @@ export default function ModifyProject() {
   }, []);
 
   //----------parse Param----------------------
-  const project_id = ParseParam();
+  const project_id = ParseParam_ProjectId();
 
   async function fillItems() {
     if (project_id == null) return;

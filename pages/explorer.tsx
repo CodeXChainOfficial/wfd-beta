@@ -219,7 +219,6 @@ export default function ExplorerProject() {
       console.log(e);
     }
   }
-
   async function NextFundraisingStage(project_id: number, curStage: string) {
     let stage = parseInt(curStage);
     const data = GetOneProject(projectData, project_id);
@@ -241,7 +240,6 @@ export default function ExplorerProject() {
       console.log(e);
     }
   }
-
   function Modify(project_id: number) {
     router.push("/modify?project_id=" + project_id);
   }

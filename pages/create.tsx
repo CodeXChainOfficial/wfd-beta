@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { ButtonTransition } from "../components/ImageTransition";
 import { useStore, useWallet } from "../contexts/store";
 import Footer from "../components/Footer";
-import { checkNetwork, isNull, ParseParam } from "../utils/utility";
+import { checkNetwork, isNull, ParseParam_ProjectId } from "../utils/utility";
 import {
   WEFUND_CONTRACT,
   SUCCESS_OPTION,
@@ -66,7 +66,7 @@ export default function CreateProject() {
   const [professionallink, setProfessionalLink] = useState("");
 
   //----------parse Param----------------------
-  const project_id = ParseParam();
+  const project_id = ParseParam_ProjectId();
 
   useEffect(() => {
     setTimeout(() => checkNetwork(state), 1000);

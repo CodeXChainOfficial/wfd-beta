@@ -1923,6 +1923,13 @@
   resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-3.4.1.tgz#75b4c27948c81e88ccd3a8902047bcd797f38d32"
   integrity sha512-ej5oVy6lykXsvieQtqZxCOaLT+xD4+QNarq78cIYISHmZXshCvROLudpQN3lfL8G0NL7plMSSK+zlyvCaIJ4Iw==
 
+"@elrondnetwork/erdjs-web-wallet-provider@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@elrondnetwork/erdjs-web-wallet-provider/-/erdjs-web-wallet-provider-2.1.1.tgz#a9653e9e34b1e77a80ef7412b21c3125367f1f2f"
+  integrity sha512-QFNPBFDSpVifui8VpD+295hzcuP6ebVV/r9ZB7mWUwqRFP+pfwuabyaG4ypapSidDOYgwHAggBi0/wlIcSiaMw==
+  dependencies:
+    qs "6.10.1"
+
 "@emotion/babel-plugin@^11.7.1":
   version "11.9.2"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.9.2.tgz#723b6d394c89fb2ef782229d92ba95a740576e95"
@@ -12855,6 +12862,13 @@ qrcode@1.4.4:
     isarray "^2.0.1"
     pngjs "^3.3.0"
     yargs "^13.2.4"
+
+qs@6.10.1:
+  version "6.10.1"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.10.1.tgz#4931482fa8d647a5aab799c5271d2133b981fb6a"
+  integrity sha512-M528Hph6wsSVOBiYUnGf+K/7w0hNshs/duGsNXPUCLH5XAqjEtiPGwNONLV0tBH8NoGb0mvD5JubnUTrujKDTg==
+  dependencies:
+    side-channel "^1.0.4"
 
 qs@6.10.3:
   version "6.10.3"

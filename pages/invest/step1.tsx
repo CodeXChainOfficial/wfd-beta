@@ -10,14 +10,14 @@ import {
 import { useStore } from "../../contexts/store";
 import PageLayout from "../../components/PageLayout";
 import SAFTTemplate from "../../components/Invest/SAFTTemplate";
-import { ParseParam } from "../../utils/utility";
+import { ParseParam_ProjectId } from "../../utils/utility";
 
 export default function InvestStep1() {
   const { state, dispatch } = useStore();
   const [condition, setCondition] = useState(false);
   const router = useRouter();
 
-  const projectId = ParseParam();
+  const projectId = ParseParam_ProjectId();
 
   function onNext() {
     if (condition)

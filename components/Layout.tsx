@@ -1,15 +1,19 @@
 import React, { ReactNode, useEffect } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { getElrondConfig } from "../config/elrondConfig";
+import { NETWORK } from "../config/constants";
 
 import Navbar from "./Navbar";
 import Container from "./Container";
-import { ParseParam } from "../utils/utility";
+import { getInteger, ParseParam, ParseParam_Address, ParseParam_ProjectId } from "../utils/utility";
 import { fetchData } from "../utils/fetch";
 import { toast } from "react-toastify";
 import { SUCCESS_OPTION } from "../config/constants";
 import { useStore, ActionKind, useJunoConnection } from "../contexts/store";
 import { useNearWallet } from "../contexts/nearWallet";
 import { useKeplrWallet } from "../contexts/keplrWallet";
+import { useElrondWeb } from "../contexts/elrond";
 
 type Props = {
   children?: ReactNode;
@@ -137,27 +141,83 @@ const Layout = ({ children }: Props) => {
 
   //-------Near connection--------------------------------------------------
   const near = useNearWallet();
-  const project_id = ParseParam();
+  const elrond = useElrondWeb();
 
   useEffect(() => {
     const initialize = () => {
       window.localStorage.removeItem("action");
     };
 
-    const checkTransaction = async () => {
+    const checkFallback = async () => {
       const action = window.localStorage.getItem("action");
-      if (action != "investing") return;
+      // if (action != "investing") return;
+      switch (action) {
+        case "near_connection":
+          near.connect();
+          dispatch({ type: ActionKind.setWalletType, payload: "near" });
+          dispatch({ type: ActionKind.setWallet, payload: near });
+          break;
+        case "near_investing":
+          const project_id = ParseParam_ProjectId();
+          initialize();
+          near.connect();
+          dispatch({ type: ActionKind.setWalletType, payload: "near" });
+          dispatch({ type: ActionKind.setWallet, payload: near });
 
+          toast("Invest Success", SUCCESS_OPTION);
+          router.push("/invest/step4?project_id=" + project_id);
+          break;
+        case "elrond_connection":
+          dispatch({ type: ActionKind.setWalletType, payload: "elrond" });
+          dispatch({ type: ActionKind.setWallet, payload: elrond });
+
+          const address = ParseParam_Address();
+          if (!address) break;
+          elrond.setAccount(address);
+          break;
+        case "elrond_investing":
+          dispatch({ type: ActionKind.setWalletType, payload: "elrond" });
+          dispatch({ type: ActionKind.setWallet, payload: elrond });
+
+          const signed = ParseParam("walletProviderStatus");
+          if (signed == "transactionsSigned") {
+            const firstTransaction = {
+              toPlainObject: function () {
+                return {
+                  nonce: getInteger(ParseParam("nonce[0]")),
+                  value: ParseParam("value[0]"),
+                  receiver: ParseParam("receiver[0]"),
+                  gasPrice: getInteger(ParseParam("gasPrice[0]")),
+                  gasLimit: getInteger(ParseParam("gasLimit[0]")),
+                  // data: ParseParam("nonce[0]"),
+                  chainID: ParseParam("chainID[0]"),
+                  version: getInteger(ParseParam("version[0]")),
+                  signature: ParseParam("signature[0]"),
+                  sender: ParseParam("sender[0]"),
+                };
+              },
+            };
+
+            const config = getElrondConfig(NETWORK);
+            const res = await axios.post(
+              `${config.apiAddress}/transactions`,
+              firstTransaction.toPlainObject(),
+              { timeout: parseInt(config.apiTimeout) }
+            );
+
+            const elrond_address = window.localStorage.getItem("address");
+            if (!elrond_address) break;
+            elrond.setAccount(elrond_address);
+
+            toast("Invest Success", SUCCESS_OPTION);
+            router.push("/invest/step4?project_id=1");
+          }
+          break;
+      }
       initialize();
-      near.connect();
-      dispatch({ type: ActionKind.setWalletType, payload: "near" });
-      dispatch({ type: ActionKind.setWallet, payload: near });
-
-      toast("Invest Success", SUCCESS_OPTION);
-      router.push("/invest/step4?project_id=" + project_id);
     };
     setTimeout(() => {
-      checkTransaction();
+      checkFallback();
     }, 500);
   }, []);
 

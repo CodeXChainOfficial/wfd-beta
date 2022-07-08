@@ -17,14 +17,14 @@ import { useKeplrWallet } from "../../../contexts/keplrWallet";
 import { useMetamaskWallet } from "../../../contexts/metamask";
 import { useTrustWallet } from "../../../contexts/trustWallet";
 import { useTronLink } from "../../../contexts/tronLink";
-// import { BigNumber, ethers } from "ethers";
+import { useNearWallet } from "../../../contexts/nearWallet";
+import { useElrondWeb } from "../../../contexts/elrond";
 
 import { MdOutlineAccountBalanceWallet, MdCheck } from "react-icons/md";
 import { BsCaretRight } from "react-icons/bs";
 
 import { useStore, ActionKind, useWallet } from "../../../contexts/store";
 import { ShortenAddress } from "../../../utils/utility";
-import { useNearWallet } from "../../../contexts/nearWallet";
 
 export default function ConnectWallet() {
   const { state, dispatch } = useStore();
@@ -33,6 +33,7 @@ export default function ConnectWallet() {
   const trust = useTrustWallet();
   const tronLink = useTronLink();
   const near = useNearWallet();
+  const elrond = useElrondWeb();
 
   const { onOpen, onClose, isOpen } = useDisclosure();
 
@@ -43,6 +44,7 @@ export default function ConnectWallet() {
     else if (to == "trust") wallet = trust;
     else if (to == "tron") wallet = tronLink;
     else if (to == "near") wallet = near;
+    else if (to == "elrond") wallet = elrond;
 
     await wallet.connect();
     dispatch({ type: ActionKind.setWalletType, payload: to });
@@ -54,6 +56,7 @@ export default function ConnectWallet() {
   else if (state.walletType == "trust") wallet = trust;
   else if (state.walletType == "tron") wallet = tronLink;
   else if (state.walletType == "near") wallet = near;
+  else if (state.walletType == "elrond") wallet = elrond;
 
   useEffect(() => {
     dispatch({ type: ActionKind.setWallet, payload: wallet });
@@ -195,5 +198,9 @@ const WalletList = [
   {
     name: "NearWallet",
     link: "near",
+  },
+  {
+    name: "ElrondWeb",
+    link: "elrond",
   },
 ];

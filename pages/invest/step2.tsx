@@ -18,7 +18,7 @@ import {
 import { WEFUND_ID } from "../../config/constants";
 import { ActionKind, useProjectData, useStore } from "../../contexts/store";
 import PageLayout from "../../components/PageLayout";
-import { getAllocation, ParseParam, GetOneProject } from "../../utils/utility";
+import { getAllocation, ParseParam_ProjectId, GetOneProject } from "../../utils/utility";
 import { ERROR_OPTION } from "../../config/constants";
 import { useRouter } from "next/router";
 import OtherChainWallet from "../../components/Invest/OtherChainWallet";
@@ -33,7 +33,7 @@ export default function InvestStep2() {
   const { state, dispatch } = useStore();
   const router = useRouter();
 
-  const projectId = ParseParam();
+  const projectId = ParseParam_ProjectId();
 
   useEffect(() => {
     const allocation = getAllocation(state, projectId);

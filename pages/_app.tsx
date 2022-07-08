@@ -18,33 +18,36 @@ import { MetamaskProvider } from "../contexts/metamask";
 import { TrustWalletProvider } from "../contexts/trustWallet";
 import { TronLinkProvider } from "../contexts/tronLink";
 import { NearWalletProvider } from "../contexts/nearWallet";
+import { ElrondWebProvider } from "../contexts/elrond";
 import { StoreProvider } from "../contexts/store";
 
 function App({ Component, pageProps }: AppProps): React.ReactNode {
   return (
     <StoreProvider>
-      <NearWalletProvider>
-        <TronLinkProvider>
-          <TrustWalletProvider>
-            <KeplrWalletProvider>
-              <MetamaskProvider>
-                <ChakraProvider resetCSS theme={theme}>
-                  <ParallaxProvider>
-                    <Layout>
-                      <Component {...pageProps} />
-                      <ToastContainer
-                        position="top-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                      />
-                    </Layout>
-                  </ParallaxProvider>
-                </ChakraProvider>
-              </MetamaskProvider>
-            </KeplrWalletProvider>
-          </TrustWalletProvider>
-        </TronLinkProvider>
-      </NearWalletProvider>
+      <ElrondWebProvider>
+        <NearWalletProvider>
+          <TronLinkProvider>
+            <TrustWalletProvider>
+              <KeplrWalletProvider>
+                <MetamaskProvider>
+                  <ChakraProvider resetCSS theme={theme}>
+                    <ParallaxProvider>
+                      <Layout>
+                        <Component {...pageProps} />
+                        <ToastContainer
+                          position="top-right"
+                          autoClose={5000}
+                          hideProgressBar={false}
+                        />
+                      </Layout>
+                    </ParallaxProvider>
+                  </ChakraProvider>
+                </MetamaskProvider>
+              </KeplrWalletProvider>
+            </TrustWalletProvider>
+          </TronLinkProvider>
+        </NearWalletProvider>
+      </ElrondWebProvider>
     </StoreProvider>
   );
 }

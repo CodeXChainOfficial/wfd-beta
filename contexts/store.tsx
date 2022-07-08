@@ -7,7 +7,7 @@ interface Action {
 }
 
 export interface AppContextInterface {
-  walletType: "metamask" | "trust" | "keplr" | "tron" | "near" | undefined;
+  walletType: "metamask" | "trust" | "keplr" | "tron" | "near" | "elrond" | undefined;
   junoConnection: any;
   wallet: any;
   net: string;

@@ -29,7 +29,7 @@ import {
 import Faq from "../../components/Faq";
 import PageLayout from "../../components/PageLayout";
 import {
-  ParseParam,
+  ParseParam_ProjectId,
   GetOneProject,
   checkNetwork,
   LookForTokenInfo,
@@ -64,16 +64,16 @@ export default function Invest_step3() {
   const address = junoConnection?.account;
 
   //------------parse URL for project id----------------------------
-  const project_id = ParseParam();
+  const project_id = ParseParam_ProjectId();
   const projectData = useProjectData();
 
   useEffect(() => {
     async function fetchData() {
       const oneprojectData = GetOneProject(projectData, project_id);
       if (oneprojectData == null) {
-        toast("Can't fetch project data", ERROR_OPTION);
-        console.log("can't fetch project data");
-        return "";
+        // toast("Can't fetch project data", ERROR_OPTION);
+        // console.log("can't fetch project data");
+        return;
       }
       setOneprojectData(oneprojectData);
     }
@@ -122,6 +122,9 @@ export default function Invest_step3() {
       proper = true;
     }
     if (investChain.toLowerCase() == "near" && state.walletType == "near") {
+      proper = true;
+    }
+    if (investChain.toLowerCase() == "elrond" && state.walletType == "elrond") {
       proper = true;
     }
     if (!proper) {
@@ -232,16 +235,12 @@ export default function Invest_step3() {
         : 0;
 
       try {
-        window.localStorage.setItem("action", "investing");
         await wallet.sendTokens(
           amount,
           tokenInfo?.denom,
           tokenInfo?.address,
           tokenInfo?.native
         );
-
-        toast("Invest Success", SUCCESS_OPTION);
-        router.push("/invest/step4?project_id=" + project_id);
       } catch (e) {
         window.localStorage.removeItem("action");
         toast("Failed", ERROR_OPTION);

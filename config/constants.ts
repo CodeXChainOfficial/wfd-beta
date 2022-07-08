@@ -24,6 +24,8 @@ export const WEFUND_POLYGON_WALLET =
 export const WEFUND_TRUST_BNB_WALLET =
   "bnb1na0j6fvjwgxrd4g6stu32wquwgce54msly0tth";
 export const WEFUND_NEAR_WALLET = "staking_treasury.testnet";
+export const WEFUND_ELROND_WALLET =
+  "erd1whmvknyspkqzhk20m2k3n7q9cypm69l0ezthefnqll9curk8ug5q0lwsn2";
 
 export const SUCCESS_OPTION: any = {
   position: "bottom-right",
@@ -124,6 +126,22 @@ export const TOKEN_LIST = [
     name: "Near",
     decimals: 24,
     native: true,
+  },
+  {
+    chain: "Elrond",
+    name: "EGLD",
+    decimals: 18,
+    native: true,
+  },
+  {
+    chain: "Elrond",
+    name: "USDC",
+    decimals: 6,
+    native: false,
+    address:
+      NETWORK == "mainnet"
+        ? "TSAi16seGKMoygZGof4zETf4r4X6fAdrnR"
+        : "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs",
   },
 ];
 export const ERC20_ABI = [

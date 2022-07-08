@@ -65,6 +65,7 @@ export const useNearWalletStore = create(
         const signed = wallet.isSignedIn();
 
         if (!signed) {
+          window.localStorage.setItem("action", "near_connection");
           wallet.requestSignIn(
             CONTRACT_NAME,
             'Who was the last person to say "Hi!"?'
@@ -103,6 +104,7 @@ export const useNearWalletStore = create(
         const account = wallet.account();
         const big_amount = new NBigNumber(amount);
 
+        window.localStorage.setItem("action", "near_investing");
         await account.sendMoney(
           WEFUND_NEAR_WALLET, // receiver account
           big_amount.toFixed() // amount in yoctoNEAR
