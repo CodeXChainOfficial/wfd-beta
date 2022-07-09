@@ -54,14 +54,14 @@ export default function Navbar() {
                 rounded="33px"
               >
                 <Flex color="white" justify="center" align="center">
-                  Create Your Project
+                  Create Project
                 </Flex>
               </ButtonBackTransition>
             </Link>
             <Flex w="197px" ml="20px" mr={"10px"}>
               <ConnectWallet />
             </Flex>
-            <Link href="walletInfo">
+            <Link href="userinfo">
               <Icon
                 as={RiAccountPinBoxFill}
                 fontSize={"45px"}

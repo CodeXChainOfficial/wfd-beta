@@ -90,7 +90,7 @@ export default function UserSideSnippet() {
   }, [state.address]);
 
   async function addCommunityMember() {
-    if (checkNetwork(state) == false) return SUCCESS_OPTION
+    if (checkNetwork(state) == false) return SUCCESS_OPTION;
     for (let i = 0; i < communityData.length; i++) {
       if (communityData[i] == state.address) {
         toast("Already Registered", SUCCESS_OPTION);
@@ -125,7 +125,7 @@ export default function UserSideSnippet() {
   };
   return (
     <Box color={"white"} mt="150px" maxW={"1440px"}>
-      <VStack color="white" py={"3em"} mb={"21em"} w={'100%'}>
+      <VStack color="white" py={"3em"} mb={"21em"} w={"100%"}>
         <Flex
           fontWeight="750"
           fontSize="28px"
@@ -141,13 +141,18 @@ export default function UserSideSnippet() {
             border="0px"
             borderColor="gray.200"
             mt={"2em"}
-            w={'100%'}
+            w={"100%"}
           >
             <h2>
               <AccordionButton>
                 <Box flex="1" textAlign="left">
                   <Box p={6}>
-                    <Stack direction={{ base: "column", md: "row", lg: "row" }} justify={"center"} spacing={{ base: 0, sm: 2, md: 36, lg: 48 }} w={'100%'}>
+                    <Stack
+                      direction={{ base: "column", md: "row", lg: "row" }}
+                      justify={"center"}
+                      spacing={{ base: 0, sm: 2, md: 36, lg: 48 }}
+                      w={"100%"}
+                    >
                       <Flex justify={"center"}>
                         <Avatar
                           size={"lg"}
@@ -158,7 +163,7 @@ export default function UserSideSnippet() {
                           }}
                         />
                         <Center>
-                          <Stack spacing={0} align={"center"} mb={5}  w={'100%'}>
+                          <Stack spacing={0} align={"center"} mb={5} w={"100%"}>
                             <Heading
                               fontSize={"2xl"}
                               fontWeight={500}
@@ -175,7 +180,6 @@ export default function UserSideSnippet() {
                         direction={"row"}
                         justify={"center"}
                         spacing={{ base: 8, sm: 8, md: 24, lg: 32 }}
-                        
                       >
                         <Stack spacing={0} align={"center"}>
                           <Text
@@ -236,8 +240,19 @@ export default function UserSideSnippet() {
                     aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                     ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </Text>
-                  <Stack direction={{ base: "column", sm: "row", lg: "row" }} justify={"center"} spacing={12} width={'100%'} px={8}>
-                    <Progress colorScheme="pink" height="32px" value={20} width={'100%'} />
+                  <Stack
+                    direction={{ base: "column", sm: "row", lg: "row" }}
+                    justify={"center"}
+                    spacing={12}
+                    width={"100%"}
+                    px={8}
+                  >
+                    <Progress
+                      colorScheme="pink"
+                      height="32px"
+                      value={20}
+                      width={"100%"}
+                    />
                     <Text
                       fontSize={{ base: "12px", sm: "14px", lg: "16px" }}
                       fontWeight={200}

@@ -812,9 +812,11 @@ export default function UserSideSnippet() {
                       <Box
                         bgGradient="linear(#430E82, #1D0551)"
                         py={"20px"}
+                        px={"20px"}
                         rounded={"lg"}
-                        minH={"136px"}
+                        minH={"200px"}
                         w={"100%"}
+                        alignContent={"center"}
                       >
                         <Text
                           mt="10px"
