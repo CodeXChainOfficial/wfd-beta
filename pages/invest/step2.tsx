@@ -6,6 +6,7 @@ import {
   HStack,
   InputRightElement,
   Text,
+  Stack,
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 import React, { useState, useRef, useEffect } from "react";
@@ -18,10 +19,15 @@ import {
 import { WEFUND_ID } from "../../config/constants";
 import { ActionKind, useProjectData, useStore } from "../../contexts/store";
 import PageLayout from "../../components/PageLayout";
-import { getAllocation, ParseParam_ProjectId, GetOneProject } from "../../utils/utility";
+import {
+  getAllocation,
+  ParseParam_ProjectId,
+  GetOneProject,
+} from "../../utils/utility";
 import { ERROR_OPTION } from "../../config/constants";
 import { useRouter } from "next/router";
 import OtherChainWallet from "../../components/Invest/OtherChainWallet";
+import Footer from "../../components/Footer";
 
 export default function InvestStep2() {
   const [chain, setChain] = useState("Juno");
@@ -76,215 +82,266 @@ export default function InvestStep2() {
     <PageLayout
       title="Back the Project"
       subTitle1="Invest"
-      subTitle2="in WeFund"
+      subTitle2="Contribute"
+      subTitle3="in WeFund"
     >
-      <Box
-        width={{ base: "100%", sm: "80%", md: "80%", lg: "80%", xl: "70%" }}
-        px="50px"
-        style={{ fontFamily: "Sk-Modernist-Regular" }}
+      <Flex
+        width="100%"
+        justify="center"
+        py={"4em"}
+        backgroundImage="url('/media/Home/2.png')"
       >
-        <Flex
-          mt="83px"
-          justify="center"
-          align="center"
-          direction="column"
-          style={{ fontFamily: "PilatExtended-Regular" }}
+        <Box
+          w={{ base: "300px", md: "600px", lg: "800px" }}
+          bgGradient={
+            "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
+          }
+          backdropBlur={'54px'}
+          pt="30px"
+          style={{ fontFamily: "Sk-Modernist" }}
+          rounded={"3xl"}
         >
-          <HStack mt="150px" mb="50px" px="15px">
-            <Box
-              width={{ base: "50px", md: "40px" }}
-              style={{
-                paddingTop: "3px",
-                paddingLeft: "3px",
-                height: "24px",
-                border: "3px solid #3BE489",
-                backgroundColor: "#3BE489",
-                borderRadius: "50%",
-                display: "inline-block",
-              }}
-            >
-              <CheckIcon color="#250E3F" w={3} h={3} marginBottom={"20px"} />
-            </Box>
-            <Text
-              fontSize={{ base: "12px", sm: "16px", md: "22px", lg: "22px" }}
-            >
-              Step 1
-            </Text>
-            <Box
-              style={{
-                height: "4px",
-                width: "30%",
-                background:
-                  "linear-gradient(90deg, #3BE489 0%, rgba(59, 228, 137, 0) 100%)",
-              }}
-            ></Box>
-            <Box
-              width={{ base: "50px", md: "40px" }}
-              style={{
-                height: "24px",
-                border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
-                borderRadius: "50%",
-                display: "inline-block",
-              }}
-            ></Box>
-            <Text
-              fontSize={{ base: "12px", sm: "16px", md: "22px", lg: "22px" }}
-            >
-              Step 2
-            </Text>
-            <Box
-              style={{
-                height: "0px",
-                width: "30%",
-                border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
-                background: " rgba(255, 255, 255, 0.3799999952316284)",
-              }}
-            ></Box>
-            <Box
-              width={{ base: "50px", md: "40px" }}
-              style={{
-                height: "24px",
-                border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
-                borderRadius: "50%",
-                display: "inline-block",
-              }}
-            ></Box>
-            <Text
-              fontSize={{ base: "12px", sm: "16px", md: "22px", lg: "22px" }}
-            >
-              Final Step
-            </Text>
-          </HStack>
-          <Text
-            fontSize={{ base: "15px", md: "15px", lg: "22px" }}
-            fontWeight={"300"}
+          <Box
+            width={"100%"}
+            style={{ fontFamily: "Sk-Modernist-Regular" }}
+            align="center"
           >
-            Input your{" "}
-            <span style={{ color: "#00A3FF" }}>Investment Amount</span>
-          </Text>
-          <Text
-            fontSize={{ base: "12px", md: "12px", lg: "16x" }}
-            maxW={"390px"}
-            color="rgba(255, 255, 255, 0.54)"
-            fontWeight={"normal"}
-            mt={"20px"}
-            textAlign={"center"}
-          >
-            Please select the chain and tokens, enter amount and we will convert
-            the WFD amount for you
-          </Text>
-        </Flex>
-        {/* --------amount to back----------- */}
-        <OtherChainWallet
-          token={token}
-          setToken={setToken}
-          chain={chain}
-          setChain={setChain}
-        />
-
-        <Flex
-          direction={{ base: "column", md: "column", lg: "column" }}
-          ml={{ base: "0px", md: "0px", lg: "0px" }}
-          mt="40px"
-          justify="center"
-          align="center"
-        >
-          <Flex>
-            <Text mb="20px">Token amount you want to invest</Text>
-          </Flex>
-          <InputTransition
-            unitid="backamount"
-            selected={backAmount == "" ? false : true}
-            width="300px"
-            height="55px"
-            rounded="md"
-          >
-            <InputGroup
-              size={{ base: "200px", lg: "sm" }}
-              bg="transparent"
-              h="100%"
-              alignItems="center"
+            <Flex
+              justify="center"
+              align="center"
+              direction="column"
+              style={{ fontFamily: "PilatExtended-Regular" }}
             >
-              <Input
-                h="100%"
-                pl="25px"
-                border="solid 0px"
-                rounded="md"
-                _focusVisible={{ border: "solid 0px" }}
-                value={backAmount}
-                onChange={(e) => onChangeBackamount(e.target.value)}
-              />
-              <InputRightElement
-                w={{ base: "40px", lg: "60px" }}
-                h="55px"
-                pr={{ base: "15px", lg: "5px" }}
-                pointerEvents="none"
+              <HStack mt="30px"  px="15px">
+                <Box
+                  width={{ base: "50px", md: "40px" }}
+                  style={{
+                    paddingTop: "3px",
+                    paddingLeft: "3px",
+                    height: "24px",
+                    border: "3px solid #3BE489",
+                    backgroundColor: "#3BE489",
+                    borderRadius: "50%",
+                    display: "inline-block",
+                  }}
+                >
+                  <CheckIcon
+                    color="#250E3F"
+                    w={3}
+                    h={3}
+                    marginBottom={"20px"}
+                  />
+                </Box>
+                <Text
+                  fontSize={{
+                    base: "12px",
+                    sm: "16px",
+                    md: "22px",
+                    lg: "22px",
+                  }}
+                >
+                  Step 1
+                </Text>
+                <Box
+                  style={{
+                    height: "4px",
+                    width: "30%",
+                    background:
+                      "linear-gradient(90deg, #3BE489 0%, rgba(59, 228, 137, 0) 100%)",
+                  }}
+                ></Box>
+                <Box
+                  width={{ base: "50px", md: "40px" }}
+                  style={{
+                    height: "24px",
+                    border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
+                    borderRadius: "50%",
+                    display: "inline-block",
+                  }}
+                ></Box>
+                <Text
+                  fontSize={{
+                    base: "12px",
+                    sm: "16px",
+                    md: "22px",
+                    lg: "22px",
+                  }}
+                >
+                  Step 2
+                </Text>
+                <Box
+                  style={{
+                    height: "0px",
+                    width: "30%",
+                    border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
+                    background: " rgba(255, 255, 255, 0.3799999952316284)",
+                  }}
+                ></Box>
+                <Box
+                  width={{ base: "50px", md: "40px" }}
+                  style={{
+                    height: "24px",
+                    border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
+                    borderRadius: "50%",
+                    display: "inline-block",
+                  }}
+                ></Box>
+                <Text
+                  fontSize={{
+                    base: "12px",
+                    sm: "16px",
+                    md: "22px",
+                    lg: "22px",
+                  }}
+                >
+                  Final Step
+                </Text>
+              </HStack>
+              <Text
+                fontSize={{ base: "15px", md: "15px", lg: "22px" }}
+                fontWeight={"300"}
               >
-                <Text>{token}</Text>
-              </InputRightElement>
-            </InputGroup>
-          </InputTransition>
-
-          <Text mb="42px" onClick={() => setBackAmount(max.toString())}>
-            Max: {max}&nbsp;{token}
-          </Text>
-          <Flex>
-            <Text mb="20px">WFD tokens you will receive</Text>
-          </Flex>
-          <InputTransition
-            unitid="WFDamount"
-            selected={backAmount == "" ? false : true}
-            width="300px"
-            height="55px"
-            rounded="md"
-          >
-            <InputGroup
-              size={{ base: "200px", lg: "sm" }}
-              bg="transparent"
-              h="100%"
-              alignItems="center"
-            >
-              <Input
-                h="100%"
-                pl="25px"
-                border="solid 0px"
-                _focusVisible={{ border: "solid 0px" }}
-                rounded="md"
-                value={wfdAmount}
-                readOnly
-              // onChange={(e) => { }}
-              />
-              <InputRightElement
-                w={{ base: "40px", lg: "60px" }}
-                h="55px"
-                pr={{ base: "15px", lg: "5px" }}
-                pointerEvents="none"
+                Input your{" "}
+                <span style={{ color: "#00A3FF" }}>Investment Amount</span>
+              </Text>
+              <Text
+                fontSize={{ base: "12px", md: "12px", lg: "16x" }}
+                maxW={"390px"}
+                color="rgba(255, 255, 255, 0.54)"
+                fontWeight={"normal"}
+                mt={"20px"}
+                textAlign={"center"}
               >
-                <Text>WFD</Text>
-              </InputRightElement>
-            </InputGroup>
-          </InputTransition>
-        </Flex>
-        {/* -----------------Back Project----------------- */}
-        <Flex w="100%" mt="60px" justify="center" mb="170px">
-          <ImageTransition
-            unitid="Invest2invest"
-            border1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-            background1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-            border2="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-            background2="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
-            border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-            background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
-            selected={false}
-            width="200px"
-            height="50px"
-            rounded="33px"
-            onClick={() => onNext()}
-          >
-            <Box color="white">Invest</Box>
-          </ImageTransition>
-        </Flex>
-      </Box>
+                Please select the chain and tokens, enter amount and we will
+                convert the WFD amount for you
+              </Text>
+            </Flex>
+            {/* --------amount to back----------- */}
+            <OtherChainWallet
+              token={token}
+              setToken={setToken}
+              chain={chain}
+              setChain={setChain}
+            />
+
+            <Stack
+              direction={{ base: "column", md: "column", lg: "row" }}
+              mt="40px"
+              justify="center"
+              spacing={8}
+            >
+              <Stack
+                direction={{ base: "column", md: "column", lg: "column" }}
+                spacing={2}
+              >
+                <Flex>
+                  <Text>Token amount you want to invest</Text>
+                </Flex>
+                <InputTransition
+                  unitid="backamount"
+                  selected={backAmount == "" ? false : true}
+                  width="300px"
+                  height="55px"
+                  rounded="md"
+                >
+                  <InputGroup
+                    size={{ base: "200px", lg: "sm" }}
+                    bg="transparent"
+                    h="100%"
+                    alignItems="center"
+                  >
+                    <Input
+                      h="100%"
+                      border="solid 0px"
+                      rounded="md"
+                      _focusVisible={{ border: "solid 0px" }}
+                      value={backAmount}
+                      onChange={(e) => onChangeBackamount(e.target.value)}
+                    />
+                    <InputRightElement
+                      w={{ base: "40px", lg: "60px" }}
+                      h="55px"
+                      pr={{ base: "15px", lg: "5px" }}
+                      pointerEvents="none"
+                    >
+                      <Text>{token}</Text>
+                    </InputRightElement>
+                  </InputGroup>
+                </InputTransition>
+
+                <Text
+                  align="center"
+                  mb="42px"
+                  onClick={() => setBackAmount(max.toString())}
+                >
+                  Max: {max}&nbsp;{token}
+                </Text>
+              </Stack>
+
+              <Stack
+                direction={{ base: "column", md: "column", lg: "column" }}
+                spacing={2}
+              >
+                <Flex>
+                  <Text>WFD tokens you will receive</Text>
+                </Flex>
+                <InputTransition
+                  unitid="WFDamount"
+                  selected={backAmount == "" ? false : true}
+                  width="300px"
+                  height="55px"
+                  rounded="md"
+                >
+                  <InputGroup
+                    size={{ base: "200px", lg: "sm" }}
+                    bg="transparent"
+                    h="100%"
+                    alignItems="center"
+                  >
+                    <Input
+                      h="100%"
+                      pl="25px"
+                      border="solid 0px"
+                      _focusVisible={{ border: "solid 0px" }}
+                      rounded="md"
+                      value={wfdAmount}
+                      readOnly
+                      // onChange={(e) => { }}
+                    />
+                    <InputRightElement
+                      w={{ base: "40px", lg: "60px" }}
+                      h="55px"
+                      pr={{ base: "15px", lg: "5px" }}
+                      pointerEvents="none"
+                    >
+                      <Text>WFD</Text>
+                    </InputRightElement>
+                  </InputGroup>
+                </InputTransition>
+              </Stack>
+            </Stack>
+            <Flex w="100%" mt="60px" justify="center" mb="170px">
+              <ImageTransition
+                unitid="Invest2invest"
+                border1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
+                background1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
+                border2="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
+                background2="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
+                border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
+                background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
+                selected={false}
+                width="200px"
+                height="50px"
+                rounded="33px"
+                onClick={() => onNext()}
+              >
+                <Box color="white">Invest</Box>
+              </ImageTransition>
+            </Flex>
+          </Box>
+        </Box>
+      </Flex>
+      <Footer />
     </PageLayout>
   );
 }

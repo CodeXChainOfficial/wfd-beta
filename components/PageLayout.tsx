@@ -7,37 +7,67 @@ interface Props {
   title: string;
   subTitle1: string;
   subTitle2: string;
+  subTitle3: string;
 }
 const PageLayout: FunctionComponent<Props> = (props) => {
   return (
     <Flex
       color={"white"}
       width={"100%"}
-      fontSize={{ base: "14px", md: "15px", lg: "16px" }}
-      justify={"center"}
-      fontWeight={"500"}
-      alignItems={"center"}
-      flexDirection={"column"}
-      fontFamily={"Sk-Modernist-Regular"}
-      background={"linear-gradient(90deg, #1F0021 0%, #120054 104.34%)"}
+      pt={"120px"}
+          pb={"25px"}
+          direction="column"
+          style={{ fontFamily: "PilatExtended-Regular" }}
     >
-      <Flex
+      <Flex 
+          px={{ base: "40px", md: "80px", lg: "120px" }}>
+            <Text
+              fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
+              fontWeight="normal"
+              color={"rgba(255, 255, 255, 0.54)"}
+            >
+              Home &gt;&nbsp;
+            </Text>
+            <Text
+              fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
+              fontWeight="normal"
+              color={"rgba(255, 255, 255, 0.54)"}
+            >
+              {props.subTitle1} &gt;&nbsp;
+            </Text>
+            <Text
+              fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
+              color={"rgba(255, 255, 255, 0.84)"}
+            >
+              {props.title}
+            </Text>
+          </Flex>
+          <Flex 
+          px={{ base: "40px", md: "80px", lg: "120px" }}>
+            <Text
+              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "28px" }}
+              color="#4790f5"
+              fontWeight={"900"}
+            >
+              {props.subTitle2}
+            </Text>
+            <Text
+              as={"span"}
+              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "28px" }}
+              fontWeight={"900"}
+            >
+              {props.subTitle3}
+            </Text>
+          </Flex>
+      {/* <Flex
         mb={"30px"}
         width={"100%"}
-        height={"250px"}
-        justify={"center"}
-        alignItems={"center"}
-        flexDirection={"column"}
-        backgroundSize={"cover"}
-        backgroundRepeat={"no-repeat"}
-        boxShadow={"0px 5px 15px #000000A6"}
-        backgroundImage={"url('/media/createproject_banner.svg')"}
       >
         <Flex pt="95px" justify="center">
           <Text
-            fontSize="16px"
-            fontWeight="normal"
-            color={"rgba(255, 255, 255, 0.54)"}
+              fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
+              fontWeight="normal"
+              color={"rgba(255, 255, 255, 0.54)"}
           >
             Home &gt;&nbsp;
           </Text>
@@ -62,11 +92,12 @@ const PageLayout: FunctionComponent<Props> = (props) => {
             &nbsp;{props.subTitle2}
           </Text>
         </Flex>
-      </Flex>
+      </Flex> */}
 
       <Flex direction='column' w="100%" justify="center" align="center" color='white'>
         {props.children}
       </Flex>
+      
     </Flex>
   );
 };
