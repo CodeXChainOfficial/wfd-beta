@@ -287,114 +287,137 @@ export default function CreateProject() {
 
   return (
     <PageLayout
-      title="Create Your Project"
-      subTitle1="Create a"
+      title="Create Project"
+      subTitle1="Create"
       subTitle2="New Project"
+      subTitle3={""}
     >
-      <Flex width="100%" justify="center" mb={"150px"} zIndex={"1"} mt="-30px">
+      <Flex
+        width="100%"
+        justify="center"
+        py={"4em"}
+        backgroundImage="url('/media/Home/2.png')"
+      >
         <Box
-          w={{ base: "sm", sm: "md", md: "2xl", lg: "2xl", xl: "3xl" }}
-          background="rgba(200, 255, 255, 0.05)"
-          border="1.5px solid rgba(255, 255, 255, 0.15)"
-          borderTopColor="transparent"
-          fontFamily="Sk-Modernist-Regular"
-          paddingLeft="50px"
-          paddingRight="50px"
-          zIndex="1"
+          w={{ base: "300px", md: "600px", lg: "800px" }}
         >
-          <CustomInput
-            typeText="Project Title"
-            type={title}
-            setType={setTitle}
-            w="100%"
-            mt="30px"
-          />
-          <CustomTextarea
-            typeText="Project Description"
-            type={description}
-            setType={setDescription}
-          />
-          <TeamMembers
-            description={teammemberDescription}
-            setDescription={setTeammemberDescription}
-            name={teammemberName}
-            setName={setTeammemberName}
-            role={teammemberRole}
-            setRole={setTeammemberRole}
-            linkedin={teammemberLinkedin}
-            setLinkedin={setTeammemberLinkedin}
-          />
-          <Stack
-            mt="30px"
-            direction={{ base: "column", md: "column", lg: "row" }}
-            spacing="30px"
+          <Flex
+            width="100%"
+            justify="center"
+            mb={"150px"}
+            zIndex={"1"}
+            
           >
-            <CustomCoinInput
-              typeText="Amount Required"
-              type={collectedAmount}
-              setType={setCollectedAmount}
-              w={{ base: "100%", md: "50%", lg: "50%" }}
-            />
-            <CustomSelect
-              typeText="Blockchain"
-              type={ecosystem}
-              setType={setEcosystem}
-              options={[
-                "Juno",
-                "BSC",
-                "Tron",
-                "Near",
-                "Algorand",
-                "Solana",
-                "Avalanche",
-              ]}
-              w={{ base: "100%", md: "50%", lg: "50%" }}
-            />
-          </Stack>
-          <CustomEmailInput
-            typeText="Email"
-            type={email}
-            setType={setEmail}
-            w="100%"
-          />
-          <Stack
-            mt="30px"
-            direction={{ base: "column", md: "row", lg: "row" }}
-            spacing="30px"
-          >
-            <CustomSimpleNumberInput
-              typeText="% for WeFund Service"
-              type={serviceWefund}
-              setType={setServiceWefund}
-              w={{ base: "100%", md: "50%", lg: "50%" }}
-            />
-            <CustomSimpleNumberInput
-              typeText="% for Charity"
-              type={serviceCharity}
-              setType={setServiceCharity}
-              w={{ base: "100%", md: "50%", lg: "50%" }}
-            />
-          </Stack>
-          <CustomUpload
-            typeText="Whitepaper"
-            type={whitepaper}
-            setType={setWhitepaper}
-            w="100%"
-          />
-          <Flex w="100%" mt="30px" justify="center" mb="30px">
-            <ButtonTransition
-              unitid="submit"
-              selected={false}
-              width="400px"
-              height="50px"
-              rounded="33px"
-              onClick={() => createProject()}
+            <Box
+              w={{ base: "sm", sm: "sm", md: "2xl", lg: "2xl", xl: "3xl" }}
+              bgGradient={
+                "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
+              }
+              backdropBlur={"54px"}
+              border="1.5px solid rgba(255, 255, 255, 0.15)"
+              borderTopColor="transparent"
+              fontFamily="Sk-Modernist-Regular"
+              paddingLeft="50px"
+              paddingRight="50px"
+              zIndex="1"
+              rounded={"3xl"}
             >
-              <Box color="white">Submit</Box>
-            </ButtonTransition>
+              <CustomInput
+                typeText="Project Title"
+                type={title}
+                setType={setTitle}
+                w="100%"
+                mt="30px"
+              />
+              <CustomTextarea
+                typeText="Project Description"
+                type={description}
+                setType={setDescription}
+              />
+              <TeamMembers
+                description={teammemberDescription}
+                setDescription={setTeammemberDescription}
+                name={teammemberName}
+                setName={setTeammemberName}
+                role={teammemberRole}
+                setRole={setTeammemberRole}
+                linkedin={teammemberLinkedin}
+                setLinkedin={setTeammemberLinkedin}
+              />
+              <Stack
+                mt="30px"
+                direction={{ base: "column", md: "column", lg: "row" }}
+                spacing="30px"
+              >
+                <CustomCoinInput
+                  typeText="Amount Required"
+                  type={collectedAmount}
+                  setType={setCollectedAmount}
+                  w={{ base: "100%", md: "50%", lg: "50%" }}
+                />
+                <CustomSelect
+                  typeText="Blockchain"
+                  type={ecosystem}
+                  setType={setEcosystem}
+                  options={[
+                    "Juno",
+                    "BSC",
+                    "Tron",
+                    "Near",
+                    "Algorand",
+                    "Solana",
+                    "Avalanche",
+                  ]}
+                  w={{ base: "100%", md: "50%", lg: "50%" }}
+                />
+              </Stack>
+              <CustomEmailInput
+                typeText="Email"
+                type={email}
+                setType={setEmail}
+                w="100%"
+              />
+              <Stack
+                mt="30px"
+                direction={{ base: "column", md: "row", lg: "row" }}
+                spacing="30px"
+              >
+                <CustomSimpleNumberInput
+                  typeText="% for WeFund Service"
+                  type={serviceWefund}
+                  setType={setServiceWefund}
+                  w={{ base: "100%", md: "50%", lg: "50%" }}
+                />
+                <CustomSimpleNumberInput
+                  typeText="% for Charity"
+                  type={serviceCharity}
+                  setType={setServiceCharity}
+                  w={{ base: "100%", md: "50%", lg: "50%" }}
+                />
+              </Stack>
+              <CustomUpload
+                typeText="Whitepaper"
+                type={whitepaper}
+                setType={setWhitepaper}
+                w="100%"
+              />
+              <Flex w="100%" mt="30px" justify="center" mb="30px">
+                <ButtonTransition
+                  unitid="submit"
+                  selected={false}
+                  width="400px"
+                  height="50px"
+                  rounded="33px"
+                  onClick={() => createProject()}
+                >
+                  <Box color="white">Submit</Box>
+                </ButtonTransition>
+              </Flex>
+            </Box>
           </Flex>
         </Box>
       </Flex>
+
       <Footer />
     </PageLayout>
   );
