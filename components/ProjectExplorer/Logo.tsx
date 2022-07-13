@@ -12,21 +12,17 @@ const Logo: FunctionComponent<Props> = ({ data }) => {
       m="6px"
       p="10px"
       width="40%"
-      bg="#FFFFFF"
+      // bg="#FFFFFF"
       height="270px"
       align="center"
       justify="center"
       maxWidth={"270px"}
       borderRadius={"2xl"}
-      boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
+      // boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
     >
-      <object data="/media/logo.png" type="image/png" style={{ width: "80%" }}>
-        <Img
-          w={"100%"}
-          objectFit={"contain"}
-          src={`${REQUEST_ENDPOINT}/download?filename=${data.project_logo}`}
-        />
-      </object>
+      {/* <object data="/media/logo.png" type="image/png" style={{ width: "80%" }}> */}
+        <Img w={"100%"} objectFit={"contain"} height="270px" src={data.project_logo} />
+      {/* </object> */}
     </Flex>
   );
 };

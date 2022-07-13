@@ -16,73 +16,7 @@ import {
   chakra,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-
-const projects = [
-  {
-    image: "/media/partners/lynx-dark.png",
-    name: "Lynxverse",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "",
-  },
-  {
-    image: "/media/partners/Kosu.png",
-    name: "Kosu",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "",
-  },
-  {
-    image: "/media/partners/Greenprotocol.png",
-    name: "Green Protocol",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "",
-  },
-  {
-    image: "/media/partners/Africred.jpeg",
-    name: "Africred",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "",
-  },
-  {
-    image: "/media/Launchpad/secret-partner.png",
-    name: "Top Secret",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "",
-  },
-  {
-    image: "/media/Launchpad/secret-partner.png",
-    name: "Top Secret",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "",
-  },
-  {
-    image: "/media/Launchpad/secret-partner.png",
-    name: "Top Secret",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "",
-  },
-  {
-    image: "/media/Launchpad/secret-partner.png",
-    name: "Top Secret",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "",
-  },
-];
+import { useRouter } from "next/router";
 
 function ProjectItem(props: {
   name?: string;
@@ -93,6 +27,7 @@ function ProjectItem(props: {
   link?: string;
   selected?: boolean;
 }) {
+  const router = useRouter();
   const { name, status, image, registration_start, platform_raise, link } =
     props;
   const { selected = false } = props;
@@ -107,6 +42,8 @@ function ProjectItem(props: {
             : "none"
         }
         borderRadius={"20px"}
+        cursor="pointer"
+        onClick={() => router.push(link)}
       >
         <Stack textAlign={"center"} height={"400px"}>
           <Center
@@ -235,3 +172,70 @@ export default function UpcomingProject() {
     </Box>
   );
 }
+
+const projects = [
+  {
+    image: "/media/partners/lynx-dark.png",
+    name: "Lynxverse",
+    status: "Coming Soon",
+    registration_start: "TBA",
+    platform_raise: "TBA",
+    link: "/detail?project_id=1",
+  },
+  {
+    image: "/media/partners/Kosu.png",
+    name: "Kosu",
+    status: "Coming Soon",
+    registration_start: "TBA",
+    platform_raise: "TBA",
+    link: "/detail?project_id=2",
+  },
+  {
+    image: "/media/partners/Greenprotocol.png",
+    name: "Green Protocol",
+    status: "Coming Soon",
+    registration_start: "TBA",
+    platform_raise: "TBA",
+    link: "/detail?project_id=3",
+  },
+  {
+    image: "/media/partners/Africred.jpeg",
+    name: "Africred",
+    status: "Coming Soon",
+    registration_start: "TBA",
+    platform_raise: "TBA",
+    link: "/detail?project_id=4",
+  },
+  {
+    image: "/media/Launchpad/secret-partner.png",
+    name: "Top Secret",
+    status: "Coming Soon",
+    registration_start: "TBA",
+    platform_raise: "TBA",
+    link: "/detail?project_id=5",
+  },
+  {
+    image: "/media/Launchpad/secret-partner.png",
+    name: "Top Secret",
+    status: "Coming Soon",
+    registration_start: "TBA",
+    platform_raise: "TBA",
+    link: "/detail?project_id=6",
+  },
+  {
+    image: "/media/Launchpad/secret-partner.png",
+    name: "Top Secret",
+    status: "Coming Soon",
+    registration_start: "TBA",
+    platform_raise: "TBA",
+    link: "/detail?project_id=7",
+  },
+  {
+    image: "/media/Launchpad/secret-partner.png",
+    name: "Top Secret",
+    status: "Coming Soon",
+    registration_start: "TBA",
+    platform_raise: "TBA",
+    link: "/detail?project_id=8",
+  },
+];

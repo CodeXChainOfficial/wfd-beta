@@ -9,9 +9,9 @@ export const WFD_TOKEN =
   "juno17tk7s9mg2a6uupfljrhf492e7hzhkd89cvzerglyj8xguvzukksq9d75ts";
 
 export const WEFUND_CONTRACT =
-  "juno1gkes5yjxqcscww8wps7de4ccn855gzdmusrmwd682l9yam52sphsy5e93s";
+  "juno17w6elnyngj0w7j9yqeqqctvnsmadg3zcxgguuzpjxyx8arzqa50qveg2x5";
 export const VESTING_CONTRACT =
-  "juno16l28fkhp46lxumj0lsx4gvlw7sx8jrp3pqh6q7xvfvg3pf3nm4esdtctkj";
+  "juno18x8vkjxhae9msjf9eg52yt4wzty0p4vvyv90wuhpx2lmcf2vqetqjzq0qh";
 export const STAKING_CONTRACT =
   "juno1a3t5zwqa87dg6z487gfjw9ag84qy5qtq0adgyputkv73t4q9x66sf8he7s";
 
