@@ -1,8 +1,16 @@
 import React, { FunctionComponent, useEffect } from "react";
 import { Box, Flex, Input, Text, Select } from "@chakra-ui/react";
-
+import { BigNumber, ethers } from "ethers";
 import { TOKEN_LIST } from "../../config/constants";
 import { InputTransition } from "../ImageTransition";
+
+import { useStore, ActionKind } from "../../contexts/store";
+import { useKeplrWallet } from "../../contexts/keplrWallet";
+import { useMetamaskWallet } from "../../contexts/metamask";
+import { useTrustWallet } from "../../contexts/trustWallet";
+import { useTronLink } from "../../contexts/tronLink";
+import { useNearWallet } from "../../contexts/nearWallet";
+import { useElrondWeb } from "../../contexts/elrond";
 
 interface Props {
   token: string;
@@ -20,6 +28,102 @@ const OtherChainWallet: FunctionComponent<Props> = ({
   useEffect(() => {
     setToken(list[0].name);
   }, [chain]);
+
+  const { state, dispatch } = useStore();
+  const keplr = useKeplrWallet();
+  const metamask = useMetamaskWallet();
+  const trust = useTrustWallet();
+  const tronLink = useTronLink();
+  const near = useNearWallet();
+  const elrond = useElrondWeb();
+
+  async function connectTo(to: string) {
+    let wallet: any;
+    if (to == "metamask") wallet = metamask;
+    else if (to == "keplr") wallet = keplr;
+    else if (to == "trust") wallet = trust;
+    else if (to == "tron") wallet = tronLink;
+    else if (to == "near") wallet = near;
+    else if (to == "elrond") wallet = elrond;
+
+    await wallet.connect();
+    dispatch({ type: ActionKind.setWalletType, payload: to });
+  }
+  const chains = {
+    bsc: {
+      chainId: "0x38",
+      chainName: "Binance Smart Chain",
+      rpc: "https://bsc-dataseed4.binance.org",
+    },
+    polygon: {
+      chainId: "0x89",
+      chainName: "Polygon",
+      rpc: "https://matic-mainnet.chainstacklabs.com",
+    },
+    oneledger: {
+      chainId: "0x1294F7C2",
+      chainName: "OneLedger",
+      rpc: "https://mainnet-rpc.oneledger.network",
+    },
+    fantom: {
+      chainId: "0xFA",
+      chainName: "Fantom",
+      rpc: "https://rpc2.fantom.network",
+    },
+  };
+  const onChangeChain = async (e: any) => {
+    setChain(e.target.value);
+    const chain: string = e.target.value.toLowerCase();
+
+    switch (chain) {
+      case "juno":
+        connectTo("keplr");
+        break;
+      case "bsc":
+      case "polygon":
+      case "oneledger":
+      case "fantom":
+        connectTo("metamask");
+
+        const ethereum = window.ethereum;
+        try {
+          await ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: chains[chain].chainId }],
+          });
+        } catch (switchError: any) {
+          // This error code indicates that the chain has not been added to MetaMask.
+          if (switchError.code === 4902) {
+            try {
+              await ethereum.request({
+                method: "wallet_addEthereumChain",
+                params: [
+                  {
+                    chainId: chains,
+                    chainName: chains[chain].chainName,
+                    rpcUrls: [chains[chain].rpc] /* ... */,
+                  },
+                ],
+              });
+            } catch (addError) {
+              // handle "add" error
+            }
+          }
+          // handle other "switch" errors
+        }
+        break;
+      case "tron":
+        connectTo("tron");
+        break;
+      case "near":
+        connectTo("near");
+        break;
+      case "elrond":
+        connectTo("elrond");
+        break;
+    }
+  };
+
   return (
     <Flex
       direction={{ base: "column", md: "column", lg: "row" }}
@@ -47,15 +151,16 @@ const OtherChainWallet: FunctionComponent<Props> = ({
             w="100%"
             value={chain}
             rounded="md"
-            onChange={(e) => {
-              setChain(e.target.value);
-            }}
+            onChange={onChangeChain}
           >
             <option style={{ backgroundColor: "#1B0645" }}>Juno</option>
             <option style={{ backgroundColor: "#1B0645" }}>BSC</option>
             <option style={{ backgroundColor: "#1B0645" }}>Tron</option>
             <option style={{ backgroundColor: "#1B0645" }}>Near</option>
             <option style={{ backgroundColor: "#1B0645" }}>Elrond</option>
+            <option style={{ backgroundColor: "#1B0645" }}>Polygon</option>
+            <option style={{ backgroundColor: "#1B0645" }}>OneLedger</option>
+            <option style={{ backgroundColor: "#1B0645" }}>Fantom</option>
           </Select>
         </InputTransition>
       </Box>
