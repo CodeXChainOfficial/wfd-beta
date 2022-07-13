@@ -143,6 +143,59 @@ export const TOKEN_LIST = [
         ? "USDC-cbf0b9"
         : "USDC-cbf0b9",
   },
+  {
+    chain: "Polygon",
+    name: "MATIC",
+    decimals: 18,
+    native: true,
+  },
+  {
+    chain: "Polygon",
+    name: "USDT",
+    decimals: 6,
+    native: false,
+    address: "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
+  },
+  {
+    chain: "Polygon",
+    name: "USDC",
+    decimals: 6,
+    native: false,
+    address: "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+  },
+  {
+    chain: "OneLedger",
+    name: "OLT",
+    decimals: 18,
+    natie: true,
+  },
+  {
+    chain: "OneLedger",
+    name: "USDT",
+    decimals: 6,
+    native: false,
+    address: "0xED344b7C2deD6143e32B03ea905e59dC2010Ce74",
+  },
+  {
+    chain: "Fantom",
+    name: "FTM",
+    decimals: 18,
+    native: false,
+  },
+  {
+    chain: "Fantom",
+    name: "USDC",
+    decimals: 6,
+    native: false,
+    address: "0x04068DA6C83AFCFA0e13ba15A6696662335D5B75",
+  },
+  {
+    chain: "Fantom",
+    name: "USDT",
+    decimals: 6,
+    native: false,
+    address: "0x1B27A9dE6a775F98aaA5B90B62a4e2A0B84DbDd9",
+  },
 ];
 export const ERC20_ABI = [
   "function name() view returns (string)",
