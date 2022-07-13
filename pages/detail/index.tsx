@@ -1,6 +1,6 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import {ChakraProvider, Container, HStack} from "@chakra-ui/react";
 import theme from "../../components/theme";
-import { Box, Flex, VStack, useDisclosure } from "@chakra-ui/react";
+import {Box, Flex, Spacer, VStack, useDisclosure} from "@chakra-ui/react";
 import React, {
   useEffect,
   useState,
@@ -8,30 +8,33 @@ import React, {
   useRef,
   useCallback,
 } from "react";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 
-import { useRouter } from "next/router";
-import { useProjectData, useStore } from "../../contexts/store";
+import {useRouter} from "next/router";
+import {useProjectData, useStore} from "../../contexts/store";
 import Footer from "../../components/Footer";
 import PageLayout from "../../components/PageLayout";
 import ProjectTitle from "../../components/ProjectDetail/ProjectTitle";
 import ProjectStatusButtons from "../../components/ProjectDetail/ProjectStatusButtons";
 import ProjectMainButtons from "../../components/ProjectDetail/ProjectMainButtons";
 import ProjectInformations from "../../components/ProjectDetail/ProjectInformations";
-import WeFundDescription from "../../components/ProjectDetail/WeFundDescription";
-import ProjectTeamDescription from "../../components/ProjectDetail/ProjectTeamDescription";
+import ProjectTeamMember from "../../components/ProjectDetail/ProjectTeamMember";
 import ProjectMileStones from "../../components/ProjectDetail/ProjectMilestones";
 import VoteModal from "../../components/ProjectDetail/VoteModal";
 
-import { SUCCESS_OPTION, ERROR_OPTION } from "../../config/constants";
-import { checkNetwork, GetOneProject, ParseParam_ProjectId } from "../../utils/utility";
+import {SUCCESS_OPTION, ERROR_OPTION} from "../../config/constants";
+import {
+  checkNetwork,
+  GetOneProject,
+  ParseParam_ProjectId,
+} from "../../utils/utility";
 
 export default function ProjectDetail() {
-  const { state, dispatch } = useStore();
+  const {state, dispatch} = useStore();
   const [oneprojectData, setOneprojectData] = useState<any>({});
   const [totalBackedMoney, setTotalBackedMoney] = useState(0);
   const [totalBackedPercent, setTotalBackedPercent] = useState(0);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {isOpen, onOpen, onClose} = useDisclosure();
   const projectData = useProjectData();
 
   const router = useRouter();
@@ -40,8 +43,9 @@ export default function ProjectDetail() {
   const project_id = ParseParam_ProjectId();
 
   function onNext() {
-    router.push("/invest/step1?project_id=" + oneprojectData.project_id);
+    router.push("/backproject?project_id=" + oneprojectData.project_id);
   }
+
   //------------fectch project data------------------------------------
   useEffect(() => {
     async function fetch() {
@@ -64,7 +68,8 @@ export default function ProjectDetail() {
               //releasing status
               oneprojectData.milestone_states[i].milestone_statusmessage =
                 "Voting";
-              oneprojectData.milestone_states[i].milestone_votingavailable = true;
+              oneprojectData.milestone_states[i].milestone_votingavailable =
+                true;
             } else
               oneprojectData.milestone_states[i].milestone_statusmessage =
                 "Not yet";
@@ -86,6 +91,7 @@ export default function ProjectDetail() {
         console.log(e);
       }
     }
+
     fetch();
   }, []);
 
@@ -105,6 +111,7 @@ export default function ProjectDetail() {
   function MilestoneVote(project_id: number, voted: boolean) {
     if (checkNetwork(state) == false) return false;
   }
+
   //--Pop Ups for Projects
 
   return (
@@ -116,10 +123,10 @@ export default function ProjectDetail() {
       mt="100px"
       mb="100px"
     >
-      <VStack w={{ base: "90%", md: "80%", lg: "80%" }}>
+      <VStack w={{base: "90%", md: "80%", lg: "80%"}}>
         <Flex
           alignContent={"center"}
-          direction={{ base: "column", md: "column", lg: "row" }}
+          direction={{base: "column", md: "column", lg: "row"}}
         >
           <VStack>
             <ProjectTitle data={oneprojectData} />
@@ -129,17 +136,26 @@ export default function ProjectDetail() {
               onNext={onNext}
               MilestoneVote={MilestoneVote}
             />
-            <ProjectMainButtons data={oneprojectData} onNext={onNext} />
+            <Flex alignContent="center">
+              <ProjectMainButtons data={oneprojectData} onNext={onNext} />
+            </Flex>
           </VStack>
-          <ProjectInformations
-            data={oneprojectData}
-            totalBackedMoney={totalBackedMoney}
-            totalBackedPercent={totalBackedPercent}
-          />
         </Flex>
-        <WeFundDescription data={oneprojectData} />
-        <ProjectTeamDescription data={oneprojectData} />
+        <Flex w="full" pt={16} direction={{base: "column", md: "column", lg: "row"}}>
+          <Flex w="full" flex="1">
+            <ProjectTeamMember data={oneprojectData} />
+          </Flex>
+          <Spacer />
+          <Flex w="full" flex="1">
+            <ProjectInformations
+              data={oneprojectData}
+              totalBackedMoney={totalBackedMoney}
+              totalBackedPercent={totalBackedPercent}
+            />
+          </Flex>
+        </Flex>
         <ProjectMileStones data={oneprojectData} onOpen={onOpen} />
+        <Container pb="50px" />
       </VStack>
       <Footer />
 
