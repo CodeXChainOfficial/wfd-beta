@@ -180,7 +180,7 @@ const projects = [
     status: "Coming Soon",
     registration_start: "TBA",
     platform_raise: "TBA",
-    link: "/detail?project_id=1",
+    link: "/detail?project_id=2",
   },
   {
     image: "/media/partners/Kosu.png",
@@ -188,7 +188,7 @@ const projects = [
     status: "Coming Soon",
     registration_start: "TBA",
     platform_raise: "TBA",
-    link: "/detail?project_id=2",
+    link: "/detail?project_id=3",
   },
   {
     image: "/media/partners/Greenprotocol.png",
@@ -196,19 +196,11 @@ const projects = [
     status: "Coming Soon",
     registration_start: "TBA",
     platform_raise: "TBA",
-    link: "/detail?project_id=3",
+    link: "/detail?project_id=4",
   },
   {
     image: "/media/partners/Africred.jpeg",
     name: "Africred",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "/detail?project_id=4",
-  },
-  {
-    image: "/media/Launchpad/secret-partner.png",
-    name: "Top Secret",
     status: "Coming Soon",
     registration_start: "TBA",
     platform_raise: "TBA",
@@ -237,5 +229,13 @@ const projects = [
     registration_start: "TBA",
     platform_raise: "TBA",
     link: "/detail?project_id=8",
+  },
+  {
+    image: "/media/Launchpad/secret-partner.png",
+    name: "Top Secret",
+    status: "Coming Soon",
+    registration_start: "TBA",
+    platform_raise: "TBA",
+    link: "/detail?project_id=9",
   },
 ];

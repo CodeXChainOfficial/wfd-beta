@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { REQUEST_ENDPOINT } from "../config/constants";
 
+import { useKeplrWallet } from "../contexts/keplrWallet";
 import {
   ButtonBackTransition,
   ButtonTransition,
@@ -12,18 +13,17 @@ import { useCommunityData, useProjectData, useStore } from "../contexts/store";
 import Footer from "../components/Footer";
 import {
   checkNetwork,
-  Sleep,
   isNull,
-  getVal,
-  getMultiplyInteger,
-  getInteger,
-  getSeconds,
   getMonth,
   ParseParam_ProjectId,
   GetOneProject,
-  getTokenInfo,
 } from "../utils/utility";
-import { SUCCESS_OPTION, ERROR_OPTION } from "../config/constants";
+import { fetchData } from "../utils/fetch";
+import {
+  SUCCESS_OPTION,
+  ERROR_OPTION,
+  WEFUND_CONTRACT,
+} from "../config/constants";
 import PageLayout from "../components/PageLayout";
 
 import Payment from "../components/CreateProject/Payment";
@@ -45,6 +45,7 @@ import Stages from "../components/CreateProject/Stage/Stages";
 
 export default function ModifyProject() {
   const { state, dispatch } = useStore();
+  const keplrWallet = useKeplrWallet();
   const projectData = useProjectData();
   const communityData = useCommunityData();
 
@@ -187,102 +188,26 @@ export default function ModifyProject() {
   }
 
   //---------------create project---------------------------------
-  const checkInvalidation = async () => {
+  const checkInvalidation = () => {
     if (checkNetwork(state) == false) return false;
-
-    if (communityData == []) {
-      toast("There are no community members!", ERROR_OPTION);
-      return false;
-    }
 
     if (title.length == 0) {
       toast("Please fill in project name!", ERROR_OPTION);
       return false;
     }
 
-    if (parseInt(collectedAmount) < 6) {
-      toast("Collected money must be at least 6 UST", ERROR_OPTION);
-      return false;
-    }
-
-    let total_release = 0;
-    for (let i = 0; i < milestoneTitle.length; i++) {
-      if (milestoneTitle[i] == "") {
-        toast("Please fill in milestone title!", ERROR_OPTION);
-        return false;
-      }
-      if (milestoneStartdate[i] == "") {
-        toast("Please fill in milestone Start Date!", ERROR_OPTION);
-        return false;
-      }
-      if (milestoneEnddate[i] == "") {
-        toast("Please fill in milestone End Date!", ERROR_OPTION);
-        return false;
-      }
-      if (parseInt(milestoneAmount[i]) < 6) {
-        toast("Collected money must be at least 6 UST", ERROR_OPTION);
-        return false;
-      }
-      total_release += parseInt(milestoneAmount[i]);
-    }
-    if (total_release != parseInt(collectedAmount)) {
-      toast("Milestone total amount must equal collected amount", ERROR_OPTION);
-      return false;
-    }
-    if (getInteger(communityAlloc) == 0) {
-      toast("Communit allocation can't be 0", ERROR_OPTION);
-      return;
-    }
-    let distribution_token_amount = 0;
-    for (let i = 0; i < stageTitle.length; i++) {
-      if (getMultiplyInteger(stagePrice[i]) == 0) {
-        toast("Stage Price can't be zero", ERROR_OPTION);
-        return false;
-      }
-      if (getInteger(stageAmount[i]) == 0) {
-        toast("Stage token amount can't be zero", ERROR_OPTION);
-        return false;
-      }
-      if (getInteger(stageAmount[i]) == 0) {
-        toast("Stage token amount can't be zero", ERROR_OPTION);
-        return false;
-      }
-      if (
-        getInteger(stageVestingSoon[i]) == 0 &&
-        getInteger(stageVestingAfter[i]) == 0 &&
-        getInteger(stageVestingPeriod[i]) == 0
-      ) {
-        toast("Stage vesting paramebers are invalid", ERROR_OPTION);
-        return false;
-      }
-      distribution_token_amount += getInteger(stageAmount[i]);
-    }
-    if (tokenAddress != "") {
-      const res = await getTokenInfo(state, tokenAddress);
-      if (res == null) return false;
-      if (distribution_token_amount > res.balance) {
-        toast(
-          `${distribution_token_amount} ${res.symbol} for vesting is larger than ${res.balance}`
-        );
-        return false;
-      }
-    }
     return true;
   };
 
   const createDocxTemplate = async () => {
     const formData = new FormData();
     formData.append("tokenName", tokenName);
-    formData.append("company", company);
     formData.append("title", title);
-    formData.append("address", address);
     formData.append("description", description);
     formData.append("ecosystem", ecosystem);
     formData.append("priceSeed", stagePrice[0]);
     formData.append("pricePresale", stagePrice[1]);
     formData.append("priceIDO", stagePrice[2]);
-    formData.append("cofounderName", cofounderName);
-    formData.append("country", country);
     formData.append("email", email);
     formData.append("file", signature);
 
@@ -363,9 +288,7 @@ export default function ModifyProject() {
   };
 
   async function createProject() {
-    if (checkNetwork(state) == false) return false;
-
-    if ((await checkInvalidation()) == false) return false;
+    if (!checkInvalidation()) return false;
 
     toast("Please wait", SUCCESS_OPTION);
 
@@ -378,44 +301,38 @@ export default function ModifyProject() {
     const project_teammembers = [];
     for (let i = 0; i < teammemberDescription.length; i++) {
       const teammember = {
-        teammember_description: getVal(teammemberDescription[i]),
-        teammember_linkedin: getVal(teammemberLinkedin[i]),
-        teammember_role: getVal(teammemberRole[i]),
-        teammember_name: getVal(teammemberName[i]),
+        teammember_description: "",
+        teammember_linkedin: "",
+        teammember_role: "",
+        teammember_name: "",
       };
       project_teammembers.push(teammember);
     }
 
     const vesting = [];
-    let distribution_token_amount = 0;
-    for (let i = 0; i < stageTitle.length; i++) {
-      const stage = {
-        stage_title: stageTitle[i],
-        stage_price: getMultiplyInteger(stagePrice[i]),
-        stage_amount: getInteger(stageAmount[i]),
-        stage_soon: getInteger(stageVestingSoon[i]),
-        stage_after: getSeconds(stageVestingAfter[i]),
-        stage_period: getSeconds(stageVestingPeriod[i]),
-      };
-      vesting.push(stage);
-      distribution_token_amount += getInteger(stageAmount[i]);
-    }
+    const stage = {
+      stage_title: stageTitle[0],
+      stage_price: "6",
+      stage_amount: "10000",
+      stage_soon: "20",
+      stage_after: "5",
+      stage_period: "6",
+    };
+    vesting.push(stage);
 
     const project_milestones = [];
-    for (let i = 0; i < milestoneTitle.length; i++) {
-      const milestone = {
-        milestone_step: `${i}`,
-        milestone_name: milestoneTitle[i],
-        milestone_description: getVal(milestoneDescription[i]),
-        milestone_startdate: getVal(milestoneStartdate[i]),
-        milestone_enddate: getVal(milestoneEnddate[i]),
-        milestone_amount: getVal(milestoneAmount[i]),
-        milestone_type: "",
-        milestone_status: "0",
-        milestone_votes: [],
-      };
-      project_milestones.push(milestone);
-    }
+    const milestone = {
+      milestone_step: "0",
+      milestone_name: "",
+      milestone_description: "",
+      milestone_startdate: "",
+      milestone_enddate: "",
+      milestone_amount: collectedAmount.toString(),
+      milestone_type: "",
+      milestone_status: "0",
+      milestone_votes: [],
+    };
+    project_milestones.push(milestone);
 
     let _createDate = createDate;
 
@@ -431,9 +348,12 @@ export default function ModifyProject() {
 
     const _projectID = project_id == null ? "0" : project_id.toString();
 
+    const client = keplrWallet.getClient();
+    const address = keplrWallet.account;
+
     const AddProjectMsg = {
       add_project: {
-        // creator_wallet: state.address,
+        creator_wallet: address,
         project_id: _projectID,
         project_company: company,
         project_title: title,
@@ -458,6 +378,24 @@ export default function ModifyProject() {
         professional_link: professionallink,
       },
     };
+
+    if (state.walletType != "keplr") {
+      toast("Connect with Keplr", ERROR_OPTION);
+      return;
+    }
+    try {
+      const res = await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        AddProjectMsg,
+        "auto"
+      );
+      console.log(res);
+      fetchData(state, dispatch, true);
+      router.push("/explorer");
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (
@@ -495,7 +433,7 @@ export default function ModifyProject() {
             typeText="Project Description"
             type={description}
             setType={setDescription}
-            // mt="30px"
+          // mt="30px"
           />
           <TeamMembers
             description={teammemberDescription}
