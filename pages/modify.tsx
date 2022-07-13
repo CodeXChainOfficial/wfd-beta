@@ -96,18 +96,17 @@ export default function ModifyProject() {
   const [milestoneEnddate, setMilestoneEnddate] = useState([""]);
 
   useEffect(() => {
-    setTimeout(() => checkNetwork(state), 1000);
-
     if (project_id > 0) fillItems();
-  }, []);
+  }, [projectData]);
 
   //----------parse Param----------------------
   const project_id = ParseParam_ProjectId();
 
   async function fillItems() {
-    if (project_id == null) return;
+    if (project_id == null || projectData.length == 0) return;
 
     const data = GetOneProject(projectData, project_id);
+
     setCompany(data.project_company);
     setTitle(data.project_title);
     setDescription(data.project_description);

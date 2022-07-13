@@ -61,7 +61,7 @@ const OtherChainWallet: FunctionComponent<Props> = ({
       rpc: "https://matic-mainnet.chainstacklabs.com",
     },
     oneledger: {
-      chainId: "0x1294F7C2",
+      chainId: "0x1294f7c2",
       chainName: "OneLedger",
       rpc: "https://mainnet-rpc.oneledger.network",
     },
@@ -99,7 +99,7 @@ const OtherChainWallet: FunctionComponent<Props> = ({
                 method: "wallet_addEthereumChain",
                 params: [
                   {
-                    chainId: chains,
+                    chainId: chains[chain].chainId,
                     chainName: chains[chain].chainName,
                     rpcUrls: [chains[chain].rpc] /* ... */,
                   },
