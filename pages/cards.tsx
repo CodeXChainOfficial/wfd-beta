@@ -22,10 +22,7 @@ import {
 import CardBox from "../components/Staking/CardBox";
 import PageLayout from "../components/PageLayout";
 import Footer from "../components/Footer";
-import {
-  Set2Mainnet,
-  Set2Testnet,
-} from "../utils/utility";
+import { Set2Mainnet, Set2Testnet } from "../utils/utility";
 
 export default function Cards() {
   const [cards, setCards] = useState(constants);

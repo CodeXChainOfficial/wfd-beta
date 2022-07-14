@@ -100,7 +100,7 @@ function IntroductionPage(props: { onClik: () => void }) {
         <Image src="/media/Invest/kyc-icon.png" />
         <Heading>Let's get started</Heading>
         <Text align={"center"}>
-          To start the KYC process you will need to pay a $0.45 UST fee. You
+          To start the KYC process you will need to pay a $0.45 USD fee. You
           will only need to do this once and it will apply to all launches.
           <br />
           Tapping below will initiate the transaction and open Terra Station.

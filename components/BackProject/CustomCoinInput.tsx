@@ -84,7 +84,7 @@ const CustomCoinInput: FunctionComponent<Props> = ({
             w="140px"
             rounded="md"
             fontSize="12px"
-            value="($)UST"
+            value="($)USD"
           >
             <option style={{ backgroundColor: "#1B0645" }}>($)USDT</option>
             <option style={{ backgroundColor: "#1B0645" }}>($)USDC</option>

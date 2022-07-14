@@ -114,7 +114,7 @@ export default function InvestStep4() {
             width={"100%"}
             style={{ fontFamily: "Sk-Modernist-Regular" }}
             align="center"
-            px={'2em'}
+            px={"2em"}
           >
             <Flex
               mt="30px"
@@ -288,7 +288,7 @@ export default function InvestStep4() {
                   <Tr>
                     <Th>Date</Th>
                     <Th>
-                      UST <span style={{ color: "#00A3FF" }}>You Invested</span>
+                      USD <span style={{ color: "#00A3FF" }}>You Invested</span>
                     </Th>
                     <Th>
                       WFD <span style={{ color: "#00A3FF" }}>You will get</span>
@@ -366,7 +366,7 @@ export default function InvestStep4() {
                 </Tr>
                 <Tr>
                   <Th bgColor={"rgba(255, 255, 255, 0.12)"}>
-                    UST <span style={{ color: "#00A3FF" }}>You Invested</span>
+                    USD <span style={{ color: "#00A3FF" }}>You Invested</span>
                   </Th>
                   <Td
                     bgColor={" rgba(196, 196, 196, 0.08)"}

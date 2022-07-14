@@ -298,16 +298,8 @@ export default function CreateProject() {
         py={"4em"}
         backgroundImage="url('/media/Home/2.png')"
       >
-        <Box
-          w={{ base: "300px", md: "600px", lg: "800px" }}
-        >
-          <Flex
-            width="100%"
-            justify="center"
-            mb={"150px"}
-            zIndex={"1"}
-            
-          >
+        <Box w={{ base: "300px", md: "600px", lg: "800px" }}>
+          <Flex width="100%" justify="center" mb={"150px"} zIndex={"1"}>
             <Box
               w={{ base: "sm", sm: "sm", md: "2xl", lg: "2xl", xl: "3xl" }}
               bgGradient={

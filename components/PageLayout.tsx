@@ -7,7 +7,7 @@ interface Props {
   title: string;
   subTitle1: string;
   subTitle2: string;
-  subTitle3: string;
+  subTitle3?: string;
 }
 const PageLayout: FunctionComponent<Props> = (props) => {
   return (

@@ -105,7 +105,6 @@ export default function ProjectDetail() {
   function MilestoneVote(project_id: number, voted: boolean) {
     if (checkNetwork(state) == false) return false;
   }
-  //--Pop Ups for Projects
 
   return (
     <VStack

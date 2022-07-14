@@ -86,7 +86,7 @@ const MilestoneAmount: FunctionComponent<Props> = ({
             rounded="md"
             fontSize="16px"
           >
-            <option style={{ backgroundColor: "#1B0645" }}>($)UST</option>
+            <option style={{ backgroundColor: "#1B0645" }}>($)USD</option>
           </Select>
         </InputGroup>
       </InputTransition>

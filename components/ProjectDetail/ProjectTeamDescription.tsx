@@ -29,7 +29,7 @@ export default function ProjectTeamDescription({ data }: { data: any }) {
           paddingTop={"35px"}
           paddingBottom={"35px"}
         >
-          {data?.project_teammembers?.map((item: any, index: number) => {
+          {data?.teammember_states?.map((item: any, index: number) => {
             return (
               <VStack mt="10px" color="white" key={index}>
                 <Text
@@ -37,7 +37,7 @@ export default function ProjectTeamDescription({ data }: { data: any }) {
                   textAlign={"left"}
                   alignSelf={"flex-start"}
                 >
-                  {item.teammember_role}
+                  {item.teammember_name}&nbsp;&nbsp;{item.teammember_role}
                 </Text>
                 <Text textAlign={"left"} fontWeight={"100"}>
                   {item.teammember_description}

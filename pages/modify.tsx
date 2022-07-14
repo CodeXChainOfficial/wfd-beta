@@ -17,6 +17,10 @@ import {
   getMonth,
   ParseParam_ProjectId,
   GetOneProject,
+  getVal,
+  getMultiplyInteger,
+  getInteger,
+  getSeconds
 } from "../utils/utility";
 import { fetchData } from "../utils/fetch";
 import {
@@ -300,38 +304,44 @@ export default function ModifyProject() {
     const project_teammembers = [];
     for (let i = 0; i < teammemberDescription.length; i++) {
       const teammember = {
-        teammember_description: "",
-        teammember_linkedin: "",
-        teammember_role: "",
-        teammember_name: "",
+        teammember_description: getVal(teammemberDescription[i]),
+        teammember_linkedin: getVal(teammemberLinkedin[i]),
+        teammember_role: getVal(teammemberRole[i]),
+        teammember_name: getVal(teammemberName[i]),
       };
       project_teammembers.push(teammember);
     }
 
     const vesting = [];
-    const stage = {
-      stage_title: stageTitle[0],
-      stage_price: "6",
-      stage_amount: "10000",
-      stage_soon: "20",
-      stage_after: "5",
-      stage_period: "6",
-    };
-    vesting.push(stage);
+    let distribution_token_amount = 0;
+    for (let i = 0; i < stageTitle.length; i++) {
+      const stage = {
+        stage_title: stageTitle[i],
+        stage_price: getMultiplyInteger(stagePrice[i]).toString(),
+        stage_amount: getInteger(stageAmount[i]).toString(),
+        stage_soon: getInteger(stageVestingSoon[i]).toString(),
+        stage_after: getSeconds(stageVestingAfter[i]).toString(),
+        stage_period: getSeconds(stageVestingPeriod[i]).toString(),
+      };
+      vesting.push(stage);
+      distribution_token_amount += getInteger(stageAmount[i]);
+    }
 
     const project_milestones = [];
-    const milestone = {
-      milestone_step: "0",
-      milestone_name: "",
-      milestone_description: "",
-      milestone_startdate: "",
-      milestone_enddate: "",
-      milestone_amount: collectedAmount.toString(),
-      milestone_type: "",
-      milestone_status: "0",
-      milestone_votes: [],
-    };
-    project_milestones.push(milestone);
+    for (let i = 0; i < milestoneTitle.length; i++) {
+      const milestone = {
+        milestone_step: `${i}`,
+        milestone_name: milestoneTitle[i],
+        milestone_description: getVal(milestoneDescription[i]),
+        milestone_startdate: getVal(milestoneStartdate[i]),
+        milestone_enddate: getVal(milestoneEnddate[i]),
+        milestone_amount: getVal(milestoneAmount[i]),
+        milestone_type: "",
+        milestone_status: "0",
+        milestone_votes: [],
+      };
+      project_milestones.push(milestone);
+    }
 
     let _createDate = createDate;
 
@@ -460,7 +470,7 @@ export default function ModifyProject() {
               type={ecosystem}
               setType={setEcosystem}
               options={[
-                "Terra",
+                "Juno",
                 "Ethereum",
                 "BSC",
                 "Harmony",

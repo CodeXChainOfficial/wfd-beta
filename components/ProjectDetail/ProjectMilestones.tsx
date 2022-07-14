@@ -73,7 +73,7 @@ export default function ProjectMileStones({
             bgColor={" rgba(196, 196, 196, 0.08)"}
             borderRadius={"10px 10px 0px 0px"}
           >
-            {data?.project_milestones?.map((milestone: any, index: number) => (
+            {data?.milestone_states?.map((milestone: any, index: number) => (
               <Tr key={index}>
                 <Td>{milestone.milestone_step}</Td>
                 <Td>{milestone.milestone_name} </Td>
