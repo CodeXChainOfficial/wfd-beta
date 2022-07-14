@@ -25,12 +25,14 @@ function ProjectItem(props: {
   registration_start?: string;
   platform_raise?: string;
   link?: string;
-  selected?: boolean;
+  index: number;
+  selectedIndex?: number;
+  setSelected: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const router = useRouter();
-  const { name, status, image, registration_start, platform_raise, link } =
+  const { name, status, image, registration_start, platform_raise, link, selectedIndex, index, setSelected } =
     props;
-  const { selected = false } = props;
+  const selected = selectedIndex == index;
 
   return (
     <Box>
@@ -44,6 +46,7 @@ function ProjectItem(props: {
         borderRadius={"20px"}
         cursor="pointer"
         onClick={() => router.push(link)}
+        onMouseMove={() => setSelected(index)}
       >
         <Stack textAlign={"center"} height={"400px"}>
           <Center
@@ -164,7 +167,13 @@ export default function UpcomingProject() {
             justifyItems={"center"}
           >
             {projects.map((project, i) => (
-              <ProjectItem {...project} selected={selected === i} key={i} />
+              <ProjectItem
+                {...project}
+                index={i}
+                selectedIndex={selected}
+                setSelected={setSelected}
+                key={i}
+              />
             ))}
           </SimpleGrid>
         </Box>
