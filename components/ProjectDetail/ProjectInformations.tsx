@@ -6,6 +6,10 @@ import {
   HStack,
   CircularProgress,
   CircularProgressLabel,
+  Divider,
+  Container,
+  Spacer,
+  chakra,
 } from "@chakra-ui/react";
 
 import { GetProjectStatusString } from "../../utils/utility";
@@ -22,10 +26,16 @@ const ProjectInformations: FunctionComponent<Props> = ({
   totalBackedPercent,
 }) => {
   return (
-    <VStack height={{ lg: "484px" }} paddingLeft={{ lg: "15px" }} mt={"10px"}>
+    <VStack
+      height={{ lg: "484px" }}
+      minW="400px"
+      paddingLeft={{ lg: "15px" }}
+      mt={"30px"}
+    >
       <Text alignSelf={"flex-start"}>Details</Text>
+      <Divider />
       <HStack width={"100%"}>
-        <Flex width={"40%"} alignSelf={"flex-start"}>
+        <Flex width={"100%"} alignSelf={"flex-start"}>
           <Text
             color={"rgba(255, 255, 255, 0.84)"}
             fontFamily={"Pilat-Extended"}
@@ -34,9 +44,9 @@ const ProjectInformations: FunctionComponent<Props> = ({
             Status
           </Text>
         </Flex>
-        <Flex width={"40%"} alignSelf={"flex-end"}>
+        <Flex alignSelf={"flex-end"}>
           <Text
-            color={" #FE8600"}
+            color={" #00A3FF"}
             fontFamily={"Pilat-Extended"}
             fontWeight={"700"}
             fontSize={"18px"}
@@ -46,28 +56,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
         </Flex>
       </HStack>
       <HStack width={"100%"}>
-        <Flex width={"40%"} alignSelf={"flex-start"}>
-          <Text
-            color={"rgba(255, 255, 255, 0.84)"}
-            fontFamily={"Pilat-Extended"}
-            fontSize={"18px"}
-          >
-            Platform
-          </Text>
-        </Flex>
-        <Flex width={"40%"} alignSelf={"flex-end"}>
-          <Text
-            color={" #FE8600"}
-            fontFamily={"Pilat-Extended"}
-            fontWeight={"700"}
-            fontSize={"18px"}
-          >
-            {data.project_ecosystem}
-          </Text>
-        </Flex>
-      </HStack>
-      <HStack width={"100%"}>
-        <Flex width={"40%"} alignSelf={"flex-start"}>
+        <Flex width={"100%"} alignSelf={"flex-start"}>
           <Text
             color={"rgba(255, 255, 255, 0.84)"}
             fontFamily={"Pilat-Extended"}
@@ -76,9 +65,9 @@ const ProjectInformations: FunctionComponent<Props> = ({
             Backers
           </Text>
         </Flex>
-        <Flex width={"40%"} alignSelf={"flex-end"}>
+        <Flex alignSelf={"flex-end"}>
           <Text
-            color={" #FE8600"}
+            color={" #69E4FF"}
             fontFamily={"Pilat-Extended"}
             fontWeight={"700"}
             fontSize={"18px"}
@@ -88,7 +77,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
         </Flex>
       </HStack>
       <HStack width={"100%"}>
-        <Flex width={"40%"} alignSelf={"flex-start"}>
+        <Flex width={"100%"} alignSelf={"flex-start"}>
           <Text
             color={"rgba(255, 255, 255, 0.84)"}
             fontFamily={"Pilat-Extended"}
@@ -97,9 +86,9 @@ const ProjectInformations: FunctionComponent<Props> = ({
             Funding Pool
           </Text>
         </Flex>
-        <Flex width={"40%"} alignSelf={"flex-end"}>
+        <Flex alignSelf={"flex-end"}>
           <Text
-            color={" #FE8600"}
+            color={" #69E4FF"}
             fontFamily={"Pilat-Extended"}
             fontWeight={"700"}
             fontSize={"18px"}
@@ -109,7 +98,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
         </Flex>
       </HStack>
       <HStack width={"100%"}>
-        <Flex width={"40%"} alignSelf={"flex-start"}>
+        <Flex width={"100%"} alignSelf={"flex-start"}>
           <Text
             color={"rgba(255, 255, 255, 0.84)"}
             fontFamily={"Pilat-Extended"}
@@ -118,9 +107,9 @@ const ProjectInformations: FunctionComponent<Props> = ({
             Category
           </Text>
         </Flex>
-        <Flex width={"40%"} alignSelf={"flex-end"}>
+        <Flex alignSelf={"flex-end"}>
           <Text
-            color={" #FE8600"}
+            color={" #69E4FF"}
             fontFamily={"Pilat-Extended"}
             fontWeight={"700"}
             fontSize={"18px"}
@@ -129,33 +118,69 @@ const ProjectInformations: FunctionComponent<Props> = ({
           </Text>
         </Flex>
       </HStack>
+      <HStack width={"100%"}>
+        <Flex width={"100%"} alignSelf={"flex-start"}>
+          <Text
+            color={"rgba(255, 255, 255, 0.84)"}
+            fontFamily={"Pilat-Extended"}
+            fontSize={"18px"}
+          >
+            Platform
+          </Text>
+        </Flex>
+        <Flex alignSelf={"flex-end"}>
+          <Text
+            color={" #69E4FF"}
+            fontFamily={"Pilat-Extended"}
+            fontWeight={"700"}
+            fontSize={"18px"}
+          >
+            {data.project_ecosystem}
+          </Text>
+        </Flex>
+      </HStack>
+      <Divider />
       <Flex
         alignSelf={{
           base: "center",
           md: "center",
           lg: "flex-start",
         }}
+        w="full"
       >
-        <VStack alignSelf={"flex-start"}>
-          <Flex>
-            <Text>
-              Progress: {totalBackedMoney} out of {data.project_collected} USD
-            </Text>
-          </Flex>
-          <Flex
-            alignSelf={{
-              base: "center",
-              md: "center",
-              lg: "flex-start",
-            }}
-          >
-            <CircularProgress value={12} size="120px" color="#00A3FF">
-              <CircularProgressLabel color="white">
-                {totalBackedPercent}%
-              </CircularProgressLabel>
-            </CircularProgress>
-          </Flex>
-        </VStack>
+        <Container
+          bgGradient="linear(#430E82, #1D0551)"
+          pl="12px"
+          pr="12px"
+          mb="52px"
+          rounded="10px"
+        >
+          <HStack w="full">
+            <VStack alignItems="flex-start" w="full">
+              <Text fontFamily={"Gilroy"} fontWeight="800" fontSize="20px">Progress</Text>
+              <Text fontFamily={"Gilroy"} fontWeight="800" fontSize="30px">
+                <chakra.span color="#69E4FF">{totalBackedMoney}</chakra.span> /{" "}
+                <chakra.span opacity="0.38">
+                  {data.project_collected}
+                </chakra.span>
+              </Text>
+            </VStack>
+            <Spacer />
+            <Flex
+              alignSelf={{
+                base: "center",
+                md: "center",
+                lg: "flex-start",
+              }}
+            >
+              <CircularProgress value={12} p="8px" size="100px" color="#1F71E2">
+                <CircularProgressLabel color="white">
+                  {totalBackedPercent}%
+                </CircularProgressLabel>
+              </CircularProgress>
+            </Flex>
+          </HStack>
+        </Container>
       </Flex>
     </VStack>
   );

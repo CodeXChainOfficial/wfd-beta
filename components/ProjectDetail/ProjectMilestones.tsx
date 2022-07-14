@@ -29,48 +29,37 @@ export default function ProjectMileStones({
       justify="center"
       align="center"
       flexDirection="column"
-      background={"rgba(255, 255, 255, 0.05)"}
+      bgGradient={"linear(#430E82, #060049)"}
       border={"1.5px solid rgba(255, 255, 255, 0.15)"}
       display={{ base: "none", md: "block", lg: "block" }}
     >
       <Flex
-        mt="60px"
         justify="center"
         align="center"
         direction="column"
         display={{ base: "none", md: "block", lg: "block" }}
       >
-        <Text fontSize="16px" fontWeight={"300"} mb={"20px"}>
-          Project Milestones
+        <Text align="center" fontSize="20px" fontWeight={"300"} mb={"20px"}>
+          Project Milestones List
         </Text>
-        <Table
-          variant="simple"
-          // size={{ base: "sm", sm: "sm", md: "sm", lg: "sm", xl: "md" }}
-        >
-          <TableCaption style={{ color: "#00A3FF" }}>
-            Project milestones. More details may be available on each
-            project&apos;s website. Project milestones will be listed and up for
-            voting by the community. Rejected milestone means project funds will
-            not be released, or project has been suspended. Voted and Approved
-            will result in project being awarded funds for corresponding
-            milestone.
-          </TableCaption>
+        <Table variant="simple">
           <Thead
-            bgColor={"rgba(255, 255, 255, 0.12)"}
+            bgGradient={"linear(#000000, #0A062E)"}
             borderRadius={"10px 10px 0px 0px"}
           >
             <Tr>
-              <Th style={{ color: "#00A3FF" }}>Milestone No.</Th>
-              <Th style={{ color: "#00A3FF" }}>Name</Th>
-              <Th style={{ color: "#00A3FF" }}>Proposed Start Date</Th>
-              <Th style={{ color: "#00A3FF" }}>Proposed End Date</Th>
-              <Th style={{ color: "#00A3FF" }}>Milestone Fund Amount</Th>
-              <Th style={{ color: "#00A3FF" }}>Milestone Voting</Th>
-              <Th style={{ color: "#00A3FF" }}>Milestone Status</Th>
+              <Th style={{ color: "#FFFFFF" }}>No.</Th>
+              <Th style={{ color: "#FFFFFF" }}>Name</Th>
+              <Th style={{ color: "#FFFFFF" }}>Proposed Start Date</Th>
+              <Th style={{ color: "#FFFFFF" }}>Proposed End Date</Th>
+              <Th style={{ color: "#FFFFFF" }}>Milestone Fund Amount</Th>
+              <Th style={{ color: "#FFFFFF" }}>Milestone Voting</Th>
+              <Th style={{ color: "#FFFFFF" }}>Status</Th>
+              <Th style={{ color: "#FFFFFF" }}>External Data</Th>
             </Tr>
           </Thead>
           <Tbody
-            bgColor={" rgba(196, 196, 196, 0.08)"}
+            bgGradient={"linear(#000000, #0A062E)"}
             borderRadius={"10px 10px 0px 0px"}
           >
             {data?.milestone_states?.map((milestone: any, index: number) => (
@@ -82,12 +71,13 @@ export default function ProjectMileStones({
                 <Td>{milestone.milestone_amount}</Td>
                 <Td>
                   {milestone.milestone_votingavailable && (
-                    <Button onClick={onOpen} colorScheme={"teal"}>
+                    <Button onClick={onOpen} bgGradient={"linear(#21C9FF, #1383D4)"}>
                       Vote &amp; Details
                     </Button>
                   )}
                 </Td>
                 <Td>{milestone.milestone_statusmessage}</Td>
+                <Td color="#69E4FF">{}</Td>
               </Tr>
             ))}
           </Tbody>
