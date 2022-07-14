@@ -7,15 +7,15 @@ interface Props {
   typeText: string;
   type: any;
   setType: Dispatch<SetStateAction<any>>;
-  w: any;
-  mt: any;
+  w?: any;
+  mt?: any;
 }
 const CustomInput: FunctionComponent<Props> = ({
   typeText,
   type,
   setType,
-  w,
-  mt,
+  w = "100%",
+  mt = 0,
 }) => {
   function onChangeType(e: any) {
     if (e.target.value.length < 100) {

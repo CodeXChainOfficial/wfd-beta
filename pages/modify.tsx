@@ -117,6 +117,7 @@ export default function ModifyProject() {
     setCollectedAmount(data.project_collected);
     setEcosystem(data.project_ecosystem);
     setCreateDate(data.project_createddate);
+    setLogo(data.project_logo);
     setWebsite(data.project_website);
     setEmail(data.project_email);
 
@@ -299,7 +300,7 @@ export default function ModifyProject() {
     if (realSAFT == "") return false;
 
     const realWhitepaer = await uploadWhitepaper();
-    const realLogo = await uploadLogo();
+    // const realLogo = await uploadLogo();
     //---------------execute contract----------------------------------
     const project_teammembers = [];
     for (let i = 0; i < teammemberDescription.length; i++) {
@@ -371,7 +372,7 @@ export default function ModifyProject() {
         project_ecosystem: ecosystem,
         project_createddate: _createDate,
         project_saft: realSAFT,
-        project_logo: realLogo,
+        project_logo: logo,
         project_whitepaper: realWhitepaer,
         project_website: website,
         project_email: email,
@@ -609,6 +610,12 @@ export default function ModifyProject() {
               w={{ base: "100%", md: "50%", lg: "50%" }}
             />
           </Stack>
+          <CustomInput
+            typeText="Project Logo"
+            type={logo}
+            setType={setLogo}
+            mt="30px"
+          />
           <Website
             typeText="Project website"
             type={website}

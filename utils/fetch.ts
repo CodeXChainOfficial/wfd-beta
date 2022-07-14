@@ -3,12 +3,14 @@ import {
   STAKING_CONTRACT,
   WFD_TOKEN,
   WEFUND,
+  WEFUND_ID,
 } from "../config/constants";
 import { ActionKind } from "../contexts/store";
 
 export function addExtraInfo(projectData: any) {
   if (typeof projectData === "undefined" || projectData == "") return "";
 
+  projectData[WEFUND_ID - 1].backerbacked_amount = "160000000000";
   for (let i = 0; i < projectData.length; i++) {
     const backer_backedAmount = parseInt(projectData[i].backerbacked_amount);
     projectData[i].backer_backedPercent = Math.floor(

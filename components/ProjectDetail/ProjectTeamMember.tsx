@@ -40,21 +40,23 @@ export default function ProjectTeamMember({ data }: { data: any }) {
           pr="24px"
           pb="12px"
         >
-          <HStack pt="12px">
-            <Avatar size="sm" name="Example" mr="8px" />
-            <VStack spacing={0}>
-              <Text fontFamily={"Gilroy"} fontWeight="800" fontSize="20px">
-                Name
-              </Text>
-              <Text fontSize="12px" alignSelf="flex-start">
-                Position
-              </Text>
-            </VStack>
-            <Spacer />
-            <Text fontSize="12px" alignSelf="flex-end">
-              <chakra.span color="#48CCFF">@Example</chakra.span>
-            </Text>
-          </HStack>
+          {data?.teammember_states?.map((member, index) => (
+            <HStack pt="12px" key={index}>
+              <Avatar size="sm" name={member.teammember_name} mr="8px" />
+              <VStack spacing={0}>
+                <Text fontFamily={"Gilroy"} fontWeight="800" fontSize="20px">
+                  {member.teammember_name}
+                </Text>
+                <Text fontSize="12px" alignSelf="flex-start">
+                  {member.teammember_role}
+                </Text>
+              </VStack>
+              {/* <Spacer />
+              <Text fontSize="12px" alignSelf="flex-end">
+                <chakra.span color="#48CCFF">{member.teammember_description.slice(0,100)}</chakra.span>
+              </Text> */}
+            </HStack>
+          ))}
         </Box>
       </Container>
     </VStack>
