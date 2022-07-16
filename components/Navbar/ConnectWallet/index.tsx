@@ -12,7 +12,7 @@ import {
   PopoverBody,
   PopoverArrow,
 } from "@chakra-ui/react";
-
+import { WALLET_LIST } from "../../../config/constants";
 import { useKeplrWallet } from "../../../contexts/keplrWallet";
 import { useMetamaskWallet } from "../../../contexts/metamask";
 import { useTrustWallet } from "../../../contexts/trustWallet";
@@ -155,21 +155,26 @@ export default function ConnectWallet() {
         <PopoverArrow />
         <PopoverBody p="20px">
           {connected && initialized && (
-            <Flex justify={"space-between"} mb="20px">
-              <Text>{ShortenAddress(wallet?.account)}</Text>
-              <Link>
-                <Text
-                  onClick={() => {
-                    wallet.disconnect();
-                    onClose();
-                  }}
-                >
-                  Disconnect
-                </Text>
-              </Link>
-            </Flex>
+            <>
+              <Flex justify={"space-between"} mb="20px">
+                <Text>{ShortenAddress(wallet?.account)}</Text>
+                <Link>
+                  <Text
+                    onClick={() => {
+                      wallet.disconnect();
+                      onClose();
+                    }}
+                  >
+                    Disconnect
+                  </Text>
+                </Link>
+              </Flex>
+              <Flex justify={"space-between"} mb="20px">
+                <Text>{wallet?.getBalanceString()}</Text>
+              </Flex>
+            </>
           )}
-          {WalletList.map((item, index) => (
+          {WALLET_LIST.map((item, index) => (
             <ConnectionItem label={item.name} link={item.link} key={index} />
           ))}
         </PopoverBody>
@@ -177,30 +182,3 @@ export default function ConnectWallet() {
     </Popover>
   );
 }
-
-const WalletList = [
-  {
-    name: "Metamask",
-    link: "metamask",
-  },
-  {
-    name: "TrustWallet",
-    link: "trust",
-  },
-  {
-    name: "Keplr",
-    link: "keplr",
-  },
-  {
-    name: "TronLink",
-    link: "tron",
-  },
-  {
-    name: "NearWallet",
-    link: "near",
-  },
-  {
-    name: "ElrondWeb",
-    link: "elrond",
-  },
-];

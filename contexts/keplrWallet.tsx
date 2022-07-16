@@ -11,7 +11,7 @@ import type { State } from "zustand";
 import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
-import { BigNumber } from "ethers";
+import BigNumber from "bignumber.js";
 import { NETWORK } from "../config/constants";
 import { WEFUND_JUNO_ADDRESS } from "../config/constants";
 
@@ -114,12 +114,14 @@ export const useKeplrWalletStore = create(
     setNetwork: (network) => set({ network }),
     updateSigner: (signer) => set({ signer }),
     getBalance: () => {
-      return BigNumber.from(get().balance[0].amount);
+      return new BigNumber(get().balance[0].amount);
     },
     getBalanceString: () => {
-      if (get().balance.length > 0)
-        return get().balance[0].amount.toString() + " keplr";
-      return "0 keplr";
+      if (get().balance.length > 0) {
+        const balance = get().getBalance().dividedBy(10 ** 6);
+        return balance.toFixed() + " JUNO";
+      }
+      return "0 JUNO";
     },
     sendTokens: async (
       amount: number,

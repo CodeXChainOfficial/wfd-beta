@@ -102,7 +102,7 @@ export const useTrustWalletStore = create(
     },
     getBalance: () => get().balance!,
     getBalanceString: () => {
-      return get().balance.toString() + " metamask";
+      return get().balance.toString() + "  Trust";
     },
     sendTokens: async (
       amount: number,

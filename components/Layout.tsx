@@ -1,12 +1,18 @@
 import React, { ReactNode, useEffect } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { useDisclosure } from "@chakra-ui/react";
 import { getElrondConfig } from "../config/elrondConfig";
 import { NETWORK } from "../config/constants";
 
 import Navbar from "./Navbar";
 import Container from "./Container";
-import { getInteger, ParseParam, ParseParam_Address, ParseParam_ProjectId } from "../utils/utility";
+import {
+  getInteger,
+  ParseParam,
+  ParseParam_Address,
+  ParseParam_ProjectId,
+} from "../utils/utility";
 import { fetchData } from "../utils/fetch";
 import { toast } from "react-toastify";
 import { SUCCESS_OPTION } from "../config/constants";
@@ -14,6 +20,7 @@ import { useStore, ActionKind, useJunoConnection } from "../contexts/store";
 import { useNearWallet } from "../contexts/nearWallet";
 import { useKeplrWallet } from "../contexts/keplrWallet";
 import { useElrondWeb } from "../contexts/elrond";
+import WalletModal from "./WalletModal";
 
 type Props = {
   children?: ReactNode;
@@ -21,104 +28,64 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   const router = useRouter();
-  // const [scrolled, setScrolled] = useState(false)
-  // const handleScroll = () => {
-  //   const offset = window.scrollY
-  //   if (offset > 25) {
-  //     setScrolled(true)
-  //   } else {
-  //     setScrolled(false)
-  //   }
-  // }
+  const { state, dispatch } = useStore();
 
-  //--------------for referral-----------------------------
-  // const crypto = require("crypto");
-
-  // function encrypt3DES(data, key) {
-  //   const md5Key = crypto
-  //     .createHash("md5")
-  //     .update(key)
-  //     .digest("hex")
-  //     .substr(0, 24);
-  //   const cipher = crypto.createCipheriv("des-ede3", md5Key, "");
-
-  //   let encrypted = cipher.update(data, "utf8", "base64");
-  //   encrypted += cipher.final("base64");
-  //   return encrypted;
-  // }
-
-  // function decrypt3DES(data, key) {
-  //   const md5Key = crypto
-  //     .createHash("md5")
-  //     .update(key)
-  //     .digest("hex")
-  //     .substr(0, 24);
-  //   const decipher = crypto.createDecipheriv("des-ede3", md5Key, "");
-
-  //   let encrypted = decipher.update(data, "base64", "utf8");
-  //   encrypted += decipher.final("utf8");
-  //   return encrypted;
-  // }
-
-  async function confirmReferral() {
-    const response = await fetch("/api/checkreferral");
-    const res = await response.json();
-    console.log(res);
-    //   let referralLink =
-    //     "https://wefund.app/?referral=" +
-    //     encrypt3DES(address, "wefundkeyreferral");
-    //   dispatch({ type: "setReferralLink", payload: referralLink });
-
-    //   let queryString, urlParams, referral_code;
-    //   if (typeof window != "undefined") {
-    //     queryString = window.location.search;
-    //     urlParams = new URLSearchParams(queryString);
-    //     referral_code = urlParams.get("referral");
-
-    //     let base = "";
-    //     if (referral_code != null) {
-    //       referral_code = referral_code.split(" ").join("+");
-    //       try {
-    //         base = decrypt3DES(referral_code, "wefundkeyreferral");
-    //       } catch (e) {
-    //         console.log(e);
-    //       }
-    //     }
-
-    //     var formData = new FormData();
-    //     formData.append("base", base);
-    //     formData.append("referred", address);
-
-    //     const requestOptions = {
-    //       method: "POST",
-    //       body: formData,
-    //     };
-
-    //     await fetch(state.request + "/checkreferral", requestOptions)
-    //       .then((res) => res.json())
-    //       .then((data) => {
-    //         dispatch({
-    //           type: "setReferralCount",
-    //           payload: data.data,
-    //         });
-    //       })
-    //       .catch((e) => {
-    //         console.log("Error:" + e);
-    //       });
-    //   }
-  }
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
-    // if (connectedWallet) {
-    //     contactBalance();
-    confirmReferral();
-    // }
+    dispatch({ type: ActionKind.setWalletModal, payload: onOpen });
+  }, []);
+  useEffect(() => {
+    async function confirmReferral() {
+      const response = await fetch("/api/checkreferral");
+      const res = await response.json();
+      console.log(res);
+      //   let referralLink =
+      //     "https://wefund.app/?referral=" +
+      //     encrypt3DES(address, "wefundkeyreferral");
+      //   dispatch({ type: "setReferralLink", payload: referralLink });
 
-    //   // window.addEventListener('scroll', handleScroll)
+      //   let queryString, urlParams, referral_code;
+      //   if (typeof window != "undefined") {
+      //     queryString = window.location.search;
+      //     urlParams = new URLSearchParams(queryString);
+      //     referral_code = urlParams.get("referral");
+
+      //     let base = "";
+      //     if (referral_code != null) {
+      //       referral_code = referral_code.split(" ").join("+");
+      //       try {
+      //         base = decrypt3DES(referral_code, "wefundkeyreferral");
+      //       } catch (e) {
+      //         console.log(e);
+      //       }
+      //     }
+
+      //     var formData = new FormData();
+      //     formData.append("base", base);
+      //     formData.append("referred", address);
+
+      //     const requestOptions = {
+      //       method: "POST",
+      //       body: formData,
+      //     };
+
+      //     await fetch(state.request + "/checkreferral", requestOptions)
+      //       .then((res) => res.json())
+      //       .then((data) => {
+      //         dispatch({
+      //           type: "setReferralCount",
+      //           payload: data.data,
+      //         });
+      //       })
+      //       .catch((e) => {
+      //         console.log("Error:" + e);
+      //       });
+      //   }
+    }
+    confirmReferral();
   }, []);
 
   //------Juno connection-----------------------------
-  const { state, dispatch } = useStore();
   const keplrWallet = useKeplrWallet();
 
   useEffect(() => {
@@ -185,7 +152,7 @@ const Layout = ({ children }: Props) => {
           let data = ParseParam("data[0]");
           if (signed == "transactionsSigned" && data != null) {
             data = Buffer.from(data).toString("base64");
-console.log(data)
+            console.log(data)
             const transaction = {
               toPlainObject: function () {
                 return {
@@ -209,7 +176,7 @@ console.log(data)
               transaction.toPlainObject(),
               { timeout: parseInt(config.apiTimeout) }
             );
-console.log(res)
+            console.log(res)
             const elrond_address = window.localStorage.getItem("address");
             if (!elrond_address) break;
             elrond.setAccount(elrond_address);
@@ -230,6 +197,7 @@ console.log(res)
     <Container>
       <Navbar />
       {children}
+      <WalletModal isOpen={isOpen} onClose={onClose} />
     </Container>
   );
 };

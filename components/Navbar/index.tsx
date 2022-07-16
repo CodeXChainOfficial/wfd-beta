@@ -10,18 +10,21 @@ import {
   VStack,
   HStack,
   ChakraProvider,
+  // Link,
 } from "@chakra-ui/react";
 
 import NavbarMobile from "./mobile";
 import { RiAccountPinBoxFill } from "react-icons/ri";
 import { ButtonBackTransition } from "../ImageTransition";
+import { useStore } from "../../contexts/store";
 
 export default function Navbar() {
+  const { state, dispatch } = useStore();
   return (
     <Flex w="100%" direction="column">
       <VStack display={{ base: "none", md: "block", lg: "block" }}>
         <Flex
-          position={{ base: "relative", md: "relative", lg: "fixed" }}
+          position="relative"
           direction="row"
           justify="space-between"
           h="80px"
@@ -61,19 +64,19 @@ export default function Navbar() {
             <Flex w="197px" ml="20px" mr={"10px"}>
               <ConnectWallet />
             </Flex>
-            <Link href="userinfo">
+            {/* <Link href="userinfo">
               <Icon
                 as={RiAccountPinBoxFill}
                 fontSize={"45px"}
                 cursor="pointer"
                 color="white"
               />
-            </Link>
+            </Link> */}
           </Flex>
         </Flex>
       </VStack>
       <NavbarMobile />
-      {/* {state.net == "testnet" && (
+      {state.net == "testnet" && (
         <Flex
           w="100%"
           h="30px"
@@ -83,7 +86,7 @@ export default function Navbar() {
         >
           Testnet
         </Flex>
-      )} */}
+      )}
     </Flex>
   );
 }
@@ -138,7 +141,7 @@ export const NAV_ITEMS = [
   },
   {
     label: "Invest",
-    href: "/invest",
+    href: "/invest/step0",
   },
   // {
   //   label: 'FAQ',

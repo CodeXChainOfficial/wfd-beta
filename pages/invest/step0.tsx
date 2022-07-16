@@ -68,7 +68,13 @@ export default function InvestStep0() {
           style={{ fontFamily: "Sk-Modernist" }}
           rounded={"3xl"}
         >
-          <Box pt="100px">
+          <Flex
+            direction="column"
+            pt="100px"
+            justify="center"
+            align="center"
+            pb="100px"
+          >
             <ButtonTransition
               unitid="presale"
               selected={false}
@@ -91,7 +97,13 @@ export default function InvestStep0() {
             >
               Private Sale
             </ButtonTransition>
-            <Flex display={showInput ? "block" : "none"} mt="30px" pb="100px">
+            <Flex
+              display={showInput ? "flex" : "none"}
+              mt="30px"
+              direction="column"
+              justify="center"
+              align="center"
+            >
               <InputTransition
                 unitid="inputpassword"
                 selected={false}
@@ -120,7 +132,7 @@ export default function InvestStep0() {
                 Ok
               </Button>
             </Flex>
-          </Box>
+          </Flex>
         </Box>
       </Flex>
       <Footer />

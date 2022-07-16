@@ -9,7 +9,7 @@ import { createTrackedSelector } from "react-tracked";
 import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
-import { BigNumber, ethers } from "ethers";
+import BigNumber from "bignumber.js";
 import { WEFUND_TRON_WALLET, ERC20_ABI } from "../config/constants";
 
 declare let window: any;
@@ -40,7 +40,7 @@ export type WalletContextType = TronLinkStore;
 const defaultStates = {
   connected: false,
   account: "",
-  balance: BigNumber.from("0"),
+  balance: new BigNumber("0"),
   initialized: false,
   initializing: true,
   tronWeb: undefined,
@@ -80,7 +80,8 @@ export const useTronLinkStore = create(
     },
     getBalance: () => get().balance!,
     getBalanceString: () => {
-      return get().balance.toString() + " tronLInk";
+      const balance = get().balance.dividedBy(10 ** 6);
+      return balance.toFixed() + " TRX";
     },
     sendTokens: async (
       amount: number,
@@ -128,12 +129,12 @@ const WalletSubscription = () => {
       (x) => x.connected,
       async (connected) => {
         const tronWeb = useTronLinkStore.getState().tronWeb;
-        console.log(tronWeb);
+
         const balance = await tronWeb.trx.getBalance(
           useTronLinkStore.getState().account
         );
-        console.log(balance);
-        useTronLinkStore.setState({ balance: balance });
+
+        useTronLinkStore.setState({ balance: new BigNumber(balance) });
         useTronLinkStore.setState({ initialized: true });
       }
     );

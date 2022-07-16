@@ -180,7 +180,7 @@ export const TOKEN_LIST = [
     chain: "Fantom",
     name: "FTM",
     decimals: 18,
-    native: false,
+    native: true,
   },
   {
     chain: "Fantom",
@@ -197,6 +197,40 @@ export const TOKEN_LIST = [
     address: "0x1B27A9dE6a775F98aaA5B90B62a4e2A0B84DbDd9",
   },
 ];
+
+export const WALLET_LIST = [
+  {
+    name: "Metamask",
+    icon: "/media/Wallet/metamask-fox.svg",
+    link: "metamask",
+  },
+  {
+    name: "TrustWallet",
+    icon: "/media/Wallet/trust_platform.svg",
+    link: "trust",
+  },
+  {
+    name: "Keplr",
+    icon: "/media/Wallet/keplr.svg",
+    link: "keplr",
+  },
+  {
+    name: "TronLink",
+    icon: "/media/Wallet/tron_link.svg",
+    link: "tron",
+  },
+  {
+    name: "NearWallet",
+    icon: "/media/Wallet/near_wallet.png",
+    link: "near",
+  },
+  {
+    name: "ElrondWeb",
+    icon: "/media/Wallet/elrond-wallet-logo.png",
+    link: "elrond",
+  },
+];
+
 export const ERC20_ABI = [
   "function name() view returns (string)",
   "function symbol() view returns (string)",

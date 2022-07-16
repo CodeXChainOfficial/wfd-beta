@@ -83,8 +83,6 @@ const OtherChainWallet: FunctionComponent<Props> = ({
       case "polygon":
       case "oneledger":
       case "fantom":
-        connectTo("metamask");
-
         const ethereum = window.ethereum;
         try {
           await ethereum.request({
@@ -111,6 +109,7 @@ const OtherChainWallet: FunctionComponent<Props> = ({
           }
           // handle other "switch" errors
         }
+        connectTo("metamask");
         break;
       case "tron":
         connectTo("tron");

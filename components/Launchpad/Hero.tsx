@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
+import React from "react";
+import { useRouter } from "next/router";
 import {
   HStack,
   Image,
@@ -10,8 +11,11 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { ImageTransition } from "../ImageTransition";
+import { useStore } from "../../contexts/store";
 
 export default function Hero() {
+  const router = useRouter();
+  const { state, dispatch } = useStore();
   return (
     <Flex
       width="100%"
@@ -82,7 +86,7 @@ export default function Hero() {
             width={{ base: "148px", md: "148px", lg: "242px" }}
             height={{ base: "32px", md: "34px", lg: "35px" }}
             rounded={"33px"}
-            onClick={() => {}}
+            onClick={() => router.push("/invest/step0")}
           >
             <Text
               w="100%"
@@ -108,7 +112,7 @@ export default function Hero() {
             width={{ base: "148px", md: "148px", lg: "242px" }}
             height={{ base: "34px", md: "34px", lg: "35px" }}
             rounded={"33px"}
-            onClick={() => {}}
+            onClick={() => state.openWalletModal()}
           >
             <Text
               w="100%"

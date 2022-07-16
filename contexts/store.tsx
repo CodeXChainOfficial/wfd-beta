@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { WEFUND } from "../config/constants";
+import { WEFUND, NETWORK } from "../config/constants";
 
 interface Action {
   type: ActionKind;
@@ -10,6 +10,7 @@ export interface AppContextInterface {
   walletType: "metamask" | "trust" | "keplr" | "tron" | "near" | "elrond" | undefined;
   junoConnection: any;
   wallet: any;
+  openWalletModal: (() => void) | undefined;
   net: string;
   activeProjectData: any[];
   projectData: any[];
@@ -26,7 +27,8 @@ const initialState: AppContextInterface = {
   walletType: undefined,
   junoConnection: undefined,
   wallet: undefined,
-  net: "testnet",
+  openWalletModal: undefined,
+  net: NETWORK,
   activeProjectData: [],
   projectData: [],
   communityData: [],
@@ -42,6 +44,7 @@ export enum ActionKind {
   setWalletType,
   setJunoConnection,
   setWallet,
+  setWalletModal,
   setNet,
   setActiveProjectData,
   setProjectData,
@@ -70,6 +73,8 @@ export const reducer = (state: AppContextInterface, action: Action) => {
       return { ...state, junoConnection: action.payload };
     case ActionKind.setWallet:
       return { ...state, wallet: action.payload };
+    case ActionKind.setWalletModal:
+      return { ...state, openWalletModal: action.payload };
     case ActionKind.setNet:
       return { ...state, net: action.payload };
     case ActionKind.setActiveProjectData:

@@ -35,7 +35,7 @@ export default function Launchpad() {
         <UpcomingProject />
         <OngoingProject />
         <CompletedProject />
-        <KYCBanner />
+        {/* <KYCBanner /> */}
         <CompletedSales />
         {/* <Staking /> */}
         <Footer />
