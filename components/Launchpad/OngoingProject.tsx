@@ -43,8 +43,8 @@ const projects = [
     link: "",
   },
   {
-    image: "/media/partners/Africred.jpeg",
-    name: "Africred",
+    image: "/media/Launchpad/secret-partner.png",
+    name: "Top Secret",
     status: "Coming Soon",
     registration_start: "TBA",
     platform_raise: "TBA",
