@@ -47,10 +47,10 @@ export default function InvestStep0() {
   }
   return (
     <PageLayout
-      title="Back the Project"
+      title="Contribute"
       subTitle1="Invest"
       subTitle2="Contribute"
-      subTitle3="in WeFund"
+      subTitle3="&nbsp;in WeFund"
     >
       <Flex
         width="100%"

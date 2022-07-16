@@ -89,10 +89,10 @@ export default function InvestStep4() {
 
   return (
     <PageLayout
-      title="Back the Project"
+      title="Contribute"
       subTitle1="Invest"
       subTitle2="Contribute"
-      subTitle3="in WeFund"
+      subTitle3="&nbsp;in WeFund"
     >
       <Flex
         width="100%"
@@ -124,10 +124,8 @@ export default function InvestStep4() {
               style={{ fontFamily: "PilatExtended-Regular" }}
             >
               <HStack
-                ml={{ base: "0px", md: "0px", lg: "10px" }}
-                mt="150px"
+                mt="50px"
                 mb="50px"
-                px="15px"
                 align={"center"}
               >
                 <Box
@@ -152,7 +150,7 @@ export default function InvestStep4() {
                 <Text
                   fontSize={{
                     base: "12px",
-                    sm: "16px",
+                    sm: "12px",
                     md: "22px",
                     lg: "22px",
                   }}
@@ -189,7 +187,7 @@ export default function InvestStep4() {
                 <Text
                   fontSize={{
                     base: "12px",
-                    sm: "16px",
+                    sm: "12px",
                     md: "22px",
                     lg: "22px",
                   }}
@@ -226,12 +224,12 @@ export default function InvestStep4() {
                 <Text
                   fontSize={{
                     base: "12px",
-                    sm: "16px",
+                    sm: "12px",
                     md: "22px",
                     lg: "22px",
                   }}
                 >
-                  Final Step
+                  Final
                 </Text>
               </HStack>
               <HStack mb={"20px"}>
