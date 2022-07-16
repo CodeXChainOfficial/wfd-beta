@@ -15,13 +15,15 @@ import {
 import NavbarMobile from "./mobile";
 import { RiAccountPinBoxFill } from "react-icons/ri";
 import { ButtonBackTransition } from "../ImageTransition";
+import { useStore } from "../../contexts/store";
 
 export default function Navbar() {
+  const { state, dispatch } = useStore();
   return (
     <Flex w="100%" direction="column">
       <VStack display={{ base: "none", md: "block", lg: "block" }}>
         <Flex
-          position={{ base: "relative", md: "relative", lg: "fixed" }}
+          position={{ sm: "relative", lg: "fixed" }}
           direction="row"
           justify="space-between"
           h="80px"
@@ -138,7 +140,7 @@ export const NAV_ITEMS = [
   },
   {
     label: "Invest",
-    href: "/invest",
+    href: "/invest/step0",
   },
   // {
   //   label: 'FAQ',

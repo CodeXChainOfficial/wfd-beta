@@ -146,13 +146,13 @@ const projects = [
     description:
       "WeFund will fulfill its mission to being multichain with Polygon Studios, entering Polygon ecosystem and subsequently Ethereum L1",
     img: "media/partners/WFD-Polygon.jpg",
-    link: "https://forms.gle/gZHzZeHC1ejgUCL66",
+    link: "/blog",
   },
   {
     title: "WeFund Multichain Migration to Juno",
     description:
       "Both utilizing CosmWasm, WeFund is making migration to Juno and subsequently becames Multichain with Loop Finance structural assistance.",
     img: "media/partners/WFD-Juno.jpg",
-    link: "https://forms.gle/gZHzZeHC1ejgUCL66",
+    link: "/blog",
   },
 ];
