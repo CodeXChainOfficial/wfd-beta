@@ -118,7 +118,7 @@ export default function Highlights() {
                         fontWeight="800"
                         fontSize="20px"
                       >
-                        Join us
+                        See More
                       </Text>
                     </Button>
                   </Link>

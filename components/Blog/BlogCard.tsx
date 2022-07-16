@@ -73,17 +73,17 @@ export default function BlogCard(props: FeedItem) {
             _hover={{ color: "blue.600", textDecor: "underline" }}
             minH={"125px"}
           >
-            {shortenText(props.title, 0, 100)}
+            {shortenText(props.title, 0, 90)}
           </Link>
           <chakra.p
             mt={2}
             fontSize="sm"
             color={"gray.200"}
-            minH={"350px"}
+            minH={"250px"}
             maxH={{ base: "500px", sm: "400px", md: "375px", lg: "350px" }}
             overflow={"hidden"}
           >
-            {`${toText(props.description.substring(0, 1000))}...`}
+            {`${toText(props.description.substring(0, 600))}...`}
           </chakra.p>
         </Box>
 
