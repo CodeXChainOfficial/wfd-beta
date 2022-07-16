@@ -92,7 +92,7 @@ export default function ExplorerProject() {
 
   //-------------paginator-----------------------------------
   const [current, setCurrent] = useState(1);
-  const pageSize = 5;
+  const pageSize = 10;
 
   function onChangePaginator(page: number) {
     if (state.activeProjectData == []) {

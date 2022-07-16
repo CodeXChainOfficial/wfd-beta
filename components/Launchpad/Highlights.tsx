@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
+import React from "react";
 import { Flex, Text, Image, Button, Link } from "@chakra-ui/react";
 
 import Carousel from "react-multi-carousel";
@@ -104,7 +104,7 @@ export default function Highlights() {
                   {item.description}
                 </Text>
                 <Flex w="100%" justify={"center"}>
-                  <Link href={item.link}>
+                  <Link href={item.link} target="_blank">
                     <Button
                       mt="48px"
                       mb={{ base: "20px", md: "5px" }}
@@ -146,13 +146,13 @@ const projects = [
     description:
       "WeFund will fulfill its mission to being multichain with Polygon Studios, entering Polygon ecosystem and subsequently Ethereum L1",
     img: "media/partners/WFD-Polygon.jpg",
-    link: "#",
+    link: "https://forms.gle/gZHzZeHC1ejgUCL66",
   },
   {
     title: "WeFund Multichain Migration to Juno",
     description:
       "Both utilizing CosmWasm, WeFund is making migration to Juno and subsequently becames Multichain with Loop Finance structural assistance.",
     img: "media/partners/WFD-Juno.jpg",
-    link: "#",
+    link: "https://forms.gle/gZHzZeHC1ejgUCL66",
   },
 ];

@@ -65,15 +65,6 @@ export default function CreateProject() {
   const [website, setWebsite] = useState("");
   const [professionallink, setProfessionalLink] = useState("");
 
-  //----------parse Param----------------------
-  const project_id = ParseParam_ProjectId();
-
-  useEffect(() => {
-    setTimeout(() => checkNetwork(state), 1000);
-
-    // if (project_id > 0) fillItems();
-  }, []);
-
   //---------------create project---------------------------------
   const checkInvalidation = () => {
     if (checkNetwork(state) == false) return false;
@@ -233,15 +224,13 @@ export default function CreateProject() {
       _createDate = day + "/" + ((month + 1) % 12) + "/" + year;
     }
 
-    const _projectID = project_id == null ? "0" : project_id.toString();
-
     const client = keplrWallet.getClient();
     const address = keplrWallet.account;
 
     const AddProjectMsg = {
       add_project: {
         creator_wallet: address,
-        project_id: _projectID,
+        project_id: "0",
         project_company: company,
         project_title: title,
         project_description: description,

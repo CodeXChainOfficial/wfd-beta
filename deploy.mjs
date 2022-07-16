@@ -212,7 +212,7 @@ export const initMsgs = [
           teammember_description:
             "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the hackathon organized by Terraform Labs. He has a wealth of experience in coding, with a deep understanding of C, C++, Javascript, VBA, Java, Python, Rust language (to name a few). In 2018 he moved his focus into Solidity, PHP, & HTML 5, to follow his vision of creating advanced Web 3.0 applications integrated with the blockchain. His role is to ensure delivery of smart contracts, web app, and technical infrastructure, as well as managing the business side of the project. From the business side, he had several businesses before such as a Natural Mosquito Solution based on Bali, hotel & restaurant (Ristorante-Bar Lanca) in Switzerland, and a smart-home startup to reduce electricity consumption. Most of the businesses he founded had an ROI within less than 1 year.\n\n",
           teammember_linkedin: "",
-          teammember_name: "Andrea Bello ",
+          teammember_name: "Andrea Bello",
           teammember_role: "Co-Founder & CEO & Co-CTO",
         },
         {
@@ -489,22 +489,22 @@ export const initMsgs = [
   },
   {
     add_project: {
-      project_title: "Africred",
-      project_logo: "/media/partners/Africred.jpeg",
+      project_title: "Data Lake",
+      project_logo: "/media/partners/Datalake.png",
       cofounder_name: "",
       country: "",
       creator_wallet: "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu",
-      project_collected: "500000",
+      project_collected: "1200000",
       project_company: "A.I WeFund",
       project_createddate: "28/3/2022",
       project_description:
-        "AFRICRED is a B2B fintech super app and platform leveraging blockchain technology for microfinance institutions and MSMEs for West Africa’s unbanked population.",
-      project_ecosystem: "Stellar",
+        "DataLake is a medical record database where individuals can sell their medical data privately and anonymously to research institutions on the blockchain via DataLake’s platform.",
+      project_ecosystem: "Juno",
       project_email: "",
       project_id: "0",
       project_milestones: [
         {
-          milestone_amount: "500000",
+          milestone_amount: "1200000",
           milestone_description: "",
           milestone_enddate: "2022-03-31",
           milestone_name: "1",
@@ -546,7 +546,84 @@ export const initMsgs = [
           teammember_role: "COO",
         },
       ],
-      project_website: "https://www.africred-africa.com/",
+      project_website: "https://data-lake.co/",
+      project_whitepaper: "",
+      service_charity: "0",
+      service_wefund: "5",
+      professional_link: "",
+      token_addr: "",
+      vesting: [
+        {
+          stage_after: "0",
+          stage_amount: "120000",
+          stage_period: "0",
+          stage_price: "0",
+          stage_soon: "0",
+          stage_title: "Private",
+        },
+      ],
+    },
+  },
+  {
+    add_project: {
+      project_title: "Scam Scanner",
+      project_logo: "/media/partners/Scamscanner.png",
+      cofounder_name: "",
+      country: "",
+      creator_wallet: "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu",
+      project_collected: "1200000",
+      project_company: "A.I WeFund",
+      project_createddate: "28/3/2022",
+      project_description:
+        "ScamScanner is a tool designed to identify scam activity in various blockchain networks by examining projects and teams via a validator system and reward whistleblowers.",
+      project_ecosystem: "Juno",
+      project_email: "",
+      project_id: "0",
+      project_milestones: [
+        {
+          milestone_amount: "1200000",
+          milestone_description: "",
+          milestone_enddate: "2022-03-31",
+          milestone_name: "1",
+          milestone_startdate: "2022-03-01",
+          milestone_status: "0",
+          milestone_step: "0",
+          milestone_type: "1",
+          milestone_votes: [],
+        },
+      ],
+      project_saft: "WeFund_SAFT.docx",
+      project_teammembers: [
+        {
+          teammember_description:
+            "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the hackathon organized by Terraform Labs. He has a wealth of experience in coding, with a deep understanding of C, C++, Javascript, VBA, Java, Python, Rust language (to name a few). In 2018 he moved his focus into Solidity, PHP, & HTML 5, to follow his vision of creating advanced Web 3.0 applications integrated with the blockchain. His role is to ensure delivery of smart contracts, web app, and technical infrastructure, as well as managing the business side of the project. From the business side, he had several businesses before such as a Natural Mosquito Solution based on Bali, hotel & restaurant (Ristorante-Bar Lanca) in Switzerland, and a smart-home startup to reduce electricity consumption. Most of the businesses he founded had an ROI within less than 1 year.\n\n",
+          teammember_linkedin: "",
+          teammember_name: "Andrea Bello ",
+          teammember_role: "Co-Founder & CEO & Co-CTO",
+        },
+        {
+          teammember_description:
+            "A dynamic individual who worked at Tencent as an operation specialist, in the partnership division. Before Tencent, she was senior partnership manager at Bigo. She previously held a senior account executive position at one of the digital marketing agencies under Jet Group and was a manager at Waves, who successfully helped founders to raise $1.2M in pre-seed funding, before turning her attention to crypto. She is one of the founding partners and driving forces behind the concept of WeFund. She was on the core team behind the hackathon project of Fan$quad together with the other ex co-founder.\n\n",
+          teammember_linkedin: "",
+          teammember_name: "Ika Afifah ",
+          teammember_role: "Co-Founder & CMO",
+        },
+        {
+          teammember_description:
+            "World explorer, entrepreneur, and blockchain technology enthusiast. Came from a career in Silicon Valley building web applications during the dot-com boom. Wanting to do it all over again, this time helping to build Web 3.0.\n\n",
+          teammember_linkedin: "",
+          teammember_name: "Jason Galvin ",
+          teammember_role: "Co-CTO",
+        },
+        {
+          teammember_description:
+            "Comes from a background in investment and corporate finance. After completing his education, he worked as a Business Analyst for a large tech company in Seattle, Washington USA building AI applications to identify high-risk sale transactions. He now is an Investment Manager for a prestigious silicon valley venture capital firm located in Jakarta, Indonesia managing investment deals in the Southeast Asia region.\n\n",
+          teammember_linkedin: "",
+          teammember_name: "Austin Taylor ",
+          teammember_role: "COO",
+        },
+      ],
+      project_website: "",
       project_whitepaper: "",
       service_charity: "0",
       service_wefund: "5",
@@ -559,7 +636,7 @@ export const initMsgs = [
           stage_period: "0",
           stage_price: "0",
           stage_soon: "0",
-          stage_title: "Seed",
+          stage_title: "Private",
         },
       ],
     },

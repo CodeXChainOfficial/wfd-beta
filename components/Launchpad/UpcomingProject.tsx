@@ -30,8 +30,17 @@ function ProjectItem(props: {
   setSelected: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const router = useRouter();
-  const { name, status, image, registration_start, platform_raise, link, selectedIndex, index, setSelected } =
-    props;
+  const {
+    name,
+    status,
+    image,
+    registration_start,
+    platform_raise,
+    link,
+    selectedIndex,
+    index,
+    setSelected,
+  } = props;
   const selected = selectedIndex == index;
 
   return (
@@ -208,16 +217,16 @@ const projects = [
     link: "/detail?project_id=4",
   },
   {
-    image: "/media/partners/Africred.jpeg",
-    name: "Africred",
+    image: "/media/partners/Datalake.png",
+    name: "Data Lake",
     status: "Coming Soon",
     registration_start: "TBA",
     platform_raise: "TBA",
     link: "/detail?project_id=5",
   },
   {
-    image: "/media/Launchpad/secret-partner.png",
-    name: "Top Secret",
+    image: "/media/partners/Scamscanner.png",
+    name: "Scam Scanner",
     status: "Coming Soon",
     registration_start: "TBA",
     platform_raise: "TBA",
@@ -229,7 +238,7 @@ const projects = [
     status: "Coming Soon",
     registration_start: "TBA",
     platform_raise: "TBA",
-    link: "/detail?project_id=7",
+    link: "",
   },
   {
     image: "/media/Launchpad/secret-partner.png",
@@ -237,7 +246,7 @@ const projects = [
     status: "Coming Soon",
     registration_start: "TBA",
     platform_raise: "TBA",
-    link: "/detail?project_id=8",
+    link: "",
   },
   {
     image: "/media/Launchpad/secret-partner.png",
@@ -245,6 +254,6 @@ const projects = [
     status: "Coming Soon",
     registration_start: "TBA",
     platform_raise: "TBA",
-    link: "/detail?project_id=9",
+    link: "",
   },
 ];

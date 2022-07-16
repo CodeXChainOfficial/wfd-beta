@@ -227,7 +227,7 @@ export default function InvestStep3() {
 
     window.localStorage.setItem("invest_date", date);
 
-    if (project_id == WEFUND_ID) {
+    // if (project_id == WEFUND_ID) {
       await createSAFTPdf(date);
 
       const tokenInfo = LookForTokenInfo(investChain, investToken);
@@ -247,11 +247,11 @@ export default function InvestStep3() {
         toast("Failed", ERROR_OPTION);
         console.log(e);
       }
-    } else {
-      await createSAFTDocx(date);
-      const res = await backProject();
-      if (res) router.push("/invest/step4?project_id=" + project_id);
-    }
+    // } else {
+    //   await createSAFTDocx(date);
+    //   const res = await backProject();
+    //   if (res) router.push("/invest/step4?project_id=" + project_id);
+    // }
   }
 
   async function backProject() {
