@@ -75,25 +75,6 @@ export default function UpcomingProject() {
             </Link>
           </Flex>
 
-          <Flex justifyContent={"center"}>
-            <Link href="https://portalkripto.com/" isExternal>
-              <Center
-                width={{ base: "220px", md: "375px" }}
-                height={{ base: "220px", md: "375px" }}
-                bgGradient="linear(#430E82, #1D0551)"
-                borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
-              >
-                <Image
-                  cursor="pointer"
-                  data-aos="fade-down"
-                  objectFit="contain"
-                  src="/media/partners/Portalkripto.png"
-                  width={{ base: "20em" }}
-                  height={{ base: "6em" }}
-                />
-              </Center>
-            </Link>
-          </Flex>
 
           <Flex justifyContent={"center"}>
             <Link href="https://lynxverse.io/" isExternal>
@@ -115,25 +96,6 @@ export default function UpcomingProject() {
             </Link>
           </Flex>
 
-          <Flex justifyContent={"center"}>
-            <Link href="#" isExternal>
-              <Center
-                width={{ base: "220px", md: "375px" }}
-                height={{ base: "220px", md: "375px" }}
-                bgGradient="linear(#430E82, #1D0551)"
-                borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
-              >
-                <Image
-                  cursor="pointer"
-                  data-aos="fade-down"
-                  objectFit="contain"
-                  src="/media/partners/Africred.jpeg"
-                  width={{ base: "20em" }}
-                  height={{ base: "15em" }}
-                />
-              </Center>
-            </Link>
-          </Flex>
 
           <Flex justifyContent={"center"}>
             <Link href="https://luna-miners.com/" isExternal>
