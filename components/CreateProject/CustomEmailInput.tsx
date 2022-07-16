@@ -23,7 +23,7 @@ const CustomEmailInput: FunctionComponent<Props> = ({
   w,
 }) => {
   return (
-    <Box w={w}>
+    <Box w={w} mt={"15px"}>
       <Flex justify="space-between">
         <Text mb="20px">{typeText}</Text>
       </Flex>

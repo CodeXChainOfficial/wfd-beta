@@ -51,9 +51,10 @@ const TeamMembers: FunctionComponent<Props> = ({
         return (
           <Flex direction="column" key={index}>
             <Text
-              fontSize={{ base: "25px", md: "25px" }}
+              fontSize={{ base: "22px", md: "25px" }}
               color="#4790f5"
               mb="10px"
+              align={'center'}
             >
               Team Member {index + 1}
             </Text>
@@ -103,12 +104,12 @@ const TeamMembers: FunctionComponent<Props> = ({
         mb="50px"
         justify="center"
         borderBottom={"1px solid rgba(255, 255, 255, 0.3)"}
-        fontSize={{ base: "14px", md: "15px", lg: "16px" }}
+        fontSize={{ base: "12px", md: "15px", lg: "16px" }}
       >
         <ButtonBackTransition
           unitid="AddNewMilestone"
           selected={false}
-          width="250px"
+          width="260px"
           height="45px"
           rounded="33px"
           onClick={onNewTeamMember}
@@ -118,10 +119,10 @@ const TeamMembers: FunctionComponent<Props> = ({
         <ButtonBackTransition
           unitid="CancelMilestone"
           selected={false}
-          width="250px"
+          width="300px"
           height="45px"
           rounded="33px"
-          ml="30px"
+          ml={{base:"10px", md:"40px"}}
           onClick={onCancelTeamMember}
         >
           <Box color="white">Cancel Team Member {description.length}</Box>

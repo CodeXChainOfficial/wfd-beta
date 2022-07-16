@@ -228,25 +228,25 @@ export default function InvestStep3() {
     window.localStorage.setItem("invest_date", date);
 
     // if (project_id == WEFUND_ID) {
-      await createSAFTPdf(date);
+    await createSAFTPdf(date);
 
-      const tokenInfo = LookForTokenInfo(investChain, investToken);
-      const amount = tokenInfo?.decimals
-        ? Math.floor(parseFloat(investAmount) * 10 ** tokenInfo?.decimals)
-        : 0;
+    const tokenInfo = LookForTokenInfo(investChain, investToken);
+    const amount = tokenInfo?.decimals
+      ? Math.floor(parseFloat(investAmount) * 10 ** tokenInfo?.decimals)
+      : 0;
 
-      try {
-        await wallet.sendTokens(
-          amount,
-          tokenInfo?.denom,
-          tokenInfo?.address,
-          tokenInfo?.native
-        );
-      } catch (e) {
-        window.localStorage.removeItem("action");
-        toast("Failed", ERROR_OPTION);
-        console.log(e);
-      }
+    try {
+      await wallet.sendTokens(
+        amount,
+        tokenInfo?.denom,
+        tokenInfo?.address,
+        tokenInfo?.native
+      );
+    } catch (e) {
+      window.localStorage.removeItem("action");
+      toast("Failed", ERROR_OPTION);
+      console.log(e);
+    }
     // } else {
     //   await createSAFTDocx(date);
     //   const res = await backProject();
@@ -319,10 +319,10 @@ export default function InvestStep3() {
 
   return (
     <PageLayout
-      title="Back the Project"
+      title="Contribute"
       subTitle1="Invest"
       subTitle2="Contribute"
-      subTitle3="in WeFund"
+      subTitle3="&nbsp;in WeFund"
     >
       <Flex
         width="100%"
@@ -352,13 +352,13 @@ export default function InvestStep3() {
               direction="column"
               style={{ fontFamily: "PilatExtended-Regular" }}
             >
-              <HStack mt="150px" mb="50px">
-                <Box
-                  width={{ base: "50px", md: "40px" }}
+              <HStack mt="10px" mb="50px">
+              <Box
+                   width={{ base: "35px", md: "40px" }}
+                   height={{ base: "18px", md: "24px" }}
                   style={{
                     paddingTop: "3px",
                     paddingLeft: "3px",
-                    height: "24px",
                     border: "3px solid #3BE489",
                     backgroundColor: "#3BE489",
                     borderRadius: "50%",
@@ -367,15 +367,15 @@ export default function InvestStep3() {
                 >
                   <CheckIcon
                     color="#250E3F"
-                    w={3}
-                    h={3}
-                    marginBottom={"20px"}
+                    w={{base:2, md: 3}}
+                    h={{base:2, md: 3}}
+                    marginBottom={{base:"30px", md:"20px"}}
                   />
                 </Box>
                 <Text
                   fontSize={{
                     base: "12px",
-                    sm: "16px",
+                    sm: "12px",
                     md: "22px",
                     lg: "22px",
                   }}
@@ -384,18 +384,18 @@ export default function InvestStep3() {
                 </Text>
                 <Box
                   style={{
-                    height: "0x",
+                    height: "4px",
                     width: "30%",
-                    border: "2px solid #3BE489",
-                    background: " #3BE489",
+                    background:
+                      "linear-gradient(90deg, #3BE489 0%, rgba(59, 228, 137, 0) 100%)",
                   }}
                 ></Box>
                 <Box
-                  width={{ base: "50px", md: "40px" }}
+                   width={{ base: "35px", md: "35px" }}
+                   height={{ base: "18px", md: "24px" }}
                   style={{
                     paddingTop: "3px",
                     paddingLeft: "3px",
-                    height: "24px",
                     border: "3px solid #3BE489",
                     backgroundColor: "#3BE489",
                     borderRadius: "50%",
@@ -404,15 +404,16 @@ export default function InvestStep3() {
                 >
                   <CheckIcon
                     color="#250E3F"
-                    w={3}
-                    h={3}
-                    marginBottom={"20px"}
+                    w={{base:2, md: 3}}
+                    h={{base:2, md: 3}}
+                    marginBottom={{base:"30px", md:"20px"}}
                   />
                 </Box>
+                
                 <Text
                   fontSize={{
                     base: "12px",
-                    sm: "16px",
+                    sm: "12px",
                     md: "22px",
                     lg: "22px",
                   }}
@@ -428,9 +429,9 @@ export default function InvestStep3() {
                   }}
                 ></Box>
                 <Box
-                  width={{ base: "50px", md: "40px" }}
+                   width={{ base: "35px", md: "40px" }}
+                   height={{ base: "18px", md: "24px" }}
                   style={{
-                    height: "24px",
                     border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
                     borderRadius: "50%",
                     display: "inline-block",
@@ -439,12 +440,12 @@ export default function InvestStep3() {
                 <Text
                   fontSize={{
                     base: "12px",
-                    sm: "16px",
+                    sm: "12px",
                     md: "22px",
                     lg: "22px",
                   }}
                 >
-                  Final Step
+                  Final
                 </Text>
               </HStack>
               <Text

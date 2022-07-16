@@ -80,10 +80,10 @@ export default function InvestStep2() {
 
   return (
     <PageLayout
-      title="Back the Project"
+      title="Contribute"
       subTitle1="Invest"
       subTitle2="Contribute"
-      subTitle3="in WeFund"
+      subTitle3="&nbsp;in WeFund"
     >
       <Flex
         width="100%"
@@ -96,7 +96,7 @@ export default function InvestStep2() {
           bgGradient={
             "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
           }
-          backdropBlur={'54px'}
+          backdropBlur={"54px"}
           pt="30px"
           style={{ fontFamily: "Sk-Modernist" }}
           rounded={"3xl"}
@@ -105,6 +105,7 @@ export default function InvestStep2() {
             width={"100%"}
             style={{ fontFamily: "Sk-Modernist-Regular" }}
             align="center"
+            px={1}
           >
             <Flex
               justify="center"
@@ -112,13 +113,13 @@ export default function InvestStep2() {
               direction="column"
               style={{ fontFamily: "PilatExtended-Regular" }}
             >
-              <HStack mt="30px"  px="15px">
+              <HStack mt="150px" mb="50px">
                 <Box
-                  width={{ base: "50px", md: "40px" }}
+                   width={{ base: "35px", md: "40px" }}
+                   height={{ base: "18px", md: "24px" }}
                   style={{
                     paddingTop: "3px",
                     paddingLeft: "3px",
-                    height: "24px",
                     border: "3px solid #3BE489",
                     backgroundColor: "#3BE489",
                     borderRadius: "50%",
@@ -127,15 +128,15 @@ export default function InvestStep2() {
                 >
                   <CheckIcon
                     color="#250E3F"
-                    w={3}
-                    h={3}
-                    marginBottom={"20px"}
+                    w={{base:2, md: 3}}
+                    h={{base:2, md: 3}}
+                    marginBottom={{base:"30px", md:"20px"}}
                   />
                 </Box>
                 <Text
                   fontSize={{
                     base: "12px",
-                    sm: "16px",
+                    sm: "12px",
                     md: "22px",
                     lg: "22px",
                   }}
@@ -151,9 +152,9 @@ export default function InvestStep2() {
                   }}
                 ></Box>
                 <Box
-                  width={{ base: "50px", md: "40px" }}
+                   width={{ base: "35px", md: "40px" }}
+                   height={{ base: "18px", md: "24px" }}
                   style={{
-                    height: "24px",
                     border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
                     borderRadius: "50%",
                     display: "inline-block",
@@ -162,7 +163,7 @@ export default function InvestStep2() {
                 <Text
                   fontSize={{
                     base: "12px",
-                    sm: "16px",
+                    sm: "12px",
                     md: "22px",
                     lg: "22px",
                   }}
@@ -178,9 +179,9 @@ export default function InvestStep2() {
                   }}
                 ></Box>
                 <Box
-                  width={{ base: "50px", md: "40px" }}
+                   width={{ base: "35px", md: "40px" }}
+                   height={{ base: "18px", md: "24px" }}
                   style={{
-                    height: "24px",
                     border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
                     borderRadius: "50%",
                     display: "inline-block",
@@ -189,12 +190,12 @@ export default function InvestStep2() {
                 <Text
                   fontSize={{
                     base: "12px",
-                    sm: "16px",
+                    sm: "12px",
                     md: "22px",
                     lg: "22px",
                   }}
                 >
-                  Final Step
+                  Final
                 </Text>
               </HStack>
               <Text
