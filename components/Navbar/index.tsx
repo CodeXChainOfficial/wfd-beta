@@ -118,7 +118,7 @@ export const NAV_ITEMS = [
   },
   {
     label: "Projects",
-    href: "/explorer",
+    href: "/#Upcoming",
   },
   // {
   //   label: 'Dashboard',
@@ -137,8 +137,8 @@ export const NAV_ITEMS = [
     href: "/blog",
   },
   {
-    label: "Staking",
-    href: "/staking",
+    label: "Invest",
+    href: "/invest",
   },
   // {
   //   label: 'FAQ',

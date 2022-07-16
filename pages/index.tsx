@@ -37,7 +37,7 @@ export default function Launchpad() {
         <CompletedProject />
         <KYCBanner />
         <CompletedSales />
-        <Staking />
+        {/* <Staking /> */}
         <Footer />
       </Container>
     </ChakraProvider>
