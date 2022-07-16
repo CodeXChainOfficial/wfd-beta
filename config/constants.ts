@@ -180,7 +180,7 @@ export const TOKEN_LIST = [
     chain: "Fantom",
     name: "FTM",
     decimals: 18,
-    native: false,
+    native: true,
   },
   {
     chain: "Fantom",

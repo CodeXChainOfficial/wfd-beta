@@ -21,6 +21,7 @@ export interface MetamaskStore {
   initialized: boolean;
   initializing: boolean;
   signer: any;
+  chainId: number;
 
   readonly clear: () => void;
   readonly connect: () => Promise<void>;
@@ -44,6 +45,7 @@ const defaultStates = {
   initialized: false,
   initializing: true,
   signer: undefined,
+  chainId: 0,
 };
 
 export const useMetamaskStore = create(
@@ -54,12 +56,15 @@ export const useMetamaskStore = create(
       try {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
+
         const accounts = await provider.send("eth_requestAccounts", []);
         const account = accounts[0];
+        const res = await provider.getNetwork();
         set({
           connected: true,
           account: account,
           signer: signer,
+          chainId: res.chainId,
         });
         // const { chainId } = await provider.getNetwork();
       } catch (err: any) {
@@ -79,7 +84,28 @@ export const useMetamaskStore = create(
     },
     getBalance: () => get().balance!,
     getBalanceString: () => {
-      return get().balance.toString() + " metamask";
+      const balance = get()
+        .balance.div(10 ** 9)
+        .div(10 ** 9);
+
+      const chainId = get().chainId;
+      console.log(chainId)
+      let chain = "";
+      switch (chainId) {
+        case 0x38:
+          chain = "BNB";
+          break;
+        case 0x89:
+          chain = "Matic";
+          break;
+        case 0x1294f7c2:
+          chain = "ONE";
+          break;
+        case 0xfa:
+          chain = "FTM";
+          break;
+      }
+      return balance.toString() + " " + chain;
     },
     sendTokens: async (
       amount: number,

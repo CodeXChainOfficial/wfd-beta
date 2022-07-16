@@ -84,7 +84,8 @@ export const useElrondWebStore = create(
     },
     getBalance: () => get().balance!,
     getBalanceString: () => {
-      return get().balance.toString() + " metamask";
+      const balance = get().balance.dividedBy(10 ** 18);
+      return balance.toFixed() + " EGLD";
     },
     sendTokens: async (
       amount: number,

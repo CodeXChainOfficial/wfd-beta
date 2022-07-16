@@ -4,8 +4,7 @@ import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 
-import { BigNumber } from "ethers";
-import { BigNumber as NBigNumber } from "bignumber.js"
+import { BigNumber } from "bignumber.js";
 import * as nearAPI from "near-api-js";
 
 import { getNearConfig, CONTRACT_NAME } from "../config/nearConfig";
@@ -37,7 +36,7 @@ export type WalletContextType = NearWalletStore;
 const defaultStates = {
   connected: false,
   account: "",
-  balance: BigNumber.from("0"),
+  balance: new BigNumber("0"),
   initialized: false,
   initializing: true,
   near: undefined,
@@ -90,7 +89,8 @@ export const useNearWalletStore = create(
     },
     getBalance: () => get().balance!,
     getBalanceString: () => {
-      return get().balance.toString() + " metamask";
+      const balance = get().balance.dividedBy(10 ** 24);
+      return balance.toFixed() + " Near";
     },
     sendTokens: async (
       amount: number,
@@ -102,7 +102,7 @@ export const useNearWalletStore = create(
       if (near) {
         const wallet = new nearAPI.WalletAccount(near, null);
         const account = wallet.account();
-        const big_amount = new NBigNumber(amount);
+        const big_amount = new BigNumber(amount);
 
         window.localStorage.setItem("action", "near_investing");
         await account.sendMoney(
@@ -137,7 +137,7 @@ const WalletSubscription = () => {
           const account = wallet.account();
           const balance = await account.getAccountBalance();
           const { utils } = nearAPI;
-          const amountInNEAR = BigNumber.from(balance.available);
+          const amountInNEAR = new BigNumber(balance.available);
 
           useNearWalletStore.setState({ balance: amountInNEAR });
           useNearWalletStore.setState({ initialized: true });

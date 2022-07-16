@@ -155,19 +155,24 @@ export default function ConnectWallet() {
         <PopoverArrow />
         <PopoverBody p="20px">
           {connected && initialized && (
-            <Flex justify={"space-between"} mb="20px">
-              <Text>{ShortenAddress(wallet?.account)}</Text>
-              <Link>
-                <Text
-                  onClick={() => {
-                    wallet.disconnect();
-                    onClose();
-                  }}
-                >
-                  Disconnect
-                </Text>
-              </Link>
-            </Flex>
+            <>
+              <Flex justify={"space-between"} mb="20px">
+                <Text>{ShortenAddress(wallet?.account)}</Text>
+                <Link>
+                  <Text
+                    onClick={() => {
+                      wallet.disconnect();
+                      onClose();
+                    }}
+                  >
+                    Disconnect
+                  </Text>
+                </Link>
+              </Flex>
+              <Flex justify={"space-between"} mb="20px">
+                <Text>{wallet?.getBalanceString()}</Text>
+              </Flex>
+            </>
           )}
           {WALLET_LIST.map((item, index) => (
             <ConnectionItem label={item.name} link={item.link} key={index} />

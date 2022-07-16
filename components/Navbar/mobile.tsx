@@ -51,7 +51,7 @@ export default function NavbarMobile() {
               <Link href="/create">Create Project</Link>
             </div>
           </Flex>
-          <Flex pr="30px" className="dropdown2">
+          {/* <Flex pr="30px" className="dropdown2">
             <Link href="walletInfo">
               <Icon
                 as={RiAccountPinBoxFill}
@@ -60,7 +60,7 @@ export default function NavbarMobile() {
                 color="white"
               />
             </Link>
-          </Flex>
+          </Flex> */}
         </HStack>
       </Flex>
     </VStack>

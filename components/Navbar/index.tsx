@@ -64,19 +64,19 @@ export default function Navbar() {
             <Flex w="197px" ml="20px" mr={"10px"}>
               <ConnectWallet />
             </Flex>
-            <Link href="userinfo">
+            {/* <Link href="userinfo">
               <Icon
                 as={RiAccountPinBoxFill}
                 fontSize={"45px"}
                 cursor="pointer"
                 color="white"
               />
-            </Link>
+            </Link> */}
           </Flex>
         </Flex>
       </VStack>
       <NavbarMobile />
-      {/* {state.net == "testnet" && (
+      {state.net == "testnet" && (
         <Flex
           w="100%"
           h="30px"
@@ -86,7 +86,7 @@ export default function Navbar() {
         >
           Testnet
         </Flex>
-      )} */}
+      )}
     </Flex>
   );
 }
