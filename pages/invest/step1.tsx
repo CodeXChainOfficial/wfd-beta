@@ -43,20 +43,19 @@ export default function InvestStep1() {
         backgroundImage="url('/media/Home/2.png')"
       >
         <Box
-          w={{ base: "300px", md: "600px", lg: "800px" }}
+          w={{ base: "90%", md: "600px", lg: "800px" }}
           bgGradient={
             "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
           }
-          backdropBlur={'54px'}
+          backdropBlur={"54px"}
           pt="30px"
           style={{ fontFamily: "Sk-Modernist" }}
           rounded={"3xl"}
         >
-          
           <Box
             width={"100%"}
             style={{ fontFamily: "Sk-Modernist-Regular" }}
-            align="center"
+            px="10px"
           >
             <Flex
               justify="center"
@@ -64,7 +63,7 @@ export default function InvestStep1() {
               direction="column"
               style={{ fontFamily: "PilatExtended-Regular" }}
             >
-              <HStack mt="150px" mb="50px">
+              <HStack mt="150px" mb="50px"  w="100%">
                 <Box
                   width={{ base: "50px", md: "40px" }}
                   style={{
@@ -91,7 +90,7 @@ export default function InvestStep1() {
                     border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
                     background: " rgba(255, 255, 255, 0.3799999952316284)",
                   }}
-                ></Box>
+                />
                 <Box
                   width={{ base: "50px", md: "40px" }}
                   style={{
@@ -100,7 +99,7 @@ export default function InvestStep1() {
                     borderRadius: "50%",
                     display: "inline-block",
                   }}
-                ></Box>
+                />
                 <Text
                   fontSize={{
                     base: "12px",

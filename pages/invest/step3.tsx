@@ -331,7 +331,7 @@ export default function InvestStep3() {
         backgroundImage="url('/media/Home/2.png')"
       >
         <Box
-          w={{ base: "300px", md: "600px", lg: "800px" }}
+          w={{ base: "90%", md: "600px", lg: "800px" }}
           bgGradient={
             "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
           }
@@ -343,7 +343,7 @@ export default function InvestStep3() {
           <Box
             width={"100%"}
             style={{ fontFamily: "Sk-Modernist-Regular" }}
-            align="center"
+            px="10px"
           >
             <Flex
               mt="30px"
@@ -352,7 +352,7 @@ export default function InvestStep3() {
               direction="column"
               style={{ fontFamily: "PilatExtended-Regular" }}
             >
-              <HStack mt="150px" mb="50px">
+              <HStack mt="150px" mb="50px" w="100%">
                 <Box
                   width={{ base: "50px", md: "40px" }}
                   style={{

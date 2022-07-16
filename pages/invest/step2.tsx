@@ -57,10 +57,10 @@ export default function InvestStep2() {
   }
 
   function onNext() {
-    if (allocation == 0) {
-      toast("Have no allocation any more!", ERROR_OPTION);
-      return;
-    }
+    // if (allocation == 0) {
+    //   toast("Have no allocation any more!", ERROR_OPTION);
+    //   return;
+    // }
     if (parseInt(backAmount) > max) {
       toast("Exceed the allocation!", ERROR_OPTION);
       return;
@@ -92,11 +92,11 @@ export default function InvestStep2() {
         backgroundImage="url('/media/Home/2.png')"
       >
         <Box
-          w={{ base: "300px", md: "600px", lg: "800px" }}
+          w={{ base: "90%", md: "600px", lg: "800px" }}
           bgGradient={
             "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
           }
-          backdropBlur={'54px'}
+          backdropBlur={"54px"}
           pt="30px"
           style={{ fontFamily: "Sk-Modernist" }}
           rounded={"3xl"}
@@ -104,7 +104,7 @@ export default function InvestStep2() {
           <Box
             width={"100%"}
             style={{ fontFamily: "Sk-Modernist-Regular" }}
-            align="center"
+            px="10px"
           >
             <Flex
               justify="center"
@@ -112,7 +112,7 @@ export default function InvestStep2() {
               direction="column"
               style={{ fontFamily: "PilatExtended-Regular" }}
             >
-              <HStack mt="30px"  px="15px">
+              <HStack mt="30px" px="15px" w="100%">
                 <Box
                   width={{ base: "50px", md: "40px" }}
                   style={{
@@ -228,6 +228,7 @@ export default function InvestStep2() {
               direction={{ base: "column", md: "column", lg: "row" }}
               mt="40px"
               justify="center"
+              align={{ base: "center", lg: "baseline" }}
               spacing={8}
             >
               <Stack
@@ -306,7 +307,7 @@ export default function InvestStep2() {
                       rounded="md"
                       value={wfdAmount}
                       readOnly
-                      // onChange={(e) => { }}
+                    // onChange={(e) => { }}
                     />
                     <InputRightElement
                       w={{ base: "40px", lg: "60px" }}

@@ -42,7 +42,7 @@ export default function ProjectDetail() {
   const project_id = ParseParam_ProjectId();
 
   function onNext() {
-    router.push("/backproject?project_id=" + oneprojectData.project_id);
+    router.push("/invest/step1?project_id=" + oneprojectData.project_id);
   }
 
   //------------fectch project data------------------------------------

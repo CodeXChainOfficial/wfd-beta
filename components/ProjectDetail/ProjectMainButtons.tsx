@@ -37,13 +37,13 @@ export default function ProjectMainButtons({
             width="200px"
             height="50px"
             rounded="33px"
-            // onClick={() => {
-            //   window.open(
-            //     data.project_website,
-            //     '_blank',
-            //     'noopener,noreferrer',
-            //   )
-            // }}
+            onClick={() => {
+              window.open(
+                data.project_website,
+                "_blank",
+                "noopener,noreferrer"
+              )
+            }}
           >
             <Box color="white">
               Visit Website <Icon as={BsArrowUpRight} h={4} w={4} mr={3} />

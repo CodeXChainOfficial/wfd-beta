@@ -90,18 +90,12 @@ const PagesLinks = () => (
     <Link href="/explorer" mr="20px">
       Projects
     </Link>
-    <Link href="/invest" mr="20px">
+    <Link href="/invest/step0" mr="20px">
       Invest In WeFund
     </Link>
     <Link href="/blog" mr="20px">
       Blog
     </Link>
-    <Link href="/cards" mr="20px">
-      Card Holders
-    </Link>
-    {/* <Link href="faq" mr="20px">
-      FAQ
-    </Link> */}
   </Flex>
 );
 
@@ -157,7 +151,7 @@ export default function Footer() {
           <Flex>
             <Image
               width={{ lg: "50px", base: "35px" }}
-              src="media/WeFund-Logos-only.png"
+              src="/media/WeFund-Logos-only.png"
               objectFit={"contain"}
             />
             <Text fontFamily="Sk-Modernist-Regular" ml={"5px"}>

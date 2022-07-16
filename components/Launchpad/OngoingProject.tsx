@@ -43,12 +43,12 @@ const projects = [
     link: "",
   },
   {
-    image: "/media/partners/Africred.jpeg",
-    name: "Africred",
+    image: "/media/partners/Datalake.png",
+    name: "Data Lake",
     status: "Coming Soon",
     registration_start: "TBA",
     platform_raise: "TBA",
-    link: "",
+    link: "/detail?project_id=5",
   },
   {
     image: "/media/Launchpad/secret-partner.png",
