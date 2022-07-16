@@ -10,6 +10,7 @@ import {
   VStack,
   HStack,
   ChakraProvider,
+  // Link,
 } from "@chakra-ui/react";
 
 import NavbarMobile from "./mobile";
@@ -23,7 +24,7 @@ export default function Navbar() {
     <Flex w="100%" direction="column">
       <VStack display={{ base: "none", md: "block", lg: "block" }}>
         <Flex
-          position={{ sm: "relative", lg: "fixed" }}
+          position="relative"
           direction="row"
           justify="space-between"
           h="80px"

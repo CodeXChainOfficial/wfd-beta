@@ -33,7 +33,7 @@ const Layout = ({ children }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
     dispatch({ type: ActionKind.setWalletModal, payload: onOpen });
-  });
+  }, []);
   useEffect(() => {
     async function confirmReferral() {
       const response = await fetch("/api/checkreferral");
@@ -194,7 +194,6 @@ const Layout = ({ children }: Props) => {
   }, []);
 
   return (
-
     <Container>
       <Navbar />
       {children}
