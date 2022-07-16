@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { WEFUND } from "../config/constants";
+import { WEFUND, NETWORK } from "../config/constants";
 
 interface Action {
   type: ActionKind;
@@ -28,7 +28,7 @@ const initialState: AppContextInterface = {
   junoConnection: undefined,
   wallet: undefined,
   openWalletModal: undefined,
-  net: "testnet",
+  net: NETWORK,
   activeProjectData: [],
   projectData: [],
   communityData: [],
