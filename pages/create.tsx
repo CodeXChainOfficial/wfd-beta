@@ -41,6 +41,7 @@ export default function CreateProject() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [ecosystem, setEcosystem] = useState("Terra");
+  const [fundraise, setFundraiseOption] = useState("Token");
   const [tokenName, setTokenName] = useState("");
   const [tokenAddress, setTokenAddress] = useState("");
   const [tokenBalance, setTokenBalance] = useState("");
@@ -83,6 +84,7 @@ export default function CreateProject() {
     formData.append("title", title);
     formData.append("description", description);
     formData.append("ecosystem", ecosystem);
+    formData.append("fundraise", fundraise);
     formData.append("priceSeed", stagePrice[0]);
     formData.append("pricePresale", stagePrice[1]);
     formData.append("priceIDO", stagePrice[2]);
@@ -287,10 +289,10 @@ export default function CreateProject() {
         py={"4em"}
         backgroundImage="url('/media/Home/2.png')"
       >
-        <Box w={{ base: "300px", md: "600px", lg: "800px" }}>
+        <Box w={{ base: "200px", md: "600px", lg: "800px" }}>
           <Flex width="100%" justify="center" mb={"150px"} zIndex={"1"}>
             <Box
-              w={{ base: "sm", sm: "sm", md: "2xl", lg: "2xl", xl: "3xl" }}
+              w={{ base: "xs", sm: "xs", md: "2xl", lg: "2xl", xl: "3xl" }}
               bgGradient={
                 "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
               }
@@ -298,8 +300,8 @@ export default function CreateProject() {
               border="1.5px solid rgba(255, 255, 255, 0.15)"
               borderTopColor="transparent"
               fontFamily="Sk-Modernist-Regular"
-              paddingLeft="50px"
-              paddingRight="50px"
+              paddingLeft="30px"
+              paddingRight="30px"
               zIndex="1"
               rounded={"3xl"}
             >
@@ -345,9 +347,23 @@ export default function CreateProject() {
                     "BSC",
                     "Tron",
                     "Near",
-                    "Algorand",
-                    "Solana",
-                    "Avalanche",
+                    "Tgrade",
+                    "Fantom",
+                    "Polygon",
+                    "OneLedger",
+                  ]}
+                  w={{ base: "100%", md: "50%", lg: "50%" }}
+                />
+                <CustomSelect
+                  typeText="Fundraise Option"
+                  type={fundraise}
+                  setType={setFundraiseOption}
+                  options={[
+                    "Token",
+                    "Equity",
+                    "Token and Equity",
+                    "NFT",
+                    "Others",
                   ]}
                   w={{ base: "100%", md: "50%", lg: "50%" }}
                 />

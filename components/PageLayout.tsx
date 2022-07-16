@@ -22,21 +22,21 @@ const PageLayout: FunctionComponent<Props> = (props) => {
       <Flex 
           px={{ base: "40px", md: "80px", lg: "120px" }}>
             <Text
-              fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
+              fontSize={{ base: "10px", sm: "12px", md: "16px", lg: "16px" }}
               fontWeight="normal"
               color={"rgba(255, 255, 255, 0.54)"}
             >
               Home &gt;&nbsp;
             </Text>
             <Text
-              fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
+              fontSize={{ base: "10px", sm: "12px", md: "16px", lg: "16px" }}
               fontWeight="normal"
               color={"rgba(255, 255, 255, 0.54)"}
             >
               {props.subTitle1} &gt;&nbsp;
             </Text>
             <Text
-              fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
+              fontSize={{ base: "10px", sm: "12px", md: "16px", lg: "16px" }}
               color={"rgba(255, 255, 255, 0.84)"}
             >
               {props.title}

@@ -87,7 +87,7 @@ const PagesLinks = () => (
     <Link href="/" mr="20px">
       Home
     </Link>
-    <Link href="/explorer" mr="20px">
+    <Link href="/#Upcoming" mr="20px">
       Projects
     </Link>
     <Link href="/invest/step0" mr="20px">
@@ -96,6 +96,12 @@ const PagesLinks = () => (
     <Link href="/blog" mr="20px">
       Blog
     </Link>
+    {/* <Link href="/cards" mr="20px">
+      Card Holders
+    </Link> */}
+    {/* <Link href="faq" mr="20px">
+      FAQ
+    </Link> */}
   </Flex>
 );
 

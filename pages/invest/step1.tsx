@@ -31,10 +31,10 @@ export default function InvestStep1() {
   }
   return (
     <PageLayout
-      title="Back the Project"
+      title="Contribute"
       subTitle1="Invest"
       subTitle2="Contribute"
-      subTitle3="in WeFund"
+      subTitle3="&nbsp;in WeFund"
     >
       <Flex
         width="100%"
@@ -65,9 +65,9 @@ export default function InvestStep1() {
             >
               <HStack mt="150px" mb="50px"  w="100%">
                 <Box
-                  width={{ base: "50px", md: "40px" }}
+                  width={{ base: "30px", md: "40px" }}
+                  height={{ base: "18px", md: "24px" }}
                   style={{
-                    height: "24px",
                     border: "3px solid #3BE489",
                     borderRadius: "50%",
                     display: "inline-block",
@@ -76,7 +76,7 @@ export default function InvestStep1() {
                 <Text
                   fontSize={{
                     base: "12px",
-                    sm: "16px",
+                    sm: "12px",
                     md: "22px",
                     lg: "22px",
                   }}
@@ -86,15 +86,15 @@ export default function InvestStep1() {
                 <Box
                   style={{
                     height: "0x",
-                    width: "30%",
+                    width: "20%",
                     border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
                     background: " rgba(255, 255, 255, 0.3799999952316284)",
                   }}
                 />
                 <Box
-                  width={{ base: "50px", md: "40px" }}
+                  width={{ base: "30px", md: "40px" }}
+                  height={{ base: "18px", md: "24px" }}
                   style={{
-                    height: "24px",
                     border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
                     borderRadius: "50%",
                     display: "inline-block",
@@ -103,7 +103,7 @@ export default function InvestStep1() {
                 <Text
                   fontSize={{
                     base: "12px",
-                    sm: "16px",
+                    sm: "12px",
                     md: "22px",
                     lg: "22px",
                   }}
@@ -113,15 +113,15 @@ export default function InvestStep1() {
                 <Box
                   style={{
                     height: "0px",
-                    width: "30%",
+                    width: "20%",
                     border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
                     background: " rgba(255, 255, 255, 0.3799999952316284)",
                   }}
                 ></Box>
                 <Box
-                  width={{ base: "50px", md: "40px" }}
+                  width={{ base: "30px", md: "40px" }}
+                  height={{ base: "18px", md: "24px" }}
                   style={{
-                    height: "24px",
                     border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
                     borderRadius: "50%",
                     display: "inline-block",
@@ -130,12 +130,12 @@ export default function InvestStep1() {
                 <Text
                   fontSize={{
                     base: "12px",
-                    sm: "16px",
+                    sm: "12px",
                     md: "22px",
                     lg: "22px",
                   }}
                 >
-                  Final Step
+                  Final
                 </Text>
               </HStack>
               <Text fontSize="22px" fontWeight={"300"}>
