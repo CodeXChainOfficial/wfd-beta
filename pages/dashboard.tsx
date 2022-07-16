@@ -10,7 +10,7 @@ import {
   Stack,
   Button,
 } from "@chakra-ui/react";
-import Pagination from "@choc-ui/paginator";
+import { useRouter } from "next/router";
 
 import {
   useStore,
@@ -30,9 +30,7 @@ import { WEFUND_CONTRACT } from "../config/constants";
 export default function Dashboard() {
   const { state, dispatch } = useStore();
   const [wallet, setWallet] = useState("");
-  //-------------paginator------------------------------
-  const [current, setCurrent] = useState(1);
-  const pageSize = 10;
+  const router = useRouter();
 
   const [postCommunityData, setPostCommunityData] = useState<any[]>([]);
   const [nextNetwork, setNextNetwork] = useState("Test");
@@ -41,40 +39,11 @@ export default function Dashboard() {
   const client = junoConnection?.getClient();
   const address = junoConnection?.account;
 
-  const Prev = forwardRef((props, ref) => (
-    <Button ref={ref} {...props}>
-      Prev
-    </Button>
-  ));
-  const Next = forwardRef((props, ref) => (
-    <Button ref={ref} {...props}>
-      Next
-    </Button>
-  ));
-
-  const itemRender = (_, type) => {
-    if (type === "prev") {
-      return Prev;
-    }
-    if (type === "next") {
-      return Next;
-    }
-  };
-  function onChangePaginator(page: number) {
-    if (state.communityData == []) {
-      setPostCommunityData([]);
-      return;
-    }
-    const offset = (page - 1) * pageSize;
-    setPostCommunityData(state.communityData.slice(offset, offset + pageSize));
-  }
-
   const communityData = useCommunityData();
   useEffect(() => {
     async function fetch() {
       try {
-        setCurrent(1);
-        setPostCommunityData(communityData.slice(0, pageSize));
+        setPostCommunityData(communityData);
       } catch (e) {
         console.log(e);
       }
@@ -167,7 +136,21 @@ export default function Dashboard() {
         mt="50px"
         width={{ base: "90%", md: "70%", lg: "50%" }}
       >
-        <SwitchButton />
+        {/* <SwitchButton /> */}
+        <Flex
+          w="100%"
+          h="50px"
+          my="20px"
+          background="blue.700"
+          justify="center"
+          align="center"
+          rounded="10px"
+          cursor="pointer"
+          _hover={{ background: "blue.300" }}
+          onClick={() => router.push("/explorer")}
+        >
+          <Text color="white">Go to Explorer page</Text>
+        </Flex>
         {postCommunityData?.map((member: string, index) => (
           <Stack
             w="100%"
@@ -178,7 +161,7 @@ export default function Dashboard() {
             direction={{ base: "column", md: "column", lg: "row" }}
             spacing="10px"
           >
-            <Text>{member}</Text>
+            <Text fontSize={{ base: "8px", md: "12px" }}>{member}</Text>
             <ButtonTransition
               unitid={"Removemember" + index}
               selected={false}
@@ -193,7 +176,7 @@ export default function Dashboard() {
         ))}
         <Stack
           w="100%"
-          mt="10px"
+          my="10px"
           spacing="10px"
           justify="space-between"
           align="center"
@@ -228,17 +211,6 @@ export default function Dashboard() {
             </ButtonTransition>
           </Box>
         </Stack>
-        <Flex w="100%" p={50} alignItems="center" justifyContent="center">
-          <Pagination
-            // bg={"linear-gradient(180deg, #FE8600 21.43%, #F83E00 147.62%)"}
-            current={current}
-            onChange={(page: any) => onChangePaginator(page)}
-            pageSize={pageSize}
-            total={communityData == [] ? 0 : state.communityData.length}
-            itemRender={itemRender}
-            paginationProps={{ display: "flex" }}
-          />
-        </Flex>
       </Flex>
       <Footer />
     </PageLayout>

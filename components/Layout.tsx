@@ -104,7 +104,7 @@ const Layout = ({ children }: Props) => {
     };
 
     fetch();
-  }, [junoConnection, junoConnection?.initialized]);
+  }, []);
 
   //-------Near connection--------------------------------------------------
   const near = useNearWallet();

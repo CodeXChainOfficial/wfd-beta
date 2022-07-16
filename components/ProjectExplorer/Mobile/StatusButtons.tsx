@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 import {
@@ -43,7 +43,7 @@ const StatusButtons: FunctionComponent<Props> = ({
   const router = useRouter();
 
   return (
-    <>
+    <VStack spaing="10px">
       {activeTab === "MileStoneDelivery" && (
         <Text py={2} color={"gray.400"}>
           Project Milestone step - {parseInt(data.project_milestonestep) + 1}
@@ -187,7 +187,7 @@ const StatusButtons: FunctionComponent<Props> = ({
           </ButtonTransition>
         </Flex>
       )}
-    </>
+    </VStack>
   );
 };
 export default StatusButtons;

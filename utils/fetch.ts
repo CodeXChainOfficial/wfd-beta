@@ -1,9 +1,12 @@
+import { CosmWasmClient } from "@cosmjs/cosmwasm-stargate";
+import { getJunoConfig } from "../config";
 import {
   WEFUND_CONTRACT,
   STAKING_CONTRACT,
   WFD_TOKEN,
   WEFUND,
   WEFUND_ID,
+  NETWORK,
 } from "../config/constants";
 import { ActionKind } from "../contexts/store";
 
@@ -42,14 +45,16 @@ export async function fetchData(
   let communityData = state.communityData;
   let configData = state.configData;
 
-  if (!state.junoConnection || !state.junoConnection.getClient() || !force)
+  if (!force)
     return { projectData, communityData, configData };
 
-  const client = state.junoConnection.getClient();
-  if (!client) {
-    console.log("Error");
-    return;
-  }
+  // const client = state.junoConnection.getClient();
+  // if (!client) {
+  //   console.log("Error");
+  //   return;
+  // }
+  const config = getJunoConfig(NETWORK);
+  const client = await CosmWasmClient.connect(config.rpcUrl);
 
   try {
     projectData = await client.queryContractSmart(WEFUND_CONTRACT, {
