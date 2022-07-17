@@ -244,7 +244,7 @@ function useWindowDimensions() {
 }
 
 const HorizontalRoadmap = function () {
-  const carouselEl = useRef();
+  const carouselEl = useRef<HTMLDivElement>(null);
   const { width } = useWindowDimensions();
   const [scrollable, setScrollable] = useState(true);
 
@@ -259,12 +259,12 @@ const HorizontalRoadmap = function () {
     }
 
     console.log(carouselEl.current);
-    // setScrollable(carouselEl.current.scrollWidth > width);
+    setScrollable(carouselEl.current.scrollWidth > width);
 
-    // if (scrollable) {
-    //   let scrollTo = progress * carouselEl.current.scrollWidth;
-    //   carouselEl.current.scrollTo(scrollTo, 0);
-    // }
+    if (scrollable) {
+      let scrollTo = progress * carouselEl.current.scrollWidth;
+      carouselEl.current.scrollTo(scrollTo, 0);
+    }
   }, [width, progress]);
 
   const maxScroll = 0.66;
@@ -312,6 +312,7 @@ const HorizontalRoadmap = function () {
             height={"calc(80vh + 24px)"}
             overflowY={"hidden"}
             overflowX={"hidden"}
+            ref={carouselEl}
           >
             <Box ml={"12em"}></Box>
             {timelines.map((item, i) => (

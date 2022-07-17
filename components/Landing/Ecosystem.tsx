@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Box, Text, Image } from "@chakra-ui/react";
+import { Flex, Center, Image } from "@chakra-ui/react";
 
 export default function Eco() {
   return (
@@ -12,9 +12,9 @@ export default function Eco() {
       padding={{ base: "1em", md: "8em", lg: "10em" }}
       my={"4em"}
     >
-      <Box boxSize="full">
+      <Center>
         <Image src="/media/partners/eco.jpg" />
-      </Box>
+      </Center>
     </Flex>
   );
 }
