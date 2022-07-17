@@ -1,13 +1,6 @@
 import { ChakraProvider, Container, HStack } from "@chakra-ui/react";
-import theme from "../../components/theme";
 import { Box, Flex, Spacer, VStack, useDisclosure } from "@chakra-ui/react";
-import React, {
-  useEffect,
-  useState,
-  useMemo,
-  useRef,
-  useCallback,
-} from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import { useRouter } from "next/router";

@@ -1,21 +1,24 @@
 import React, { useState, useRef } from "react";
 
 import { Flex, Input, Button, Box } from "@chakra-ui/react";
+import CryptoJS from "crypto-js";
+import { toast } from "react-toastify";
+
 import PageLayout from "../../components/PageLayout";
 import {
   InputTransition,
   ButtonTransition,
 } from "../../components/ImageTransition";
 
+import { WEFUND_ID, ERROR_OPTION } from "../../config/constants";
 import { useRouter } from "next/router";
+import { useStore } from "../../contexts/store";
 import Footer from "../../components/Footer";
 
 export default function InvestStep0() {
   const [showInput, setShowInput] = useState(false);
-  const passRef = useRef();
+  const passRef = useRef<HTMLInputElement>();
   const router = useRouter();
-
-  const projectId = router.query["project_id"];
 
   function onPresale() {
     router.push({
@@ -30,20 +33,15 @@ export default function InvestStep0() {
   }
 
   function onConfirm() {
-    router.push("/invest/step1");
-    // const CryptoJS = require('crypto-js');
-
-    // if(CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(passRef.current.value)) === 'V2VGdW5kVkMyMDIy')
-    // {
-    //   dispatch({
-    //     type: 'setPresale',
-    //     message: false,
-    //   })
-    //   navigate('/invest_step1?project_id=' + state.wefundID);
-    // }
-    // else{
-    //   toast("Sorry, wrong password", errorOption);
-    // }
+    if (
+      CryptoJS.enc.Base64.stringify(
+        CryptoJS.enc.Utf8.parse(passRef.current.value)
+      ) === "V2VGdW5kVkMyMDIy"
+    ) {
+      router.push("/invest/step1?project_id=" + WEFUND_ID);
+    } else {
+      toast("Sorry, wrong password", ERROR_OPTION);
+    }
   }
   return (
     <PageLayout
@@ -75,8 +73,6 @@ export default function InvestStep0() {
             align="center"
             pb="100px"
           >
-
-
             <ButtonTransition
               unitid="Seed"
               selected={false}
@@ -110,7 +106,7 @@ export default function InvestStep0() {
                   placeholder="Enter password"
                   boxShadow={""}
                   rounded="md"
-                  ref={passRef.current}
+                  ref={passRef}
                 />
               </InputTransition>
               <Button
