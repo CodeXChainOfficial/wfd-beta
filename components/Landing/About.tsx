@@ -70,7 +70,7 @@ const AboutMobile = () => (
 );
 
 const AboutDesktop = () => (
-  <Container minW={"container.xl"} display={{ base: "none", lg: "block" }}>
+  <Container minW={{ base: "60em", xl: "container.ld"}} display={{ base: "none", lg: "block" }}>
     <Stack
       alignItems="center"
       justifyContent="center"
@@ -88,9 +88,10 @@ const AboutDesktop = () => (
       >
         ABOUT <chakra.span color="#FCFCFC">WeFund</chakra.span>
       </Text>
-      <Flex direction={"row"}>
+      <Flex direction={"row"} width={{ base: "75%", xl: "full" }}>
         <Box marginX={"80px"}>
           <Image
+            width="200px"
             zIndex="3"
             objectFit="contain"
             src="/media/Home/wfd-logo-projection.png"
@@ -100,7 +101,6 @@ const AboutDesktop = () => (
         <Stack
           flex={1}
           flexDirection="column"
-          width={{ base: "95%", md: "85%", lg: "70%" }}
           spacing={"3em"}
         >
           <Flex
@@ -109,7 +109,7 @@ const AboutDesktop = () => (
             borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
             p={"32px"}
           >
-            <Image objectFit="contain" src="/media/Home/about-icon-2.png" />
+            <Image width="100px" objectFit="contain" src="/media/Home/about-icon-2.png" />
             <Text
               flex={1}
               display="inline"
@@ -131,7 +131,7 @@ const AboutDesktop = () => (
             borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
             p={"32px"}
           >
-            <Image objectFit="contain" src="/media/Home/about-icon-1.png" />
+            <Image width="100px" objectFit="contain" src="/media/Home/about-icon-1.png" />
             <Text
               flex={1}
               display="inline"

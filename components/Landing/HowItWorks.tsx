@@ -69,7 +69,7 @@ export default function Works() {
         backgroundImage="/media/Home/42.png"
         mt={{ base: "1em", md: "1em", lg: "1em" }}
         mb={{ base: "4em", md: "8em", lg: "10em" }}
-        width={{ base: "88%", md: "90%", lg: "75em" }}
+        width={{ base: "88%", md: "90%", lg: "64em" }}
         justifyContent={{ base: "center", md: "center", lg: "center" }}
       >
         {tokens.map((e, i) => (
