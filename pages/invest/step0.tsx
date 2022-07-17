@@ -75,16 +75,7 @@ export default function InvestStep0() {
             align="center"
             pb="100px"
           >
-            <ButtonTransition
-              unitid="presale"
-              selected={false}
-              width="200px"
-              height="50px"
-              rounded="33px"
-              onClick={onPresale}
-            >
-              Presale
-            </ButtonTransition>
+
 
             <ButtonTransition
               unitid="Seed"
