@@ -105,16 +105,22 @@ export default function InvestStep3() {
   }
   //---------------on next------------------------------------
   function checkValication() {
+
     const investChain = window.localStorage.getItem("invest_chain") ?? "";
     const investAmount = window.localStorage.getItem("invest_amount") ?? "";
-
+console.log(state.walletType);
+console.log(investChain.toLowerCase());
     if (checkNetwork(state) == false) return false;
     let proper = false;
     if (investChain.toLowerCase() == "juno" && state.walletType == "keplr") {
       proper = true;
     }
+
     if (
-      investChain.toLowerCase() == "bsc" &&
+      (investChain.toLowerCase() == "bsc" ||
+        investChain.toLowerCase() == "polygon" ||
+        investChain.toLowerCase() == "oneledger" ||
+        investChain.toLowerCase() == "fantom") &&
       (state.walletType == "metamask" || state.walletType == "trust")
     ) {
       proper = true;
