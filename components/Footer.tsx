@@ -27,13 +27,13 @@ const SocialMediaLinks = () => (
     />
     <IconButton
       as="a"
-      aria-label="Telegram"
+      aria-label="Youtube"
       className="footerButton"
       width={{ lg: "25px", base: "14px" }}
       borderRadius={"100px"}
       backgroundColor={"rgba(255, 255, 255, 0.05)"}
-      href="https://t.me/talkwithwefund"
-      icon={<FaTelegram className="footerIcon" />}
+      href="https://youtube.com/channel/UCjwo-9Yj7NQSmSqiY6FvEdw"
+      icon={<FaYoutube className="footerIcon" />}
     />
     <IconButton
       as="a"
@@ -52,7 +52,7 @@ const SocialMediaLinks = () => (
       width={{ lg: "25px", base: "14px" }}
       borderRadius={"100px"}
       backgroundColor={"rgba(255, 255, 255, 0.05)"}
-      icon={<FaTelegramPlane className="footerIcon" />}
+      icon={<FaTelegram className="footerIcon" />}
       href="https://t.me/wefundofficial"
     />
     <IconButton
