@@ -13,7 +13,7 @@ export default function Eco() {
       my={"4em"}
     >
       <Center>
-        <Image src="/media/partners/eco.jpg" />
+        <Image src="/media/partners/ecosystem.jpg" />
       </Center>
     </Flex>
   );
