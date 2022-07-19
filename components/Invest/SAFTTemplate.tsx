@@ -3,7 +3,7 @@ import { Flex, VStack } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 
 import { Document, Page, pdfjs } from "react-pdf";
-pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.min.js";
+pdfjs.GlobalWorkerOptions.workerSrc =`//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 import { WEFUND_ID, REQUEST_ENDPOINT } from "../../config/constants";
 import { useProjectData } from "../../contexts/store";
@@ -16,31 +16,28 @@ interface Props {
 }
 const PDFTemplate: FunctionComponent<Props> = ({ presale, project_id }) => {
   const isWeFund = WEFUND_ID == project_id;
-  const [src, setSrc] = useState("https://wefund.app/PDFTemplate_presale.pdf");
+  const [src, setSrc] = useState("/PDFTemplate_presale.pdf");
   const projectData = useProjectData();
 
-  async function fetchData() {
-    const oneprojectData = GetOneProject(projectData, project_id);
-    if (oneprojectData == "") {
-      toast("Can't fetch project data", ERROR_OPTION);
-      return "";
-    }
-    // console.log(oneprojectData.project_saft);
-    if (!isWeFund)
-      setSrc(
-        REQUEST_ENDPOINT +
-          "/download_docx?filename=" +
-          oneprojectData.project_saft
-      );
-  }
-
   useEffect(() => {
+    async function fetchData() {
+      const oneprojectData = GetOneProject(projectData, project_id);
+      if (oneprojectData == "") {
+        toast("Can't fetch project data", ERROR_OPTION);
+        return "";
+      }
+      // console.log(oneprojectData.project_saft);
+      if (!isWeFund)
+        setSrc(
+          REQUEST_ENDPOINT +
+            "/download_docx?filename=" +
+            oneprojectData.project_saft
+        );
+    }
     if (!isWeFund) fetchData();
     else {
       setSrc(
-        presale == true
-          ? "https://wefund.app/PDFTemplate_presale.pdf"
-          : "https://wefund.app/PDFTemplate.pdf"
+        presale == true ? "/PDFTemplate_presale.pdf" : "/PDFTemplate.pdf"
       );
     }
   }, []);
@@ -56,7 +53,12 @@ const PDFTemplate: FunctionComponent<Props> = ({ presale, project_id }) => {
         >
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Document file={src} onLoadSuccess={onDocumentLoadSuccess}>
-              <Page pageNumber={1} scale={scale} />
+              <Page
+                pageNumber={1}
+                scale={scale}
+                renderAnnotationLayer={false}
+                renderTextLayer={false}
+              />
             </Document>
           </div>
           <div

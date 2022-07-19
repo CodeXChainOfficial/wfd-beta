@@ -15,6 +15,14 @@ async function getClient() {
     prefix: "juno",
   });
 
+  // const rpc = "https://rpc.juno-1.deuslabs.fi";
+  // const client = await SigningCosmWasmClient.connectWithSigner(rpc, signer, {
+  //   gasPrice: {
+  //     amount: Decimal.fromUserInput("0.0025", 100),
+  //     denom: "ujuno",
+  //   },
+  // });
+
   const rpc = "https://rpc.uni.juno.deuslabs.fi";
   const client = await SigningCosmWasmClient.connectWithSigner(rpc, signer, {
     gasPrice: {
@@ -25,15 +33,24 @@ async function getClient() {
   return { signer, client };
 }
 
+
+//   let WEFUND_CONTRACT =
+//   "";
+// let VESTING_CONTRACT =
+//   "";
+// let STAKING_CONTRACT =
+//   "";
+
+// Test net
 const WFD_TOKEN =
   "juno17tk7s9mg2a6uupfljrhf492e7hzhkd89cvzerglyj8xguvzukksq9d75ts";
 
 let WEFUND_CONTRACT =
-  "juno17w6elnyngj0w7j9yqeqqctvnsmadg3zcxgguuzpjxyx8arzqa50qveg2x5";
+  "juno13kudszzwfejy3qej4kzqp26gt2ph3nx4h4r388qq7wjhjql0lljs0j58v7";
 let VESTING_CONTRACT =
-  "juno18x8vkjxhae9msjf9eg52yt4wzty0p4vvyv90wuhpx2lmcf2vqetqjzq0qh";
+  "juno108njn5xsurvg7ce882m92m6yy2l80r8zmk9q62kkxjhk44ea7mxqreuc52";
 let STAKING_CONTRACT =
-  "juno1a3t5zwqa87dg6z487gfjw9ag84qy5qtq0adgyputkv73t4q9x66sf8he7s";
+  "juno1ru0euvqln9ax686aev4lut0tjxq6a9u4lp8t63sgy3rugprjejjsqc3dzf";
 
 run();
 
@@ -191,6 +208,7 @@ export const initMsgs = [
       project_description:
         "WeFund is a community crowdfunding incubator for blockchain and real-world projects. WeFund's mission is to host high-quality projects that align with WeFund's investor community. Community-driven decisions on the platform for 100% transparency. Project funds managed exclusively on Terra's Anchor protocol using smart contracts and following project milestones.\n\n",
       project_ecosystem: "Juno",
+      project_fundtype: "Token",
       project_email: "",
       project_id: "0",
       project_milestones: [
@@ -268,6 +286,7 @@ export const initMsgs = [
       project_description:
         "Lynxverse is a cognitive behavioral therapy metaverse game with play-to-earn, share-to earn, and learn-to-earn components, where users can raise awareness and educate themselves about mental health and well-being while remaining anonymous and earning rewards.\n\n",
       project_ecosystem: "Juno",
+      project_fundtype: "Token",
       project_email: "",
       project_id: "0",
       project_milestones: [
@@ -346,6 +365,7 @@ export const initMsgs = [
       project_description:
         "Kosu is a blockchain-based education platform with user-created content focused on blockchain education. Creators and users can both generate income with a create-to-earn and learn-to-earn model.",
       project_ecosystem: "Kadena",
+      project_fundtype: "Token",
       project_email: "",
       project_id: "0",
       project_milestones: [
@@ -423,6 +443,7 @@ export const initMsgs = [
       project_description:
         "The sale of GreenProtocol NFTs will be used to fund green and sustainable projects. The revenue generated from these projects will be distributed to the NFT holders as passive income via smart contract.",
       project_ecosystem: "Juno",
+      project_fundtype: "Token",
       project_email: "",
       project_id: "0",
       project_milestones: [
@@ -500,6 +521,7 @@ export const initMsgs = [
       project_description:
         "DataLake is a medical record database where individuals can sell their medical data privately and anonymously to research institutions on the blockchain via DataLake’s platform.",
       project_ecosystem: "Juno",
+      project_fundtype: "Token",
       project_email: "",
       project_id: "0",
       project_milestones: [
@@ -577,6 +599,7 @@ export const initMsgs = [
       project_description:
         "ScamScanner is a tool designed to identify scam activity in various blockchain networks by examining projects and teams via a validator system and reward whistleblowers.",
       project_ecosystem: "Juno",
+      project_fundtype: "Token",
       project_email: "",
       project_id: "0",
       project_milestones: [

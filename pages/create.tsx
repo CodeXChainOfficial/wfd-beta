@@ -176,7 +176,7 @@ export default function CreateProject() {
     if (realSAFT == "") return false;
 
     const realWhitepaer = await uploadWhitepaper();
-    const realLogo = await uploadLogo();
+    // const realLogo = await uploadLogo();
     //---------------execute contract----------------------------------
     const project_teammembers = [];
     for (let i = 0; i < teammemberDescription.length; i++) {
@@ -238,9 +238,10 @@ export default function CreateProject() {
         project_description: description,
         project_collected: collectedAmount.toString(),
         project_ecosystem: ecosystem,
+        project_fundtype: fundraise,
         project_createddate: _createDate,
         project_saft: realSAFT,
-        project_logo: realLogo,
+        project_logo: logo,
         project_whitepaper: realWhitepaer,
         project_website: website,
         project_email: email,

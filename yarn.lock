@@ -2936,6 +2936,11 @@
   dependencies:
     pako "^1.0.10"
 
+"@pdftron/webviewer@^8.7.0":
+  version "8.7.0"
+  resolved "https://registry.yarnpkg.com/@pdftron/webviewer/-/webviewer-8.7.0.tgz#747847a565471dd7c3a8b54f3a363d8e11b3e423"
+  integrity sha512-Ji0a6A+2HFNMlTpBmTNO10sgizQnmybqZOkJkanU46CLegn4rRaTMBEmAlXWoUaY0M/bx2Br1FHHeS6MTjhb1w==
+
 "@pmmmwh/react-refresh-webpack-plugin@0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.3.tgz#1eec460596d200c0236bf195b078a5d1df89b766"

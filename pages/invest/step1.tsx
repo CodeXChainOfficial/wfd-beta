@@ -63,7 +63,7 @@ export default function InvestStep1() {
               direction="column"
               style={{ fontFamily: "PilatExtended-Regular" }}
             >
-              <HStack mt="150px" mb="50px"  w="100%">
+              <HStack mt="150px" mb="50px" w="100%">
                 <Box
                   width={{ base: "30px", md: "40px" }}
                   height={{ base: "18px", md: "24px" }}
