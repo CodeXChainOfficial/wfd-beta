@@ -15,42 +15,44 @@ async function getClient() {
     prefix: "juno",
   });
 
-  // const rpc = "https://rpc.juno-1.deuslabs.fi";
-  // const client = await SigningCosmWasmClient.connectWithSigner(rpc, signer, {
-  //   gasPrice: {
-  //     amount: Decimal.fromUserInput("0.0025", 100),
-  //     denom: "ujuno",
-  //   },
-  // });
-
-  const rpc = "https://rpc.uni.juno.deuslabs.fi";
+  const rpc = "https://rpc.juno-1.deuslabs.fi";
   const client = await SigningCosmWasmClient.connectWithSigner(rpc, signer, {
     gasPrice: {
-      amount: Decimal.fromUserInput("0.025", 100), //Decimal.fromUserInput("0.0025", 100),
-      denom: "ujunox",
+      amount: Decimal.fromUserInput("0.0025", 100),
+      denom: "ujuno",
     },
   });
+
+  // const rpc = "https://rpc.uni.juno.deuslabs.fi";
+  // const client = await SigningCosmWasmClient.connectWithSigner(rpc, signer, {
+  //   gasPrice: {
+  //     amount: Decimal.fromUserInput("0.025", 100), //Decimal.fromUserInput("0.0025", 100),
+  //     denom: "ujunox",
+  //   },
+  // });
   return { signer, client };
 }
 
-
-//   let WEFUND_CONTRACT =
-//   "";
-// let VESTING_CONTRACT =
-//   "";
-// let STAKING_CONTRACT =
-//   "";
-
-// Test net
 const WFD_TOKEN =
-  "juno17tk7s9mg2a6uupfljrhf492e7hzhkd89cvzerglyj8xguvzukksq9d75ts";
+  "juno1x329zfyakxz9sl6a46ef9snajjcgjrykq8sje4lpj06r24trgvxqj42edl";
 
 let WEFUND_CONTRACT =
-  "juno13kudszzwfejy3qej4kzqp26gt2ph3nx4h4r388qq7wjhjql0lljs0j58v7";
+  "juno1l688mmqawz74thcvxy9zjxqk3pcsc333cjh8cnmt4yr2xh246tzs59jpgu";
 let VESTING_CONTRACT =
-  "juno108njn5xsurvg7ce882m92m6yy2l80r8zmk9q62kkxjhk44ea7mxqreuc52";
+  "juno1qwxuxeg5q7gedvdzxssf84hw3xm9ql08jqt9t7h97d030rajjqkst4femg";
 let STAKING_CONTRACT =
-  "juno1ru0euvqln9ax686aev4lut0tjxq6a9u4lp8t63sgy3rugprjejjsqc3dzf";
+  "juno1j7jzwxjnvuq25c0kr8xnxndxmvlzn3lft6q6utn33zykuq2xysds4w7g93";
+
+// Test net
+// const WFD_TOKEN =
+//   "juno17tk7s9mg2a6uupfljrhf492e7hzhkd89cvzerglyj8xguvzukksq9d75ts";
+
+// let WEFUND_CONTRACT =
+//   "juno13kudszzwfejy3qej4kzqp26gt2ph3nx4h4r388qq7wjhjql0lljs0j58v7";
+// let VESTING_CONTRACT =
+//   "juno108njn5xsurvg7ce882m92m6yy2l80r8zmk9q62kkxjhk44ea7mxqreuc52";
+// let STAKING_CONTRACT =
+//   "juno1ru0euvqln9ax686aev4lut0tjxq6a9u4lp8t63sgy3rugprjejjsqc3dzf";
 
 run();
 

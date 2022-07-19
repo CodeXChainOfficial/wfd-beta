@@ -124,7 +124,8 @@ export function getAllocation(state: any, project_id: number) {
   const one = GetOneProject(state.projectData, project_id);
   if (one == null) return 0;
 
-  if (project_id == WEFUND_ID) return parseInt(one.project_collected);
+  // if (project_id == WEFUND_ID) 
+    return parseInt(one.project_collected);
 
   const address = state.junoConnection?.account;
 

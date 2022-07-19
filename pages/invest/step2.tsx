@@ -44,7 +44,7 @@ export default function InvestStep2() {
   useEffect(() => {
     const allocation = getAllocation(state, projectId);
     setAllocation(allocation);
-
+console.log(allocation)
     const max = allocation;
     setMax(max);
   }, [state.projectData, state.address]);
@@ -104,7 +104,6 @@ export default function InvestStep2() {
           <Box
             width={"100%"}
             style={{ fontFamily: "Sk-Modernist-Regular" }}
-            align="center"
             px={1}
           >
             <Flex

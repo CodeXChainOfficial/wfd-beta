@@ -3,7 +3,7 @@ import { Flex, VStack } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 
 import { Document, Page, pdfjs } from "react-pdf";
-pdfjs.GlobalWorkerOptions.workerSrc =`//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 import { WEFUND_ID, REQUEST_ENDPOINT } from "../../config/constants";
 import { useProjectData } from "../../contexts/store";
@@ -36,9 +36,7 @@ const PDFTemplate: FunctionComponent<Props> = ({ presale, project_id }) => {
     }
     if (!isWeFund) fetchData();
     else {
-      setSrc(
-        presale == true ? "/PDFTemplate_presale.pdf" : "/PDFTemplate.pdf"
-      );
+      setSrc(presale == true ? "/PDFTemplate_presale.pdf" : "/PDFTemplate.pdf");
     }
   }, []);
 
