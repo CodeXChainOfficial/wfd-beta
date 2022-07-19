@@ -10,6 +10,7 @@ import Roadmap from "../../components/Landing/Roadmap";
 import Team from "../../components/Landing/Team";
 import Advisors from "../../components/Landing/Advisors";
 import Footer from "../../components/Footer";
+import Journey from "../../components/Landing/Journey";
 
 const AboutPage = () => (
   <Container>
@@ -19,6 +20,7 @@ const AboutPage = () => (
     <Problem />
     <Works />
     <UpcomingProject />
+    <Journey />
     <Ecosystem />
     <Roadmap />
     <Team />

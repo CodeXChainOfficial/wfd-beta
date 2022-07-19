@@ -11,7 +11,7 @@ import React from "react";
 import { SiGmail } from "react-icons/si";
 import { CgWebsite } from "react-icons/cg";
 import { ButtonBackTransition } from "./ImageTransition";
-import { FaTelegram, FaMedium, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaTelegram, FaMedium, FaTwitter, FaYoutube, FaDiscord, FaTelegramPlane } from "react-icons/fa";
 
 const SocialMediaLinks = () => (
   <ButtonGroup variant="ghost" color="white" spacing={2}>
@@ -20,43 +20,53 @@ const SocialMediaLinks = () => (
       aria-label="Medium"
       borderRadius={"100px"}
       className="footerButton"
-      width={{ lg: "25px", base: "16px" }}
+      width={{ lg: "25px", base: "14px" }}
       backgroundColor={"rgba(255, 255, 255, 0.05)"}
       href="https://medium.com/@wefundofficial"
       icon={<FaMedium className="footerIcon" />}
     />
     <IconButton
       as="a"
-      aria-label="Youtube"
-      className="footerButton"
-      width={{ lg: "25px", base: "16px" }}
-      borderRadius={"100px"}
-      backgroundColor={"rgba(255, 255, 255, 0.05)"}
-      icon={<FaYoutube className="footerIcon" />}
-      href="https://youtube.com/channel/UCjwo-9Yj7NQSmSqiY6FvEdw"
-    />
-    <IconButton
-      as="a"
       aria-label="Telegram"
       className="footerButton"
-      width={{ lg: "25px", base: "16px" }}
+      width={{ lg: "25px", base: "14px" }}
       borderRadius={"100px"}
       backgroundColor={"rgba(255, 255, 255, 0.05)"}
-      href="https://t.me/wefundofficial"
+      href="https://t.me/talkwithwefund"
       icon={<FaTelegram className="footerIcon" />}
     />
     <IconButton
       as="a"
       aria-label="Twitter"
       className="footerButton"
-      width={{ lg: "25px", base: "16px" }}
+      width={{ lg: "25px", base: "14px" }}
       borderRadius={"100px"}
       backgroundColor={"rgba(255, 255, 255, 0.05)"}
       icon={<FaTwitter className="footerIcon" />}
       href="https://twitter.com/WeFund_Official"
     />
     <IconButton
-      width={{ lg: "25px", base: "16px" }}
+      as="a"
+      aria-label="Twitter"
+      className="footerButton"
+      width={{ lg: "25px", base: "14px" }}
+      borderRadius={"100px"}
+      backgroundColor={"rgba(255, 255, 255, 0.05)"}
+      icon={<FaTelegramPlane className="footerIcon" />}
+      href="https://t.me/wefundofficial"
+    />
+    <IconButton
+      as="a"
+      aria-label="Twitter"
+      className="footerButton"
+      width={{ lg: "25px", base: "14px" }}
+      borderRadius={"100px"}
+      backgroundColor={"rgba(255, 255, 255, 0.05)"}
+      icon={<FaDiscord className="footerIcon" />}
+      href="https://discord.gg/JeggQGcJwF"
+    />
+    <IconButton
+      width={{ lg: "25px", base: "14px" }}
       as="a"
       aria-label="SiGmail"
       className="footerButton"
@@ -65,17 +75,8 @@ const SocialMediaLinks = () => (
       backgroundColor={"rgba(255, 255, 255, 0.05)"}
       icon={<SiGmail className="footerIcon" />}
     />
-    <IconButton
-      as="a"
-      aria-label="Website"
-      className="footerButton"
-      width={{ lg: "25px", base: "16px" }}
-      href="https://wefund.app"
-      borderRadius={"100px"}
-      backgroundColor={"rgba(255, 255, 255, 0.05)"}
-      icon={<CgWebsite className="footerIcon" />}
-    />
   </ButtonGroup>
+  
 );
 
 const PagesLinks = () => (
