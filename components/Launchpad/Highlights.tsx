@@ -71,7 +71,7 @@ export default function Highlights() {
               alignItems={"center"}
               position={"relative"}
               flexDirection={{ base: "column", md: "column", lg: "row" }}
-              justifyContent={"center"}
+              justifyContent={"left"}
               // width={{ base: '95%', md: '90%', lg: '65em' }}
               mx={{ base: "20px", md: "20px", lg: "120px" }}
               key={index}
@@ -97,9 +97,9 @@ export default function Highlights() {
                 </Text>
                 <Text
                   fontFamily={"Sk-Modernist-Regular"}
-                  fontSize={{ sm: "14px", md: "8px", lg: "20px" }}
-                  textAlign="justify"
-                  mt="43px"
+                  fontSize={{ sm: "14px", md: "10px", lg: "20px" }}
+                  textAlign="left"
+                  mt="40px"
                 >
                   {item.description}
                 </Text>
@@ -151,8 +151,29 @@ const projects = [
   {
     title: "WeFund Multichain Migration to Juno",
     description:
-      "Both utilizing CosmWasm, WeFund is making migration to Juno and subsequently becames Multichain with Loop Finance structural assistance.",
+      "Both utilizing CosmWasm, WeFund is making migration to Juno and subsequently becames Multichain with Loop Finance structural assistance. Collaborating together for better access for everyone",
     img: "media/partners/WFD-Juno.jpg",
+    link: "/blog",
+  },
+  {
+    title: "WeFund Teaming up with Tgrade",
+    description:
+      "WeFund is happy to announce a new partnership with Tgrade. Tgrade and WeFund have the same vision to take blockchain even further, bring effective impact to the real world, and have the impact reach the masses, not just a select privileged few.",
+    img: "media/partners/Tgrade.png",
+    link: "/blog",
+  },
+  {
+    title: "WeFund Opening Access with Oneledger",
+    description:
+      "Wefund is expanding its reach to deploy on OneLedger. OneLedger is an innovative blockchain that uses all of the benefits of blockchain technology to enable transnational compliant business operations .",
+    img: "media/partners/Oneledger.png",
+    link: "/blog",
+  },
+  {
+    title: "WeFund Collaborating with Tron",
+    description:
+      " WeFund will be operating in the TRON ecosystem providing crowdsourced launchpad and incubator alternatives for the community. WeFund’s platform will be able to support a wide range of ecosystems and projects as it evolves into a multichain system..",
+    img: "media/partners/Tron.png",
     link: "/blog",
   },
 ];
