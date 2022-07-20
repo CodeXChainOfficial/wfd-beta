@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import { BigNumber, ethers } from "ethers";
-import { WEFUND_BSC_ADDRESS, ERC20_ABI } from "../config/constants";
+import { WEFUND_BSC_ADDRESS, ERC20_ABI, ERROR_OPTION } from "../config/constants";
 
 declare let window: any;
 
@@ -68,7 +68,8 @@ export const useMetamaskStore = create(
         });
         // const { chainId } = await provider.getNetwork();
       } catch (err: any) {
-        toast.error(err?.message);
+        // toast.error(err?.message);
+        toast.error("Metamask not available", ERROR_OPTION);
         set({ initializing: false });
       }
     },

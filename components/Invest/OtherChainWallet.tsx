@@ -1,7 +1,8 @@
 import React, { FunctionComponent, useEffect } from "react";
 import { Box, Flex, Input, Text, Select } from "@chakra-ui/react";
+import { toast } from "react-toastify";
 import { BigNumber, ethers } from "ethers";
-import { TOKEN_LIST } from "../../config/constants";
+import { ERROR_OPTION, TOKEN_LIST } from "../../config/constants";
 import { InputTransition } from "../ImageTransition";
 
 import { useStore, ActionKind } from "../../contexts/store";
@@ -105,6 +106,7 @@ const OtherChainWallet: FunctionComponent<Props> = ({
               });
             } catch (addError) {
               // handle "add" error
+              toast("Can't switch to " + chain.toUpperCase(), ERROR_OPTION);
             }
           }
           // handle other "switch" errors

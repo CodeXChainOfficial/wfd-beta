@@ -44,7 +44,7 @@ export default function InvestStep2() {
   useEffect(() => {
     const allocation = getAllocation(state, projectId);
     setAllocation(allocation);
-console.log(allocation)
+
     const max = allocation;
     setMax(max);
   }, [state.projectData, state.address]);
