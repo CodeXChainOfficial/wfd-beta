@@ -20,7 +20,7 @@ import {
   getVal,
   getMultiplyInteger,
   getInteger,
-  getSeconds
+  getSeconds,
 } from "../utils/utility";
 import { fetchData } from "../utils/fetch";
 import {
@@ -63,7 +63,8 @@ export default function ModifyProject() {
   const [company, setCompany] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [ecosystem, setEcosystem] = useState("Terra");
+  const [ecosystem, setEcosystem] = useState("Juno");
+  const [fundraise, setFundraiseOption] = useState("Token");
   const [tokenName, setTokenName] = useState("");
   const [tokenAddress, setTokenAddress] = useState("");
   const [tokenBalance, setTokenBalance] = useState("");
@@ -116,6 +117,7 @@ export default function ModifyProject() {
     setDescription(data.project_description);
     setCollectedAmount(data.project_collected);
     setEcosystem(data.project_ecosystem);
+    setFundraiseOption(data.project_fundtype);
     setCreateDate(data.project_createddate);
     setLogo(data.project_logo);
     setWebsite(data.project_website);
@@ -370,6 +372,7 @@ export default function ModifyProject() {
         project_description: description,
         project_collected: collectedAmount.toString(),
         project_ecosystem: ecosystem,
+        project_fundtype: fundraise,
         project_createddate: _createDate,
         project_saft: realSAFT,
         project_logo: logo,
@@ -443,7 +446,7 @@ export default function ModifyProject() {
             typeText="Project Description"
             type={description}
             setType={setDescription}
-          // mt="30px"
+            // mt="30px"
           />
           <TeamMembers
             description={teammemberDescription}
@@ -479,6 +482,13 @@ export default function ModifyProject() {
                 "Solana",
                 "Avalanche",
               ]}
+              w={{ base: "100%", md: "50%", lg: "50%" }}
+            />
+            <CustomSelect
+              typeText="Fundraise Option"
+              type={fundraise}
+              setType={setFundraiseOption}
+              options={["Token", "Equity", "Token and Equity", "NFT", "Others"]}
               w={{ base: "100%", md: "50%", lg: "50%" }}
             />
           </Stack>
