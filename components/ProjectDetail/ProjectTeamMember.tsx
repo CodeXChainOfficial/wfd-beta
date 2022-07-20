@@ -8,6 +8,7 @@ import {
   Spacer,
   VStack,
   chakra,
+  Flex,
 } from "@chakra-ui/react";
 
 export default function ProjectTeamMember({ data }: { data: any }) {
@@ -43,14 +44,14 @@ export default function ProjectTeamMember({ data }: { data: any }) {
           {data?.teammember_states?.map((member, index) => (
             <HStack pt="12px" key={index}>
               <Avatar size="sm" name={member.teammember_name} mr="8px" />
-              <VStack spacing={0}>
+              <Flex direction="column">
                 <Text fontFamily={"Gilroy"} fontWeight="800" fontSize="20px">
                   {member.teammember_name}
                 </Text>
                 <Text fontSize="12px" alignSelf="flex-start">
                   {member.teammember_role}
                 </Text>
-              </VStack>
+              </Flex>
               {/* <Spacer />
               <Text fontSize="12px" alignSelf="flex-end">
                 <chakra.span color="#48CCFF">{member.teammember_description.slice(0,100)}</chakra.span>

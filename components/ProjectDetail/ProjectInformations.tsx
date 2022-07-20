@@ -28,7 +28,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
   return (
     <VStack
       height={{ lg: "484px" }}
-      minW="400px"
+      w="full"
       paddingLeft={{ lg: "15px" }}
       mt={"30px"}
     >
@@ -148,12 +148,13 @@ const ProjectInformations: FunctionComponent<Props> = ({
         }}
         w="full"
       >
-        <Container
+        <Flex
           bgGradient="linear(#430E82, #1D0551)"
           pl="12px"
           pr="12px"
           mb="52px"
           rounded="10px"
+          w="full"
         >
           <HStack w="full">
             <VStack alignItems="flex-start" w="full">
@@ -180,7 +181,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
               </CircularProgress>
             </Flex>
           </HStack>
-        </Container>
+        </Flex>
       </Flex>
     </VStack>
   );
