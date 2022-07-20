@@ -139,7 +139,7 @@ export default function ProjectDetail() {
           <Flex w="full" flex="1">
             <ProjectTeamMember data={oneprojectData} />
           </Flex>
-          <Spacer />
+          <Container w={48} />
           <Flex w="full" flex="1">
             <ProjectInformations
               data={oneprojectData}
