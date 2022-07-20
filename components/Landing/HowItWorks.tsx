@@ -3,6 +3,8 @@ import { Flex, Text, Image } from "@chakra-ui/react";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { MdArrowRight } from "react-icons/md";
+import { Icon } from "@chakra-ui/icons";
 
 const responsive = {
   superLargeDesktop: {
@@ -43,15 +45,73 @@ export default function Works() {
         </Text>
       </Flex>
       <Flex
-        mt={"2em"}
-        overflow="hidden"
-        bgGradient="linear(#1E0024, #150049)"
-        mb={{ base: "3em", md: "5em", lg: "6em" }}
-        width={{ base: "95%", md: "90%", lg: "65em" }}
-        // height={{ base: '26em', md: '33em', lg: '40em' }}
+        flexWrap={"wrap"}
+        flexDirection="row"
+        bg="linear-gradient(rgba(44, 4, 95, 1),rgba(0, 0, 0, 0))"
+        mt={{ base: "1em", md: "1em", lg: "1em" }}
+        mb={{ base: "4em", md: "8em", lg: "10em" }}
+        width={{ base: "88%", md: "90%", lg: "64em" }}
+        justifyContent={{ base: "center", md: "center", lg: "center" }}
         borderRadius={{ base: "10px", md: "20px", lg: "40px" }}
       >
-        <Image src="/media/Home/works.png" width="100%" />
+        {works.map((e, i) => (
+          <Flex
+            key={i}
+            id="Work"
+            textAlign="center"
+            overflow={"visible"}
+            alignItems={"center"}
+            flexDirection="column"
+          >
+            <Flex
+              _hover={{ bgGradient: "linear(#69E4FF, #0069CA)" }}
+              textAlign="center"
+              overflow={"visible"}
+              alignItems={"center"}
+              flexDirection="column"
+              justifyContent={"center"}
+              bgGradient="linear(#430E82, #1D0551)"
+              mt="4em"
+              ml={{ base: ".2em", md: ".5em", lg: ".5em" }}
+              mr={{ base: ".2em", md: ".5em", lg: ".5em" }}
+              p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
+              width={{ base: "8em", md: "11em", lg: "12em" }}
+              height={{ base: "16em", md: "22em", lg: "20em" }}
+              borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
+            >
+              <Image
+                src={e.img}
+                objectFit="contain"
+                width={{ base: "50%", md: "70%", lg: "70%" }}
+                height={{ base: "6em", md: "7em", lg: "60%" }}
+              />
+              <Flex
+                width={{ base: "30px", md: "40px" }}
+                height={{ base: "18px", md: "24px" }}
+                mr={{ base: "170px", md: "210px", lg: "230px" }}
+                visibility={i === 0 ? "hidden" : "visible"}
+                zIndex="sticky"
+              >
+                <Icon as={ MdArrowRight } color="#63CDFA" w={20} h={20}  />
+              </Flex>
+            </Flex>
+            <Text
+              mt={"1em"}
+              mb="6em"
+              width="95%"
+              color={"white"}
+              fontFamily={{
+                base: "PilatExtended-Regular",
+                md: "PilatExtended-Bold",
+                lg: "PilatExtended-Bold",
+              }}
+              fontSize={{ base: "12px", md: "16px", lg: "16px" }}
+              fontWeight={{ base: "500", md: "bold", lg: "bold" }}
+            >
+              {e.label}
+            </Text>
+          </Flex>
+        ))}
       </Flex>
       <Flex
         fontFamily="PilatExtended-Bold"
@@ -106,7 +166,7 @@ export default function Works() {
               fontSize={{ base: "12px", md: "16px", lg: "16px" }}
               fontWeight={{ base: "500", md: "bold", lg: "bold" }}
             >
-              {e.lable}
+              {e.label}
             </Text>
           </Flex>
         ))}
@@ -180,7 +240,7 @@ export default function Works() {
                 width={{ base: "95%", md: "80%", lg: "80%" }}
                 fontSize={{ base: "10px", md: "13px", lg: "14px" }}
               >
-                {e.lable}
+                {e.label}
               </Text>
             </Flex>
           ))}
@@ -190,52 +250,65 @@ export default function Works() {
   );
 }
 
+const works = [
+  { img: "/media/Home/Voting_power.png", label: "New Project" },
+  {
+    img: "/media/Home/Work.png",
+    label: "Incubation",
+  },
+  { img: "/media/Home/Group.png", label: "Fundraising" },
+  {
+    img: "/media/Home/Group_2.png",
+    label: "Milestone achieved",
+  },
+];
+
 const tokens = [
-  { img: "/media/Home/19.png", lable: "Additional Investment Allocation" },
+  { img: "/media/Home/19.png", label: "Additional Investment Allocation" },
   {
     img: "/media/Home/20.png",
-    lable: "Increasing Value Through Deflationary Action",
+    label: "Increasing Value Through Deflationary Action",
   },
-  { img: "/media/Home/21.png", lable: "Staking Rewards" },
+  { img: "/media/Home/21.png", label: "Staking Rewards" },
   {
     img: "/media/Home/22.png",
-    lable: "0% Transaction Fee for NFT card holders",
+    label: "0% Transaction Fee for NFT card holders",
   },
   {
     img: "/media/Home/23.png",
-    lable: "Ads Payment",
+    label: "Ads Payment",
   },
   {
     img: "/media/Home/24.png",
-    lable: "Prioritized Platform Placement",
+    label: "Prioritized Platform Placement",
   },
 ];
 
 const advantages = [
-  { img: "/media/Home/25.png", lable: "Yield Benefit for Backers" },
+  { img: "/media/Home/25.png", label: "Yield Benefit for Backers" },
   {
     img: "/media/Home/26.png",
-    lable: "Investor Voting Power",
+    label: "Investor Voting Power",
   },
-  { img: "/media/Home/27.png", lable: "Cross Chain" },
+  { img: "/media/Home/27.png", label: "Cross Chain" },
   {
     img: "/media/Home/28.png",
-    lable: "Secure & Refundable Deposits",
+    label: "Secure & Refundable Deposits",
   },
   {
     img: "/media/Home/29.png",
-    lable: "Deflationary Token Value",
+    label: "Deflationary Token Value",
   },
   {
     img: "/media/Home/30.png",
-    lable: "Fund Release With Milestone and Investor Vote Approval",
+    label: "Fund Release With Milestone and Investor Vote Approval",
   },
   {
     img: "/media/Home/31.png",
-    lable: "Cross-Chain",
+    label: "Cross-Chain",
   },
   {
     img: "/media/Home/32.png",
-    lable: "Bridge Real-World and Blockchain",
+    label: "Bridge Real-World and Blockchain",
   },
 ];
