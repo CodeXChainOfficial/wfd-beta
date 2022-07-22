@@ -3,16 +3,10 @@ import {
   Button,
   Center,
   Container,
-  Flex,
-  Grid,
-  GridItem,
   Image,
-  Link,
   SimpleGrid,
   Stack,
   Text,
-  Wrap,
-  WrapItem,
   chakra,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
