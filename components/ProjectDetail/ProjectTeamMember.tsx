@@ -13,7 +13,7 @@ import {
 
 export default function ProjectTeamMember({ data }: { data: any }) {
   return (
-    <VStack minW="400px" w="full">
+    <VStack minW="300px" w="full">
       <Text
         mb={"20px"}
         fontSize="28px"
