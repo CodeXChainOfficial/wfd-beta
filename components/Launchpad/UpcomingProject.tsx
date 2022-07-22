@@ -129,6 +129,7 @@ function ProjectItem(props: {
           margin={"12px auto"}
           background={selected ? "#3BC5FF" : "#0084FF"}
           textColor={selected ? "#430E82" : "white"}
+          onClick={() => router.push(link)}
         >
           RESEARCH
         </Button>
