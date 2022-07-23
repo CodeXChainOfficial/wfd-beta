@@ -64,14 +64,14 @@ export default function Navbar() {
             <Flex w="197px" ml="20px" mr={"10px"}>
               <ConnectWallet />
             </Flex>
-            {/* <Link href="userinfo">
+            <Link href="userinfo">
               <Icon
                 as={RiAccountPinBoxFill}
                 fontSize={"45px"}
                 cursor="pointer"
                 color="white"
               />
-            </Link> */}
+            </Link>
           </Flex>
         </Flex>
       </VStack>

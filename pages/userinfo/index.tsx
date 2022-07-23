@@ -238,7 +238,7 @@ export default function UserSideSnippet() {
               rounded={"lg"}
               w={"100%"}
             >
-              <Box px={4} py={5} _hover={{ shadow: "lg" }} position="relative">
+              <Box px={4} py={6} _hover={{ shadow: "lg" }} position="relative">
                 <Flex justifyContent="space-between">
                   <Flex color={"white"}>
                     <Stack pl={3} align="left" w={"100%"}>
@@ -251,16 +251,25 @@ export default function UserSideSnippet() {
                       >
                         My Account
                       </Text>
-                      <HStack
+                      <Stack
                         w={{
                           base: "150px",
-                          sm: "300px",
-                          md: "500px",
-                          lg: "500px",
+                          sm: "235px",
+                          md: "480px",
+                          lg: "520px",
                           xl: "700px",
                         }}
+                        direction={{
+                          base: "column",
+                          lg: "row"
+                        }}
+                        px={2} 
+                        py={2}
+                        pb={6}
+                        align="stretch"
+                        justify="center"
                       >
-                        <VStack w={"50%"}>
+                        <VStack w={"full"}>
                           <Box
                             bg={"black"}
                             w={"100%"}
@@ -285,8 +294,32 @@ export default function UserSideSnippet() {
                             Contribution
                           </Text>
                         </VStack>
-
-                        <VStack w={"50%"}>
+                        <VStack w={"full"}>
+                          <Box
+                            bg={"black"}
+                            w={"100%"}
+                            py={"20px"}
+                            rounded={"lg"}
+                          >
+                            <Text
+                              mt="10px"
+                              fontWeight="950"
+                              fontSize="48px"
+                              lineHeight={"160%"}
+                              align={"center"}
+                            >
+                              {projectCount}
+                            </Text>
+                          </Box>
+                          <Text
+                            fontWeight="750"
+                            fontSize="21px"
+                            lineHeight={"160%"}
+                          >
+                            Whitelisted
+                          </Text>
+                        </VStack>
+                        <VStack w={"full"}>
                           <Box
                             bg={"black"}
                             w={"100%"}
@@ -311,7 +344,7 @@ export default function UserSideSnippet() {
                             Project Backed
                           </Text>
                         </VStack>
-                      </HStack>
+                      </Stack>
                       <Center>
                         <Link href={"userinfo/details"}>
                           <Button
