@@ -35,7 +35,10 @@ export default function ProjectDetail() {
   const project_id = ParseParam_ProjectId();
 
   function onNext() {
-    router.push("/invest/step1?project_id=" + oneprojectData.project_id);
+    router.push("/backproject?project_id=" + oneprojectData.project_id); //-- Should be Back Project
+  }
+  function onWhite() {
+    router.push("/whitelistproject?project_id=" + oneprojectData.project_id); //-- Should be Whitelist Project
   }
 
   //------------fectch project data------------------------------------
@@ -127,7 +130,11 @@ export default function ProjectDetail() {
               MilestoneVote={MilestoneVote}
             />
             <Flex alignContent="center">
-              <ProjectMainButtons data={oneprojectData} onNext={onNext} />
+              <ProjectMainButtons
+                data={oneprojectData}
+                onNext={onNext}
+                onWhite={onWhite}
+              />
             </Flex>
           </VStack>
         </Flex>

@@ -1,32 +1,24 @@
 import { ChakraProvider, Stack } from "@chakra-ui/react";
-import { MsgExecuteContract, WasmAPI } from "@terra-money/terra.js";
-import {
-  Box,
-  Flex,
-  Text,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Image,
-} from "@chakra-ui/react";
+import { Box, Flex, Text, Image } from "@chakra-ui/react";
 import React, { useEffect, useState, useRef } from "react";
 import { IoCheckmark } from "react-icons/io5";
 import { toast } from "react-toastify";
 
 import {
   ButtonBackTransition,
-  ButtonTransition,
   InputTransition,
 } from "../../components/ImageTransition";
 import theme from "../../theme";
 import Footer from "../../components/Footer";
-import CustomCoinInput from "../../components/BackProject/CustomCoinInput";
-export default function BackProject() {
+import CustomSelect from "../../components/WhitelistProject/CustomSelect";
+import CustomInput from "../../components/WhitelistProject/CustomInput";
+import CustomEmailInput from "../../components/WhitelistProject/CustomEmailInput";
+export default function WhitelistProject() {
   //----------Declaring State used---
   const [condition, setCondition] = useState(false);
-  const [backAmount, setBackAmount] = useState("");
-  const [feeAmount, setFeeAmount] = useState("");
-  const [oneprojectData, setOneprojectData] = useState("");
+  const [email, setEmail] = useState("");
+  const [telegram, setTelegram] = useState("");
+  const [invest, setInvestOption] = useState("");
 
   return (
     <ChakraProvider resetCSS theme={theme}>
@@ -65,7 +57,7 @@ export default function BackProject() {
               fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
               color={"rgba(255, 255, 255, 0.84)"}
             >
-              Back the project
+              Whitelist
             </Text>
           </Flex>
           <Flex>
@@ -74,7 +66,7 @@ export default function BackProject() {
               color="#4790f5"
               fontWeight={"900"}
             >
-              Contribute to &nbsp;
+              Join Whitelist for &nbsp;
             </Text>
             <Text
               as={"span"}
@@ -100,7 +92,6 @@ export default function BackProject() {
             style={{ fontFamily: "Sk-Modernist" }}
             rounded={"3xl"}
           >
-            {/* --------amount to back----------- */}
             <Flex
               mt="83px"
               textAlign={"left"}
@@ -116,24 +107,38 @@ export default function BackProject() {
                 fontWeight="400"
                 fontSize={{ base: "14px", sm: "14px", md: "16px", lg: "16px" }}
               >
-                Select tokens and enter amount to back
+                Enter your information
               </Text>
               <Stack
                 align="center"
-                w={{ base: "100%", md: "100%", lg: "100%" }}
+                w={{ base: "90%", md: "50%", lg: "80%" }}
                 spacing={12}
               >
-                <CustomCoinInput
-                  typeText="Amount Required"
-                  type={backAmount}
-                  setType={setBackAmount}
-                  w={{ base: "70%", md: "60%", lg: "50%" }}
+                <CustomEmailInput
+                  typeText="Email"
+                  type={email}
+                  setType={setEmail}
+                  w={{ base: "100%", md: "80%", lg: "80%" }}
                 />
-                <CustomCoinInput
-                  typeText="Fees"
-                  type={feeAmount}
-                  setType={setFeeAmount}
-                  w={{ base: "70%", md: "60%", lg: "50%" }}
+                <CustomInput
+                  typeText="Telegram"
+                  type={telegram}
+                  setType={setTelegram}
+                  w={{ base: "100%", md: "80%", lg: "80%" }}
+                  mt="30px"
+                />
+                <CustomSelect
+                  typeText="Fundraise Option"
+                  type={invest}
+                  setType={setInvestOption}
+                  options={[
+                    "< $10.000",
+                    "$10.000-$50.000",
+                    "$10.000-$50.000",
+                    "$50.000-$100.000",
+                    "> $100.000",
+                  ]}
+                  w={{ base: "100%", md: "80%", lg: "80%" }}
                 />
               </Stack>
 
@@ -166,20 +171,20 @@ export default function BackProject() {
                   }}
                   fontWeight="400"
                 >
-                  I agree with all conditions of this project and WeFund
+                  I agree to be included on Whitelist of the Project
                 </Text>
               </Flex>
             </Flex>
-            {/* -----------------Back Project----------------- */}
+            {/* -----------------Whitelist Project----------------- */}
             <Flex w="100%" mt="60px" justify="center" mb="170px">
               <ButtonBackTransition
-                unitid="Back Project"
+                unitid="Whitelist Project"
                 selected={false}
                 width="250px"
                 height="45px"
                 rounded="33px"
                 onClick={() => {
-                  BackProject();
+                  WhitelistProject();
                 }}
               >
                 <Box
@@ -193,7 +198,7 @@ export default function BackProject() {
                     lg: "16px",
                   }}
                 >
-                  Back The Project
+                  Join Whitelist
                 </Box>
               </ButtonBackTransition>
             </Flex>
