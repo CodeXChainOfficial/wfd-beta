@@ -63,9 +63,9 @@ export default function InvestStep1() {
               direction="column"
               style={{ fontFamily: "PilatExtended-Regular" }}
             >
-              <HStack mt="150px" mb="50px" w="100%">
+              <HStack mt="150px" mb="50px" w="100%" justifyContent={"center"}>
                 <Box
-                  width={{ base: "30px", md: "40px" }}
+                  width={{ base: "30px", md: "30px" }}
                   height={{ base: "18px", md: "24px" }}
                   style={{
                     border: "3px solid #3BE489",
@@ -86,13 +86,13 @@ export default function InvestStep1() {
                 <Box
                   style={{
                     height: "0x",
-                    width: "20%",
+                    width: "10%",
                     border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
                     background: " rgba(255, 255, 255, 0.3799999952316284)",
                   }}
                 />
                 <Box
-                  width={{ base: "30px", md: "40px" }}
+                  width={{ base: "30px", md: "30px" }}
                   height={{ base: "18px", md: "24px" }}
                   style={{
                     border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
@@ -113,13 +113,13 @@ export default function InvestStep1() {
                 <Box
                   style={{
                     height: "0px",
-                    width: "20%",
+                    width: "10%",
                     border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
                     background: " rgba(255, 255, 255, 0.3799999952316284)",
                   }}
                 ></Box>
                 <Box
-                  width={{ base: "30px", md: "40px" }}
+                  width={{ base: "30px", md: "30px" }}
                   height={{ base: "18px", md: "24px" }}
                   style={{
                     border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
