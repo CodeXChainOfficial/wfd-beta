@@ -245,7 +245,9 @@ const steps = [
 
 function StepperPage() {
   const [activeStep, setActiveStep] = useState(0);
-  const onBack = () => {};
+  const onBack = () => {
+    setActiveStep(activeStep - 1);
+  };
   const onNext = () => {
     setActiveStep(activeStep + 1);
   };

@@ -48,16 +48,16 @@ export default function Navbar() {
             <DesktopNav />
           </Flex>
           <Flex mr="20px" align="center" justify="center" w="40%" h="100%">
-            <Link href="/create">
+            <Link href="/apply">
               <ButtonBackTransition
-                unitid="CreateYourProject"
+                unitid="ApplyYourProject"
                 selected={false}
                 width="197px"
                 height="40px"
                 rounded="33px"
               >
                 <Flex color="white" justify="center" align="center">
-                  Create Project
+                  Project Application
                 </Flex>
               </ButtonBackTransition>
             </Link>

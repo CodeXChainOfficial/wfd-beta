@@ -27,6 +27,7 @@ import CustomUpload from "../components/CreateProject/CustomUpload";
 import TeamMembers from "../components/CreateProject/TeamMember/TeamMembers";
 import { useKeplrWallet } from "../contexts/keplrWallet";
 import { fetchData } from "../utils/fetch";
+import ApplyOpt from "../components/CreateProject/ApplyOption/ApplyOpt";
 
 export default function CreateProject() {
   const { state, dispatch } = useStore();
@@ -279,9 +280,9 @@ export default function CreateProject() {
 
   return (
     <PageLayout
-      title="Create Project"
-      subTitle1="Create"
-      subTitle2="New Project"
+      title="Project Apply"
+      subTitle1="Apply"
+      subTitle2="Apply for your project"
       subTitle3={""}
     >
       <Flex
@@ -298,7 +299,6 @@ export default function CreateProject() {
                 "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
               }
               backdropBlur={"54px"}
-              border="1.5px solid rgba(255, 255, 255, 0.15)"
               borderTopColor="transparent"
               fontFamily="Sk-Modernist-Regular"
               paddingLeft="30px"
@@ -328,6 +328,7 @@ export default function CreateProject() {
                 linkedin={teammemberLinkedin}
                 setLinkedin={setTeammemberLinkedin}
               />
+              <ApplyOpt />
               <Stack
                 mt="30px"
                 direction={{ base: "column", md: "column", lg: "row" }}
