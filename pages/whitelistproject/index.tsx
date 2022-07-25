@@ -1,9 +1,9 @@
 import { ChakraProvider, Stack } from "@chakra-ui/react";
 import { Box, Flex, Text, Image } from "@chakra-ui/react";
 import React, { useEffect, useState, useRef } from "react";
+import { useRouter } from "next/router";
 import { IoCheckmark } from "react-icons/io5";
 import { toast } from "react-toastify";
-
 import {
   ButtonBackTransition,
   InputTransition,
@@ -13,12 +13,47 @@ import Footer from "../../components/Footer";
 import CustomSelect from "../../components/WhitelistProject/CustomSelect";
 import CustomInput from "../../components/WhitelistProject/CustomInput";
 import CustomEmailInput from "../../components/WhitelistProject/CustomEmailInput";
+import { checkJunoConnection } from "../../utils/utility";
+import { useJunoConnection, useStore } from "../../contexts/store";
+import { SUCCESS_OPTION, WEFUND_CONTRACT } from "../../config/constants";
+import { fetchData } from "../../utils/fetch";
+
 export default function WhitelistProject() {
+  const { query } = useRouter();
+  const { project_id } = query;
+  const { state, dispatch } = useStore();
+  const junoConnection = useJunoConnection();
+  const client = junoConnection?.getClient();
+  const address = junoConnection?.account;
+
   //----------Declaring State used---
   const [condition, setCondition] = useState(false);
   const [email, setEmail] = useState("");
   const [telegram, setTelegram] = useState("");
   const [invest, setInvestOption] = useState("");
+
+  async function JoinWhitelist(project_id: number) {
+    if (!checkJunoConnection(state)) return;
+
+    try {
+      const result = await client.execute(
+        address,
+        WEFUND_CONTRACT,
+        {
+          register_whitelist: {
+            project_id: Number(project_id),
+            card_type: state.cardInfo?.card_type,
+          },
+        },
+        "auto"
+      );
+      toast("Register on whitelist success", SUCCESS_OPTION);
+      fetchData(state, dispatch, true);
+      console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <ChakraProvider resetCSS theme={theme}>
@@ -183,9 +218,6 @@ export default function WhitelistProject() {
                 width="250px"
                 height="45px"
                 rounded="33px"
-                onClick={() => {
-                  WhitelistProject();
-                }}
               >
                 <Box
                   color="white"
@@ -197,6 +229,7 @@ export default function WhitelistProject() {
                     md: "16px",
                     lg: "16px",
                   }}
+                  onClick={() => JoinWhitelist(Number(project_id))}
                 >
                   Join Whitelist
                 </Box>
