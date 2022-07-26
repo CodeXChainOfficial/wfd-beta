@@ -17,7 +17,9 @@ interface Props {
 const ApplySeedraising: FunctionComponent<Props> = ({ Needs, setNeeds }) => {
   function onNewNeeds() {
     const ar = [...Needs];
-    ar.push("");
+    ar.push({
+      name: null,
+    });
     setNeeds(ar);
   }
   function onCancelNeeds() {

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
+import React, { FunctionComponent, Dispatch, SetStateAction, useState } from "react";
 import { Box, Flex, Text, Select, Input } from "@chakra-ui/react";
 
 import { InputTransition } from "../../ImageTransition";
@@ -16,9 +16,9 @@ const NeedsInput: FunctionComponent<Props> = ({
   prjIncuNeeds,
   setPrjIncuNeeds,
 }) => {
-  function onChangeNeeds(e: any, index: any) {
+  function onChangeNeeds(needs: string, index: number) {
     const ar = [...prjIncuNeeds];
-    ar[index] = e.target.value;
+    ar[index] = { name: needs };
     setPrjIncuNeeds(ar);
   }
 
@@ -63,7 +63,7 @@ const NeedsInput: FunctionComponent<Props> = ({
       </Flex>
       <InputTransition
         unitid={"projectreq" + `${typeText}${index}`}
-        selected={isNull(prjIncuNeeds[index]) ? false : true}
+        selected={!isNull(prjIncuNeeds[index])}
         width="100%"
         height="55px"
         rounded="md"
@@ -76,12 +76,15 @@ const NeedsInput: FunctionComponent<Props> = ({
           size="sm"
           w="full"
           rounded="md"
+          value={
+            IncubationNeedsOpt?.find((e) => e.name == prjIncuNeeds[index].name)
+              ?.name
+          }
           onChange={(e: { target: { value: string } }) => {
-            console.log(e.target.value, index);
             onChangeNeeds(e.target.value, index);
           }}
         >
-         {IncubationNeedsOpt.map((nds) => (
+          {IncubationNeedsOpt.map((nds) => (
             <option
               key={nds.name}
               value={nds.name}
