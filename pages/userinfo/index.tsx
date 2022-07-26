@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-
-import { useRouter } from "next/router";
 import Link from "next/link";
-
 import {
   Box,
   Flex,
@@ -28,6 +25,7 @@ import {
   useCommunityData,
   useProjectData,
   useStore,
+  useWallet,
 } from "../../contexts/store";
 import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
 import { RiUpload2Line } from "react-icons/ri";
@@ -41,6 +39,7 @@ export default function UserSideSnippet() {
   const [tokens, setTokens] = useState<any[]>([]);
   const projectData = useProjectData();
   const communityData = useCommunityData();
+  const wallet = useWallet();
 
   async function fetchContractQuery() {
     try {
@@ -143,16 +142,18 @@ export default function UserSideSnippet() {
                   <Flex color={"white"}>
                     <Stack spacing={2} pl={3} align="left">
                       <Heading align="left" fontSize="xl">
-                        [Username]
+                        {wallet.name}
                       </Heading>
                       <Text align="left" fontSize="sm" color={"#69E4FF"}>
-                        juno188qf4jyleh....yr89ejwss8u6ph
+                        {wallet.account.substr(0, 14)}
+                        {"...."}
+                        {wallet.account.substr(-14, 14)}
                       </Text>
                     </Stack>
                   </Flex>
                   <Stack display={["none", "none", "flex", "flex"]}>
                     <Text fontSize={14} color="gray.400">
-                      Juno Wallet
+                      {wallet.config.chainName} Wallet
                     </Text>
                   </Stack>
                 </Flex>
@@ -261,9 +262,9 @@ export default function UserSideSnippet() {
                         }}
                         direction={{
                           base: "column",
-                          lg: "row"
+                          lg: "row",
                         }}
-                        px={2} 
+                        px={2}
                         py={2}
                         pb={6}
                         align="stretch"
