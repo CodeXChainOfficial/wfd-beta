@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  Flex,
-  Text,
-  Select,
-  Link,
-  Image,
-  Stack,
-  Icon,
-  Box,
-} from "@chakra-ui/react";
-import { ButtonBackTransition, ImageTransition } from "../ImageTransition";
+import { Flex, Text, Select, Link, Image, Stack } from "@chakra-ui/react";
+import { ImageTransition } from "../ImageTransition";
 import { MdArrowDropDown } from "react-icons/md";
 
 interface IDictionary {
