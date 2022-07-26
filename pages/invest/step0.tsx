@@ -48,7 +48,7 @@ export default function InvestStep0() {
       title="Contribute"
       subTitle1="Invest"
       subTitle2="Contribute"
-      subTitle3="&nbsp;in WeFund"
+      subTitle3="&nbsp;to WeFund"
     >
       <Flex
         width="100%"
