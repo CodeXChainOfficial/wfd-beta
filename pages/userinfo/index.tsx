@@ -41,6 +41,8 @@ export default function UserSideSnippet() {
   const communityData = useCommunityData();
   const wallet = useWallet();
 
+  console.log("===", wallet);
+
   async function fetchContractQuery() {
     try {
       let projectCount = 0;
@@ -142,18 +144,18 @@ export default function UserSideSnippet() {
                   <Flex color={"white"}>
                     <Stack spacing={2} pl={3} align="left">
                       <Heading align="left" fontSize="xl">
-                        {wallet.name}
+                        {wallet ? wallet.name : "[UserName]"}
                       </Heading>
                       <Text align="left" fontSize="sm" color={"#69E4FF"}>
-                        {wallet.account.substr(0, 14)}
-                        {"...."}
-                        {wallet.account.substr(-14, 14)}
+                        {wallet && wallet.account.substr(0, 14)}
+                        {wallet && "...."}
+                        {wallet && wallet.account.substr(-14, 14)}
                       </Text>
                     </Stack>
                   </Flex>
                   <Stack display={["none", "none", "flex", "flex"]}>
                     <Text fontSize={14} color="gray.400">
-                      {wallet.config.chainName} Wallet
+                      {wallet && wallet.config.chainName} Wallet
                     </Text>
                   </Stack>
                 </Flex>
