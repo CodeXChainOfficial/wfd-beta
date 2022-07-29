@@ -23,7 +23,6 @@ const TeamMemberDescription: FunctionComponent<Props> = ({
       setType(ar);
     }
   }
-
   return (
     <Box mt="10px">
       <Flex justify="space-between">
@@ -33,7 +32,7 @@ const TeamMemberDescription: FunctionComponent<Props> = ({
         </Text>
       </Flex>
       <InputTransition
-        unitid={`typeText${index}`}
+        unitid={`${typeText}${index}`}
         selected={isNull(type[index]) ? false : true}
         width="100%"
         height="175px"
@@ -43,6 +42,7 @@ const TeamMemberDescription: FunctionComponent<Props> = ({
         <Textarea
           style={{ background: "transparent", border: "0" }}
           value={type[index]}
+          _focusVisible={{ border: "0" }}
           onChange={(e) => onChangeType(e, index)}
           size="sm"
           rounded="md"

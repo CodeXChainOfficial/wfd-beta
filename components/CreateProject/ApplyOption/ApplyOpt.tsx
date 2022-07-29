@@ -8,51 +8,62 @@ import {
   Flex,
   Select,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
-import { Step, Steps, useSteps } from "chakra-ui-steps";
-import { ArrowRightIcon, CheckIcon, PhoneIcon } from "@chakra-ui/icons";
-import { FaUpload } from "react-icons/fa";
+import {
+  useState,
+  useEffect,
+  FunctionComponent,
+  Dispatch,
+  SetStateAction,
+  useMemo,
+} from "react";
+
 import { InputTransition } from "../../ImageTransition";
 import ApplyIncubation from "./ApplyIncubation";
 import ApplyFundraising from "./ApplySeeddraising";
 import ApplyIDO from "./ApplyIDO";
 
-export default function ApplyOpt() {
-  const [FundPhase, setFundPhase] = useState([""]);
-  const [Fundprice, setFundprice] = useState([""]);
-  const [Fundamt, setFundamt] = useState([""]);
-  const [Fundvesting, setFundvesting] = useState([""]);
-  
-  const [prjNeed, setPrjNeed] = useState([""]);
+interface Props {
+  fundPhase: string[];
+  setFundPhase: Dispatch<SetStateAction<string[]>>;
+  fundPrice: string[];
+  setFundPrice: Dispatch<SetStateAction<string[]>>;
+  fundAmount: string[];
+  setFundAmount: Dispatch<SetStateAction<string[]>>;
+  fundVesting: string[];
+  setFundVesting: Dispatch<SetStateAction<string[]>>;
+  prjNeed: string[];
+  setPrjNeed: Dispatch<SetStateAction<string[]>>;
+  IDOAmount: string;
+  setIDOAmount: Dispatch<SetStateAction<string>>;
+  IDOPrice: string;
+  setIDOPrice: Dispatch<SetStateAction<string>>;
+  IDOPercent: string;
+  setIDOPercent: Dispatch<SetStateAction<string>>;
+  IDOVesting: string;
+  setIDOVesting: Dispatch<SetStateAction<string>>;
+}
 
+const ApplyOpt: FunctionComponent<Props> = ({
+  fundPhase,
+  setFundPhase,
+  fundPrice,
+  setFundPrice,
+  fundAmount,
+  setFundAmount,
+  fundVesting,
+  setFundVesting,
+  prjNeed,
+  setPrjNeed,
+  IDOAmount,
+  setIDOAmount,
+  IDOPrice,
+  setIDOPrice,
+  IDOPercent,
+  setIDOPercent,
+  IDOVesting,
+  setIDOVesting,
+}) => {
   const [opt, setOpt] = useState("Incubation");
-  function DynamicOpt() {
-    switch (opt) {
-      case "Incubation":
-        return <ApplyIncubation Needs={prjNeed} setNeeds={setPrjNeed} />;
-      case "Fundraising":
-        return (
-          <ApplyFundraising
-            SeedPhase={FundPhase}
-            setSeedPhase={setFundPhase}
-            SeedAmt={Fundamt}
-            setSeedAmt={setFundamt}
-            Seedvesting={Fundvesting}
-            setSeedvesting={setFundvesting}
-            Seedprice={Fundprice}
-            setSeedprice={setFundprice}
-          />
-        );
-
-      case "IDO":
-        return <ApplyIDO />;
-    }
-    return (
-      <Box>
-        <Text>Not found</Text>
-      </Box>
-    );
-  }
 
   return (
     <Box mt="40px" w="100%">
@@ -73,17 +84,42 @@ export default function ApplyOpt() {
           size="sm"
           w="full"
           rounded="md"
-          onChange={(e: { target: { value: string } }) => {
-            console.log(e.target.value);
-            setOpt(e.target.value);
-          }}
+          onChange={(e) => setOpt(e.target.value)}
         >
           <option style={{ backgroundColor: "#1B0645" }}>Incubation</option>
           <option style={{ backgroundColor: "#1B0645" }}>Fundraising</option>
           <option style={{ backgroundColor: "#1B0645" }}>IDO</option>
         </Select>
       </InputTransition>
-      <DynamicOpt />
+      {opt == "Incubation" && (
+        <ApplyIncubation needs={prjNeed} setNeeds={setPrjNeed} />
+      )}
+      {opt == "Fundraising" && (
+        <ApplyFundraising
+          seedPhase={fundPhase}
+          setSeedPhase={setFundPhase}
+          seedAmount={fundAmount}
+          setSeedAmount={setFundAmount}
+          seedVesting={fundVesting}
+          setSeedvesting={setFundVesting}
+          seedPrice={fundPrice}
+          setSeedPrice={setFundPrice}
+        />
+      )}
+      {opt == "IDO" && (
+        <ApplyIDO
+          IDOAmount={IDOAmount}
+          setIDOAmount={setIDOAmount}
+          IDOPrice={IDOPrice}
+          setIDOPrice={setIDOPrice}
+          IDOPercent={IDOPercent}
+          setIDOPercent={setIDOPercent}
+          IDOVesting={IDOVesting}
+          setIDOVesting={setIDOVesting}
+        />
+      )}
     </Box>
   );
-}
+};
+
+export default ApplyOpt;

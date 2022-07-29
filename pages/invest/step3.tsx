@@ -105,11 +105,9 @@ export default function InvestStep3() {
   }
   //---------------on next------------------------------------
   function checkValication() {
-
     const investChain = window.localStorage.getItem("invest_chain") ?? "";
     const investAmount = window.localStorage.getItem("invest_amount") ?? "";
-console.log(state.walletType);
-console.log(investChain.toLowerCase());
+
     if (checkNetwork(state) == false) return false;
     let proper = false;
     if (investChain.toLowerCase() == "juno" && state.walletType == "keplr") {

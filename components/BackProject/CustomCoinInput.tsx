@@ -14,39 +14,34 @@ import { InputTransition } from "../ImageTransition";
 
 interface Props {
   typeText: string;
-  type: any;
-  setType: Dispatch<SetStateAction<any>>;
-  w: any;
+  type: string;
+  setType: any;
+  coin: string;
+  setCoin?: any;
+  w?: any;
+  readOnly?: boolean;
 }
 const CustomCoinInput: FunctionComponent<Props> = ({
   typeText,
   type,
   setType,
+  coin,
+  setCoin,
   w,
+  readOnly,
 }) => {
-  function onChangeAmount(e: any) {
-    // if (
-    //   e.target.value != '' &&
-    //   e.target.value != parseInt(e.target.value).toString()
-    // ) {
-    //   notificationRef?.current.showNotification('Please input number only', 'error', 4000)
-    //   return
-    // }
-    setType(e.target.value);
-  }
-
   return (
     <Box w={w}>
-        <Center>
-            <Flex align={'center'}>
-                <Text 
-                mb="20px" 
-                textAlign={'center'}
-                fontSize={{ base: "14px", sm: "14px", md: "16px", lg: "16px" }}
-                >
-                    {typeText}
-                </Text>
-            </Flex>
+      <Center>
+        <Flex align={"center"}>
+          <Text
+            mb="20px"
+            textAlign={"center"}
+            fontSize={{ base: "14px", sm: "14px", md: "16px", lg: "16px" }}
+          >
+            {typeText}
+          </Text>
+        </Flex>
       </Center>
       <InputTransition
         unitid={"projectamount" + typeText}
@@ -55,41 +50,42 @@ const CustomCoinInput: FunctionComponent<Props> = ({
         height="55px"
         rounded="md"
       >
-        <InputGroup
-          size="sm"
-        >
+        <InputGroup size="sm" alignItems="center">
           <Input
-            style={{ border: "0"}}
-            type="text"
+            border="0px"
+            type="number"
             h="55px"
             placeholder="Numbers only"
-            focusBorderColor="purple.800"
+            // focusBorderColor="purple.800"
+            _focusVisible={{ border: "0px" }}
             rounded="md"
             value={type}
-            onChange={(e) => {
-              onChangeAmount(e);
-            }}
+            onChange={(e) => setType(e.target.value)}
+            isReadOnly={readOnly}
           />
-          <InputRightElement
-            style={{ border: "0"}}
+          {/* <InputRightElement
+            style={{ border: "0" }}
             w="125px"
             h="55px"
             pointerEvents="none"
             color="blue.200"
-          />
+          /> */}
           <Select
             id={"peg" + typeText}
-            style={{ border: "0"}}
+            style={{ border: "0" }}
             h="55px"
             w="140px"
             rounded="md"
+            _focusVisible={{ border: "0px" }}
             fontSize="12px"
-            value="($)USD"
+            value={coin}
+            onChange={(e) => setCoin(e.target.value)}
+            isDisabled={readOnly}
           >
-            <option style={{ backgroundColor: "#1B0645" }}>($)USDT</option>
-            <option style={{ backgroundColor: "#1B0645" }}>($)USDC</option>
-            <option style={{ backgroundColor: "#1B0645" }}>($)ATOM</option>
-            <option style={{ backgroundColor: "#1B0645" }}>($)JUNO</option>
+            <option style={{ backgroundColor: "#1B0645" }}>USDT</option>
+            <option style={{ backgroundColor: "#1B0645" }}>USDC</option>
+            <option style={{ backgroundColor: "#1B0645" }}>ATOM</option>
+            <option style={{ backgroundColor: "#1B0645" }}>JUNO</option>
           </Select>
         </InputGroup>
       </InputTransition>

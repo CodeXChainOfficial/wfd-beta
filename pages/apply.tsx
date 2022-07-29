@@ -48,6 +48,16 @@ export default function CreateProject() {
   const [tokenBalance, setTokenBalance] = useState("");
   const [communityAlloc, setCommunityAlloc] = useState("");
 
+  const [fundPhase, setFundPhase] = useState([""]);
+  const [fundPrice, setFundPrice] = useState([""]);
+  const [fundAmount, setFundAmount] = useState([""]);
+  const [fundVesting, setFundVesting] = useState([""]);
+  const [prjNeed, setPrjNeed] = useState([""]);
+  const [IDOAmount, setIDOAmount] = useState("");
+  const [IDOPrice, setIDOPrice] = useState("");
+  const [IDOPercent, setIDOPercent] = useState("");
+  const [IDOVesting, setIDOVesting] = useState("");
+
   const [collectedAmount, setCollectedAmount] = useState("");
 
   const [teammemberDescription, setTeammemberDescription] = useState([""]);
@@ -328,7 +338,26 @@ export default function CreateProject() {
                 linkedin={teammemberLinkedin}
                 setLinkedin={setTeammemberLinkedin}
               />
-              <ApplyOpt />
+              <ApplyOpt
+                fundPhase={fundPhase}
+                setFundPhase={setFundPhase}
+                fundPrice={fundPrice}
+                setFundPrice={setFundPrice}
+                fundAmount={fundAmount}
+                setFundAmount={setFundAmount}
+                fundVesting={fundVesting}
+                setFundVesting={setFundVesting}
+                prjNeed={prjNeed}
+                setPrjNeed={setPrjNeed}
+                IDOAmount={IDOAmount}
+                setIDOAmount={setIDOAmount}
+                IDOPrice={IDOPrice}
+                setIDOPrice={setIDOPrice}
+                IDOPercent={IDOPercent}
+                setIDOPercent={setIDOPercent}
+                IDOVesting={IDOVesting}
+                setIDOVesting={setIDOVesting}
+              />
               <Stack
                 mt="30px"
                 direction={{ base: "column", md: "column", lg: "row" }}

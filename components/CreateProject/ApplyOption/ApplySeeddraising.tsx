@@ -10,40 +10,35 @@ import { ImageTransition, ButtonBackTransition } from "../../ImageTransition";
 
 import SeedraisePhase from "./SeedraisePhase";
 import SeedInput from "./SeedInput";
-import CustomSelectApply from "./CustomSelectApply";
 
 interface Props {
-  SeedPhase: any;
-  setSeedPhase: Dispatch<SetStateAction<any>>;
-  Seedprice: any;
-  setSeedprice: Dispatch<SetStateAction<any>>;
-  Seedvesting: any;
-  setSeedvesting: Dispatch<SetStateAction<any>>;
-  SeedAmt: any;
-  setSeedAmt: Dispatch<SetStateAction<any>>;
-  fundraises: any;
-  setFundraises: Dispatch<SetStateAction<any>>;
+  seedPhase: string[];
+  setSeedPhase: Dispatch<SetStateAction<string[]>>;
+  seedPrice: string[];
+  setSeedPrice: Dispatch<SetStateAction<string[]>>;
+  seedVesting: string[];
+  setSeedvesting: Dispatch<SetStateAction<string[]>>;
+  seedAmount: string[];
+  setSeedAmount: Dispatch<SetStateAction<string[]>>;
 }
 const ApplySeedraising: FunctionComponent<Props> = ({
-  SeedPhase,
+  seedPhase,
   setSeedPhase,
-  Seedprice,
-  setSeedprice,
-  Seedvesting,
+  seedPrice,
+  setSeedPrice,
+  seedVesting,
   setSeedvesting,
-  SeedAmt,
-  setSeedAmt,
-  fundraises,
-  setFundraises,
+  seedAmount,
+  setSeedAmount,
 }) => {
   function onNewSeedPhase() {
-    const ar = [...SeedPhase];
+    const ar = [...seedPhase];
     ar.push("");
     setSeedPhase(ar);
   }
   function onCancelSeedPhase() {
-    if (SeedPhase.length <= 1) return;
-    const ar = [...SeedPhase];
+    if (seedPhase.length <= 1) return;
+    const ar = [...seedPhase];
     ar.pop();
     setSeedPhase(ar);
   }
@@ -54,7 +49,7 @@ const ApplySeedraising: FunctionComponent<Props> = ({
         justify="center"
         style={{ fontFamily: "PilatExtended-Bold" }}
       ></Flex>
-      {SeedPhase.map((item: any, index: number) => {
+      {seedPhase.map((item: any, index: number) => {
         return (
           <Flex direction="column" key={index}>
             <Text
@@ -75,7 +70,7 @@ const ApplySeedraising: FunctionComponent<Props> = ({
             <SeedraisePhase
               index={index}
               typeText="Seed Phase Desc"
-              type={SeedPhase}
+              type={seedPhase}
               setType={setSeedPhase}
             />
             <Stack
@@ -86,21 +81,21 @@ const ApplySeedraising: FunctionComponent<Props> = ({
               <SeedInput
                 index={index}
                 typeText="Seed Amount"
-                type={SeedAmt}
-                setType={setSeedAmt}
+                type={seedAmount}
+                setType={setSeedAmount}
                 w={{ base: "100%", md: "50%", lg: "50%" }}
               />
               <SeedInput
                 index={index}
                 typeText="Seed Price"
-                type={Seedprice}
-                setType={setSeedprice}
+                type={seedPrice}
+                setType={setSeedPrice}
                 w={{ base: "100%", md: "50%", lg: "50%" }}
               />
               <SeedInput
                 index={index}
                 typeText="Vesting Period in Months"
-                type={Seedvesting}
+                type={seedVesting}
                 setType={setSeedvesting}
                 w={{ base: "100%", md: "50%", lg: "50%" }}
               />
@@ -138,7 +133,7 @@ const ApplySeedraising: FunctionComponent<Props> = ({
           ml={{ base: "10px", md: "40px" }}
           onClick={onCancelSeedPhase}
         >
-          <Box color="white">Cancel Seed {SeedPhase.length}</Box>
+          <Box color="white">Cancel Seed {seedPhase.length}</Box>
         </ButtonBackTransition>
       </Flex>
     </>

@@ -11,18 +11,18 @@ import { ImageTransition, ButtonBackTransition } from "../../ImageTransition";
 import NeedsInput from "./ApplyIncubationOpt";
 
 interface Props {
-  Needs: any;
-  setNeeds: Dispatch<SetStateAction<any>>;
+  needs: string[];
+  setNeeds: Dispatch<SetStateAction<string[]>>;
 }
-const ApplySeedraising: FunctionComponent<Props> = ({ Needs, setNeeds }) => {
+const ApplySeedraising: FunctionComponent<Props> = ({ needs, setNeeds }) => {
   function onNewNeeds() {
-    const ar = [...Needs];
+    const ar = [...needs];
     ar.push("");
     setNeeds(ar);
   }
   function onCancelNeeds() {
-    if (Needs.length <= 1) return;
-    const ar = [...Needs];
+    if (needs.length <= 1) return;
+    const ar = [...needs];
     ar.pop();
     setNeeds(ar);
   }
@@ -33,7 +33,7 @@ const ApplySeedraising: FunctionComponent<Props> = ({ Needs, setNeeds }) => {
         justify="center"
         style={{ fontFamily: "PilatExtended-Bold" }}
       ></Flex>
-      {Needs.map((item: any, index: number) => {
+      {needs.map((item: any, index: number) => {
         return (
           <Flex direction="column" key={index}>
             <Text
@@ -42,15 +42,14 @@ const ApplySeedraising: FunctionComponent<Props> = ({ Needs, setNeeds }) => {
               mb="10px"
               align={"center"}
             >
-              Incubation Needs {index + 1}
+              Incubation needs {index + 1}
             </Text>
             <NeedsInput
               index={index}
-              typeText="Project Incubation Needs"
-              prjIncuNeeds={Needs}
+              typeText="Project Incubation needs"
+              prjIncuNeeds={needs}
               setPrjIncuNeeds={setNeeds}
             />
-            {/* -----------------submit----------------- */}
           </Flex>
         );
       })}
@@ -72,7 +71,7 @@ const ApplySeedraising: FunctionComponent<Props> = ({ Needs, setNeeds }) => {
           rounded="33px"
           onClick={onNewNeeds}
         >
-          <Box color="white">Add Incubation Needs</Box>
+          <Box color="white">Add Incubation needs</Box>
         </ButtonBackTransition>
         <ButtonBackTransition
           unitid="CancelPhase"
@@ -83,7 +82,7 @@ const ApplySeedraising: FunctionComponent<Props> = ({ Needs, setNeeds }) => {
           ml={{ base: "10px", md: "40px" }}
           onClick={onCancelNeeds}
         >
-          <Box color="white">Remove Needs {Needs.length}</Box>
+          <Box color="white">Remove needs {needs.length}</Box>
         </ButtonBackTransition>
       </Flex>
     </>

@@ -32,7 +32,7 @@ export default function WhitelistProject() {
   const [telegram, setTelegram] = useState("");
   const [invest, setInvestOption] = useState("");
 
-  async function JoinWhitelist(project_id: number) {
+  async function JoinWhitelist(project_id: string) {
     if (!checkJunoConnection(state)) return;
 
     try {
@@ -41,7 +41,7 @@ export default function WhitelistProject() {
         WEFUND_CONTRACT,
         {
           register_whitelist: {
-            project_id: Number(project_id),
+            project_id: project_id,
             card_type: state.cardInfo?.card_type,
           },
         },
@@ -229,7 +229,7 @@ export default function WhitelistProject() {
                     md: "16px",
                     lg: "16px",
                   }}
-                  onClick={() => JoinWhitelist(Number(project_id))}
+                  onClick={() => JoinWhitelist(project_id)}
                 >
                   Join Whitelist
                 </Box>

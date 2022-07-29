@@ -13,6 +13,7 @@ import {
   ParseParam_Address,
   ParseParam_ProjectId,
 } from "../utils/utility";
+import { encrypt3DES } from "../utils/utility";
 import { fetchData } from "../utils/fetch";
 import { toast } from "react-toastify";
 import { SUCCESS_OPTION } from "../config/constants";
@@ -36,13 +37,14 @@ const Layout = ({ children }: Props) => {
   }, []);
   useEffect(() => {
     async function confirmReferral() {
-      const response = await fetch("/api/checkreferral");
-      const res = await response.json();
-      console.log(res);
-      //   let referralLink =
-      //     "https://wefund.app/?referral=" +
-      //     encrypt3DES(address, "wefundkeyreferral");
-      //   dispatch({ type: "setReferralLink", payload: referralLink });
+      // const response = await fetch("/api/checkreferral");
+      // const res = await response.json();
+      // console.log(res);
+      const referralLink =
+        "https://wefund.app/?referral=" +
+        encrypt3DES("address", "wefundkeyreferral");
+      console.log(referralLink);
+      // dispatch({ type: "setReferralLink", payload: referralLink });
 
       //   let queryString, urlParams, referral_code;
       //   if (typeof window != "undefined") {
@@ -176,7 +178,7 @@ const Layout = ({ children }: Props) => {
               transaction.toPlainObject(),
               { timeout: parseInt(config.apiTimeout) }
             );
-            console.log(res)
+
             const elrond_address = window.localStorage.getItem("address");
             if (!elrond_address) break;
             elrond.setAccount(elrond_address);

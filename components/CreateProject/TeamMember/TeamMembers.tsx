@@ -54,7 +54,7 @@ const TeamMembers: FunctionComponent<Props> = ({
               fontSize={{ base: "22px", md: "25px" }}
               color="#4790f5"
               mb="10px"
-              align={'center'}
+              align="center"
             >
               Team Member {index + 1}
             </Text>
@@ -122,7 +122,7 @@ const TeamMembers: FunctionComponent<Props> = ({
           width="300px"
           height="45px"
           rounded="33px"
-          ml={{base:"10px", md:"40px"}}
+          ml={{ base: "10px", md: "40px" }}
           onClick={onCancelTeamMember}
         >
           <Box color="white">Cancel Team Member {description.length}</Box>

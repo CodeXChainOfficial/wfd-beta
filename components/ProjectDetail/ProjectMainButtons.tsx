@@ -1,17 +1,31 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { Flex, Box, Icon } from "@chakra-ui/react";
 import { ImageTransition } from "../ImageTransition";
 import { BsArrowUpRight } from "react-icons/bs";
-export default function ProjectMainButtons({
+import { useKeplrWallet } from "../../contexts/keplrWallet";
+
+interface Props {
+  data: any;
+  onNext: () => void;
+  onWhite: () => void;
+}
+
+const ProjectMainButtons: FunctionComponent<Props> = ({
   data,
   onNext,
   onWhite,
-}: {
-  data: any;
-  onNext: any;
-  onWhite: any;
-}) {
+}) => {
+  const [whitelisted, setWhitelisted] = useState(false);
+  const keplrWallet = useKeplrWallet();
+  const account = keplrWallet.account;
+
+  useEffect(() => {
+    const res = data.whitelist?.find(({ wallet }) => wallet == account);
+    if (res != undefined) setWhitelisted(true);
+    else setWhitelisted(false);
+  }, [data, account]);
+
   return (
     <>
       <Flex
@@ -39,13 +53,9 @@ export default function ProjectMainButtons({
             width="200px"
             height="50px"
             rounded="33px"
-            onClick={() => {
-              window.open(
-                data.project_website,
-                "_blank",
-                "noopener,noreferrer"
-              )
-            }}
+            onClick={() =>
+              window.open(data.project_website, "_blank", "noopener,noreferrer")
+            }
           >
             <Box color="white">
               Visit Website <Icon as={BsArrowUpRight} h={4} w={4} mr={3} />
@@ -69,60 +79,66 @@ export default function ProjectMainButtons({
             width="200px"
             height="50px"
             rounded="33px"
-            onClick={() => {}}
+            onClick={() => { }}
           >
             <a href="#">
               <Box color="white">See Whitepaper</Box>
             </a>
           </ImageTransition>
         </Flex>
-        <Flex
-          mt={{ base: "20px", md: "20px", lg: "30px" }}
-          mb={{ base: "40px", md: "40px", lg: "20px" }}
-          ml={{ base: "0px", md: "0px", lg: "10px" }}
-          alignSelf={{ base: "center", md: "center", lg: "flex-start" }}
-        >
-          <ImageTransition
-            unitid="back"
-            border1="linear-gradient(180deg, #DEDBDB 0%, #DEDBDB 100%)"
-            background1="linear-gradient(180deg, #DEDBDB 0%, #DEDBD/B  100%)"
-            border2="linear-gradient(180deg, #DEDBDB 0%, #DEDBDB 100%)"
-            background2="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
-            border3="linear-gradient(180deg, #DEDBDB 0%, #DEDBDB 100%)"
-            background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
-            selected={false}
-            width="200px"
-            height="50px"
-            rounded="33px"
-            onClick={onNext}
+        {whitelisted && (
+          <Flex
+            mt={{ base: "20px", md: "20px", lg: "30px" }}
+            mb={{ base: "40px", md: "40px", lg: "20px" }}
+            ml={{ base: "0px", md: "0px", lg: "10px" }}
+            alignSelf={{ base: "center", md: "center", lg: "flex-start" }}
           >
-            <Box color="white">Back {data.project_title}</Box>
-          </ImageTransition>
-        </Flex>
-        <Flex
-          mt={{ base: "20px", md: "20px", lg: "30px" }}
-          mb={{ base: "40px", md: "40px", lg: "20px" }}
-          ml={{ base: "0px", md: "0px", lg: "10px" }}
-          alignSelf={{ base: "center", md: "center", lg: "flex-start" }}
-        >
-          <ImageTransition
-            unitid="whitelist"
-            border1="linear-gradient(180deg, #DEDBDB 0%, #DEDBDB 100%)"
-            background1="linear-gradient(180deg, #DEDBDB 0%, #DEDBD/B  100%)"
-            border2="linear-gradient(180deg, #DEDBDB 0%, #DEDBDB 100%)"
-            background2="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
-            border3="linear-gradient(180deg, #DEDBDB 0%, #DEDBDB 100%)"
-            background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
-            selected={false}
-            width="200px"
-            height="50px"
-            rounded="33px"
-            onClick={onWhite}
+            <ImageTransition
+              unitid="back"
+              border1="linear-gradient(180deg, #DEDBDB 0%, #DEDBDB 100%)"
+              background1="linear-gradient(180deg, #DEDBDB 0%, #DEDBD/B  100%)"
+              border2="linear-gradient(180deg, #DEDBDB 0%, #DEDBDB 100%)"
+              background2="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
+              border3="linear-gradient(180deg, #DEDBDB 0%, #DEDBDB 100%)"
+              background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
+              selected={false}
+              width="200px"
+              height="50px"
+              rounded="33px"
+              onClick={onNext}
+            >
+              <Box color="white">Back {data.project_title}</Box>
+            </ImageTransition>
+          </Flex>
+        )}
+        {!whitelisted && (
+          <Flex
+            mt={{ base: "20px", md: "20px", lg: "30px" }}
+            mb={{ base: "40px", md: "40px", lg: "20px" }}
+            ml={{ base: "0px", md: "0px", lg: "10px" }}
+            alignSelf={{ base: "center", md: "center", lg: "flex-start" }}
           >
-            <Box color="white">Join {data.project_title} Whitelist </Box>
-          </ImageTransition>
-        </Flex>
+            <ImageTransition
+              unitid="whitelist"
+              border1="linear-gradient(180deg, #DEDBDB 0%, #DEDBDB 100%)"
+              background1="linear-gradient(180deg, #DEDBDB 0%, #DEDBD/B  100%)"
+              border2="linear-gradient(180deg, #DEDBDB 0%, #DEDBDB 100%)"
+              background2="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
+              border3="linear-gradient(180deg, #DEDBDB 0%, #DEDBDB 100%)"
+              background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
+              selected={false}
+              width="200px"
+              height="50px"
+              rounded="33px"
+              onClick={onWhite}
+            >
+              <Box color="white">Join {data.project_title} Whitelist </Box>
+            </ImageTransition>
+          </Flex>
+        )}
       </Flex>
     </>
   );
-}
+};
+
+export default ProjectMainButtons;

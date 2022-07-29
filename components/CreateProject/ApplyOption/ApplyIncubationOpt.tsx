@@ -22,40 +22,6 @@ const NeedsInput: FunctionComponent<Props> = ({
     setPrjIncuNeeds(ar);
   }
 
-  const IncubationNeedsOpt = [
-    {
-      name: "doc",
-      label: "Documentations",
-    },
-    {
-      name: "sc",
-      label: "Smart Contract",
-    },
-    {
-      name: "fe",
-      label: "Front End Dev",
-    },
-    {
-      name: "be",
-      label: "Back End Dev",
-    },
-    {
-      name: "fi",
-      label: "Financial",
-    },
-    {
-      name: "lg",
-      label: "Legal",
-    },
-    {
-      name: "mk",
-      label: "Marketing",
-    },
-    {
-      name: "mc",
-      label: "Multi Chain",
-    },
-  ];
   return (
     <Box mt="10px">
       <Flex justify="space-between">
@@ -76,15 +42,13 @@ const NeedsInput: FunctionComponent<Props> = ({
           size="sm"
           w="full"
           rounded="md"
-          onChange={(e: { target: { value: string } }) => {
-            console.log(e.target.value, index);
-            onChangeNeeds(e.target.value, index);
-          }}
+          value={prjIncuNeeds[index]}
+          onChange={(e) => onChangeNeeds(e, index)}
         >
-         {IncubationNeedsOpt.map((nds) => (
+          {IncubationNeedsOpt.map((nds) => (
             <option
               key={nds.name}
-              value={nds.name}
+              value={nds.label}
               style={{ backgroundColor: "#1B0645" }}
             >
               {nds.label}
@@ -96,3 +60,38 @@ const NeedsInput: FunctionComponent<Props> = ({
   );
 };
 export default NeedsInput;
+
+const IncubationNeedsOpt = [
+  {
+    name: "doc",
+    label: "Documentations",
+  },
+  {
+    name: "sc",
+    label: "Smart Contract",
+  },
+  {
+    name: "fe",
+    label: "Front End Dev",
+  },
+  {
+    name: "be",
+    label: "Back End Dev",
+  },
+  {
+    name: "fi",
+    label: "Financial",
+  },
+  {
+    name: "lg",
+    label: "Legal",
+  },
+  {
+    name: "mk",
+    label: "Marketing",
+  },
+  {
+    name: "mc",
+    label: "Multi Chain",
+  },
+];

@@ -174,7 +174,12 @@ const ProjectInformations: FunctionComponent<Props> = ({
                 lg: "flex-start",
               }}
             >
-              <CircularProgress value={12} p="8px" size="100px" color="#1F71E2">
+              <CircularProgress
+                value={totalBackedPercent}
+                p="8px"
+                size="100px"
+                color="#1F71E2"
+              >
                 <CircularProgressLabel color="white">
                   {totalBackedPercent}%
                 </CircularProgressLabel>
