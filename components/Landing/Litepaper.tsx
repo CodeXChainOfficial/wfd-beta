@@ -210,16 +210,3 @@ export default function Litepaper() {
     </Flex>
   );
 }
-                  fontSize={{ base: "14px", md: "16px", lg: "16px" }}
-                >
-                  Download Whitepaper (ENG Only)
-                </Text>
-                <Image src="/media/Download.svg" />
-              </Flex>
-            </ImageTransition>
-          </Flex>
-        </Link>
-      </Stack>
-    </Flex>
-  );
-}
