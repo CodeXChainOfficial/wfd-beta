@@ -79,6 +79,13 @@ export const TOKEN_LIST = [
     native: true,
   },
   {
+    chain: "Juno",
+    name: "ATOM",
+    denom: "ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
+    decimals: 6,
+    native: true,
+  },
+  {
     chain: "BSC",
     name: "BNB",
     denom: "BNB",

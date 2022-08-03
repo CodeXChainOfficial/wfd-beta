@@ -1,14 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { Flex, Text, Select, Link, Image, Stack } from "@chakra-ui/react";
-import { ImageTransition } from "../ImageTransition";
+import React, {
+  useEffect,
+  useState,
+} from "react";
+
 import { MdArrowDropDown } from "react-icons/md";
+
+import {
+  Flex,
+  Image,
+  Link,
+  Select,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
+
+import { ImageTransition } from "../ImageTransition";
 
 interface IDictionary {
   [index: string]: string;
 }
 
 const litepaperLinks: IDictionary = {
-  en: "/media/Litepaper_WeFund_2.3.3.pdf",
+  en: "/media/Litepaper_WeFund 2.3.3.pdf",
   id: "/media/Litepaper_Wefund_ID.pdf",
   fr: "/media/Litepaper_WeFund_2.1_French.pdf",
   it: "/media/Litepaper_Wefund_ITA.pdf",
@@ -16,7 +29,7 @@ const litepaperLinks: IDictionary = {
   sw: "/media/Litepaper_WeFund_2.1_Swahili.pdf",
 };
 
-const whitepaperLink = "/media/Whitepaper_2.3.3.pdf";
+const whitepaperLink = "/media/Whitepaper 2.3.3.pdf";
 
 export default function Litepaper() {
   const [selectedLang, setSelectedlang] = useState("en"); //default value
@@ -184,6 +197,19 @@ export default function Litepaper() {
               >
                 <Text
                   color="white"
+                  fontSize={{ base: "14px", md: "16px", lg: "16px" }}
+                >
+                  Download Whitepaper (ENG Only)
+                </Text>
+                <Image src="/media/Download.svg" />
+              </Flex>
+            </ImageTransition>
+          </Flex>
+        </Link>
+      </Stack>
+    </Flex>
+  );
+}
                   fontSize={{ base: "14px", md: "16px", lg: "16px" }}
                 >
                   Download Whitepaper (ENG Only)

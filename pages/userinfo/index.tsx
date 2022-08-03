@@ -21,11 +21,12 @@ import "react-multi-carousel/lib/styles.css";
 import { toast } from "react-toastify";
 import { WEFUND_ID, SUCCESS_OPTION } from "../../config/constants";
 import { checkNetwork } from "../../utils/utility";
+
+import { useKeplrWallet } from "../../contexts/keplrWallet";
 import {
   useCommunityData,
   useProjectData,
   useStore,
-  useWallet,
 } from "../../contexts/store";
 import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
 import { RiUpload2Line } from "react-icons/ri";
@@ -37,11 +38,11 @@ export default function UserSideSnippet() {
   const [projectCount, setProjectCount] = useState(0);
   const [activeTab, setActiveTab] = useState("Account");
   const [tokens, setTokens] = useState<any[]>([]);
+
   const projectData = useProjectData();
   const communityData = useCommunityData();
-  const wallet = useWallet();
-
-  console.log("===", wallet);
+  const wallet = useKeplrWallet();
+  const account = wallet.account;
 
   async function fetchContractQuery() {
     try {

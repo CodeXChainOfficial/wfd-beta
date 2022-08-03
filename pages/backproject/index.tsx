@@ -65,13 +65,11 @@ export default function BackProject() {
     const investToken = coin;
     //----------verify connection--------------------------------
     if (checkValication() == false) return false;
-console.log(investAmount)
-console.log(investToken);
     const tokenInfo = LookForTokenInfo(investChain, investToken);
     const amount = tokenInfo?.decimals
       ? Math.floor(parseFloat(investAmount) * 10 ** tokenInfo?.decimals)
       : 0;
-console.log(tokenInfo)
+
     try {
       await wallet.sendTokens(
         amount,
