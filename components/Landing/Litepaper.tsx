@@ -21,7 +21,7 @@ interface IDictionary {
 }
 
 const litepaperLinks: IDictionary = {
-  en: "/media/Litepaper_WeFund 2.3.3.pdf",
+  en: "/media/Litepaper WeFund 2.3.3.pdf",
   id: "/media/Litepaper_Wefund_ID.pdf",
   fr: "/media/Litepaper_WeFund_2.1_French.pdf",
   it: "/media/Litepaper_Wefund_ITA.pdf",
