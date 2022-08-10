@@ -143,6 +143,10 @@ export const NAV_ITEMS = [
     label: "Invest",
     href: "/invest/step0",
   },
+  {
+    label: "Swap",
+    href: "/swap",
+  },
   // {
   //   label: 'FAQ',
   //   href: 'faq',

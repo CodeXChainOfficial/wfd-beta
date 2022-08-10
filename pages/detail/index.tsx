@@ -94,7 +94,6 @@ export default function ProjectDetail() {
       w="100%"
       justify="center"
       alignItems="center"
-      // zIndex="1"
       mt="100px"
       mb="100px"
     >
