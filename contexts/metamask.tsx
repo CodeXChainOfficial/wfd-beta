@@ -93,7 +93,6 @@ export const useMetamaskStore = create(
         .div(10 ** 9);
 
       const chainId = get().chainId;
-      console.log(chainId)
       let chain = "";
       switch (chainId) {
         case 0x38:
