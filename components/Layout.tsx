@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { useDisclosure } from "@chakra-ui/react";
 import { getElrondConfig } from "../config/elrondConfig";
-import { NETWORK } from "../config/constants";
+import { CHAINS_CONFIG, ERROR_OPTION, NETWORK } from "../config/constants";
 
 import Navbar from "./Navbar";
 import Container from "./Container";
@@ -22,6 +22,7 @@ import { useNearWallet } from "../contexts/nearWallet";
 import { useKeplrWallet } from "../contexts/keplrWallet";
 import { useElrondWeb } from "../contexts/elrond";
 import WalletModal from "./WalletModal";
+import { useMetamaskWallet } from "../contexts/metamask";
 
 type Props = {
   children?: ReactNode;
@@ -87,16 +88,57 @@ const Layout = ({ children }: Props) => {
   }, [address]);
 
   //------Juno connection-----------------------------
-  const keplrWallet = useKeplrWallet();
+  const metamaskWallet = useMetamaskWallet();
 
   useEffect(() => {
-    keplrWallet.connect();
+    const connectToBSC = async () => {
+      const ethereum = window.ethereum;
+      const chains = CHAINS_CONFIG;
+
+      try {
+        await ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: chains["bsc"].chainId }],
+        });
+      } catch (switchError: any) {
+        // This error code indicates that the chain has not been added to MetaMask.
+        if (switchError.code === 4902) {
+          try {
+            await ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  chainId: chains["bsc"].chainId,
+                  chainName: chains["bsc"].chainName,
+                  rpcUrls: [chains["bsc"].rpc] /* ... */,
+                },
+              ],
+            });
+          } catch (addError) {
+            // handle "add" error
+            toast("Can't switch to BSC", ERROR_OPTION);
+          }
+        }
+        // handle other "switch" errors
+      }
+      metamaskWallet.connect();
+    };
+    connectToBSC();
   }, []);
 
   useEffect(() => {
-    if (keplrWallet.initialized)
-      dispatch({ type: ActionKind.setJunoConnection, payload: keplrWallet });
-  }, [keplrWallet, keplrWallet.initialized]);
+    if (metamaskWallet.initialized) {
+      // dispatch({
+      //   type: ActionKind.setMetamaskProvider,
+      //   payload: metamaskWallet,
+      // });
+      dispatch({ type: ActionKind.setWalletType, payload: "metamask" });
+      dispatch({
+        type: ActionKind.setWallet,
+        payload: metamaskWallet,
+      });
+    }
+  }, [metamaskWallet, metamaskWallet.initialized]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -104,7 +146,7 @@ const Layout = ({ children }: Props) => {
     };
 
     fetch();
-  }, []);
+  }, [metamaskWallet.initialized]);
 
   //-------Near connection--------------------------------------------------
   const near = useNearWallet();

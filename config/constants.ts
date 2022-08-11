@@ -21,7 +21,7 @@ export const WFD_TOKEN =
   "juno1x329zfyakxz9sl6a46ef9snajjcgjrykq8sje4lpj06r24trgvxqj42edl";
 
 export const WEFUND_CONTRACT =
-  "juno1l688mmqawz74thcvxy9zjxqk3pcsc333cjh8cnmt4yr2xh246tzs59jpgu";
+  "0x76315D80D5101CBD05F6Baa9Db1448C6cBb6e350";
 export const VESTING_CONTRACT =
   "juno1qwxuxeg5q7gedvdzxssf84hw3xm9ql08jqt9t7h97d030rajjqkst4femg";
 export const STAKING_CONTRACT =
@@ -216,6 +216,34 @@ export const TOKEN_LIST = [
     address: "0x1B27A9dE6a775F98aaA5B90B62a4e2A0B84DbDd9",
   },
 ];
+
+export const CHAINS_CONFIG = {
+  rinkeby: {
+    chainId: "0x4",
+    chainName: "Rinkeby",
+    rpc: "https://rpc.ankr.com/eth_rinkeby",
+  },
+  bsc: {
+    chainId: "0x38",
+    chainName: "Binance Smart Chain",
+    rpc: "https://bsc-dataseed4.binance.org",
+  },
+  polygon: {
+    chainId: "0x89",
+    chainName: "Polygon",
+    rpc: "https://matic-mainnet.chainstacklabs.com",
+  },
+  oneledger: {
+    chainId: "0x1294f7c2",
+    chainName: "OneLedger",
+    rpc: "https://mainnet-rpc.oneledger.network",
+  },
+  fantom: {
+    chainId: "0xFA",
+    chainName: "Fantom",
+    rpc: "https://rpc2.fantom.network",
+  },
+};
 
 export const WALLET_LIST = [
   {

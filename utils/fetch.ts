@@ -1,4 +1,5 @@
 import { CosmWasmClient } from "@cosmjs/cosmwasm-stargate";
+import { ethers } from "ethers";
 import { getJunoConfig } from "../config";
 import {
   WEFUND_CONTRACT,
@@ -7,8 +8,10 @@ import {
   WEFUND,
   WEFUND_ID,
   NETWORK,
+  CHAINS_CONFIG,
 } from "../config/constants";
 import { ActionKind } from "../contexts/store";
+import WEFUND_ABI from "../contract/build/contracts/WeFund.json";
 
 export function addExtraInfo(projectData: any) {
   if (typeof projectData === "undefined" || projectData == "") return "";
@@ -19,7 +22,8 @@ export function addExtraInfo(projectData: any) {
     projectData[i].backer_backedPercent = Math.floor(
       (backer_backedAmount /
         10 ** 6 /
-        parseInt(projectData[i].project_collected)) * 100
+        parseInt(projectData[i].project_collected)) *
+        100
     );
 
     let released = 0;
@@ -45,62 +49,31 @@ export async function fetchData(
   let communityData = state.communityData;
   let configData = state.configData;
 
-  if (!force)
-    return { projectData, communityData, configData };
+  if (!force) return { projectData, communityData, configData };
 
   // const client = state.junoConnection.getClient();
   // if (!client) {
   //   console.log("Error");
   //   return;
   // }
-  const config = getJunoConfig(NETWORK);
-  const client = await CosmWasmClient.connect(config.rpcUrl);
+  const provider = new ethers.providers.JsonRpcProvider(
+    CHAINS_CONFIG["rinkeby"].rpc
+  );
+  const contract = new ethers.Contract(
+    WEFUND_CONTRACT,
+    WEFUND_ABI.abi,
+    provider
+  );
 
   try {
-    projectData = await client.queryContractSmart(WEFUND_CONTRACT, {
-      get_all_project: {},
-    });
+    projectData = await contract.getProjectInfo();
     projectData = addExtraInfo(projectData);
-    dispatch({ type: ActionKind.setProjectData, payload: projectData });
+    // dispatch({ type: ActionKind.setProjectData, payload: projectData });
     console.log(projectData);
   } catch (e) {
     console.log(e);
   }
 
-  try {
-    communityData = await client.queryContractSmart(WEFUND_CONTRACT, {
-      get_communitymembers: {},
-    });
-    dispatch({ type: ActionKind.setCommunityData, payload: communityData });
-  } catch (e) {
-    console.log(e);
-  }
-
-  try {
-    configData = await client.queryContractSmart(WEFUND_CONTRACT, {
-      get_config: {},
-    });
-    dispatch({ type: ActionKind.setConfigData, payload: configData });
-  } catch (e) {
-    console.log(e);
-  }
-
-  try {
-    //---------CardInfo-----------------------------------------------
-    const tokenInfo = await client.queryContractSmart(WFD_TOKEN, {
-      token_info: {},
-    });
-    const cardInfo = await client.queryContractSmart(STAKING_CONTRACT, {
-      get_user_info: { wallet: state.junoConnection.account },
-    });
-
-    cardInfo.amount =
-      parseInt(cardInfo.amount) / 10 ** parseInt(tokenInfo.decimals);
-
-    dispatch({ type: ActionKind.setCardInfo, payload: cardInfo });
-  } catch (e) {
-    console.log(e);
-  }
   //------------------------------------------------------------------
 
   return { projectData, communityData, configData };
