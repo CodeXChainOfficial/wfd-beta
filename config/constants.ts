@@ -27,8 +27,6 @@ export const VESTING_CONTRACT =
 export const STAKING_CONTRACT =
   "juno1j7jzwxjnvuq25c0kr8xnxndxmvlzn3lft6q6utn33zykuq2xysds4w7g93";
 
-
-
 export const WEFUND_JUNO_ADDRESS =
   "juno1gc3lpde7nx8khqfafw3st7j4ptd6qfccu6y04a";
 export const WEFUND_BSC_ADDRESS = "0x0dc488021475739820271d595a624892264ca641";

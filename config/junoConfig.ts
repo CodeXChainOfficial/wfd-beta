@@ -4,7 +4,7 @@ export const mainnetConfig: AppConfig = {
   chainId: "juno-1",
   chainName: "Juno",
   addressPrefix: "juno",
-  rpcUrl: "https://rpc.juno-1.deuslabs.fi",
+  rpcUrl: "https://rpc-juno.itastakers.com/",
   // httpUrl: "https://rpc.juno-1.deuslabs.fi",
   feeToken: "ujuno",
   stakingToken: "ujuno",

@@ -13,7 +13,7 @@ import {
   ParseParam_Address,
   ParseParam_ProjectId,
 } from "../utils/utility";
-import { encrypt3DES } from "../utils/utility";
+import { encrypt3DES, decrypt3DES } from "../utils/crypto";
 import { fetchData } from "../utils/fetch";
 import { toast } from "react-toastify";
 import { SUCCESS_OPTION } from "../config/constants";
@@ -31,61 +31,60 @@ const Layout = ({ children }: Props) => {
   const router = useRouter();
   const { state, dispatch } = useStore();
 
+  const junoConnection = useJunoConnection();
+  const address = junoConnection?.account;
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
     dispatch({ type: ActionKind.setWalletModal, payload: onOpen });
   }, []);
+
   useEffect(() => {
     async function confirmReferral() {
-      // const response = await fetch("/api/checkreferral");
-      // const res = await response.json();
-      // console.log(res);
-      const referralLink =
-        "https://wefund.app/?referral=" +
-        encrypt3DES("address", "wefundkeyreferral");
-      console.log(referralLink);
-      // dispatch({ type: "setReferralLink", payload: referralLink });
+      if (address != null) {
+        const referralLink =
+          "https://wefund.app/?referral=" +
+          encrypt3DES(address, "wefundkeyreferral");
 
-      //   let queryString, urlParams, referral_code;
-      //   if (typeof window != "undefined") {
-      //     queryString = window.location.search;
-      //     urlParams = new URLSearchParams(queryString);
-      //     referral_code = urlParams.get("referral");
+        dispatch({ type: "setReferralLink", payload: referralLink });
+      }
 
-      //     let base = "";
-      //     if (referral_code != null) {
-      //       referral_code = referral_code.split(" ").join("+");
-      //       try {
-      //         base = decrypt3DES(referral_code, "wefundkeyreferral");
-      //       } catch (e) {
-      //         console.log(e);
-      //       }
-      //     }
+      let referral = ParseParam("referral");
+      referral = "egR8AzzTqU33cFc2hG4rcjOmcR4kUezitvYerxtypIeAQwOtz9Ua9c1ngFyLy7De";
+      if (referral != null) {
+        referral = referral.split(" ").join("+");
+        let base;
+        try {
+          base = decrypt3DES(referral, "wefundkeyreferral");
+        } catch (e) {
+          console.log(e);
+        }
 
-      //     var formData = new FormData();
-      //     formData.append("base", base);
-      //     formData.append("referred", address);
+        const formData = new FormData();
+        formData.append("base", base);
+        formData.append("referred", address);
 
-      //     const requestOptions = {
-      //       method: "POST",
-      //       body: formData,
-      //     };
+        const requestOptions = {
+          method: "POST",
+          body: formData,
+        };
 
-      //     await fetch(state.request + "/checkreferral", requestOptions)
-      //       .then((res) => res.json())
-      //       .then((data) => {
-      //         dispatch({
-      //           type: "setReferralCount",
-      //           payload: data.data,
-      //         });
-      //       })
-      //       .catch((e) => {
-      //         console.log("Error:" + e);
-      //       });
-      //   }
+        fetch("/api/checkreferral", requestOptions)
+          .then((res) => {console.log(res); res.json(); })
+          .then((data) => {
+            console.log(data);
+            dispatch({
+              type: "setReferralCount",
+              payload: data.data,
+            });
+          })
+          .catch((e) => {
+            console.log("Error:" + e);
+          });
+      }
     }
     confirmReferral();
-  }, []);
+  }, [address]);
 
   //------Juno connection-----------------------------
   const keplrWallet = useKeplrWallet();
@@ -99,7 +98,6 @@ const Layout = ({ children }: Props) => {
       dispatch({ type: ActionKind.setJunoConnection, payload: keplrWallet });
   }, [keplrWallet, keplrWallet.initialized]);
 
-  const junoConnection = useJunoConnection();
   useEffect(() => {
     const fetch = async () => {
       fetchData(state, dispatch, true);
@@ -154,7 +152,7 @@ const Layout = ({ children }: Props) => {
           let data = ParseParam("data[0]");
           if (signed == "transactionsSigned" && data != null) {
             data = Buffer.from(data).toString("base64");
-            console.log(data)
+            console.log(data);
             const transaction = {
               toPlainObject: function () {
                 return {
@@ -171,7 +169,7 @@ const Layout = ({ children }: Props) => {
                 };
               },
             };
-            console.log(transaction.toPlainObject())
+            console.log(transaction.toPlainObject());
             const config = getElrondConfig(NETWORK);
             const res = await axios.post(
               `${config.apiAddress}/transactions`,

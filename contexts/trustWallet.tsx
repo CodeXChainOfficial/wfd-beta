@@ -11,7 +11,6 @@ import Web3Modal from "web3modal";
 import { AbiItem, Parse } from "web3-utils";
 import { WEFUND_BSC_ADDRESS } from "../config/constants";
 import ERC20_ABI from "../config/erc20.json";
-import { sendError } from "next/dist/server/api-utils";
 
 const providerOptions = {
   walletconnect: {
