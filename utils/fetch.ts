@@ -11,7 +11,7 @@ import {
   CHAINS_CONFIG,
 } from "../config/constants";
 import { ActionKind } from "../contexts/store";
-import WEFUND_ABI from "../contract/build/contracts/WeFund.json";
+import WEFUND_ABI from "../bsc_contract/build/contracts/WeFund.json";
 
 export function addExtraInfo(projectData: any) {
   if (typeof projectData === "undefined" || projectData == "") return "";

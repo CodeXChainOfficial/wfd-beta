@@ -1,0 +1,39 @@
+truffle migration --f 1 --network rinkeby
+truffle run verify WeFund --network rinkeby
+
+
+migrating
+
+   Deploying 'WeFund'
+   ------------------
+   > transaction hash:    0xc01212421d4ab295af29a168360505813f59943c16b621c2ff9ba7ec9b149573
+   > Blocks: 2            Seconds: 22
+   > contract address:    0x686c626E48bfC5DC98a30a9992897766fed4Abd3
+   > block number:        11142536
+   > block timestamp:     1659600756
+   > account:             0xeD0C3d4d42EFFb4BbabB8155f6D16A4698e0Ddf1
+   > balance:             0.312704402585864801
+   > gas used:            912271 (0xdeb8f)
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00912271 ETH
+
+
+   Deploying 'TransparentUpgradeableProxy'
+   ---------------------------------------
+   > transaction hash:    0x12705e701cf791b82d30ff841b8472a7f2ced33e9f52142b9f1863b03bd86ac6
+   > Blocks: 1            Seconds: 13
+   > contract address:    0x2012A336662d0a4d0B9F56896E2e3d358659CC1C
+   > block number:        11142538
+   > block timestamp:     1659600786
+   > account:             0xeD0C3d4d42EFFb4BbabB8155f6D16A4698e0Ddf1
+   > balance:             0.306303242585864801
+   > gas used:            640116 (0x9c474)
+   > gas price:           10 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00640116 ETH
+
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.01552387 ETH
+
