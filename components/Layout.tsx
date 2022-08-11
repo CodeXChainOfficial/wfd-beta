@@ -51,7 +51,8 @@ const Layout = ({ children }: Props) => {
       }
 
       let referral = ParseParam("referral");
-      referral = "egR8AzzTqU33cFc2hG4rcjOmcR4kUezitvYerxtypIeAQwOtz9Ua9c1ngFyLy7De";
+      referral =
+        "egR8AzzTqU33cFc2hG4rcjOmcR4kUezitvYerxtypIeAQwOtz9Ua9c1ngFyLy7De";
       if (referral != null) {
         referral = referral.split(" ").join("+");
         let base;
@@ -71,7 +72,11 @@ const Layout = ({ children }: Props) => {
         };
 
         fetch("/api/checkreferral", requestOptions)
-          .then((res) => {console.log(res); res.json(); })
+          .then((res) => {
+            console.log("res=");
+            console.log(res);
+            res.json();
+          })
           .then((data) => {
             console.log(data);
             dispatch({

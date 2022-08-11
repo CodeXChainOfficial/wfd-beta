@@ -45,7 +45,7 @@ export default async function handler(
   console.log(sql);
   const result = await executeQuery(sql);
   console.log(result);
-  res.json({
+  res.status(200).json({
     status: "success",
     data: result,
   });
