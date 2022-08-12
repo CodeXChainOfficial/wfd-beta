@@ -21,7 +21,7 @@ export const WFD_TOKEN =
   "juno1x329zfyakxz9sl6a46ef9snajjcgjrykq8sje4lpj06r24trgvxqj42edl";
 
 export const WEFUND_CONTRACT =
-  "0x76315D80D5101CBD05F6Baa9Db1448C6cBb6e350";
+  "0xd700b900034f530acabff37fffb95fbcbba9692f";
 export const VESTING_CONTRACT =
   "juno1qwxuxeg5q7gedvdzxssf84hw3xm9ql08jqt9t7h97d030rajjqkst4femg";
 export const STAKING_CONTRACT =

@@ -136,7 +136,7 @@ const Layout = ({ children }: Props) => {
     };
 
     fetch();
-  }, [metamaskWallet.initialized]);
+  }, []);
 
   //-------Near connection--------------------------------------------------
   const near = useNearWallet();

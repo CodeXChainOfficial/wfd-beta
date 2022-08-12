@@ -52,35 +52,35 @@ export default function ProjectDetail() {
           toast("Can't fetch Project Data", ERROR_OPTION);
           return;
         }
-
-        for (let i = 0; i < oneprojectData.milestone_states.length; i++) {
-          if (i < oneprojectData.project_milestonestep) {
-            oneprojectData.milestone_states[i].milestone_statusmessage =
-              "Released";
-          } else if (i == oneprojectData.project_milestonestep) {
-            if (oneprojectData.project_status == "3") {
-              //releasing status
-              oneprojectData.milestone_states[i].milestone_statusmessage =
-                "Voting";
-              oneprojectData.milestone_states[i].milestone_votingavailable =
-                true;
-            } else
-              oneprojectData.milestone_states[i].milestone_statusmessage =
-                "Not yet";
-          } else
-            oneprojectData.milestone_states[i].milestone_statusmessage =
-              "Not yet";
-        }
+console.log(oneprojectData)
+        // for (let i = 0; i < oneprojectData.milestone_states.length; i++) {
+        //   if (i < oneprojectData.project_milestonestep) {
+        //     oneprojectData.milestone_states[i].milestone_statusmessage =
+        //       "Released";
+        //   } else if (i == oneprojectData.project_milestonestep) {
+        //     if (oneprojectData.project_status == "3") {
+        //       //releasing status
+        //       oneprojectData.milestone_states[i].milestone_statusmessage =
+        //         "Voting";
+        //       oneprojectData.milestone_states[i].milestone_votingavailable =
+        //         true;
+        //     } else
+        //       oneprojectData.milestone_states[i].milestone_statusmessage =
+        //         "Not yet";
+        //   } else
+        //     oneprojectData.milestone_states[i].milestone_statusmessage =
+        //       "Not yet";
+        // }
         setOneprojectData(oneprojectData);
 
-        let totalBacked = parseInt(oneprojectData.backerbacked_amount);
-        totalBacked /= 10 ** 6;
+        // let totalBacked = parseInt(oneprojectData.backerbacked_amount);
+        // totalBacked /= 10 ** 6;
 
-        const percent = Math.floor(
-          (totalBacked / parseInt(oneprojectData.project_collected)) * 100
-        );
-        setTotalBackedPercent(percent);
-        setTotalBackedMoney(totalBacked);
+        // const percent = Math.floor(
+        //   (totalBacked / parseInt(oneprojectData.project_collected)) * 100
+        // );
+        // setTotalBackedPercent(percent);
+        // setTotalBackedMoney(totalBacked);
       } catch (e) {
         console.log(e);
       }

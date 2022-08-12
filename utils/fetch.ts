@@ -12,6 +12,7 @@ export function addExtraInfo(projectData: any) {
 
   projectData[WEFUND_ID - 1].backerbacked_amount = "160000000000";
   for (let i = 0; i < projectData.length; i++) {
+    projectData[i].teammember_states = JSON.parse(projectData[i].teammembers);
     const backer_backedAmount = parseInt(projectData[i].backerbacked_amount);
     projectData[i].backer_backedPercent = Math.floor(
       (backer_backedAmount /
@@ -20,15 +21,15 @@ export function addExtraInfo(projectData: any) {
       100
     );
 
-    // let released = 0;
-    // for (let j = 0; j < projectData[i].milestone_states.length; j++) {
-    //   if (projectData[i].milestone_states[j].milestone_status == 2) {
-    //     released++;
-    //   }
-    // }
-    // projectData[i].releasedPercent = Math.floor(
-    //   (released / projectData[i].milestone_states.length) * 100
-    // );
+    let released = 0;
+    for (let j = 0; j < projectData[i].milestone_states.length; j++) {
+      if (projectData[i].milestone_states[j].status == 2) {
+        released++;
+      }
+    }
+    projectData[i].releasedPercent = Math.floor(
+      (released / projectData[i].milestone_states.length) * 100
+    );
   }
 
   return projectData;
@@ -65,18 +66,18 @@ export async function fetchData(
 
   try {
     const res = await contract.getProjectInfo();
-
     for (let i = 0; i < res.length; i++) {
       const id = res[i].id.toNumber() - 1;
 
-      projectData[id].collected = res[i].collected;
-      projectData[id].backed = res[i].backed;
+      projectData[id].project_collected = res[i].collected.toNumber();
+      projectData[id].backerbacked_amount = res[i].backed.toNumber();
       projectData[id].backers = res[i].backers;
       projectData[id].whitelist = res[i].whitelist;
+      projectData[id].milestone_states = res[i].milestones;
     }
 
     projectData = addExtraInfo(projectData);
-    // dispatch({ type: ActionKind.setProjectData, payload: projectData });
+    dispatch({ type: ActionKind.setProjectData, payload: projectData });
     console.log(projectData);
   } catch (e) {
     console.log(e);
