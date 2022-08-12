@@ -37,12 +37,25 @@ contract WeFund is Initializable {
         uint256 usdt_amount;
         uint256 busd_amount;
     }
+
+    struct Milestone {
+        uint256 step;
+        string name;
+        string description;
+        string start_date;
+        string end_date;
+        uint256 amount;
+        string status;
+        string[] votes;
+    }
+
     struct ProjectInfo {
         uint256 id;
         uint256 collected;
         WhitelistInfo[] whitelist;
         uint256 backed;
         BackerInfo[] backers;
+        Milestone[] milestones;
     }
     mapping(uint256 => ProjectInfo) public projects;
     uint256 public project_id;
@@ -65,11 +78,15 @@ contract WeFund is Initializable {
     // }
     function addCommunity(address) public {}
 
-    function addProject(uint256 _collected) public {
+    function addProject(uint256 _collected, Milestone[] calldata _milestone)
+        public
+    {
         ProjectInfo storage project = projects[project_id];
         project.id = project_id;
         project.collected = _collected;
-
+        for (uint256 i = 0; i < _milestone.length; i++)
+            project.milestones.push(_milestone[i]);
+        // project.milestones = _milestone;
         project_id++;
 
         emit ProjectAdded(project_id);

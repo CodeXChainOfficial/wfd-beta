@@ -32,8 +32,8 @@ const Layout = ({ children }: Props) => {
   const router = useRouter();
   const { state, dispatch } = useStore();
 
-  const junoConnection = useJunoConnection();
-  const address = junoConnection?.account;
+  const metamaskWallet = useMetamaskWallet();
+  const address = metamaskWallet?.account;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
@@ -48,83 +48,72 @@ const Layout = ({ children }: Props) => {
           encrypt3DES(address, "wefundkeyreferral");
 
         dispatch({ type: "setReferralLink", payload: referralLink });
-      }
 
-      let referral = ParseParam("referral");
-      referral =
-        "egR8AzzTqU33cFc2hG4rcjOmcR4kUezitvYerxtypIeAQwOtz9Ua9c1ngFyLy7De";
-      if (referral != null) {
-        referral = referral.split(" ").join("+");
-        let base;
-        try {
-          base = decrypt3DES(referral, "wefundkeyreferral");
-        } catch (e) {
-          console.log(e);
-        }
+        let referral = ParseParam("referral");
+        if (referral != null) {
+          referral = referral.split(" ").join("+");
+          let base;
+          try {
+            base = decrypt3DES(referral, "wefundkeyreferral");
+          } catch (e) {
+            console.log(e);
+          }
 
-        const formData = new FormData();
-        formData.append("base", base);
-        formData.append("referred", address);
+          const formData = new FormData();
+          formData.append("base", base);
+          formData.append("referred", address);
 
-        const requestOptions = {
-          method: "POST",
-          body: formData,
-        };
+          const requestOptions = {
+            method: "POST",
+            body: formData,
+          };
 
-        fetch("/api/checkreferral", requestOptions)
-          .then((res) => {
-            console.log("res=");
-            console.log(res);
-            res.json();
-          })
-          .then((data) => {
-            console.log(data);
-            dispatch({
-              type: "setReferralCount",
-              payload: data.data,
+          fetch("/api/checkreferral", requestOptions)
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              dispatch({
+                type: "setReferralCount",
+                payload: data.data,
+              });
+            })
+            .catch((e) => {
+              console.log("Error:" + e);
             });
-          })
-          .catch((e) => {
-            console.log("Error:" + e);
-          });
+        }
       }
     }
     confirmReferral();
   }, [address]);
 
-  //------Juno connection-----------------------------
-  const metamaskWallet = useMetamaskWallet();
-
+  //------Metamask connection-----------------------------
   useEffect(() => {
     const connectToBSC = async () => {
       const ethereum = window.ethereum;
       const chains = CHAINS_CONFIG;
-
+      const chain = "rinkeby";
       try {
         await ethereum.request({
           method: "wallet_switchEthereumChain",
-          params: [{ chainId: chains["bsc"].chainId }],
+          params: [{ chainId: chains[chain].chainId }],
         });
       } catch (switchError: any) {
-        // This error code indicates that the chain has not been added to MetaMask.
         if (switchError.code === 4902) {
           try {
             await ethereum.request({
               method: "wallet_addEthereumChain",
               params: [
                 {
-                  chainId: chains["bsc"].chainId,
-                  chainName: chains["bsc"].chainName,
-                  rpcUrls: [chains["bsc"].rpc] /* ... */,
+                  chainId: chains[chain].chainId,
+                  chainName: chains[chain].chainName,
+                  rpcUrls: [chains[chain].rpc] /* ... */,
                 },
               ],
             });
           } catch (addError) {
-            // handle "add" error
             toast("Can't switch to BSC", ERROR_OPTION);
           }
         }
-        // handle other "switch" errors
       }
       metamaskWallet.connect();
     };
@@ -133,10 +122,6 @@ const Layout = ({ children }: Props) => {
 
   useEffect(() => {
     if (metamaskWallet.initialized) {
-      // dispatch({
-      //   type: ActionKind.setMetamaskProvider,
-      //   payload: metamaskWallet,
-      // });
       dispatch({ type: ActionKind.setWalletType, payload: "metamask" });
       dispatch({
         type: ActionKind.setWallet,

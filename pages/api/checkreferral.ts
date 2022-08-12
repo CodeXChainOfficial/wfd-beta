@@ -41,54 +41,33 @@ export default async function handler(
     });
   });
 
-  const sql = "select * from Projects";
-  console.log(sql);
-  const result = await executeQuery(sql);
-  console.log(result);
-  res.status(200).json({
-    status: "success",
-    data: result,
-  });
+  if (fields.base != "") {
+    let sql =
+      "Select * from Referral where base='" +
+      fields.base +
+      "' and referred='" +
+      fields.referred +
+      "'";
 
-  // if (fields.base != "") {
-  //   const sql =
-  //     "Select * from Referral where base='" +
-  //     fields.base +
-  //     "' and referred='" +
-  //     fields.referred +
-  //     "'";
-  // }
-  //   await new Promise((res, rej) => {
-  //     con.query(sql, async function (err, result) {
-  //       if (err) rej(err);
-  //       if (result.length == 0) {
-  //         sql =
-  //           "INSERT INTO Referral (base, referred) VALUES ('" +
-  //           fields.base +
-  //           "', '" +
-  //           fields.referred +
-  //           "')";
-  //         con.query(sql, function (err, result) {
-  //           if (err) rej(err);
-  //           res(result);
-  //         });
-  //       }
-  //       res(result);
-  //     });
-  //   });
-  // }
-  // sql =
-  //   "Select count(base) as referralCount from Referral where base='" +
-  //   fields.referred +
-  //   "'";
-  // con.query(sql, function (err, result) {
-  //   if (err) {
-  //     res.json({ status: "success", data: "0" });
-  //     return;
-  //   }
-  //   res.json({
-  //     status: "success",
-  //     data: result[0].referralCount,
-  //   });
-  // });
+    const result = await executeQuery(sql);
+    if (result.length == 0) {
+      sql =
+        "INSERT INTO Referral (base, referred) VALUES ('" +
+        fields.base +
+        "', '" +
+        fields.referred +
+        "')";
+      await executeQuery(sql);
+    }
+  };
+
+  let sql =
+    "Select count(base) as referralCount from Referral where base='" +
+    fields.referred +
+    "'";
+  const result = await executeQuery(sql);
+  res.json({
+    status: "success",
+    data: result[0].referralCount,
+  });
 }

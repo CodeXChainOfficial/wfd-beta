@@ -1,13 +1,7 @@
-import { CosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 import { ethers } from "ethers";
-import { getJunoConfig } from "../config";
 import {
   WEFUND_CONTRACT,
-  STAKING_CONTRACT,
-  WFD_TOKEN,
-  WEFUND,
   WEFUND_ID,
-  NETWORK,
   CHAINS_CONFIG,
 } from "../config/constants";
 import { ActionKind } from "../contexts/store";
@@ -23,18 +17,18 @@ export function addExtraInfo(projectData: any) {
       (backer_backedAmount /
         10 ** 6 /
         parseInt(projectData[i].project_collected)) *
-        100
+      100
     );
 
-    let released = 0;
-    for (let j = 0; j < projectData[i].milestone_states.length; j++) {
-      if (projectData[i].milestone_states[j].milestone_status == 2) {
-        released++;
-      }
-    }
-    projectData[i].releasedPercent = Math.floor(
-      (released / projectData[i].milestone_states.length) * 100
-    );
+    // let released = 0;
+    // for (let j = 0; j < projectData[i].milestone_states.length; j++) {
+    //   if (projectData[i].milestone_states[j].milestone_status == 2) {
+    //     released++;
+    //   }
+    // }
+    // projectData[i].releasedPercent = Math.floor(
+    //   (released / projectData[i].milestone_states.length) * 100
+    // );
   }
 
   return projectData;
@@ -51,11 +45,6 @@ export async function fetchData(
 
   if (!force) return { projectData, communityData, configData };
 
-  // const client = state.junoConnection.getClient();
-  // if (!client) {
-  //   console.log("Error");
-  //   return;
-  // }
   const provider = new ethers.providers.JsonRpcProvider(
     CHAINS_CONFIG["rinkeby"].rpc
   );
@@ -65,8 +54,27 @@ export async function fetchData(
     provider
   );
 
+  await fetch("/api/fetchProjects")
+    .then((res) => res.json())
+    .then((data) => {
+      projectData = data.data;
+    })
+    .catch((e) => {
+      console.log("Error:" + e);
+    });
+
   try {
-    projectData = await contract.getProjectInfo();
+    const res = await contract.getProjectInfo();
+
+    for (let i = 0; i < res.length; i++) {
+      const id = res[i].id.toNumber() - 1;
+
+      projectData[id].collected = res[i].collected;
+      projectData[id].backed = res[i].backed;
+      projectData[id].backers = res[i].backers;
+      projectData[id].whitelist = res[i].whitelist;
+    }
+
     projectData = addExtraInfo(projectData);
     // dispatch({ type: ActionKind.setProjectData, payload: projectData });
     console.log(projectData);

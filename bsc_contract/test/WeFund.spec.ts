@@ -28,13 +28,19 @@ describe("WeFund", () => {
   });
 
   it("add project", async () => {
-    await wefund.connect(wallet).addProject(1000000, overrides);
-    await wefund.connect(wallet).addProject(2000000, overrides);
+    await wefund.connect(wallet).addProject(600000, [[0,"1","","2022-03-1","2022-03-31", "600000","0",[]]], overrides);
+    await wefund.connect(wallet).addProject(390000, [[0,"1","","2022-03-1","2022-03-31", "390000","0",[]]], overrides);
+    await wefund.connect(wallet).addProject(250000, [[0,"1","","2022-03-1","2022-03-31", "250000","0",[]]], overrides);
+    await wefund.connect(wallet).addProject(600000, [[0,"1","","2022-03-1","2022-03-31", "600000","0",[]]], overrides);
+    await wefund.connect(wallet).addProject(120000, [[0,"1","","2022-03-1","2022-03-31", "120000","0",[]]], overrides);
+    await wefund.connect(wallet).addProject(120000, [[0,"1","","2022-03-1","2022-03-31", "120000","0",[]]], overrides);
+
+    // await wefund.connect(wallet).addProject(2000000, overrides);
 
     const number = await wefund.getNumberOfProjects();
     console.log(number);
     const projects = await wefund.getProjectInfo();
-    console.log(projects);
+    console.log(projects[0].milestones);
     // let price = await wefund.getLatestPrice();
     // console.log(price)
   });
