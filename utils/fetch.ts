@@ -73,9 +73,21 @@ export async function fetchData(
       projectData[id].backerbacked_amount = res[i].backed.toNumber();
       projectData[id].backers = res[i].backers;
       projectData[id].whitelist = res[i].whitelist;
-      projectData[id].milestone_states = res[i].milestones;
+      projectData[id].milestone_states = [];
+      for(let j=0; j<res[i].milestones.length; j++){
+        var obj: any = {};
+        obj.milestone_amount = res[i].milestones[j].amount.toNumber();
+        obj.milestone_description = res[i].milestones[j].description;
+        obj.milestone_enddate = res[i].milestones[j].end_date;
+        obj.milestone_name = res[i].milestones[j].name;
+        obj.milestone_startdate = res[i].milestones[j].start_date;
+        obj.milestone_status = res[i].milestones[j].status;
+        obj.milestone_step = res[i].milestones[j].step.toNumber();
+        obj.votes = res[i].milestones[j].votes;
+        projectData[id].milestone_states.push(obj);
+      }
     }
-
+console.log(projectData)
     projectData = addExtraInfo(projectData);
     dispatch({ type: ActionKind.setProjectData, payload: projectData });
     console.log(projectData);

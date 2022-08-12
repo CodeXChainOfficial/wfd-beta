@@ -1,5 +1,7 @@
 import { ChakraProvider, Stack } from "@chakra-ui/react";
 import { Box, Flex, Text, Image } from "@chakra-ui/react";
+import { BigNumber, ethers } from "ethers";
+
 import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { IoCheckmark } from "react-icons/io5";
@@ -13,18 +15,19 @@ import Footer from "../../components/Footer";
 import CustomSelect from "../../components/WhitelistProject/CustomSelect";
 import CustomInput from "../../components/WhitelistProject/CustomInput";
 import CustomEmailInput from "../../components/WhitelistProject/CustomEmailInput";
-import { checkJunoConnection } from "../../utils/utility";
-import { useJunoConnection, useStore } from "../../contexts/store";
+import { checkBscConnection, Sleep } from "../../utils/utility";
+import { useStore } from "../../contexts/store";
 import { SUCCESS_OPTION, WEFUND_CONTRACT } from "../../config/constants";
 import { fetchData } from "../../utils/fetch";
+import { useMetamaskWallet } from "../../contexts/metamask";
+import WEFUND_ABI from "../../bsc_contract/build/WeFund.json";
 
 export default function WhitelistProject() {
   const { query } = useRouter();
   const { project_id } = query;
   const { state, dispatch } = useStore();
-  const junoConnection = useJunoConnection();
-  const client = junoConnection?.getClient();
-  const address = junoConnection?.account;
+  const metamaskWallet = useMetamaskWallet();
+  const address = metamaskWallet?.account;
 
   //----------Declaring State used---
   const [condition, setCondition] = useState(false);
@@ -33,24 +36,25 @@ export default function WhitelistProject() {
   const [invest, setInvestOption] = useState("");
 
   async function JoinWhitelist(project_id: string) {
-    if (!checkJunoConnection(state)) return;
+    if (!checkBscConnection(state)) return;
 
     try {
-      const result = await client.execute(
-        address,
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
         WEFUND_CONTRACT,
-        {
-          register_whitelist: {
-            project_id: project_id,
-            card_type: state.cardInfo?.card_type,
-          },
-        },
-        "auto"
+        WEFUND_ABI.abi,
+        signer
       );
+
+      const res = await contract.addWhitelist(project_id, 1);
+      await res.wait();
+      // contract.on("WhitelistAdded", (message, idnum) => {
+        // console.log("Creation Event Data: ", message, idnum);
+      // });
       toast("Register on whitelist success", SUCCESS_OPTION);
       fetchData(state, dispatch, true);
-      console.log(result);
-    } catch (e) {
+  } catch (e) {
       console.log(e);
     }
   }

@@ -4,16 +4,12 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/utils/SafeERC20Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 // import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
-//ropsten testnet
-address constant USDC = 0xFE724a829fdF12F7012365dB98730EEe33742ea2;
-address constant USDT = 0x6EE856Ae55B6E1A249f04cd3b947141bc146273c;
-address constant BUSD = 0x16c550a97Ad2ae12C0C8CF1CC3f8DB4e0c45238f;
-address constant WEFUND_WALLET = 0x0dC488021475739820271D595a624892264Ca641;
 
 //bsc testnet
-// address constant USDC = 0x64544969ed7EBf5f083679233325356EbE738930;
+// address constant USDC = 0x686c626E48bfC5DC98a30a9992897766fed4Abd3;
 // address constant USDT = 0x337610d27c682E347C9cD60BD4b3b107C9d34dDd;
 // address constant BUSD = 0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee;
 // address constant WEFUND_WALLET = 0x0dC488021475739820271D595a624892264Ca641;
@@ -23,9 +19,14 @@ address constant WEFUND_WALLET = 0x0dC488021475739820271D595a624892264Ca641;
 // address constant USDT = 0x55d398326f99059ff775485246999027b3197955;
 // address constant BUSD = 0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56;
 
-contract WeFund is Initializable {
+contract WeFund is Initializable, OwnableUpgradeable {
     using SafeERC20Upgradeable for IERC20Upgradeable;
     // AggregatorV3Interface internal priceFeed;
+    //rinkeby
+    address USDC = 0xFE724a829fdF12F7012365dB98730EEe33742ea2;
+    address USDT = 0x6EE856Ae55B6E1A249f04cd3b947141bc146273c;
+    address BUSD = 0x16c550a97Ad2ae12C0C8CF1CC3f8DB4e0c45238f;
+    address WEFUND_WALLET = 0x0dC488021475739820271D595a624892264Ca641;
 
     struct WhitelistInfo {
         address addr;
@@ -67,6 +68,7 @@ contract WeFund is Initializable {
 
     function initialize() public initializer {
         project_id = 1;
+        __Ownable_init();
         // priceFeed = AggregatorV3Interface( 0xECe365B379E1dD183B20fc5f022230C044d51404 //Ropsten
         //0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE //BSC
         // );
@@ -76,7 +78,20 @@ contract WeFund is Initializable {
     //     (, int256 answer, , , ) = priceFeed.latestRoundData();
     //     return answer;
     // }
-    function addCommunity(address) public {}
+    function setTokenAddress(address _usdc, address _usdt, address _busd) public onlyOwner {
+        USDC = _usdc;
+        USDT = _usdt;
+        BUSD = _busd;
+    }
+
+    function addCommunity(address _addr) public {
+        for(uint i=0; i<community.length; i++) {
+            if(community[i] == _addr){
+                revert("already registered");
+            }
+        }
+        community.push(_addr);
+    }
 
     function addProject(uint256 _collected, Milestone[] calldata _milestone)
         public
