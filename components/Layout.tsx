@@ -47,7 +47,7 @@ const Layout = ({ children }: Props) => {
           "https://wefund.app/?referral=" +
           encrypt3DES(address, "wefundkeyreferral");
 
-        dispatch({ type: "setReferralLink", payload: referralLink });
+        dispatch({ type: ActionKind.setReferralLink, payload: referralLink });
 
         let referral = ParseParam("referral");
         if (referral != null) {
