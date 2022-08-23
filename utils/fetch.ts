@@ -1,11 +1,8 @@
 import { ethers } from "ethers";
-import {
-  WEFUND_CONTRACT,
-  WEFUND_ID,
-  CHAINS_CONFIG,
-} from "../config/constants";
+import { WEFUND_CONTRACT, WEFUND_ID, CHAINS_CONFIG } from "../config/constants";
 import { ActionKind } from "../contexts/store";
 import WEFUND_ABI from "../bsc_contract/build/contracts/WeFund.json";
+import { ROUTER_TOKENS } from "../config/constants/swap";
 
 export function addExtraInfo(projectData: any) {
   if (typeof projectData === "undefined" || projectData == "") return "";
@@ -18,7 +15,7 @@ export function addExtraInfo(projectData: any) {
       (backer_backedAmount /
         10 ** 6 /
         parseInt(projectData[i].project_collected)) *
-      100
+        100
     );
 
     let released = 0;
@@ -74,7 +71,7 @@ export async function fetchData(
       projectData[id].backer_states = res[i].backers;
       projectData[id].whitelist = res[i].whitelist;
       projectData[id].milestone_states = [];
-      for(let j=0; j<res[i].milestones.length; j++){
+      for (let j = 0; j < res[i].milestones.length; j++) {
         var obj: any = {};
         obj.milestone_amount = res[i].milestones[j].amount.toNumber();
         obj.milestone_description = res[i].milestones[j].description;
@@ -87,7 +84,7 @@ export async function fetchData(
         projectData[id].milestone_states.push(obj);
       }
     }
-console.log(projectData)
+    console.log(projectData);
     projectData = addExtraInfo(projectData);
     dispatch({ type: ActionKind.setProjectData, payload: projectData });
     console.log(projectData);

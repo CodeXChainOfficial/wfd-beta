@@ -53,12 +53,12 @@ export default function RouterSwap() {
   }, [inChain]);
 
   useEffect(() => {
-    const getBridgeFee = async () => {
-      const fees = await routerProtocol?.getBridgeFee(
-        outChainInfo.chain_id.toString()
-      );
-    };
-    getBridgeFee();
+    // const getBridgeFee = async () => {
+    //   const fees = await routerProtocol?.getBridgeFee(
+    //     outChainInfo.chain_id.toString()
+    //   );
+    // };
+    // getBridgeFee();
   }, [routerProtocol]);
 
   const getQuote = async () => {

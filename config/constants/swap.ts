@@ -62,7 +62,7 @@ export const ROUTER_CHAIN_CONFIG = {
   },
   Ethereum: {
     chain_id: 1,
-    rpc: "https://mainnet.infura.io/v3/",
+    rpc: "https://eth-mainnet.public.blastapi.io",
     icon: "https://app.thevoyager.io/static/media/ropsten-chain.91dd9993.png",
     token_list: "https://tokens.uniswap.org/",
   },
@@ -78,6 +78,20 @@ export const ROUTER_CHAIN_CONFIG = {
     token_list: "",
   },
 };
+
+export const ROUTER_TOKENS = [
+  "https://raw.githubusercontent.com/dfyn/new-host/main/list-token.tokenlist.json",
+  "https://unpkg.com/quickswap-default-token-list@1.2.20/build/quickswap-default.tokenlist.json",
+  "https://tokens.pancakeswap.finance/pancakeswap-extended.json",
+  "https://tokens.pancakeswap.finance/pancakeswap-top-100.json",
+  "https://tokens.uniswap.org/",
+  "https://raw.githubusercontent.com/pangolindex/tokenlists/main/pangolin.tokenlist.json",
+  "https://raw.githubusercontent.com/pangolindex/tokenlists/main/wgm.tokenlist.json",
+  "https://raw.githubusercontent.com/traderjoe-xyz/joe-tokenlists/main/joe.tokenlist.json",
+  "https://bridge.arbitrum.io/token-list-42161.json",
+  "https://static.optimism.io/optimism.tokenlist.json",
+  "https://raw.githubusercontent.com/SpookySwap/spooky-info/master/src/constants/token/spookyswap.json",
+];
 
 export const ROUTER_FEE_TOKENS = {
   Polygon: [

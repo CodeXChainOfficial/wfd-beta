@@ -21,6 +21,7 @@ import {
 } from "../../config/constants/swap";
 import { ERC20_ABI } from "../../config/constants";
 import { useMetamaskWallet } from "../../contexts/metamask";
+import { useTokenList } from "../../hook/router_tokenlist";
 
 export enum SwapType {
   from,
@@ -52,28 +53,22 @@ export default function SwapCard({
   setFeeToken,
   isLoading,
 }: SwapProps) {
-  const [tokenList, setTokenList] = useState<any[]>([]);
+  // const [tokenList, setTokenList] = useState<any[]>([]);
   const [balance, setBalance] = useState("0");
 
   const metamask = useMetamaskWallet();
   const account = metamask.account;
   const chainInfo = ROUTER_CHAIN_CONFIG[chain];
+  const tokenList = useTokenList(chain);
 
   useEffect(() => {
-    const getTokenList = async () => {
-      const infoURL = ROUTER_CHAIN_CONFIG[chain].token_list;
-      const res = await fetch(infoURL);
-      const info = await res.json();
-      setTokenList(info.tokens);
-      if (info.tokens) setToken(info.tokens[0].address);
-    };
-    setTokenList([]);
-    getTokenList();
-  }, [chain]);
+    if (tokenList.length > 0) setToken(tokenList[0].address);
+  }, [tokenList]);
 
   useEffect(() => {
     const getBalance = async () => {
       try {
+        console.log(chainInfo);
         const provider = new ethers.providers.JsonRpcProvider(
           chainInfo.rpc,
           chainInfo.chain_id
