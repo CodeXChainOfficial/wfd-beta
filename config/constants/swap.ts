@@ -125,12 +125,12 @@ export const ROUTER_FEE_TOKENS = {
     {
       symbol: "BNB",
       address: "0x0100000000000000000000000000000000000001",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/bsc-chain.18736889.png",
     },
     {
       symbol: "WBNB",
       address: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/bsc-chain.18736889.png",
     },
     {
       symbol: "ROUTE",
@@ -152,12 +152,12 @@ export const ROUTER_FEE_TOKENS = {
     {
       symbol: "AVAX",
       address: "0x0100000000000000000000000000000000000001",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/avax.234db155.svg",
     },
     {
       symbol: "WAVAX",
       address: "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/avax.234db155.svg",
     },
     {
       symbol: "ROUTE",
@@ -179,12 +179,12 @@ export const ROUTER_FEE_TOKENS = {
     {
       symbol: "FTM",
       address: "0x0100000000000000000000000000000000000001",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/ftm.3f8c71bb.svg",
     },
     {
       symbol: "WFTM",
       address: "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/ftm.3f8c71bb.svg",
     },
     {
       symbol: "ROUTE",
@@ -206,12 +206,12 @@ export const ROUTER_FEE_TOKENS = {
     {
       symbol: "ETH",
       address: "0x0000000000000000000000000000000000001010",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/arbitrum.7797e058.svg",
     },
     {
       symbol: "WETH",
       address: "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/arbitrum.7797e058.svg",
     },
     {
       symbol: "ROUTE",
@@ -233,12 +233,12 @@ export const ROUTER_FEE_TOKENS = {
     {
       symbol: "ETH",
       address: "0x0000000000000000000000000000000000001010",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/ropsten-chain.91dd9993.png",
     },
     {
       symbol: "WETH",
       address: "0x4200000000000000000000000000000000000006",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/ropsten-chain.91dd9993.png",
     },
     {
       symbol: "ROUTE",
@@ -260,12 +260,12 @@ export const ROUTER_FEE_TOKENS = {
     {
       symbol: "ETH",
       address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/ropsten-chain.91dd9993.png",
     },
     {
       symbol: "WETH",
       address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/ropsten-chain.91dd9993.png",
     },
     {
       symbol: "ROUTE",
@@ -287,12 +287,12 @@ export const ROUTER_FEE_TOKENS = {
     {
       symbol: "CRO",
       address: "0x0000000000000000000000000000000000000001",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/cro-chain.ccf021cb.svg",
     },
     {
       symbol: "WCRO",
       address: "0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23",
-      image: "",
+      image: "https://app.thevoyager.io/static/media/cro-chain.ccf021cb.svg",
     },
     {
       symbol: "ROUTE",

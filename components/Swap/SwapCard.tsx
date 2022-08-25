@@ -22,6 +22,9 @@ import {
 import { ERC20_ABI } from "../../config/constants";
 import { useMetamaskWallet } from "../../contexts/metamask";
 import { useTokenList } from "../../hook/router_tokenlist";
+import ChainSelector from "./ChainSelector";
+import TokenSelector from "./TokenSelector";
+import FeeTokenSelector from "./FeeTokenSelector";
 
 export enum SwapType {
   from,
@@ -59,16 +62,10 @@ export default function SwapCard({
   const metamask = useMetamaskWallet();
   const account = metamask.account;
   const chainInfo = ROUTER_CHAIN_CONFIG[chain];
-  const tokenList = useTokenList(chain);
-
-  useEffect(() => {
-    if (tokenList.length > 0) setToken(tokenList[0].address);
-  }, [tokenList]);
 
   useEffect(() => {
     const getBalance = async () => {
       try {
-        console.log(chainInfo);
         const provider = new ethers.providers.JsonRpcProvider(
           chainInfo.rpc,
           chainInfo.chain_id
@@ -96,53 +93,24 @@ export default function SwapCard({
             To
           </Text>
         )}
-        <Container h="16px" />
-        <Flex alignContent={"center"} direction={{ base: "column", md: "row" }}>
-          <Flex flex="1">
-            <Select
-              bg="#3F147F"
-              borderColor="#3F147F"
-              color="white"
-              value={chain}
-              onChange={(e) => setChain(e.target.value as CHAIN_TYPE)}
-            >
-              {ROUTER_CHAIN.map((item, index) => (
-                <option
-                  value={item}
-                  key={index}
-                  style={{
-                    color: "black",
-                  }}
-                >
-                  {item}
-                </option>
-              ))}
-            </Select>
-          </Flex>
+        <Flex
+          alignContent={"center"}
+          direction={{ base: "column", md: "row" }}
+          mt="16px"
+        >
+          <ChainSelector chain={chain} setChain={setChain} />
           <Container
             h={{ base: type == SwapType.from ? 8 : 0, md: 0 }}
             w={{ base: 8, lg: 24 }}
           />
-          {type == SwapType.from ? (
-            <Flex flex="1">
-              <Select
-                bgGradient="linear(#000000, #160335)"
-                borderColor="#000000"
-                color="white"
-                value={feeToken}
-                onChange={(e) => setFeeToken && setFeeToken(e.target.value)}
-              >
-                {ROUTER_FEE_TOKENS[chain].map((item, index) => (
-                  <option
-                    value={item.address}
-                    key={index}
-                    style={{ color: "black" }}
-                  >
-                    {item.symbol}
-                  </option>
-                ))}
-              </Select>
-            </Flex>
+          {type == SwapType.from &&
+          feeToken != undefined &&
+          setFeeToken != undefined ? (
+            <FeeTokenSelector
+              chain={chain}
+              feeToken={feeToken}
+              setFeeToken={setFeeToken}
+            />
           ) : (
             <Spacer />
           )}
@@ -178,7 +146,7 @@ export default function SwapCard({
                 </NumberInput>
               </Flex>
               {type == SwapType.to && isLoading && <Spinner width="20px" />}
-              <Flex w="150px" alignItems="flex-end" pb={2}>
+              {/* <Flex w="150px" alignItems="flex-end" pb={2}>
                 <Select
                   color="#69E4FF"
                   variant="unstyled"
@@ -191,7 +159,8 @@ export default function SwapCard({
                     </option>
                   ))}
                 </Select>
-              </Flex>
+              </Flex> */}
+              <TokenSelector chain={chain} token={token} setToken={setToken} />
             </HStack>
             <HStack w="full">
               <Flex w="full">
