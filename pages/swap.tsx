@@ -40,48 +40,70 @@ export default function RouterSwap() {
 
   useEffect(() => {
     const initialize = async () => {
-      const router = new RouterProtocol(
-        "43",
-        inChainInfo.chain_id.toString(),
-        provider
-      );
+      try {
+        console.log("initializing");
+        const router = new RouterProtocol(
+          "43",
+          inChainInfo.chain_id.toString(),
+          provider
+        );
 
-      await router.initialize();
-      setRouterProcol(router);
+        await router.initialize();
+        setRouterProcol(router);
+      } catch (e) {
+        console.log("initializing error");
+        console.log(e);
+      }
     };
     initialize();
   }, [inChain]);
 
   useEffect(() => {
-    // const getBridgeFee = async () => {
-    //   const fees = await routerProtocol?.getBridgeFee(
-    //     outChainInfo.chain_id.toString()
-    //   );
-    // };
-    // getBridgeFee();
+    const getBridgeFee = async () => {
+      try {
+        const fees = await routerProtocol?.getBridgeFee(
+          outChainInfo.chain_id.toString()
+        );
+        console.log(fees);
+      } catch (e) {
+        console.log("get Fee error");
+        console.log(e);
+      }
+    };
+    getBridgeFee();
   }, [routerProtocol]);
 
   const getQuote = async () => {
-    const decimals = await Contract.decimals();
-    const args = {
-      amount: ethers.utils.parseUnits(inValue.toString(), decimals).toString(), // 10 USDC
-      dest_chain_id: outChainInfo.chain_id.toString(), // Fantom
-      src_token_address: inToken, // USDC on Polygon
-      dest_token_address: outToken, // USDC on Fantom
-      user_address: account,
-      fee_token_address: feeToken, // ROUTE on Polygon
-      slippage_tolerance: 1.0,
-    };
-    const quote = await routerProtocol?.getQuote(
-      args.amount,
-      args.dest_chain_id,
-      args.src_token_address,
-      args.dest_token_address,
-      args.user_address,
-      args.fee_token_address,
-      args.slippage_tolerance
-    );
-    return quote;
+    try {
+      const decimals = await Contract.decimals();
+      const args = {
+        amount: ethers.utils
+          .parseUnits(inValue.toString(), decimals)
+          .toString(), // 10 USDC
+        dest_chain_id: outChainInfo.chain_id.toString(), // Fantom
+        src_token_address: inToken, // USDC on Polygon
+        dest_token_address: outToken, // USDC on Fantom
+        user_address: account,
+        fee_token_address: feeToken, // ROUTE on Polygon
+        slippage_tolerance: 1.0,
+      };
+console.log(args)
+      const quote = await routerProtocol?.getQuote(
+        args.amount,
+        args.dest_chain_id,
+        args.src_token_address,
+        args.dest_token_address,
+        args.user_address,
+        args.fee_token_address,
+        args.slippage_tolerance
+      );
+console.log(quote)
+      return quote;
+    } catch (e) {
+      toast("Can't find path", ERROR_OPTION);
+      console.log(e);
+      return null;
+    }
   };
 
   const approve = async () => {
@@ -120,6 +142,7 @@ export default function RouterSwap() {
       }
       return true;
     } catch (e) {
+      toast("Approve failed", ERROR_OPTION);
       console.log(e);
       return false;
     }
@@ -137,7 +160,6 @@ export default function RouterSwap() {
       );
       setOutValue(parseFloat(outAmount));
     } else {
-      toast("Can't find path!", ERROR_OPTION);
       return;
     }
 

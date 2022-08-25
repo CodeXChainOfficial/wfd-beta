@@ -25,10 +25,12 @@ const FeeTokenSelector = ({ chain, feeToken, setFeeToken }: Props) => {
 
   useEffect(() => {
     setIndex(0);
+    setFeeToken(feeInfo[0].address);
   }, [chain]);
 
   const selectFeeToken = (index: number) => {
     setFeeToken(feeInfo[index].address);
+    setIndex(index);
     onClose();
   };
 

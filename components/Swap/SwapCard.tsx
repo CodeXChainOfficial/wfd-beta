@@ -56,7 +56,6 @@ export default function SwapCard({
   setFeeToken,
   isLoading,
 }: SwapProps) {
-  // const [tokenList, setTokenList] = useState<any[]>([]);
   const [balance, setBalance] = useState("0");
 
   const metamask = useMetamaskWallet();

@@ -97,11 +97,6 @@ export const ROUTER_FEE_TOKENS = {
   Polygon: [
     {
       symbol: "MATIC",
-      address: "0x0000000000000000000000000000000000001010",
-      image: "./tokens/matic.png",
-    },
-    {
-      symbol: "WMATIC",
       address: "0x4c28f48448720e9000907BC2611F73022fdcE1fA",
       image: "./tokens/matic.png",
     },
@@ -124,11 +119,6 @@ export const ROUTER_FEE_TOKENS = {
   Bsc: [
     {
       symbol: "BNB",
-      address: "0x0100000000000000000000000000000000000001",
-      image: "https://app.thevoyager.io/static/media/bsc-chain.18736889.png",
-    },
-    {
-      symbol: "WBNB",
       address: "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
       image: "https://app.thevoyager.io/static/media/bsc-chain.18736889.png",
     },
@@ -151,17 +141,12 @@ export const ROUTER_FEE_TOKENS = {
   Avalanche: [
     {
       symbol: "AVAX",
-      address: "0x0100000000000000000000000000000000000001",
-      image: "https://app.thevoyager.io/static/media/avax.234db155.svg",
-    },
-    {
-      symbol: "WAVAX",
       address: "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
       image: "https://app.thevoyager.io/static/media/avax.234db155.svg",
     },
     {
       symbol: "ROUTE",
-      address: "0x16ECCfDbb4eE1A85A33f3A9B21175Cd7Ae753dB4",
+      address: "0xf44Ff799eA2bBFeC96f9A50498209AAc3C2b3b8b",
       image: "https://app.thevoyager.io/static/media/route-coin.7036b1ba.svg",
     },
     {
@@ -178,11 +163,6 @@ export const ROUTER_FEE_TOKENS = {
   Fantom: [
     {
       symbol: "FTM",
-      address: "0x0100000000000000000000000000000000000001",
-      image: "https://app.thevoyager.io/static/media/ftm.3f8c71bb.svg",
-    },
-    {
-      symbol: "WFTM",
       address: "0x21be370D5312f44cB42ce377BC9b8a0cEF1A4C83",
       image: "https://app.thevoyager.io/static/media/ftm.3f8c71bb.svg",
     },
@@ -205,11 +185,6 @@ export const ROUTER_FEE_TOKENS = {
   Arbitrum: [
     {
       symbol: "ETH",
-      address: "0x0000000000000000000000000000000000001010",
-      image: "https://app.thevoyager.io/static/media/arbitrum.7797e058.svg",
-    },
-    {
-      symbol: "WETH",
       address: "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1",
       image: "https://app.thevoyager.io/static/media/arbitrum.7797e058.svg",
     },
@@ -232,11 +207,6 @@ export const ROUTER_FEE_TOKENS = {
   Optimism: [
     {
       symbol: "ETH",
-      address: "0x0000000000000000000000000000000000001010",
-      image: "https://app.thevoyager.io/static/media/ropsten-chain.91dd9993.png",
-    },
-    {
-      symbol: "WETH",
       address: "0x4200000000000000000000000000000000000006",
       image: "https://app.thevoyager.io/static/media/ropsten-chain.91dd9993.png",
     },
@@ -259,11 +229,6 @@ export const ROUTER_FEE_TOKENS = {
   Ethereum: [
     {
       symbol: "ETH",
-      address: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-      image: "https://app.thevoyager.io/static/media/ropsten-chain.91dd9993.png",
-    },
-    {
-      symbol: "WETH",
       address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
       image: "https://app.thevoyager.io/static/media/ropsten-chain.91dd9993.png",
     },
@@ -286,11 +251,6 @@ export const ROUTER_FEE_TOKENS = {
   Cronos: [
     {
       symbol: "CRO",
-      address: "0x0000000000000000000000000000000000000001",
-      image: "https://app.thevoyager.io/static/media/cro-chain.ccf021cb.svg",
-    },
-    {
-      symbol: "WCRO",
       address: "0x5C7F8A570d578ED84E63fdFA7b1eE72dEae1AE23",
       image: "https://app.thevoyager.io/static/media/cro-chain.ccf021cb.svg",
     },

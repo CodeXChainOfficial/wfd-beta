@@ -40,7 +40,7 @@ export const useTokenList = (chain: CHAIN_TYPE) => {
         if (a.symbol < b.symbol) return -1;
         return 0;
       });
-console.log(list)
+
       setList(list);
     }
   }, [tokenList, chain]);

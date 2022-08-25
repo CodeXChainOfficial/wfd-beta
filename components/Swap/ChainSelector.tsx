@@ -13,7 +13,6 @@ import {
   ROUTER_CHAIN_CONFIG,
 } from "../../config/constants/swap";
 
-
 interface Props {
   chain: CHAIN_TYPE;
   setChain: Dispatch<SetStateAction<CHAIN_TYPE>>;
@@ -50,7 +49,25 @@ const ChainSelector = ({ chain, setChain }: Props) => {
       </PopoverTrigger>
       <PopoverContent>
         <PopoverBody>
-          <Flex direction="column" width="100%" maxH="300px">
+          <Flex
+            direction="column"
+            width="100%"
+            maxH="300px"
+            overflowY="scroll"
+            css={{
+              "&::-webkit-scrollbar": {
+                width: "4px",
+                background: "#aaa",
+              },
+              "&::-webkit-scrollbar-track": {
+                width: "6px",
+              },
+              "&::-webkit-scrollbar-thumb": {
+                background: "#000",
+                borderRadius: "24px",
+              },
+            }}
+          >
             {ROUTER_CHAIN.map((item, index) => {
               const c = item as CHAIN_TYPE;
               const info = ROUTER_CHAIN_CONFIG[c];
