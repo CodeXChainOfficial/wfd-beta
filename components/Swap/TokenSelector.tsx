@@ -6,6 +6,7 @@ import {
   PopoverBody,
 } from "@chakra-ui/react";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { MdExpandMore } from "react-icons/md";
 import { CHAIN_TYPE } from "../../config/constants/swap";
 import { useTokenList } from "../../hook/router_tokenlist";
 
@@ -40,10 +41,14 @@ const TokenSelector = ({ chain, token, setToken }: Props) => {
           borderColor="#3F147F"
           borderRadius="10px"
           align="center"
+          justify="space-between"
           px="15px"
         >
-          <Image src={tokenList[index]?.logoURI} width="20px" />
-          <Text ml="10px">{tokenList[index]?.symbol}</Text>
+          <Flex width="100%" align="center">
+            <Image src={tokenList[index]?.logoURI} width="20px" />
+            <Text ml="10px">{tokenList[index]?.symbol}</Text>
+          </Flex>
+          <MdExpandMore />
         </Flex>
       </PopoverTrigger>
       <PopoverContent>

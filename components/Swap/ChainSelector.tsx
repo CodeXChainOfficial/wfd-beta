@@ -6,18 +6,19 @@ import {
   PopoverBody,
 } from "@chakra-ui/react";
 import { Dispatch, SetStateAction } from "react";
+import { MdExpandMore } from "react-icons/md";
 import {
   CHAIN_TYPE,
   ROUTER_CHAIN,
   ROUTER_CHAIN_CONFIG,
 } from "../../config/constants/swap";
 
+
 interface Props {
   chain: CHAIN_TYPE;
   setChain: Dispatch<SetStateAction<CHAIN_TYPE>>;
-  w?: string;
 }
-const ChainSelector = ({ chain, setChain, w = "100%" }: Props) => {
+const ChainSelector = ({ chain, setChain }: Props) => {
   const chainInfo = ROUTER_CHAIN_CONFIG[chain];
   const { onOpen, onClose, isOpen } = useDisclosure();
 
@@ -30,17 +31,21 @@ const ChainSelector = ({ chain, setChain, w = "100%" }: Props) => {
     <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
       <PopoverTrigger>
         <Flex
-          w={w}
+          w={{ base: "100%", lg: "150px" }}
           h="50px"
           border="1px solid"
           bg="#3F147F"
           borderColor="#3F147F"
           borderRadius="10px"
           align="center"
+          justify="space-between"
           px="15px"
         >
-          <Image src={chainInfo.icon} width="20px" />
-          <Text ml="10px">{chain}</Text>
+          <Flex w="100%" align="center">
+            <Image src={chainInfo.icon} width="20px" />
+            <Text ml="10px">{chain}</Text>
+          </Flex>
+          <MdExpandMore />
         </Flex>
       </PopoverTrigger>
       <PopoverContent>
@@ -52,7 +57,7 @@ const ChainSelector = ({ chain, setChain, w = "100%" }: Props) => {
               return (
                 <Flex
                   width="100%"
-                  h="50px"
+                  minH="50px"
                   align="center"
                   color="black"
                   _hover={{ bg: "#3F147F", color: "white" }}

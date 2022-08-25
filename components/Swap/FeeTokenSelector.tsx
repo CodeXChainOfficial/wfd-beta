@@ -36,7 +36,7 @@ const FeeTokenSelector = ({ chain, feeToken, setFeeToken }: Props) => {
     <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
       <PopoverTrigger>
         <Flex
-          width="100%"
+          width={{ base: "100%", lg: "150px" }}
           h="50px"
           border="1px solid"
           bg="#3F147F"

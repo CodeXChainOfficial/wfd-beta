@@ -184,8 +184,7 @@ export default function RouterSwap() {
           borderRadius="10px"
           direction={{ base: "column", lg: "row" }}
           p={{ base: "16px", md: "32px" }}
-          ml="64px"
-          mr="64px"
+          mx={{ base: "10px", lg: "64px" }}
           justify="center"
           bgGradient="linear(#210B3C, #070334)"
         >
@@ -203,11 +202,15 @@ export default function RouterSwap() {
           <Flex
             minW="110px"
             justify="center"
-            visibility={{ base: "collapse", lg: "visible" }}
+            align="center"
             cursor="pointer"
             onClick={revert}
           >
-            <Image pt={40} pl="16px" pr="16px" src={"/media/swap.svg"} />
+            <Image
+              p="16px"
+              src={"/media/swap.svg"}
+              transform={{ base: "rotate(90deg)", lg: "none" }}
+            />
           </Flex>
           <SwapCard
             type={SwapType.to}

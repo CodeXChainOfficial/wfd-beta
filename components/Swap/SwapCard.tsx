@@ -94,26 +94,22 @@ export default function SwapCard({
           </Text>
         )}
         <Flex
-          alignContent={"center"}
+          justify="space-between"
           direction={{ base: "column", md: "row" }}
           mt="16px"
+          gap="10px"
         >
           <ChainSelector chain={chain} setChain={setChain} />
-          <Container
-            h={{ base: type == SwapType.from ? 8 : 0, md: 0 }}
-            w={{ base: 8, lg: 24 }}
-          />
+
           {type == SwapType.from &&
-          feeToken != undefined &&
-          setFeeToken != undefined ? (
-            <FeeTokenSelector
-              chain={chain}
-              feeToken={feeToken}
-              setFeeToken={setFeeToken}
-            />
-          ) : (
-            <Spacer />
-          )}
+            feeToken != undefined &&
+            setFeeToken != undefined && (
+              <FeeTokenSelector
+                chain={chain}
+                feeToken={feeToken}
+                setFeeToken={setFeeToken}
+              />
+            )}
         </Flex>
         <Container h="32px" />
         <Container
@@ -146,20 +142,6 @@ export default function SwapCard({
                 </NumberInput>
               </Flex>
               {type == SwapType.to && isLoading && <Spinner width="20px" />}
-              {/* <Flex w="150px" alignItems="flex-end" pb={2}>
-                <Select
-                  color="#69E4FF"
-                  variant="unstyled"
-                  value={token}
-                  onChange={(e) => setToken(e.target.value)}
-                >
-                  {tokenList?.map((token, index) => (
-                    <option value={token.address} key={index}>
-                      {token.symbol}
-                    </option>
-                  ))}
-                </Select>
-              </Flex> */}
               <TokenSelector chain={chain} token={token} setToken={setToken} />
             </HStack>
             <HStack w="full">
