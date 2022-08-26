@@ -37,8 +37,8 @@ interface SwapProps {
   setChain: Dispatch<SetStateAction<CHAIN_TYPE>>;
   token: string;
   setToken: Dispatch<SetStateAction<string>>;
-  value: number;
-  setValue?: Dispatch<SetStateAction<number>>;
+  value: string;
+  setValue?: Dispatch<SetStateAction<string>>;
   feeToken?: string;
   setFeeToken?: Dispatch<SetStateAction<string>>;
   isLoading?: boolean;
@@ -121,7 +121,7 @@ export default function SwapCard({
           <Flex alignContent={"center"} direction="column">
             <HStack w="full">
               <Flex w="full">
-                <NumberInput defaultValue="0.0" value={value} min={0}>
+                <NumberInput defaultValue="0.0" precision={2} value={value}>
                   <NumberInputField
                     w="full"
                     color="#80869B"
@@ -133,14 +133,13 @@ export default function SwapCard({
                     _focusVisible={{ border: "none" }}
                     onChange={(e) => {
                       if (setValue) {
-                        const value = parseFloat(e.target.value);
-                        setValue(value > 0 ? value : 0);
+                        setValue(e.target.value);
                       }
                     }}
                   />
                 </NumberInput>
               </Flex>
-              {type == SwapType.to && isLoading && <Spinner width="20px" />}
+              {type == SwapType.to && isLoading && <Spinner width="50px" />}
               <TokenSelector chain={chain} token={token} setToken={setToken} />
             </HStack>
             <HStack w="full">

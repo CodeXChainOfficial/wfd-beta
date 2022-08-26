@@ -22,7 +22,8 @@ const TokenSelector = ({ chain, token, setToken }: Props) => {
 
   useEffect(() => {
     setIndex(0);
-  }, [chain]);
+    if (tokenList.length > 0) setToken(tokenList[0].address);
+  }, [tokenList]);
 
   const selectToken = (index: number) => {
     setToken(tokenList[index].address);

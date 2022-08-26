@@ -19,8 +19,6 @@ export const useTokenList = (chain: CHAIN_TYPE) => {
           tmpList = tmpList.concat(list.tokens);
         } catch (e) {}
       }
-      console.log("1");
-      console.log(tmpList);
       setTokenList(tmpList);
     };
     if (tokenList.length == 0) {

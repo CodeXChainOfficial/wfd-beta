@@ -15,12 +15,12 @@ import { toast } from "react-toastify";
 export default function RouterSwap() {
   const [inChain, setInChain] = useState<CHAIN_TYPE>("Polygon");
   const [inToken, setInToken] = useState("");
-  const [inValue, setInValue] = useState(0);
+  const [inValue, setInValue] = useState("0");
 
   const [feeToken, setFeeToken] = useState("");
   const [outChain, setOutChain] = useState<CHAIN_TYPE>("Ethereum");
   const [outToken, setOutToken] = useState("");
-  const [outValue, setOutValue] = useState(0);
+  const [outValue, setOutValue] = useState("0");
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,6 +32,7 @@ export default function RouterSwap() {
     inChainInfo.rpc,
     inChainInfo.chain_id
   );
+
   const Contract = new ethers.Contract(inToken, ERC20_ABI, provider);
 
   const metamask = useMetamaskWallet();
@@ -77,17 +78,26 @@ export default function RouterSwap() {
     try {
       const decimals = await Contract.decimals();
       const args = {
-        amount: ethers.utils
-          .parseUnits(inValue.toString(), decimals)
-          .toString(), // 10 USDC
+        amount: ethers.utils.parseUnits(inValue, decimals).toString(), // 10 USDC
         dest_chain_id: outChainInfo.chain_id.toString(), // Fantom
         src_token_address: inToken, // USDC on Polygon
         dest_token_address: outToken, // USDC on Fantom
-        user_address: account,
+        user_address: "account",
         fee_token_address: feeToken, // ROUTE on Polygon
-        slippage_tolerance: 1.0,
+        slippage_tolerance: 2.0,
       };
-console.log(args)
+
+      // let args = {
+      //   amount: ethers.utils.parseUnits(inValue, decimals).toString(), // 10 USDC
+      //   dest_chain_id: "250", // Fantom
+      //   src_token_address: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", // USDC on Polygon
+      //   dest_token_address: "0x04068DA6C83AFCFA0e13ba15A6696662335D5B75", // USDC on Fantom
+      //   user_address: "YOUR_WALLET_ADDRESS",
+      //   fee_token_address: "0x16ECCfDbb4eE1A85A33f3A9B21175Cd7Ae753dB4", // ROUTE on Polygon
+      //   slippage_tolerance: 2.0,
+      // };
+      console.log(args);
+
       const quote = await routerProtocol?.getQuote(
         args.amount,
         args.dest_chain_id,
@@ -97,7 +107,7 @@ console.log(args)
         args.fee_token_address,
         args.slippage_tolerance
       );
-console.log(quote)
+      console.log(quote);
       return quote;
     } catch (e) {
       toast("Can't find path", ERROR_OPTION);
@@ -158,7 +168,7 @@ console.log(quote)
         quote.destination.tokenAmount,
         decimals
       );
-      setOutValue(parseFloat(outAmount));
+      setOutValue(outAmount);
     } else {
       return;
     }
