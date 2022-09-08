@@ -24,16 +24,8 @@ export default function Hero() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      bgGradient="Linear(#2a0a31,#4d188f,#058cd8)"
       height={{ base: "30em", md: "90vh", lg: "90vh" }}
     >
-      <Image
-        top="1em"
-        width="100%"
-        position="absolute"
-        objectFit="contain"
-        src="/media/Home/2.png"
-      />
       <Container
         position={"relative"}
         mt={{ base: "10vh", md: "14vh", lg: "20vh" }}
@@ -129,20 +121,11 @@ export default function Hero() {
         </HStack>
       </Container>
       <Image
-        bottom={"0"}
+        bottom="0"
         width="100%"
-        position="absolute"
         objectFit="contain"
-        src="/media/Home/1.svg"
-      />
-      <Box
-        position={"absolute"}
-        bottom={"0"}
-        width={"100%"}
-        height={"121px"}
-        background={
-          "linear-gradient(180deg, rgba(30, 0, 39, 0) 0%, #1E0027 60.72%)"
-        }
+        position="absolute"
+        src="/media/Home/bg_coin.svg"
       />
     </Flex>
   );
