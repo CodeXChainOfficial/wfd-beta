@@ -20,9 +20,9 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { toast } from "react-toastify";
 import { WEFUND_ID, SUCCESS_OPTION } from "../../config/constants";
-import { checkNetwork } from "../../utils/utility";
+import { checkNetwork, ShortenAddress } from "../../utils/utility";
 
-import { useKeplrWallet } from "../../contexts/keplrWallet";
+import { useMetamaskWallet } from "../../contexts/metamask";
 import {
   useCommunityData,
   useProjectData,
@@ -35,46 +35,56 @@ import Footer from "../../components/Footer";
 export default function UserSideSnippet() {
   const { state, dispatch } = useStore();
   const [contributes, setContributes] = useState(0);
-  const [projectCount, setProjectCount] = useState(0);
-  const [activeTab, setActiveTab] = useState("Account");
-  const [tokens, setTokens] = useState<any[]>([]);
+  const [investedCount, setInvestedCount] = useState(0);
+  const [whitelistedCount, setWhitelistedCount] = useState(0);
+  const [prjShowDatas, setPrjShowDatas] = useState<any[]>([]);
 
   const projectData = useProjectData();
   const communityData = useCommunityData();
-  const wallet = useKeplrWallet();
-  const account = wallet.account;
+  const wallet = useMetamaskWallet();
+  const address = wallet.account;
 
   async function fetchContractQuery() {
     try {
-      let projectCount = 0;
-      let totalbacked = 0;
-      const tokens: any[] = [];
+      let invested_count = 0;
+      let whitelisted_count = 0;
+
+      let total_backed = 0;
+      let pShowDatas = [];
 
       for (let i = 0; i < projectData.length; i++) {
         const one = projectData[i];
+
+        let one_backed = 0;
         for (let j = 0; j < one.backer_states.length; j++) {
-          if (one.backer_states[j].backer_wallet == state.address) {
-            projectCount++;
-            totalbacked += one.backer_states[j].ust_amount.amount;
+          if (one.backer_states[j].addr.toLowerCase() == address.toLowerCase()) {
+            invested_count++;
+
+            one_backed += one.backer_states[j].usdt_amount.toNumber();
+            one_backed += one.backer_states[j].usdc_amount.toNumber();
+            one_backed += one.backer_states[j].busd_amount.toNumber();
+          }
+        }
+        one_backed /= 10 ** 6;
+        total_backed += one_backed;
+
+        for (let j = 0; j < one.whitelist.length; j++) {
+          if (one.whitelist[j].addr.toLowerCase() == address.toLowerCase()) {
+            whitelisted_count++;
           }
         }
 
-        if (one.project_id != WEFUND_ID && one.token_addr != "") {
-          const userInfo: any = {};
-          const pending: any = {};
-          const tokenInfo: any = {};
-
-          tokens.push({
-            project_id: one.project_id,
-            symbol: tokenInfo.symbol,
-            amount: userInfo.total_amount - userInfo.released_amount,
-            pendingAmount: pending,
-          });
-        }
+        var obj: any = {};
+        obj.logo = projectData[i].project_logo;
+        obj.title = projectData[i].project_title;
+        obj.backed = one_backed;
+        pShowDatas.push(obj);
       }
-      setProjectCount(projectCount);
-      setContributes(totalbacked / 10 ** 6);
-      setTokens(tokens);
+      setInvestedCount(invested_count);
+      setWhitelistedCount(whitelisted_count);
+      setContributes(total_backed);
+      setPrjShowDatas(pShowDatas)
+      console.log(pShowDatas)
     } catch (e) {
       console.log(e);
     }
@@ -84,13 +94,6 @@ export default function UserSideSnippet() {
   }, [state.address]);
 
   async function addCommunityMember() {
-    // if (checkNetwork(state) == false) return false;
-    // for (let i = 0; i < communityData.length; i++) {
-    //   if (communityData[i] == state.address) {
-    //     toast("Already Registered", SUCCESS_OPTION);
-    //     return;
-    //   }
-    // }
   }
 
   function removeCommunityMember() {
@@ -145,20 +148,18 @@ export default function UserSideSnippet() {
                   <Flex color={"white"}>
                     <Stack spacing={2} pl={3} align="left">
                       <Heading align="left" fontSize="xl">
-                        {wallet ? wallet.name : "[UserName]"}
+                        {wallet ? ShortenAddress(address) : "[UserName]"}
                       </Heading>
                       <Text align="left" fontSize="sm" color={"#69E4FF"}>
-                        {wallet && wallet.account.substr(0, 14)}
-                        {wallet && "...."}
-                        {wallet && wallet.account.substr(-14, 14)}
+                        {ShortenAddress(address)}
                       </Text>
                     </Stack>
                   </Flex>
-                  <Stack display={["none", "none", "flex", "flex"]}>
+                  {/* <Stack display={["none", "none", "flex", "flex"]}>
                     <Text fontSize={14} color="gray.400">
                       {wallet && wallet.config.chainName} Wallet
                     </Text>
-                  </Stack>
+                  </Stack> */}
                 </Flex>
               </Box>
 
@@ -187,10 +188,10 @@ export default function UserSideSnippet() {
                         fontSize="26px"
                         pt={"30px"}
                       >
-                        [0.00] Juno
+                        {contributes} USD
                       </Text>
                       <Text align="left" fontWeight="500" fontSize="18px">
-                        $ 0.00
+                        $ {contributes}
                       </Text>
                       <HStack pt={"3em"}>
                         <Button
@@ -312,7 +313,7 @@ export default function UserSideSnippet() {
                               lineHeight={"160%"}
                               align={"center"}
                             >
-                              {projectCount}
+                              {whitelistedCount}
                             </Text>
                           </Box>
                           <Text
@@ -337,7 +338,7 @@ export default function UserSideSnippet() {
                               lineHeight={"160%"}
                               align={"center"}
                             >
-                              {projectCount}
+                              {investedCount}
                             </Text>
                           </Box>
                           <Text
@@ -382,426 +383,116 @@ export default function UserSideSnippet() {
             // showThumbs={false}
             responsive={responsive}
           >
-            <Flex justifyContent={"center"}>
-              <Center py={6}>
-                <Box
-                  maxW={"450px"}
-                  w={"full"}
-                  bg={"white"}
-                  boxShadow={"2xl"}
-                  rounded={"md"}
-                  bgGradient="linear(#430E82, #1D0551)"
-                >
-                  <Flex justify={"center"} p={"30px"}>
-                    <Avatar
-                      size={"xl"}
-                      src={"/logolink"}
-                      alt={"Logo"}
-                      css={{
-                        border: "2px solid white",
-                      }}
-                    />
-                    <Center>
-                      <Stack spacing={0} align={"center"} mb={5}>
-                        <Heading
-                          fontSize={"2xl"}
-                          fontWeight={500}
-                          fontFamily={"body"}
-                          color="white"
-                          px={"30px"}
-                        >
-                          WFD/Fantom
-                        </Heading>
-                      </Stack>
-                    </Center>
-                  </Flex>
+            {prjShowDatas.map((item, index) => {
+              return (
+                <Flex justifyContent={"center"}>
+                  <Center py={6}>
+                    <Box
+                      maxW={"350px"}
+                      minW={"350px"}
+                      w={"full"}
+                      bg={"white"}
+                      boxShadow={"2xl"}
+                      rounded={"md"}
+                      bgGradient="linear(#430E82, #1D0551)"
+                    >
+                      <Flex justify={"center"} p={"30px"}>
+                        <Avatar
+                          size={"xl"}
+                          src={item.logo}
+                          css={{
+                            border: "2px solid white",
+                          }}
+                        />
+                        <Center>
+                          <Stack spacing={0} align={"center"} mb={5}>
+                            <Heading
+                              fontSize={"2xl"}
+                              fontWeight={500}
+                              fontFamily={"body"}
+                              color="white"
+                              px={"30px"}
+                            >
+                              {item.title}
+                            </Heading>
+                          </Stack>
+                        </Center>
+                      </Flex>
 
-                  <Box p={6}>
-                    <Stack direction={"row"} justify={"center"} spacing={16}>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Rewards
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          -
-                        </Text>
-                      </Stack>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Invested
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          $ 0
-                        </Text>
-                      </Stack>
-                    </Stack>
+                      <Box p={6}>
+                        <Stack direction={"row"} justify={"center"} spacing={16}>
+                          <Stack spacing={0} align={"center"}>
+                            <Text
+                              fontSize={"16px"}
+                              fontWeight={600}
+                              color={"gray.500"}
+                            >
+                              Rewards
+                            </Text>
+                            <Text fontWeight={600} fontSize={"20px"}>
+                              -
+                            </Text>
+                          </Stack>
+                          <Stack spacing={0} align={"center"}>
+                            <Text
+                              fontSize={"16px"}
+                              fontWeight={600}
+                              color={"gray.500"}
+                            >
+                              Invested
+                            </Text>
+                            <Text fontWeight={600} fontSize={"20px"}>
+                              $ {item.backed}
+                            </Text>
+                          </Stack>
+                        </Stack>
 
-                    <Stack direction={"row"} justify={"center"} spacing={16}>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Earnings
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          $0
-                        </Text>
-                      </Stack>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Vesting
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          -
-                        </Text>
-                      </Stack>
-                    </Stack>
+                        <Stack direction={"row"} justify={"center"} spacing={16}>
+                          <Stack spacing={0} align={"center"}>
+                            <Text
+                              fontSize={"16px"}
+                              fontWeight={600}
+                              color={"gray.500"}
+                            >
+                              Earnings
+                            </Text>
+                            <Text fontWeight={600} fontSize={"20px"}>
+                              $0
+                            </Text>
+                          </Stack>
+                          <Stack spacing={0} align={"center"}>
+                            <Text
+                              fontSize={"16px"}
+                              fontWeight={600}
+                              color={"gray.500"}
+                            >
+                              Vesting
+                            </Text>
+                            <Text fontWeight={600} fontSize={"20px"}>
+                              -
+                            </Text>
+                          </Stack>
+                        </Stack>
 
-                    <Center pt={"2em"}>
-                      <Button
-                        w={"150px"}
-                        h={"45px"}
-                        bgGradient="linear(#21CAFF, #1383D4)"
-                        color={"#002E87"}
-                        fontWeight={"600"}
-                        fontSize={"16px"}
-                      >
-                        <Text ml={"5px"}>Claim</Text>
-                      </Button>
-                    </Center>
-                  </Box>
-                </Box>
-              </Center>
-            </Flex>
-            <Flex justifyContent={"center"}>
-              <Center py={6}>
-                <Box
-                  maxW={"450px"}
-                  w={"full"}
-                  bg={"white"}
-                  boxShadow={"2xl"}
-                  rounded={"md"}
-                  bgGradient="linear(#430E82, #1D0551)"
-                >
-                  <Flex justify={"center"} p={"30px"}>
-                    <Avatar
-                      size={"xl"}
-                      src={"/logolink"}
-                      alt={"Logo"}
-                      css={{
-                        border: "2px solid white",
-                      }}
-                    />
-                    <Center>
-                      <Stack spacing={0} align={"center"} mb={5}>
-                        <Heading
-                          fontSize={"2xl"}
-                          fontWeight={500}
-                          fontFamily={"body"}
-                          color="white"
-                          px={"30px"}
-                        >
-                          WFD/Fantom
-                        </Heading>
-                      </Stack>
-                    </Center>
-                  </Flex>
+                        <Center pt={"2em"}>
+                          <Button
+                            w={"150px"}
+                            h={"45px"}
+                            bgGradient="linear(#21CAFF, #1383D4)"
+                            color={"#002E87"}
+                            fontWeight={"600"}
+                            fontSize={"16px"}
+                          >
+                            <Text ml={"5px"}>Claim</Text>
+                          </Button>
+                        </Center>
+                      </Box>
+                    </Box>
+                  </Center>
+                </Flex>
+              )
+            })}
 
-                  <Box p={6}>
-                    <Stack direction={"row"} justify={"center"} spacing={16}>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Rewards
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          -
-                        </Text>
-                      </Stack>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Invested
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          $ 0
-                        </Text>
-                      </Stack>
-                    </Stack>
-
-                    <Stack direction={"row"} justify={"center"} spacing={16}>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Earnings
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          $0
-                        </Text>
-                      </Stack>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Vesting
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          -
-                        </Text>
-                      </Stack>
-                    </Stack>
-
-                    <Center pt={"2em"}>
-                      <Button
-                        w={"150px"}
-                        h={"45px"}
-                        bgGradient="linear(#21CAFF, #1383D4)"
-                        color={"#002E87"}
-                        fontWeight={"600"}
-                        fontSize={"16px"}
-                      >
-                        <Text ml={"5px"}>Claim</Text>
-                      </Button>
-                    </Center>
-                  </Box>
-                </Box>
-              </Center>
-            </Flex>
-            <Flex justifyContent={"center"}>
-              <Center py={6}>
-                <Box
-                  maxW={"450px"}
-                  w={"full"}
-                  bg={"white"}
-                  boxShadow={"2xl"}
-                  rounded={"md"}
-                  bgGradient="linear(#430E82, #1D0551)"
-                >
-                  <Flex justify={"center"} p={"30px"}>
-                    <Avatar
-                      size={"xl"}
-                      src={"/logolink"}
-                      alt={"Logo"}
-                      css={{
-                        border: "2px solid white",
-                      }}
-                    />
-                    <Center>
-                      <Stack spacing={0} align={"center"} mb={5}>
-                        <Heading
-                          fontSize={"2xl"}
-                          fontWeight={500}
-                          fontFamily={"body"}
-                          color="white"
-                          px={"30px"}
-                        >
-                          WFD/Fantom
-                        </Heading>
-                      </Stack>
-                    </Center>
-                  </Flex>
-
-                  <Box p={6}>
-                    <Stack direction={"row"} justify={"center"} spacing={16}>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Rewards
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          -
-                        </Text>
-                      </Stack>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Invested
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          $ 0
-                        </Text>
-                      </Stack>
-                    </Stack>
-
-                    <Stack direction={"row"} justify={"center"} spacing={16}>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Earnings
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          $0
-                        </Text>
-                      </Stack>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Vesting
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          -
-                        </Text>
-                      </Stack>
-                    </Stack>
-
-                    <Center pt={"2em"}>
-                      <Button
-                        w={"150px"}
-                        h={"45px"}
-                        bgGradient="linear(#21CAFF, #1383D4)"
-                        color={"#002E87"}
-                        fontWeight={"600"}
-                        fontSize={"16px"}
-                      >
-                        <Text ml={"5px"}>Claim</Text>
-                      </Button>
-                    </Center>
-                  </Box>
-                </Box>
-              </Center>
-            </Flex>
-            <Flex justifyContent={"center"}>
-              <Center py={6}>
-                <Box
-                  maxW={"450px"}
-                  w={"full"}
-                  bg={"white"}
-                  boxShadow={"2xl"}
-                  rounded={"md"}
-                  bgGradient="linear(#430E82, #1D0551)"
-                >
-                  <Flex justify={"center"} p={"30px"}>
-                    <Avatar
-                      size={"xl"}
-                      src={"/logolink"}
-                      alt={"Logo"}
-                      css={{
-                        border: "2px solid white",
-                      }}
-                    />
-                    <Center>
-                      <Stack spacing={0} align={"center"} mb={5}>
-                        <Heading
-                          fontSize={"2xl"}
-                          fontWeight={500}
-                          fontFamily={"body"}
-                          color="white"
-                          px={"30px"}
-                        >
-                          WFD/Fantom
-                        </Heading>
-                      </Stack>
-                    </Center>
-                  </Flex>
-
-                  <Box p={6}>
-                    <Stack direction={"row"} justify={"center"} spacing={16}>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Rewards
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          -
-                        </Text>
-                      </Stack>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Invested
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          $ 0
-                        </Text>
-                      </Stack>
-                    </Stack>
-
-                    <Stack direction={"row"} justify={"center"} spacing={16}>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Earnings
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          $0
-                        </Text>
-                      </Stack>
-                      <Stack spacing={0} align={"center"}>
-                        <Text
-                          fontSize={"16px"}
-                          fontWeight={600}
-                          color={"gray.500"}
-                        >
-                          Vesting
-                        </Text>
-                        <Text fontWeight={600} fontSize={"20px"}>
-                          -
-                        </Text>
-                      </Stack>
-                    </Stack>
-
-                    <Center pt={"2em"}>
-                      <Button
-                        w={"150px"}
-                        h={"45px"}
-                        bgGradient="linear(#21CAFF, #1383D4)"
-                        color={"#002E87"}
-                        fontWeight={"600"}
-                        fontSize={"16px"}
-                      >
-                        <Text ml={"5px"}>Claim</Text>
-                      </Button>
-                    </Center>
-                  </Box>
-                </Box>
-              </Center>
-            </Flex>
           </Carousel>
         </Box>
 
@@ -837,8 +528,8 @@ export default function UserSideSnippet() {
                         backers.
                       </Text>
                       <Box bg={"black"} px={"20px"} py={"5px"} rounded={"lg"}>
-                        <Text mt="10px" align={"center"}>
-                          wfd1rj8wkx2ze4639r........aa55
+                        <Text mt="10px" align={"center"} overflowWrap="anywhere">
+                          {state.referralLink}
                         </Text>
                       </Box>
                     </Box>

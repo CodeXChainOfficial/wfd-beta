@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect } from "react";
 import { Box, Flex, Input, Text, Select } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 import { BigNumber, ethers } from "ethers";
-import { ERROR_OPTION, TOKEN_LIST } from "../../config/constants";
+import { CHAINS_CONFIG, ERROR_OPTION, TOKEN_LIST } from "../../config/constants";
 import { InputTransition } from "../ImageTransition";
 
 import { useStore, ActionKind } from "../../contexts/store";
@@ -50,28 +50,7 @@ const OtherChainWallet: FunctionComponent<Props> = ({
     await wallet.connect();
     dispatch({ type: ActionKind.setWalletType, payload: to });
   }
-  const chains = {
-    bsc: {
-      chainId: "0x38",
-      chainName: "Binance Smart Chain",
-      rpc: "https://bsc-dataseed4.binance.org",
-    },
-    polygon: {
-      chainId: "0x89",
-      chainName: "Polygon",
-      rpc: "https://matic-mainnet.chainstacklabs.com",
-    },
-    oneledger: {
-      chainId: "0x1294f7c2",
-      chainName: "OneLedger",
-      rpc: "https://mainnet-rpc.oneledger.network",
-    },
-    fantom: {
-      chainId: "0xFA",
-      chainName: "Fantom",
-      rpc: "https://rpc2.fantom.network",
-    },
-  };
+  const chains = CHAINS_CONFIG;
   const onChangeChain = async (e: any) => {
     setChain(e.target.value);
     const chain: string = e.target.value.toLowerCase();

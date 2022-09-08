@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import {
   Container,
   HStack,
@@ -6,7 +6,25 @@ import {
   Flex,
   Select,
   Spacer,
+  Image,
+  NumberInput,
+  NumberInputField,
+  Spinner,
 } from "@chakra-ui/react";
+import { ethers } from "ethers";
+
+import {
+  CHAIN_TYPE,
+  ROUTER_CHAIN,
+  ROUTER_CHAIN_CONFIG,
+  ROUTER_FEE_TOKENS,
+} from "../../config/constants/swap";
+import { ERC20_ABI } from "../../config/constants";
+import { useMetamaskWallet } from "../../contexts/metamask";
+import { useTokenList } from "../../hook/router_tokenlist";
+import ChainSelector from "./ChainSelector";
+import TokenSelector from "./TokenSelector";
+import FeeTokenSelector from "./FeeTokenSelector";
 
 export enum SwapType {
   from,
@@ -15,13 +33,57 @@ export enum SwapType {
 
 interface SwapProps {
   type: SwapType;
+  chain: CHAIN_TYPE;
+  setChain: Dispatch<SetStateAction<CHAIN_TYPE>>;
+  token: string;
+  setToken: Dispatch<SetStateAction<string>>;
+  value: string;
+  setValue?: Dispatch<SetStateAction<string>>;
+  feeToken?: string;
+  setFeeToken?: Dispatch<SetStateAction<string>>;
+  isLoading?: boolean;
 }
 
-export default function SwapCard(props: SwapProps) {
+export default function SwapCard({
+  type,
+  chain,
+  setChain,
+  token,
+  setToken,
+  value,
+  setValue,
+  feeToken,
+  setFeeToken,
+  isLoading,
+}: SwapProps) {
+  const [balance, setBalance] = useState("0");
+
+  const metamask = useMetamaskWallet();
+  const account = metamask.account;
+  const chainInfo = ROUTER_CHAIN_CONFIG[chain];
+
+  useEffect(() => {
+    const getBalance = async () => {
+      try {
+        const provider = new ethers.providers.JsonRpcProvider(
+          chainInfo.rpc,
+          chainInfo.chain_id
+        );
+        const contract = new ethers.Contract(token, ERC20_ABI, provider);
+        const balance = await contract.balanceOf(account);
+        const decimals = await contract.decimals();
+        setBalance(ethers.utils.formatUnits(balance, decimals).toString());
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getBalance();
+  }, [token]);
+
   return (
     <Container borderRadius="10px" bgGradient="linear(#430E82, #060049)">
       <Flex direction="column" m="8px" pt="32px">
-        {props.type == SwapType.from ? (
+        {type == SwapType.from ? (
           <Text fontFamily={"Montserrat"} fontWeight="800" fontSize="26px">
             From
           </Text>
@@ -30,32 +92,23 @@ export default function SwapCard(props: SwapProps) {
             To
           </Text>
         )}
-        <Container h="16px" />
-        <Flex alignContent={"center"} direction={{ base: "column", md: "row" }}>
-          <Flex flex="1">
-            <Select bg="#3F147F" borderColor="#3F147F" color="white">
-              <option value="polygon">Polygon</option>
-              <option value="ethereum">Ethereum</option>
-              <option value="binance">Binance Coin</option>
-            </Select>
-          </Flex>
-          <Container
-            h={{ base: props.type == SwapType.from ? 8 : 0, md: 0 }}
-            w={{ base: 8, lg: 24 }}
-          />
-          {props.type == SwapType.from ? (
-            <Flex flex="1">
-              <Select
-                bgGradient="linear(#000000, #160335)"
-                borderColor="#000000"
-                color="white"
-              >
-                <option value="fee">Fee Token:</option>
-              </Select>
-            </Flex>
-          ) : (
-            <Spacer />
-          )}
+        <Flex
+          justify="space-between"
+          direction={{ base: "column", md: "row" }}
+          mt="16px"
+          gap="10px"
+        >
+          <ChainSelector chain={chain} setChain={setChain} />
+
+          {type == SwapType.from &&
+            feeToken != undefined &&
+            setFeeToken != undefined && (
+              <FeeTokenSelector
+                chain={chain}
+                feeToken={feeToken}
+                setFeeToken={setFeeToken}
+              />
+            )}
         </Flex>
         <Container h="32px" />
         <Container
@@ -68,21 +121,26 @@ export default function SwapCard(props: SwapProps) {
           <Flex alignContent={"center"} direction="column">
             <HStack w="full">
               <Flex w="full">
-                <Text
-                  w="full"
-                  color="#80869B"
-                  fontFamily={"Montserrat"}
-                  fontWeight="600"
-                  fontSize="32px"
-                >
-                  0.0
-                </Text>
+                <NumberInput defaultValue="0.0" precision={2} value={value}>
+                  <NumberInputField
+                    w="full"
+                    color="#80869B"
+                    fontFamily={"Montserrat"}
+                    fontWeight="600"
+                    fontSize="32px"
+                    readOnly={type == SwapType.to}
+                    border="none"
+                    _focusVisible={{ border: "none" }}
+                    onChange={(e) => {
+                      if (setValue) {
+                        setValue(e.target.value);
+                      }
+                    }}
+                  />
+                </NumberInput>
               </Flex>
-              <Flex w="150px" alignItems="flex-end" pb={2}>
-                <Select color="#69E4FF" variant="unstyled">
-                  <option value="usdt">USDT</option>
-                </Select>
-              </Flex>
+              {type == SwapType.to && isLoading && <Spinner width="50px" />}
+              <TokenSelector chain={chain} token={token} setToken={setToken} />
             </HStack>
             <HStack w="full">
               <Flex w="full">
@@ -96,18 +154,20 @@ export default function SwapCard(props: SwapProps) {
                   -$0.0
                 </Text>
               </Flex>
-              <Flex w="full">
-                <Text
-                  w="full"
-                  color="#80869B"
-                  fontFamily={"Montserrat"}
-                  fontWeight="600"
-                  fontSize="14px"
-                  textAlign="end"
-                >
-                  Balance: -
-                </Text>
-              </Flex>
+              {type == SwapType.from && (
+                <Flex w="full">
+                  <Text
+                    w="full"
+                    color="#80869B"
+                    fontFamily={"Montserrat"}
+                    fontWeight="600"
+                    fontSize="14px"
+                    textAlign="end"
+                  >
+                    Balance: {balance}
+                  </Text>
+                </Flex>
+              )}
             </HStack>
           </Flex>
         </Container>
