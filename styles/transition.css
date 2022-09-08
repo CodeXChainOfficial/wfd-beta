@@ -7,6 +7,9 @@ html {
 #utilityToken:hover {
   background-image: linear-gradient(#1c83bd, #210656);
 }
+#howWeDo:hover {
+  background-image: linear-gradient(#1c83bd, #210656);
+}
 #HowItWorkBg {
   background-image: linear-gradient(
     rgba(10, 37, 49, 1%),
@@ -1292,7 +1295,7 @@ html {
     border-radius: 10px !important;
     object-fit: cover !important;
   } */
-  /* 
+  /*
   .projectState {
     font-size: 9px !important;
     line-height: 10px;
