@@ -47,11 +47,12 @@ export default function ProjectDetail() {
       if (project_id != null) _project_id = project_id;
 
       try {
-        let oneprojectData = GetOneProject(projectData, _project_id);
+        const oneprojectData = GetOneProject(projectData, _project_id);
         if (oneprojectData == "") {
           toast("Can't fetch Project Data", ERROR_OPTION);
           return;
         }
+
         for (let i = 0; i < oneprojectData.milestone_states.length; i++) {
           if (i < oneprojectData.project_milestonestep) {
             oneprojectData.milestone_states[i].milestone_statusmessage =
@@ -70,7 +71,6 @@ export default function ProjectDetail() {
             oneprojectData.milestone_states[i].milestone_statusmessage =
               "Not yet";
         }
-console.log(oneprojectData)
         setOneprojectData(oneprojectData);
 
         let totalBacked = parseInt(oneprojectData.backerbacked_amount);

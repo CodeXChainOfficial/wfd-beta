@@ -5,12 +5,11 @@ import {
   WEFUND_WALLET,
   TOKEN_LIST,
   SUCCESS_OPTION,
-  NETWORK
 } from "../config/constants";
 import { ActionKind } from "../contexts/store";
 
 export function GetProjectStatusString(mode: string) {
-  let projectstatus = "WeFundApproval";
+  let projectstatus = "Error";
 
   switch (mode) {
     case "WefundVote":
@@ -53,11 +52,9 @@ export function GetProjectStatus(mode: string) {
   return projectstatus;
 }
 
-export function checkBscConnection(state: any) {
-  console.log(state.wallet?.chainId);
-  const t_chainId = NETWORK == "mainnet"? 0x38 : 0x4;
-  if (state.walletType != "metamask" || state.wallet.chainId != t_chainId) {
-    toast("Please connect to BSC Network");
+export function checkJunoConnection(state: any) {
+  if (!state.junoConnection || !state.junoConnection.connected) {
+    toast("Please connect to Juno Network");
     return false;
   }
 

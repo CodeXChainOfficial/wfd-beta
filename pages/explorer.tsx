@@ -10,7 +10,7 @@ import React, {
 import { Box, Flex, HStack, VStack, useDisclosure } from "@chakra-ui/react";
 import {
   Sleep,
-  checkBscConnection,
+  checkJunoConnection,
   GetProjectStatus,
   GetOneProject,
 } from "../utils/utility";
@@ -111,7 +111,7 @@ export default function ExplorerProject() {
   const address = junoConnection?.account;
 
   async function WefundApprove(project_id: number) {
-    if (!checkBscConnection(state)) return;
+    if (!checkJunoConnection(state)) return;
 
     try {
       const deadline = Date.now() + 1000 * 60 * 60 * 24 * 15; //for 15days
@@ -134,7 +134,7 @@ export default function ExplorerProject() {
     }
   }
   async function OpenWhitelist(project_id: number) {
-    if (!checkBscConnection(state)) return;
+    if (!checkJunoConnection(state)) return;
 
     try {
       const result = await client.execute(
@@ -156,7 +156,7 @@ export default function ExplorerProject() {
     }
   }
   async function CloseWhitelist(project_id: number) {
-    if (!checkBscConnection(state)) return;
+    if (!checkJunoConnection(state)) return;
 
     setProjectID(project_id);
     onOpenCloseWhitelist();
@@ -181,7 +181,7 @@ export default function ExplorerProject() {
     }
   }
   async function JoinWhitelist(project_id: number) {
-    if (!checkBscConnection(state)) return;
+    if (!checkJunoConnection(state)) return;
 
     try {
       const result = await client.execute(
@@ -203,7 +203,7 @@ export default function ExplorerProject() {
     }
   }
   async function MilestoneVote(project_id: number, voted: boolean) {
-    if (!checkBscConnection(state)) return;
+    if (!checkJunoConnection(state)) return;
 
     try {
       const result = await client.execute(

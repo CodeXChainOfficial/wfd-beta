@@ -33,7 +33,7 @@ import {
   GetOneProject,
   checkNetwork,
   LookForTokenInfo,
-  checkBscConnection,
+  checkJunoConnection,
 } from "../../utils/utility";
 import { ERROR_OPTION, SUCCESS_OPTION } from "../../config/constants";
 import {
@@ -259,7 +259,7 @@ export default function InvestStep3() {
   }
 
   async function backProject() {
-    if (!checkBscConnection(state)) return false;
+    if (!checkJunoConnection(state)) return false;
 
     const investChain = window.localStorage.getItem("invest_chain") ?? "";
     const investAmount = window.localStorage.getItem("invest_amount") ?? "";

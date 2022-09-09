@@ -84,7 +84,8 @@ const CustomCoinInput: FunctionComponent<Props> = ({
           >
             <option style={{ backgroundColor: "#1B0645" }}>USDT</option>
             <option style={{ backgroundColor: "#1B0645" }}>USDC</option>
-            <option style={{ backgroundColor: "#1B0645" }}>BUSD</option>
+            <option style={{ backgroundColor: "#1B0645" }}>ATOM</option>
+            <option style={{ backgroundColor: "#1B0645" }}>JUNO</option>
           </Select>
         </InputGroup>
       </InputTransition>
