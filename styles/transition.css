@@ -103,7 +103,7 @@ html {
   justify-content: center;
 }
 .footerIcon {
-  font-size: 20px;
+  font-size: 14px;
 }
 #FooterTextWork {
   font-size: 20px;
@@ -119,22 +119,12 @@ html {
 }
 #footerBottomStyle {
   z-index: 5;
-  width: 100%;
+  width: full;
+  min-height: 35vh;
   position: relative;
-  align-items: center;
-  flex-direction: column;
-  flex-direction: space-between;
-  background: linear-gradient(90deg, #360847, #18075b);
-}
-#footerBottomInnerStyleBox,
-#footerBottomInnerStyleBox2 {
-  width: 100%;
-  padding: 2em 15%;
-  align-items: center;
+  padding-top: 5%;
   flex-direction: row;
-  justify-content: space-between;
-  font-family: 'PilatExtended-Bold';
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  background: linear-gradient(93.16deg, #140453 2.65%, #0A0131 87.13%);
 }
 #comunityBackgroundHeight {
   width: 100%;
@@ -1043,15 +1033,6 @@ html {
   #FooterTextWork2 {
     font-size: 15px;
   }
-  .footerButton {
-    margin-top: 10px;
-  }
-  .SUbscriptInputFooter {
-    height: 6em;
-    margin-top: 2em;
-    flex-direction: column;
-    justify-content: space-between;
-  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -1399,9 +1380,6 @@ html {
   }
   #FooterTextWork2 {
     font-size: 11px;
-  }
-  .footerButton {
-    margin-top: 15px;
   }
   .SUbscriptInputFooter {
     width: 100%;

@@ -28,7 +28,7 @@ export default function Hero() {
     >
       <Image
         top="1em"
-        width="100%"
+        width="full"
         position="absolute"
         objectFit="contain"
         opacity={0.5}
