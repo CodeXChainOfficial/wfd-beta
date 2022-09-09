@@ -30,6 +30,7 @@ export default function Highlights() {
       position="relative"
       alignItems="center"
       flexDirection="column"
+      justifyItems="center"
       my={{ base: "5em", md: "8em", lg: "10em" }}
     >
       <Text
