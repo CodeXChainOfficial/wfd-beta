@@ -106,7 +106,7 @@ html {
   justify-content: center;
 }
 .footerIcon {
-  font-size: 14px;
+  font-size: 16px;
 }
 #FooterTextWork {
   font-size: 20px;
@@ -1458,4 +1458,5 @@ html {
   .footerIcon {
     font-size: 14px;
   }
+  
 }
