@@ -56,7 +56,7 @@ function ProjectItem(props: {
         onClick={() => router.push(link)}
         onMouseMove={() => setSelected(index)}
       >
-        <Stack textAlign={"center"} height={"480px"} zIndex={"10"} >
+        <Stack textAlign={"center"} height={"480px"} zIndex={"10"}>
           <Center
             background={
               selected
@@ -128,21 +128,29 @@ function ProjectItem(props: {
   );
 }
 
-export default function UpcomingProject() {
+interface UpcomingProjectProp {
+  header?: React.ReactNode;
+}
+
+export default function UpcomingProject(prop: UpcomingProjectProp) {
   const [selected, setSelected] = useState(0);
   return (
     <Box id="Upcoming">
       <Center marginTop={"48px"}>
-        <Text
-          color="#FFFF"
-          fontFamily="PilatExtended-Regular"
-          fontSize={{ base: "18px", md: "25px", lg: "30px" }}
-          fontWeight = {"600"}
-        >
-          PROJECT <chakra.span color={"#0FB1F5"}>INCUBATED</chakra.span>
-        </Text>
+        {prop.header != null ? (
+          prop.header
+        ) : (
+          <Text
+            color="#FFFF"
+            fontFamily="PilatExtended-Regular"
+            fontSize={{ base: "18px", md: "25px", lg: "30px" }}
+            fontWeight={"600"}
+          >
+            PROJECT <chakra.span color={"#0FB1F5"}>INCUBATED</chakra.span>
+          </Text>
+        )}
       </Center>
-      <Container maxWidth={"container.xl"} marginY={"84px"} >
+      <Container maxWidth={"container.xl"} marginY={"84px"}>
         <Flex>
           <PTabs />
           <Spacer />
