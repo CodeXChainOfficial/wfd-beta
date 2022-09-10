@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Box, Center, Flex, Image, Text } from "@chakra-ui/react";
 
 interface CircularServiceDescriptionProp {
   circularSize: number;
@@ -47,115 +47,120 @@ export default function CircularServiceDescription(
   }
 
   return (
-    <Flex
-      pt={`${symbolSize}px`}
-      position="relative"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <div
-        style={{
-          position: "relative",
-          width: prop.circularSize,
-          height: prop.circularSize,
-          borderRadius: prop.circularSize / 2,
-          borderWidth: 4,
-          borderStyle: "solid",
-          borderImageSlice: 1,
-          borderColor: "#0FB1F5",
-        }}
+    <>
+      <Flex
+        pt={`${symbolSize}px`}
+        position="relative"
+        justifyContent="center"
+        alignItems="center"
       >
-        <Box
-          position="absolute"
-          top="50%"
-          left="50%"
-          transform="translateX(-50%) translateY(-50%)"
+        <div
+          style={{
+            position: "relative",
+            width: prop.circularSize,
+            height: prop.circularSize,
+            borderRadius: prop.circularSize / 2,
+            borderWidth: 4,
+            borderStyle: "solid",
+            borderImageSlice: 1,
+            borderColor: "#0FB1F5",
+          }}
         >
-          <Text fontSize="32px" fontWeight={500} textAlign="center">
-            OUR
-          </Text>
-          <Text
-            color="#63CDFA"
-            fontSize="32px"
-            fontWeight={600}
-            textAlign="center"
+          <Box
+            position="absolute"
+            top="50%"
+            left="50%"
+            transform="translateX(-50%) translateY(-50%)"
           >
-            SERVICES
-          </Text>
-        </Box>
-        <div
-          style={{
-            position: "absolute",
-            left: coord.xA,
-            top: coord.yA,
-            width: symbolSize,
-            height: symbolSize,
-            backgroundImage:
-              "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
-            borderRadius: 9999,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: coord.xB,
-            top: coord.yB,
-            width: symbolSize,
-            height: symbolSize,
-            backgroundImage:
-              "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
-            borderRadius: 9999,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: coord.xC,
-            top: coord.yC,
-            width: symbolSize,
-            height: symbolSize,
-            backgroundImage:
-              "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
-            borderRadius: 9999,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: coord.xD,
-            top: coord.yD,
-            width: symbolSize,
-            height: symbolSize,
-            backgroundImage:
-              "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
-            borderRadius: 9999,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: coord.xE,
-            top: coord.yE,
-            width: symbolSize,
-            height: symbolSize,
-            backgroundImage:
-              "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
-            borderRadius: 9999,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: coord.xF,
-            top: coord.yF,
-            width: symbolSize,
-            height: symbolSize,
-            backgroundImage:
-              "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
-            borderRadius: 9999,
-          }}
-        />
-      </div>
-    </Flex>
+            <Text fontSize="32px" fontWeight={500} textAlign="center">
+              OUR
+            </Text>
+            <Text
+              color="#63CDFA"
+              fontSize="32px"
+              fontWeight={600}
+              textAlign="center"
+            >
+              SERVICES
+            </Text>
+          </Box>
+          <div
+            style={{
+              position: "absolute",
+              left: coord.xA,
+              top: coord.yA,
+              width: symbolSize,
+              height: symbolSize,
+              backgroundImage:
+                "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
+              borderRadius: 9999,
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              left: coord.xB,
+              top: coord.yB,
+              width: symbolSize,
+              height: symbolSize,
+              backgroundImage:
+                "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
+              borderRadius: 9999,
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              left: coord.xC,
+              top: coord.yC,
+              width: symbolSize,
+              height: symbolSize,
+              backgroundImage:
+                "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
+              borderRadius: 9999,
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              left: coord.xD,
+              top: coord.yD,
+              width: symbolSize,
+              height: symbolSize,
+              backgroundImage:
+                "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
+              borderRadius: 9999,
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              left: coord.xE,
+              top: coord.yE,
+              width: symbolSize,
+              height: symbolSize,
+              backgroundImage:
+                "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
+              borderRadius: 9999,
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              left: coord.xF,
+              top: coord.yF,
+              width: symbolSize,
+              height: symbolSize,
+              backgroundImage:
+                "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
+              borderRadius: 9999,
+            }}
+          />
+        </div>
+      </Flex>
+      <Center>
+        <Image src="/media/Home/Circular_BG.svg" />
+      </Center>
+    </>
   );
 }
