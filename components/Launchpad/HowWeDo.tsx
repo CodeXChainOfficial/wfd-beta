@@ -17,7 +17,11 @@ const howWeDo = [
   {
     img: "/media/Home/how_fundraise.png",
     label: "How We Do Fundraise",
-    desc: "◦ Lorem ipsum dolor sit amet",
+    desc:
+      "◦ Once project have MVP and grants proposal ready, WeFund will take you to the next step, to start fundraising.<br/>" +
+      "◦ Support to achieve Milestones when a fundraised phase has been completed. So that they can fulfill it and access all the funds and use it well.<br/>" +
+      "◦ Backers of the project will vote whether a project will be given the next portion of funds raised when they completed a milestone. Each voted milestone opens up more portion of fundraisers and the next milestone step.<br/>" +
+      "◦ Additional fundraise can be conducted when the previous one have been completed, meaning all milestone are done, and in case the projects needs it or need an immediate funds",
     showDesc: false,
   },
 ];
@@ -37,45 +41,59 @@ export default function HowWeDo() {
     >
       {getModel.map((e, i) => (
         <Flex
-          key={i}
-          id="howWeDo"
+          key={i + "_root"}
           textAlign="center"
           overflow={"hidden"}
           alignItems={"center"}
           flexDirection="column"
-          justifyContent={"center"}
           m="1.8em"
           p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
           width={{ base: "40%", md: "18em", lg: "19em" }}
-          height={{ base: "14em", md: "20em", lg: "18em" }}
           borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
-          onClick={() => {
-            const howArray = [...howWeDo];
-            howArray[i].showDesc = !howArray[i].showDesc;
-            setModel(howArray);
-          }}
         >
-          <Image
-            src={e.img}
-            objectFit="contain"
-            width={{ base: "50%", md: "70%", lg: "70%" }}
-            height={{ base: "6em", md: "7em", lg: "60%" }}
-          />
-          <Text
-            mt={"1em"}
-            width="95%"
-            color={"white"}
-            fontFamily={{
-              base: "PilatExtended-Regular",
-              md: "PilatExtended-Bold",
-              lg: "PilatExtended-Bold",
+          <Flex
+            key={i + "_content"}
+            id="howWeDo"
+            textAlign="center"
+            overflow={"hidden"}
+            alignItems={"center"}
+            flexDirection="column"
+            justifyContent={"center"}
+            m="1.8em"
+            p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
+            width={{ base: "40%", md: "18em", lg: "19em" }}
+            height={{ base: "14em", md: "20em", lg: "18em" }}
+            borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
+            onClick={() => {
+              const howArray = [...howWeDo];
+              howArray[i].showDesc = !howArray[i].showDesc;
+              setModel(howArray);
             }}
-            fontSize={{ base: "12px", md: "16px", lg: "16px" }}
-            fontWeight={{ base: "500", md: "bold", lg: "bold" }}
           >
-            {e.label}
-          </Text>
+            <Image
+              src={e.img}
+              objectFit="contain"
+              width={{ base: "50%", md: "70%", lg: "70%" }}
+              height={{ base: "6em", md: "7em", lg: "60%" }}
+            />
+            <Text
+              mt={"1em"}
+              width="95%"
+              color={"white"}
+              fontFamily={{
+                base: "PilatExtended-Regular",
+                md: "PilatExtended-Bold",
+                lg: "PilatExtended-Bold",
+              }}
+              fontSize={{ base: "12px", md: "16px", lg: "16px" }}
+              fontWeight={{ base: "500", md: "bold", lg: "bold" }}
+            >
+              {e.label}
+            </Text>
+          </Flex>
           <Text
+            textAlign="justify"
+            dangerouslySetInnerHTML={{ __html: e.desc }}
             visibility={e.showDesc ? "visible" : "collapse"}
             pt="32px"
             mt={"1em"}
@@ -83,9 +101,9 @@ export default function HowWeDo() {
             color={"white"}
             fontFamily={"Montserrat"}
             fontWeight="400"
-            fontSize="18px"
+            fontSize="20px"
+            lineHeight="28px"
           >
-            {e.desc}
           </Text>
         </Flex>
       ))}

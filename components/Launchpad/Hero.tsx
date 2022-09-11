@@ -9,6 +9,7 @@ import {
   Stack,
   Container,
   Box,
+  chakra,
 } from "@chakra-ui/react";
 import { ImageTransition } from "../ImageTransition";
 import { useStore } from "../../contexts/store";
@@ -30,54 +31,37 @@ export default function Hero() {
         position={"relative"}
         mt={{ base: "10vh", md: "14vh", lg: "20vh" }}
         zIndex={"3"}
-        maxW="container.lg"
+        maxW="container.2xl"
       >
         <Stack>
           <Text
-            fontFamily="PilatExtended-Bold"
-            fontSize={{ base: "16px", md: "48px" }}
-            lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
+            fontFamily="PilatExtended-Regular"
+            fontWeight="900"
+            fontSize={{ base: "16px", md: "36px" }}
+            lineHeight="54px"
             letterSpacing={{ base: "0.1em" }}
-            textTransform={"uppercase"}
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
           >
-            MULTICHAIN COMMUNITY
+            Multichain <chakra.span fontFamily="PilatExtended-Bold"  color={"#0FB1F5"}>crowdfunding, incubation</chakra.span>, and <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>launchpad</chakra.span>
           </Text>
           <Text
-            fontFamily="PilatExtended-Black"
-            fontSize={{ base: "20px", md: "48px" }}
-            lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
-            letterSpacing={{ base: "0.1em" }}
-            textTransform={"uppercase"}
-            textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
-            color={"brand"}
-          >
-            CROWDFUNDING
-          </Text>
-          <Text
-            fontFamily="PilatExtended-Black"
-            fontSize={{ base: "20px", md: "48px" }}
-            lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
+            fontFamily="PilatExtended-Regular"
+            fontWeight="900"
+            fontSize={{ base: "16px", md: "36px" }}
+            lineHeight="54px"
             letterSpacing={{ base: "0.1em" }}
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
-            textTransform={"uppercase"}
           >
-            INCUBATOR
+            for real-world applications
           </Text>
         </Stack>
         <HStack w="100%" justify={"center"} mt="72px" spacing="21px">
-          <ImageTransition
-            unitid={"buywfd"}
-            border1="linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.1) 100%)"
-            background1="linear-gradient(180deg, #000B47 0%, #350277 100%)"
-            border2="linear-gradient(180deg, #EBF1FF 0%, #014063 100%)"
-            background2="linear-gradient(180deg, #21C9FF 0%, #1383D5 100%)"
-            border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-            background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
-            selected={false}
+          <Box
+            backgroundColor="#006699"
             width={{ base: "148px", md: "148px", lg: "242px" }}
             height={{ base: "32px", md: "34px", lg: "35px" }}
             rounded={"33px"}
+            p="8px"
             onClick={() => router.push("/invest/step0")}
           >
             <Text
@@ -85,24 +69,17 @@ export default function Hero() {
               fontSize={{ base: "14px", sm: "15px", md: "15px", lg: "15px" }}
               fontFamily={"Gilroy"}
               fontWeight={"800"}
-              color="#002E87"
-              _hover={{ color: "#FFFFFF" }}
-              transition={"all 1s"}
+              color="#FFFFFF"
             >
-              BUY $WFD
+              GET WFD
             </Text>
-          </ImageTransition>
-          <ImageTransition
-            unitid={"connectwallet"}
-            border1="linear-gradient(180deg, #EBF1FF 0%, #014063 100%)"
-            background1="linear-gradient(180deg, #21C9FF 0%, #1383D5 100%)"
-            border2="linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.1) 100%)"
-            background2="linear-gradient(180deg, #000B47 0%, #350277 100%)"
-            border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-            background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
-            selected={false}
+          </Box>
+          <Box
+            backgroundColor="#18075B"
+            backdropFilter="blur(54px)"
             width={{ base: "148px", md: "148px", lg: "242px" }}
             height={{ base: "34px", md: "34px", lg: "35px" }}
+            p="8px"
             rounded={"33px"}
             onClick={() => state.openWalletModal()}
           >
@@ -112,12 +89,10 @@ export default function Hero() {
               fontFamily={"Gilroy"}
               fontWeight={"800"}
               color="#FFFFFF"
-              _hover={{ color: "#002E87" }}
-              transition={"all 1s"}
             >
               CONNECT WALLET
             </Text>
-          </ImageTransition>
+          </Box>
         </HStack>
       </Container>
       <Image
