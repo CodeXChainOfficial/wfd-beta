@@ -91,20 +91,20 @@ export default function HowWeDo() {
               {e.label}
             </Text>
           </Flex>
-          <Text
-            textAlign="justify"
-            dangerouslySetInnerHTML={{ __html: e.desc }}
-            visibility={e.showDesc ? "visible" : "collapse"}
-            pt="32px"
-            mt={"1em"}
-            width="95%"
-            color={"white"}
-            fontFamily={"Montserrat"}
-            fontWeight="400"
-            fontSize="20px"
-            lineHeight="28px"
-          >
-          </Text>
+          {e.showDesc ? (
+            <Text
+              textAlign="justify"
+              dangerouslySetInnerHTML={{ __html: e.desc }}
+              pt="32px"
+              mt={"1em"}
+              width="95%"
+              color={"white"}
+              fontFamily={"Montserrat"}
+              fontWeight="400"
+              fontSize="20px"
+              lineHeight="28px"
+            ></Text>
+          ) : null}
         </Flex>
       ))}
     </Flex>
