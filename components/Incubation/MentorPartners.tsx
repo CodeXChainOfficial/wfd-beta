@@ -13,11 +13,11 @@ const partners = [
   },
 ];
 
-export default function Partners() {
+export default function MentorPartners() {
   const [getModel, setModel] = useState(partners);
 
   return (
-    <Flex direction="column" width="100%">
+    <Flex direction="column" width="100%" >
       <Text
         textAlign="center"
         color="#FFFF"
@@ -25,10 +25,11 @@ export default function Partners() {
         fontSize={{ base: "18px", md: "25px", lg: "30px" }}
         fontWeight={"600"}
       >
-        KEY <chakra.span color={"#0FB1F5"}>PARTNERS</chakra.span>
+        MENTOR AND INCUBATION <chakra.span color={"#0FB1F5"}>PARTNERS</chakra.span>
       </Text>
       <Flex
         width="100%"
+        background={"linear-gradient(180deg, rgba(23, 74, 255, 0.1) 0%, rgba(24, 7, 91, 0.1) 100%)"}
         flexWrap={"wrap"}
         flexDirection="row"
         backgroundSize={"contain"}

@@ -74,16 +74,16 @@ export default function Banner() {
             </Text>
 
             <HStack w="100%" justify={"center"} mt="48px" spacing="20px">
-              <ImageTransition
-                unitid={"buywfd"}
-                border1="#23A4EC"
-                background1="#06142D"
-                border2="#06142D"
-                background2="#23A4EC"
+            <ImageTransition
+                unitid={"applywhat"}
+                border2="#23A4EC"
+                background2="#06142D"
+                border1="#06142D"
+                background1="#23A4EC"
                 border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
                 background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
                 selected={false}
-                width={{ base: "188px", md: "248px", lg: "402px" }}
+                width={{ base: "350px", md: "400px", lg: "400px" }}
                 height={{ base: "32px", md: "40px", lg: "40px" }}
                 rounded={"33px"}
                 onClick={() => router.push("/applyproject")}
@@ -96,10 +96,11 @@ export default function Banner() {
                     md: "15px",
                     lg: "15px",
                   }}
+                  textAlign="center"
                   fontFamily={"PilatExtended-Bold"}
                   fontWeight={"800"}
                   marginLeft={7}
-                  color="#002E87"
+                  color="#FFFFFF"
                   _hover={{ color: "#FFFFFF" }}
                   transition={"all 1s"}
                 >

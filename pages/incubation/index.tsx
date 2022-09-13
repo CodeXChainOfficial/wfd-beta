@@ -21,6 +21,13 @@ import CompletedSales from "../../components/Launchpad/CompletedSales";
 import ProjectStories from "../../components/Launchpad/ProjectStories";
 import PTabs from "../../components/Launchpad/ProjectTabs";
 import Banner from "../../components/Incubation/Banner";
+import Whatis from "../../components/Incubation/Whatis";
+import RequirementList from "../../components/Incubation/Requirements";
+import IncubatedCarousel from "../../components/Incubation/IncubatedCarousel";
+import WhyIncubate from "../../components/Incubation/WhyIncubate";
+import Partners from "../../components/Launchpad/Partners";
+import MentorPartners from "../../components/Incubation/MentorPartners";
+import IncubationFaq from "../../components/Incubation/IncubationFaq";
 
 export default function Launchpad() {
   useEffect(() => {
@@ -31,6 +38,13 @@ export default function Launchpad() {
     <ChakraProvider resetCSS theme={theme}>
       <Container>
         <Banner />
+        <Whatis />
+        <RequirementList />
+        <WhyIncubate />
+        <IncubatedCarousel />
+        <MentorPartners />
+        <Partners />
+        <IncubationFaq />
         <Footer />
       </Container>
     </ChakraProvider>
