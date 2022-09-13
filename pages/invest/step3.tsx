@@ -118,7 +118,8 @@ export default function InvestStep3() {
       (investChain.toLowerCase() == "bsc" ||
         investChain.toLowerCase() == "polygon" ||
         investChain.toLowerCase() == "oneledger" ||
-        investChain.toLowerCase() == "fantom") &&
+        investChain.toLowerCase() == "fantom" ||
+        investChain.toLowerCase() == "telos") &&
       (state.walletType == "metamask" || state.walletType == "trust")
     ) {
       proper = true;

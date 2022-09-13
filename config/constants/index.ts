@@ -213,6 +213,26 @@ export const TOKEN_LIST = [
     native: false,
     address: "0x1B27A9dE6a775F98aaA5B90B62a4e2A0B84DbDd9",
   },
+  {
+    chain: "TELOS",
+    name: "TLOS",
+    decimals: 18,
+    native: true,
+  },
+  {
+    chain: "TELOS",
+    name: "USDC",
+    decimals: 6,
+    native: false,
+    address: "0x818ec0a7fe18ff94269904fced6ae3dae6d6dc0b",
+  },
+  {
+    chain: "TELOS",
+    name: "USDT",
+    decimals: 6,
+    native: false,
+    address: "0xefaeee334f0fd1712f9a8cc375f427d9cdd40d73",
+  },
 ];
 
 export const CHAINS_CONFIG = {
@@ -240,6 +260,11 @@ export const CHAINS_CONFIG = {
     chainId: "0xFA",
     chainName: "Fantom",
     rpc: "https://rpc2.fantom.network",
+  },
+  telos: {
+    chainId: "0x28",
+    chainName: "Telos",
+    rpc: "https://mainnet.telos.net/evm",
   },
 };
 

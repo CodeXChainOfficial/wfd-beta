@@ -68,18 +68,12 @@ const Layout = ({ children }: Props) => {
             body: formData,
           };
 
-          fetch("/api/checkreferral", requestOptions)
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              dispatch({
-                type: "setReferralCount",
-                payload: data.data,
-              });
-            })
-            .catch((e) => {
-              console.log("Error:" + e);
-            });
+          const result = await fetch("/api/checkreferral", requestOptions);
+          const res = await result.json();
+          dispatch({
+            type: "setReferralCount",
+            payload: res.data,
+          });
         }
       }
     }

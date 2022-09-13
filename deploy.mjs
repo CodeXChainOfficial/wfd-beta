@@ -307,25 +307,25 @@ export const initMsgs = [
       project_saft: "WeFund_SAFT.docx",
       project_teammembers: [
         {
-          teammember_description:
-            "A dynamic individual who worked at Tencent as an operation specialist, in the partnership division. Before Tencent, she was senior partnership manager at Bigo. She previously held a senior account executive position at one of the digital marketing agencies under Jet Group and was a manager at Waves, who successfully helped founders to raise $1.2M in pre-seed funding, before turning her attention to crypto. She is one of the founding partners and driving forces behind the concept of WeFund. She was on the core team behind the hackathon project of Fan$quad together with the other ex co-founder.\n\n",
-          teammember_linkedin: "",
           teammember_name: "Ika Afifah ",
           teammember_role: "Co-Founder & CEO & Co-CTO",
+          teammember_linkedin: "",
+          teammember_description:
+            "A dynamic individual who worked at Tencent as an operation specialist, in the partnership division. Before Tencent, she was senior partnership manager at Bigo. She previously held a senior account executive position at one of the digital marketing agencies under Jet Group and was a manager at Waves, who successfully helped founders to raise $1.2M in pre-seed funding, before turning her attention to crypto. She is one of the founding partners and driving forces behind the concept of WeFund. She was on the core team behind the hackathon project of Fan$quad together with the other ex co-founder.\n\n",
         },
         {
-          teammember_description:
-            "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the hackathon organized by Terraform Labs. He has a wealth of experience in coding, with a deep understanding of C, C++, Javascript, VBA, Java, Python, Rust language (to name a few). In 2018 he moved his focus into Solidity, PHP, & HTML 5, to follow his vision of creating advanced Web 3.0 applications integrated with the blockchain. His role is to ensure delivery of smart contracts, web app, and technical infrastructure, as well as managing the business side of the project. From the business side, he had several businesses before such as a Natural Mosquito Solution based on Bali, hotel & restaurant (Ristorante-Bar Lanca) in Switzerland, and a smart-home startup to reduce electricity consumption. Most of the businesses he founded had an ROI within less than 1 year.\n\n",
-          teammember_linkedin: "",
           teammember_name: "Andrea Bello ",
           teammember_role: "Co-Founder & CMO",
+          teammember_linkedin: "",
+          teammember_description:
+            "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the hackathon organized by Terraform Labs. He has a wealth of experience in coding, with a deep understanding of C, C++, Javascript, VBA, Java, Python, Rust language (to name a few). In 2018 he moved his focus into Solidity, PHP, & HTML 5, to follow his vision of creating advanced Web 3.0 applications integrated with the blockchain. His role is to ensure delivery of smart contracts, web app, and technical infrastructure, as well as managing the business side of the project. From the business side, he had several businesses before such as a Natural Mosquito Solution based on Bali, hotel & restaurant (Ristorante-Bar Lanca) in Switzerland, and a smart-home startup to reduce electricity consumption. Most of the businesses he founded had an ROI within less than 1 year.\n\n",
         },
         {
-          teammember_description:
-            "World explorer, entrepreneur, and blockchain technology enthusiast. Came from a career in Silicon Valley building web applications during the dot-com boom. Wanting to do it all over again, this time helping to build Web 3.0.\n\n",
-          teammember_linkedin: "",
           teammember_name: "Achuth Chandran",
           teammember_role: "CFO",
+          teammember_linkedin: "",
+          teammember_description:
+            "World explorer, entrepreneur, and blockchain technology enthusiast. Came from a career in Silicon Valley building web applications during the dot-com boom. Wanting to do it all over again, this time helping to build Web 3.0.\n\n",
         },
       ],
       project_website: "https://www.lynxverse.io/",
@@ -386,32 +386,40 @@ export const initMsgs = [
       project_saft: "WeFund_SAFT.docx",
       project_teammembers: [
         {
-          teammember_description:
-            "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the hackathon organized by Terraform Labs. He has a wealth of experience in coding, with a deep understanding of C, C++, Javascript, VBA, Java, Python, Rust language (to name a few). In 2018 he moved his focus into Solidity, PHP, & HTML 5, to follow his vision of creating advanced Web 3.0 applications integrated with the blockchain. His role is to ensure delivery of smart contracts, web app, and technical infrastructure, as well as managing the business side of the project. From the business side, he had several businesses before such as a Natural Mosquito Solution based on Bali, hotel & restaurant (Ristorante-Bar Lanca) in Switzerland, and a smart-home startup to reduce electricity consumption. Most of the businesses he founded had an ROI within less than 1 year.\n\n",
+          teammember_name: "Langston Hues",
+          teammember_role: "Co-Founder & CEO",
           teammember_linkedin: "",
-          teammember_name: "Andrea Bello ",
-          teammember_role: "Co-Founder & CEO & Co-CTO",
+          teammember_description: "\n",
         },
         {
-          teammember_description:
-            "A dynamic individual who worked at Tencent as an operation specialist, in the partnership division. Before Tencent, she was senior partnership manager at Bigo. She previously held a senior account executive position at one of the digital marketing agencies under Jet Group and was a manager at Waves, who successfully helped founders to raise $1.2M in pre-seed funding, before turning her attention to crypto. She is one of the founding partners and driving forces behind the concept of WeFund. She was on the core team behind the hackathon project of Fan$quad together with the other ex co-founder.\n\n",
+          teammember_name: "Idris Dave",
+          teammember_role: "Co-Founder & CTO",
           teammember_linkedin: "",
-          teammember_name: "Ika Afifah ",
-          teammember_role: "Co-Founder & CMO",
+          teammember_description: "\n",
         },
         {
-          teammember_description:
-            "World explorer, entrepreneur, and blockchain technology enthusiast. Came from a career in Silicon Valley building web applications during the dot-com boom. Wanting to do it all over again, this time helping to build Web 3.0.\n\n",
+          teammember_name: "Utari Try Siswi",
+          teammember_role: "CMO",
           teammember_linkedin: "",
-          teammember_name: "Jason Galvin ",
-          teammember_role: "Co-CTO",
+          teammember_description: "\n",
         },
         {
-          teammember_description:
-            "Comes from a background in investment and corporate finance. After completing his education, he worked as a Business Analyst for a large tech company in Seattle, Washington USA building AI applications to identify high-risk sale transactions. He now is an Investment Manager for a prestigious silicon valley venture capital firm located in Jakarta, Indonesia managing investment deals in the Southeast Asia region.\n\n",
-          teammember_linkedin: "",
-          teammember_name: "Austin Taylor ",
+          teammember_name: "Mohammed Yacoob",
           teammember_role: "COO",
+          teammember_linkedin: "",
+          teammember_description: "\n",
+        },
+        {
+          teammember_name: "Stephen Onoja",
+          teammember_role: "Blockchain Development",
+          teammember_linkedin: "",
+          teammember_description: "",
+        },
+        {
+          teammember_name: "Iris Strovanoga",
+          teammember_role: "Public Relations",
+          teammember_linkedin: "",
+          teammember_description: "",
         },
       ],
       project_website: "https://kosu.space/",
@@ -464,32 +472,32 @@ export const initMsgs = [
       project_saft: "WeFund_SAFT.docx",
       project_teammembers: [
         {
-          teammember_description:
-            "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the hackathon organized by Terraform Labs. He has a wealth of experience in coding, with a deep understanding of C, C++, Javascript, VBA, Java, Python, Rust language (to name a few). In 2018 he moved his focus into Solidity, PHP, & HTML 5, to follow his vision of creating advanced Web 3.0 applications integrated with the blockchain. His role is to ensure delivery of smart contracts, web app, and technical infrastructure, as well as managing the business side of the project. From the business side, he had several businesses before such as a Natural Mosquito Solution based on Bali, hotel & restaurant (Ristorante-Bar Lanca) in Switzerland, and a smart-home startup to reduce electricity consumption. Most of the businesses he founded had an ROI within less than 1 year.\n\n",
-          teammember_linkedin: "",
           teammember_name: "Andrea Bello ",
           teammember_role: "Co-Founder & CEO & Co-CTO",
+          teammember_linkedin: "",
+          teammember_description:
+            "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the hackathon organized by Terraform Labs. He has a wealth of experience in coding, with a deep understanding of C, C++, Javascript, VBA, Java, Python, Rust language (to name a few). In 2018 he moved his focus into Solidity, PHP, & HTML 5, to follow his vision of creating advanced Web 3.0 applications integrated with the blockchain. His role is to ensure delivery of smart contracts, web app, and technical infrastructure, as well as managing the business side of the project. From the business side, he had several businesses before such as a Natural Mosquito Solution based on Bali, hotel & restaurant (Ristorante-Bar Lanca) in Switzerland, and a smart-home startup to reduce electricity consumption. Most of the businesses he founded had an ROI within less than 1 year.\n\n",
         },
         {
-          teammember_description:
-            "A dynamic individual who worked at Tencent as an operation specialist, in the partnership division. Before Tencent, she was senior partnership manager at Bigo. She previously held a senior account executive position at one of the digital marketing agencies under Jet Group and was a manager at Waves, who successfully helped founders to raise $1.2M in pre-seed funding, before turning her attention to crypto. She is one of the founding partners and driving forces behind the concept of WeFund. She was on the core team behind the hackathon project of Fan$quad together with the other ex co-founder.\n\n",
-          teammember_linkedin: "",
           teammember_name: "Ika Afifah ",
           teammember_role: "Co-Founder & CMO",
+          teammember_linkedin: "",
+          teammember_description:
+            "A dynamic individual who worked at Tencent as an operation specialist, in the partnership division. Before Tencent, she was senior partnership manager at Bigo. She previously held a senior account executive position at one of the digital marketing agencies under Jet Group and was a manager at Waves, who successfully helped founders to raise $1.2M in pre-seed funding, before turning her attention to crypto. She is one of the founding partners and driving forces behind the concept of WeFund. She was on the core team behind the hackathon project of Fan$quad together with the other ex co-founder.\n\n",
         },
         {
-          teammember_description:
-            "World explorer, entrepreneur, and blockchain technology enthusiast. Came from a career in Silicon Valley building web applications during the dot-com boom. Wanting to do it all over again, this time helping to build Web 3.0.\n\n",
-          teammember_linkedin: "",
           teammember_name: "Jason Galvin ",
           teammember_role: "Co-CTO",
+          teammember_linkedin: "",
+          teammember_description:
+            "World explorer, entrepreneur, and blockchain technology enthusiast. Came from a career in Silicon Valley building web applications during the dot-com boom. Wanting to do it all over again, this time helping to build Web 3.0.\n\n",
         },
         {
-          teammember_description:
-            "Comes from a background in investment and corporate finance. After completing his education, he worked as a Business Analyst for a large tech company in Seattle, Washington USA building AI applications to identify high-risk sale transactions. He now is an Investment Manager for a prestigious silicon valley venture capital firm located in Jakarta, Indonesia managing investment deals in the Southeast Asia region.\n\n",
-          teammember_linkedin: "",
           teammember_name: "Austin Taylor ",
           teammember_role: "COO",
+          teammember_linkedin: "",
+          teammember_description:
+            "Comes from a background in investment and corporate finance. After completing his education, he worked as a Business Analyst for a large tech company in Seattle, Washington USA building AI applications to identify high-risk sale transactions. He now is an Investment Manager for a prestigious silicon valley venture capital firm located in Jakarta, Indonesia managing investment deals in the Southeast Asia region.\n\n",
         },
       ],
       project_website: "",
@@ -542,32 +550,46 @@ export const initMsgs = [
       project_saft: "WeFund_SAFT.docx",
       project_teammembers: [
         {
-          teammember_description:
-            "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the hackathon organized by Terraform Labs. He has a wealth of experience in coding, with a deep understanding of C, C++, Javascript, VBA, Java, Python, Rust language (to name a few). In 2018 he moved his focus into Solidity, PHP, & HTML 5, to follow his vision of creating advanced Web 3.0 applications integrated with the blockchain. His role is to ensure delivery of smart contracts, web app, and technical infrastructure, as well as managing the business side of the project. From the business side, he had several businesses before such as a Natural Mosquito Solution based on Bali, hotel & restaurant (Ristorante-Bar Lanca) in Switzerland, and a smart-home startup to reduce electricity consumption. Most of the businesses he founded had an ROI within less than 1 year.\n\n",
+          teammember_name: "Wojtek Sierocki",
+          teammember_role: "CEO",
           teammember_linkedin: "",
-          teammember_name: "Andrea Bello ",
-          teammember_role: "Co-Founder & CEO & Co-CTO",
+          teammember_description: "\n",
         },
         {
-          teammember_description:
-            "A dynamic individual who worked at Tencent as an operation specialist, in the partnership division. Before Tencent, she was senior partnership manager at Bigo. She previously held a senior account executive position at one of the digital marketing agencies under Jet Group and was a manager at Waves, who successfully helped founders to raise $1.2M in pre-seed funding, before turning her attention to crypto. She is one of the founding partners and driving forces behind the concept of WeFund. She was on the core team behind the hackathon project of Fan$quad together with the other ex co-founder.\n\n",
+          teammember_name: "Ligia Kornowska",
+          teammember_role: "Board President",
           teammember_linkedin: "",
-          teammember_name: "Ika Afifah ",
-          teammember_role: "Co-Founder & CMO",
+          teammember_description: "\n",
         },
         {
-          teammember_description:
-            "World explorer, entrepreneur, and blockchain technology enthusiast. Came from a career in Silicon Valley building web applications during the dot-com boom. Wanting to do it all over again, this time helping to build Web 3.0.\n\n",
+          teammember_name: "Adrian Łojek",
+          teammember_role: "Head of Tokenization",
           teammember_linkedin: "",
-          teammember_name: "Jason Galvin ",
-          teammember_role: "Co-CTO",
+          teammember_description: "\n\n",
         },
         {
-          teammember_description:
-            "Comes from a background in investment and corporate finance. After completing his education, he worked as a Business Analyst for a large tech company in Seattle, Washington USA building AI applications to identify high-risk sale transactions. He now is an Investment Manager for a prestigious silicon valley venture capital firm located in Jakarta, Indonesia managing investment deals in the Southeast Asia region.\n\n",
+          teammember_name: "Dinidh O'Brien",
+          teammember_role: "Head of Marketing",
           teammember_linkedin: "",
-          teammember_name: "Austin Taylor ",
-          teammember_role: "COO",
+          teammember_description: "\n",
+        },
+        {
+          teammember_name: "Damian Pawlowski",
+          teammember_role: "Influecner and Investor manager",
+          teammember_linkedin: "",
+          teammember_description: "",
+        },
+        {
+          teammember_name: "Paweł Wojtaszczyk",
+          teammember_role: "Business Development Manager",
+          teammember_linkedin: "",
+          teammember_description: "",
+        },
+        {
+          teammember_name: "Mariusz Jarząbek",
+          teammember_role: "Senior Front-End Developer",
+          teammember_linkedin: "",
+          teammember_description: "",
         },
       ],
       project_website: "https://data-lake.co/",
@@ -620,32 +642,32 @@ export const initMsgs = [
       project_saft: "WeFund_SAFT.docx",
       project_teammembers: [
         {
-          teammember_description:
-            "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the hackathon organized by Terraform Labs. He has a wealth of experience in coding, with a deep understanding of C, C++, Javascript, VBA, Java, Python, Rust language (to name a few). In 2018 he moved his focus into Solidity, PHP, & HTML 5, to follow his vision of creating advanced Web 3.0 applications integrated with the blockchain. His role is to ensure delivery of smart contracts, web app, and technical infrastructure, as well as managing the business side of the project. From the business side, he had several businesses before such as a Natural Mosquito Solution based on Bali, hotel & restaurant (Ristorante-Bar Lanca) in Switzerland, and a smart-home startup to reduce electricity consumption. Most of the businesses he founded had an ROI within less than 1 year.\n\n",
-          teammember_linkedin: "",
           teammember_name: "Andrea Bello ",
           teammember_role: "Co-Founder & CEO & Co-CTO",
+          teammember_linkedin: "",
+          teammember_description:
+            "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the hackathon organized by Terraform Labs. He has a wealth of experience in coding, with a deep understanding of C, C++, Javascript, VBA, Java, Python, Rust language (to name a few). In 2018 he moved his focus into Solidity, PHP, & HTML 5, to follow his vision of creating advanced Web 3.0 applications integrated with the blockchain. His role is to ensure delivery of smart contracts, web app, and technical infrastructure, as well as managing the business side of the project. From the business side, he had several businesses before such as a Natural Mosquito Solution based on Bali, hotel & restaurant (Ristorante-Bar Lanca) in Switzerland, and a smart-home startup to reduce electricity consumption. Most of the businesses he founded had an ROI within less than 1 year.\n\n",
         },
         {
-          teammember_description:
-            "A dynamic individual who worked at Tencent as an operation specialist, in the partnership division. Before Tencent, she was senior partnership manager at Bigo. She previously held a senior account executive position at one of the digital marketing agencies under Jet Group and was a manager at Waves, who successfully helped founders to raise $1.2M in pre-seed funding, before turning her attention to crypto. She is one of the founding partners and driving forces behind the concept of WeFund. She was on the core team behind the hackathon project of Fan$quad together with the other ex co-founder.\n\n",
-          teammember_linkedin: "",
           teammember_name: "Ika Afifah ",
           teammember_role: "Co-Founder & CMO",
+          teammember_linkedin: "",
+          teammember_description:
+            "A dynamic individual who worked at Tencent as an operation specialist, in the partnership division. Before Tencent, she was senior partnership manager at Bigo. She previously held a senior account executive position at one of the digital marketing agencies under Jet Group and was a manager at Waves, who successfully helped founders to raise $1.2M in pre-seed funding, before turning her attention to crypto. She is one of the founding partners and driving forces behind the concept of WeFund. She was on the core team behind the hackathon project of Fan$quad together with the other ex co-founder.\n\n",
         },
         {
-          teammember_description:
-            "World explorer, entrepreneur, and blockchain technology enthusiast. Came from a career in Silicon Valley building web applications during the dot-com boom. Wanting to do it all over again, this time helping to build Web 3.0.\n\n",
-          teammember_linkedin: "",
           teammember_name: "Jason Galvin ",
           teammember_role: "Co-CTO",
+          teammember_linkedin: "",
+          teammember_description:
+            "World explorer, entrepreneur, and blockchain technology enthusiast. Came from a career in Silicon Valley building web applications during the dot-com boom. Wanting to do it all over again, this time helping to build Web 3.0.\n\n",
         },
         {
-          teammember_description:
-            "Comes from a background in investment and corporate finance. After completing his education, he worked as a Business Analyst for a large tech company in Seattle, Washington USA building AI applications to identify high-risk sale transactions. He now is an Investment Manager for a prestigious silicon valley venture capital firm located in Jakarta, Indonesia managing investment deals in the Southeast Asia region.\n\n",
-          teammember_linkedin: "",
           teammember_name: "Austin Taylor ",
           teammember_role: "COO",
+          teammember_linkedin: "",
+          teammember_description:
+            "Comes from a background in investment and corporate finance. After completing his education, he worked as a Business Analyst for a large tech company in Seattle, Washington USA building AI applications to identify high-risk sale transactions. He now is an Investment Manager for a prestigious silicon valley venture capital firm located in Jakarta, Indonesia managing investment deals in the Southeast Asia region.\n\n",
         },
       ],
       project_website: "",

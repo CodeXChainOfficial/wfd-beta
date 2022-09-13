@@ -38,8 +38,6 @@ import {
   useProjectData,
   useStore,
 } from "../../contexts/store";
-import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
-import { RiUpload2Line } from "react-icons/ri";
 import Footer from "../../components/Footer";
 import Hero from "../../components/User/Hero";
 

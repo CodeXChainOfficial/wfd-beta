@@ -61,7 +61,7 @@ export default async function handler(
     }
   };
 
-  let sql =
+  const sql =
     "Select count(base) as referralCount from Referral where base='" +
     fields.referred +
     "'";
