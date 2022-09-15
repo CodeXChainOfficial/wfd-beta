@@ -31,6 +31,7 @@ const SocialMediaLinks = () => (
     fontFamily="Poppins"
     fontSize={"14px"}
     letterSpacing={"-0.022em"}
+    pr={12}
   >
     <ButtonGroup
       variant="solid"
@@ -103,11 +104,6 @@ const SocialMediaLinks = () => (
       <Text>Discord</Text>
       <Text>info@wefund.app</Text>
     </Flex>
-
-    <Flex></Flex>
-
-    <Flex></Flex>
-    <Flex></Flex>
   </Flex>
 );
 
@@ -158,7 +154,13 @@ const PagesLinks = () => (
 
 export default function Footer() {
   return (
-    <Flex id="footerBottomStyle" color={"white"} gap="20">
+    <Flex
+      id="footerBottomStyle"
+      color={"white"}
+      gap="20"
+      width={"100%"}
+      direction={{lg:"row", base:"column-reverse"}} 
+    >
       <Flex direction={"column"} width={"20%"} alignItems={"center"}>
         <Image
           width={{ lg: "150px", base: "80px" }}
@@ -229,7 +231,7 @@ export default function Footer() {
             h={{ lg: "45px", base: "40px" }}
             fontFamily="Sk-Modernist-Regular"
             placeholder="Enter email address"
-            w={{ lg: "250px", base: "100%" }}
+            w={{ xl: "200px", lg: "200px", base: "100%" }}
             fontSize={{ lg: "14px", base: "12px" }}
             style={{ border: "2px solid #503E6D" }}
           />
@@ -237,7 +239,7 @@ export default function Footer() {
             selected={false}
             unitid="SubscribeButton"
             height={{ lg: "45px", base: "40px" }}
-            width={{ lg: "150px", base: "100%" }}
+            width={{ lg: "100px", base: "100%" }}
           >
             <Text
               fontFamily="Sk-Modernist-Regular"

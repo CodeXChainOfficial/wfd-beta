@@ -15,8 +15,10 @@ import UpcomingProject from "../components/SeeProjects/UpcomingProject";
 import HowWeDo from "../components/Launchpad/HowWeDo";
 import AboutWeFund from "../components/Launchpad/About";
 import CircularServiceDescription from "../components/Launchpad/CircularServiceDescription";
+import CircularServiceDescriptionMini from "../components/Launchpad/CircularServiceDescriptionMini";
 import Partners from "../components/Launchpad/Partners";
 import Team from "../components/Launchpad/Team";
+import ServiceList from "../components/Launchpad/ServicesSmall";
 
 export default function Launchpad() {
   useEffect(() => {
@@ -30,7 +32,22 @@ export default function Launchpad() {
         <HowWeDo />
         <AboutWeFund />
         <Box height="64px" />
-        <CircularServiceDescription circularSize={500} />
+        <Box
+          visibility={{ lg: "visible", md: "collapse", base: "collapse" }}
+          maxH={{ lg: "none", md: "0", base: "0" }}
+          maxW={{ lg: "none", md: "0", base: "0" }}
+          overflow="hidden"
+        >
+          <CircularServiceDescription circularSize={500} />
+        </Box>
+        <Box
+          visibility={{ lg: "collapse", md: "visible", base: "visible" }}
+          maxH={{ lg: "0", md: "none", base: "none" }}
+          maxW={{ lg: "0", md: "none", base: "none" }}
+          overflow="hidden"
+        >
+          <ServiceList />
+        </Box>
         <UpcomingProject
           header={
             <Text

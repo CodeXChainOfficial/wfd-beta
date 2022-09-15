@@ -256,7 +256,7 @@ const DesktopNav = () => {
 export const NAV_ITEMS = [
   {
     label: "Projects",
-    href: "/about",
+    href: "/projects",
   },
   {
     label: "Invest",

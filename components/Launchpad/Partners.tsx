@@ -46,7 +46,7 @@ export default function Partners() {
             justifyContent={"center"}
             m="1.8em"
             p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
-            width={{ base: "40%", md: "18em", lg: "19em" }}
+            width={{ base: "65%", md: "18em", lg: "19em" }}
             height={{ base: "14em", md: "20em", lg: "18em" }}
             borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
           >

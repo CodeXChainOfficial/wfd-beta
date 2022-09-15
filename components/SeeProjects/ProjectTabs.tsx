@@ -14,7 +14,7 @@ export default function PTabs() {
           </Center>
           <Stack
             justifyContent={{ base: "left", md: "left" }}
-            direction={{ base: "row", sm: "row" }}
+            direction={{ base: "column", sm: "row" }}
             spacing={6}
             mt={2}
           >

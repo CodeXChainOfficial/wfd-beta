@@ -25,14 +25,14 @@ const ProjectDropDown: FunctionComponent<Props> = ({
   w,
 }) => {
   return (
-    <Box w={"200px"}>
+    <Box w={"150px"}>
       <Select
         id={"options" + typeText}
         style={{ background: "rgba(255, 255, 255, 0.2)", border: "0" }}
-        h="43px"
+        h="40px"
         shadow="sm"
         size="sm"
-        w="full"
+        w="100%"
         rounded="md"
         onChange={(e) => {
           setType(e.target.value);

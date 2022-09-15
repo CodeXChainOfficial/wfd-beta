@@ -48,7 +48,11 @@ export default function NavbarMobile() {
                   {navItem.label}
                 </Link>
               ))}
-              <Link href="/create">Create Project</Link>
+              <Link href="/apply">Swap</Link>
+              <Link href="/incubation">Incubation and Acceleration</Link>
+              <Link href="/launchpad">Launchpad</Link>
+              <Link href="/apply">Apply Project</Link>
+              <Link href="/userdashboard">User Profile</Link>
             </div>
           </Flex>
           {/* <Flex pr="30px" className="dropdown2">

@@ -5,7 +5,7 @@ interface CircularServiceDescriptionProp {
   circularSize: number;
 }
 
-export default function CircularServiceDescription(
+export default function CircularServiceDescriptionMini(
   prop: CircularServiceDescriptionProp
 ) {
   const symbolSize = 40;
@@ -99,8 +99,8 @@ export default function CircularServiceDescription(
           /><div
           style={{
             position: "absolute",
-            left: coord.xB + 60,
-            top: coord.yB + 10,
+            left: coord.xA - 20,
+            top: coord.yA + 350,
             width: symbolSize + 200,
             height: symbolSize,
           }}
@@ -124,7 +124,7 @@ export default function CircularServiceDescription(
             width: symbolSize + 200,
             height: symbolSize,
           }}
-        >Acceleration<br/>  Acceleration service for project on incubation that want their development accelerated and reserved for fast paced project ready to go to fundraise soon</div>
+        >Launchpad <br/> WeFund through partners  offer swap services accross multiple chain and tokens</div>
          
           <div
             style={{
@@ -167,7 +167,7 @@ export default function CircularServiceDescription(
               width: symbolSize + 200,
               height: symbolSize,
             }}
-          >Incubation <br/> Incubation service of WeFund that offers well packaged program and partnership network to help project grow from idea to realisation</div>
+          >Swap Service <br/> WeFund through partners  offer swap services accross multiple chain and tokens</div>
         </div>
       </Flex>
       <Center>

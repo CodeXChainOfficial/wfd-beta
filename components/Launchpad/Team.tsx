@@ -80,11 +80,12 @@ export default function Team() {
       </Text>
       <Flex
         flexWrap={"wrap"}
-        flexDirection="row"
+        flexDirection={{base:"column", md:"row"}}
         backgroundSize={"contain"}
         mt={{ base: "1em", md: "1em", lg: "1em" }}
         mb={{ base: "4em", md: "8em", lg: "10em" }}
-        width={{ base: "88%", md: "90%" }}
+        width={{ base: "100%", md: "90%" }}
+        alignItems={"center"}
         justifyContent={{ base: "center", md: "center", lg: "center" }}
       >
         {team.map((e, i) => (
@@ -99,7 +100,7 @@ export default function Team() {
             backgroundColor="#120D30"
             m={{ base: ".2em", md: ".5em", lg: ".5em" }}
             p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
-            width={{ base: "36%", md: "18em", lg: "13em", xl: "16em" }}
+            width={{ base: "80%", md: "18em", lg: "13em", xl: "16em" }}
             height={{ base: "24em", md: "30em", lg: "28em" }}
             borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
           >
