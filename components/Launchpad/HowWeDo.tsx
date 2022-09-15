@@ -109,7 +109,7 @@ export default function HowWeDo() {
               fontWeight="400"
               fontSize="20px"
               lineHeight="28px"
-            ></Text>
+            />
           ) : null}
         </Flex>
       ))}
