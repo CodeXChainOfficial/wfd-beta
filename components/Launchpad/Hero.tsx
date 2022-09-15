@@ -25,7 +25,7 @@ export default function Hero() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      height={{ base: "30em", md: "90vh", lg: "90vh" }}
+      height={{ base: "30em", md: "40vh", lg: "50vh" }}
     >
       <Container
         position={"relative"}
