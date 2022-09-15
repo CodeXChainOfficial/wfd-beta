@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Center, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Center, chakra, Flex, Image, Text } from "@chakra-ui/react";
 import Fade from "react-reveal/Fade";
 
 interface CircularServiceDescriptionProp {
@@ -117,7 +117,7 @@ export default function CircularServiceDescription(
                 height: symbolSize,
               }}
             >
-              Launchpad <br /> WeFund through partners offer swap services
+              <chakra.span color={"#63CDFA"}>Launchpad</chakra.span> <br /> WeFund through partners offer swap services
               accross multiple chain and tokens
             </div>
           </Fade>
@@ -147,7 +147,7 @@ export default function CircularServiceDescription(
                 height: symbolSize,
               }}
             >
-              Acceleration
+              <chakra.span color={"#63CDFA"}>Acceleration</chakra.span>
               <br /> Acceleration service for project on incubation that want
               their development accelerated and reserved for fast paced project
               ready to go to fundraise soon
@@ -179,7 +179,7 @@ export default function CircularServiceDescription(
                 height: symbolSize,
               }}
             >
-              Swap Service <br /> WeFund through partners offer swap services
+              <chakra.span color={"#63CDFA"}>Swap Service</chakra.span> <br /> WeFund through partners offer swap services
               accross multiple chain and tokens
             </div>
           </Fade>
@@ -209,7 +209,7 @@ export default function CircularServiceDescription(
                 height: symbolSize,
               }}
             >
-              Incubation <br /> Incubation service of WeFund that offers well
+              <chakra.span color={"#63CDFA"}>Incubation</chakra.span> <br /> Incubation service of WeFund that offers well
               packaged program and partnership network to help project grow from
               idea to realisation
             </div>
