@@ -1,5 +1,6 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
+import Fade from "react-reveal/Fade";
 
 const howWeDo = [
   {
@@ -59,6 +60,7 @@ export default function HowWeDo() {
           borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
         >
           <Flex
+            cursor="pointer"
             key={i + "_content"}
             id="howWeDo"
             textAlign="center"
@@ -98,7 +100,7 @@ export default function HowWeDo() {
               {e.label}
             </Text>
           </Flex>
-          {e.showDesc ? (
+          <Fade duration={500} bottom when={e.showDesc} collapse>
             <Text
               textAlign="justify"
               dangerouslySetInnerHTML={{ __html: e.desc }}
@@ -110,7 +112,7 @@ export default function HowWeDo() {
               fontSize="20px"
               lineHeight="28px"
             />
-          ) : null}
+          </Fade>
         </Flex>
       ))}
     </Flex>
