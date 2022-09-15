@@ -86,7 +86,7 @@ export default function Banner() {
                 width={{ base: "350px", md: "400px", lg: "400px" }}
                 height={{ base: "32px", md: "40px", lg: "40px" }}
                 rounded={"33px"}
-                onClick={() => router.push("/applyproject")}
+                onClick={() => router.push("/apply")}
               >
                 <Text
                   w="100%"

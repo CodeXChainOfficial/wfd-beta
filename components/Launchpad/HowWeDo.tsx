@@ -5,21 +5,28 @@ const howWeDo = [
   {
     img: "/media/Home/how_pick.png",
     label: "How We Pick and Select",
-    desc: "◦ Lorem ipsum dolor sit amet",
+    desc:  "◦ Project Apply to WeFund for a fundraise/incubation.<br/>" +
+    "◦ We conduct assestment, viability study and team interview<br/>" +
+    "◦ project that met our requirement, provided net value to the community and have comitted team will be selected.<br/>" +
+    "◦ Almost ready project with MVP will go to acceleration phase, the other will go to regular 12 weeks incubation period",
     showDesc: false,
   },
   {
     img: "/media/Home/how_incubation.png",
     label: "How We Do Incubation",
-    desc: "◦ Lorem ipsum dolor sit amet",
+    desc:
+      "◦ When project selected they enter incubation period.<br/>" +
+      "◦ Depending on project, they can enter acceleration phase. Normal phase runs for 12 weeks<br/>" +
+      "◦ We do monitoring, resource assistance, and networking with partnership opportunities to boost project.<br/>" +
+      "◦ When 12 weeks period ends, we do assestment, to extend, suspend or continue to fundraise phase",
     showDesc: false,
   },
   {
     img: "/media/Home/how_fundraise.png",
     label: "How We Do Fundraise",
     desc:
-      "◦ Once project have MVP and grants proposal ready, WeFund will take you to the next step, to start fundraising.<br/>" +
-      "◦ Support to achieve Milestones when a fundraised phase has been completed. So that they can fulfill it and access all the funds and use it well.<br/>" +
+      "◦ Once project have MVP and proposal ready, WeFund will take you to the next step, to start fundraising.<br/>" +
+      "◦ Support to achieve Milestones when a fundraised phase has been completed to ensure fulfilment<br/>" +
       "◦ Backers of the project will vote whether a project will be given the next portion of funds raised when they completed a milestone. Each voted milestone opens up more portion of fundraisers and the next milestone step.<br/>" +
       "◦ Additional fundraise can be conducted when the previous one have been completed, meaning all milestone are done, and in case the projects needs it or need an immediate funds",
     showDesc: false,
@@ -99,7 +106,6 @@ export default function HowWeDo() {
               mt={"1em"}
               width="95%"
               color={"white"}
-              fontFamily={"Montserrat"}
               fontWeight="400"
               fontSize="20px"
               lineHeight="28px"

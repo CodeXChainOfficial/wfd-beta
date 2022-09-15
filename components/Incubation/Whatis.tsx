@@ -139,7 +139,7 @@ const AboutDesktop = () => (
                 width={{ base: "150px", md: "150px", lg: "150px" }}
                 height={{ base: "32px", md: "40px", lg: "40px" }}
                 rounded={"33px"}
-                onClick={() => router.push("/applyproject")}
+                onClick={() => router.push("/apply")}
               >
                 <Text
                   w="100%"

@@ -75,7 +75,7 @@ export default function Navbar() {
                     fontSize="16px"
                     lineHeight="18px"
                   >
-                    Servicess
+                    Services
                   </Text>
                 </Flex>
               </PopoverTrigger>
@@ -111,15 +111,15 @@ export default function Navbar() {
                       <Text color={"#0FB1F5"} py={0}></Text>
                       <IconButton
                         as="a"
-                        aria-label="Medium"
+                        aria-label="Incubation"
                         width={{ lg: "14px", base: "12px" }}
                         borderRadius={"100px"}
                         backgroundColor={"rgba(255, 255, 255, 0.05)"}
-                        href="https://medium.com/@wefundofficial"
+                        href="/incubation"
                         icon={<FaFlask size={"20px"} />}
                       />
                     </ButtonGroup>
-                    <Flex gap={4} flexDirection="column" pt={4}>
+                    <Flex gap={4} flexDirection="column" pt={4} as="a" href="/incubation">
                       <Text>Incubation</Text>
                     </Flex>
                   </Flex>
@@ -144,15 +144,15 @@ export default function Navbar() {
                       <Text color={"#0FB1F5"} py={0}></Text>
                       <IconButton
                         as="a"
-                        aria-label="Medium"
+                        aria-label="Laucnhpad"
                         width={{ lg: "14px", base: "12px" }}
                         borderRadius={"100px"}
                         backgroundColor={"rgba(255, 255, 255, 0.05)"}
-                        href="https://medium.com/@wefundofficial"
+                        href="/launchpadservice"
                         icon={<FaRocket size={"20px"} />}
                       />
                     </ButtonGroup>
-                    <Flex gap={4} flexDirection="column" pt={4}>
+                    <Flex gap={4} flexDirection="column" pt={4} as="a" href="/launchpadservice">
                       <Text>Launchpad</Text>
                     </Flex>
                   </Flex>
@@ -178,15 +178,15 @@ export default function Navbar() {
                       <Text color={"#0FB1F5"} py={0}></Text>
                       <IconButton
                         as="a"
-                        aria-label="Medium"
+                        aria-label="Swap"
                         width={{ lg: "14px", base: "12px" }}
                         borderRadius={"100px"}
                         backgroundColor={"rgba(255, 255, 255, 0.05)"}
-                        href="https://medium.com/@wefundofficial"
+                        href="/swap"
                         icon={<FaRetweet size={"20px"} />}
                       />
                     </ButtonGroup>
-                    <Flex gap={4} flexDirection="column" pt={4}>
+                    <Flex gap={4} flexDirection="column" pt={4} as="a" href="/swap">
                       <Text>Swap</Text>
                     </Flex>
                   </Flex>

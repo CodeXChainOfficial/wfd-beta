@@ -71,7 +71,7 @@ export default function Hero() {
             width={{ base: "188px", md: "248px", lg: "402px" }}
             height={{ base: "32px", md: "40px", lg: "40px" }}
             rounded={"33px"}
-            onClick={() => router.push("/applyproject")}
+            onClick={() => router.push("/apply")}
           >
             <Text
               w="100%"
