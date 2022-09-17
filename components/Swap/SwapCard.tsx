@@ -19,7 +19,7 @@ interface SwapProps {
 
 export default function SwapCard(props: SwapProps) {
   return (
-    <Container borderRadius="10px" bgGradient="linear(#430E82, #060049)">
+    <Container borderRadius="10px" backgroundColor="#120D30">
       <Flex direction="column" m="8px" pt="32px">
         {props.type == SwapType.from ? (
           <Text fontFamily={"Montserrat"} fontWeight="800" fontSize="26px">
@@ -33,7 +33,7 @@ export default function SwapCard(props: SwapProps) {
         <Container h="16px" />
         <Flex alignContent={"center"} direction={{ base: "column", md: "row" }}>
           <Flex flex="1">
-            <Select bg="#3F147F" borderColor="#3F147F" color="white">
+            <Select bg="#2B1452" borderColor="#3F147F" color="white">
               <option value="polygon">Polygon</option>
               <option value="ethereum">Ethereum</option>
               <option value="binance">Binance Coin</option>
