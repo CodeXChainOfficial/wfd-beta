@@ -1,1 +1,18 @@
+#transparent-scrollbar {
+    scrollbar-color: grey transparent;
+}
+#transparent-scrollbar::-webkit-scrollbar {
+    width: 10px;
+}
+#transparent-scrollbar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+#transparent-scrollbar::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: grey;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
 .web3modal-modal-lightbox { z-index: 10 !important; }

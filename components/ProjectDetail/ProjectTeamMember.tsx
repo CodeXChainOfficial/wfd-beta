@@ -8,14 +8,14 @@ import {
   Spacer,
   VStack,
   chakra,
-  Flex,
+  Flex, Divider,
 } from "@chakra-ui/react";
 
 export default function ProjectTeamMember({ data }: { data: any }) {
   return (
-    <VStack minW="300px" w="full">
+    <VStack mb="64px" minW="300px" w="full">
       <Text
-        mb={"20px"}
+        mb={"64px"}
         fontSize="28px"
         fontWeight={"900"}
         lineHeight={"36px"}
@@ -25,38 +25,39 @@ export default function ProjectTeamMember({ data }: { data: any }) {
       >
         Team <span style={{ color: "#69E4FF" }}>Members</span>
       </Text>
-      <Container
-        bgGradient="linear(#430E82, #1D0551)"
-        pl="12px"
-        pr="12px"
-        mb="52px"
-        centerContent
-      >
+      <Container pl="12px" pr="12px" mb="52px" centerContent>
         <Box
-          h="full"
+          id="transparent-scrollbar"
+          maxH="300px"
+          overflowY="auto"
           w="full"
-          bgGradient="linear(#180331, #04021F)"
+          backgroundColor="#140453"
+          borderRadius="10px"
+          position="relative"
           m="12px"
-          pl="24px"
-          pr="24px"
+          pl="36px"
+          pr="36px"
           pb="12px"
         >
-          {data?.teammember_states?.map((member, index) => (
-            <HStack pt="12px" key={index}>
-              <Avatar size="sm" name={member.teammember_name} mr="8px" />
-              <Flex direction="column">
-                <Text fontFamily={"Gilroy"} fontWeight="800" fontSize="20px">
-                  {member.teammember_name}
-                </Text>
-                <Text fontSize="12px" alignSelf="flex-start">
-                  {member.teammember_role}
-                </Text>
-              </Flex>
-              {/* <Spacer />
+          {data?.teammember_states?.map((member, index, row) => (
+            <>
+              <HStack pt="16px" pb={index + 1 !== row.length ? "16px" : "0px"} key={index}>
+                <Avatar size="md" name={member.teammember_name} mr="16px" />
+                <Flex direction="column">
+                  <Text fontFamily={"Gilroy"} fontWeight="800" fontSize="24px">
+                    {member.teammember_name}
+                  </Text>
+                  <Text fontSize="16px" alignSelf="flex-start">
+                    {member.teammember_role}
+                  </Text>
+                </Flex>
+                {/* <Spacer />
               <Text fontSize="12px" alignSelf="flex-end">
                 <chakra.span color="#48CCFF">{member.teammember_description.slice(0,100)}</chakra.span>
               </Text> */}
-            </HStack>
+              </HStack>
+              {index + 1 !== row.length ? <Divider /> : null}
+            </>
           ))}
         </Box>
       </Container>

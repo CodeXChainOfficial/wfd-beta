@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from "react";
 import {
+  Box,
   Flex,
   Text,
   VStack,
@@ -30,10 +31,19 @@ const ProjectInformations: FunctionComponent<Props> = ({
       height={{ lg: "484px" }}
       w="full"
       paddingLeft={{ lg: "15px" }}
-      mt={"30px"}
     >
-      <Text alignSelf={"flex-start"}>Details</Text>
-      <Divider />
+      <Text
+        mb="32px"
+        w="full"
+        fontSize="28px"
+        fontWeight={"900"}
+        lineHeight={"36px"}
+        fontFamily="PilatExtended-Heavy"
+        textAlign="left"
+        color="white"
+      >
+        Details
+      </Text>
       <HStack width={"100%"}>
         <Flex width={"100%"} alignSelf={"flex-start"}>
           <Text
@@ -139,7 +149,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
           </Text>
         </Flex>
       </HStack>
-      <Divider />
+      <Box height="32px" />
       <Flex
         alignSelf={{
           base: "center",
@@ -149,9 +159,11 @@ const ProjectInformations: FunctionComponent<Props> = ({
         w="full"
       >
         <Flex
-          bgGradient="linear(#430E82, #1D0551)"
-          pl="12px"
+          backgroundColor="#140453"
+          pl="24px"
           pr="12px"
+          pt="12px"
+          pb="12px"
           mb="52px"
           rounded="10px"
           w="full"

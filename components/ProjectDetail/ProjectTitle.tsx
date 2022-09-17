@@ -12,8 +12,8 @@ export default function ProjectTitle({ data }: { data: any }) {
         }}
         color="white"
       >
-        <Avatar size="2xl" name="Example" mt={1} src={data.project_logo} />
-        <VStack align="flex-start" paddingStart={8}>
+        <Avatar size="2xl" border="3px solid #0FB1F5" name="Example" mt={1} src={data.project_logo} />
+        <VStack align="flex-start" paddingStart="64px">
           <Text
             fontSize="40px"
             fontWeight={"900"}

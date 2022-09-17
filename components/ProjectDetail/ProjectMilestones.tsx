@@ -25,12 +25,11 @@ export default function ProjectMileStones({
       color="white"
       px={"45px"}
       py={"45px"}
-      borderRadius="25px"
+      borderRadius="10px"
       justify="center"
       align="center"
       flexDirection="column"
-      bgGradient={"linear(#430E82, #060049)"}
-      border={"1.5px solid rgba(255, 255, 255, 0.15)"}
+      backgroundColor="#140453"
       display={{ base: "none", md: "block", lg: "block" }}
     >
       <Flex
