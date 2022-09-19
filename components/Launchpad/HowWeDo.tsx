@@ -29,7 +29,7 @@ const howWeDo = [
       "◦ Once project have MVP and proposal ready, WeFund will take you to the next step, to start fundraising.<br/>" +
       "◦ Support to achieve Milestones when a fundraised phase has been completed to ensure fulfilment<br/>" +
       "◦ Backers of the project will vote whether a project will be given the next portion of funds raised when they completed a milestone. Each voted milestone opens up more portion of fundraisers and the next milestone step.<br/>" +
-      "◦ Additional fundraise can be conducted when the previous one have been completed, meaning all milestone are done, and in case the projects needs it or need an immediate funds",
+      "◦ Additional fundraise can be conducted when the previous one have been completed",
     showDesc: false,
   },
 ];

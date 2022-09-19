@@ -68,11 +68,12 @@ export default function Team() {
       alignItems="center"
       flexDirection="column"
       pb={{ base: "5em", md: "8em", lg: "10em" }}
+      fontFamily="PilatExtended-Regular"
     >
       <Text
         textAlign="center"
         color="#FFFF"
-        fontFamily="PilatExtended-Regular"
+        fontFamily="PilatExtended-Bold"
         fontSize={{ base: "18px", md: "25px", lg: "30px" }}
         fontWeight={"600"}
       >
@@ -85,6 +86,7 @@ export default function Team() {
         mt={{ base: "1em", md: "1em", lg: "1em" }}
         mb={{ base: "4em", md: "8em", lg: "10em" }}
         width={{ base: "100%", md: "90%" }}
+        maxW = {"1200px"}
         alignItems={"center"}
         justifyContent={{ base: "center", md: "center", lg: "center" }}
       >

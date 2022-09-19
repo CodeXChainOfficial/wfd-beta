@@ -31,7 +31,7 @@ export default function Launchpad() {
         <Hero />
         <HowWeDo />
         <AboutWeFund />
-        <Box height="64px" />
+        <Box height="200px" />
         <Box
           visibility={{ lg: "visible", md: "collapse", base: "collapse" }}
           maxH={{ lg: "none", md: "0", base: "0" }}

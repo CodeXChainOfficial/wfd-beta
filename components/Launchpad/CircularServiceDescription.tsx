@@ -60,6 +60,7 @@ export default function CircularServiceDescription(
         position="relative"
         justifyContent="center"
         alignItems="center"
+        fontFamily={"PilatExtended-Regular"}
       >
         <div
           style={{
@@ -216,7 +217,7 @@ export default function CircularServiceDescription(
           </Fade>
         </div>
       </Flex>
-      <Center>
+      <Center mt={"-250px"}>
         <Image src="/media/Home/Circular_BG.svg" />
       </Center>
     </>

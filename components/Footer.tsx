@@ -9,6 +9,7 @@ import {
   ButtonGroup,
   Spacer,
   SimpleGrid,
+  Center,
 } from "@chakra-ui/react";
 import React from "react";
 import { SiGmail } from "react-icons/si";
@@ -102,7 +103,7 @@ const SocialMediaLinks = () => (
       <Text>Twitter</Text>
       <Text>Telegram</Text>
       <Text>Discord</Text>
-      <Text>info@wefund.app</Text>
+      <Text>Email</Text>
     </Flex>
   </Flex>
 );
@@ -113,8 +114,8 @@ const PagesLinks = () => (
     fontFamily="Sk-Modernist-Regular"
     className="FlexViewMobile"
     flexDirection={"row"}
-    width="300px"
-    gap="16"
+    width={{ md: "280px", base: "240px" }}
+    gap="4"
   >
     <SimpleGrid columns={1} spacing={10} fontWeight={"700"}>
       <Link href="/" mr="20px">
@@ -154,102 +155,141 @@ const PagesLinks = () => (
 
 export default function Footer() {
   return (
-    <Flex
-      id="footerBottomStyle"
-      color={"white"}
-      gap="20"
-      width={"100%"}
-      direction={{lg:"row", base:"column-reverse"}} 
+    <Center
+      background={"linear-gradient(93.16deg, #140453 2.65%, #0A0131 87.13%)"}
     >
-      <Flex direction={"column"} width={"20%"} alignItems={"center"}>
-        <Image
-          width={{ lg: "150px", base: "80px" }}
-          src="/media/WeFund-Logos-only.png"
-        />
-        <Flex direction={"column"} paddingTop={"45%"}>
-          <Text>
-            &copy; {new Date().getFullYear()}
-            <chakra.span color={"#0FB1F5"}> WeFund</chakra.span>
-          </Text>
-          <Text>All rights reserved.</Text>
-        </Flex>
-      </Flex>
-      <Flex direction={"column"} width={"20%"} gap={6}>
-        <Text
-          fontSize={"16px"}
-          color="#00A3FF"
-          fontWeight={"bold"}
-          fontFamily={"PilatExtended-Bold"}
-          py={2}
-        >
-          Our Service Page
-        </Text>
-        <PagesLinks />
-      </Flex>
       <Flex
-        direction={"column"}
-        borderRight={"3px solid rgba(255, 255, 255, 0.14)"}
-        maxH={"300px"}
-        width={"15%"}
-        gap={2}
+        id="footerBottomStyle"
+        color={"white"}
+        maxW={"2560px"}
+        gap="20"
+        width={"100%"}
+        px={8}
+        direction={{ md: "row", base: "column-reverse" }}
       >
-        <Text
-          fontSize={"16px"}
-          color="#00A3FF"
-          fontWeight={"bold"}
-          fontFamily={"PilatExtended-Bold"}
-          py={2}
+        <Flex
+          direction={"column"}
+          width={{ md: "20%", base: "100%" }}
+          alignItems={"center"}
         >
-          Community
-        </Text>
-        <SocialMediaLinks />
-      </Flex>
-      <Flex flexDirection={"column"} gap={8}>
-        <Flex>
-          <Text
-            mr="5px"
-            fontSize={"16px"}
-            color="#00A3FF"
-            fontWeight={"bold"}
-            fontFamily={"PilatExtended-Bold"}
-          >
-            WANNA KNOW MORE ABOUT WEFUND?
-          </Text>
-          <Flex></Flex>
-        </Flex>
-        <Flex>
-          <Text mr="5px" mt="40px" color={"rgba(255, 255, 255, 0.5)"}>
-            Subscribe to Our News
-          </Text>
-        </Flex>
-        <Flex>
-          <Input
-            type="text"
-            color="#503E6D"
-            background={"transparent"}
-            rounded={"0px"}
-            h={{ lg: "45px", base: "40px" }}
-            fontFamily="Sk-Modernist-Regular"
-            placeholder="Enter email address"
-            w={{ xl: "200px", lg: "200px", base: "100%" }}
-            fontSize={{ lg: "14px", base: "12px" }}
-            style={{ border: "2px solid #503E6D" }}
+          <Image
+            width={{ lg: "150px", base: "200px" }}
+            src="/media/WeFund-Logos-only.png"
           />
-          <ButtonBackTransition
-            selected={false}
-            unitid="SubscribeButton"
-            height={{ lg: "45px", base: "40px" }}
-            width={{ lg: "100px", base: "100%" }}
+          <Flex
+            direction={"column"}
+            paddingTop={{ md: "45%", base: "10%" }}
+            paddingBottom={{ md: "0%", base: "10%" }}
           >
-            <Text
-              fontFamily="Sk-Modernist-Regular"
-              fontSize={{ lg: "14px", base: "12px" }}
-            >
-              Subscribe
+            <Text>
+              &copy; {new Date().getFullYear()}
+              <chakra.span color={"#0FB1F5"}> WeFund</chakra.span>
             </Text>
-          </ButtonBackTransition>
+            <Text>All rights reserved.</Text>
+          </Flex>
+        </Flex>
+        <Flex
+          direction={{ md: "row", base: "column" }}
+          width={{ md: "60%", base: "100%" }}
+          gap={{ base: 16, sm: 0 }}
+        >
+          <Flex
+            direction={{ base: "column", sm: "row" }}
+            width={{ md: "75%", base: "100%" }}
+            gap={{ base: 24, sm: 0 }}
+          >
+            <Flex
+              direction={"column"}
+              width={{ sm: "55%", base: "100%" }}
+              gap={6}
+            >
+              <Text
+                fontSize={"16px"}
+                color="#00A3FF"
+                fontWeight={"bold"}
+                fontFamily={"PilatExtended-Bold"}
+                py={2}
+              >
+                Our Service Page
+              </Text>
+              <PagesLinks />
+            </Flex>
+            <Flex
+              direction={"column"}
+              borderRight={{
+                md: "3px solid rgba(255, 255, 255, 0.14)",
+                base: "none",
+              }}
+              maxH={"300px"}
+              width={"40%"}
+              gap={2}
+            >
+              <Text
+                fontSize={"16px"}
+                color="#00A3FF"
+                fontWeight={"bold"}
+                fontFamily={"PilatExtended-Bold"}
+                py={2}
+              >
+                Community
+              </Text>
+              <SocialMediaLinks />
+            </Flex>
+          </Flex>
+
+          <Flex
+            flexDirection={"column"}
+            gap={8}
+            width={{ md: "50%", base: "100%" }}
+            px={2}
+          >
+            <Flex>
+              <Text
+                mr="5px"
+                fontSize={"16px"}
+                color="#00A3FF"
+                fontWeight={"bold"}
+                fontFamily={"PilatExtended-Bold"}
+              >
+                WANNA KNOW MORE ABOUT WEFUND?
+              </Text>
+              <Flex></Flex>
+            </Flex>
+            <Flex>
+              <Text mr="5px" mt="40px" color={"rgba(255, 255, 255, 0.5)"}>
+                Subscribe to Our News
+              </Text>
+            </Flex>
+            <Flex>
+              <Input
+                type="text"
+                color="#503E6D"
+                background={"transparent"}
+                rounded={"0px"}
+                h={{ lg: "45px", base: "40px" }}
+                fontFamily="Sk-Modernist-Regular"
+                placeholder="Enter email address"
+                w={{ xl: "200px", lg: "200px", base: "100%" }}
+                fontSize={{ lg: "14px", base: "12px" }}
+                style={{ border: "2px solid #503E6D" }}
+              />
+              <ButtonBackTransition
+                selected={false}
+                unitid="SubscribeButton"
+                height={{ lg: "45px", base: "40px" }}
+                width={{ lg: "100px", base: "100%" }}
+              >
+                <Text
+                  fontFamily="Sk-Modernist-Regular"
+                  fontSize={{ lg: "14px", base: "12px" }}
+                >
+                  Subscribe
+                </Text>
+              </ButtonBackTransition>
+            </Flex>
+          </Flex>
         </Flex>
       </Flex>
-    </Flex>
+    </Center>
   );
 }
