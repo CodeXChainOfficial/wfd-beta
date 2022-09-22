@@ -42,7 +42,14 @@ export default function Hero() {
             letterSpacing={{ base: "0.1em" }}
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
           >
-            Multichain <chakra.span fontFamily="PilatExtended-Bold"  color={"#0FB1F5"}>crowdfunding, incubation</chakra.span>, and <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>launchpad</chakra.span>
+            Multichain{" "}
+            <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
+              crowdfunding, incubation
+            </chakra.span>
+            , and{" "}
+            <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
+              launchpad
+            </chakra.span>
           </Text>
           <Text
             fontFamily="PilatExtended-Regular"
@@ -55,7 +62,7 @@ export default function Hero() {
             for real-world applications
           </Text>
         </Stack>
-        <HStack w="100%" justify={"center"} mt="72px" spacing="21px">
+        <HStack w="100%" justify={"center"} mt="96px" spacing="64px">
           <Box
             backgroundColor="#006699"
             width={{ base: "148px", md: "148px", lg: "242px" }}
@@ -95,13 +102,18 @@ export default function Hero() {
           </Box>
         </HStack>
       </Container>
-      <Image
-        bottom="0"
-        width="100%"
-        objectFit="contain"
+      <Flex
         position="absolute"
-        src="/media/Home/bg_coin.svg"
-      />
+        top="56"
+        pl="64px"
+        pr="64px"
+        flexDirection="row"
+        justifyContent="space-between"
+        width="100%"
+      >
+        <Image objectFit="contain" src="/media/Home/Coin_A.png" />
+        <Image objectFit="contain" src="/media/Home/Coin_B.png" />
+      </Flex>
     </Flex>
   );
 }

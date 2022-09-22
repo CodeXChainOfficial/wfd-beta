@@ -217,8 +217,8 @@ export default function CircularServiceDescription(
           </Fade>
         </div>
       </Flex>
-      <Center mt={"-250px"}>
-        <Image src="/media/Home/Circular_BG.svg" />
+      <Center mt={"-250px"} w="full">
+        <Image w="full" src="/media/Home/Circular_BG.svg" />
       </Center>
     </>
   );
