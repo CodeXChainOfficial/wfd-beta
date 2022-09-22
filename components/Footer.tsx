@@ -161,7 +161,7 @@ export default function Footer() {
       <Flex
         id="footerBottomStyle"
         color={"white"}
-        maxW={"2560px"}
+        maxW={"1440px"}
         gap="20"
         width={"100%"}
         px={8}
@@ -170,18 +170,18 @@ export default function Footer() {
         <Flex
           direction={"column"}
           width={{ md: "20%", base: "100%" }}
-          alignItems={"center"}
+          alignItems={"stretch"}
+          justifyContent={"space-between"}
+          pb={24}
+          pt={20}
         >
           <Image
             width={{ lg: "150px", base: "200px" }}
+            alignSelf={"center"}
             src="/media/WeFund-Logos-only.png"
           />
-          <Flex
-            direction={"column"}
-            paddingTop={{ md: "45%", base: "10%" }}
-            paddingBottom={{ md: "0%", base: "10%" }}
-          >
-            <Text>
+          <Flex direction={"column"} alignSelf={"center"}>
+            <Text mt={{ base: 12, lg: 0 }}>
               &copy; {new Date().getFullYear()}
               <chakra.span color={"#0FB1F5"}> WeFund</chakra.span>
             </Text>
@@ -190,18 +190,21 @@ export default function Footer() {
         </Flex>
         <Flex
           direction={{ md: "row", base: "column" }}
-          width={{ md: "60%", base: "100%" }}
+          width={{ md: "65%", base: "100%" }}
           gap={{ base: 16, sm: 0 }}
+          pt={16}
+          pb={20}
+          justifyContent={"center"}
         >
           <Flex
             direction={{ base: "column", sm: "row" }}
-            width={{ md: "75%", base: "100%" }}
-            gap={{ base: 24, sm: 0 }}
+            width={{ md: "70%", base: "100%" }}
+            gap={{ base: 24, sm: 0 }} justifyContent={"center"}
           >
             <Flex
               direction={"column"}
-              width={{ sm: "55%", base: "100%" }}
-              gap={6}
+              width={{ sm:"40%", md: "60%", base: "100%" }}
+              gap={6}  
             >
               <Text
                 fontSize={"16px"}
@@ -241,7 +244,7 @@ export default function Footer() {
             flexDirection={"column"}
             gap={8}
             width={{ md: "50%", base: "100%" }}
-            px={2}
+            pl={12}
           >
             <Flex>
               <Text
@@ -250,16 +253,17 @@ export default function Footer() {
                 color="#00A3FF"
                 fontWeight={"bold"}
                 fontFamily={"PilatExtended-Bold"}
+                mt={{ base: 12, lg: 0 }}
               >
                 WANNA KNOW MORE ABOUT WEFUND?
               </Text>
               <Flex></Flex>
             </Flex>
-            <Flex>
-              <Text mr="5px" mt="40px" color={"rgba(255, 255, 255, 0.5)"}>
+            <Flex direction={"column"}>
+              <Text mr="5px" mb="40px" color={"rgba(255, 255, 255, 0.5)"}>
                 Subscribe to Our News
               </Text>
-            </Flex>
+              
             <Flex>
               <Input
                 type="text"
@@ -269,7 +273,7 @@ export default function Footer() {
                 h={{ lg: "45px", base: "40px" }}
                 fontFamily="Sk-Modernist-Regular"
                 placeholder="Enter email address"
-                w={{ xl: "200px", lg: "200px", base: "100%" }}
+                w={{ xl: "200px", lg: "200px", md: "140px", base: "60%" }}
                 fontSize={{ lg: "14px", base: "12px" }}
                 style={{ border: "2px solid #503E6D" }}
               />
@@ -277,7 +281,7 @@ export default function Footer() {
                 selected={false}
                 unitid="SubscribeButton"
                 height={{ lg: "45px", base: "40px" }}
-                width={{ lg: "100px", base: "100%" }}
+                width={{ md: "100px", base: "100px" }}
               >
                 <Text
                   fontFamily="Sk-Modernist-Regular"
@@ -286,6 +290,7 @@ export default function Footer() {
                   Subscribe
                 </Text>
               </ButtonBackTransition>
+            </Flex>
             </Flex>
           </Flex>
         </Flex>
