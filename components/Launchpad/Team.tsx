@@ -102,7 +102,7 @@ export default function Team() {
             backgroundColor="#120D30"
             m={{ base: ".2em", md: ".5em", lg: ".5em" }}
             p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
-            width={{ base: "80%", md: "18em", lg: "13em", xl: "16em" }}
+            width={{ base: "20%", md: "18em", lg: "13em", xl: "16em" }}
             height={{ base: "24em", md: "30em", lg: "28em" }}
             borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
           >

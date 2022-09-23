@@ -14,12 +14,10 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { ImageTransition } from "../ImageTransition";
-import { useStore } from "../../contexts/store";
 import { FaArrowRight, FaTwitter } from "react-icons/fa";
 
 export default function Banner() {
   const router = useRouter();
-  const { state, dispatch } = useStore();
   return (
     <Flex
       width="100%"
@@ -28,7 +26,7 @@ export default function Banner() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      height={{ base: "25em", md: "55vh", lg: "60vh" }}
+      height={{ base: "25em", md: "55vh", lg: "80vh" }}
     >
       <Container
         position={"relative"}
@@ -38,15 +36,15 @@ export default function Banner() {
       >
         <Stack alignItems={"center"}>
           <Text
-            fontFamily="PilatExtended-Bold"
+            fontFamily="PilatExtended-Regular"
             fontSize={{ base: "16px", md: "36px" }}
             lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
-            letterSpacing={{ base: "0.1em" }}
+            letterSpacing={{ base: "0.022em" }}
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
             color={"white"}
             mb={"50px"}
           >
-           We Help Take Your Inspiring Projects <chakra.span color={"#00C1FF"}>to The Next Level</chakra.span>
+           We Help Take Your Inspiring Projects <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>     to The Next Level</chakra.span>
           </Text>
           <Box
             background={" rgba(0, 0, 19, 0.78)"}
@@ -61,7 +59,7 @@ export default function Banner() {
               fontSize={{ base: "12px", md: "20px" }}
               fontWeight={"500"}
               lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
-              letterSpacing={{ base: "0.1em" }}
+              letterSpacing={{ base: "0.022em" }}
               textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
             >
               Incubating the Best Web3 and Web2 Projects
