@@ -40,8 +40,14 @@ export default function CircularServiceDescription() {
   }, [curIndex]);
 
   return (
-    <Flex width="100%" height={`${w}px`} justify="center" mt="200px">
-      <Box width={`${w}px`} height={`${w}px`} position="relative">
+    <Flex
+      direction="column"
+      w="100%"
+      justify="center"
+      align="center"
+      mt="200px"
+    >
+      <Box width={`${w}px`} height={`${w}px`} position="relative" zIndex="10">
         <Box
           position="absolute"
           width="100%"
@@ -94,6 +100,11 @@ export default function CircularServiceDescription() {
             </Flex>
           ))}
         </Flex>
+      </Box>
+      <Box width="100%" height="400px" position="relative">
+        <Center position="absolute" top="-300px" zIndex="9">
+          <Image src="/media/Home/Circular_BG.svg" />
+        </Center>
       </Box>
     </Flex>
   );

@@ -26,39 +26,37 @@ export default function Launchpad() {
   }, []);
 
   return (
-    <ChakraProvider resetCSS theme={theme}>
-      <Container>
-        <Hero />
-        <HowWeDo />
-        <AboutWeFund />
+    <Container>
+      <Hero />
+      <HowWeDo />
+      <AboutWeFund />
 
-        <CircularServiceDescription />
+      <CircularServiceDescription />
 
-        <Box
-          visibility={{ lg: "collapse", md: "visible", base: "visible" }}
-          maxH={{ lg: "0", md: "none", base: "none" }}
-          maxW={{ lg: "0", md: "none", base: "none" }}
-          overflow="hidden"
-        >
-          <ServiceList />
-        </Box>
-        <UpcomingProject
-          header={
-            <Text
-              color="#FFFF"
-              fontFamily="PilatExtended-Regular"
-              fontSize={{ base: "18px", md: "25px", lg: "30px" }}
-              fontWeight={"600"}
-            >
-              PROJECTS ON <chakra.span color={"#0FB1F5"}>WEFUND</chakra.span>
-            </Text>
-          }
-        />
-        <Box height="64px" />
-        <Partners />
-        <Team />
-        <Footer />
-      </Container>
-    </ChakraProvider>
+      <Box
+        visibility={{ lg: "collapse", md: "visible", base: "visible" }}
+        maxH={{ lg: "0", md: "none", base: "none" }}
+        maxW={{ lg: "0", md: "none", base: "none" }}
+        overflow="hidden"
+      >
+        <ServiceList />
+      </Box>
+      <UpcomingProject
+        header={
+          <Text
+            color="#FFFF"
+            fontFamily="PilatExtended-Regular"
+            fontSize={{ base: "18px", md: "25px", lg: "30px" }}
+            fontWeight={"600"}
+          >
+            PROJECTS ON <chakra.span color={"#0FB1F5"}>WEFUND</chakra.span>
+          </Text>
+        }
+      />
+      <Box height="64px" />
+      <Partners />
+      <Team />
+      <Footer />
+    </Container>
   );
 }
