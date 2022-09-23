@@ -151,9 +151,11 @@ export default function UpcomingProject(prop: UpcomingProjectProp) {
         )}
       </Center>
       <Container maxWidth={"container.xl"} marginY={"84px"}>
-        <Flex direction={{ lg: "row", md: "row", base: "row" }}>
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          justify={{ base: "center", md: "space-between" }}
+        >
           <PTabs />
-          <Spacer />
           <PDrops />
         </Flex>
         <Box

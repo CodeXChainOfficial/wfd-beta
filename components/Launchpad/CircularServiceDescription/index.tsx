@@ -1,5 +1,13 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
-import { Box, Center, chakra, Flex, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  chakra,
+  Flex,
+  Image,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import Fade from "react-reveal/Fade";
 import CircleTitle from "./CircleTitle";
 
@@ -46,6 +54,7 @@ export default function CircularServiceDescription() {
       justify="center"
       align="center"
       mt="200px"
+      display={{ base: "none", md: "flex" }}
     >
       <Box width={`${w}px`} height={`${w}px`} position="relative" zIndex="10">
         <Box
@@ -101,8 +110,16 @@ export default function CircularServiceDescription() {
           ))}
         </Flex>
       </Box>
-      <Box width="100%" height="400px" position="relative">
-        <Center position="absolute" top="-300px" zIndex="9">
+      <Box
+        width="100%"
+        height={{ base: "200px", md: "400px" }}
+        position="relative"
+      >
+        <Center
+          position="absolute"
+          top={{ base: "-100px", md: "-300px" }}
+          zIndex="9"
+        >
           <Image src="/media/Home/Circular_BG.svg" />
         </Center>
       </Box>

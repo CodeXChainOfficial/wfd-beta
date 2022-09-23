@@ -81,12 +81,12 @@ export default function Team() {
       </Text>
       <Flex
         flexWrap={"wrap"}
-        flexDirection={{base:"column", md:"row"}}
+        flexDirection={{ base: "column", md: "row" }}
         backgroundSize={"contain"}
         mt={{ base: "1em", md: "1em", lg: "1em" }}
         mb={{ base: "4em", md: "8em", lg: "10em" }}
         width={{ base: "100%", md: "90%" }}
-        maxW = {"1200px"}
+        maxW={"1200px"}
         alignItems={"center"}
         justifyContent={{ base: "center", md: "center", lg: "center" }}
       >
@@ -102,14 +102,11 @@ export default function Team() {
             backgroundColor="#120D30"
             m={{ base: ".2em", md: ".5em", lg: ".5em" }}
             p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
-            width={{ base: "20%", md: "18em", lg: "13em", xl: "16em" }}
+            width={{ base: "100%", md: "18em", lg: "13em", xl: "16em" }}
             height={{ base: "24em", md: "30em", lg: "28em" }}
             borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
           >
-            <Avatar
-              src={e.imgsrc}
-              size="xl"
-            />
+            <Avatar src={e.imgsrc} size="xl" />
             <Text
               mt={"1em"}
               width="95%"
@@ -153,9 +150,7 @@ export default function Team() {
               borderWidth="1px"
               alignItems="center"
               justifyContent="center"
-              onClick={() =>
-                window.open(e.link, "_blank")
-              }
+              onClick={() => window.open(e.link, "_blank")}
             >
               <Text>Read More</Text>
             </Box>

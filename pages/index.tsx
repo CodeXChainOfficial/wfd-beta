@@ -30,9 +30,7 @@ export default function Launchpad() {
       <Hero />
       <HowWeDo />
       <AboutWeFund />
-
       <CircularServiceDescription />
-
       <Box
         visibility={{ lg: "collapse", md: "visible", base: "visible" }}
         maxH={{ lg: "0", md: "none", base: "none" }}
@@ -53,7 +51,6 @@ export default function Launchpad() {
           </Text>
         }
       />
-      <Box height="64px" />
       <Partners />
       <Team />
       <Footer />

@@ -6,10 +6,11 @@ const howWeDo = [
   {
     img: "/media/Home/how_pick.png",
     label: "How We Pick and Select",
-    desc:  "◦ Project Apply to WeFund for a fundraise/incubation.<br/>" +
-    "◦ We conduct assestment, viability study and team interview<br/>" +
-    "◦ project that met our requirement, provided net value to the community and have comitted team will be selected.<br/>" +
-    "◦ Almost ready project with MVP will go to acceleration phase, the other will go to regular 12 weeks incubation period",
+    desc:
+      "◦ Project Apply to WeFund for a fundraise/incubation.<br/>" +
+      "◦ We conduct assestment, viability study and team interview<br/>" +
+      "◦ project that met our requirement, provided net value to the community and have comitted team will be selected.<br/>" +
+      "◦ Almost ready project with MVP will go to acceleration phase, the other will go to regular 12 weeks incubation period",
     showDesc: false,
   },
   {
@@ -40,12 +41,12 @@ export default function HowWeDo() {
   return (
     <Flex
       width="100%"
-      flexWrap={"wrap"}
-      flexDirection="row"
+      flexWrap="wrap"
+      direction="row"
       backgroundSize={"contain"}
-      mt={{ base: "1em", md: "1em", lg: "1em" }}
-      mb={{ base: "4em", md: "8em", lg: "10em" }}
-      justifyContent={{ base: "center", md: "center", lg: "center" }}
+      mt={{ base: "1em", md: "421px" }}
+      mb={{ base: "4em", md: "8em" }}
+      justify="center"
     >
       {getModel.map((e, i) => (
         <Flex
@@ -68,10 +69,10 @@ export default function HowWeDo() {
             alignItems={"center"}
             flexDirection="column"
             justifyContent={"center"}
-            m="1.8em"
+            m={{ base: "0.5", md: "1.8em" }}
             p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
             width={{ base: "100%", md: "18em", lg: "19em" }}
-            height={{ base: "14em", md: "20em", lg: "18em" }}
+            height={{ base: "10em", md: "20em", lg: "18em" }}
             borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
             onClick={() => {
               const howArray = [...howWeDo];

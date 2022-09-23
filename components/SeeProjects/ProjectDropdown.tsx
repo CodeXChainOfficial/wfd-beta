@@ -3,8 +3,6 @@ import { chakra, Box, Stack, Flex, Center, Text, Link } from "@chakra-ui/react";
 import ProjectDropDown from "./CustomSelectCategory";
 
 export default function PDrops() {
-
-    
   const [fundraise, setFundraiseOption] = useState("Token");
   const [tokenName, setTokenName] = useState("");
 
@@ -12,7 +10,6 @@ export default function PDrops() {
     <Flex>
       <Flex justify="right" w="full">
         <Box>
-          <Center></Center>
           <Stack
             justifyContent={{ base: "right", md: "right" }}
             direction={{ base: "row", sm: "row" }}

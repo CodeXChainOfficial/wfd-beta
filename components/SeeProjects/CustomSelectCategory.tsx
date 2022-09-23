@@ -39,10 +39,7 @@ const ProjectDropDown: FunctionComponent<Props> = ({
         }}
       >
         {options.map((item: any, index: number) => (
-          <option
-            style={{ backgroundColor: "#070016" }}
-            key={index}
-          >
+          <option style={{ backgroundColor: "#070016" }} key={index}>
             {item}
           </option>
         ))}

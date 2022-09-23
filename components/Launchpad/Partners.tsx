@@ -14,10 +14,8 @@ const partners = [
 ];
 
 export default function Partners() {
-  const [getModel, setModel] = useState(partners);
-
   return (
-    <Flex direction="column" width="100%">
+    <Flex direction="column" width="100%" mt="64px">
       <Text
         textAlign="center"
         color="#FFFF"
@@ -36,7 +34,7 @@ export default function Partners() {
         mb={{ base: "4em", md: "8em", lg: "10em" }}
         justifyContent={{ base: "center", md: "center", lg: "center" }}
       >
-        {getModel.map((e, i) => (
+        {partners.map((e, i) => (
           <Flex
             key={i}
             textAlign="center"
