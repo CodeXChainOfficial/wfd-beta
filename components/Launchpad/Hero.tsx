@@ -24,7 +24,7 @@ export default function Hero() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      height={{ base: "30em", md: "40vh", lg: "50vh" }}
+      height={{ base: "30em", md: "40vh", lg: "90vh" }}
     >
       <Container
         position={"relative"}
@@ -33,6 +33,19 @@ export default function Hero() {
         maxW="container.2xl"
       >
         <Stack>
+        <Text
+            fontFamily="PilatExtended-Regular"
+            fontWeight="900"
+            fontSize={{ base: "16px", md: "36px" }}
+            lineHeight="54px"
+            letterSpacing="-0.022em"
+            textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
+          >
+            
+            
+
+            
+          </Text>
           <Text
             fontFamily="PilatExtended-Regular"
             fontWeight="900"
@@ -43,12 +56,9 @@ export default function Hero() {
           >
             Multichain{" "}
             <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
-              crowdfunding, incubation
+              crowdfunding, incubation, 
             </chakra.span>
-            , and{" "}
-            <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
-              launchpad
-            </chakra.span>
+            
           </Text>
           <Text
             fontFamily="PilatExtended-Regular"
@@ -58,7 +68,35 @@ export default function Hero() {
             letterSpacing="-0.022em"
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
           >
-            for real-world applications
+            and{" "}
+            <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
+              launchpad 
+            </chakra.span> for real-world 
+          </Text>
+
+          <Text
+            fontFamily="PilatExtended-Regular"
+            fontWeight="900"
+            fontSize={{ base: "16px", md: "36px" }}
+            lineHeight="54px"
+            letterSpacing="-0.022em"
+            textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
+          >
+            applications
+          </Text>
+
+          <Text
+            fontFamily="PilatExtended-Regular"
+            fontWeight="900"
+            fontSize={{ base: "16px", md: "36px" }}
+            lineHeight="54px"
+            letterSpacing="-0.022em"
+            textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
+          >
+            
+            
+            
+            
           </Text>
         </Stack>
         <HStack w="100%" justify={"center"} mt="96px" spacing="64px">
