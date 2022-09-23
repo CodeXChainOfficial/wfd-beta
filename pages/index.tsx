@@ -26,45 +26,37 @@ export default function Launchpad() {
   }, []);
 
   return (
-    <ChakraProvider resetCSS theme={theme}>
-      <Container>
-        <Hero />
-        <HowWeDo />
-        <AboutWeFund />
-        <Box height="200px" />
-        <Box
-          visibility={{ lg: "visible", md: "collapse", base: "collapse" }}
-          maxH={{ lg: "none", md: "0", base: "0" }}
-          maxW={{ lg: "none", md: "0", base: "0" }}
-          overflow="hidden"
-        >
-          <CircularServiceDescription circularSize={500} />
-        </Box>
-        <Box
-          visibility={{ lg: "collapse", md: "visible", base: "visible" }}
-          maxH={{ lg: "0", md: "none", base: "none" }}
-          maxW={{ lg: "0", md: "none", base: "none" }}
-          overflow="hidden"
-        >
-          <ServiceList />
-        </Box>
-        <UpcomingProject
-          header={
-            <Text
-              color="#FFFF"
-              fontFamily="PilatExtended-Regular"
-              fontSize={{ base: "18px", md: "25px", lg: "30px" }}
-              fontWeight={"600"}
-            >
-              PROJECTS ON <chakra.span color={"#0FB1F5"}>WEFUND</chakra.span>
-            </Text>
-          }
-        />
-        <Box height="64px" />
-        <Partners />
-        <Team />
-        <Footer />
-      </Container>
-    </ChakraProvider>
+    <Container>
+      <Hero />
+      <HowWeDo />
+      <AboutWeFund />
+
+      <CircularServiceDescription />
+
+      <Box
+        visibility={{ lg: "collapse", md: "visible", base: "visible" }}
+        maxH={{ lg: "0", md: "none", base: "none" }}
+        maxW={{ lg: "0", md: "none", base: "none" }}
+        overflow="hidden"
+      >
+        <ServiceList />
+      </Box>
+      <UpcomingProject
+        header={
+          <Text
+            color="#FFFF"
+            fontFamily="PilatExtended-Regular"
+            fontSize={{ base: "18px", md: "25px", lg: "30px" }}
+            fontWeight={"600"}
+          >
+            PROJECTS ON <chakra.span color={"#0FB1F5"}>WEFUND</chakra.span>
+          </Text>
+        }
+      />
+      <Box height="64px" />
+      <Partners />
+      <Team />
+      <Footer />
+    </Container>
   );
 }
