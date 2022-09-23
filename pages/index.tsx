@@ -31,15 +31,9 @@ export default function Launchpad() {
         <Hero />
         <HowWeDo />
         <AboutWeFund />
-        <Box height="200px" />
-        <Box
-          visibility={{ lg: "visible", md: "collapse", base: "collapse" }}
-          maxH={{ lg: "none", md: "0", base: "0" }}
-          maxW={{ lg: "none", md: "0", base: "0" }}
-          overflow="hidden"
-        >
-          <CircularServiceDescription circularSize={500} />
-        </Box>
+
+        <CircularServiceDescription />
+
         <Box
           visibility={{ lg: "collapse", md: "visible", base: "visible" }}
           maxH={{ lg: "0", md: "none", base: "none" }}

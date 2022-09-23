@@ -11,12 +11,11 @@ import {
   Box,
   chakra,
 } from "@chakra-ui/react";
-import { ImageTransition } from "../ImageTransition";
 import { useStore } from "../../contexts/store";
 
 export default function Hero() {
   const router = useRouter();
-  const { state, dispatch } = useStore();
+  const { state } = useStore();
   return (
     <Flex
       width="100%"
@@ -39,7 +38,7 @@ export default function Hero() {
             fontWeight="900"
             fontSize={{ base: "16px", md: "36px" }}
             lineHeight="54px"
-            letterSpacing={{ base: "0.1em" }}
+            letterSpacing="-0.022em"
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
           >
             Multichain{" "}
@@ -56,7 +55,7 @@ export default function Hero() {
             fontWeight="900"
             fontSize={{ base: "16px", md: "36px" }}
             lineHeight="54px"
-            letterSpacing={{ base: "0.1em" }}
+            letterSpacing="-0.022em"
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
           >
             for real-world applications
@@ -88,7 +87,7 @@ export default function Hero() {
             height={{ base: "34px", md: "34px", lg: "35px" }}
             p="8px"
             rounded={"33px"}
-            onClick={() => state.openWalletModal()}
+            onClick={() => state.openWalletModal && state.openWalletModal()}
           >
             <Text
               w="100%"
