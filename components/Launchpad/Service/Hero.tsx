@@ -27,7 +27,7 @@ export default function Hero() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      height={{ base: "25em", md: "55vh", lg: "50vh" }}
+      height={{ base: "25em", md: "55vh", lg: "95vh" }}
     >
       <Container
         position={"relative"}
@@ -38,23 +38,18 @@ export default function Hero() {
         <Stack>
           <Text
             fontFamily="PilatExtended-Bold"
-            fontSize={{ base: "16px", md: "36px" }}
-            lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
+            fontSize={{ base: "60px", md: "36px" }}
+            lineHeight={{ base: "40px", md: "1em", lg: "1.1em" }}
             letterSpacing={{ base: "0.1em" }}
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
             color={"rgba(15, 177, 245, 1)"}
           >
-            WeFund <chakra.span color={"white"}>as</chakra.span> Multiservice Launchpad
+            <br/><br/>
+            WeFund <chakra.span color={"white"}>as</chakra.span> Multiservice Launchpad<br/><br/>
           </Text>
-          <Text
-            fontFamily="PilatExtended-Light"
-            fontSize={{ base: "12px", md: "18px" }}
-            fontWeight={"500"}
-            lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
-            letterSpacing={{ base: "0.1em" }}
-            textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
-          >
-            Multi-Service Launchpad, Your Success is Our Success <br/>
+          <Text fontWeight={1000} fontSize="36px" lineHeight="24px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign='center'>
+
+            Multi-Service Launchpad, Your Success is Our Success <br/><br/>
             Crowdfunding: Token (Seed, and IDO), Equity, NFT
           </Text>
         </Stack>
@@ -98,7 +93,7 @@ export default function Hero() {
       </Container>
       <Image
         bottom="0"
-        width="100%"
+        width="110%"
         objectFit="contain"
         position="absolute"
         src="/media/Home/bg_coin.svg"
