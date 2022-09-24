@@ -26,7 +26,7 @@ export default function Banner() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      height={{ base: "25em", md: "55vh", lg: "90vh" }}
+      height={{ base: "25em", md: "55vh", lg: "100vh" }}
     >
       <Container
         position={"relative"}

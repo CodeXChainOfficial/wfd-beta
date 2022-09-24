@@ -85,7 +85,7 @@ const AboutDesktop = () => (
       alignItems="flex-end"
       position="relative"
       flexDirection="column"
-      height={{ base: "30em", md: "70vh", lg: "70vh" }}
+      height={{ base: "30em", md: "55vh", lg: "55vh" }}
 
     >
       
@@ -108,26 +108,18 @@ const AboutDesktop = () => (
         color="#FFFF"
         fontWeight="bold"
         fontFamily="PilatExtended-Bold"
+        align="left"
         mb={{ base: ".5em", md: ".5em", lg: ".5em" }}
-        fontSize={{ base: "16px", md: "28px", lg: "32px" }}
+        fontSize={{ base: "25px", md: "28px", lg: "32px"  }}
       >
-        WHAT'S <chakra.span color="#0FB1F5">WEFUND</chakra.span>
+        WHAT'S <chakra.span color="#0FB1F5">WEFUND?</chakra.span>
       </Text>
           <Flex
             direction={"row"}
           >
-            <Text
-              flex={1}
-              display="inline"
-              fontSize={{ base: "16px", md: "20px", lg: "20px" }}
-              fontFamily="Sk-Modernist-Regular"
-            >
-              <chakra.span color={"brand"}>
-                <b>WeFund</b> WeFund is a multichain incubation and crowdfunding platform
-              </chakra.span>{" "}
-              for blockchain and real-world projects built on various
-              blockchains. The mission is to incubate and deliver real world
-              impact projects using blockchain technology
+          <Text fontWeight={500} fontSize="20px" lineHeight="30px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
+
+                WeFund is a multichain incubation and crowdfunding platform for blockchain and real-world projects built on various blockchains. The mission is to incubate and deliver real world impact projects using blockchain technology
             </Text>
           </Flex>
           <HStack w="100%" pt={"6"}spacing="20px">

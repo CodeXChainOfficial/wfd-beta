@@ -1,140 +1,82 @@
 import React, { useState } from "react";
-import { Image, Flex, Box, Text, Link, Center } from "@chakra-ui/react";
+import { Box, Center, chakra, Flex, Image, Text } from "@chakra-ui/react";
 
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+const partners = [
+  {
+    img: "/media/Home/wefund_partner.png",
+  },
+  {
+    img: "/media/Home/esol_partner.png",
+  },
+  {
+    img: "/media/Home/vebank_partner.png",
+  },
+];
 
-const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 3000, min: 2000 },
-    items: 3,
-  },
-  desktop: {
-    breakpoint: { max: 2000, min: 1024 },
-    items: 3,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  },
-};
-
-export default function IncubatedCarousel() {
-  const [index, setIndex] = useState(0);
+export default function MentorPartners() {
+  const [getModel, setModel] = useState(partners);
 
   return (
-    <Flex
-      mt={{ base: "1em", md: "3em" }}
-      mb={{ base: "5em", md: "3em" }}
-      width="100%"
-      alignItems="center"
-      flexDirection="column"
-      pb={{ md: "5em", lg: "10em" }}
-    >
-      <Flex
+    <Flex direction="column" width="100%" >
+      <Text
+        textAlign="center"
+        color="#FFFF"
         fontFamily="PilatExtended-Bold"
-        fontSize={{ md: "25px", lg: "30px" }}
-        mb="1em"
-        width={"100%"}
-        justifyContent={"center"}
+        fontSize={{ base: "18px", md: "25px", lg: "30px" }}
+        fontWeight={"600"}
       >
-        <Text color="#02A4FF">INCUBATED PROJECT</Text>
+        Project <chakra.span color={"#0FB1F5"}>Incubate</chakra.span>
+      </Text>
+      <Flex
+        width="100%"
+        background={"linear-gradient(180deg, rgba(23, 74, 255, 0.1) 0%, rgba(24, 7, 91, 0.1) 100%)"}
+        flexWrap={"wrap"}
+        flexDirection="row"
+        backgroundSize={"contain"}
+        mt={{ base: "1em", md: "1em", lg: "1em" }}
+        mb={{ base: "4em", md: "8em", lg: "10em" }}
+        justifyContent={{ base: "center", md: "center", lg: "center" }}
+      >
+        {getModel.map((e, i) => (
+          <Flex
+            key={i}
+            textAlign="center"
+            overflow={"hidden"}
+            alignItems={"center"}
+            flexDirection="column"
+            justifyContent={"center"}
+            m="1.8em"
+            p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
+            width={{ base: "40%", md: "18em", lg: "19em" }}
+            height={{ base: "14em", md: "20em", lg: "18em" }}
+            borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
+          >
+            <div
+              style={{
+                position: "relative",
+                zIndex: 10,
+                width: 200,
+                height: 200,
+                backgroundImage:
+                  "linear-gradient(180deg, rgba(0, 56.10, 255, 0.29), rgba(87.39, 123.10, 249.69, 0))",
+                borderRadius: 9999,
+              }}
+            >
+              <Image
+                position="absolute"
+                width="128px"
+                height="128px"
+                top="50%"
+                left="50%"
+                transform="translateX(-50%) translateY(-50%)"
+                zIndex={100}
+                src={e.img}
+                objectFit="contain"
+              />
+            </div>
+          </Flex>
+        ))}
       </Flex>
-      <Box width={{ base: "100%", md: "80%", lg: "70%" }}>
-        <Carousel
-          autoPlay
-          swipeable={true}
-          showDots={true}
-          // showThumbs={false}
-          responsive={responsive}
-        >
-          <Flex justifyContent={"center"}>
-            <Link href="#" isExternal>
-              <Center
-                width={{ base: "140px", md: "220px" }}
-                height={{ base: "140px", md: "220px" }}
-                bgGradient="#050010"
-                borderRadius={"full"}
-                border={"3px solid #0FB1F5"}
-              >
-                <Image
-                  cursor="pointer"
-                  data-aos="fade-down"
-                  objectFit="contain"
-                  src="/media/partners/lynx-dark.png"
-                  width={{ base: "20em" }}
-                  height={{ base: "15em" }}
-                />
-              </Center>
-            </Link>
-          </Flex>
-          <Flex justifyContent={"center"}>
-            <Link href="#" isExternal>
-              <Center
-                width={{ base: "140px", md: "220px" }}
-                height={{ base: "140px", md: "220px" }}
-                bgGradient="#050010"
-                borderRadius={"full"}
-                border={"3px solid #0FB1F5"}
-              >
-                <Image
-                  cursor="pointer"
-                  data-aos="fade-down"
-                  objectFit="contain"
-                  src="/media/partners/lynx-dark.png"
-                  width={{ base: "20em" }}
-                  height={{ base: "15em" }}
-                />
-              </Center>
-            </Link>
-          </Flex>
-          <Flex justifyContent={"center"}>
-            <Link href="#" isExternal>
-              <Center
-                width={{ base: "140px", md: "220px" }}
-                height={{ base: "140px", md: "220px" }}
-                bgGradient="#050010"
-                borderRadius={"full"}
-                border={"3px solid #0FB1F5"}
-              >
-                <Image
-                  cursor="pointer"
-                  data-aos="fade-down"
-                  objectFit="contain"
-                  src="/media/partners/lynx-dark.png"
-                  width={{ base: "20em" }}
-                  height={{ base: "15em" }}
-                />
-              </Center>
-            </Link>
-          </Flex>
-          <Flex justifyContent={"center"}>
-            <Link href="#" isExternal>
-              <Center
-                width={{ base: "140px", md: "220px" }}
-                height={{ base: "140px", md: "220px" }}
-                bgGradient="#050010"
-                borderRadius={"full"}
-                border={"3px solid #0FB1F5"}
-              >
-                <Image
-                  cursor="pointer"
-                  data-aos="fade-down"
-                  objectFit="contain"
-                  src="/media/partners/lynx-dark.png"
-                  width={{ base: "20em" }}
-                  height={{ base: "15em" }}
-                />
-              </Center>
-            </Link>
-          </Flex>
-
-        </Carousel>
-      </Box>
     </Flex>
   );
 }

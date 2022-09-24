@@ -36,6 +36,7 @@ const features = [
 export default function RequirementList() {
   return (
     <Box p={5} mb={14}>
+      
       <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
         <Heading fontSize={"3xl"} fontFamily={"PilatExtended-Bold"} color={"#02A4FF"}>
           REQUIREMENTS

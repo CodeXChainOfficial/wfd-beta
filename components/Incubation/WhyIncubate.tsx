@@ -39,7 +39,7 @@ export default function WhyIncubate() {
       alignItems="center"
       alignContent={"center"}
       flexDirection="row"
-      minHeight={{ base: "35vh", md: "55vh", lg: "55vh" }}
+      minHeight={{ base: "35vh", md: "55vh", lg: "90vh" }}
     >
       <Flex width={"34%"} flexDirection="column" gap={24}>
         <Flex width={"80%"} flexDirection="column" gap={16}>
@@ -53,7 +53,7 @@ export default function WhyIncubate() {
               >
                 Support Impactful Real-World Project
               </Text>
-              <Text>
+              <Text fontWeight={500} fontSize="20px" lineHeight="30px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
                 WeFund strive to work toward where blockchain provide good
                 impact to people. WeFund is a multichain incubation and
                 crowdfunding platform for blockchain and real-world projects.
@@ -61,7 +61,6 @@ export default function WhyIncubate() {
             </VStack>
             <IconButton
               variant="unstyled"
-              marginLeftt={4}
               aria-label="Twitter"
               width={{ lg: "14px", base: "12px" }}
               icon={<FaHandshake size={"48px"} />}
@@ -77,7 +76,8 @@ export default function WhyIncubate() {
               >
                 Network of Expertise
               </Text>
-              <Text>
+              <Text fontWeight={500} fontSize="20px" lineHeight="30px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
+
                 Our network of mentors, market makers, developers, legal
                 experts, and other service providers will help you navigate the
                 main challenges you'll face building Web3 technology.
@@ -94,7 +94,7 @@ export default function WhyIncubate() {
         </Flex>
       </Flex>
       <Flex width={"34%"} px={4}>
-        <Image width="340px" src="/media/floatingmonitor.png" />
+        <Image width="250px" src="/media/floatingmonitor.png" />
       </Flex>
       <Flex width={"34%"} flexDirection="column" gap={24}>
         <Flex width={"80%"} flexDirection="column" gap={16}>
@@ -114,7 +114,8 @@ export default function WhyIncubate() {
               >
                 Free of Charge
               </Text>
-              <Text>
+              <Text fontWeight={500} fontSize="20px" lineHeight="30px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
+
                 We do not charge any fee or commission to the projects. Unlike
                 other incubators, we do not require token or  equity
                 allocation, or payment in advance. Teams only be asked for their full commitment to adhere to our incubation journey during the 12
@@ -138,7 +139,8 @@ export default function WhyIncubate() {
               >
                 Resourceful
               </Text>
-              <Text>
+              <Text fontWeight={500} fontSize="20px" lineHeight="30px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
+
                 The WeFund team is dedicated to helping you in any way possible.
                 This inclhudes developer, marketing, documentation, and other
                 business-related support.
