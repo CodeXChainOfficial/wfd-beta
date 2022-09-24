@@ -55,18 +55,11 @@ export default function RequirementList() {
               background={" #00A3FF"}
               rounded={"10px"}
             >
-              <IconButton
-                variant="unstyled"
-                width={{ lg: "14px", base: "12px" }}
-                icon={<FaGlobeAsia size="32px" />}
-              />
+             
             </Box>
             <VStack align={"start"}>
-              <Text fontWeight={400} fontFamily="Poppins">
-                Project should have real world application that is inline with
-                what current global needs is, or impactful to a local community.
-                Project should also have an effect to influence more adoption of
-                blockchain and drive familiarity of it.
+            <Text fontWeight={500} fontSize="18px" lineHeight="24px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
+            Project must have real-world application and utility in the area of healthcare, the environment, finance, supply chain, etc
               </Text>
             </VStack>
           </HStack>
@@ -81,16 +74,11 @@ export default function RequirementList() {
               background={" #00A3FF"}
               rounded={"10px"}
             >
-              <IconButton
-                variant="unstyled"
-                width={{ lg: "14px", base: "12px" }}
-                icon={<MdMoneyOff size="32px" />}
-              />
+             
             </Box>
             <VStack align={"start"}>
-              <Text fontWeight={400} fontFamily="Poppins">
-                We do not support Ponzi schemes with no sustainable goal,
-                pyramid schemes, or MLM (multi-level marketing scheme).
+            <Text fontWeight={500} fontSize="18px" lineHeight="24px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
+            Web2 project looking to adopt and bridge blockchain/Web3 technology
               </Text>
             </VStack>
           </HStack>
@@ -105,18 +93,11 @@ export default function RequirementList() {
               background={" #00A3FF"}
               rounded={"10px"}
             >
-              <IconButton
-                variant="unstyled"
-                width={{ lg: "14px", base: "12px" }}
-                icon={<FaExternalLinkAlt size="32px" />}
-              />
+            
             </Box>
             <VStack align={"start"}>
-              <Text fontWeight={400} fontFamily="Poppins">
-                Web2 who want to bridge to blockchain / Web3. Project should
-                emphasize the utility of blockchain, and increase value of using
-                blockchain for the community or usage it will serve in its value
-                proposition.
+            <Text fontWeight={500} fontSize="18px" lineHeight="24px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
+            Web3 Startups
               </Text>
             </VStack>
           </HStack>
@@ -131,16 +112,11 @@ export default function RequirementList() {
               background={" #00A3FF"}
               rounded={"10px"}
             >
-              <IconButton
-                variant="unstyled"
-                width={{ lg: "14px", base: "12px" }}
-                icon={<GiSwordsPower size="32px" />}
-              />
+             
             </Box>
             <VStack align={"start"}>
-              <Text fontWeight={400} fontFamily="Poppins">
-                Teams with have good intentions and are dedicated to the
-                long-term sustainability of their project.
+            <Text fontWeight={500} fontSize="18px" lineHeight="24px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
+            NFT projects must have a real-world application such as tokenizing real-world assets, profit sharing, etc
               </Text>
             </VStack>
           </HStack>
@@ -155,14 +131,10 @@ export default function RequirementList() {
               background={" #00A3FF"}
               rounded={"10px"}
             >
-              <IconButton
-                variant="unstyled"
-                width={{ lg: "14px", base: "12px" }}
-                icon={<GiImpactPoint size="32px" />}
-              />
+             
             </Box>
             <VStack align={"start"}>
-              <Text fontWeight={400} fontFamily="Poppins">
+            <Text fontWeight={500} fontSize="18px" lineHeight="24px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
                 We accept metaverse projects, however, they must have a
                 real-world application and a sustainable ecosystem that supports
                 long-term community and user growth. Real-world applications
@@ -182,17 +154,12 @@ export default function RequirementList() {
               background={" #00A3FF"}
               rounded={"10px"}
             >
-              <IconButton
-                variant="unstyled"
-                width={{ lg: "14px", base: "12px" }}
-                icon={<MdOutlineChecklist size="32px" />}
-              />
+              
             </Box>
             <VStack align={"start"}>
-              <Text fontWeight={400} fontFamily="Poppins">
-                Teams with commitment to incubation journey that has been laid
-                out and commitment to complete goals within it and milestones
-                after a project ascend into fundraise phase within WeFund
+            <Text fontWeight={500} fontSize="18px" lineHeight="24px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
+            We DO NOT support Ponzi schemes, multi-level marketing, or pyramid schemes
+
               </Text>
             </VStack>
           </HStack>
@@ -207,17 +174,12 @@ export default function RequirementList() {
               background={" #00A3FF"}
               rounded={"10px"}
             >
-              <IconButton
-                variant="unstyled"
-                width={{ lg: "14px", base: "12px" }}
-                icon={<MdImageNotSupported size="32px" />}
-              />
+              
             </Box>
             <VStack align={"start"}>
-              <Text fontWeight={400} fontFamily="Poppins">
-                Can not be an NFT collection without utility. What does it mean?
-                Only NFT with real-world applications can accept, such as NFT
-                for tokenizing real-world assets.
+            <Text fontWeight={500} fontSize="18px" lineHeight="24px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
+            Founders are dedicated to the long-term sustainability of their projects
+
               </Text>
             </VStack>
           </HStack>
@@ -232,17 +194,12 @@ export default function RequirementList() {
               background={" #00A3FF"}
               rounded={"10px"}
             >
-              <IconButton
-                variant="unstyled"
-                width={{ lg: "14px", base: "12px" }}
-                icon={<MdRealEstateAgent size="32px" />}
-              />
+              
             </Box>
             <VStack align={"start"}>
-              <Text fontWeight={400} fontFamily="Poppins">
-                We accept NFT projects, however, they must have a real-world
-                utility. Real-world utilities include asset ownership,
-                sustainable profit sharing, etc
+            <Text fontWeight={500} fontSize="18px" lineHeight="24px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign="justify">
+            Founders must follow and complete the full incubation program
+
               </Text>
             </VStack>
           </HStack>

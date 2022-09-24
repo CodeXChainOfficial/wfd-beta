@@ -11,7 +11,7 @@ export default function Hero() {
       alignItems="center"
       flexDirection="column"
       bgGradient="Linear(#058cd8, #4d188f, #2a0a31)"
-      height={{ base: "30em", md: "90vh", lg: "90vh" }}
+      height={{ base: "30em", md: "90vh", lg: "100vh" }}
     >
       <Image
         top="1em"

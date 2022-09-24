@@ -20,13 +20,16 @@ const newLocal = "column";
 const AboutMobile = () => (
   <Flex
     display={{ base: "flex", lg: "none" }}
-    alignItems="center"
+    alignItems="stretch"
+    position="relative"
     justifyContent="center"
     my={{ base: "5em" }}
     width={{ base: "98%" }}
     flexDirection={{ base: newLocal }}
     paddingLeft={{ base: "0" }}
     paddingRight={{ base: "0" }}
+    
+
   >
     <Image
       zIndex="3"
@@ -75,17 +78,18 @@ const AboutMobile = () => (
 );
 
 const AboutDesktop = () => (
-  <Container minW={{ base: "60em", xl: "container.ld"}} display={{ base: "none", lg: "block" }}>
+  <Container position="relative" minW={{ base: "30em", xl: "container.ld"}} display={{ base: "none", lg: "block" }}>
     <Stack
-      alignItems="center"
-      justifyContent="center"
-      direction={"column"}
-      my={{ base: "4em", md: "5em" }}
-      width={{ base: "100%" }}
-      px={{ base: "0", md: "10px" }}
+      width="100%"
+      textAlign="center"
+      alignItems="flex-end"
+      position="relative"
+      flexDirection="column"
+      height={{ base: "30em", md: "70vh", lg: "70vh" }}
+
     >
       
-      <Flex direction={"row"} width={{ base: "75%", xl: "110%" }} gap={12}>
+      <Flex direction={"row"} width={{ base: "75%", xl: "110%" }} gap={50} position="relative">
         <Box marginX={"50px"}>
           <Image
             width="250px"

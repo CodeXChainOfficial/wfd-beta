@@ -44,7 +44,8 @@ export default function Banner() {
             color={"white"}
             mb={"50px"}
           >
-           We Help Take Your Inspiring Projects <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>     to The Next Level</chakra.span>
+           We Help Take Your Blockchain Project 
+ <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>     to The Next Level</chakra.span>
           </Text>
           <Box
             background={" rgba(0, 0, 19, 0.78)"}
@@ -65,10 +66,7 @@ export default function Banner() {
               Incubating the Best Web3 and Web2 Projects
             </Text>
             <Text mt={"12px"}>
-              WeFund is the leading Web3 and Web2 incubator and founder
-              community. We accept and incubate Web2 projects looking to bridge <br/>
-              blockchain or existing Web3 technologies with real-world
-              application and utility.
+            WeFund is the leading Web3 and Web2 incubation and founder community. We accept and incubate Web3 and Web2 projects looking to adopt blockchain technology with real-world application and utility
             </Text>
 
             <HStack w="100%" justify={"center"} mt="48px" spacing="20px">
@@ -102,7 +100,7 @@ export default function Banner() {
                   _hover={{ color: "#FFFFFF" }}
                   transition={"all 1s"}
                 >
-                  Apply to be Project on WeFund
+                  Apply Here 
                   <IconButton
                     variant="unstyled"
                     marginLeft={4}

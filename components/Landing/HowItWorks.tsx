@@ -189,18 +189,7 @@ export default function Works() {
         justifyContent={"flex-start"}
         width={{ base: "100%", md: "100%", lg: "100%" }}
       >
-        <Carousel
-          infinite
-          autoPlay={true}
-          swipeable={true}
-          draggable={true}
-          centerMode={true}
-          // showThumbs={false}
-          autoPlaySpeed={2000}
-          keyBoardControl={true}
-          responsive={responsive}
-          transitionDuration={500}
-        >
+        
           {advantages.map((e, i) => (
             <Flex
               key={i}
@@ -244,7 +233,7 @@ export default function Works() {
               </Text>
             </Flex>
           ))}
-        </Carousel>
+        
       </Flex>
     </Flex>
   );
