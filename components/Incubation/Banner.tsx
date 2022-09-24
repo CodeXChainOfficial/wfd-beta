@@ -38,14 +38,14 @@ export default function Banner() {
           <Text
             fontFamily="PilatExtended-Regular"
             fontSize={{ base: "16px", md: "36px" }}
-            lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
+            lineHeight={{ base: "30px", md: "1em", lg: "1em" }}
             letterSpacing={{ base: "0.022em" }}
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
             color={"white"}
             mb={"50px"}
           >
-           We Help Take Your Blockchain Project 
- <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>     to The Next Level</chakra.span>
+           We Help Take Your Blockchain Project      
+ <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>         to The Next Level</chakra.span>
           </Text>
           <Box
             background={" rgba(0, 0, 19, 0.78)"}
@@ -59,11 +59,13 @@ export default function Banner() {
               fontFamily="PilatExtended-Light"
               fontSize={{ base: "12px", md: "20px" }}
               fontWeight={"500"}
-              lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
+              lineHeight={{ base: "35px", md: "1em", lg: "1.1em" }}
               letterSpacing={{ base: "0.022em" }}
               textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
             >
-              Incubating the Best Web3 and Web2 Projects
+              Incubating the Best <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>WEB3 </chakra.span>
+  and  <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>       WEB2 </chakra.span>
+Projects
             </Text>
             <Text mt={"12px"}>
             WeFund is the leading Web3 and Web2 incubation and founder community. We accept and incubate Web3 and Web2 projects looking to adopt blockchain technology with real-world application and utility

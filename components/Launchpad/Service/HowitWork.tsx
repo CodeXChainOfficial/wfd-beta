@@ -5,23 +5,19 @@ export default function HowItWork() {
   return (
     <>
       <Center>
-        <Text
-          color="white"
-          fontFamily="PilatExtended-Bold"
-          fontSize={{ base: "16px", md: "18px", lg: "24px" }}
-          textAlign={"center"}
-        >
-          HOW IT WORK <br />
+      <Text fontWeight={1000} fontSize="45px" lineHeight="30px" letterSpacing="-1.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign='center'>
+
+          HOW IT WORK <br /> <br />
           <chakra.span
             color={"#02A4FF"}
-            fontSize={{ base: "18px", md: "24px", lg: "32px" }}
           >
             CROWDFUNDING LAUNCHPAD
+            <br /><br />
           </chakra.span>
         </Text>
       </Center>
-      <Center marginTop={"16px"} marginBottom={{ base: "50px", md: "200px", lg: "250px" }}>
-        <Text width="70%" textAlign="center" color= "#ADB2DB">
+      <Center marginTop={"10px"} marginBottom={{ base: "20px", md: "100px", lg: "100px" }}>
+      <Text fontWeight={1000} fontSize="28px" lineHeight="24px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign='center'>
           WeFund is a multichain incubation and crowdfunding platform that uses
           blockchain and smart contracts to make the process more transparent,
           hold project creators accountable, and minimize risk for project

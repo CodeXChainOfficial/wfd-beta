@@ -39,7 +39,7 @@ export default function Whyjoin() {
       minHeight={{ base: "95vh", md: "95vh", lg: "95vh" }}
     >
       <Flex width={"50%"} paddingLeft="10%">
-        <Image width="500px" src="/media/whyjoin.png" />
+        <Image width="400px" src="/media/whyjoin.png" />
       </Flex>
       <Flex width={"50%"} flexDirection="column" gap={24}>
         <Text
@@ -52,7 +52,7 @@ export default function Whyjoin() {
           <br />
           <chakra.span
             color={"#02A4FF"}
-            fontSize={"42px"}
+            fontSize={"38px"}
             fontFamily={"PilatExtended-Bold"}
           >
             {" "}
@@ -72,14 +72,11 @@ export default function Whyjoin() {
               <Text
                 color={" #0FB1F5"}
                 fontFamily={"PilatExtended-Regular"}
-                fontSize={"24px"}
+                fontSize={"22px"}
               >
                 Support Impactful Real-World Project
               </Text>
               <Text>
-                WeFund strive to work toward where blockchain provide good
-                impact to people. WeFund is a multichain incubation and
-                crowdfunding platform for blockchain and real-world projects.
                 WeFund's mission is to host high-quality projects that align
                 with WeFund's investor community and have real-world
                 applications by leveraging blockchain technology
@@ -92,13 +89,13 @@ export default function Whyjoin() {
               marginRight={4}
               aria-label="Twitter"
               width={{ lg: "14px", base: "12px" }}
-              icon={<FaUsersCog size={"48px"} />}
+              icon={<FaUsersCog size={"38px"} />}
             />
             <VStack align={"left"}>
               <Text
                 color={" #0FB1F5"}
                 fontFamily={"PilatExtended-Regular"}
-                fontSize={"24px"}
+                fontSize={"22px"}
               >
                 Network of Expertise
               </Text>
@@ -115,15 +112,15 @@ export default function Whyjoin() {
               marginRight={4}
               aria-label="Twitter"
               width={{ lg: "14px", base: "12px" }}
-              icon={<MdMoneyOff size={"48px"} />}
+              icon={<MdMoneyOff size={"38px"} />}
             />
             <VStack align={"left"}>
               <Text
                 color={" #0FB1F5"}
                 fontFamily={"PilatExtended-Regular"}
-                fontSize={"24px"}
+                fontSize={"22px"}
               >
-                Free of Charge
+                Free
               </Text>
               <Text>
                 We do not charge any fee or commission to the projects. Unlike
@@ -141,13 +138,13 @@ export default function Whyjoin() {
               marginRight={4}
               aria-label="Twitter"
               width={{ lg: "14px", base: "12px" }}
-              icon={<FaBoxes size={"48px"} />}
+              icon={<FaBoxes size={"38px"} />}
             />
             <VStack align={"left"}>
               <Text
                 color={" #0FB1F5"}
                 fontFamily={"PilatExtended-Regular"}
-                fontSize={"24px"}
+                fontSize={"22px"}
               >
                 Resourceful
               </Text>
