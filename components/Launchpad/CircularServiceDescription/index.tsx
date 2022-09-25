@@ -8,7 +8,9 @@ import {
   Text,
   useMediaQuery,
 } from "@chakra-ui/react";
-import Fade from "react-reveal/Fade";
+import { FaExternalLinkAlt, FaGlobeAsia } from "react-icons/fa";
+import { GiSwordsPower } from "react-icons/gi";
+import { MdMoneyOff } from "react-icons/md";
 import CircleTitle from "./CircleTitle";
 
 export default function CircularServiceDescription() {
@@ -62,7 +64,6 @@ export default function CircularServiceDescription() {
           width="100%"
           height="100%"
           border="solid 4px #0FB1F5"
-          
           borderRadius="50%"
         />
         <Flex
@@ -116,7 +117,6 @@ export default function CircularServiceDescription() {
         height={{ base: "200px", md: "400px" }}
         position="relative"
         background="#000000"
-
       >
         <Center
           position="absolute"
@@ -126,7 +126,6 @@ export default function CircularServiceDescription() {
           <Image src="/media/Home/Circular_BG.svg" />
         </Center>
       </Box>
-      
     </Flex>
   );
 }
@@ -136,20 +135,24 @@ const CONTENTS = [
     title: "Launchpad",
     content:
       "WeFund through partners offer swap services accross multiple chain and tokens",
+    icon: FaGlobeAsia,
   },
   {
     title: "Acceleration",
     content:
       "Acceleration service for project on incubation that want their development accelerated and reserved for fast paced project ready to go to fundraise soon",
+    icon: MdMoneyOff,
   },
   {
     title: "Swap serice",
     content:
       "WeFund through partners offer swap services accross multiple chain and tokens",
+    icon: FaExternalLinkAlt,
   },
   {
     title: "Incubation",
     content:
       "Incubation service of WeFund that offers well packaged program and partnership network to help project grow from idea to realisation",
+    icon: GiSwordsPower,
   },
 ];

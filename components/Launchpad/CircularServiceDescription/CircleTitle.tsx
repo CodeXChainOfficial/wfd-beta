@@ -30,7 +30,18 @@ const CircleTitle = ({ w, r, angle, index, selectComp, data }: Props) => {
       transition="all 1s ease 0s"
       onClick={() => selectComp(index)}
     >
-      <Text>{data.title}</Text>
+      <Flex
+        position="relative"
+        w="100%"
+        h="100%"
+        justify="center"
+        align="center"
+      >
+        <Text color="white">{data.title}</Text>
+        <Flex position="absolute">
+          <data.icon size={`${r / 2}px`} color="red" opacity="10%" />
+        </Flex>
+      </Flex>
     </Flex>
   );
 };
