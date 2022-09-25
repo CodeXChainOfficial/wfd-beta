@@ -336,9 +336,8 @@ export default function InvestStep3() {
       >
         <Box
           w={{ base: "90%", md: "600px", lg: "800px" }}
-          bgGradient={
-            "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
-          }
+          background={"linear-gradient(93.16deg, #002E87 2.65%, #0A0131 87.13%)"}
+
           backdropBlur={"54px"}
           pt="30px"
           style={{ fontFamily: "Sk-Modernist" }}

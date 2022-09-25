@@ -28,9 +28,10 @@ const ProjectInformations: FunctionComponent<Props> = ({
 }) => {
   return (
     <VStack
-      height={{ lg: "484px" }}
+      height={{ lg: "400px" }}
       w="full"
-      paddingLeft={{ lg: "15px" }}
+      paddingLeft={{ lg: "15px" }
+      }
     >
       <Text
         mb="32px"
@@ -75,7 +76,8 @@ const ProjectInformations: FunctionComponent<Props> = ({
             Backers
           </Text>
         </Flex>
-        <Flex alignSelf={"flex-end"}>
+        <Flex alignSelf={"flex-end"}
+        background="002E87">
           <Text
             color={" #69E4FF"}
             fontFamily={"Pilat-Extended"}
@@ -159,7 +161,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
         w="full"
       >
         <Flex
-          backgroundColor="#140453"
+          backgroundColor="#002E87"
           pl="24px"
           pr="12px"
           pt="12px"
@@ -190,9 +192,9 @@ const ProjectInformations: FunctionComponent<Props> = ({
                 value={totalBackedPercent}
                 p="8px"
                 size="100px"
-                color="#1F71E2"
+                color="#002E87"
               >
-                <CircularProgressLabel color="white">
+                <CircularProgressLabel color="GRAY">
                   {totalBackedPercent}%
                 </CircularProgressLabel>
               </CircularProgress>

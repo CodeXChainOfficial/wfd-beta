@@ -208,7 +208,6 @@ export default function CompletedSales() {
           borderColor={"#6ACEF5"}
           maxH={"800px"}
           marginY={"32px"}
-          overflowY={"scroll"}
           css={{
             "&::-webkit-scrollbar": {
               width: "8px",

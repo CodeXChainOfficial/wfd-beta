@@ -102,9 +102,7 @@ export default function InvestStep4() {
       >
         <Box
           w={{ base: "300px", md: "600px", lg: "800px" }}
-          bgGradient={
-            "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
-          }
+          background={"linear-gradient(93.16deg, #002E87 2.65%, #0A0131 87.13%)"}
           backdropBlur={"54px"}
           pt="30px"
           style={{ fontFamily: "Sk-Modernist" }}
@@ -113,7 +111,6 @@ export default function InvestStep4() {
           <Box
             width={"100%"}
             style={{ fontFamily: "Sk-Modernist-Regular" }}
-            align="center"
             px={"2em"}
           >
             <Flex

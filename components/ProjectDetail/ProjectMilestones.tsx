@@ -29,7 +29,7 @@ export default function ProjectMileStones({
       justify="center"
       align="center"
       flexDirection="column"
-      backgroundColor="#140453"
+      backgroundColor="#002E87"
       display={{ base: "none", md: "block", lg: "block" }}
     >
       <Flex

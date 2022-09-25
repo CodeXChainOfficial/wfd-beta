@@ -29,7 +29,7 @@ export default function PTabs() {
           >
             <Box display="inline-flex" rounded="md" shadow="md">
               <Link
-                href="#Upcoming"
+                href="#UpcomingProject.tsx"
                 w="full"
                 display="inline-flex"
                 alignItems="center"

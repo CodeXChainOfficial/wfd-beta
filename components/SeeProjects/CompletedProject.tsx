@@ -151,7 +151,6 @@ export default function ProjectActive() {
           borderRadius={"16px"}
           maxH={"480px"}
           marginY={"32px"}
-          overflowY={"scroll"}
           background="rgba(123, 126, 136, 0.1)"
           css={{
             "&::-webkit-scrollbar": {

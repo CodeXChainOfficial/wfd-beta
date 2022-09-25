@@ -31,7 +31,8 @@ export default function ProjectTeamMember({ data }: { data: any }) {
           maxH="300px"
           overflowY="auto"
           w="full"
-          backgroundColor="#140453"
+          backgroundColor="#002E87"
+          
           borderRadius="10px"
           position="relative"
           m="12px"

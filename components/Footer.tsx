@@ -156,7 +156,7 @@ const PagesLinks = () => (
 export default function Footer() {
   return (
     <Center
-      background={"linear-gradient(93.16deg, #140453 2.65%, #0A0131 87.13%)"}
+      background={"linear-gradient(93.16deg, #002E87 2.65%, #0A0131 87.13%)"}
     >
       <Flex
         id="footerBottomStyle"

@@ -107,14 +107,7 @@ export default function ProjectDetail() {
         position="absolute"
         src="/media/Home/bg_coin_2.svg"
       />
-      <Image
-        zIndex="0"
-        bottom="0"
-        width="100%"
-        objectFit="contain"
-        position="absolute"
-        src="/media/background_streak.svg"
-      />
+     
       <Center zIndex="10">
         <Text
           color="#00A3FF"

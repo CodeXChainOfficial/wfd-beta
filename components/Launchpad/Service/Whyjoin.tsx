@@ -152,6 +152,10 @@ export default function Whyjoin() {
                 The WeFund team is dedicated to helping you in any way possible.
                 This inclhudes developer, marketing, documentation, and other
                 business-related support.
+                <br/>
+                <br/>
+                <br/>
+
               </Text>
             </VStack>
           </HStack>
