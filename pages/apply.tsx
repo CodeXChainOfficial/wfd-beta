@@ -305,9 +305,8 @@ export default function CreateProject() {
           <Flex width="100%" justify="center" mb={"150px"} zIndex={"1"}>
             <Box
               w={{ base: "xs", sm: "xs", md: "2xl", lg: "2xl", xl: "3xl" }}
-              bgGradient={
-                "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
-              }
+              background={"linear-gradient(93.16deg, #002E87 2.65%, #0A0131 87.13%)"}
+
               backdropBlur={"54px"}
               borderTopColor="transparent"
               fontFamily="Sk-Modernist-Regular"

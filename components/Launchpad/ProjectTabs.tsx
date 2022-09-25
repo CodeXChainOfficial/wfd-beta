@@ -10,6 +10,8 @@ export default function PTabs() {
           px={4}
           py={20}
           textAlign={{ base: "left", md: "center" }}
+          background={"linear-gradient(93.16deg, #0A0131 2.65%, #0A0131 87.13%)"}
+
         >
           {" "}
           <Center marginTop={"48px"}>

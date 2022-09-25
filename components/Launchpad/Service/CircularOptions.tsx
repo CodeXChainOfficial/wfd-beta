@@ -121,7 +121,7 @@ export default function CircularOptions(prop: CircularServiceDescriptionProp) {
               width: symbolSize,
               height: symbolSize,
               backgroundImage:
-                "linear-gradient(180deg, rgba(15.34, 176.87, 245.44, 1), rgba(0, 102, 153, 1))",
+                "#000000",
               borderRadius: 9999,
             }}
           />

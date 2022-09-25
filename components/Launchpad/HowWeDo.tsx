@@ -44,6 +44,8 @@ export default function HowWeDo() {
       flexWrap="wrap"
       direction="row"
       backgroundSize={"contain"}
+      background="#000000"
+
       mt={{ base: "1em", md: "421px" }}
       mb={{ base: "4em", md: "8em" }}
       justify="center"

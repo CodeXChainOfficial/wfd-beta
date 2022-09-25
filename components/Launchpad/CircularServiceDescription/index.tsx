@@ -62,6 +62,7 @@ export default function CircularServiceDescription() {
           width="100%"
           height="100%"
           border="solid 4px #0FB1F5"
+          
           borderRadius="50%"
         />
         <Flex
@@ -114,6 +115,8 @@ export default function CircularServiceDescription() {
         width="100%"
         height={{ base: "200px", md: "400px" }}
         position="relative"
+        background="#000000"
+
       >
         <Center
           position="absolute"
@@ -123,6 +126,7 @@ export default function CircularServiceDescription() {
           <Image src="/media/Home/Circular_BG.svg" />
         </Center>
       </Box>
+      
     </Flex>
   );
 }

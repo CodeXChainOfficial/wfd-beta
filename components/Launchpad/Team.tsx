@@ -4,7 +4,7 @@ import React from "react";
 const team = [
   {
     name: "Andrea Bello",
-    role: "CEO CTO & Co-Founder",
+    role: "CEO & Co-Founder",
     desc: "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the Hackathon organized by Terraformlab.",
     link: "https://linkedin.com/in/bello-andrea-380572b4/",
     imgsrc: "/media/Team/wfd-andrea.jpg",
@@ -32,7 +32,7 @@ const team = [
   },
   {
     name: "Andrea Bello",
-    role: "CEO CTO & Co-Founder",
+    role: "CEO & Co-Founder",
     desc: "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the Hackathon organized by Terraformlab.",
     link: "https://linkedin.com/in/bello-andrea-380572b4/",
     imgsrc: "/media/Team/wfd-andrea.jpg",
@@ -69,6 +69,8 @@ export default function Team() {
       flexDirection="column"
       pb={{ base: "5em", md: "8em", lg: "10em" }}
       fontFamily="PilatExtended-Regular"
+      background={"linear-gradient(93.16deg, #000000 2.65%, #000000 87.13%)"}
+
     >
       <Text
         textAlign="center"
@@ -83,6 +85,7 @@ export default function Team() {
         flexWrap={"wrap"}
         flexDirection={{ base: "column", md: "row" }}
         backgroundSize={"contain"}
+        
         mt={{ base: "1em", md: "1em", lg: "1em" }}
         mb={{ base: "4em", md: "8em", lg: "10em" }}
         width={{ base: "100%", md: "90%" }}
@@ -99,21 +102,22 @@ export default function Team() {
             alignItems={"center"}
             flexDirection="column"
             justifyContent={"center"}
-            backgroundColor="#120D30"
+            backgroundColor="#120D3F"
             m={{ base: ".2em", md: ".5em", lg: ".5em" }}
             p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
             width={{ base: "100%", md: "18em", lg: "13em", xl: "16em" }}
             height={{ base: "24em", md: "30em", lg: "28em" }}
             borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
+            
           >
             <Avatar src={e.imgsrc} size="xl" />
             <Text
               mt={"1em"}
               width="95%"
               color={"white"}
-              fontFamily="Montserrat"
+              fontFamily="Arial.Bold"
               fontSize="18px"
-              fontWeight="700"
+              fontWeight="900"
             >
               {e.name}
             </Text>
@@ -121,25 +125,26 @@ export default function Team() {
               mt={"1em"}
               width="95%"
               color={"white"}
-              fontFamily="Poppins"
-              fontSize="14px"
-              fontWeight="500"
+              fontFamily="Arial.Bold"
+              fontSize="16px"
+              fontWeight="700"
             >
               {e.role}
             </Text>
             <Text
               mt={"1em"}
               width="95%"
-              color="#7B7E88"
-              fontFamily="Poppins"
-              fontSize="14px"
+              color="#FFFFFF"
+              fontFamily="Arial"
+              fontSize="16px"
               fontWeight="400"
+              align="center"
             >
               {e.desc}
             </Text>
             <Box
               cursor="pointer"
-              borderColor="rgba(0, 175.31, 113.24, 1)"
+              borderColor="#0FB1F5"
               mt="16px"
               pt="8px"
               pb="8px"
@@ -152,7 +157,7 @@ export default function Team() {
               justifyContent="center"
               onClick={() => window.open(e.link, "_blank")}
             >
-              <Text>Read More</Text>
+              <Text>Linkedin</Text>
             </Box>
           </Flex>
         ))}
