@@ -10,16 +10,18 @@ export default function Hero() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      bgGradient="Linear(#058cd8, #4d188f, #2a0a31)"
       height={{ base: "30em", md: "90vh", lg: "100vh" }}
+      background={"linear-gradient(93.16deg, #002E87 2.65%, #0A0131 87.13%)"}
+
     >
       <Image
         top="1em"
         width="100%"
-        position="absolute"
+        position="fixed"
         objectFit="contain"
         src="/media/Home/2.png"
       />
+      
       <Container
         position={"relative"}
         mt={{ base: "15vh", lg: "20vh" }}
