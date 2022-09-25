@@ -34,28 +34,21 @@ const TeamMemberInput: FunctionComponent<Props> = ({
           {type[index]?.length}/100 words
         </Text>
       </Flex>
-      <InputTransition
-        unitid={`${typeText}${index}`}
-        selected={isNull(type[index]) ? false : true}
-        width="100%"
-        height="55px"
-        rounded="md"
-      >
         <InputGroup
           style={{ background: "rgba(255, 255, 255, 0.05)" }}
           size="sm"
           border="0px"
         >
           <Input
-            style={{ border: "0", background: "transparent" }}
+            style={{ border: "1.5px solid rgba(255, 255, 255, 0.2)", background: "transparent" }}
             type="text"
             h="55px"
+            placeholder="Type here"
             rounded="md"
             value={type[index]}
             onChange={(e) => onChangeType(e, index)}
           />
         </InputGroup>
-      </InputTransition>
     </Box>
   );
 };

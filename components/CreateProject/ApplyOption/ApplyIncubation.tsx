@@ -35,12 +35,20 @@ const ApplySeedraising: FunctionComponent<Props> = ({ needs, setNeeds }) => {
       ></Flex>
       {needs.map((item: any, index: number) => {
         return (
-          <Flex direction="column" key={index}>
+          <Flex
+            direction="column"
+            key={index}
+            background={"rgba(12, 2, 24, 0.5)"}
+            padding={12}
+            rounded={4}
+            mt={4}
+          >
             <Text
-              fontSize={{ base: "22px", md: "25px" }}
-              color="#4790f5"
+              fontSize={{ base: "14px", md: "18px" }}
+              fontFamily={"PilatExtended-Bold"}
+              color="#ffff"
               mb="10px"
-              align={"center"}
+              align={"left"}
             >
               Incubation needs {index + 1}
             </Text>

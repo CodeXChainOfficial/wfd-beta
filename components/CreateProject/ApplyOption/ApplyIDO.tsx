@@ -30,12 +30,15 @@ const ApplyIDO: FunctionComponent<Props> = ({
   setIDOVesting,
 }) => {
   return (
-    <Flex direction={"column"}>
+    <Flex direction={"column"} 
+    borderBottom={"1px solid rgba(255, 255, 255, 0.3)"}
+    paddingBottom={12}>
       <Stack
         mt="30px"
         direction={{ base: "column", md: "row", lg: "row" }}
         spacing="30px"
       >
+        
         <CustomNumber
           typeText="IDO Amount"
           type={IDOAmount}

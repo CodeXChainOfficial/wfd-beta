@@ -289,24 +289,43 @@ export default function CreateProject() {
   }
 
   return (
-    <PageLayout
-      title="Project Apply"
-      subTitle1="Apply"
+    <Box
+      title=" "
+      subTitle1=" "
       subTitle2="Apply for your project"
       subTitle3={""}
+      width="full"
+      padding={4}
+      mt={24}
     >
+      <Flex px={{ base: "40px", md: "80px", lg: "120px" }} 
+        justify="center">
+        <Text
+          fontSize={{ base: "12px", sm: "16px", md: "28px", lg: "32px" }}
+          color="#0FB1F5"
+          fontWeight={"900"}
+        >
+          Apply &nbsp;
+        </Text>
+        <Text
+          as={"span"}
+          fontSize={{ base: "12px", sm: "16px", md: "28px", lg: "32px" }}
+          fontWeight={"900"}
+        >
+          New Project
+        </Text>
+      </Flex>
       <Flex
         width="100%"
         justify="center"
         py={"4em"}
-        backgroundImage="url('/media/Home/2.png')"
+        // backgroundImage="url('/media/Home/2.png')"
       >
         <Box w={{ base: "200px", md: "600px", lg: "800px" }}>
           <Flex width="100%" justify="center" mb={"150px"} zIndex={"1"}>
             <Box
               w={{ base: "xs", sm: "xs", md: "2xl", lg: "2xl", xl: "3xl" }}
-              background={"linear-gradient(93.16deg, #002E87 2.65%, #0A0131 87.13%)"}
-
+              background={"#120037"}
               backdropBlur={"54px"}
               borderTopColor="transparent"
               fontFamily="Sk-Modernist-Regular"
@@ -446,6 +465,6 @@ export default function CreateProject() {
       </Flex>
 
       <Footer />
-    </PageLayout>
+    </Box>
   );
 }

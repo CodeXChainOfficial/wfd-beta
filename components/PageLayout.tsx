@@ -20,14 +20,14 @@ const PageLayout: FunctionComponent<Props> = (props) => {
           style={{ fontFamily: "PilatExtended-Regular" }}
     >
       <Flex 
-          px={{ base: "40px", md: "80px", lg: "120px" }}>
-            <Text
+          px={{ base: "40px", md: "80px", lg: "120px" }} align="center"> 
+            {/* <Text
               fontSize={{ base: "10px", sm: "12px", md: "16px", lg: "16px" }}
               fontWeight="normal"
               color={"rgba(255, 255, 255, 0.54)"}
             >
               Home &gt;&nbsp;
-            </Text>
+            </Text> */}
             <Text
               fontSize={{ base: "10px", sm: "12px", md: "16px", lg: "16px" }}
               fontWeight="normal"

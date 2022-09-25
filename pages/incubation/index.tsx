@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider } from "@chakra-ui/react";
 
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
@@ -38,9 +38,14 @@ export default function Launchpad() {
     <ChakraProvider resetCSS theme={theme}>
       <Container>
         <Banner />
+        <Box height="100px" />
         <Whatis />
         <RequirementList />
+        
+        <Box height="100px" />
         <WhyIncubate />
+        
+        <Box height="100px" />
         <IncubatedCarousel />
         <MentorPartners />
         <Partners />

@@ -25,25 +25,17 @@ const CustomTextarea: FunctionComponent<Props> = ({
           {type?.length}/3000 words
         </Text>
       </Flex>
-      <InputTransition
-        unitid={"projectdescription" + typeText}
-        selected={type == "" ? false : true}
-        width="100%"
-        height="175px"
-        rounded="md"
-        style={{ background: "transparent", border: "0" }}
-      >
         <Textarea
-          style={{ background: "transparent", border: "0" }}
+          style={{ border: " 1.5px solid rgba(255, 255, 255, 0.2)", background: "rgba(0, 0, 0, 0.25)" }}
           value={type}
           onChange={(e) => {
             onChangeType(e);
           }}
+          placeholder="Your Project Description"
           rounded="md"
           size="sm"
           h="175px"
         />
-      </InputTransition>
     </Box>
   );
 };

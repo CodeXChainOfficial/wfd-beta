@@ -27,16 +27,10 @@ const CustomEmailInput: FunctionComponent<Props> = ({
       <Flex justify="space-between">
         <Text mb="20px">{typeText}</Text>
       </Flex>
-      <InputTransition
-        unitid={"transitionemail" + typeText}
-        selected={type == "" ? false : true}
-        width="100%"
-        height="55px"
-        rounded="md"
-      >
+     
         <InputGroup
           size="sm"
-          style={{ background: "rgba(255, 255, 255, 0.05)" }}
+          style={{ border: "1.5px solid rgba(255, 255, 255, 0.2)", background: "rgba(255, 255, 255, 0.05)" }}
         >
           <InputLeftElement
             style={{ background: "transparent", border: "0" }}
@@ -46,7 +40,6 @@ const CustomEmailInput: FunctionComponent<Props> = ({
             // children=" "
           />
           <Input
-            style={{ background: "transparent", border: "0" }}
             type="email"
             h="55px"
             placeholder="example@email.com"
@@ -57,7 +50,6 @@ const CustomEmailInput: FunctionComponent<Props> = ({
             }}
           />
         </InputGroup>
-      </InputTransition>
     </Box>
   );
 };

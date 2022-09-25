@@ -31,29 +31,22 @@ const CustomInput: FunctionComponent<Props> = ({
           {type?.length}/100 words
         </Text>
       </Flex>
-      <InputTransition
-        unitid={"inputtransition" + typeText}
-        selected={type == "" ? false : true}
-        width="100%"
-        height="55px"
-        rounded="md"
-      >
         <InputGroup
-          style={{ background: "rgba(255, 255, 255, 0.05)" }}
+          style={{ background: "rgba(0, 0, 0, 0.25)" }}
           size="sm"
           border="0px"
         >
           <Input
-            style={{ border: "0", background: "transparent" }}
+            style={{ border: " 1.5px solid rgba(255, 255, 255, 0.2)", background: "transparent" }}
             type="text"
             h="55px"
             rounded="md"
+            placeholder="Type here"
             value={type}
             onChange={(e) => onChangeType(e)}
             // readOnly=
           />
         </InputGroup>
-      </InputTransition>
     </Box>
   );
 };

@@ -23,17 +23,9 @@ const ProjectFundraiseOption: FunctionComponent<Props> = ({
       <Flex justify="space-between">
         <Text mb="20px">Fundraise Option</Text>
       </Flex>
-      <InputTransition
-        unitid="projectchain"
-        selected={prjFundraise == "" ? false : true}
-        width="100%"
-        height="55px"
-        rounded="md"
-        background="rgba(255, 255, 255, 0.05)"
-      >
         <Select
           id="prjchain"
-          style={{ background: "parent", border: "0" }}
+          style={{ border: " 1.5px solid rgba(255, 255, 255, 0.2)", background: "rgba(255, 255, 255, 0.05)" }}
           h="55px"
           size="sm"
           w="full"
@@ -50,7 +42,6 @@ const ProjectFundraiseOption: FunctionComponent<Props> = ({
           <option style={{ backgroundColor: "#1B0645" }}>Token & Equity</option>
           <option style={{ backgroundColor: "#1B0645" }}>Others</option>
         </Select>
-      </InputTransition>
     </Box>
   );
 };
