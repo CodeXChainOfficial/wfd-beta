@@ -102,7 +102,7 @@ export default function InvestStep4() {
       >
         <Box
           w={{ base: "300px", md: "600px", lg: "800px" }}
-          background={"linear-gradient(93.16deg, #002E87 2.65%, #0A0131 87.13%)"}
+          background="#0A0131"
           backdropBlur={"54px"}
           pt="30px"
           style={{ fontFamily: "Sk-Modernist" }}

@@ -32,7 +32,6 @@ import {
 import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
 import { RiUpload2Line } from "react-icons/ri";
 import Footer from "../../components/Footer";
-import { useContainerDimensions } from "../../utils/dimension";
 
 export default function UserSideSnippet() {
   const { state, dispatch } = useStore();
@@ -294,7 +293,7 @@ export default function UserSideSnippet() {
                         lineHeight={"160%"}
                         align={"center"}
                       >
-                        {projectCount}
+                       {projectCount} 
                       </Text>
                     </Box>
                     <Text fontWeight="750" fontSize="21px" lineHeight={"160%"}>
@@ -315,7 +314,10 @@ export default function UserSideSnippet() {
                         lineHeight={"160%"}
                         align={"center"}
                       >
+                        
                         {projectCount}
+
+                        
                       </Text>
                     </Box>
                     <Text fontWeight="750" fontSize="21px" lineHeight={"160%"}>
@@ -369,7 +371,7 @@ export default function UserSideSnippet() {
                       bg={"white"}
                       boxShadow={"2xl"}
                       rounded={"md"}
-                      bg="#120D30"
+                      background="#120D30"
                     >
                       <Flex direction="row">
                         <Box
