@@ -17,6 +17,13 @@ const team = [
     imgsrc: "/media/Team/ika.png",
   },
   {
+    name: "John McLean",
+    role: "CO-Founder and Legal",
+    desc: "",
+    link: "",
+    imgsrc: "",
+  },
+  {
     name: "Austin Taylor",
     role: "CCO",
     desc: "Comes from a background in investment and corporate finance. After completing his education he worked as a Business Analyst for Harman International in Seattle.",
@@ -30,13 +37,7 @@ const team = [
     link: "https://ae.linkedin.com/in/achuth-k-chandran-b17880102",
     imgsrc: "/media/Team/achuth.png",
   },
-  {
-    name: "Khiem Vuong",
-    role: "COO",
-    desc: "12+ years in finance. 3+ years in fintech start up company as a founder.",
-    link: "https://linkedin.com/in/bello-andrea-380572b4/",
-    imgsrc: "/media/Team/khiem.png",
-  },
+
   {
     name: "Tram Vo",
     role: "CTO",
@@ -44,18 +45,18 @@ const team = [
     imgsrc: "/media/Team/tram.png",
   },
   {
-    name: "Sang Tai",
-    role: "Head of Blockchain",
+    name: "Hardin",
+    role: "Project Manager",
     desc: "4+ years experience of developing  finance, trading applications. 2+ years experience of research, develop on blockchain industry.",
-    link: "https://linkedin.com/in/austintaylor19/",
-    imgsrc: "/media/Team/sang.png",
+    link: "",
+    imgsrc: "",
   },
   {
-    name: "Phat Nguyen",
-    role: "Head of Product",
+    name: "Marko",
+    role: "Smart Contract developer",
     desc: "7+ years of experience as a Senior DevOps Engineer at FPT, Galaxy, TikTikTrading. Specialized in streaming systems. Devops Lead Engineer at 2 project gamefi: Lunarush, Metaspets.",
-    link: "https://ae.linkedin.com/in/achuth-k-chandran-b17880102",
-    imgsrc: "/media/Team/phat.png",
+    link: "",
+    imgsrc: "",
   },
 ];
 
@@ -123,7 +124,7 @@ export default function Team() {
               width="95%"
               color={"white"}
               fontFamily="Arial.Bold"
-              fontSize="16px"
+              fontSize="14px"
               fontWeight="700"
             >
               {e.role}
@@ -133,7 +134,7 @@ export default function Team() {
               width="95%"
               color="#FFFFFF"
               fontFamily="Arial"
-              fontSize="16px"
+              fontSize="12px"
               fontWeight="400"
               align="center"
             >

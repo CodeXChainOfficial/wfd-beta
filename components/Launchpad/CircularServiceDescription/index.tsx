@@ -96,8 +96,8 @@ export default function CircularServiceDescription() {
         >
           {CONTENTS.map((value, index) => (
             <Flex
-              w="70%"
-              h="70%"
+              w="50%"
+              h="50%"
               position="absolute"
               justify="center"
               align="center"

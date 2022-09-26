@@ -22,7 +22,7 @@ const CircleTitle = ({ w, r, angle, index, selectComp, data }: Props) => {
       top={w / 2 - (w / 2) * Math.cos(degToRad(angle)) - r / 2}
       key={index}
       id={`title${index}`}
-      background="linear-gradient(180deg, #0FB1F5 0%, #006699 100%)"
+      background="#0FB1F5"
       borderRadius="50%"
       justify="center"
       align="center"
@@ -37,9 +37,9 @@ const CircleTitle = ({ w, r, angle, index, selectComp, data }: Props) => {
         justify="center"
         align="center"
       >
-        <Text color="white">{data.title}</Text>
+        <Text color="white" fontStyle="Arial.Bolt">{data.title}</Text>
         <Flex position="absolute">
-          <data.icon size={`${r / 2}px`} color="red" opacity="10%" />
+          <data.icon size={`${r / 2}px`} color="gray" opacity="30%" />
         </Flex>
       </Flex>
     </Flex>
