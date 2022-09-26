@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar, Flex, VStack, Text, Box, Spacer } from "@chakra-ui/react";
 
 export default function ProjectTitle({ data }: { data: any }) {
+  console.log(data)
   return (
     <>
       <Flex

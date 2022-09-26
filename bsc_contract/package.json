@@ -1,0 +1,58 @@
+{
+  "name": "@skylaunch/liquidity-staker",
+  "version": "1.0.3",
+  "author": "Chris Ciszak",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SkyLaunchFinance/liquidity-staker"
+  },
+  "files": [
+    "build"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "precompile": "rimraf ./build/",
+    "compile": "waffle",
+    "pretest": "yarn compile",
+    "test": "mocha",
+    "lint": "prettier ./test/**/*.ts --check",
+    "prepublishOnly": "yarn test",
+    "build-contracts": "sol-merger \"./contracts/*.sol\" ./build"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.4.2",
+    "@openzeppelin/contracts": "^4.5.0",
+    "@openzeppelin/contracts-upgradeable": "^4.5.1",
+    "@openzeppelin/truffle-upgrades": "^1.15.1",
+    "@truffle/hdwallet-provider": "^1.4.1",
+    "@uniswap/v2-periphery": "^1.1.0-beta.0",
+    "dotenv": "^16.0.0",
+    "sol-merger": "^3.1.0",
+    "truffle-plugin-verify": "^0.5.20",
+    "web3": "^1.4.0"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.5",
+    "@nomiclabs/hardhat-etherscan": "^3.0.1",
+    "@nomiclabs/hardhat-waffle": "^2.0.2",
+    "@openzeppelin/hardhat-upgrades": "^1.14.0",
+    "@types/chai": "^4.2.12",
+    "@types/mocha": "^8.0.3",
+    "@uniswap/lib": "^4.0.1-alpha",
+    "@uniswap/v2-core": "^1.0.1",
+    "chai": "^4.2.0",
+    "ethereum-waffle": "3.4.0",
+    "ethereumjs-util": "^7.0.5",
+    "ethers": "^5.5.4",
+    "hardhat": "^2.8.4",
+    "hardhat-gas-reporter": "^1.0.8",
+    "mocha": "^9.0.3",
+    "prettier": "^2.1.1",
+    "rimraf": "^3.0.2",
+    "solc": "^0.8.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  }
+}

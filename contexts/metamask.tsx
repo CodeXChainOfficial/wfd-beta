@@ -13,7 +13,11 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { BigNumber, ethers } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 
-import { WEFUND_BSC_ADDRESS, ERC20_ABI, ERROR_OPTION } from "../config/constants";
+import {
+  WEFUND_BSC_ADDRESS,
+  ERC20_ABI,
+  ERROR_OPTION,
+} from "../config/constants";
 
 declare let window: any;
 
@@ -93,7 +97,6 @@ export const useMetamaskStore = create(
         .div(10 ** 9);
 
       const chainId = get().chainId;
-      console.log(chainId)
       let chain = "";
       switch (chainId) {
         case 0x38:

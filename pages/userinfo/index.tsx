@@ -21,9 +21,9 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { toast } from "react-toastify";
 import { WEFUND_ID, SUCCESS_OPTION } from "../../config/constants";
-import { checkNetwork } from "../../utils/utility";
+import { checkNetwork, ShortenAddress } from "../../utils/utility";
 
-import { useKeplrWallet } from "../../contexts/keplrWallet";
+import { useMetamaskWallet } from "../../contexts/metamask";
 import {
   useCommunityData,
   useProjectData,
@@ -37,46 +37,58 @@ import { useContainerDimensions } from "../../utils/dimension";
 export default function UserSideSnippet() {
   const { state, dispatch } = useStore();
   const [contributes, setContributes] = useState(0);
-  const [projectCount, setProjectCount] = useState(0);
-  const [activeTab, setActiveTab] = useState("Account");
-  const [tokens, setTokens] = useState<any[]>([]);
+  const [investedCount, setInvestedCount] = useState(0);
+  const [whitelistedCount, setWhitelistedCount] = useState(0);
+  const [prjShowDatas, setPrjShowDatas] = useState<any[]>([]);
 
   const projectData = useProjectData();
   const communityData = useCommunityData();
-  const wallet = useKeplrWallet();
-  const account = wallet.account;
+  const wallet = useMetamaskWallet();
+  const address = wallet.account;
 
   async function fetchContractQuery() {
     try {
-      let projectCount = 0;
-      let totalbacked = 0;
-      const tokens: any[] = [];
+      let invested_count = 0;
+      let whitelisted_count = 0;
+
+      let total_backed = 0;
+      let pShowDatas = [];
 
       for (let i = 0; i < projectData.length; i++) {
         const one = projectData[i];
+
+        let one_backed = 0;
         for (let j = 0; j < one.backer_states.length; j++) {
-          if (one.backer_states[j].backer_wallet == state.address) {
-            projectCount++;
-            totalbacked += one.backer_states[j].ust_amount.amount;
+          if (
+            one.backer_states[j].addr.toLowerCase() == address.toLowerCase()
+          ) {
+            invested_count++;
+
+            one_backed += one.backer_states[j].usdt_amount.toNumber();
+            one_backed += one.backer_states[j].usdc_amount.toNumber();
+            one_backed += one.backer_states[j].busd_amount.toNumber();
+          }
+        }
+        one_backed /= 10 ** 6;
+        total_backed += one_backed;
+
+        for (let j = 0; j < one.whitelist.length; j++) {
+          if (one.whitelist[j].addr.toLowerCase() == address.toLowerCase()) {
+            whitelisted_count++;
           }
         }
 
-        if (one.project_id != WEFUND_ID && one.token_addr != "") {
-          const userInfo: any = {};
-          const pending: any = {};
-          const tokenInfo: any = {};
-
-          tokens.push({
-            project_id: one.project_id,
-            symbol: tokenInfo.symbol,
-            amount: userInfo.total_amount - userInfo.released_amount,
-            pendingAmount: pending,
-          });
-        }
+        var obj: any = {};
+        obj.logo = projectData[i].project_logo;
+        obj.title = projectData[i].project_title;
+        obj.backed = one_backed;
+        pShowDatas.push(obj);
       }
-      setProjectCount(projectCount);
-      setContributes(totalbacked / 10 ** 6);
-      setTokens(tokens);
+      setInvestedCount(invested_count);
+      setWhitelistedCount(whitelisted_count);
+      setContributes(total_backed);
+      setPrjShowDatas(pShowDatas);
+      console.log(pShowDatas);
     } catch (e) {
       console.log(e);
     }
@@ -86,15 +98,7 @@ export default function UserSideSnippet() {
     fetchContractQuery();
   }, [state.address]);
 
-  async function addCommunityMember() {
-    // if (checkNetwork(state) == false) return false;
-    // for (let i = 0; i < communityData.length; i++) {
-    //   if (communityData[i] == state.address) {
-    //     toast("Already Registered", SUCCESS_OPTION);
-    //     return;
-    //   }
-    // }
-  }
+  async function addCommunityMember() {}
 
   function removeCommunityMember() {
     // if (checkNetwork(state) == false) return false;
@@ -193,10 +197,10 @@ export default function UserSideSnippet() {
                         fontSize="26px"
                         pt={"30px"}
                       >
-                        [0.00] Juno
+                        {contributes} USD
                       </Text>
                       <Text align="left" fontWeight="500" fontSize="18px">
-                        $ 0.00
+                        $ {contributes}
                       </Text>
                     </Stack>
                   </Flex>
@@ -464,7 +468,13 @@ export default function UserSideSnippet() {
             </Carousel>
           </Box>
         </Center>
-        <VStack pt="64px" spacing={4} marginBottom={6} align="center" mx={[0, 0, 6]}>
+        <VStack
+          pt="64px"
+          spacing={4}
+          marginBottom={6}
+          align="center"
+          mx={[0, 0, 6]}
+        >
           <Box px={4} py={5} _hover={{ shadow: "lg" }} position="relative">
             <Flex justifyContent="space-between">
               <Flex color={"white"}>
@@ -496,8 +506,12 @@ export default function UserSideSnippet() {
                         backers.
                       </Text>
                       <Box bg={"black"} px={"20px"} py={"5px"} rounded={"lg"}>
-                        <Text mt="10px" align={"center"}>
-                          wfd1rj8wkx2ze4639r........aa55
+                        <Text
+                          mt="10px"
+                          align={"center"}
+                          overflowWrap="anywhere"
+                        >
+                          {state.referralLink}
                         </Text>
                       </Box>
                     </Box>

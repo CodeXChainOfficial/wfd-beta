@@ -21,7 +21,7 @@ export const WFD_TOKEN =
   "juno1x329zfyakxz9sl6a46ef9snajjcgjrykq8sje4lpj06r24trgvxqj42edl";
 
 export const WEFUND_CONTRACT =
-  "juno1l688mmqawz74thcvxy9zjxqk3pcsc333cjh8cnmt4yr2xh246tzs59jpgu";
+  "0x003F0Cae69d7a28Bf9157c8cC27D466e00cA965e";
 export const VESTING_CONTRACT =
   "juno1qwxuxeg5q7gedvdzxssf84hw3xm9ql08jqt9t7h97d030rajjqkst4femg";
 export const STAKING_CONTRACT =
@@ -92,31 +92,31 @@ export const TOKEN_LIST = [
   },
   {
     chain: "BSC",
+    name: "USDT",
+    decimals: 6,
+    native: false,
+    address:
+      NETWORK == "mainnet"
+        ? "0x686c626E48bfC5DC98a30a9992897766fed4Abd3"
+        : "0xd92e713d051c37ebb2561803a3b5fbabc4962431",
+  },
+  {
+    chain: "BSC",
     name: "USDC",
-    decimals: 18,
+    decimals: 6,
     native: false,
     address:
       NETWORK == "mainnet"
         ? "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d"
-        : "0x64544969ed7EBf5f083679233325356EbE738930",
+        : "0xd92e713d051c37ebb2561803a3b5fbabc4962431",
   },
   {
     chain: "BSC",
-    name: "USDT",
-    decimals: 18,
+    name: "BUSD",
+    decimals: 6,
     native: false,
-    address:
-      NETWORK == "mainnet"
-        ? "0x55d398326f99059ff775485246999027b3197955"
-        : "0x49d5cC521F75e13fa8eb4E89E9D381352C897c96",
+    address: "0x49d5cC521F75e13fa8eb4E89E9D381352C897c96",
   },
-  // {
-  //   chain: "BSC",
-  //   name: "USDT",
-  //   decimals: 6,
-  //   native: false,
-  //   address: "0x49d5cC521F75e13fa8eb4E89E9D381352C897c96",
-  // },
   {
     chain: "Tron",
     name: "TRX",
@@ -216,6 +216,34 @@ export const TOKEN_LIST = [
     address: "0x1B27A9dE6a775F98aaA5B90B62a4e2A0B84DbDd9",
   },
 ];
+
+export const CHAINS_CONFIG = {
+  rinkeby: {
+    chainId: "0x4",
+    chainName: "Rinkeby",
+    rpc: "https://rpc.ankr.com/eth_rinkeby",
+  },
+  bsc: {
+    chainId: "0x38",
+    chainName: "Binance Smart Chain",
+    rpc: "https://bsc-dataseed4.binance.org",
+  },
+  polygon: {
+    chainId: "0x89",
+    chainName: "Polygon",
+    rpc: "https://matic-mainnet.chainstacklabs.com",
+  },
+  oneledger: {
+    chainId: "0x1294f7c2",
+    chainName: "OneLedger",
+    rpc: "https://mainnet-rpc.oneledger.network",
+  },
+  fantom: {
+    chainId: "0xFA",
+    chainName: "Fantom",
+    rpc: "https://rpc2.fantom.network",
+  },
+};
 
 export const WALLET_LIST = [
   {

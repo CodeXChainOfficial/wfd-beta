@@ -3,7 +3,7 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import { Flex, Box, Icon } from "@chakra-ui/react";
 import { ImageTransition } from "../ImageTransition";
 import { BsArrowUpRight } from "react-icons/bs";
-import { useKeplrWallet } from "../../contexts/keplrWallet";
+import { useMetamaskWallet } from "../../contexts/metamask";
 
 interface Props {
   data: any;
@@ -17,11 +17,11 @@ const ProjectMainButtons: FunctionComponent<Props> = ({
   onWhite,
 }) => {
   const [whitelisted, setWhitelisted] = useState(false);
-  const keplrWallet = useKeplrWallet();
-  const account = keplrWallet.account;
+  const metamaskWallet = useMetamaskWallet();
+  const account = metamaskWallet.account;
 
   useEffect(() => {
-    const res = data.whitelist?.find(({ wallet }) => wallet == account);
+    const res = data.whitelist?.find(({ addr }) => addr.toLowerCase() == account.toLowerCase());
     if (res != undefined) setWhitelisted(true);
     else setWhitelisted(false);
   }, [data, account]);

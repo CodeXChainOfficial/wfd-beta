@@ -7,7 +7,7 @@ import { Box, Flex, Text, Button, HStack } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 import { WEFUND_CONTRACT, WEFUND_ID } from "../config/constants";
 
-import { checkJunoConnection, checkNetwork } from "../utils/utility";
+import { checkBscConnection, checkNetwork } from "../utils/utility";
 import { SUCCESS_OPTION } from "../config/constants";
 import {
   useCommunityData,
@@ -69,7 +69,7 @@ export default function UserSideSnippet() {
   }, [state.address]);
 
   async function addCommunityMember() {
-    if (checkJunoConnection(state) == false) return false;
+    if (checkBscConnection(state) == false) return false;
 
     for (let i = 0; i < communityData.length; i++) {
       if (communityData[i] == state.address) {
@@ -96,7 +96,7 @@ console.log(res)
   }
 
   async function removeCommunityMember() {
-    if (checkJunoConnection(state) == false) return false;
+    if (checkBscConnection(state) == false) return false;
     try {
       const res = await client.execute(
         address,
@@ -116,7 +116,7 @@ console.log(res)
   }
 
   function claim(project_id: number) {
-    if (checkJunoConnection(state) == false) return false;
+    if (checkBscConnection(state) == false) return false;
   }
   return (
     <Box color={"white"} padding={"5%"} mt="150px">
