@@ -18,7 +18,7 @@ const team = [
   },
   {
     name: "John McLean",
-    role: "CO-Founder and Legal",
+    role: "CO-Founder and CLO",
     desc: "",
     link: "",
     imgsrc: "",
@@ -103,8 +103,8 @@ export default function Team() {
             backgroundColor="#120D3F"
             m={{ base: ".2em", md: ".5em", lg: ".5em" }}
             p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
-            width={{ base: "100%", md: "18em", lg: "13em", xl: "16em" }}
-            height={{ base: "24em", md: "30em", lg: "28em" }}
+            width={{ base: "100%", md: "18em", lg: "10em", xl: "17em" }}
+            height={{ base: "24em", md: "30em", lg: "27em" }}
             borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
             position="relative"
           >
