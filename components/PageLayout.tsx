@@ -17,17 +17,18 @@ const PageLayout: FunctionComponent<Props> = (props) => {
       pt={"120px"}
           pb={"25px"}
           direction="column"
-          style={{ fontFamily: "PilatExtended-Regular" }}
+          style={{ fontFamily: "PilatExtended-Bold" }}
+          align="center"
     >
-      <Flex 
+      {/* <Flex 
           px={{ base: "40px", md: "80px", lg: "120px" }} align="center"> 
-            {/* <Text
+            <Text
               fontSize={{ base: "10px", sm: "12px", md: "16px", lg: "16px" }}
               fontWeight="normal"
               color={"rgba(255, 255, 255, 0.54)"}
             >
               Home &gt;&nbsp;
-            </Text> */}
+            </Text>
             <Text
               fontSize={{ base: "10px", sm: "12px", md: "16px", lg: "16px" }}
               fontWeight="normal"
@@ -41,12 +42,12 @@ const PageLayout: FunctionComponent<Props> = (props) => {
             >
               {props.title}
             </Text>
-          </Flex>
+          </Flex> */}
           <Flex 
           px={{ base: "40px", md: "80px", lg: "120px" }}>
             <Text
               fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "28px" }}
-              color="#4790f5"
+              color="#00A3FF"
               fontWeight={"900"}
             >
               {props.subTitle2}
