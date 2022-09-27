@@ -32,6 +32,7 @@ import {
 import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
 import { RiUpload2Line } from "react-icons/ri";
 import Footer from "../../components/Footer";
+import { shortenAddress } from "../../utils/text";
 
 export default function UserSideSnippet() {
   const { state, dispatch } = useStore();
@@ -51,7 +52,7 @@ export default function UserSideSnippet() {
       let whitelisted_count = 0;
 
       let total_backed = 0;
-      let pShowDatas = [];
+      const pShowDatas = [];
 
       for (let i = 0; i < projectData.length; i++) {
         const one = projectData[i];
@@ -77,7 +78,7 @@ export default function UserSideSnippet() {
           }
         }
 
-        var obj: any = {};
+        const obj: any = {};
         obj.logo = projectData[i].project_logo;
         obj.title = projectData[i].project_title;
         obj.backed = one_backed;
@@ -161,12 +162,10 @@ export default function UserSideSnippet() {
                       color="white"
                       w="full"
                     >
-                      {wallet && wallet.config.chainName} Wallet
+                      {/* {wallet && wallet.config.chainName} Wallet */}
                     </Text>
                     <Text fontSize="sm" color={"#69E4FF"} w={"full"}>
-                      {wallet && wallet.account.substr(0, 14)}
-                      {wallet && "...."}
-                      {wallet && wallet.account.substr(-14, 14)}
+                      {shortenAddress(wallet.account)}
                     </Text>
                   </VStack>
                 </Flex>
@@ -293,7 +292,7 @@ export default function UserSideSnippet() {
                         lineHeight={"160%"}
                         align={"center"}
                       >
-                       {projectCount} 
+                        {whitelistedCount}
                       </Text>
                     </Box>
                     <Text fontWeight="750" fontSize="21px" lineHeight={"160%"}>
@@ -314,10 +313,7 @@ export default function UserSideSnippet() {
                         lineHeight={"160%"}
                         align={"center"}
                       >
-                        
-                        {projectCount}
-
-                        
+                        {investedCount}
                       </Text>
                     </Box>
                     <Text fontWeight="750" fontSize="21px" lineHeight={"160%"}>

@@ -23,7 +23,7 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  Divider
+  Divider,
 } from "@chakra-ui/react";
 
 import Carousel from "react-multi-carousel";
@@ -36,7 +36,7 @@ import { SUCCESS_OPTION } from "../../config/constants";
 import {
   useCommunityData,
   useProjectData,
-  useStore
+  useStore,
 } from "../../contexts/store";
 import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
 import { RiUpload2Line } from "react-icons/ri";
@@ -76,7 +76,7 @@ export default function UserSideSnippet() {
             project_id: one.project_id,
             symbol: tokenInfo.symbol,
             amount: userInfo.total_amount - userInfo.released_amount,
-            pendingAmount: pending
+            pendingAmount: pending,
           });
         }
       }
@@ -113,20 +113,20 @@ export default function UserSideSnippet() {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 3000, min: 2000 },
-      items: 3
+      items: 3,
     },
     desktop: {
       breakpoint: { max: 2000, min: 1024 },
-      items: 3
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2
+      items: 2,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
+      items: 1,
+    },
   };
   return (
     <>
@@ -162,10 +162,7 @@ export default function UserSideSnippet() {
                             <Avatar
                               size={"lg"}
                               src={"/logolink"}
-                              alt={"Logo"}
-                              css={{
-                                border: "2px solid white"
-                              }}
+                              border="2px solid white"
                             />
                             <Center>
                               <Stack
@@ -242,12 +239,17 @@ export default function UserSideSnippet() {
                         pb="128px"
                       >
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna
-                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat.
                       </Text>
                       <Center>
-                        <Box width="92%" border="1px solid rgba(255, 255, 255, 0.5)" height="0px" />
+                        <Box
+                          width="92%"
+                          border="1px solid rgba(255, 255, 255, 0.5)"
+                          height="0px"
+                        />
                       </Center>
                       <Stack
                         direction={{ base: "column", sm: "row", lg: "row" }}
