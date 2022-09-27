@@ -1,23 +1,40 @@
-import { Box, Center, chakra, Container, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import { Center, chakra, Text } from "@chakra-ui/react";
 import React from "react";
 
 export default function HowItWork() {
   return (
     <>
       <Center>
-      <Text fontWeight={1000} fontSize="45px" lineHeight="30px" letterSpacing="-1.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign='center'>
-
+        <Text
+          fontWeight={1000}
+          fontSize="45px"
+          lineHeight="30px"
+          letterSpacing="-1.2%"
+          fontFamily="Poppins-Bold"
+          color="#ADB2DB"
+          textAlign="center"
+        >
           HOW IT WORK <br /> <br />
-          <chakra.span
-            color={"#02A4FF"}
-          >
+          <chakra.span color={"#02A4FF"}>
             CROWDFUNDING LAUNCHPAD
-            <br /><br />
+            <br />
+            <br />
           </chakra.span>
         </Text>
       </Center>
-      <Center marginTop={"10px"} marginBottom={{ base: "20px", md: "100px", lg: "100px" }}>
-      <Text fontWeight={1000} fontSize="28px" lineHeight="24px" letterSpacing="-2.2%" fontFamily="Poppins-Bold" color="#ADB2DB" textAlign='center'>
+      <Center
+        marginTop={"10px"}
+        marginBottom={{ base: "20px", md: "100px", lg: "100px" }}
+      >
+        <Text
+          fontWeight="400"
+          fontSize="20px"
+          lineHeight="28px"
+          fontFamily="Montserrat"
+          color="#ADB2DB"
+          textAlign="center"
+          w={{ base: "90%", md: "60%" }}
+        >
           WeFund is a multichain incubation and crowdfunding platform that uses
           blockchain and smart contracts to make the process more transparent,
           hold project creators accountable, and minimize risk for project

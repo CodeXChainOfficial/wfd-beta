@@ -13,7 +13,7 @@ import { GiSwordsPower } from "react-icons/gi";
 import { MdMoneyOff } from "react-icons/md";
 import CircleTitle from "./CircleTitle";
 
-export default function CircularServiceDescription() {
+export default function CircularFundraiseOptions() {
   const [curIndex, setCurIndex] = useState(0);
 
   const w = 500;
@@ -132,27 +132,25 @@ export default function CircularServiceDescription() {
 
 const CONTENTS = [
   {
-    title: "Launchpad",
+    title: "Token",
     content:
-      "WeFund is a crowdfunding Launchpad working with Token (Private and Public), Equity, Profit Sharing and NFT",
+      "We do crowdfunding fundraising for Token projects for Private and Public launch",
     icon: FaGlobeAsia,
   },
   {
-    title: "Acceleration",
-    content:
-      "Acceleration service for project on incubation that want their development accelerated and reserved for fast paced project ready to go to fundraise soon",
+    title: "Equity",
+    content: "We do equity fundraising following the company legal aspect",
     icon: MdMoneyOff,
   },
   {
-    title: "Swap service",
+    title: "Profit Sharing",
     content:
-      "WeFund through partners offer swap services accross multiple chain and tokens",
+      "We crowdfunding fundraising sharing Profit Sharing in by smart contract",
     icon: FaExternalLinkAlt,
   },
   {
-    title: "Incubation",
-    content:
-      "Incubation service of WeFund that offers well packaged program and partnership network to help project grow from idea to realisation",
+    title: "NFT",
+    content: "We do crowdfunding ownership legalise by NFT and NFT launchpad ",
     icon: GiSwordsPower,
   },
 ];
