@@ -7,7 +7,7 @@ import {
   Flex,
   Link,
   SimpleGrid,
-  Icon,
+  Icon, Text
 } from "@chakra-ui/react";
 import { BsArrowUpRight } from "react-icons/bs";
 import { ImageTransition } from "../ImageTransition";
@@ -45,15 +45,15 @@ export default function BlogCard(props: FeedItem) {
       mx="auto"
       rounded="lg"
       shadow="md"
-      bg={"rgba(20, 48, 124, 0.74)"}
-      border={"2px solid rgba(255, 255, 255, 0.05)"}
-      backdropFilter={"blur(150px)"}
+      bg={"#120D30"}
+      borderRadius="10px"
       maxW={{ base: "sm", sm: "md", md: "2xl", lg: "2xl" }}
       maxH={{ base: "5xl", sm: "5xl", md: "4xl", lg: "4xl" }}
-      minH={{ base: "4xl", sm: "4xl", md: "3xl", lg: "3xl" }}
+      minH={{ base: "3xl", sm: "3xl", md: "2xl", lg: "2xl" }}
     >
       <Image
-        roundedTop="lg"
+        px={10}
+        pt={8}
         w="full"
         h={64}
         fit="cover"
@@ -61,11 +61,10 @@ export default function BlogCard(props: FeedItem) {
         alt="Article"
       />
 
-      <Box p={6}>
+      <Box p={10}>
         <Box>
           <Link
             href={props.link}
-            display="block"
             color={"white"}
             fontWeight="bold"
             fontSize="2xl"
@@ -75,11 +74,22 @@ export default function BlogCard(props: FeedItem) {
           >
             {shortenText(props.title, 0, 90)}
           </Link>
+          <Flex direction="row" mt="32px">
+            <Image width="24px" height="24px" src="/media/clock.svg" />
+            <Text
+              color="rgba(255, 255, 255, 0.7)"
+              fontFamily={"Sk-Modernist-Regular"}
+              fontSize="16px"
+              textAlign="left"
+              ml="8px"
+            >
+              {finalDate}
+            </Text>
+          </Flex>
           <chakra.p
-            mt={2}
-            fontSize="sm"
-            color={"gray.200"}
-            minH={"250px"}
+            mt="16px"
+            fontSize="14px"
+            color={"rgba(255, 255, 255, 0.7)"}
             maxH={{ base: "500px", sm: "400px", md: "375px", lg: "350px" }}
             overflow={"hidden"}
           >
@@ -87,25 +97,8 @@ export default function BlogCard(props: FeedItem) {
           </chakra.p>
         </Box>
 
-        <Box mt={4}>
-          <Flex alignItems="center">
-            <Flex alignItems="center">
-              <Link
-                mx={2}
-                fontWeight="bold"
-                color={"gray.200"}
-                fontSize={{ base: "xs", sm: "sm", md: "sm", lg: "sm" }}
-              >
-                {props.author}
-              </Link>
-            </Flex>
-            <chakra.span
-              mx={1}
-              fontSize={{ base: "xs", sm: "sm", md: "sm", lg: "sm" }}
-              color={"gray.200"}
-            >
-              {finalDate}
-            </chakra.span>
+        <Box mt="16px">
+          <Flex justifyContent="end" w="full">
             <a href={props.link}>
               <Flex
                 ml={{
@@ -115,7 +108,7 @@ export default function BlogCard(props: FeedItem) {
                   lg: "75px",
                   xl: "45px",
                 }}
-                alignSelf={{ base: "center", md: "center", lg: "flex-end" }}
+                alignSelf={{ base: "center", md: "center", lg: "end" }}
               >
                 <ImageTransition
                   unitid={shortenText(props.title, 0, 10)}
