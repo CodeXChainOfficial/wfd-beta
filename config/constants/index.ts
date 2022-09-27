@@ -20,8 +20,7 @@ export const WEFUND_WALLET = "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu";
 export const WFD_TOKEN =
   "juno1x329zfyakxz9sl6a46ef9snajjcgjrykq8sje4lpj06r24trgvxqj42edl";
 
-export const WEFUND_CONTRACT =
-  "0x003F0Cae69d7a28Bf9157c8cC27D466e00cA965e";
+export const WEFUND_CONTRACT = "0x003F0Cae69d7a28Bf9157c8cC27D466e00cA965e";
 export const VESTING_CONTRACT =
   "juno1qwxuxeg5q7gedvdzxssf84hw3xm9ql08jqt9t7h97d030rajjqkst4femg";
 export const STAKING_CONTRACT =
@@ -72,14 +71,16 @@ export const TOKEN_LIST = [
   {
     chain: "Juno",
     name: "USDC",
-    denom: "ibc/EAC38D55372F38F1AFD68DF7FE9EF762DCF69F26520643CF3F9D292A738D8034",
+    denom:
+      "ibc/EAC38D55372F38F1AFD68DF7FE9EF762DCF69F26520643CF3F9D292A738D8034",
     decimals: 6,
     native: true,
   },
   {
     chain: "Juno",
     name: "ATOM",
-    denom: "ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
+    denom:
+      "ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
     decimals: 6,
     native: true,
   },
@@ -157,10 +158,7 @@ export const TOKEN_LIST = [
     name: "USDC",
     decimals: 6,
     native: false,
-    address:
-      NETWORK == "mainnet"
-        ? "USDC-cbf0b9"
-        : "USDC-cbf0b9",
+    address: NETWORK == "mainnet" ? "USDC-cbf0b9" : "USDC-cbf0b9",
   },
   {
     chain: "Polygon",

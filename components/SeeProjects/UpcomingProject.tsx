@@ -11,34 +11,21 @@ import {
   Flex,
   Spacer,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import PTabs from "./ProjectTabs";
-import PDrops from "./ProjectDropdown";
+import LaunchTabs from "./LaunchTabs";
+import FundraiseType from "./FundraiseType";
+import { useProjectData, useStore } from "../../contexts/store";
+import { WEFUND_ID } from "../../config/constants";
 
-function ProjectItem(props: {
-  name?: string;
-  status?: string;
-  image?: string;
-  registration_start?: string;
-  platform_raise?: string;
-  link?: string;
+interface Props {
+  data: any;
   index: number;
   selectedIndex?: number;
   setSelected: React.Dispatch<React.SetStateAction<number>>;
-}) {
+}
+function ProjectItem({ data, index, selectedIndex, setSelected }: Props) {
   const router = useRouter();
-  const {
-    name,
-    status,
-    image,
-    registration_start,
-    platform_raise,
-    link,
-    selectedIndex,
-    index,
-    setSelected,
-  } = props;
   const selected = selectedIndex == index;
 
   return (
@@ -53,7 +40,7 @@ function ProjectItem(props: {
         }
         borderRadius={"20px"}
         cursor="pointer"
-        onClick={() => router.push(link)}
+        onClick={() => router.push(`/detail?project_id=${data.project_id}`)}
         onMouseMove={() => setSelected(index)}
       >
         <Stack textAlign={"center"} height={"480px"} zIndex={"10"}>
@@ -72,7 +59,7 @@ function ProjectItem(props: {
             <Image
               borderRadius={"full"}
               boxSize={{ base: "90px", md: "150px" }}
-              src={image}
+              src={data.project_logo}
               backgroundColor={"rgba(255, 255, 255, 0.5)"}
             />
           </Center>
@@ -84,7 +71,7 @@ function ProjectItem(props: {
             fontFamily={"PilatExtended-Regular"}
             fontWeight={500}
           >
-            {name}
+            {data.project_title}
           </Text>
           <Text
             color={selected ? "#170E82" : "white"}
@@ -92,7 +79,7 @@ function ProjectItem(props: {
             fontFamily={"PilatExtended-Regular"}
             fontWeight={500}
           >
-            {status}
+            {data.project_launch.toUpperCase()}
           </Text>
           <Box paddingX={"48px"} paddingY={"0px"}>
             <Box
@@ -112,13 +99,13 @@ function ProjectItem(props: {
               Registration Start
             </Text>
             <Text fontWeight={"medium"} fontSize={{ base: "12px", md: "16px" }}>
-              {registration_start}
+              {"TBA"}
             </Text>
             <Text textAlign={"left"} fontSize={{ base: "12px", md: "16px" }}>
               Platform Raise
             </Text>
             <Text fontWeight={"medium"} fontSize={{ base: "12px", md: "16px" }}>
-              {platform_raise}
+              {"TBA"}
             </Text>
           </SimpleGrid>
         </Stack>
@@ -134,6 +121,24 @@ interface UpcomingProjectProp {
 
 export default function UpcomingProject(prop: UpcomingProjectProp) {
   const [selected, setSelected] = useState(0);
+  const projectData = useProjectData();
+  const [projects, setProjects] = useState<any[]>([]);
+  const [launchStage, setLaunchStage] = useState("PRELAUNCH");
+  const [fundraiseToken, setFundraiseToken] = useState("TOKEN");
+
+  useEffect(() => {
+    const projects = projectData;
+    const res = projects.filter(
+      (x) =>
+        x.project_id != WEFUND_ID &&
+        x.project_launch.toLowerCase() == launchStage.toLocaleLowerCase() &&
+        x.fund_type.findIndex(
+          (token: string) => token == fundraiseToken.toLowerCase()
+        ) != -1
+    );
+    setProjects(res);
+  }, [projectData, launchStage, fundraiseToken]);
+
   return (
     <Box id="Upcoming">
       <Center marginTop={"48px"}>
@@ -155,29 +160,19 @@ export default function UpcomingProject(prop: UpcomingProjectProp) {
           direction={{ base: "column", md: "row" }}
           justify={{ base: "center", md: "space-between" }}
         >
-          <PTabs />
-          <PDrops />
+          <LaunchTabs
+            launchStage={launchStage}
+            setLaunchStage={setLaunchStage}
+          />
+          <FundraiseType
+            fundraiseToken={fundraiseToken}
+            setFundraiseToken={setFundraiseToken}
+          />
         </Flex>
         <Box
-          borderRadius={"16px"}
-          maxH={"480px"}
-          marginY={"32px"}
-          overflowY={"scroll"}
+          borderRadius="16px"
           background="rgba(123, 126, 136, 0.1)"
-          css={{
-            "&::-webkit-scrollbar": {
-              width: "6px",
-              backgroundColor: "rgba(2, 164, 255, 1)",
-              borderRadius: "6px",
-            },
-            "&::-webkit-scrollbar-track": {
-              backgroundColor: "rgba(2, 164, 255, 1)",
-            },
-            "&::-webkit-scrollbar-thumb": {
-              backgroundColor: "#003E61",
-              borderRadius: "6px",
-            },
-          }}
+          mt="20px"
         >
           <SimpleGrid
             minChildWidth={{ base: "140px", md: "300px" }}
@@ -185,7 +180,7 @@ export default function UpcomingProject(prop: UpcomingProjectProp) {
           >
             {projects.map((project, i) => (
               <ProjectItem
-                {...project}
+                data={project}
                 index={i}
                 selectedIndex={selected}
                 setSelected={setSelected}
@@ -198,70 +193,3 @@ export default function UpcomingProject(prop: UpcomingProjectProp) {
     </Box>
   );
 }
-
-const projects = [
-  {
-    image: "/media/partners/lynx-dark.png",
-    name: "Lynxverse",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "/detail?project_id=2",
-  },
-  {
-    image: "/media/partners/Kosu.png",
-    name: "Kosu",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "/detail?project_id=3",
-  },
-  {
-    image: "/media/partners/Greenprotocol.png",
-    name: "Green Protocol",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "/detail?project_id=4",
-  },
-  {
-    image: "/media/partners/Datalake.png",
-    name: "Data Lake",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "/detail?project_id=5",
-  },
-  {
-    image: "/media/partners/Scamscanner.png",
-    name: "Scam Scanner",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "/detail?project_id=6",
-  },
-  {
-    image: "/media/Launchpad/secret-partner.png",
-    name: "Top Secret",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "",
-  },
-  {
-    image: "/media/Launchpad/secret-partner.png",
-    name: "Top Secret",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "",
-  },
-  {
-    image: "/media/Launchpad/secret-partner.png",
-    name: "Top Secret",
-    status: "Coming Soon",
-    registration_start: "TBA",
-    platform_raise: "TBA",
-    link: "",
-  },
-];

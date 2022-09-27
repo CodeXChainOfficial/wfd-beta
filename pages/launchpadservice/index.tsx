@@ -22,7 +22,7 @@ import ProjectStories from "../../components/Launchpad/ProjectStories";
 import PTabs from "../../components/Launchpad/ProjectTabs";
 import Whyjoin from "../../components/Launchpad/Service/Whyjoin";
 import HowItWork from "../../components/Launchpad/Service/HowitWork";
-import CircularOptions from "../../components/Launchpad/Service/CircularOptions";
+import CircularOptions from "../../components/Launchpad/Service/CircularFundraiseOptions";
 
 export default function Launchpad() {
   useEffect(() => {

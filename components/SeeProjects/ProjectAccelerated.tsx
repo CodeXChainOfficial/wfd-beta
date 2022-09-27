@@ -13,8 +13,8 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import PTabs from "./ProjectTabs";
-import PDrops from "./ProjectDropdown";
+import LaunchTabs from "./LaunchTabs";
+import FundraiseType from "./FundraiseType";
 
 function ProjectItem(props: {
   name?: string;
@@ -129,6 +129,7 @@ function ProjectItem(props: {
 
 export default function ProjectAccelerated() {
   const [selected, setSelected] = useState(0);
+
   return (
     <Box id="Upcoming">
       <Center marginTop={"48px"}>
@@ -136,16 +137,16 @@ export default function ProjectAccelerated() {
           color="#FFFF"
           fontFamily="PilatExtended-Regular"
           fontSize={{ base: "18px", md: "25px", lg: "30px" }}
-          fontWeight = {"600"}
+          fontWeight={"600"}
         >
           PROJECT <chakra.span color={"#0FB1F5"}>ACCELERATED</chakra.span>
         </Text>
       </Center>
       <Container maxWidth={"container.xl"} marginY={"84px"}>
         <Flex>
-          <PTabs />
+          <LaunchTabs />
           <Spacer />
-          <PDrops />
+          <FundraiseType />
         </Flex>
         <Box
           borderRadius={"16px"}

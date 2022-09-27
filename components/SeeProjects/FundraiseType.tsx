@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { chakra, Box, Stack, Flex, Center, Text, Link } from "@chakra-ui/react";
 import ProjectDropDown from "./CustomSelectCategory";
 
-export default function PDrops() {
-  const [fundraise, setFundraiseOption] = useState("Token");
-  const [tokenName, setTokenName] = useState("");
-
+interface Props {
+  fundraiseToken: string;
+  setFundraiseToken: Dispatch<SetStateAction<string>>;
+}
+export default function FundraiseType({
+  fundraiseToken,
+  setFundraiseToken,
+}: Props) {
+  const setOption = (type: string) => {
+    setFundraiseToken && setFundraiseToken(type);
+  };
   return (
     <Flex>
       <Flex justify="right" w="full">
@@ -18,8 +25,8 @@ export default function PDrops() {
           >
             <ProjectDropDown
               typeText="Fundraise Option"
-              type={fundraise}
-              setType={setFundraiseOption}
+              type={fundraiseToken}
+              setType={setFundraiseToken}
               options={["Token", "Equity", "Crowdfunding", "NFT", "Others"]}
               w={{ base: "100%", md: "50%", lg: "50%" }}
             />
