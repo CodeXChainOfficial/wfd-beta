@@ -20,8 +20,8 @@ const PageLayout: FunctionComponent<Props> = (props) => {
           style={{ fontFamily: "PilatExtended-Bold" }}
           align="center"
     >
-      {/* <Flex 
-          px={{ base: "40px", md: "80px", lg: "120px" }} align="center"> 
+      {/* <Flex
+          px={{ base: "40px", md: "80px", lg: "120px" }} align="center">
             <Text
               fontSize={{ base: "10px", sm: "12px", md: "16px", lg: "16px" }}
               fontWeight="normal"
@@ -43,10 +43,10 @@ const PageLayout: FunctionComponent<Props> = (props) => {
               {props.title}
             </Text>
           </Flex> */}
-          <Flex 
+          <Flex
           px={{ base: "40px", md: "80px", lg: "120px" }}>
             <Text
-              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "28px" }}
+              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
               color="#00A3FF"
               fontWeight={"900"}
             >
@@ -54,7 +54,7 @@ const PageLayout: FunctionComponent<Props> = (props) => {
             </Text>
             <Text
               as={"span"}
-              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "28px" }}
+              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
               fontWeight={"900"}
             >
               {props.subTitle3}
@@ -98,7 +98,7 @@ const PageLayout: FunctionComponent<Props> = (props) => {
       <Flex direction='column' w="100%" justify="center" align="center" color='white'>
         {props.children}
       </Flex>
-      
+
     </Flex>
   );
 };

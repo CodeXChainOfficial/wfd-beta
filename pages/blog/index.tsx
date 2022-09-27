@@ -54,40 +54,37 @@ const BlogPage = function () {
       setItems(posts);
     } catch (e) {}
   }
+
   useEffect(() => {
     getData();
   }, []);
 
   return (
     <PageLayout
-      title="Blog"
+      title=""
       subTitle1=""
-      subTitle2="Highlight and Blog"
+      subTitle2="Highlight"
       subTitle3="&nbsp;of WeFund"
     >
-      <Flex
-        width="100%"
-        justify="center"
-        py={"4em"}
-        backgroundImage="url('/media/Home/2.png')"
+      <div
+        style={{
+          width: "100%",
+          color: "white",
+          fontSize: "18px",
+          fontFamily: "Sk-Modernist-Regular",
+          fontWeight: "500",
+        }}
       >
-        <div
-          style={{
-            width: "100%",
-            color: "white",
-            fontSize: "18px",
-            fontFamily: "Sk-Modernist-Regular",
-            fontWeight: "500",
-          }}
-        >
-          <Highlights />
-          <Image
-            mt={"-9em"}
-            width="100%"
-            objectFit="contain"
-            src="/media/Home/1.svg"
-          />
-          <Center>
+        <Highlights />
+        <Image
+          position="absolute"
+          top="350"
+          zIndex="1"
+          width="100%"
+          objectFit="contain"
+          src="/media/Home/Circular_BG.svg"
+        />
+        <Center zIndex="20" mt="128px">
           <SimpleGrid
             p={{
               base: 2,
@@ -95,7 +92,7 @@ const BlogPage = function () {
               lg: 24,
             }}
             mb="-20"
-            background="#180051"
+            bg="#070016"
             w="100%"
             alignItems="center"
             justifyContent="center"
@@ -112,10 +109,8 @@ const BlogPage = function () {
               <BlogCard {...item} key={key} />
             ))}
           </SimpleGrid>
-          </Center>
-          
-        </div>
-      </Flex>
+        </Center>
+      </div>
       <Footer />
     </PageLayout>
   );
