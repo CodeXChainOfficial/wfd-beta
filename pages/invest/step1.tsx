@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import { IoCheckmark } from "react-icons/io5";
-import { Box, Flex, Text, HStack } from "@chakra-ui/react";
+import { Box, Flex, Text, HStack, chakra } from "@chakra-ui/react";
 
 import {
   ImageTransition,
@@ -38,16 +38,106 @@ export default function InvestStep1() {
     >
       <Flex
         width="100%"
+        align="center"
         justify="center"
         py={"4em"}
-        backgroundImage="url('/media/Home/2.png')"
+        direction="column"
+        backgroundImage="url('/media/Home/smoke-bg.png')"
+        backgroundSize={"contain"}
       >
+        <Flex
+          justify="center"
+          align="center"
+          direction="column"
+          style={{ fontFamily: "PilatExtended-Regular" }}
+        >
+          <HStack mt="150px" mb="50px" w="400px" justifyContent={"center"}>
+            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+              <Box
+                width={{ base: "18px", md: "20px" }}
+                height={{ base: "18px", md: "20px" }}
+                style={{
+                  border: "3px solid #3BE489",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                }}
+              ></Box>
+              <Text
+                fontSize={{
+                  base: "12px",
+                  sm: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                Step 01
+              </Text>
+            </Flex>
+            <Box
+              style={{
+                height: "0x",
+                width: "15%",
+                border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
+                background: " rgba(255, 255, 255, 0.3799999952316284)",
+              }}
+            />
+            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+              <Box
+                width={{ base: "18px", md: "20px" }}
+                height={{ base: "18px", md: "20px" }}
+                style={{
+                  border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                }}
+              ></Box>
+              <Text
+                fontSize={{
+                  base: "12px",
+                  sm: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                Step 02
+              </Text>
+            </Flex>
+            <Box
+              style={{
+                height: "0px",
+                width: "15%",
+                border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
+                background: " rgba(255, 255, 255, 0.3799999952316284)",
+              }}
+            ></Box>
+            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+              <Box
+                width={{ base: "18px", md: "20px" }}
+                height={{ base: "18px", md: "20px" }}
+                style={{
+                  border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                }}
+              ></Box>
+              <Text
+                fontSize={{
+                  base: "12px",
+                  sm: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                Confirm
+              </Text>
+            </Flex>
+          </HStack>
+        </Flex>
         <Box
           w={{ base: "90%", md: "600px", lg: "800px" }}
-          background="#0A0131"
-
+          background="#120037"
           backdropBlur={"54px"}
-          pt="30px"
+          pt="40px"
           style={{ fontFamily: "Sk-Modernist" }}
           rounded={"3xl"}
         >
@@ -56,93 +146,17 @@ export default function InvestStep1() {
             style={{ fontFamily: "Sk-Modernist-Regular" }}
             px="10px"
           >
-            <Flex
-              justify="center"
-              align="center"
-              direction="column"
-              style={{ fontFamily: "PilatExtended-Regular" }}
-            >
-              <HStack mt="150px" mb="50px" w="100%" justifyContent={"center"}>
-                <Box
-                  width={{ base: "30px", md: "30px" }}
-                  height={{ base: "18px", md: "24px" }}
-                  style={{
-                    border: "3px solid #3BE489",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                  }}
-                ></Box>
-                <Text
-                  fontSize={{
-                    base: "12px",
-                    sm: "12px",
-                    md: "22px",
-                    lg: "22px",
-                  }}
-                >
-                  Step 1
-                </Text>
-                <Box
-                  style={{
-                    height: "0x",
-                    width: "10%",
-                    border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
-                    background: " rgba(255, 255, 255, 0.3799999952316284)",
-                  }}
-                />
-                <Box
-                  width={{ base: "30px", md: "30px" }}
-                  height={{ base: "18px", md: "24px" }}
-                  style={{
-                    border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                  }}
-                />
-                <Text
-                  fontSize={{
-                    base: "12px",
-                    sm: "12px",
-                    md: "22px",
-                    lg: "22px",
-                  }}
-                >
-                  Step 2
-                </Text>
-                <Box
-                  style={{
-                    height: "0px",
-                    width: "10%",
-                    border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
-                    background: " rgba(255, 255, 255, 0.3799999952316284)",
-                  }}
-                ></Box>
-                <Box
-                  width={{ base: "30px", md: "30px" }}
-                  height={{ base: "18px", md: "24px" }}
-                  style={{
-                    border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                  }}
-                ></Box>
-                <Text
-                  fontSize={{
-                    base: "12px",
-                    sm: "12px",
-                    md: "22px",
-                    lg: "22px",
-                  }}
-                >
-                  Final
-                </Text>
-              </HStack>
-              <Text fontSize="22px" fontWeight={"300"}>
-                SAFT Form
+            <Flex align="center" direction="column">
+              <Text
+                fontSize="22px"
+                fontWeight={"300"}
+                fontFamily="PilatExtended-Bold"
+              >
+                <chakra.span color={"#00C1FF"}>SAFT</chakra.span> Form
               </Text>
               <Text
                 fontSize="16px"
-                color="rgba(255, 255, 255, 0.54)"
+                color="#FFFFFF"
                 fontWeight={"normal"}
                 mt={"20px"}
                 textAlign={"center"}

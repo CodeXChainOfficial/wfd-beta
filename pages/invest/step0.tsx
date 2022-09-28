@@ -51,10 +51,14 @@ export default function InvestStep0() {
       subTitle3="&nbsp;to WeFund"
     >
       <Flex
+        minH="60vh"
         width="100%"
+        align="center"
         justify="center"
         py={"4em"}
-        backgroundImage="url('/media/Home/2.png')"
+        direction="column"
+        backgroundImage="url('/media/Home/smoke-bg.png')"
+        backgroundSize={"contain"}
       >
         <Box
           w={{ base: "300px", md: "600px", lg: "800px" }}

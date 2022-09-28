@@ -6,6 +6,7 @@ import {
   HStack,
   InputRightElement,
   Text,
+  Image,
   Stack,
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
@@ -88,15 +89,115 @@ export default function InvestStep2() {
       <Flex
         width="100%"
         justify="center"
+        align="center"
         py={"4em"}
-        backgroundImage="url('/media/Home/2.png')"
+        direction="column"
+        backgroundImage="url('/media/Home/smoke-bg.png')"
+        backgroundSize={"contain"}
       >
+        <Flex
+          justify="center"
+          align="center"
+          direction="column"
+          style={{ fontFamily: "PilatExtended-Regular" }}
+        >
+          <HStack mt="50px" mb="50px" w="400px" justifyContent={"center"}>
+            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+              <Box
+                width={{ base: "18px", md: "20px" }}
+                height={{ base: "18px", md: "20px" }}
+                style={{
+                  paddingTop: "1px",
+                  paddingLeft: "2px",
+                  border: "3px solid #3BE489",
+                  backgroundColor: "#3BE489",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                }}
+              >
+                <CheckIcon
+                  color="#250E3F"
+                  w={{ base: 2, md: 3 }}
+                  h={{ base: 2, md: 3 }}
+                  marginBottom={{ base: "30px", md: "20px" }}
+                /></Box>
+              <Text
+                fontSize={{
+                  base: "12px",
+                  sm: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                Step 01
+              </Text>
+            </Flex>
+            <Box
+              style={{
+                height: "0x",
+                width: "15%",
+                border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
+                background: " rgba(255, 255, 255, 0.3799999952316284)",
+              }}
+            />
+            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+              <Box
+                width={{ base: "18px", md: "20px" }}
+                height={{ base: "18px", md: "20px" }}
+                style={{
+                  border: "3px solid #3BE489",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                }}
+              
+              ></Box>
+              <Text
+                fontSize={{
+                  base: "12px",
+                  sm: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                Step 02
+              </Text>
+            </Flex>
+            <Box
+              style={{
+                height: "0px",
+                width: "15%",
+                border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
+                background: " rgba(255, 255, 255, 0.3799999952316284)",
+              }}
+            ></Box>
+            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+              <Box
+                width={{ base: "18px", md: "20px" }}
+                height={{ base: "18px", md: "20px" }}
+                style={{
+                  border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                }}
+              ></Box>
+              <Text
+                fontSize={{
+                  base: "12px",
+                  sm: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                Confirm
+              </Text>
+            </Flex>
+          </HStack>
+        </Flex>
         <Box
           w={{ base: "90%", md: "600px", lg: "800px" }}
-          background="#0A0131"
-
+          background="#120037"
           backdropBlur={"54px"}
-          pt="30px"
+          pt="40px"
           style={{ fontFamily: "Sk-Modernist" }}
           rounded={"3xl"}
         >
@@ -111,94 +212,10 @@ export default function InvestStep2() {
               direction="column"
               style={{ fontFamily: "PilatExtended-Regular" }}
             >
-              <HStack mt="150px" mb="50px">
-                <Box
-                  width={{ base: "35px", md: "40px" }}
-                  height={{ base: "18px", md: "24px" }}
-                  style={{
-                    paddingTop: "3px",
-                    paddingLeft: "3px",
-                    border: "3px solid #3BE489",
-                    backgroundColor: "#3BE489",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                  }}
-                >
-                  <CheckIcon
-                    color="#250E3F"
-                    w={{ base: 2, md: 3 }}
-                    h={{ base: 2, md: 3 }}
-                    marginBottom={{ base: "30px", md: "20px" }}
-                  />
-                </Box>
-                <Text
-                  fontSize={{
-                    base: "12px",
-                    sm: "12px",
-                    md: "22px",
-                    lg: "22px",
-                  }}
-                >
-                  Step 1
-                </Text>
-                <Box
-                  style={{
-                    height: "4px",
-                    width: "30%",
-                    background:
-                      "linear-gradient(90deg, #3BE489 0%, rgba(59, 228, 137, 0) 100%)",
-                  }}
-                ></Box>
-                <Box
-                  width={{ base: "35px", md: "40px" }}
-                  height={{ base: "18px", md: "24px" }}
-                  style={{
-                    border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                  }}
-                ></Box>
-                <Text
-                  fontSize={{
-                    base: "12px",
-                    sm: "12px",
-                    md: "22px",
-                    lg: "22px",
-                  }}
-                >
-                  Step 2
-                </Text>
-                <Box
-                  style={{
-                    height: "0px",
-                    width: "30%",
-                    border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
-                    background: " rgba(255, 255, 255, 0.3799999952316284)",
-                  }}
-                ></Box>
-                <Box
-                  width={{ base: "35px", md: "40px" }}
-                  height={{ base: "18px", md: "24px" }}
-                  style={{
-                    border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                  }}
-                ></Box>
-                <Text
-                  fontSize={{
-                    base: "12px",
-                    sm: "12px",
-                    md: "22px",
-                    lg: "22px",
-                  }}
-                >
-                  Final
-                </Text>
-              </HStack>
               <Text
                 fontSize={{ base: "15px", md: "15px", lg: "22px" }}
                 fontWeight={"300"}
+                fontFamily={"PilatExtended-Bold"}
               >
                 Input your{" "}
                 <span style={{ color: "#00A3FF" }}>Investment Amount</span>
@@ -206,7 +223,7 @@ export default function InvestStep2() {
               <Text
                 fontSize={{ base: "12px", md: "12px", lg: "16x" }}
                 maxW={"390px"}
-                color="rgba(255, 255, 255, 0.54)"
+                color="#FFFFF"
                 fontWeight={"normal"}
                 mt={"20px"}
                 textAlign={"center"}
@@ -225,7 +242,7 @@ export default function InvestStep2() {
 
             <Stack
               direction={{ base: "column", md: "column", lg: "row" }}
-              mt="40px"
+              mt="60px"
               justify="center"
               align={{ base: "center", lg: "baseline" }}
               spacing={8}
@@ -233,41 +250,42 @@ export default function InvestStep2() {
               <Stack
                 direction={{ base: "column", md: "column", lg: "column" }}
                 spacing={2}
+                padding={4}
+                width={"300px"}
+                backgroundColor={"rgba(0, 0, 0, 0.58)"}
               >
-                <Flex>
+                <Flex direction="column" align={"center"} gap={4}>
+                  <Image src="/media/Home/tokentoinvest.svg"></Image>
                   <Text>Token amount you want to invest</Text>
                 </Flex>
-                <InputTransition
-                  unitid="backamount"
-                  selected={backAmount == "" ? false : true}
-                  width="300px"
-                  height="55px"
+                <InputGroup
+                  size={{ base: "200px", lg: "sm" }}
+                  alignItems="center"
+                  h="45px"
+                  style={{
+                    border: "1.5px solid rgba(255, 255, 255, 0.2)",
+                    background: "rgba(255, 255, 255, 0.05)",
+                  }}
                   rounded="md"
                 >
-                  <InputGroup
-                    size={{ base: "200px", lg: "sm" }}
-                    bg="transparent"
-                    h="100%"
-                    alignItems="center"
+                  <Input
+                    style={{ border: "0", background: "transparent" }}
+                    h="55px"
+                    border="solid 0px"
+                    rounded="md"
+                    _focusVisible={{ border: "solid 0px" }}
+                    value={backAmount}
+                    onChange={(e) => onChangeBackamount(e.target.value)}
+                  />
+                  <InputRightElement
+                    w={{ base: "40px", lg: "60px" }}
+                    h="55px"
+                    pr={{ base: "15px", lg: "5px" }}
+                    pointerEvents="none"
                   >
-                    <Input
-                      h="100%"
-                      border="solid 0px"
-                      rounded="md"
-                      _focusVisible={{ border: "solid 0px" }}
-                      value={backAmount}
-                      onChange={(e) => onChangeBackamount(e.target.value)}
-                    />
-                    <InputRightElement
-                      w={{ base: "40px", lg: "60px" }}
-                      h="55px"
-                      pr={{ base: "15px", lg: "5px" }}
-                      pointerEvents="none"
-                    >
-                      <Text>{token}</Text>
-                    </InputRightElement>
-                  </InputGroup>
-                </InputTransition>
+                    <Text mt={"-10px"}>{token}</Text>
+                  </InputRightElement>
+                </InputGroup>
 
                 <Text
                   align="center"
@@ -281,52 +299,62 @@ export default function InvestStep2() {
               <Stack
                 direction={{ base: "column", md: "column", lg: "column" }}
                 spacing={2}
+                padding={4}
+                width={"300px"}
+                backgroundColor={"rgba(0, 0, 0, 0.58)"}
               >
-                <Flex>
+                <Flex direction="column" align={"center"} gap={4}>
+                  <Image src="/media/Home/wfdtoreceive.svg"></Image>
                   <Text>WFD tokens you will receive</Text>
                 </Flex>
-                <InputTransition
-                  unitid="WFDamount"
-                  selected={backAmount == "" ? false : true}
-                  width="300px"
-                  height="55px"
+                <InputGroup
+                  size={{ base: "200px", lg: "sm" }}
+                  bg="transparent"
+                  h="45px"
+                  alignItems="center"
+                  style={{
+                    border: "1.5px solid rgba(255, 255, 255, 0.2)",
+                    background: "rgba(255, 255, 255, 0.05)",
+                  }}
                   rounded="md"
                 >
-                  <InputGroup
-                    size={{ base: "200px", lg: "sm" }}
-                    bg="transparent"
+                  <Input
                     h="100%"
-                    alignItems="center"
+                    pl="25px"
+                    style={{ border: "0", background: "transparent" }}
+                    border="solid 0px"
+                    _focusVisible={{ border: "solid 0px" }}
+                    rounded="md"
+                    value={wfdAmount}
+                    readOnly
+                    // onChange={(e) => { }}
+                  />
+                  <InputRightElement
+                    w={{ base: "40px", lg: "60px" }}
+                    h="55px"
+                    pr={{ base: "15px", lg: "5px" }}
+                    pointerEvents="none"
                   >
-                    <Input
-                      h="100%"
-                      pl="25px"
-                      border="solid 0px"
-                      _focusVisible={{ border: "solid 0px" }}
-                      rounded="md"
-                      value={wfdAmount}
-                      readOnly
-                      // onChange={(e) => { }}
-                    />
-                    <InputRightElement
-                      w={{ base: "40px", lg: "60px" }}
-                      h="55px"
-                      pr={{ base: "15px", lg: "5px" }}
-                      pointerEvents="none"
-                    >
-                      <Text>WFD</Text>
-                    </InputRightElement>
-                  </InputGroup>
-                </InputTransition>
+                    <Text mt={"-10px"}>WFD</Text>
+                  </InputRightElement>
+                </InputGroup>
+                
+                <Text
+                  align="center"
+                  mb="42px"
+                  onClick={() => setBackAmount(max.toString())}
+                >
+                  Approximate Amount
+                </Text>
               </Stack>
             </Stack>
-            <Flex w="100%" mt="60px" justify="center" mb="170px">
+            <Flex w="100%" mt="60px" justify="center" mb="80px">
               <ImageTransition
                 unitid="Invest2invest"
                 border1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
                 background1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
                 border2="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-                background2="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
+                background2="#10144B"
                 border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
                 background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
                 selected={false}

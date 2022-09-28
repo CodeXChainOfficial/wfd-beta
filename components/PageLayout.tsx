@@ -15,7 +15,6 @@ const PageLayout: FunctionComponent<Props> = (props) => {
       color={"white"}
       width={"100%"}
       pt={"120px"}
-          pb={"25px"}
           direction="column"
           style={{ fontFamily: "PilatExtended-Bold" }}
           align="center"
