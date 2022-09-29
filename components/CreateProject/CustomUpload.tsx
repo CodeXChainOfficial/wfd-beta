@@ -36,7 +36,7 @@ const CustomUpload: FunctionComponent<Props> = ({
   return (
     <Box w={w}>
       <Flex justify="space-between">
-        <Text mb="20px">{typeText}</Text>
+        <Text mb="20px" mt="20px">{typeText}</Text>
       </Flex>
       {isNull(type) && (
         <InputGroup size="sm" w="100%">

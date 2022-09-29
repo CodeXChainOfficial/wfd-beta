@@ -132,11 +132,11 @@ export const ButtonBackTransition = (props: any) => {
   return (
     <ImageTransition
       unitid={props.unitid}
-      border1="1.5px solid #00A3FF"
+      border1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
       background1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-      border2="1.5px solid #00A3FF"
-      background2="#10144B"
-      border3="1.5px solid #00A3FF"
+      border2="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
+      background2="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
+      border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
       background3="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
       selected={props.selected}
       width={props.width}

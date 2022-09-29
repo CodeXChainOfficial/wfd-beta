@@ -289,39 +289,27 @@ export default function CreateProject() {
   }
 
   return (
-    <Box
-      title=" "
-      subTitle1=" "
-      subTitle2="Apply for your project"
-      subTitle3={""}
-      width="full"
-      padding={4}
-      mt={24}
+    <PageLayout
+    title="Apply"
+    subTitle1="Apply"
+    subTitle2="Apply for"
+    subTitle3="&nbsp;Your New Project "
     >
-      <Flex px={{ base: "40px", md: "80px", lg: "120px" }} 
-        justify="center">
-        <Text
-          fontSize={{ base: "12px", sm: "16px", md: "28px", lg: "32px" }}
-          color="#0FB1F5"
-          fontWeight={"900"}
-        >
-          Apply &nbsp;
-        </Text>
-        <Text
-          as={"span"}
-          fontSize={{ base: "12px", sm: "16px", md: "28px", lg: "32px" }}
-          fontWeight={"900"}
-        >
-          New Project
-        </Text>
-      </Flex>
       <Flex
         width="100%"
         justify="center"
+        align="center"
         py={"4em"}
-        // backgroundImage="url('/media/Home/2.png')"
+        direction="column"
+        backgroundImage="url('/media/Home/smoke-bg.png')"
+        backgroundSize={"contain"}
       >
-        <Box w={{ base: "200px", md: "600px", lg: "800px" }}>
+        <Box w={{ base: "90%", md: "600px", lg: "800px" }}
+         background="#120037"
+         backdropBlur={"54px"}
+         pt="40px"
+         style={{ fontFamily: "Sk-Modernist" }}
+         rounded={"3xl"}>
           <Flex width="100%" justify="center" mb={"150px"} zIndex={"1"}>
             <Box
               w={{ base: "xs", sm: "xs", md: "2xl", lg: "2xl", xl: "3xl" }}
@@ -465,6 +453,6 @@ export default function CreateProject() {
       </Flex>
 
       <Footer />
-    </Box>
+    </PageLayout>
   );
 }
