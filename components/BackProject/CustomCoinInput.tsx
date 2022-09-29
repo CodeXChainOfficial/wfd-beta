@@ -43,18 +43,19 @@ const CustomCoinInput: FunctionComponent<Props> = ({
           </Text>
         </Flex>
       </Center>
-      <InputTransition
-        unitid={"projectamount" + typeText}
-        selected={type == "" ? false : true}
-        width="100%"
-        height="55px"
-        rounded="md"
-      >
-        <InputGroup size="sm" alignItems="center">
+
+        <InputGroup size="sm" alignItems="center" style={{
+            border: "1.5px solid rgba(255, 255, 255, 0.2)",
+            background: " rgba(0, 0, 0, 0.25)",
+          }}
+          
+          rounded="md">
           <Input
+           style={{ background: "transparent" }}
             border="0px"
             type="number"
-            h="55px"
+            width="100%"
+            height="55px"
             placeholder="Numbers only"
             // focusBorderColor="purple.800"
             _focusVisible={{ border: "0px" }}
@@ -87,7 +88,6 @@ const CustomCoinInput: FunctionComponent<Props> = ({
             <option style={{ backgroundColor: "#1B0645" }}>BUSD</option>
           </Select>
         </InputGroup>
-      </InputTransition>
     </Box>
   );
 };

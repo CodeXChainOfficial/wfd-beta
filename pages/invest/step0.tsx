@@ -58,7 +58,6 @@ export default function InvestStep0() {
         py={"4em"}
         direction="column"
         backgroundImage="url('/media/Home/smoke-bg.png')"
-        backgroundSize={"contain"}
       >
         <Box
           w={{ base: "300px", md: "600px", lg: "800px" }}
@@ -94,15 +93,12 @@ export default function InvestStep0() {
               justify="center"
               align="center"
             >
-              <InputTransition
-                unitid="inputpassword"
-                selected={false}
-                width="300px"
-                height="45px"
-                rounded="md"
-              >
+              
                 <Input
-                  background={"transparent"}
+                  style={{
+                    border: "1.5px solid rgba(255, 255, 255, 0.2)",
+                    background: " rgba(0, 0, 0, 0.25)",
+                  }}
                   border="0px"
                   h="45px"
                   type={"password"}
@@ -111,13 +107,12 @@ export default function InvestStep0() {
                   rounded="md"
                   ref={passRef}
                 />
-              </InputTransition>
               <Button
                 w="120px"
                 h="35px"
                 mt="15px"
                 onClick={onConfirm}
-                background={"blue"}
+                background={"blue.300"}
               >
                 Ok
               </Button>

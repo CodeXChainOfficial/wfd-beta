@@ -427,7 +427,7 @@ export default function InvestStep3() {
                 width={{ base: "30px", md: "20px" }}
                 height={{ base: "18px", md: "20px" }}
                 style={{
-                  border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
+                  border: "3px solid #3BE489",
                   borderRadius: "50%",
                   display: "inline-block",
                 }}
