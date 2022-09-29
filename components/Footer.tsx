@@ -114,22 +114,14 @@ const PagesLinks = () => (
     fontFamily="Sk-Modernist-Regular"
     className="FlexViewMobile"
     flexDirection={"row"}
-    width={{ md: "280px", base: "240px" }}
-    gap="4"
+    width={{ md: "280px", base: "100%" }}
+    gap={{ base: "1", md: "6" }}
   >
     <SimpleGrid columns={1} spacing={10} fontWeight={"700"}>
-      <Link href="/" mr="20px">
-        Home
-      </Link>
-      <Link href="/#Upcoming" mr="20px">
-        Apply Project
-      </Link>
-      <Link href="/invest/step0" mr="20px">
-        Launchpad
-      </Link>
-      <Link href="/blog" mr="20px">
-        Incubation
-      </Link>
+      <Link href="/">Home</Link>
+      <Link href="/#Upcoming">Apply Project</Link>
+      <Link href="/invest/step0">Launchpad</Link>
+      <Link href="/blog">Incubation</Link>
     </SimpleGrid>
     <SimpleGrid
       columns={1}
@@ -137,29 +129,17 @@ const PagesLinks = () => (
       fontWeight={"700"}
       color={"rgba(255, 255, 255, 0.5)"}
     >
-      <Link href="/" mr="20px">
-        Dashboard
-      </Link>
-      <Link href="/#Upcoming" mr="20px">
-        Projects
-      </Link>
-      <Link href="/invest/step0" mr="20px">
-        Swap
-      </Link>
-      <Link href="/blog" mr="20px">
-        Blog
-      </Link>
+      <Link href="/">Dashboard</Link>
+      <Link href="/#Upcoming">Projects</Link>
+      <Link href="/invest/step0">Swap</Link>
+      <Link href="/blog">Blog</Link>
     </SimpleGrid>
   </Flex>
 );
 
 export default function Footer() {
   return (
-    <Center
-    
-      width={"100%"}
-      background="#0A0131"
-    >
+    <Center width={"100%"} background="#0A0131">
       <Flex
         id="footerBottomStyle"
         color={"white"}
@@ -199,14 +179,14 @@ export default function Footer() {
           justifyContent={"center"}
         >
           <Flex
-            direction={{ base: "column", sm: "row" }}
             width={{ md: "70%", base: "100%" }}
-            gap={{ base: 24, sm: 0 }} justifyContent={"center"}
+            gap={{ base: 0, md: 24 }}
+            justifyContent={"center"}
           >
             <Flex
               direction={"column"}
-              width={{ sm:"40%", md: "60%", base: "100%" }}
-              gap={6}  
+              width={{ base: "100%", md: "60%" }}
+              gap={6}
             >
               <Text
                 fontSize={"16px"}
@@ -246,7 +226,7 @@ export default function Footer() {
             flexDirection={"column"}
             gap={8}
             width={{ md: "50%", base: "100%" }}
-            pl={12}
+            pl={{ base: 0, md: 12 }}
           >
             <Flex>
               <Text
@@ -265,34 +245,33 @@ export default function Footer() {
               <Text mr="5px" mb="40px" color={"rgba(255, 255, 255, 0.5)"}>
                 Subscribe to Our News
               </Text>
-              
-            <Flex>
-              <Input
-                type="text"
-                color="#503E6D"
-                background={"transparent"}
-                rounded={"0px"}
-                h={{ lg: "45px", base: "40px" }}
-                fontFamily="Sk-Modernist-Regular"
-                placeholder="Enter email address"
-                w={{ xl: "200px", lg: "200px", md: "140px", base: "60%" }}
-                fontSize={{ lg: "14px", base: "12px" }}
-                style={{ border: "2px solid #503E6D" }}
-              />
-              <ButtonBackTransition
-                selected={false}
-                unitid="SubscribeButton"
-                height={{ lg: "45px", base: "40px" }}
-                width={{ md: "100px", base: "100px" }}
-              >
-                <Text
+              <Flex>
+                <Input
+                  type="text"
+                  color="#503E6D"
+                  background={"transparent"}
+                  rounded={"0px"}
+                  h={{ lg: "45px", base: "40px" }}
                   fontFamily="Sk-Modernist-Regular"
+                  placeholder="Enter email address"
+                  w={{ xl: "200px", lg: "200px", md: "140px", base: "60%" }}
                   fontSize={{ lg: "14px", base: "12px" }}
+                  style={{ border: "2px solid #503E6D" }}
+                />
+                <ButtonBackTransition
+                  selected={false}
+                  unitid="SubscribeButton"
+                  height={{ lg: "45px", base: "40px" }}
+                  width={{ md: "100px", base: "100px" }}
                 >
-                  Subscribe
-                </Text>
-              </ButtonBackTransition>
-            </Flex>
+                  <Text
+                    fontFamily="Sk-Modernist-Regular"
+                    fontSize={{ lg: "14px", base: "12px" }}
+                  >
+                    Subscribe
+                  </Text>
+                </ButtonBackTransition>
+              </Flex>
             </Flex>
           </Flex>
         </Flex>

@@ -43,7 +43,13 @@ function ProjectItem({ data, index, selectedIndex, setSelected }: Props) {
         onClick={() => router.push(`/detail?project_id=${data.project_id}`)}
         onMouseMove={() => setSelected(index)}
       >
-        <Stack textAlign={"center"} height={"480px"} zIndex={"10"}>
+        <Stack
+          textAlign={"center"}
+          height={{ base: "350px", md: "480px" }}
+          zIndex={"10"}
+          justify="center"
+          align="center"
+        >
           <Center
             background={
               selected
@@ -54,7 +60,7 @@ function ProjectItem({ data, index, selectedIndex, setSelected }: Props) {
             height={{ base: "100px", md: "160px" }}
             border={selected ? "5px solid #300FF5" : "5px solid #0FB1F5;"}
             borderRadius={"full"}
-            margin={"48px auto"}
+            margin={{ base: "10px", md: "48px auto" }}
           >
             <Image
               borderRadius={"full"}
@@ -81,17 +87,10 @@ function ProjectItem({ data, index, selectedIndex, setSelected }: Props) {
           >
             {data.project_launch.toUpperCase()}
           </Text>
-          <Box paddingX={"48px"} paddingY={"0px"}>
-            <Box
-              borderBottom={"1px"}
-              width={"100%"}
-              color={selected ? "#430E82" : "white"}
-            ></Box>
-          </Box>
 
           <SimpleGrid
             templateColumns={"1fr 40px"}
-            padding={"48px"}
+            padding={{ base: "10px", md: "48px" }}
             paddingTop={"12px"}
             textColor={selected ? "#170E82" : "white"}
           >
