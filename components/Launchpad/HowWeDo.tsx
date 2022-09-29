@@ -7,9 +7,9 @@ const howWeDo = [
     img: "/media/Home/how_pick.png",
     label: "How We Pick and Select",
     desc:
-      "◦ Project Apply to WeFund for a fundraise/incubation.<br/>" +
-      "◦ We conduct assestment, viability study and team interview<br/>" +
-      "◦ project that met our requirement, provided net value to the community and have comitted team will be selected.<br/>" +
+      "◦ Project Apply to WeFund for a fundraise/incubation.<br/><br/>" +
+      "◦ We conduct assestment, viability study and team interview<br/><br/>" +
+      "◦ project that met our requirement, provided net value to the community and have comitted team will be selected.<br/><br/>" +
       "◦ Almost ready project with MVP will go to acceleration phase, the other will go to regular 12 weeks incubation period",
     showDesc: false,
   },
@@ -17,9 +17,9 @@ const howWeDo = [
     img: "/media/Home/how_incubation.png",
     label: "How We Do Incubation",
     desc:
-      "◦ When project selected they enter incubation period.<br/>" +
-      "◦ Depending on project, they can enter acceleration phase. Normal phase runs for 12 weeks<br/>" +
-      "◦ We do monitoring, resource assistance, and networking with partnership opportunities to boost project.<br/>" +
+      "◦ When project selected they enter incubation period.<br/><br/>" +
+      "◦ Depending on project, they can enter acceleration phase. Normal phase runs for 12 weeks<br/><br/>" +
+      "◦ We do monitoring, resource assistance, and networking with partnership opportunities to boost project.<br/><br/>" +
       "◦ When 12 weeks period ends, we do assestment, to extend, suspend or continue to fundraise phase",
     showDesc: false,
   },
@@ -27,9 +27,9 @@ const howWeDo = [
     img: "/media/Home/how_fundraise.png",
     label: "How We Do Fundraise",
     desc:
-      "◦ Once project have MVP and proposal ready, WeFund will take you to the next step, to start fundraising.<br/>" +
-      "◦ Support to achieve Milestones when a fundraised phase has been completed to ensure fulfilment<br/>" +
-      "◦ Backers of the project will vote whether a project will be given the next portion of funds raised when they completed a milestone. Each voted milestone opens up more portion of fundraisers and the next milestone step.<br/>" +
+      "◦ Once project have MVP and proposal ready, WeFund will take you to the next step, to start fundraising.<br/><br/>" +
+      "◦ Support to achieve Milestones when a fundraised phase has been completed to ensure fulfilment<br/><br/>" +
+      "◦ Backers of the project will vote whether a project will be given the next portion of funds raised when they completed a milestone. Each voted milestone opens up more portion of fundraisers and the next milestone step.<br/><br/>" +
       "◦ Additional fundraise can be conducted when the previous one have been completed",
     showDesc: false,
   },
