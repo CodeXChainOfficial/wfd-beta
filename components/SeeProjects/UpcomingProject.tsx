@@ -123,7 +123,7 @@ export default function UpcomingProject(prop: UpcomingProjectProp) {
   const projectData = useProjectData();
   const [projects, setProjects] = useState<any[]>([]);
   const [launchStage, setLaunchStage] = useState("PRELAUNCH");
-  const [fundraiseToken, setFundraiseToken] = useState("TOKEN");
+  const [fundraiseToken, setFundraiseToken] = useState("ALL");
 
   useEffect(() => {
     const projects = projectData;
@@ -131,9 +131,10 @@ export default function UpcomingProject(prop: UpcomingProjectProp) {
       (x) =>
         x.project_id != WEFUND_ID &&
         x.project_launch.toLowerCase() == launchStage.toLocaleLowerCase() &&
-        x.fund_type.findIndex(
-          (token: string) => token == fundraiseToken.toLowerCase()
-        ) != -1
+        (fundraiseToken.toLowerCase() == "all" ||
+          x.fund_type.findIndex(
+            (token: string) => token == fundraiseToken.toLowerCase()
+          ) != -1)
     );
     setProjects(res);
   }, [projectData, launchStage, fundraiseToken]);

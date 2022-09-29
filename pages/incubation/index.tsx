@@ -10,16 +10,6 @@ import Container from "../../components/Container";
 import theme from "../../theme";
 import Footer from "../../components/Footer";
 
-import Hero from "../../components/Launchpad/Hero";
-import Highlights from "../../components/Launchpad/Highlights";
-import UpcomingProject from "../../components/Launchpad/UpcomingProject";
-import OngoingProject from "../../components/Launchpad/OngoingProject";
-import CompletedProject from "../../components/Launchpad/CompletedProject";
-import KYCBanner from "../../components/Launchpad/KYCBanner";
-import Staking from "../../components/Launchpad/Staking";
-import CompletedSales from "../../components/Launchpad/CompletedSales";
-import ProjectStories from "../../components/Launchpad/ProjectStories";
-import PTabs from "../../components/Launchpad/ProjectTabs";
 import Banner from "../../components/Incubation/Banner";
 import Whatis from "../../components/Incubation/Whatis";
 import RequirementList from "../../components/Incubation/Requirements";
@@ -41,10 +31,10 @@ export default function Launchpad() {
         <Box height="100px" />
         <Whatis />
         <RequirementList />
-        
+
         <Box height="100px" />
         <WhyIncubate />
-        
+
         <Box height="100px" />
         <IncubatedCarousel />
         <MentorPartners />

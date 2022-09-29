@@ -44,13 +44,16 @@ export default function Banner() {
             color={"white"}
             mb={"50px"}
           >
-           We Help Take Your Blockchain Project      
- <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>         to The Next Level</chakra.span>
+            We Help Take Your Blockchain Project
+            <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>
+              {" "}
+              to The Next Level
+            </chakra.span>
           </Text>
           <Box
             background={" rgba(0, 0, 19, 0.78)"}
             border={"3px solid rgba(15, 177, 245, 0.28)"}
-            width={"1100px"}
+            width={{ base: "90%", md: "1100px" }}
             height={"250px"}
             rounded="10px"
             paddingTop={"3%"}
@@ -63,16 +66,26 @@ export default function Banner() {
               letterSpacing={{ base: "0.022em" }}
               textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
             >
-              Incubating the Best <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>WEB3 </chakra.span>
-  and  <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>       WEB2 </chakra.span>
-Projects
+              Incubating the Best{" "}
+              <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>
+                WEB3{" "}
+              </chakra.span>
+              and{" "}
+              <chakra.span fontFamily="PilatExtended-Bold" color={"#00C1FF"}>
+                {" "}
+                WEB2{" "}
+              </chakra.span>
+              Projects
             </Text>
             <Text mt={"12px"}>
-            WeFund is the leading Web3 and Web2 incubation and founder community. We accept and incubate Web3 and Web2 projects looking to adopt blockchain technology with real-world application and utility
+              WeFund is the leading Web3 and Web2 incubation and founder
+              community. We accept and incubate Web3 and Web2 projects looking
+              to adopt blockchain technology with real-world application and
+              utility
             </Text>
 
             <HStack w="100%" justify={"center"} mt="48px" spacing="20px">
-            <ImageTransition
+              <ImageTransition
                 unitid={"applywhat"}
                 border2="#23A4EC"
                 background2="#06142D"
@@ -102,7 +115,7 @@ Projects
                   _hover={{ color: "#FFFFFF" }}
                   transition={"all 1s"}
                 >
-                  Apply Here 
+                  Apply Here
                   <IconButton
                     variant="unstyled"
                     marginLeft={4}

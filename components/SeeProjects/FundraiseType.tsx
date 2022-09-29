@@ -27,7 +27,7 @@ export default function FundraiseType({
               typeText="Fundraise Option"
               type={fundraiseToken}
               setType={setFundraiseToken}
-              options={["Token", "Equity", "Crowdfunding", "NFT", "Others"]}
+              options={["All", "Token", "Equity", "Crowdfunding", "NFT"]}
               w={{ base: "100%", md: "50%", lg: "50%" }}
             />
           </Stack>

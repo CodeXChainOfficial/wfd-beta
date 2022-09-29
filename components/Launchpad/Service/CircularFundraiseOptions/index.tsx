@@ -1,13 +1,5 @@
-import React, { useState, useMemo, useCallback, useEffect } from "react";
-import {
-  Box,
-  Center,
-  chakra,
-  Flex,
-  Image,
-  Text,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { Box, Center, Flex, Image, Text } from "@chakra-ui/react";
 import { FaExternalLinkAlt, FaGlobeAsia } from "react-icons/fa";
 import { GiSwordsPower } from "react-icons/gi";
 import { MdMoneyOff } from "react-icons/md";
