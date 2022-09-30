@@ -1,35 +1,38 @@
-import { Center, chakra, Text } from "@chakra-ui/react";
+import { Center, Flex, Text } from "@chakra-ui/react";
 import React from "react";
 
 export default function HowItWork() {
   return (
     <>
-      <Center>
+      <Flex direction="column" w="100%" align="center">
         <Text
-          fontWeight={1000}
-          fontSize="45px"
-          lineHeight="30px"
-          letterSpacing="-1.2%"
-          fontFamily="Poppins-Bold"
-          color="#ADB2DB"
+          fontFamily="PilatExtended-Bold"
+          fontWeight={400}
+          fontSize={{ base: "24px", md: "32px" }}
+          lineHeight={{ base: "36px", md: "48px" }}
+          letterSpacing="-0.022em"
+          color="white"
           textAlign="center"
         >
-          HOW IT WORK <br /> <br />
-          <chakra.span color={"#02A4FF"}>
-            CROWDFUNDING LAUNCHPAD
-            <br />
-            <br />
-          </chakra.span>
+          HOW IT WORK
         </Text>
-      </Center>
-      <Center
-        marginTop={"10px"}
-        marginBottom={{ base: "20px", md: "100px", lg: "100px" }}
-      >
+        <Text
+          fontFamily="PilatExtended-Bold"
+          fontWeight={900}
+          fontSize={{ base: "30px", md: "40px" }}
+          lineHeight={{ base: "45px", md: "60px" }}
+          letterSpacing="-0.022em"
+          color="#02A4FF"
+          textAlign="center"
+        >
+          CROWDFUNDING LAUNCHPAD
+        </Text>
+      </Flex>
+      <Center mt="20px" mb={{ base: "100px", md: "400px"}}>
         <Text
           fontWeight="400"
-          fontSize="20px"
-          lineHeight="28px"
+          fontSize={{ base: "15px", md: "20px" }}
+          lineHeight={{ base: "21px", md: "28px" }}
           fontFamily="Montserrat"
           color="#ADB2DB"
           textAlign="center"
