@@ -45,6 +45,15 @@ const PageLayout: FunctionComponent<Props> = (props) => {
           <Flex
           px={{ base: "40px", md: "80px", lg: "120px" }}>
             <Text
+              as={"span"}
+              fontFamily="Montserrat"
+              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
+              fontWeight={"400"}
+            >
+              {props.subTitle1}
+            </Text>
+            <Text
+              fontFamily="Montserrat"
               fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
               color="#00A3FF"
               fontWeight={"900"}
@@ -53,6 +62,7 @@ const PageLayout: FunctionComponent<Props> = (props) => {
             </Text>
             <Text
               as={"span"}
+              fontFamily="Montserrat"
               fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
               fontWeight={"900"}
             >
