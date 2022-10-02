@@ -8,7 +8,7 @@ const IncubationPanel = () => {
       pt={{ base: "30px", md: "80px" }}
       px={{ base: "10px", md: "100px" }}
     >
-      <GridItem w="100%">
+      <GridItem w="80%">
         <Flex w="100%" justify="center">
           <Image
             src="/media/home/incubation1.png"
@@ -18,16 +18,12 @@ const IncubationPanel = () => {
       </GridItem>
       <GridItem w="100%">
         <Text
-          fontFamily="Montserrat"
           fontSize={{ base: "15px", md: "20px" }}
           fontWeight="600"
-          lineHeight="150%"
-          letterSpacing="-0.022em"
           color="#00A3FF"
           textAlign="justify"
-          mt="10px"
         >
-          We Select from pool of project applicants
+          We select from pool of project applicants
           <chakra.span fontSize={{ base: "10px", md: "14px" }} color="white">
             &nbsp;or project from our partners (1st selection, we judge based on
             the idea, business model, financial model and team), then if it is
@@ -38,19 +34,17 @@ const IncubationPanel = () => {
         </Text>
       </GridItem>
       <GridItem />
-      <GridItem w="100%">
+      <GridItem w="100%" mt="0px">
         <Flex gap={{ base: "30px", md: "70px" }} align="center">
           <Text
-            fontFamily="Montserrat"
             fontSize={{ base: "15px", md: "20px" }}
             fontWeight="600"
-            lineHeight="150%"
-            letterSpacing="-0.022em"
             color="#00A3FF"
             textAlign="justify"
           >
             We match it against our criteria
             <br />
+            
             <chakra.span fontSize={{ base: "10px", md: "14px" }} color="white">
               &nbsp; and see its impact to real world applications
             </chakra.span>
@@ -58,7 +52,7 @@ const IncubationPanel = () => {
           <Image src="/media/home/incubation2.png" width="40%" />
         </Flex>
       </GridItem>
-      <GridItem w="100%" mt="50px">
+      <GridItem w="90%" mt="50px">
         <Flex w="100%" justify="center">
           <Image
             src="/media/home/incubation3.png"
@@ -68,20 +62,17 @@ const IncubationPanel = () => {
       </GridItem>
       <GridItem w="100%" mt="50px" position="relative">
         <Text
-          fontFamily="Montserrat"
-          fontSize={{ base: "15px", md: "20px" }}
-          fontWeight="600"
-          lineHeight="150%"
-          letterSpacing="-0.022em"
-          color="#00A3FF"
-          textAlign="justify"
-          mt="10px"
+           fontSize={{ base: "15px", md: "20px" }}
+           fontWeight="600"
+           lineHeight="150%"
+           letterSpacing="-0.022em"
+           color="#00A3FF"
+           textAlign="justify"
         >
           We do due diligence and research by interviewing, discussing and going
           through papers
           <br />
         </Text>
-        <chakra.ul ml="20px">
           <li>
             <chakra.span fontSize={{ base: "10px", md: "14px" }} color="white">
               WeFund select project deemed credible and impactful and the
@@ -118,7 +109,6 @@ const IncubationPanel = () => {
               Preparing project for a WeFund fundraise
             </chakra.span>
           </li>
-        </chakra.ul>
         <Image
           src="/media/home/box.png"
           width="47px"

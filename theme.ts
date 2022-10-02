@@ -15,6 +15,7 @@ const theme = extendTheme({
     black: "#16161D",
     brand: "#50E0FF",
   },
+  
   fonts,
   breakpoints,
 });

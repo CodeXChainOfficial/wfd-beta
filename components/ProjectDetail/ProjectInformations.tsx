@@ -76,8 +76,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
             Backers
           </Text>
         </Flex>
-        <Flex alignSelf={"flex-end"}
-        background="002E87">
+        <Flex alignSelf={"flex-end"}>
           <Text
             color={" #69E4FF"}
             fontFamily={"Pilat-Extended"}

@@ -290,30 +290,23 @@ export default function CreateProject() {
 
   return (
     <PageLayout
-    title="Apply"
-    subTitle1="Apply"
-    subTitle2="Apply for"
-    subTitle3="&nbsp;Your New Project "
+      title="Project Apply"
+      subTitle1="Apply"
+      subTitle2="Apply for your project"
+      subTitle3={""}
     >
       <Flex
         width="100%"
         justify="center"
-        align="center"
         py={"4em"}
-        direction="column"
-        backgroundImage="url('/media/Home/smoke-bg.png')"
-        backgroundSize={"contain"}
+        backgroundImage="url('/media/Home/2.png')"
       >
-        <Box w={{ base: "90%", md: "600px", lg: "800px" }}
-         background="#120037"
-         backdropBlur={"54px"}
-         pt="40px"
-         style={{ fontFamily: "Sk-Modernist" }}
-         rounded={"3xl"}>
+        <Box w={{ base: "200px", md: "600px", lg: "800px" }}>
           <Flex width="100%" justify="center" mb={"150px"} zIndex={"1"}>
             <Box
               w={{ base: "xs", sm: "xs", md: "2xl", lg: "2xl", xl: "3xl" }}
-              background={"#120037"}
+              background={"linear-gradient(93.16deg, #002E87 2.65%, #0A0131 87.13%)"}
+
               backdropBlur={"54px"}
               borderTopColor="transparent"
               fontFamily="Sk-Modernist-Regular"
@@ -333,6 +326,7 @@ export default function CreateProject() {
                 typeText="Project Description"
                 type={description}
                 setType={setDescription}
+              
               />
               <TeamMembers
                 description={teammemberDescription}

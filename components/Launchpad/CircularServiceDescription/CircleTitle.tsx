@@ -39,7 +39,7 @@ const CircleTitle = ({ w, r, angle, index, selectComp, data }: Props) => {
       >
         <Text color="white" fontStyle="Arial.Bolt">{data.title}</Text>
         <Flex position="absolute">
-          <data.icon size={`${r / 2}px`} color="gray" opacity="30%" />
+          <data.icon size={`${r / 2}px`} color="gray" opacity="0%" />
         </Flex>
       </Flex>
     </Flex>
