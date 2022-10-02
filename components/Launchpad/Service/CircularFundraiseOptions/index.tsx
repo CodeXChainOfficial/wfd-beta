@@ -88,7 +88,7 @@ export default function CircularFundraiseOptions() {
         >
           {CONTENTS.map((value, index) => (
             <Flex
-              w="50%"
+              w="70%"
               h="50%"
               position="absolute"
               justify="center"
@@ -96,8 +96,17 @@ export default function CircularFundraiseOptions() {
               key={index}
               id={`content${index}`}
               transition="transform 1s ease 0s"
+              direction="column"
             >
-              <Text textAlign="center" fontSize="20px">
+              <Text fontSize="28px" color="#00A3FF" fontWeight="900">
+                {value.title.toUpperCase()}
+              </Text>
+              <Text
+                textAlign="center"
+                fontSize="20px"
+                mt="20px"
+                fontWeight="500"
+              >
                 {value.content}
               </Text>
             </Flex>
