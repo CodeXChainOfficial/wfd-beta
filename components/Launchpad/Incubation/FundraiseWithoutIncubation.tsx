@@ -6,7 +6,7 @@ const FundraiseWithoutIncubation = () => {
       w="100%"
       justify="center"
       align="center"
-      h="637px"
+      h={{ base: "400px", md: "737px" }}
       // px={{ base: "10px", md: "143px" }}
       py={{ base: "10px", md: "59px" }}
       mb="100px"
@@ -19,17 +19,17 @@ const FundraiseWithoutIncubation = () => {
         h="100%"
       >
         <Flex w="100%" direction="column" align="center">
-          <Image src={datas[0].image} w="78px" />
+          <Image src={datas[0].image} w={{ base: "58px", md: "78px" }} />
           <Text
             align="justify"
             fontFamily="Montserrat"
-            fontSize="14px"
+            fontSize={{ base: "8px", md: "14px" }}
             fontWeight="800"
             lineHeight="150%"
             letterSpacing="-0.022em"
             color="#00A3FF"
             textAlign="justify"
-            mt="53px"
+            mt={{ base: "40px", md: "53px" }}
           >
             {datas[0].title}
             <chakra.span color="white">{datas[0].description}</chakra.span>
@@ -39,13 +39,12 @@ const FundraiseWithoutIncubation = () => {
           <Text
             align="justify"
             fontFamily="Montserrat"
-            fontSize="14px"
+            fontSize={{ base: "8px", md: "14px" }}
             fontWeight="800"
             lineHeight="150%"
             letterSpacing="-0.022em"
             color="#00A3FF"
             textAlign="justify"
-            mt="53px"
           >
             {datas[1].title}
             <chakra.span color="white">{datas[1].description}</chakra.span>
@@ -62,7 +61,7 @@ const FundraiseWithoutIncubation = () => {
         <Text
           align="justify"
           fontFamily="Montserrat"
-          fontSize="14px"
+          fontSize={{ base: "8px", md: "14px" }}
           fontWeight="800"
           lineHeight="150%"
           letterSpacing="-0.022em"
@@ -74,7 +73,7 @@ const FundraiseWithoutIncubation = () => {
         <Image src={"/media/home/fundraise_without_incubation5.png"} />
         <Image
           src={"/media/home/fundraise_without_incubation4.png"}
-          w="120px"
+          w={{ base: "80px", md: "120px" }}
         />
       </Flex>
       <Flex
@@ -85,24 +84,24 @@ const FundraiseWithoutIncubation = () => {
         h="100%"
       >
         <Flex w="100%" direction="column" align="center">
-          <Image src={datas[2].image} w="78px" />
+          <Image src={datas[2].image} w={{ base: "58px", md: "78px" }} />
           <Text
             align="justify"
             fontFamily="Montserrat"
-            fontSize="14px"
+            fontSize={{ base: "8px", md: "14px" }}
             fontWeight="800"
             lineHeight="150%"
             letterSpacing="-0.022em"
             color="#00A3FF"
             textAlign="justify"
-            mt="53px"
+            mt={{ base: "30px", md: "53px" }}
           >
             {datas[2].title}
             <chakra.span color="white">{datas[2].description}</chakra.span>
           </Text>
         </Flex>
         <Flex w="100%" direction="column">
-          <Flex w="100%" h="128px" justify="center">
+          <Flex w="100%" h={{ base: "90px", lg: "128px" }} justify="center">
             <Image
               src={datas[3].image}
               maxWidth="100%"
@@ -114,13 +113,13 @@ const FundraiseWithoutIncubation = () => {
           <Text
             align="justify"
             fontFamily="Montserrat"
-            fontSize="14px"
+            fontSize={{ base: "8px", md: "14px" }}
             fontWeight="800"
             lineHeight="150%"
             letterSpacing="-0.022em"
             color="#00A3FF"
             textAlign="justify"
-            mt="53px"
+            mt={{ base: "30px", md: "53px" }}
           >
             {datas[3].title}
             <chakra.span color="white">{datas[3].description}</chakra.span>

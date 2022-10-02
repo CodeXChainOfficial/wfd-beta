@@ -25,7 +25,7 @@ export default function Hero() {
       alignItems="center"
       flexDirection="column"
       background="#000000"
-
+      h="100vh"
     >
       <Flex
         position={"relative"}
@@ -110,7 +110,6 @@ export default function Hero() {
         flexDirection="row"
         justifyContent="space-between"
         width="100%"
-        
       >
         <Image objectFit="contain" src="/media/Home/Coin_A.png" />
         <Image
@@ -119,7 +118,6 @@ export default function Hero() {
           display={{ base: "none", md: "block" }}
         />
       </Flex>
-      
     </Flex>
   );
 }
