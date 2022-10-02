@@ -22,11 +22,8 @@ const FundraiseWithIncubation = () => {
             </Flex>
             <Text
               align="justify"
-              fontFamily="Montserrat"
               fontSize="14px"
               fontWeight="800"
-              lineHeight="150%"
-              letterSpacing="-0.022em"
               color="#00A3FF"
               textAlign="justify"
             >

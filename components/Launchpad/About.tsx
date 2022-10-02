@@ -6,15 +6,15 @@ export default function AboutWeFund() {
     <>
       <Center marginTop={"48px"}>
         <Text
-          color="#63CDFA"
+          color="white"
           fontFamily="PilatExtended-Bold"
-          fontSize={{ base: "18px", md: "25px", lg: "30px" }}
+          fontSize="48"
         >
-          WHAT&apos;S <chakra.span color={"white"}>WEFUND?</chakra.span>
+          WHAT&apos;S <chakra.span color="#02A4FF"           fontFamily="PilatExtended-Bold">WEFUND?</chakra.span>
         </Text>
       </Center>
       <Center marginTop={"16px"}>
-        <Text width="80%" textAlign="center">
+        <Text width="80%" textAlign="center" color="#ADB2DB" fontSize="22">
           WeFund is a multichain incubation and crowdfunding platform that uses blockchain and smart contracts to make the process more transparent, hold project creators accountable, and minimize risk for project backers. WeFund is designed to be a platform for a large community of blockchain project investors and builders. WeFund primarily focuses on blockchain projects that have real-world applications and utility in the industries of healthcare, the environment, finance, education, and more.
         </Text>
       </Center>

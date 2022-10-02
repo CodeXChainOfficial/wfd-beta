@@ -22,11 +22,8 @@ const FundraiseWithoutIncubation = () => {
           <Image src={datas[0].image} w={{ base: "58px", md: "78px" }} />
           <Text
             align="justify"
-            fontFamily="Montserrat"
             fontSize={{ base: "8px", md: "14px" }}
             fontWeight="800"
-            lineHeight="150%"
-            letterSpacing="-0.022em"
             color="#00A3FF"
             textAlign="justify"
             mt={{ base: "40px", md: "53px" }}
@@ -38,11 +35,8 @@ const FundraiseWithoutIncubation = () => {
         <Flex w="100%">
           <Text
             align="justify"
-            fontFamily="Montserrat"
             fontSize={{ base: "8px", md: "14px" }}
             fontWeight="800"
-            lineHeight="150%"
-            letterSpacing="-0.022em"
             color="#00A3FF"
             textAlign="justify"
           >
@@ -60,11 +54,8 @@ const FundraiseWithoutIncubation = () => {
       >
         <Text
           align="justify"
-          fontFamily="Montserrat"
-          fontSize={{ base: "8px", md: "14px" }}
-          fontWeight="800"
-          lineHeight="150%"
-          letterSpacing="-0.022em"
+          fontSize={{ base: "34px", md: "28px" }}
+          fontWeight="900"
           color="#00A3FF"
           textAlign="justify"
         >
@@ -73,7 +64,7 @@ const FundraiseWithoutIncubation = () => {
         <Image src={"/media/home/fundraise_without_incubation5.png"} />
         <Image
           src={"/media/home/fundraise_without_incubation4.png"}
-          w={{ base: "80px", md: "120px" }}
+          w={{ base: "60px", md: "120px" }}
         />
       </Flex>
       <Flex
@@ -87,11 +78,8 @@ const FundraiseWithoutIncubation = () => {
           <Image src={datas[2].image} w={{ base: "58px", md: "78px" }} />
           <Text
             align="justify"
-            fontFamily="Montserrat"
             fontSize={{ base: "8px", md: "14px" }}
             fontWeight="800"
-            lineHeight="150%"
-            letterSpacing="-0.022em"
             color="#00A3FF"
             textAlign="justify"
             mt={{ base: "30px", md: "53px" }}
@@ -112,11 +100,8 @@ const FundraiseWithoutIncubation = () => {
           </Flex>
           <Text
             align="justify"
-            fontFamily="Montserrat"
             fontSize={{ base: "8px", md: "14px" }}
             fontWeight="800"
-            lineHeight="150%"
-            letterSpacing="-0.022em"
             color="#00A3FF"
             textAlign="justify"
             mt={{ base: "30px", md: "53px" }}
