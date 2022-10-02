@@ -129,8 +129,9 @@ function ProjectItem(props: {
 
 export default function ProjectActive() {
   const [selected, setSelected] = useState(0);
+  const [launchStage, setLaunchStage] = useState("prelaunch");
+  const [fundraiseToken, setFundraiseToken] = useState("all");
 
-  const setLaunchStage = (type: string) => {};
   return (
     <Box id="Upcoming">
       <Center marginTop={"48px"}>
@@ -145,9 +146,15 @@ export default function ProjectActive() {
       </Center>
       <Container maxWidth={"container.xl"} marginY={"84px"}>
         <Flex>
-          <LaunchTabs setLaunchStage={setLaunchStage} />
+          <LaunchTabs
+            launchStage={launchStage}
+            setLaunchStage={setLaunchStage}
+          />
           <Spacer />
-          <FundraiseType />
+          <FundraiseType
+            fundraiseToken={fundraiseToken}
+            setFundraiseToken={setFundraiseToken}
+          />
         </Flex>
         <Box
           borderRadius={"16px"}

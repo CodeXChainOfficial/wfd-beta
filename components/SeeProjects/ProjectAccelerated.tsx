@@ -129,7 +129,8 @@ function ProjectItem(props: {
 
 export default function ProjectAccelerated() {
   const [selected, setSelected] = useState(0);
-
+  const [launchStage, setLaunchStage] = useState("prelaunch");
+  
   return (
     <Box id="Upcoming">
       <Center marginTop={"48px"}>
@@ -144,7 +145,10 @@ export default function ProjectAccelerated() {
       </Center>
       <Container maxWidth={"container.xl"} marginY={"84px"}>
         <Flex>
-          <LaunchTabs />
+          <LaunchTabs
+            launchStage={launchStage}
+            setLaunchStage={setLaunchStage}
+          />
           <Spacer />
           <FundraiseType />
         </Flex>

@@ -15,10 +15,10 @@ import UpcomingProject from "../components/SeeProjects/UpcomingProject";
 import HowWeDo from "../components/Launchpad/HowWeDo";
 import AboutWeFund from "../components/Launchpad/About";
 import CircularServiceDescription from "../components/Launchpad/CircularServiceDescription";
-import CircularServiceDescriptionMini from "../components/Launchpad/CircularServiceDescriptionMini";
 import Partners from "../components/Launchpad/Partners";
 import Team from "../components/Launchpad/Team";
 import ServiceList from "../components/Launchpad/ServicesSmall";
+import Incubation from "../components/Launchpad/Incubation";
 
 export default function Launchpad() {
   useEffect(() => {
@@ -28,7 +28,8 @@ export default function Launchpad() {
   return (
     <Container>
       <Hero />
-      <HowWeDo />
+      {/* <HowWeDo /> */}
+      <Incubation />
       <AboutWeFund />
       <CircularServiceDescription />
       <Box
