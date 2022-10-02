@@ -24,7 +24,7 @@ export default function Hero() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      background="#000000"
+      background="#000118"
       h="100vh"
     >
       <Flex

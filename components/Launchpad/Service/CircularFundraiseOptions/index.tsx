@@ -108,7 +108,7 @@ export default function CircularFundraiseOptions() {
         width="100%"
         height={{ base: "200px", md: "400px" }}
         position="relative"
-        background="#000000"
+        background="#000118"
       >
         <Center
           position="absolute"

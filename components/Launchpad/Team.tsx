@@ -69,7 +69,7 @@ export default function Team() {
       flexDirection="column"
       pb={{ base: "5em", md: "8em", lg: "10em" }}
       fontFamily="PilatExtended-Regular"
-      background={"linear-gradient(93.16deg, #000000 2.65%, #000000 87.13%)"}
+      background="#000118"
     >
       <Text
         textAlign="center"
