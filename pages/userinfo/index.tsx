@@ -174,7 +174,7 @@ export default function UserSideSnippet() {
                 px={4}
                 py={5}
                 _hover={{ shadow: "lg" }}
-                bg="#120D30"
+                background={"rgba(15, 177, 245, 1)"}
                 position="relative"
                 rounded="md"
               >
@@ -259,8 +259,8 @@ export default function UserSideSnippet() {
                 >
                   <VStack w={"full"}>
                     <Box
-                      bg={"rgba(0, 102, 153, 0.14)"}
-                      w={"100%"}
+                background={"rgba(15, 177, 245, 1)"}
+                w={"100%"}
                       py={"20px"}
                       rounded={"lg"}
                     >
@@ -280,8 +280,8 @@ export default function UserSideSnippet() {
                   </VStack>
                   <VStack w={"full"}>
                     <Box
-                      bg={"rgba(0, 102, 153, 0.14)"}
-                      w={"100%"}
+                background={"rgba(15, 177, 245, 1)"}
+                w={"100%"}
                       py={"20px"}
                       rounded={"lg"}
                     >
@@ -301,8 +301,8 @@ export default function UserSideSnippet() {
                   </VStack>
                   <VStack w={"full"}>
                     <Box
-                      bg={"rgba(0, 102, 153, 0.14)"}
-                      w={"100%"}
+                background={"rgba(15, 177, 245, 1)"}
+                w={"100%"}
                       py={"20px"}
                       rounded={"lg"}
                     >
