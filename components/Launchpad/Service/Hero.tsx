@@ -36,7 +36,7 @@ export default function Hero() {
             fontFamily="PilatExtended-Bold"
             fontWeight="700"
             fontSize={{ base: "36px", md: "48px" }}
-            lineHeight={{ base: "40px", md: "72px" }}
+            lineHeight={{ base: "40px", md: "90px" }}
             letterSpacing="-0.022em"
             color={"rgba(15, 177, 245, 1)"}
           >
@@ -78,7 +78,7 @@ export default function Hero() {
               color="WHITE"
             >
               Apply to be Project on{" "}
-              <chakra.span color="#002E87">WeFund</chakra.span>
+              <chakra.span  color={"rgba(15, 177, 245, 1)"}>WeFund</chakra.span>
             </Text>
             <FaArrowRight size="14px" color="white" />
           </Button>

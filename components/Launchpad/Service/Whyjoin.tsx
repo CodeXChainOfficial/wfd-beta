@@ -23,7 +23,7 @@ export default function Whyjoin() {
       gap={{ base: "50px", md: "0px" }}
     >
       <Flex width={"100%"}>
-        <Image width="400px" src="/media/whyjoin.png" />
+        <Image width="360px" src="/media/whyjoin.png" />
       </Flex>
       <Flex width={"100%"} flexDirection="column" gap={24}>
         <Flex width="100%" direction="column">
@@ -55,6 +55,7 @@ export default function Whyjoin() {
                 aria-label="Twitter"
                 width={{ lg: "14px", base: "12px" }}
                 icon={<data.icon size={"48px"} />}
+                color="#ADB2DB"
               />
               <VStack align={"left"}>
                 <Text
@@ -66,10 +67,8 @@ export default function Whyjoin() {
                   {data.title}
                 </Text>
                 <Text
-                  fontFamily="Poppins"
                   fontWeight="500"
-                  fontSize={{ base: "15px", md: "20px" }}
-                  letterSpacing="-0.022em"
+                  fontSize={{ base: "12px", md: "18px" }}
                   color="#ADB2DB"
                 >
                   {data.description}

@@ -23,7 +23,6 @@ export default function Launchpad() {
   return (
     <Container>
       <Hero />
-      <HowItWork />
       <CircularOptions />
       <Whyjoin />
       <Footer />
