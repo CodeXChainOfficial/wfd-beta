@@ -18,6 +18,7 @@ import WhyIncubate from "../../components/Incubation/WhyIncubate";
 import Partners from "../../components/Launchpad/Partners";
 import MentorPartners from "../../components/Incubation/MentorPartners";
 import IncubationFaq from "../../components/Incubation/IncubationFaq";
+import Whyjoin from "../../components/Incubation/Whyjoin";
 
 export default function Launchpad() {
   useEffect(() => {
@@ -30,6 +31,7 @@ export default function Launchpad() {
         <Banner />
         <Box height="100px" />
         <Whatis />
+        <Whyjoin />
         <RequirementList />
 
         <Box height="100px" />
