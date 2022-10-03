@@ -18,6 +18,7 @@ import WhyIncubate from "../../components/Incubation/WhyIncubate";
 import Partners from "../../components/Launchpad/Partners";
 import MentorPartners from "../../components/Incubation/MentorPartners";
 import IncubationFaq from "../../components/Incubation/IncubationFaq";
+import UpcomingProject from "../../components/SeeProjects/UpcomingProject";
 // import Whyjoin from "../../components/Incubation/Whyjoin";
 
 export default function Launchpad() {
@@ -38,7 +39,9 @@ export default function Launchpad() {
         <WhyIncubate />
 
         <Box height="100px" />
-        <IncubatedCarousel />
+    
+        <UpcomingProject />
+    
         <MentorPartners />
 
         <IncubationFaq />

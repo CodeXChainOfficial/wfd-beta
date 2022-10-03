@@ -95,12 +95,12 @@ const blogs = [
   {
     title: "What are my chances of being selected?",
     content:
-      "WeFund accepts less than  10% of projects that apply. To maximize your chances, we recommend to review our project requirements and preferences.Founders are sometimes selected on their 2nd or 3rd application. We encourage founders to communicate with us to make improvements to their model and applications.",
+      "WeFund accepts less than  1% of projects that apply. To maximize your chances, we recommend to review our project requirements and preferences.Founders are sometimes selected on their 2nd or 3rd application. We encourage founders to communicate with us to make improvements to their model and applications.",
   },
   {
     title: "How is the program structured?",
     content:
-      "We will conduct weekly meetings to discuss weekly progress towards goals and tasks for WeFund. Our expectations are for founders to meet the weekly gaols of the incubation. Goals often include development of the MVP, tokenomics, business development, marketing, and more.",
+      "We will conduct weekly meetings to discuss weekly progress towards goals and tasks for WeFund. Our expectations are for founders to meet the weekly goals of the incubation. Goals often include development of the MVP, tokenomics, business development, marketing, and more.",
   },
   {
     title:

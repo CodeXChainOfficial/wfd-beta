@@ -1,85 +1,64 @@
-import React, { useState } from "react";
-import { Box, Center, chakra, Flex, Image, Text } from "@chakra-ui/react";
+import Tab from "./Tab";
+import React, { FunctionComponent } from "react";
+import { Flex, Text } from "@chakra-ui/react";
+import { GetProjectStatus, GetProjectStatusString } from "../../../utils/utility";
 
-const partners = [
-  {
-    img: "/media/Home/wefund_partner.png",
-  },
-  {
-    img: "/media/Home/esol_partner.png",
-  },
-  {
-    img: "/media/Home/vebank_partner.png",
-  },
-];
-
-export default function MentorPartners() {
-  const [getModel, setModel] = useState(partners);
-
-  return (
-    <Flex direction="column" width="100%" >
-      <Text
-        textAlign="center"
-        color="#FFFF"
-        fontFamily="PilatExtended-Bold"
-        fontSize={{ base: "18px", md: "25px", lg: "30px" }}
-        fontWeight={"600"}
-      >
-        Project <chakra.span color={"#0FB1F5"}>Incubate</chakra.span>
-      </Text>
-      <Flex
-        width="100%"
-        background={"linear-gradient(180deg, rgba(23, 74, 255, 0.1) 0%, rgba(24, 7, 91, 0.1) 100%)"}
-        flexWrap={"wrap"}
-        flexDirection="row"
-        backgroundSize={"contain"}
-        mt={{ base: "1em", md: "1em", lg: "1em" }}
-        mb={{ base: "4em", md: "8em", lg: "10em" }}
-        justifyContent={{ base: "center", md: "center", lg: "center" }}
-      >
-        {getModel.map((e, i) => (
-          <Flex
-            key={i}
-            textAlign="center"
-            overflow={"hidden"}
-            alignItems={"center"}
-            flexDirection="column"
-            justifyContent={"center"}
-            m="1.8em"
-            p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
-            width={{ base: "40%", md: "18em", lg: "19em" }}
-            height={{ base: "14em", md: "20em", lg: "18em" }}
-            borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
-          >
-            <div
-              style={{
-                position: "relative",
-                zIndex: 10,
-                width: 200,
-                height: 200,
-                backgroundImage:
-                  "linear-gradient(180deg, rgba(0, 56.10, 255, 0.29), rgba(87.39, 123.10, 249.69, 0))",
-                borderRadius: 9999,
-              }}
-            >
-              <Image
-                position="absolute"
-                width="128px"
-                height="128px"
-                top="50%"
-                left="50%"
-                transform="translateX(-50%) translateY(-50%)"
-                zIndex={100}
-                src={e.img}
-                objectFit="contain"
-              />
-            </div>
-          </Flex>
-
-          
-          
-        ))}
-      </Flex>
-    </Flex>
-  );
+interface Props {
+  activeTab: string;
+  onChangeActivetab: (value: string) => void;
 }
+const Tabs: FunctionComponent<Props> = ({ activeTab, onChangeActivetab }) => {
+  return (
+    <>
+      <Text
+        color="rgba(255, 255, 255, 0.84)"
+        fontSize={{ base: "14px", md: "18px" }}
+      >
+        Project Status: Under&nbsp;
+        {/* {GetProjectStatusString(GetProjectStatus(activeTab))} */}
+        {activeTab}
+      </Text>
+
+      <Flex
+        cursor="pointer"
+        justify="center"
+        bg="rgba(255, 255, 255, 0.05)"
+        mt={{ base: "25px", lg: "50px" }}
+        width={{ base: "90%", md: "98%", lg: "80%" }}
+      >
+        <Tab
+          activeTab={activeTab}
+          value={"WeFundApproval"}
+          label={"WeFund Approval"}
+          onChangeActivetab={onChangeActivetab}
+        />
+        <Tab
+          activeTab={activeTab}
+          value={"WhitelistOpen"}
+          label={"Whitelist Open"}
+          onChangeActivetab={onChangeActivetab}
+        />
+        <Tab
+          activeTab={activeTab}
+          value={"Fundraising"}
+          label={"Fundraising"}
+          onChangeActivetab={onChangeActivetab}
+        />
+        <Tab
+          activeTab={activeTab}
+          value={"MileStoneDelivery"}
+          label={"Milestone Delivery"}
+          onChangeActivetab={onChangeActivetab}
+        />
+        <Tab
+          activeTab={activeTab}
+          value={"ProjectComplete"}
+          label={"Project Complete"}
+          onChangeActivetab={onChangeActivetab}
+        />
+      </Flex>
+    </>
+  );
+};
+
+export default Tabs;
