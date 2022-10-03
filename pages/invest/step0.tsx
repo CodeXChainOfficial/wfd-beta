@@ -47,8 +47,7 @@ export default function InvestStep0() {
     <PageLayout
       title="Contribute"
       subTitle1="Invest"
-      subTitle2="Contribute"
-      subTitle3="&nbsp;to WeFund"
+      subTitle2="&nbsp;to WeFund"
     >
       <Flex
         minH="60vh"

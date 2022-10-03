@@ -291,9 +291,9 @@ export default function CreateProject() {
   return (
     <PageLayout
       title="Project Apply"
-      subTitle1="Apply"
-      subTitle2="Apply for your project"
-      subTitle3={""}
+      subTitle1=""
+      subTitle2=" Apply  for your project"
+      subTitle3={" "}
     >
       <Flex
         width="100%"
