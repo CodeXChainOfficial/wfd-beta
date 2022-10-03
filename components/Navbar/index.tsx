@@ -67,132 +67,7 @@ export default function Navbar() {
                 />
               </Link>
             </Flex>
-            <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
-              <PopoverTrigger>
-                <Flex className="btn-group" cursor="pointer" align="center">
-                  <Text
-                    color="rgba(255, 255, 255, 0.84)"
-                    fontSize="16px"
-                    lineHeight="18px"
-                  >
-                    Services
-                  </Text>
-                </Flex>
-              </PopoverTrigger>
-              <PopoverContent
-                background="#0E0129"
-                width="200px"
-                ml={28}
-                border="0px"
-                _focus={{ boxShadow: "none" }}
-                marginTop={"25px"}
-                padding={0}
-              >
-                <PopoverBody>
-                  <Flex
-                    color="rgba(255, 255, 255, 0.5)"
-                    fontWeight={"500"}
-                    fontFamily="Poppins"
-                    fontSize={"18px"}
-                    letterSpacing={"-0.022em"}
-                    gap={6}
-                    pb={2}
-                    borderBottom={"3px solid rgba(255, 255, 255, 0.09)"}
-                    
-                    _hover={{ background: " rgba(255, 255, 255, 0.1)" }}
-                  >
-                    <ButtonGroup
-                      variant="unstyled"
-                      color="white"
-                      flexDirection="column"
-                      gap={5}
-                      size="xs"
-                    >
-                      <Text color={"#0FB1F5"} py={0}></Text>
-                      <IconButton
-                        as="a"
-                        aria-label="Incubation"
-                        width={{ lg: "14px", base: "12px" }}
-                        borderRadius={"100px"}
-                        backgroundColor={"rgba(255, 255, 255, 0.05)"}
-                        href="/incubation"
-                        icon={<FaFlask size={"20px"} />}
-                      />
-                    </ButtonGroup>
-                    <Flex gap={4} flexDirection="column" pt={4} as="a" href="/incubation">
-                      <Text>Incubation</Text>
-                    </Flex>
-                  </Flex>
-                  <Flex
-                    color="rgba(255, 255, 255, 0.5)"
-                    fontWeight={"500"}
-                    fontFamily="Poppins"
-                    fontSize={"18px"}
-                    letterSpacing={"-0.022em"}
-                    gap={6}
-                    pb={2}
-                    borderBottom={"3px solid rgba(255, 255, 255, 0.09)"}
-                    _hover={{ background: " rgba(255, 255, 255, 0.1)" }}
-                  >
-                    <ButtonGroup
-                      variant="unstyled"
-                      color="white"
-                      flexDirection="column"
-                      gap={5}
-                      size="xs"
-                    >
-                      <Text color={"#0FB1F5"} py={0}></Text>
-                      <IconButton
-                        as="a"
-                        aria-label="Laucnhpad"
-                        width={{ lg: "14px", base: "12px" }}
-                        borderRadius={"100px"}
-                        backgroundColor={"rgba(255, 255, 255, 0.05)"}
-                        href="/launchpadservice"
-                        icon={<FaRocket size={"20px"} />}
-                      />
-                    </ButtonGroup>
-                    <Flex gap={4} flexDirection="column" pt={4} as="a" href="/launchpadservice">
-                      <Text>Launchpad</Text>
-                    </Flex>
-                  </Flex>
-                  <Flex
-                    color="rgba(255, 255, 255, 0.5)"
-                    fontWeight={"500"}
-                    fontFamily="Poppins"
-                    fontSize={"18px"}
-                    letterSpacing={"-0.022em"}
-                    gap={6}
-                    pb={2}
-                    borderBottom={"3px solid rgba(255, 255, 255, 0.09)"}
-                    
-                    _hover={{ background: " rgba(255, 255, 255, 0.1)" }}
-                  >
-                    <ButtonGroup
-                      variant="unstyled"
-                      color="white"
-                      flexDirection="column"
-                      gap={5}
-                      size="xs"
-                    >
-                      <Text color={"#0FB1F5"} py={0}></Text>
-                      <IconButton
-                        as="a"
-                        aria-label="Swap"
-                        width={{ lg: "14px", base: "12px" }}
-                        borderRadius={"100px"}
-                        backgroundColor={"rgba(255, 255, 255, 0.05)"}
-                        href="/swap"
-                        icon={<FaRetweet size={"20px"} />}
-                      />
-                    </ButtonGroup>
-                    <Flex gap={4} flexDirection="column" pt={4} as="a" href="/swap">
-                      <Text>Swap</Text>
-                    </Flex>
-                  </Flex>
-                </PopoverBody>
-              </PopoverContent>
-            </Popover>
+           
 
             <DesktopNav />
           </Flex>
@@ -255,7 +130,11 @@ const DesktopNav = () => {
 
 export const NAV_ITEMS = [
   {
-    label: "Projects",
+    label: "Incubation",
+    href: "/incubation",
+  },
+  {
+    label: "Launchpad",
     href: "/projects",
   },
   {
@@ -265,5 +144,9 @@ export const NAV_ITEMS = [
   {
     label: "Blog",
     href: "/blog",
+  },
+  {
+    label: "Swap",
+    href: "/swap",
   },
 ];
