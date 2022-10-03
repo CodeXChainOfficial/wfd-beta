@@ -38,7 +38,7 @@ export default function Launchpad() {
         <Box height="100px" />
         <IncubatedCarousel />
         <MentorPartners />
-        <Partners />
+     
         <IncubationFaq />
         <Footer />
       </Container>
