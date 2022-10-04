@@ -66,7 +66,7 @@ export default function RequirementList() {
           ))}
         </Flex>
         <Flex w="100%" direction="column" justify="space-between">
-          {[4, 5, 6, 7, 8].map((value, index) => (
+          {[4, 5, 6, 7].map((value, index) => (
             <Item index={value} key={index} />
           ))}
         </Flex>
@@ -78,11 +78,11 @@ export default function RequirementList() {
 const Datas = [
   {
     icon: "/media/Incubation/1.png",
-    content: "In categories of SDG 2030 with a real-world application",
+    content: "Project must have real-world application and utility in the area of healthcare, the environment, finance, supply chain, etc",
   },
   {
     icon: "/media/Incubation/2.png",
-    content: "Web2 who want to bridge to blockchain / Web3",
+    content: "Web2 project looking to adopt and bridge blockchain/Web3 technology    ",
   },
   {
     icon: "/media/Incubation/3.png",
@@ -96,26 +96,22 @@ const Datas = [
   {
     icon: "/media/Incubation/5.png",
     content:
-      "We accept NFT projects, however, they must have a real-world utility. Real-world utilities include asset ownership, sustainable profit sharing, etc ",
+      "NFT projects must have a real-world application such as tokenizing real-world assets, profit sharing, etc ",
   },
   {
     icon: "/media/Incubation/6.png",
     content:
-      "Can not be an NFT collection without utility. What does it mean? Only NFT with real-world applications can accept, such as NFT for tokenizing real-world assets.",
+      "We DO NOT support Ponzi schemes, multi-level marketing, or pyramid schemes",
   },
   {
     icon: "/media/Incubation/7.png",
     content:
-      "We do not support Ponzi schemes with no sustainable goal, pyramid schemes, or MLM (multi-level marketing scheme)",
+      "Founders are dedicated to the long-term sustainability of their projects      ",
   },
   {
     icon: "/media/Incubation/8.png",
     content:
-      "Founders who are eligible have good intentions and are dedicated to the long-term sustainability of their project.",
+      "Founders must follow and complete the full incubation program ",
   },
-  {
-    icon: "/media/Incubation/8.png",
-    content:
-      "The founders must follow and complete the entire incubation process.",
-  },
+
 ];
