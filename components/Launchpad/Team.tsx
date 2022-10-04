@@ -48,8 +48,8 @@ const team = [
     name: "Hardin",
     role: "Project Manager",
     desc: "4+ years experience of developing  finance, trading applications. 2+ years experience of research, develop on blockchain industry.",
-    link: "",
-    imgsrc: "",
+    link: "https://www.linkedin.com/in/hardin-santoso/",
+    imgsrc: "/media/Team/hardin.jpg",
   },
   {
     name: "Marko",
