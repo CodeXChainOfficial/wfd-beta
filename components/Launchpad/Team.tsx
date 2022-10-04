@@ -138,7 +138,8 @@ export default function Team() {
               fontWeight="400"
               align="center"
             >
-              {e.desc}
+              {e.desc.slice(0, 200)}
+              {e.desc.length > 200 && "..."}
             </Text>
             <Box
               cursor="pointer"
