@@ -2,8 +2,6 @@ import {
   Box,
   Container,
   Heading,
-  SimpleGrid,
-  Icon,
   Text,
   Stack,
   Flex,
@@ -12,7 +10,7 @@ import {
 
 const Item = ({ index }: { index: number }) => {
   return (
-    <Flex key={index} mb="50px" gap="30px">
+    <Flex key={index} gap="30px">
       <Flex
         minW="70px"
         maxW="70px"
@@ -44,13 +42,15 @@ export default function RequirementList() {
   return (
     <Box p={5} mb={14}>
       <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
-        <Heading
-          fontSize={"3xl"}
+        <Text
+          fontSize={{ base: "24px", md: "36px" }}
+          lineHeight="150%"
           fontFamily={"PilatExtended-Bold"}
           color={"#02A4FF"}
+          fontWeight="900"
         >
           REQUIREMENTS
-        </Heading>
+        </Text>
       </Stack>
 
       <Flex
@@ -60,12 +60,12 @@ export default function RequirementList() {
         px={{ base: "10px", md: "120px" }}
         direction={{ base: "column", md: "row" }}
       >
-        <Flex w="100%" direction="column" justify="space-between">
+        <Flex w="100%" direction="column" gap={{ base: "50px", md: "100px" }}>
           {[0, 1, 2, 3].map((value, index) => (
             <Item index={value} key={index} />
           ))}
         </Flex>
-        <Flex w="100%" direction="column" justify="space-between">
+        <Flex w="100%" direction="column" gap={{ base: "50px", md: "100px" }}>
           {[4, 5, 6, 7].map((value, index) => (
             <Item index={value} key={index} />
           ))}
@@ -78,11 +78,13 @@ export default function RequirementList() {
 const Datas = [
   {
     icon: "/media/Incubation/1.png",
-    content: "Project must have real-world application and utility in the area of healthcare, the environment, finance, supply chain, etc",
+    content:
+      "Project must have real-world application and utility in the area of healthcare, the environment, finance, supply chain, etc",
   },
   {
     icon: "/media/Incubation/2.png",
-    content: "Web2 project looking to adopt and bridge blockchain/Web3 technology    ",
+    content:
+      "Web2 project looking to adopt and bridge blockchain/Web3 technology    ",
   },
   {
     icon: "/media/Incubation/3.png",
@@ -110,8 +112,6 @@ const Datas = [
   },
   {
     icon: "/media/Incubation/8.png",
-    content:
-      "Founders must follow and complete the full incubation program ",
+    content: "Founders must follow and complete the full incubation program ",
   },
-
 ];
