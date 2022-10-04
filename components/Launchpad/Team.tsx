@@ -19,9 +19,9 @@ const team = [
   {
     name: "John McLean",
     role: "CO-Founder and CLO",
-    desc: "",
-    link: "",
-    imgsrc: "",
+    desc: "Seasoned lawyer, investor, and builder of worlds. He comes from a corporate M&A tax background via a prominent Middle East sovereign wealth fund, where he built and ran the tax function for a $20bn global investment platform comprising private and public equities, venture capital, credit investments, and special strategic situations. Now based in London and energised to be at the cutting edge of the new digital economy",
+    link: "https://www.linkedin.com/in/john-mclean-2b669521",
+    imgsrc: "/media/Team/john.jpg",
   },
   {
     name: "Austin Taylor",
@@ -55,8 +55,8 @@ const team = [
     name: "Marko",
     role: "Smart Contract developer",
     desc: "7+ years of experience as a Senior DevOps Engineer at FPT, Galaxy, TikTikTrading. Specialized in streaming systems. Devops Lead Engineer at 2 project gamefi: Lunarush, Metaspets.",
-    link: "",
-    imgsrc: "",
+    link: "https://www.linkedin.com/in/marko-vitez-6b9697224/",
+    imgsrc: "/media/Team/marko.png",
   },
 ];
 
