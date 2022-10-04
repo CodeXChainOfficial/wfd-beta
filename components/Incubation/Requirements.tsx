@@ -61,13 +61,13 @@ export default function RequirementList() {
         direction={{ base: "column", md: "row" }}
       >
         <Flex w="100%" direction="column" justify="space-between">
-          {[0, 1, 2, 3].map((_, index) => (
-            <Item index={index} key={index} />
+          {[0, 1, 2, 3].map((value, index) => (
+            <Item index={value} key={index} />
           ))}
         </Flex>
         <Flex w="100%" direction="column" justify="space-between">
-          {[4, 5, 6, 7, 8].map((_, index) => (
-            <Item index={index} key={index} />
+          {[4, 5, 6, 7, 8].map((value, index) => (
+            <Item index={value} key={index} />
           ))}
         </Flex>
       </Flex>
@@ -114,7 +114,7 @@ const Datas = [
       "Founders who are eligible have good intentions and are dedicated to the long-term sustainability of their project.",
   },
   {
-    icon: "/media/Incubation/9.png",
+    icon: "/media/Incubation/8.png",
     content:
       "The founders must follow and complete the entire incubation process.",
   },
