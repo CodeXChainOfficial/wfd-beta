@@ -60,12 +60,12 @@ export default function RequirementList() {
         px={{ base: "10px", md: "120px" }}
         direction={{ base: "column", md: "row" }}
       >
-        <Flex w="100%" direction="column" gap={{ base: "50px", md: "100px" }}>
+        <Flex w="100%" direction="column" gap={{ base: "30px", md: "50px" }}>
           {[0, 1, 2, 3].map((value, index) => (
             <Item index={value} key={index} />
           ))}
         </Flex>
-        <Flex w="100%" direction="column" gap={{ base: "50px", md: "100px" }}>
+        <Flex w="100%" direction="column" gap={{ base: "30px", md: "50px" }}>
           {[4, 5, 6, 7].map((value, index) => (
             <Item index={value} key={index} />
           ))}

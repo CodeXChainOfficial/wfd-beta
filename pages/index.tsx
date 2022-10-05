@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 import { Box, chakra, ChakraProvider, Text } from "@chakra-ui/react";
 
-import AOS from "aos";
-import "aos/dist/aos.css"; // You can also use <link> for styles
-
-import "react-multi-carousel/lib/styles.css";
 import Container from "../components/Container";
 
 import theme from "../theme";
@@ -15,16 +11,12 @@ import UpcomingProject from "../components/SeeProjects/UpcomingProject";
 import HowWeDo from "../components/Launchpad/HowWeDo";
 import AboutWeFund from "../components/Launchpad/About";
 import CircularServiceDescription from "../components/Launchpad/CircularServiceDescription";
-import Partners from "../components/Launchpad/Partners";
+import KeyPartners from "../components/Launchpad/Partners";
 import Team from "../components/Launchpad/Team";
 import ServiceList from "../components/Launchpad/ServicesSmall";
 import Incubation from "../components/Launchpad/Incubation";
 
 export default function Launchpad() {
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
-
   return (
     <Container>
       <Hero />
@@ -52,7 +44,7 @@ export default function Launchpad() {
           </Text>
         }
       />
-      <Partners />
+      <KeyPartners />
       <Team />
       <Footer />
     </Container>
