@@ -35,7 +35,7 @@ const Mentors = [
     link: "https://www.linkedin.com/in/john-mclean-2b669521",
     imgsrc: "/media/Team/john.jpg",
     experiences: [
-      "/media/Experiences/igniti.jpg",
+      "/media/Experiences/ignition.jpg",
       "/media/Experiences/mubadala.jpg",
       "/media/Experiences/akingump.jpg",
     ],
