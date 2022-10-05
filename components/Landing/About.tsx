@@ -1,170 +1,29 @@
-import React, { useState } from "react";
+import { Center, chakra, Text } from "@chakra-ui/react";
+import React from "react";
 
-import {
-  Container,
-  Flex,
-  Text,
-  Image,
-  Stack,
-  useBreakpointValue,
-  chakra,
-  Box,
-} from "@chakra-ui/react";
-
-const newLocal = "column";
-const AboutMobile = () => (
-  <Flex
-    display={{ base: "flex", lg: "none" }}
-    alignItems="center"
-    justifyContent="center"
-    my={{ base: "5em" }}
-    width={{ base: "98%" }}
-    flexDirection={{ base: newLocal }}
-    paddingLeft={{ base: "0" }}
-    paddingRight={{ base: "0" }}
-  >
-    <Image
-      zIndex="3"
-      objectFit="contain"
-      position="relative"
-      src="/media/Home/3.svg"
-      mr={{ base: "0" }}
-      mb={{ base: "-5em" }}
-      width={{ base: "12em" }}
-    />
-    <Flex
-      flexDirection="column"
-      bgGradient="Linear(#340B6E, transparent)"
-      p={{ base: "1em" }}
-      pl={{ base: "1em" }}
-      pt={{ base: "7em" }}
-      width={{ base: "95%" }}
-      borderRadius={{ base: "10px" }}
-    >
-      <Text
-        color="#63CDFA"
-        fontWeight="bold"
-        fontFamily="PilatExtended-Bold"
-        mb={{ base: ".5em" }}
-        fontSize={{ base: "16px" }}
-      >
-        ABOUT WeFund
-      </Text>
-      <Text
-        display="inline"
-        fontSize={{ base: "16px" }}
-        fontFamily="Sk-Modernist-Regular"
-      >
-        <b>WeFund</b> is a crowdfunding incubator and launchpad for blockchain
-        and real-world projects built on various blockchains.
-        <br />
-        <br />
-        The mission is to incubate and deliver real world impact projects using
-        blockchain technology
-        <br />
-        <br /> To increase transparency, minimize risk, and hold projects
-        accountable for the funds raised, WeFund has a unique milestone system.
-      </Text>
-    </Flex>
-  </Flex>
-);
-
-const AboutDesktop = () => (
-  <Container minW={{ base: "60em", xl: "container.ld"}} display={{ base: "none", lg: "block" }}>
-    <Stack
-      alignItems="center"
-      justifyContent="center"
-      direction={"column"}
-      my={{ base: "4em", md: "5em" }}
-      width={{ base: "100%" }}
-      px={{ base: "0", md: "10px" }}
-    >
-      <Text
-        color="#63CDFA"
-        fontWeight="bold"
-        fontFamily="PilatExtended-Bold"
-        mb={{ base: ".5em", md: ".5em", lg: ".5em" }}
-        fontSize={{ base: "16px", md: "28px", lg: "32px" }}
-      >
-        ABOUT <chakra.span color="#FCFCFC">WeFund</chakra.span>
-      </Text>
-      <Flex direction={"row"} width={{ base: "75%", xl: "full" }}>
-        <Box marginX={"80px"}>
-          <Image
-            width="200px"
-            zIndex="3"
-            objectFit="contain"
-            src="/media/Home/wfd-logo-projection.png"
-          />
-        </Box>
-
-        <Stack
-          flex={1}
-          flexDirection="column"
-          spacing={"3em"}
-        >
-          <Flex
-            direction={"row"}
-            bgGradient="linear-gradient(90deg, #5201C5 0%, rgba(52, 11, 110, 0) 100%)"
-            borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
-            p={"32px"}
-          >
-            <Image width="100px" objectFit="contain" src="/media/Home/about-icon-2.png" />
-            <Text
-              flex={1}
-              display="inline"
-              fontSize={{ base: "16px", md: "20px", lg: "20px" }}
-              fontFamily="Sk-Modernist-Regular"
-              marginLeft={"32px"}
-            >
-              <chakra.span color={"brand"}>
-                <b>WeFund</b> is a crowdfunding incubator and launchpad
-              </chakra.span>{" "}
-              for blockchain and real-world projects built on various
-              blockchains. The mission is to incubate and deliver real world
-              impact projects using blockchain technology
-            </Text>
-          </Flex>
-          <Flex
-            direction={"row"}
-            bgGradient="linear-gradient(90deg, #5201C5 0%, rgba(52, 11, 110, 0) 100%)"
-            borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
-            p={"32px"}
-          >
-            <Image width="100px" objectFit="contain" src="/media/Home/about-icon-1.png" />
-            <Text
-              flex={1}
-              display="inline"
-              fontSize={{ base: "16px", md: "20px", lg: "20px" }}
-              fontFamily="Sk-Modernist-Regular"
-              marginLeft={"32px"}
-            >
-              To increase transparency, minimize risk, and hold projects
-              accountable for the funds raised,
-              <chakra.span color={"brand"}>
-                WeFund has a milestone system.
-              </chakra.span>
-            </Text>
-          </Flex>
-        </Stack>
-      </Flex>
-    </Stack>
-  </Container>
-);
-
-export default function Aboutone() {
+export default function AboutWeFund() {
   return (
-    <Flex
-      width="100%"
-      position="relative"
-      alignItems="center"
-      flexDirection="column"
-      pb={{ base: "5em", md: "5em", lg: "10em" }}
-      paddingLeft={"35px"}
-      paddingRight={"35px"}
-    >
-      <AboutMobile />
-      <AboutDesktop />
-    </Flex>
+    <>
+      <Center marginTop={"48px"}>
+        <Text color="white" fontFamily="PilatExtended-Bold" fontSize="48">
+          WHAT&apos;S{" "}
+          <chakra.span color="#02A4FF" fontFamily="PilatExtended-Bold">
+            WEFUND?
+          </chakra.span>
+        </Text>
+      </Center>
+      <Center marginTop={"16px"}>
+        <Text width="80%" textAlign="center" color="#ADB2DB" fontSize="22">
+          WeFund is a multichain incubation and crowdfunding platform that uses
+          blockchain and smart contracts to make the process more transparent,
+          hold project creators accountable, and minimize risk for project
+          backers. WeFund is designed to be a platform for a large community of
+          blockchain project investors and builders. WeFund primarily focuses on
+          blockchain projects that have real-world applications and utility in
+          the industries of healthcare, the environment, finance, education, and
+          more.
+        </Text>
+      </Center>
+    </>
   );
 }
