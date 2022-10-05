@@ -168,7 +168,7 @@ export default function MentorParners() {
             </Flex>
             <Flex flexWrap="wrap" w="100%" gap="10px" justify="center">
               {mentor.experiences.map((e, index) => (
-                <Image src={e} height="30px" key={index} borderRadius="2px"/>
+                <Image src={e} height="50px" key={index} borderRadius="2px"/>
               ))}
             </Flex>
           </Flex>
