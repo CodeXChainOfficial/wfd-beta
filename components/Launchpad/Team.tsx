@@ -4,14 +4,14 @@ import React from "react";
 const team = [
   {
     name: "Andrea Bello",
-    role: "CEO & Co-Founder",
-    desc: "He is the person behind the development of the Fan$quad smart contract that was deployed on Col-4 during the Hackathon organized by Terraformlab.",
+    role: "Co-Founder & CEO",
+    desc: "Founder and director of three start-ups in the technology and innovation sector, software develop on company like ABB, General Electric and Fund manager at AXA and Zurich",
     link: "https://linkedin.com/in/bello-andrea-380572b4/",
     imgsrc: "/media/Team/andrea.png",
   },
   {
     name: "Ika Afifah",
-    role: "CMO and Co-Founder",
+    role: "Co-Founder & CMO",
     desc: "A dynamic individual who worked at Tencent as an Operation Specialist, in the partnership division. Before Tencent, she was Senior Partnership Manager at Bigo.",
     link: "https://linkedin.com/in/ika-nur-afifah/",
     imgsrc: "/media/Team/ika.png",
