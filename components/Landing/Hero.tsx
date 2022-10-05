@@ -69,6 +69,8 @@ export default function Hero() {
             height={{ base: "50px", md: "46px" }}
             rounded={"33px"}
             align="center"
+            cursor="pointer"
+            _hover={{ background: "#2288bb" }}
             onClick={() => router.push("/invest/step0")}
           >
             <Text
@@ -88,6 +90,8 @@ export default function Hero() {
             height={{ base: "50px", md: "46px" }}
             rounded="33px"
             align="center"
+            cursor="pointer"
+            _hover={{ background: "#3A297D" }}
             onClick={() => state.openWalletModal && state.openWalletModal()}
           >
             <Text

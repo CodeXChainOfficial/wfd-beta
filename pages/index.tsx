@@ -7,7 +7,6 @@ import Footer from "../components/Footer";
 
 import Hero from "../components/Landing/Hero";
 import UpcomingProject from "../components/SeeProjects/UpcomingProject";
-import HowWeDo from "../components/Launchpad/HowWeDo";
 import AboutWeFund from "../components/Landing/About";
 import CircularServiceDescription from "../components/Landing/CircularServiceDescription";
 import KeyPartners from "../components/Landing/Partners";
@@ -19,7 +18,6 @@ export default function Launchpad() {
   return (
     <Container>
       <Hero />
-      {/* <HowWeDo /> */}
       <Incubation />
       <AboutWeFund />
       <CircularServiceDescription />
