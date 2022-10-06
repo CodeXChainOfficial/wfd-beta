@@ -57,6 +57,7 @@ export default function KeyPartners() {
       </Text>
       <Flex
         width="100%"
+        align="center"
         flexWrap="wrap"
         direction="row"
         mt={{ base: "1em", md: "1em", lg: "1em" }}
@@ -67,8 +68,8 @@ export default function KeyPartners() {
       >
         {Partners.map((item, index) => (
           <Flex
-            w={{ base: "150px", md: "200px" }}
-            h={{ base: "150px", md: "200px" }}
+            w={{ base: "80px", md: "80px" }}
+            h={{ base: "80px", md: "80px" }}
             bg="white"
             // backgroundImage="linear-gradient(180deg, rgba(0, 56.10, 255, 0.29), rgba(87.39, 123.10, 249.69, 0))"
             borderRadius="50%"
@@ -77,8 +78,8 @@ export default function KeyPartners() {
             key={index}
           >
             <Image
-              width="70%"
-              height="70%"
+              width="80%"
+              height="80%"
               src={item.img}
               borderRadius="50%"
               key={index}

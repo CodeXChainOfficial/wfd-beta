@@ -31,7 +31,7 @@ const Mentors = [
   },
   {
     name: "John McLean",
-    role: "Tax Director of Binance",
+    role: "Co-Founder & Chief Legal Officer of WeFund",
     link: "https://www.linkedin.com/in/john-mclean-2b669521",
     imgsrc: "/media/Team/john.jpg",
     experiences: [
@@ -168,7 +168,7 @@ export default function MentorParners() {
             </Flex>
             <Flex flexWrap="wrap" w="100%" gap="10px" justify="center">
               {mentor.experiences.map((e, index) => (
-                <Image src={e} height="50px" key={index} borderRadius="2px"/>
+                <Image src={e} height="40px" key={index} borderRadius="2px"/>
               ))}
             </Flex>
           </Flex>
