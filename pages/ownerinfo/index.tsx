@@ -84,7 +84,7 @@ export default function index() {
                       >
                         WFD Wallet
                       </Text>
-                      <Text fontSize="sm" color={"#69E4FF"} w={"full"}>
+                      <Text fontSize="sm"  color={"rgba(15, 177, 245, 1)"} w={"full"}>
                         wfdvs1r.....5jzx
                       </Text>
                     </Flex>
@@ -119,8 +119,8 @@ export default function index() {
                         h="12px"
                       />
                       <Text
-                        color="#5761D7"
-                        ml="8px"
+            color={"rgba(15, 177, 245, 1)"}
+            ml="8px"
                         fontFamily="Montserrat"
                         fontSize="14px"
                         fontWeight="600"
@@ -131,8 +131,8 @@ export default function index() {
                     </Flex>
                     <Flex>
                       <Text
-                        color="#5761D7"
-                        ml="8px"
+            color={"rgba(15, 177, 245, 1)"}
+            ml="8px"
                         fontFamily="Montserrat"
                         fontSize="14px"
                         fontWeight="600"
@@ -153,8 +153,8 @@ export default function index() {
                       />
                       <Flex direction="column" ml="16px">
                         <Text
-                          color="#5761D7"
-                          fontFamily="Montserrat"
+            color={"rgba(15, 177, 245, 1)"}
+            fontFamily="Montserrat"
                           fontSize="14px"
                           fontWeight="600"
                           w={"full"}
@@ -182,7 +182,7 @@ export default function index() {
                       />
                       <Flex direction="column" ml="16px">
                         <Text
-                          color="#5761D7"
+                          color={"rgba(15, 177, 245, 1)"}
                           fontFamily="Montserrat"
                           fontSize="14px"
                           fontWeight="600"
@@ -211,7 +211,7 @@ export default function index() {
                       />
                       <Flex direction="column" ml="16px">
                         <Text
-                          color="#5761D7"
+                          color={"rgba(15, 177, 245, 1)"}
                           fontFamily="Montserrat"
                           fontSize="14px"
                           fontWeight="600"
@@ -244,7 +244,7 @@ export default function index() {
                       />
                       <Flex direction="column" ml="16px">
                         <Text
-                          color="#5761D7"
+                          color={"rgba(15, 177, 245, 1)"}
                           fontFamily="Montserrat"
                           fontSize="14px"
                           fontWeight="600"
