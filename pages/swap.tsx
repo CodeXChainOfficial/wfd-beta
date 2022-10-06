@@ -227,7 +227,7 @@ export default function RouterSwap() {
           p={{ base: "16px", md: "32px" }}
           mx={{ base: "10px", lg: "64px" }}
           justify="center"
-          bgGradient="linear(#210B3C, #070334)"
+          bgGradient="#FFFFFF"
         >
           <SwapCard
             type={SwapType.from}
