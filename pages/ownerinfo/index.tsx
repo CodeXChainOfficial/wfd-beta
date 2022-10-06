@@ -317,8 +317,8 @@ export default function index() {
                   </BoxContainer>
                   <Center mt="20px">
                     <Text
-                      color="#42E8E0"
-                      fontFamily={"Montserrat"}
+                          color={"rgba(15, 177, 245, 1)"}
+                          fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
@@ -341,8 +341,8 @@ export default function index() {
                   </BoxContainer>
                   <Center mt="20px">
                     <Text
-                      color="#42E8E0"
-                      fontFamily={"Montserrat"}
+                          color={"rgba(15, 177, 245, 1)"}
+                          fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
@@ -365,8 +365,8 @@ export default function index() {
                   </BoxContainer>
                   <Center mt="20px">
                     <Text
-                      color="#42E8E0"
-                      fontFamily={"Montserrat"}
+                          color={"rgba(15, 177, 245, 1)"}
+                          fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
@@ -389,8 +389,8 @@ export default function index() {
                   </BoxContainer>
                   <Center mt="20px">
                     <Text
-                      color="#42E8E0"
-                      fontFamily={"Montserrat"}
+                          color={"rgba(15, 177, 245, 1)"}
+                          fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
@@ -399,8 +399,8 @@ export default function index() {
                   </Center>
                   <Center>
                     <Text
-                      color="#42E8E0"
-                      fontFamily={"Montserrat"}
+                          color={"rgba(15, 177, 245, 1)"}
+                          fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
