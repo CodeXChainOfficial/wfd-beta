@@ -39,15 +39,8 @@ const CustomSimpleNumberInput: FunctionComponent<Props> = ({
       <Flex justify="space-between">
         <Text mb="20px">{typeText}</Text>
       </Flex>
-      <InputTransition
-        unitid={"projectamount" + typeText}
-        selected={type == "" ? false : true}
-        width="100%"
-        height="55px"
-        rounded="md"
-      >
         <Input
-          style={{ border: "0", background: "transparent" }}
+          style={{ border: "1.5px solid rgba(255, 255, 255, 0.2)", background: "rgba(255, 255, 255, 0.05)" }}
           type="text"
           h="55px"
           placeholder="Numbers only"
@@ -59,7 +52,6 @@ const CustomSimpleNumberInput: FunctionComponent<Props> = ({
             onChangeAmount(e);
           }}
         />
-      </InputTransition>
     </Box>
   );
 };

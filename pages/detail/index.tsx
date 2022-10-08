@@ -1,4 +1,4 @@
-import { ChakraProvider, Container, HStack } from "@chakra-ui/react";
+import { Center, chakra, ChakraProvider, Container, HStack, Image, Img, Text } from "@chakra-ui/react";
 import { Box, Flex, Spacer, VStack, useDisclosure } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -20,6 +20,8 @@ import {
   GetOneProject,
   ParseParam_ProjectId,
 } from "../../utils/utility";
+import SmokeLeft from "../../components/SmokeLeft";
+import SmokeRight from "../../components/SmokeRight";
 
 export default function ProjectDetail() {
   // const { state, dispatch } = useStore();
@@ -97,19 +99,31 @@ console.log(oneprojectData)
       mt="100px"
       mb="100px"
     >
-      <VStack w={{ base: "90%", md: "80%", lg: "80%" }}>
+      <Image
+        zIndex="0"
+        top="0"
+        width="100%"
+        objectFit="contain"
+        position="absolute"
+        src="/media/Home/bg_coin_2.svg"
+      />
+     
+      <Center zIndex="10">
+        <Text
+          color="#00A3FF"
+          fontFamily="PilatExtended-Bold"
+          fontSize={{ base: "36px", lg: "46px" }}
+        >
+          Project <chakra.span color={"white"}>Details</chakra.span>
+        </Text>
+      </Center>
+      <VStack zIndex="10" paddingTop="128px" w={{ base: "90%", md: "80%", lg: "80%" }}>
         <Flex
           alignContent={"center"}
           direction={{ base: "column", md: "column", lg: "row" }}
         >
           <VStack>
             <ProjectTitle data={oneprojectData} />
-            {/* <ProjectStatusButtons
-              data={oneprojectData}
-              WefundApprove={WefundApprove}
-              onNext={onNext}
-              MilestoneVote={MilestoneVote}
-            /> */}
             <Flex alignContent="center">
               <ProjectMainButtons
                 data={oneprojectData}
@@ -119,6 +133,7 @@ console.log(oneprojectData)
             </Flex>
           </VStack>
         </Flex>
+        <SmokeLeft />
         <Flex
           w="full"
           pt={16}
@@ -127,7 +142,7 @@ console.log(oneprojectData)
           <Flex w="full" flex="1">
             <ProjectTeamMember data={oneprojectData} />
           </Flex>
-          <Container w={48} />
+          <Container w={24} />
           <Flex w="full" flex="1">
             <ProjectInformations
               data={oneprojectData}
@@ -136,8 +151,9 @@ console.log(oneprojectData)
             />
           </Flex>
         </Flex>
+        <Container pt="64px" />
         <ProjectMileStones data={oneprojectData} onOpen={onOpen} />
-        <Container pb="50px" />
+        <Container pb="128px" />
       </VStack>
       <Footer />
 

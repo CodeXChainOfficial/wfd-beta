@@ -47,20 +47,21 @@ export default function InvestStep0() {
     <PageLayout
       title="Contribute"
       subTitle1="Invest"
-      subTitle2="Contribute"
-      subTitle3="&nbsp;to WeFund"
+      subTitle2="&nbsp;to WeFund"
     >
       <Flex
+        minH="60vh"
         width="100%"
+        align="center"
         justify="center"
         py={"4em"}
-        backgroundImage="url('/media/Home/2.png')"
+        direction="column"
+        backgroundImage="url('/media/Home/smoke-bg.png')"
       >
         <Box
           w={{ base: "300px", md: "600px", lg: "800px" }}
-          bgGradient={
-            "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
-          }
+          background="#0A0131"
+
           backdropBlur={"54px"}
           pt="30px"
           style={{ fontFamily: "Sk-Modernist" }}
@@ -91,15 +92,12 @@ export default function InvestStep0() {
               justify="center"
               align="center"
             >
-              <InputTransition
-                unitid="inputpassword"
-                selected={false}
-                width="300px"
-                height="45px"
-                rounded="md"
-              >
+              
                 <Input
-                  background={"transparent"}
+                  style={{
+                    border: "1.5px solid rgba(255, 255, 255, 0.2)",
+                    background: " rgba(0, 0, 0, 0.25)",
+                  }}
                   border="0px"
                   h="45px"
                   type={"password"}
@@ -108,13 +106,12 @@ export default function InvestStep0() {
                   rounded="md"
                   ref={passRef}
                 />
-              </InputTransition>
               <Button
                 w="120px"
                 h="35px"
                 mt="15px"
                 onClick={onConfirm}
-                background={"blue"}
+                background={"blue.300"}
               >
                 Ok
               </Button>

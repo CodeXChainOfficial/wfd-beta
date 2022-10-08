@@ -31,20 +31,13 @@ const SeedInput: FunctionComponent<Props> = ({
       <Flex justify="space-between">
         <Text mb="20px">{typeText}</Text>
       </Flex>
-      <InputTransition
-        unitid={"projectamount" + `${typeText}${index}`}
-        selected={isNull(type[index]) ? false : true}
-        width="100%"
-        height="55px"
-        rounded="md"
-      >
         <InputGroup
-          style={{ background: "rgba(255, 255, 255, 0.05)" }}
+           style={{background: "rgba(255, 255, 255, 0.05)" }}
           size="sm"
           border="0px"
         >
           <Input
-            style={{ border: "0", background: "transparent" }}
+            style={{ border: " 1.5px solid rgba(255, 255, 255, 0.2)",  background: "transparent" }}
             type="number"
             h="55px"
             placeholder="0"
@@ -53,7 +46,6 @@ const SeedInput: FunctionComponent<Props> = ({
             onChange={(e) => onChangeType(e, index)}
           />
         </InputGroup>
-      </InputTransition>
     </Box>
   );
 };

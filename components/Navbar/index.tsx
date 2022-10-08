@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import Link from "next/link";
 import ConnectWallet from "./ConnectWallet";
 import {
@@ -10,6 +10,16 @@ import {
   VStack,
   HStack,
   ChakraProvider,
+  useDisclosure,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverHeader,
+  ButtonGroup,
+  IconButton,
   // Link,
 } from "@chakra-ui/react";
 
@@ -17,9 +27,22 @@ import NavbarMobile from "./mobile";
 import { RiAccountPinBoxFill } from "react-icons/ri";
 import { ButtonBackTransition } from "../ImageTransition";
 import { useStore } from "../../contexts/store";
+import {
+  FaMedium,
+  FaYoutube,
+  FaTwitter,
+  FaTelegram,
+  FaDiscord,
+  FaFlask,
+  FaRocket,
+  FaRedo,
+  FaRetweet,
+} from "react-icons/fa";
+import { SiGmail } from "react-icons/si";
 
 export default function Navbar() {
   const { state, dispatch } = useStore();
+  const { onOpen, onClose, isOpen } = useDisclosure();
   return (
     <Flex w="100%" direction="column">
       <VStack display={{ base: "none", md: "block", lg: "block" }}>
@@ -31,7 +54,7 @@ export default function Navbar() {
           zIndex="99"
           w="100%"
           backdropFilter="blur(100px)"
-          bg="linear-gradient(90deg, #1F0021 0%, #120054 104.34%)"
+          bg="rgba(13, 21, 84, 0.5)"
           borderBottom="2px solid rgba(255, 255, 255, 0.103)"
         >
           <Flex w="50%" h="100%" align="center" justify="space-between">
@@ -43,8 +66,9 @@ export default function Navbar() {
                   h="30px"
                 />
               </Link>
-              <Flex ml="10px" border="1px solid rgba(255,255,255, 0.2)" />
             </Flex>
+           
+
             <DesktopNav />
           </Flex>
           <Flex mr="20px" align="center" justify="center" w="40%" h="100%">
@@ -53,11 +77,11 @@ export default function Navbar() {
                 unitid="ApplyYourProject"
                 selected={false}
                 width="197px"
-                height="40px"
+                height="35px"
                 rounded="33px"
               >
                 <Flex color="white" justify="center" align="center">
-                  Project Application
+                  Apply Project
                 </Flex>
               </ButtonBackTransition>
             </Link>
@@ -77,13 +101,7 @@ export default function Navbar() {
       </VStack>
       <NavbarMobile />
       {state.net == "testnet" && (
-        <Flex
-          w="100%"
-          h="30px"
-          background="yellow"
-          justify="center"
-          color="red"
-        >
+        <Flex w="100%" h="30x" background="yellow" justify="center" color="red">
           Testnet
         </Flex>
       )}
@@ -112,43 +130,23 @@ const DesktopNav = () => {
 
 export const NAV_ITEMS = [
   {
-    label: "Home",
-    href: "/",
+    label: "Incubation",
+    href: "/incubation",
   },
   {
-    label: "About",
-    href: "/about",
-  },
-  {
-    label: "Projects",
-    href: "/#Upcoming",
-  },
-  // {
-  //   label: 'Dashboard',
-  //   href: 'dashboard',
-  // },
-  //  {
-  //    label: 'Career',
-  //    href: '#',
-  //  },
-  //  {
-  //    label: 'Contact',
-  //    href: '#',
-  //  },
-  {
-    label: "Blog",
-    href: "/blog",
+    label: "Launchpad",
+    href: "/projects",
   },
   {
     label: "Invest",
     href: "/invest/step0",
   },
   {
+    label: "Blog",
+    href: "/blog",
+  },
+  {
     label: "Swap",
     href: "/swap",
   },
-  // {
-  //   label: 'FAQ',
-  //   href: 'faq',
-  // },
 ];

@@ -291,9 +291,9 @@ export default function CreateProject() {
   return (
     <PageLayout
       title="Project Apply"
-      subTitle1="Apply"
-      subTitle2="Apply for your project"
-      subTitle3={""}
+      subTitle1=""
+      subTitle2=" Apply  for your project"
+      subTitle3={" "}
     >
       <Flex
         width="100%"
@@ -305,9 +305,8 @@ export default function CreateProject() {
           <Flex width="100%" justify="center" mb={"150px"} zIndex={"1"}>
             <Box
               w={{ base: "xs", sm: "xs", md: "2xl", lg: "2xl", xl: "3xl" }}
-              bgGradient={
-                "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
-              }
+              bg="#120D30"
+
               backdropBlur={"54px"}
               borderTopColor="transparent"
               fontFamily="Sk-Modernist-Regular"
@@ -327,6 +326,7 @@ export default function CreateProject() {
                 typeText="Project Description"
                 type={description}
                 setType={setDescription}
+              
               />
               <TeamMembers
                 description={teammemberDescription}

@@ -26,7 +26,7 @@ export default function NavbarMobile() {
         position="relative"
         justify="space-between"
         backdropFilter="blur(54px)"
-        bg="linear-gradient(90deg, #1F0021 0%, #120054 104.34%)"
+        bg="rgba(13, 21, 84, 0.5)"
         borderBottom="2px solid rgba(255, 255, 255, 0.103)"
       >
         <Flex ml="30px" align="center" cursor="pointer">
@@ -48,7 +48,11 @@ export default function NavbarMobile() {
                   {navItem.label}
                 </Link>
               ))}
-              <Link href="/create">Create Project</Link>
+              <Link href="/apply">Swap</Link>
+              <Link href="/incubation">Incubation and Acceleration</Link>
+              <Link href="/launchpad">Launchpad</Link>
+              <Link href="/apply">Apply Project</Link>
+              <Link href="/userdashboard">User Profile</Link>
             </div>
           </Flex>
           {/* <Flex pr="30px" className="dropdown2">

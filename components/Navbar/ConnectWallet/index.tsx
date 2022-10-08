@@ -115,8 +115,10 @@ export default function ConnectWallet() {
       <Button
         minW="180px"
         display={props.display}
-        colorScheme="orange"
+        border={" 2px solid #6100FF"}
+        backgroundColor="rgba(36, 0, 254, 0.2)"
         rounded="30px"
+        height={"35px"}
         justifyContent={"center"}
         _hover={{ boxShadow: "none" }}
         _focus={{ boxShadow: "none" }}

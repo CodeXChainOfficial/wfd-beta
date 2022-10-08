@@ -3,8 +3,10 @@
 # idea
 .idea
 
+
 # dependencies
 /node_modules
+/bsc_contract/node_modules
 /.pnp
 .pnp.js
 

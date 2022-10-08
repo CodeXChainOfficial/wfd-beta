@@ -39,16 +39,9 @@ const CustomCoinInput: FunctionComponent<Props> = ({
       <Flex justify="space-between">
         <Text mb="20px">{typeText}</Text>
       </Flex>
-      <InputTransition
-        unitid={"projectamount" + typeText}
-        selected={type == "" ? false : true}
-        width="100%"
-        height="55px"
-        rounded="md"
-      >
         <InputGroup
           size="sm"
-          style={{ background: "rgba(255, 255, 255, 0.05" }}
+          style={{ border: "1.5px solid rgba(255, 255, 255, 0.2)", background: "rgba(255, 255, 255, 0.05)" }}
         >
           <Input
             style={{ border: "0", background: "transparent" }}
@@ -81,7 +74,6 @@ const CustomCoinInput: FunctionComponent<Props> = ({
             <option style={{ backgroundColor: "#1B0645" }}>($)USD</option>
           </Select>
         </InputGroup>
-      </InputTransition>
     </Box>
   );
 };

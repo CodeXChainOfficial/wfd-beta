@@ -27,17 +27,9 @@ const NeedsInput: FunctionComponent<Props> = ({
       <Flex justify="space-between">
         <Text mb="20px">Incubation Assistance</Text>
       </Flex>
-      <InputTransition
-        unitid={"projectreq" + `${typeText}${index}`}
-        selected={isNull(prjIncuNeeds[index]) ? false : true}
-        width="100%"
-        height="55px"
-        rounded="md"
-        style={{ background: "transparent", border: "0" }}
-      >
         <Select
           id={"prjchain " + `${index}`}
-          style={{ background: "parent", border: "0" }}
+          style={{ border: " 1.5px solid rgba(255, 255, 255, 0.2)", background: "rgba(255, 255, 255, 0.05)" }}
           h="55px"
           size="sm"
           w="full"
@@ -55,7 +47,6 @@ const NeedsInput: FunctionComponent<Props> = ({
             </option>
           ))}
         </Select>
-      </InputTransition>
     </Box>
   );
 };

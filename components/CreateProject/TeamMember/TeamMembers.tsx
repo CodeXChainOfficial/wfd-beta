@@ -1,5 +1,5 @@
 import React, { FunctionComponent, Dispatch, SetStateAction } from "react";
-import { Flex, Text, Box, Stack } from "@chakra-ui/react";
+import { Flex, Text, Box, Stack, chakra } from "@chakra-ui/react";
 
 import { ImageTransition, ButtonBackTransition } from "../../ImageTransition";
 
@@ -45,16 +45,26 @@ const TeamMembers: FunctionComponent<Props> = ({
         justify="center"
         style={{ fontFamily: "PilatExtended-Bold" }}
       >
-        <Text fontSize={{ base: "25px", md: "25px" }}>Team Members</Text>
+        <Text fontSize={{ base: "25px", md: "25px" }}>
+          <chakra.span color={"#69E4FF"}>Team</chakra.span> Members
+        </Text>
       </Flex>
       {description.map((item: any, index: number) => {
         return (
-          <Flex direction="column" key={index}>
+          <Flex
+            direction="column"
+            key={index}
+            background={"rgba(12, 2, 24, 0.5)"}
+            padding={12}
+            rounded={"2xl"}
+            mt={4}
+          >
             <Text
-              fontSize={{ base: "22px", md: "25px" }}
-              color="#4790f5"
+              fontSize={{ base: "14px", md: "18px" }}
+              fontFamily={"PilatExtended-Bold"}
+              color="#ffff"
               mb="10px"
-              align="center"
+              align="left"
             >
               Team Member {index + 1}
             </Text>

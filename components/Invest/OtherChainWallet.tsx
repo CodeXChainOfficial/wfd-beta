@@ -115,20 +115,16 @@ const OtherChainWallet: FunctionComponent<Props> = ({
         <Flex>
           <Text mb="20px">Select Chain</Text>
         </Flex>
-        <InputTransition
-          unitid="chaintransition"
-          selected={false}
-          width="300px"
-          height="45px"
-          rounded="md"
-        >
           <Select
             id="chainselect"
-            style={{ background: "transparent", border: "0" }}
+            style={{
+              border: "1.5px solid rgba(255, 255, 255, 0.2)",
+              background: "rgba(0, 0, 0, 0.25)",
+            }}
             h="45px"
             shadow="sm"
             size="sm"
-            w="100%"
+            w="300px"
             value={chain}
             rounded="md"
             onChange={onChangeChain}
@@ -142,27 +138,24 @@ const OtherChainWallet: FunctionComponent<Props> = ({
             <option style={{ backgroundColor: "#1B0645" }}>OneLedger</option>
             <option style={{ backgroundColor: "#1B0645" }}>Fantom</option>
           </Select>
-        </InputTransition>
       </Box>
       <Box ml={{ base: "0px", md: "0px", lg: "30px" }}>
         <Flex mt={{ base: "40px", md: "40px", lg: "0px" }}>
           <Text mb="20px">TOKENS</Text>
         </Flex>
         <Box>
-          <InputTransition
-            unitid="inputwallet"
-            selected={false}
-            width="300px"
-            height="45px"
-            rounded="md"
-          >
             <Select
               id="tokenselect"
-              style={{ background: "transparent", border: "0" }}
+              style={{
+                border: "1.5px solid rgba(255, 255, 255, 0.2)",
+                background: "rgba(0, 0, 0, 0.25)",
+              }}
               h="45px"
               shadow="sm"
               size="sm"
-              w="100%"
+            selected={false}
+            width="300px"
+            rounded="md"
               value={token}
               rounded="md"
               onChange={(e) => {
@@ -175,7 +168,6 @@ const OtherChainWallet: FunctionComponent<Props> = ({
                 </option>
               ))}
             </Select>
-          </InputTransition>
         </Box>
       </Box>
     </Flex>

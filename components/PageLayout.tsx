@@ -15,12 +15,12 @@ const PageLayout: FunctionComponent<Props> = (props) => {
       color={"white"}
       width={"100%"}
       pt={"120px"}
-          pb={"25px"}
           direction="column"
-          style={{ fontFamily: "PilatExtended-Regular" }}
+          style={{ fontFamily: "Sans-Serif" }}
+          align="center"
     >
-      <Flex 
-          px={{ base: "40px", md: "80px", lg: "120px" }}>
+      {/* <Flex
+          px={{ base: "40px", md: "80px", lg: "120px" }} align="center">
             <Text
               fontSize={{ base: "10px", sm: "12px", md: "16px", lg: "16px" }}
               fontWeight="normal"
@@ -41,19 +41,29 @@ const PageLayout: FunctionComponent<Props> = (props) => {
             >
               {props.title}
             </Text>
-          </Flex>
-          <Flex 
+          </Flex> */}
+          <Flex
           px={{ base: "40px", md: "80px", lg: "120px" }}>
             <Text
-              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "28px" }}
-              color="#4790f5"
+              as={"span"}
+              fontFamily="Sans-Serif"
+              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
+              fontWeight={"400"}
+            >
+              {props.subTitle1}
+            </Text>
+            <Text
+              fontFamily="Sans-Serif"
+              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
+              color="#00A3FF"
               fontWeight={"900"}
             >
               {props.subTitle2}
             </Text>
             <Text
               as={"span"}
-              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "28px" }}
+              fontFamily="Sans-Serif"
+              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
               fontWeight={"900"}
             >
               {props.subTitle3}
@@ -97,7 +107,7 @@ const PageLayout: FunctionComponent<Props> = (props) => {
       <Flex direction='column' w="100%" justify="center" align="center" color='white'>
         {props.children}
       </Flex>
-      
+
     </Flex>
   );
 };

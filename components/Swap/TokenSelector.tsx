@@ -26,6 +26,7 @@ const TokenSelector = ({ chain, token, setToken }: Props) => {
   }, [tokenList]);
 
   const selectToken = (index: number) => {
+console.log(tokenList[index])
     setToken(tokenList[index].address);
     setIndex(index);
     onClose();

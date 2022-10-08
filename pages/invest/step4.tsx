@@ -95,143 +95,149 @@ export default function InvestStep4() {
       subTitle3="&nbsp;to WeFund"
     >
       <Flex
-        width="100%"
-        justify="center"
-        py={"4em"}
-        backgroundImage="url('/media/Home/2.png')"
+       width="100%"
+       justify="center"
+       align="center"
+       py={"4em"}
+       direction="column"
+       backgroundImage="url('/media/Home/smoke-bg.png')"
+       backgroundSize={"contain"}
       >
+         <Flex
+          justify="center"
+          align="center"
+          direction="column"
+          style={{ fontFamily: "PilatExtended-Regular" }}
+        >
+          <HStack mt="50px" mb="50px" w="400px" justifyContent={"center"}>
+            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+              <Box
+                width={{ base: "18px", md: "20px" }}
+                height={{ base: "18px", md: "20px" }}
+                style={{
+                  paddingTop: "1px",
+                  paddingLeft: "2px",
+                  border: "3px solid #3BE489",
+                  backgroundColor: "#3BE489",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                }}
+              >
+                <CheckIcon
+                  color="#250E3F"
+                  w={{ base: 2, md: 3 }}
+                  h={{ base: 2, md: 3 }}
+                  marginBottom={{ base: "30px", md: "20px" }}
+                />
+              </Box>
+              <Text
+                fontSize={{
+                  base: "12px",
+                  sm: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                Step 01
+              </Text>
+            </Flex>
+            <Box
+              style={{
+                height: "0x",
+                width: "15%",
+                border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
+                background: " rgba(255, 255, 255, 0.3799999952316284)",
+              }}
+            />
+            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+              <Box
+                width={{ base: "18px", md: "20px" }}
+                height={{ base: "18px", md: "20px" }}
+                style={{
+                  paddingTop: "1px",
+                  paddingLeft: "2px",
+                  border: "3px solid #3BE489",
+                  backgroundColor: "#3BE489",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                }}
+              >
+                <CheckIcon
+                  color="#250E3F"
+                  w={{ base: 2, md: 3 }}
+                  h={{ base: 2, md: 3 }}
+                  marginBottom={{ base: "30px", md: "20px" }}
+                /></Box>
+              <Text
+                fontSize={{
+                  base: "12px",
+                  sm: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                Step 02
+              </Text>
+            </Flex>
+            <Box
+              style={{
+                height: "0px",
+                width: "15%",
+                border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
+                background: " rgba(255, 255, 255, 0.3799999952316284)",
+              }}
+            ></Box>
+            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+              <Box
+                width={{ base: "18px", md: "20px" }}
+                height={{ base: "18px", md: "20px" }}
+                style={{
+                  paddingTop: "1px",
+                  paddingLeft: "2px",
+                  border: "3px solid #3BE489",
+                  backgroundColor: "#3BE489",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                }}
+              >
+                <CheckIcon
+                  color="#250E3F"
+                  w={{ base: 2, md: 3 }}
+                  h={{ base: 2, md: 3 }}
+                  marginBottom={{ base: "30px", md: "20px" }}
+                /></Box>
+              <Text
+                fontSize={{
+                  base: "12px",
+                  sm: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                Confirm
+              </Text>
+            </Flex>
+          </HStack>
+        </Flex>
         <Box
-          w={{ base: "300px", md: "600px", lg: "800px" }}
-          bgGradient={
-            "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
-          }
+          w={{ base: "90%", md: "600px", lg: "800px" }}
+          background="#120037"
           backdropBlur={"54px"}
-          pt="30px"
+          pt="40px"
           style={{ fontFamily: "Sk-Modernist" }}
           rounded={"3xl"}
         >
           <Box
             width={"100%"}
             style={{ fontFamily: "Sk-Modernist-Regular" }}
-            align="center"
             px={"2em"}
           >
             <Flex
-              mt="30px"
               justify="center"
               align="center"
               direction="column"
               style={{ fontFamily: "PilatExtended-Regular" }}
             >
-              <HStack
-                mt="50px"
-                mb="50px"
-                align={"center"}
-              >
-                <Box
-                  width={{ base: "50px", md: "40px" }}
-                  style={{
-                    paddingTop: "3px",
-                    paddingLeft: "3px",
-                    height: "24px",
-                    border: "3px solid #3BE489",
-                    background: " #3BE489",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                  }}
-                >
-                  <CheckIcon
-                    color="#250E3F"
-                    w={3}
-                    h={3}
-                    marginBottom={"20px"}
-                  />
-                </Box>
-                <Text
-                  fontSize={{
-                    base: "12px",
-                    sm: "12px",
-                    md: "22px",
-                    lg: "22px",
-                  }}
-                >
-                  Step 1
-                </Text>
-                <Box
-                  width={{ base: "50px", md: "40px" }}
-                  style={{
-                    height: "0x",
-                    width: "30%",
-                    border: "2px solid #3BE489",
-                    background: " #3BE489",
-                  }}
-                ></Box>
-                <Box
-                  style={{
-                    paddingTop: "3px",
-                    paddingLeft: "3px",
-                    height: "24px",
-                    border: "3px solid #3BE489",
-                    background: " #3BE489",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                  }}
-                >
-                  <CheckIcon
-                    color="#250E3F"
-                    w={3}
-                    h={3}
-                    marginBottom={"20px"}
-                  />
-                </Box>
-                <Text
-                  fontSize={{
-                    base: "12px",
-                    sm: "12px",
-                    md: "22px",
-                    lg: "22px",
-                  }}
-                >
-                  Step 2
-                </Text>
-                <Box
-                  width={{ base: "50px", md: "40px" }}
-                  style={{
-                    height: "0x",
-                    width: "30%",
-                    border: "2px solid #3BE489",
-                    background: " #3BE489",
-                  }}
-                ></Box>
-                <Box
-                  style={{
-                    paddingTop: "3px",
-                    paddingLeft: "3px",
-                    height: "24px",
-                    border: "3px solid #3BE489",
-                    background: " #3BE489",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                  }}
-                >
-                  <CheckIcon
-                    color="#250E3F"
-                    w={3}
-                    h={3}
-                    marginBottom={"20px"}
-                  />
-                </Box>
-                <Text
-                  fontSize={{
-                    base: "12px",
-                    sm: "12px",
-                    md: "22px",
-                    lg: "22px",
-                  }}
-                >
-                  Final
-                </Text>
-              </HStack>
               <HStack mb={"20px"}>
                 <Image src={"/popperleft.svg"} />
                 <Text
@@ -270,7 +276,7 @@ export default function InvestStep4() {
               maxHeight={{ base: "0px", md: "0px", lg: "999px" }}
               visibility={{ base: "hidden", md: "hidden", lg: "visible" }}
             >
-              <Text fontSize="16px" fontWeight={"300"} mb={"20px"} ml={"100px"}>
+              <Text fontSize="16px" fontWeight={"300"} mb={"20px"}>
                 Transaction History
               </Text>
               <Table variant="simple">
@@ -414,7 +420,7 @@ export default function InvestStep4() {
                 border1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
                 background1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
                 border2="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-                background2="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
+                background2="#10144B"
                 border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
                 background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
                 selected={false}
@@ -425,7 +431,7 @@ export default function InvestStep4() {
                   router.push("/");
                 }}
               >
-                <Box color="white">Go Home</Box>
+                <Box color="white">Back Home</Box>
               </ImageTransition>
             </Flex>
           </Box>

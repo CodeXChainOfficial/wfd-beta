@@ -23,6 +23,7 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  Divider,
 } from "@chakra-ui/react";
 
 import Carousel from "react-multi-carousel";
@@ -40,6 +41,7 @@ import {
 import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
 import { RiUpload2Line } from "react-icons/ri";
 import Footer from "../../components/Footer";
+import Hero from "../../components/User/Hero";
 
 export default function UserSideSnippet() {
   const { state, dispatch } = useStore();
@@ -85,6 +87,7 @@ export default function UserSideSnippet() {
       console.log(e);
     }
   }
+
   useEffect(() => {
     fetchContractQuery();
   }, [state.address]);
@@ -102,9 +105,11 @@ export default function UserSideSnippet() {
   function removeCommunityMember() {
     if (checkNetwork(state) == false) return false;
   }
+
   function claim(project_id: number) {
     if (checkNetwork(state) == false) return false;
   }
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 3000, min: 2000 },
@@ -124,162 +129,178 @@ export default function UserSideSnippet() {
     },
   };
   return (
-    <Box color={"white"} mt="150px" maxW={"1440px"}>
-      <VStack color="white" py={"3em"} mb={"21em"} w={"100%"}>
-        <Flex
-          fontWeight="750"
-          fontSize="28px"
-          lineHeight={"160%"}
-          justify={"left"}
-        >
-          <Text>Project Backed</Text>
-        </Flex>
-        <Accordion allowToggle>
-          <AccordionItem
-            bgGradient="linear(#430E82, #1D0551)"
-            rounded={"lg"}
-            border="0px"
-            borderColor="gray.200"
-            mt={"2em"}
-            w={"100%"}
-          >
-            <h2>
-              <AccordionButton>
-                <Box flex="1" textAlign="left">
-                  <Box p={6}>
-                    <Stack
-                      direction={{ base: "column", md: "row", lg: "row" }}
-                      justify={"center"}
-                      spacing={{ base: 0, sm: 2, md: 36, lg: 48 }}
-                      w={"100%"}
-                    >
-                      <Flex justify={"center"}>
-                        <Avatar
-                          size={"lg"}
-                          src={"/logolink"}
-                          alt={"Logo"}
-                          css={{
-                            border: "2px solid white",
-                          }}
-                        />
-                        <Center>
-                          <Stack spacing={0} align={"center"} mb={5} w={"100%"}>
-                            <Heading
-                              fontSize={"2xl"}
-                              fontWeight={500}
-                              fontFamily={"body"}
-                              color="white"
-                              px={"30px"}
-                            >
-                              WFD/Fantom
-                            </Heading>
+    <>
+      <Hero />
+      <Box
+        border="3px solid rgba(15, 177, 245, 0.28)"
+        borderRadius="15px"
+        m="128px"
+        pb="128px"
+      >
+        {[...Array(2)].map((_, i) => (
+          <VStack key={i} color="white" pt={"3em"} w={"100%"}>
+            <Accordion allowToggle>
+              <AccordionItem
+                bg="#120D30"
+                rounded={"lg"}
+                border="0px"
+                borderColor="gray.200"
+                mt={"2em"}
+                w={"100%"}
+              >
+                <h2>
+                  <AccordionButton>
+                    <Box flex="1" textAlign="left">
+                      <Box p={6}>
+                        <Stack
+                          direction={{ base: "column", md: "row", lg: "row" }}
+                          justify={"center"}
+                          spacing={{ base: 0, sm: 2, md: 36, lg: 48 }}
+                          w={"100%"}
+                        >
+                          <Flex justify={"center"}>
+                            <Avatar
+                              size={"lg"}
+                              src={"/logolink"}
+                              border="2px solid white"
+                            />
+                            <Center>
+                              <Stack
+                                spacing={0}
+                                align={"center"}
+                                mb={5}
+                                w={"100%"}
+                              >
+                                <Heading
+                                  fontSize={"2xl"}
+                                  fontWeight={500}
+                                  fontFamily={"body"}
+                                  color="white"
+                                  px={"30px"}
+                                >
+                                  WFD/Fantom
+                                </Heading>
+                              </Stack>
+                            </Center>
+                          </Flex>
+                          <Stack
+                            direction={"row"}
+                            justify={"center"}
+                            spacing={{ base: 8, sm: 8, md: 24, lg: 32 }}
+                          >
+                            <Stack spacing={0} align={"center"}>
+                              <Text
+                                fontSize={"16px"}
+                                fontWeight={600}
+                                color={"gray.500"}
+                              >
+                                Investing
+                              </Text>
+                              <Text fontWeight={600} fontSize={"20px"}>
+                                $100
+                              </Text>
+                            </Stack>
+                            <Stack spacing={0} align={"center"}>
+                              <Text
+                                fontSize={"16px"}
+                                fontWeight={600}
+                                color={"gray.500"}
+                              >
+                                Earnings
+                              </Text>
+                              <Text fontWeight={600} fontSize={"20px"}>
+                                $ 0
+                              </Text>
+                            </Stack>
                           </Stack>
-                        </Center>
-                      </Flex>
-                      <Stack
-                        direction={"row"}
-                        justify={"center"}
-                        spacing={{ base: 8, sm: 8, md: 24, lg: 32 }}
+                        </Stack>
+                      </Box>
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4} bg="rgba(0, 0, 0, 0.33)">
+                  <Flex maxW={"250px"}>
+                    <Stack>
+                      <Text
+                        fontSize={"xl"}
+                        fontWeight={500}
+                        color="white"
+                        px={"30px"}
                       >
-                        <Stack spacing={0} align={"center"}>
-                          <Text
-                            fontSize={"16px"}
-                            fontWeight={600}
-                            color={"gray.500"}
-                          >
-                            Investing
-                          </Text>
-                          <Text fontWeight={600} fontSize={"20px"}>
-                            $100
-                          </Text>
-                        </Stack>
-                        <Stack spacing={0} align={"center"}>
-                          <Text
-                            fontSize={"16px"}
-                            fontWeight={600}
-                            color={"gray.500"}
-                          >
-                            Earnings
-                          </Text>
-                          <Text fontWeight={600} fontSize={"20px"}>
-                            $ 0
-                          </Text>
-                        </Stack>
+                        Descriptions
+                      </Text>
+                      <Text
+                        fontSize={"14px"}
+                        fontWeight={200}
+                        color="white"
+                        px={"30px"}
+                        py={"15px"}
+                        pb="128px"
+                      >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Ut enim ad minim veniam, quis nostrud
+                        exercitation ullamco laboris nisi ut aliquip ex ea
+                        commodo consequat.
+                      </Text>
+                      <Center>
+                        <Box
+                          width="92%"
+                          border="1px solid rgba(255, 255, 255, 0.5)"
+                          height="0px"
+                        />
+                      </Center>
+                      <Stack
+                        direction={{ base: "column", sm: "row", lg: "row" }}
+                        justify={"center"}
+                        spacing={12}
+                        width={"100%"}
+                        px={8}
+                        pt="16px"
+                      >
+                        <Progress
+                          borderRadius="18px"
+                          colorScheme="purple"
+                          height="32px"
+                          my={"12px"}
+                          value={20}
+                          width={"100%"}
+                        />
+                        <Text
+                          fontSize={{ base: "12px", sm: "14px", lg: "16px" }}
+                          fontWeight={200}
+                          color="white"
+                          py={"15px"}
+                          width={{ base: "8px", sm: "100px", lg: "300px" }}
+                        >
+                          20% Progress
+                        </Text>
+                        <Text
+                          fontSize={{ base: "12px", sm: "14px", lg: "16px" }}
+                          fontWeight={200}
+                          color="white"
+                          py={"15px"}
+                          width={{ base: "80px", sm: "100px", lg: "350px" }}
+                        >
+                          Backed 2022-06-23
+                        </Text>
                       </Stack>
                     </Stack>
-                  </Box>
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel
-              pb={4}
-              bgGradient={
-                "linear(180deg, rgba(2, 38, 168, 0.2312) 0%, rgba(22, 6, 201, 0.085) 100%)"
-              }
-            >
-              <Flex maxW={"250px"}>
-                <Stack>
-                  <Text
-                    fontSize={"xl"}
-                    fontWeight={500}
-                    color="white"
-                    px={"30px"}
-                  >
-                    Descriptions
-                  </Text>
-                  <Text
-                    fontSize={"14px"}
-                    fontWeight={200}
-                    color="white"
-                    px={"30px"}
-                    py={"15px"}
-                  >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </Text>
-                  <Stack
-                    direction={{ base: "column", sm: "row", lg: "row" }}
-                    justify={"center"}
-                    spacing={12}
-                    width={"100%"}
-                    px={8}
-                  >
-                    <Progress
-                      colorScheme="pink"
-                      height="32px"
-                      value={20}
-                      width={"100%"}
-                    />
-                    <Text
-                      fontSize={{ base: "12px", sm: "14px", lg: "16px" }}
-                      fontWeight={200}
-                      color="white"
-                      py={"15px"}
-                      width={{ base: "8px", sm: "100px", lg: "200px" }}
-                    >
-                      20% Progress
-                    </Text>
-                    <Text
-                      fontSize={{ base: "12px", sm: "14px", lg: "16px" }}
-                      fontWeight={200}
-                      color="white"
-                      py={"15px"}
-                      width={{ base: "80px", sm: "100px", lg: "400px" }}
-                    >
-                      Backed 2022-06-23
-                    </Text>
-                  </Stack>
-                </Stack>
-              </Flex>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
-      </VStack>
+                  </Flex>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          </VStack>
+        ))}
+      </Box>
 
+      <Image
+        width="100%"
+        objectFit="contain"
+        src="/media/background_non_streak.svg"
+      />
       <Footer />
-    </Box>
+    </>
   );
 }

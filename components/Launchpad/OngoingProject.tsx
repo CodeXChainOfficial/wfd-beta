@@ -184,10 +184,7 @@ export default function OngoingProject() {
             "&::-webkit-scrollbar-track": {
               backgroundColor: "#45108AA1",
             },
-            "&::-webkit-scrollbar-thumb": {
-              backgroundColor: "#45108AA1",
-              borderRadius: "6px",
-            },
+           
           }}
         >
           <SimpleGrid

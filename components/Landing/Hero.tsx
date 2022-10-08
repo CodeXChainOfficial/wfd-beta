@@ -1,7 +1,21 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from "react";
-import { Image, Flex, Text, Stack, Container, Box } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import {
+  HStack,
+  Image,
+  Flex,
+  Text,
+  Stack,
+  Container,
+  Box,
+  chakra,
+} from "@chakra-ui/react";
+import { useStore } from "../../contexts/store";
 
 export default function Hero() {
+  const router = useRouter();
+  const { state } = useStore();
   return (
     <Flex
       width="100%"
@@ -10,72 +24,104 @@ export default function Hero() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      bgGradient="Linear(#058cd8, #4d188f, #2a0a31)"
-      height={{ base: "30em", md: "90vh", lg: "90vh" }}
+      background="#000118"
+      h="100vh"
     >
-      <Image
-        top="1em"
-        width="100%"
-        position="absolute"
-        objectFit="contain"
-        src="/media/Home/2.png"
-      />
-      <Container
+      <Flex
         position={"relative"}
-        mt={{ base: "15vh", lg: "20vh" }}
+        mt={{ base: "140px", md: "200px" }}
         zIndex={"3"}
-        maxW="container.lg"
+        maxW="container.2xl"
+        align="center"
+        direction="column"
       >
-        <Stack>
+        <Stack width={{ base: "90%", md: "850px" }}>
           <Text
-            fontFamily="PilatExtended-Bold"
-            fontSize={{ base: "20px", md: "64px" }}
-            lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
-            letterSpacing={{ base: "0.1em" }}
-            textTransform={"uppercase"}
+            fontFamily="PilatExtended-Regular"
+            fontWeight="900"
+            fontSize={{ base: "20px", md: "36px" }}
+            lineHeight={{ base: "30px", md: "54px" }}
+            letterSpacing="-0.022em"
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
           >
-            Multichain Community
-          </Text>
-          <Text
-            fontFamily="PilatExtended-Black"
-            fontSize={{ base: "21px", md: "64px" }}
-            lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
-            letterSpacing={{ base: "0.1em" }}
-            textTransform={"uppercase"}
-            textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
-            color={"brand"}
-          >
-            Incubator
-          </Text>
-          <Text
-            fontFamily="PilatExtended-Black"
-            fontSize={{ base: "21px", md: "64px" }}
-            lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
-            letterSpacing={{ base: "0.1em" }}
-            textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
-            textTransform={"uppercase"}
-          >
-            Launchpad
+            Multichain{" "}
+            <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
+              crowdfunding, incubation,
+            </chakra.span>{" "}
+            and{" "}
+            <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
+              launchpad
+            </chakra.span>{" "}
+            for real-world applications
           </Text>
         </Stack>
-      </Container>
-      <Image
-        bottom={"0"}
-        width="100%"
+        <Stack
+          direction={{ base: "column", md: "row" }}
+          w="100%"
+          justify="center"
+          align="center"
+          mt="86px"
+          spacing={{ base: "30px", md: "90px" }}
+        >
+          <Flex
+            backgroundColor="#006699"
+            width={{ base: "198px", md: "248px" }}
+            height={{ base: "50px", md: "46px" }}
+            rounded={"33px"}
+            align="center"
+            cursor="pointer"
+            _hover={{ background: "#2288bb" }}
+            onClick={() => router.push("/invest/step0")}
+          >
+            <Text
+              w="100%"
+              fontSize="16px"
+              fontFamily="Calibri"
+              fontWeight="500"
+              color="white"
+            >
+              GET WFD
+            </Text>
+          </Flex>
+          <Flex
+            backgroundColor="#18075B"
+            backdropFilter="blur(54px)"
+            width={{ base: "198px", md: "248px" }}
+            height={{ base: "50px", md: "46px" }}
+            rounded="33px"
+            align="center"
+            cursor="pointer"
+            _hover={{ background: "#3A297D" }}
+            onClick={() => state.openWalletModal && state.openWalletModal()}
+          >
+            <Text
+              w="100%"
+              fontSize="16px"
+              fontFamily="Calibri"
+              fontWeight="500"
+              color="white"
+            >
+              CONNECT WALLET
+            </Text>
+          </Flex>
+        </Stack>
+      </Flex>
+      <Flex
         position="absolute"
-        objectFit="contain"
-        src="/media/Home/1.svg"
-      />
-      <Box
-        position={"absolute"}
-        bottom={"0"}
-        width={"100%"}
-        height={"121px"}
-        background={
-          "linear-gradient(180deg, rgba(30, 0, 39, 0) 0%, #1E0027 60.72%)"
-        }
-      />
+        bottom="0px"
+        pl="64px"
+        pr="64px"
+        flexDirection="row"
+        justifyContent="space-between"
+        width="100%"
+      >
+        <Image objectFit="contain" src="/media/Home/Coin_A.png" />
+        <Image
+          objectFit="contain"
+          src="/media/Home/Coin_B.png"
+          display={{ base: "none", md: "block" }}
+        />
+      </Flex>
     </Flex>
   );
 }

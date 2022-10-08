@@ -9,7 +9,7 @@ import { RouterProtocol } from "@routerprotocol/router-js-sdk";
 import { ROUTER_CHAIN_CONFIG, CHAIN_TYPE } from "../config/constants/swap";
 import { ethers } from "ethers";
 import { useMetamaskWallet } from "../contexts/metamask";
-import { ERC20_ABI, ERROR_OPTION } from "../config/constants";
+import { ERC20_ABI, ERROR_OPTION, SUCCESS_OPTION } from "../config/constants";
 import { toast } from "react-toastify";
 
 export default function RouterSwap() {
@@ -107,7 +107,6 @@ export default function RouterSwap() {
         args.fee_token_address,
         args.slippage_tolerance
       );
-      console.log(quote);
       return quote;
     } catch (e) {
       toast("Can't find path", ERROR_OPTION);
@@ -157,7 +156,13 @@ export default function RouterSwap() {
       return false;
     }
   };
+
   const swap = async () => {
+    if (account == "") {
+      toast("Please connect the metamask", ERROR_OPTION);
+      return;
+    }
+
     setIsLoading(true);
     const quote = await getQuote();
     setIsLoading(false);
@@ -173,11 +178,15 @@ export default function RouterSwap() {
       return;
     }
 
-    const inBalance = await Contract.balanceOf(account);
-    if (inBalance.lt(quote?.source.tokenAmount)) {
-      toast("Insufficient Balance!", ERROR_OPTION);
-      console.log("Insufficient Balance!");
-      return;
+    try {
+      const inBalance = await Contract.balanceOf(account);
+      if (inBalance.lt(quote?.source.tokenAmount)) {
+        toast("Insufficient Balance!", ERROR_OPTION);
+        console.log("Insufficient Balance!");
+        return;
+      }
+    } catch (e) {
+      console.log(e);
     }
 
     const res = await approve();
@@ -218,7 +227,7 @@ export default function RouterSwap() {
           p={{ base: "16px", md: "32px" }}
           mx={{ base: "10px", lg: "64px" }}
           justify="center"
-          bgGradient="linear(#210B3C, #070334)"
+          bgGradient="#FFFFFF"
         >
           <SwapCard
             type={SwapType.from}

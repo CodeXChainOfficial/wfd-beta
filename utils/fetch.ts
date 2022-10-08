@@ -9,7 +9,6 @@ export function addExtraInfo(projectData: any) {
 
   projectData[WEFUND_ID - 1].backerbacked_amount = "160000000000";
   for (let i = 0; i < projectData.length; i++) {
-    projectData[i].teammember_states = JSON.parse(projectData[i].teammembers);
     const backer_backedAmount = parseInt(projectData[i].backerbacked_amount);
     projectData[i].backer_backedPercent = Math.floor(
       (backer_backedAmount /
@@ -38,8 +37,8 @@ export async function fetchData(
   force: boolean
 ) {
   let projectData = state.projectData;
-  let communityData = state.communityData;
-  let configData = state.configData;
+  const communityData = state.communityData;
+  const configData = state.configData;
 
   if (!force) return { projectData, communityData, configData };
 
@@ -52,17 +51,20 @@ export async function fetchData(
     provider
   );
 
-  await fetch("/api/fetchProjects")
-    .then((res) => res.json())
-    .then((data) => {
-      projectData = data.data;
-    })
-    .catch((e) => {
-      console.log("Error:" + e);
-    });
-
   try {
+    console.log("reading")
+    
+    await fetch("/api/fetchProjects")
+      .then((res) => res.json())
+      .then((data) => {
+        projectData = data.data;
+      })
+      .catch((e) => {
+        console.log("Error:" + e);
+      });
+
     const res = await contract.getProjectInfo();
+
     for (let i = 0; i < res.length; i++) {
       const id = res[i].id.toNumber() - 1;
 
@@ -71,8 +73,13 @@ export async function fetchData(
       projectData[id].backer_states = res[i].backers;
       projectData[id].whitelist = res[i].whitelist;
       projectData[id].milestone_states = [];
+      projectData[id].teammember_states = JSON.parse(
+        projectData[id].teammembers
+      );
+      projectData[id].fund_type = JSON.parse(projectData[id].project_fundtype);
+
       for (let j = 0; j < res[i].milestones.length; j++) {
-        var obj: any = {};
+        const obj: any = {};
         obj.milestone_amount = res[i].milestones[j].amount.toNumber();
         obj.milestone_description = res[i].milestones[j].description;
         obj.milestone_enddate = res[i].milestones[j].end_date;
@@ -87,7 +94,6 @@ export async function fetchData(
     console.log(projectData);
     projectData = addExtraInfo(projectData);
     dispatch({ type: ActionKind.setProjectData, payload: projectData });
-    console.log(projectData);
   } catch (e) {
     console.log(e);
   }

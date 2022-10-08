@@ -132,7 +132,7 @@ const ProjectMainButtons: FunctionComponent<Props> = ({
               rounded="33px"
               onClick={onWhite}
             >
-              <Box color="white">Join {data.project_title} Whitelist </Box>
+              <Box color="white">Join Whitelist </Box>
             </ImageTransition>
           </Flex>
         )}

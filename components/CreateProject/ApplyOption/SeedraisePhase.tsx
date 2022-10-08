@@ -32,24 +32,16 @@ const SeedraisePhase: FunctionComponent<Props> = ({
           {type[index]?.length}/200 words
         </Text>
       </Flex>
-      <InputTransition
-        unitid={`${typeText}${index}`}
-        selected={isNull(type[index]) ? false : true}
-        width="100%"
-        height="75px"
-        rounded="md"
-        style={{ background: "transparent", border: "0" }}
-      >
         <Textarea
-          style={{ background: "transparent", border: "0" }}
+           style={{ border: " 1.5px solid rgba(255, 255, 255, 0.2)", background: "rgba(255, 255, 255, 0.05)" }}
           value={type[index]}
+          placeholder={"Fundraise Description"}
           _focusVisible={{ border: "0" }}
           onChange={(e) => onChangeType(e, index)}
           size="sm"
           rounded="md"
           h="75px"
         />
-      </InputTransition>
     </Box>
   );
 };

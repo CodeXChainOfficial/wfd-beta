@@ -70,13 +70,7 @@ const ApplyOpt: FunctionComponent<Props> = ({
       <Flex justify="space-between">
         <Text mb="20px">Apply Options</Text>
       </Flex>
-      <InputTransition
-        unitid="projectapplyopt"
-        width="50%"
-        height="55px"
-        rounded="md"
-        background="rgba(255, 255, 255, 0.05)"
-      >
+      
         <Select
           id="prjchain"
           style={{ background: "parent", border: "0" }}
@@ -85,12 +79,12 @@ const ApplyOpt: FunctionComponent<Props> = ({
           w="full"
           rounded="md"
           onChange={(e) => setOpt(e.target.value)}
+          style={{ border: " 1.5px solid rgba(255, 255, 255, 0.2)", background: "rgba(255, 255, 255, 0.05)" }}
         >
           <option style={{ backgroundColor: "#1B0645" }}>Incubation</option>
           <option style={{ backgroundColor: "#1B0645" }}>Fundraising</option>
           <option style={{ backgroundColor: "#1B0645" }}>IDO</option>
         </Select>
-      </InputTransition>
       {opt == "Incubation" && (
         <ApplyIncubation needs={prjNeed} setNeeds={setPrjNeed} />
       )}

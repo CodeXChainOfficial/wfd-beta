@@ -331,16 +331,125 @@ export default function InvestStep3() {
       <Flex
         width="100%"
         justify="center"
+        align="center"
         py={"4em"}
-        backgroundImage="url('/media/Home/2.png')"
+        direction="column"
+        backgroundImage="url('/media/Home/smoke-bg.png')"
+        backgroundSize={"contain"}
       >
+        <Flex
+          justify="center"
+          align="center"
+          direction="column"
+          style={{ fontFamily: "PilatExtended-Regular" }}
+        >
+          <HStack mt="50px" mb="50px" w="400px" justifyContent={"center"}>
+            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+              <Box
+                width={{ base: "18px", md: "20px" }}
+                height={{ base: "18px", md: "20px" }}
+                style={{
+                  paddingTop: "1px",
+                  paddingLeft: "2px",
+                  border: "3px solid #3BE489",
+                  backgroundColor: "#3BE489",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                }}
+              >
+                <CheckIcon
+                  color="#250E3F"
+                  w={{ base: 2, md: 3 }}
+                  h={{ base: 2, md: 3 }}
+                  marginBottom={{ base: "30px", md: "20px" }}
+                />
+              </Box>
+              <Text
+                fontSize={{
+                  base: "12px",
+                  sm: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                Step 01
+              </Text>
+            </Flex>
+            <Box
+              style={{
+                height: "0x",
+                width: "15%",
+                border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
+                background: " rgba(255, 255, 255, 0.3799999952316284)",
+              }}
+            />
+            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+              <Box
+                width={{ base: "18px", md: "20px" }}
+                height={{ base: "18px", md: "20px" }}
+                style={{
+                  paddingTop: "1px",
+                  paddingLeft: "2px",
+                  border: "3px solid #3BE489",
+                  backgroundColor: "#3BE489",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                }}
+              >
+                <CheckIcon
+                  color="#250E3F"
+                  w={{ base: 2, md: 3 }}
+                  h={{ base: 2, md: 3 }}
+                  marginBottom={{ base: "30px", md: "20px" }}
+                />
+              </Box>
+              <Text
+                fontSize={{
+                  base: "12px",
+                  sm: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                Step 02
+              </Text>
+            </Flex>
+            <Box
+              style={{
+                height: "0px",
+                width: "15%",
+                border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
+                background: " rgba(255, 255, 255, 0.3799999952316284)",
+              }}
+            ></Box>
+            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+              <Box
+                width={{ base: "30px", md: "20px" }}
+                height={{ base: "18px", md: "20px" }}
+                style={{
+                  border: "3px solid #3BE489",
+                  borderRadius: "50%",
+                  display: "inline-block",
+                }}
+              ></Box>
+              <Text
+                fontSize={{
+                  base: "12px",
+                  sm: "12px",
+                  md: "14px",
+                  lg: "14px",
+                }}
+              >
+                Confirm
+              </Text>
+            </Flex>
+          </HStack>
+        </Flex>
         <Box
           w={{ base: "90%", md: "600px", lg: "800px" }}
-          bgGradient={
-            "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
-          }
+          background="#120037"
           backdropBlur={"54px"}
-          pt="30px"
+          pt="40px"
           style={{ fontFamily: "Sk-Modernist" }}
           rounded={"3xl"}
         >
@@ -350,111 +459,15 @@ export default function InvestStep3() {
             px="10px"
           >
             <Flex
-              mt="30px"
               justify="center"
               align="center"
               direction="column"
               style={{ fontFamily: "PilatExtended-Regular" }}
             >
-              <HStack mt="10px" mb="50px">
-                <Box
-                  width={{ base: "35px", md: "40px" }}
-                  height={{ base: "18px", md: "24px" }}
-                  style={{
-                    paddingTop: "3px",
-                    paddingLeft: "3px",
-                    border: "3px solid #3BE489",
-                    backgroundColor: "#3BE489",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                  }}
-                >
-                  <CheckIcon
-                    color="#250E3F"
-                    w={{ base: 2, md: 3 }}
-                    h={{ base: 2, md: 3 }}
-                    marginBottom={{ base: "30px", md: "20px" }}
-                  />
-                </Box>
-                <Text
-                  fontSize={{
-                    base: "12px",
-                    sm: "12px",
-                    md: "22px",
-                    lg: "22px",
-                  }}
-                >
-                  Step 1
-                </Text>
-                <Box
-                  style={{
-                    height: "4px",
-                    width: "30%",
-                    background:
-                      "linear-gradient(90deg, #3BE489 0%, rgba(59, 228, 137, 0) 100%)",
-                  }}
-                ></Box>
-                <Box
-                  width={{ base: "35px", md: "35px" }}
-                  height={{ base: "18px", md: "24px" }}
-                  style={{
-                    paddingTop: "3px",
-                    paddingLeft: "3px",
-                    border: "3px solid #3BE489",
-                    backgroundColor: "#3BE489",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                  }}
-                >
-                  <CheckIcon
-                    color="#250E3F"
-                    w={{ base: 2, md: 3 }}
-                    h={{ base: 2, md: 3 }}
-                    marginBottom={{ base: "30px", md: "20px" }}
-                  />
-                </Box>
-
-                <Text
-                  fontSize={{
-                    base: "12px",
-                    sm: "12px",
-                    md: "22px",
-                    lg: "22px",
-                  }}
-                >
-                  Step 2
-                </Text>
-                <Box
-                  style={{
-                    height: "4px",
-                    width: "30%",
-                    background:
-                      "linear-gradient(90deg, #3BE489 0%, rgba(59, 228, 137, 0) 100%)",
-                  }}
-                ></Box>
-                <Box
-                  width={{ base: "35px", md: "40px" }}
-                  height={{ base: "18px", md: "24px" }}
-                  style={{
-                    border: "3px solid rgba(255, 255, 255, 0.3799999952316284)",
-                    borderRadius: "50%",
-                    display: "inline-block",
-                  }}
-                ></Box>
-                <Text
-                  fontSize={{
-                    base: "12px",
-                    sm: "12px",
-                    md: "22px",
-                    lg: "22px",
-                  }}
-                >
-                  Final
-                </Text>
-              </HStack>
               <Text
-                fontSize={{ base: "16px", md: "16px", lg: "22px" }}
+                fontSize={{ base: "15px", md: "15px", lg: "22px" }}
                 fontWeight={"300"}
+                fontFamily={"PilatExtended-Bold"}
               >
                 Please <span style={{ color: "#00A3FF" }}>share with us</span>{" "}
                 this information
@@ -472,136 +485,154 @@ export default function InvestStep3() {
 
             {/* -----------------Name and Title----------------- */}
             <Flex
-              direction={{ base: "column", md: "column", lg: "row" }}
+              direction={{ base: "column", md: "column", lg: "column" }}
               ml="0px"
               mt="40px"
               justify="center"
               align="center"
+              gap={4}
             >
               <Box>
-                <Flex ml={{ base: "0px", md: "0px", lg: "0px" }}>
+                <Flex
+                  ml={{ base: "0px", md: "0px", lg: "0px" }}
+                  justify="center"
+                >
                   <Text mb="20px">Name</Text>
                 </Flex>
-                <InputTransition
-                  unitid="investorname"
-                  selected={investName == "" ? false : true}
-                  height="55px"
+
+                <InputGroup
+                  size={{ base: "200px", lg: "sm" }}
+                  bg="transparent"
+                  h="45px"
+                  width="300px"
+                  alignItems="center"
+                  style={{
+                    border: "1.5px solid rgba(255, 255, 255, 0.2)",
+                    background: " rgba(0, 0, 0, 0.25)",
+                  }}
                   rounded="md"
-                  width="290px"
                 >
-                  <InputGroup
-                    size="sm"
-                    style={{ background: "rgba(255, 255, 255, 0.05)" }}
-                  >
-                    <InputLeftElement
-                      style={{ background: "transparent" }}
-                      pointerEvents="none"
-                      color="gray.300"
-                      fontSize="1.2em"
-                      // children=" "
-                    />
-                    <Input
-                      style={{}}
-                      type="text"
-                      h="55px"
-                      placeholder="Type Name"
-                      rounded="md"
-                      value={investName}
-                      onChange={(e) => {
-                        setInsName(e.target.value);
-                      }}
-                    />
-                  </InputGroup>
-                </InputTransition>
+                  <InputLeftElement
+                    style={{ background: "transparent" }}
+                    pointerEvents="none"
+                    color="gray.300"
+                    fontSize="1.2em"
+                    // children=" "
+                  />
+                  <Input
+                    h="100%"
+                    pl="25px"
+                    style={{ border: "0", background: "transparent" }}
+                    border="solid 0px"
+                    _focusVisible={{ border: "solid 0px" }}
+                    rounded="md"
+                    placeholder="Type Name"
+                    value={investName}
+                    onChange={(e) => {
+                      setInsName(e.target.value);
+                    }}
+                  />
+                </InputGroup>
               </Box>
-              <Box ml={{ base: "0px", md: "0px", lg: "30px" }}>
+              <Box ml={{ base: "0px", md: "0px", lg: "0px" }}>
                 <Flex
                   ml={{ base: "0px", md: "0px", lg: "0px" }}
                   mt={{ base: "40px", md: "40px", lg: "0px" }}
+                  justify="center"
                 >
                   <Text mb="20px">Title</Text>
                 </Flex>
-                <InputTransition
-                  unitid="investortitle"
-                  selected={investTitle == "" ? false : true}
-                  height="55px"
+                <InputGroup
+                  size={{ base: "200px", lg: "sm" }}
+                  bg="transparent"
+                  h="45px"
+                  width="300px"
+                  alignItems="center"
+                  style={{
+                    border: "1.5px solid rgba(255, 255, 255, 0.2)",
+                    background: " rgba(0, 0, 0, 0.25)",
+                  }}
                   rounded="md"
-                  width="290px"
                 >
-                  <InputGroup
-                    size="sm"
-                    style={{ background: "rgba(255, 255, 255, 0.05)" }}
-                  >
-                    <InputLeftElement
-                      style={{ background: "transparent" }}
-                      pointerEvents="none"
-                      color="gray.300"
-                      fontSize="1.2em"
-                      // children=" "
-                    />
-                    <Input
-                      style={{}}
-                      type="text"
-                      h="55px"
-                      placeholder="Your title"
-                      rounded="md"
-                      value={investTitle}
-                      onChange={(e) => {
-                        setInsTitle(e.target.value);
-                      }}
-                    />
-                  </InputGroup>
-                </InputTransition>
+                  <InputLeftElement
+                    style={{ background: "transparent" }}
+                    pointerEvents="none"
+                    color="gray.300"
+                    fontSize="1.2em"
+                    // children=" "
+                  />
+                  <Input
+                    h="100%"
+                    pl="25px"
+                    style={{ border: "0", background: "transparent" }}
+                    border="solid 0px"
+                    _focusVisible={{ border: "solid 0px" }}
+                    rounded="md"
+                    placeholder="Your title"
+                    value={investTitle}
+                    onChange={(e) => {
+                      setInsTitle(e.target.value);
+                    }}
+                  />
+                </InputGroup>
               </Box>
             </Flex>
 
             <Flex
-              direction={{ base: "column", md: "column", lg: "row" }}
-              mt="40px"
+              direction={{ base: "column", md: "column", lg: "column" }}
+              mt="20px"
               justify="center"
               align="center"
+              gap={4}
             >
               <Box
                 ml={{ base: "0px", md: "0px", lg: "0px" }}
-                mt={{ base: "0px", md: "0px", lg: "-100px" }}
+                mt={{ base: "0px", md: "0px", lg: "0px" }}
               >
-                <Flex>
+                <Flex justify="center">
                   <Text mb="20px">Email</Text>
                 </Flex>
-                <InputTransition
-                  unitid="investoremail"
-                  selected={investEmail == "" ? false : true}
-                  height="55px"
+
+                <InputGroup
+                  size={{ base: "200px", lg: "sm" }}
+                  bg="transparent"
+                  h="45px"
+                  width="300px"
+                  alignItems="center"
+                  style={{
+                    border: "1.5px solid rgba(255, 255, 255, 0.2)",
+                    background: " rgba(0, 0, 0, 0.25)",
+                  }}
                   rounded="md"
-                  width="290px"
                 >
-                  <InputGroup
-                    size="sm"
-                    style={{ background: "rgba(255, 255, 255, 0.05)" }}
-                  >
-                    <InputLeftElement
-                      style={{ background: "transparent" }}
-                      pointerEvents="none"
-                      color="gray.300"
-                      fontSize="1.2em"
-                      // children=" "
-                    />
-                    <Input
-                      style={{}}
-                      type="email"
-                      h="55px"
-                      placeholder="example@email.com"
-                      rounded="md"
-                      value={investEmail}
-                      onChange={(e) => {
-                        setInsEmail(e.target.value);
-                      }}
-                    />
-                  </InputGroup>
-                </InputTransition>
+                  <InputLeftElement
+                    style={{ background: "transparent" }}
+                    pointerEvents="none"
+                    color="gray.300"
+                    fontSize="1.2em"
+                    // children=" "
+                  />
+                  <Input
+                    h="100%"
+                    pl="25px"
+                    style={{ border: "0", background: "transparent" }}
+                    border="solid 0px"
+                    _focusVisible={{ border: "solid 0px" }}
+                    rounded="md"
+                    type="email"
+                    placeholder="example@email.com"
+                    value={investEmail}
+                    onChange={(e) => {
+                      setInsEmail(e.target.value);
+                    }}
+                  />
+                </InputGroup>
               </Box>
-              <Box ml={{ base: "0px", md: "0px", lg: "30px" }}>
-                <Flex mt={{ base: "40px", md: "40px", lg: "0px" }}>
+              <Box ml={{ base: "0px", md: "0px", lg: "0px" }}>
+                <Flex
+                  mt={{ base: "40px", md: "40px", lg: "0px" }}
+                  justify="center"
+                >
                   <Text mb="20px">Signature</Text>
                 </Flex>
                 <Box>
@@ -660,7 +691,7 @@ export default function InvestStep3() {
                 border1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
                 background1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
                 border2="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-                background2="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
+                background2="#10144B"
                 border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
                 background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
                 selected={false}
@@ -669,10 +700,10 @@ export default function InvestStep3() {
                 rounded="33px"
                 onClick={() => onNext()}
               >
-                <Box color="white">Submit</Box>
+                <Box color="white">Confirm</Box>
               </ImageTransition>
             </Flex>
-            <Faq />
+            {/* <Faq /> */}
           </Box>
         </Box>
       </Flex>

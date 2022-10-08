@@ -1,219 +1,168 @@
+import { Avatar, Box, chakra, Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
-import { Image, Flex, Text, Link, Spacer } from "@chakra-ui/react";
 
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+const team = [
+  {
+    name: "Andrea Bello",
+    role: "Co-Founder & CEO",
+    desc: "Founder and director of three start-ups in the technology and innovation sector, software develop on company like ABB, General Electric and Fund manager at AXA and Zurich",
+    link: "https://linkedin.com/in/bello-andrea-380572b4/",
+    imgsrc: "/media/Team/andrea.png",
+  },
+  {
+    name: "Ika Afifah",
+    role: "Co-Founder & CMO",
+    desc: "A dynamic individual who worked at Tencent as an Operation Specialist, in the partnership division. Before Tencent, she was Senior Partnership Manager at Bigo.",
+    link: "https://linkedin.com/in/ika-nur-afifah/",
+    imgsrc: "/media/Team/ika.png",
+  },
+  {
+    name: "John McLean",
+    role: "CO-Founder and CLO",
+    desc: "Seasoned lawyer, investor, and builder of worlds. He comes from a corporate M&A tax background via a prominent Middle East sovereign wealth fund, where he built and ran the tax function for a $20bn global investment platform comprising private and public equities, venture capital, credit investments, and special strategic situations. Now based in London and energised to be at the cutting edge of the new digital economy",
+    link: "https://www.linkedin.com/in/john-mclean-2b669521",
+    imgsrc: "/media/Team/john.jpg",
+  },
+  {
+    name: "Austin Taylor",
+    role: "CCO",
+    desc: "Comes from a background in investment and corporate finance. After completing his education he worked as a Business Analyst for Harman International in Seattle.",
+    link: "https://linkedin.com/in/austintaylor19/",
+    imgsrc: "/media/Team/austin.png",
+  },
+  {
+    name: "Achuth Chandran",
+    role: "CFO",
+    desc: "Experienced financial professional and consultant. HEC Paris alumnus. ACCA Affiliate. With experience at KPMG, Sancta Capital and Trilogy Enterprises.",
+    link: "https://ae.linkedin.com/in/achuth-k-chandran-b17880102",
+    imgsrc: "/media/Team/achuth.png",
+  },
 
-const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 3000, min: 2000 },
-    items: 4,
+  {
+    name: "Tram Vo",
+    role: "CTO",
+    desc: "8+ years in software development & leadership skills. 5 years of experience developing, implementing and supporting large scale streaming industry. 2 blockchain projects...",
+    imgsrc: "/media/Team/tram.png",
   },
-  desktop: {
-    breakpoint: { max: 2000, min: 1024 },
-    items: 4,
+  {
+    name: "Hardin",
+    role: "Project Manager",
+    desc: "4+ years experience of developing  finance, trading applications. 2+ years experience of research, develop on blockchain industry.",
+    link: "https://www.linkedin.com/in/hardin-santoso/",
+    imgsrc: "/media/Team/hardin.jpg",
   },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2,
+  {
+    name: "Marko",
+    role: "Smart Contract developer",
+    desc: "7+ years of experience as a Senior DevOps Engineer at FPT, Galaxy, TikTikTrading. Specialized in streaming systems. Devops Lead Engineer at 2 project gamefi: Lunarush, Metaspets.",
+    link: "https://www.linkedin.com/in/marko-vitez-6b9697224/",
+    imgsrc: "/media/Team/marko.png",
   },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 2,
-  },
-};
+];
 
 export default function Team() {
   return (
     <Flex
       width="100%"
-      justify="center"
+      position="relative"
       alignItems="center"
       flexDirection="column"
-      fontFamily="Sk-Modernist-Regular"
-      mb={{ base: "3em", md: "5em", lg: "8em" }}
+      pb={{ base: "5em", md: "8em", lg: "10em" }}
+      fontFamily="PilatExtended-Regular"
+      background="#000118"
     >
-      <Flex
+      <Text
+        textAlign="center"
+        color="#FFFF"
         fontFamily="PilatExtended-Bold"
-        fontSize={{ md: "25px", lg: "30px" }}
+        fontSize={{ base: "18px", md: "25px", lg: "30px" }}
+        fontWeight={"600"}
       >
-        <Text color="#63CDFA">WeFund</Text>
-        <Text color="white" ml={"10px"}>
-          Team
-        </Text>
-      </Flex>
-
+        KEY <chakra.span color={"#0FB1F5"}>TEAM</chakra.span>
+      </Text>
       <Flex
-        mt={{ base: "1em", md: "2em" }}
-        pb={{ base: "1em", md: "2em" }}
-        position={"relative"}
-        flexDirection="column"
-        justifyContent={"flex-start"}
-        pl={{ base: "0", md: "1em", lg: "1em" }}
-        width={{ base: "100%", md: "80vw", lg: "88vw" }}
+        flexWrap={"wrap"}
+        flexDirection={{ base: "column", md: "row" }}
+        backgroundSize={"contain"}
+        mt={{ base: "1em", md: "1em", lg: "1em" }}
+        mb={{ base: "4em", md: "8em", lg: "10em" }}
+        width={{ base: "100%", md: "90%" }}
+        maxW={"1200px"}
+        alignItems={"center"}
+        justifyContent={{ base: "center", md: "center", lg: "center" }}
       >
-        <Carousel
-          infinite
-          autoPlay={true}
-          swipeable={true}
-          draggable={true}
-          // showThumbs={false}
-          autoPlaySpeed={3000}
-          keyBoardControl={true}
-          responsive={responsive}
-          transitionDuration={500}
-        >
-          {team.map((t, index) => (
-            <Flex
-              key={index}
-              zIndex={"5"}
-              height="100%"
-              borderRadius="10px"
-              position="relative"
-              className="teamCard"
-              data-aos="zoom-in-up"
-              flexDirection={"column"}
-              bgGradient={"linear(#360847, #18075b)"}
-              mx={{ base: "2vw", md: "2vw", lg: "1vw" }}
-              py={{ base: "2vw", md: "2vw", lg: "1vw" }}
-              width={{ base: "48vw", md: "37vw", lg: "19vw" }}
+        {team.map((e, i) => (
+          <Flex
+            key={i}
+            id="utilityToken"
+            textAlign="center"
+            overflow={"hidden"}
+            alignItems={"center"}
+            flexDirection="column"
+            // justifyContent={"center"}
+            backgroundColor="#120D3F"
+            m={{ base: ".2em", md: ".5em", lg: ".5em" }}
+            p={{ base: ".2em", md: ".5em 1em", lg: "1em" }}
+            width={{ base: "100%", md: "18em", lg: "10em", xl: "17em" }}
+            height={{ base: "24em", md: "30em", lg: "27em" }}
+            borderRadius={{ base: "10px", md: "15px", lg: "15px" }}
+            position="relative"
+          >
+            <Avatar src={e.imgsrc} size="xl" mt="40px" />
+            <Text
+              mt={"1em"}
+              width="95%"
+              color={"white"}
+              fontFamily="Arial.Bold"
+              fontSize="18px"
+              fontWeight="900"
             >
-              <Image
-                src={t.imgsrc}
-                mx={{ base: "2vw", md: "2vw", lg: "1vw" }}
-                mb={{ base: "1vw", md: "1vw", lg: ".5vw" }}
-                width={{ base: "44vw", md: "33vw", lg: "17vw" }}
-                height={{ base: "44vw", md: "33vw", lg: "17vw" }}
-                // height={{ base: '12em', md: '20em', lg: '25em' }}
-              />
-              {t.logos && (
-                <Flex
-                  flexWrap={"wrap"}
-                  mx={{ base: "1vw", md: "1vw", lg: ".5vw" }}
-                >
-                  {t.logos?.map((e, i) => (
-                    <Image
-                      src={e}
-                      key={i}
-                      height="40px"
-                      background="white"
-                      borderRadius="3px"
-                      objectFit="contain"
-                      m={{ base: ".5vw", md: ".5vw", lg: ".5vw" }}
-                      width={{ base: "10vw", md: "7.5vw", lg: "3.5vw" }}
-                    />
-                  ))}
-                </Flex>
-              )}
-              <Flex w="100%" px={{ base: "2vw", md: "2vw", lg: "1vw" }}>
-                <div>
-                  <Text
-                    fontFamily={"PilatExtended-Bold"}
-                    fontSize={{ base: "12px", md: "18px", lg: "18px" }}
-                  >
-                    {t.name}
-                  </Text>
-                  <Text
-                    fontSize={{ base: "10px", md: "13px", lg: "13px" }}
-                    fontFamily={"PilatExtended-Regular"}
-                  >
-                    {t.role}
-                  </Text>
-                </div>
-                <Spacer />
-                {t.link && (
-                  <Link href={t.link} mt="5px" isExternal>
-                    <Image
-                      border="0"
-                      cursor="pointer"
-                      background="white"
-                      borderRadius="6px"
-                      src="/media/linkedin.png"
-                      width={{ base: "25px", md: "40px", lg: "40px" }}
-                      height={{ base: "25px", md: "40px", lg: "40px" }}
-                    />
-                  </Link>
-                )}
-              </Flex>
-            </Flex>
-          ))}
-        </Carousel>
+              {e.name}
+            </Text>
+            <Text
+              mt={"1em"}
+              width="95%"
+              color={"white"}
+              fontFamily="Arial.Bold"
+              fontSize="14px"
+              fontWeight="700"
+            >
+              {e.role}
+            </Text>
+            <Text
+              mt={"1em"}
+              width="95%"
+              color="#FFFFFF"
+              fontFamily="Arial"
+              fontSize="12px"
+              fontWeight="400"
+              align="center"
+            >
+              {e.desc.slice(0, 200)}
+              {e.desc.length > 200 && "..."}
+            </Text>
+            <Box
+              cursor="pointer"
+              borderColor="#0FB1F5"
+              mt="16px"
+              pt="8px"
+              pb="8px"
+              pl="16px"
+              pr="16px"
+              borderRadius="32px"
+              borderStyle="solid"
+              borderWidth="1px"
+              alignItems="center"
+              justifyContent="center"
+              position="absolute"
+              bottom="30px"
+              onClick={() => window.open(e.link, "_blank")}
+            >
+              <Text>Linkedin</Text>
+            </Box>
+          </Flex>
+        ))}
       </Flex>
     </Flex>
   );
 }
-
-const team = [
-  {
-    name: "Andrea Bello",
-    role: "CEO CTO & Co-Founder",
-    link: "https://linkedin.com/in/bello-andrea-380572b4/",
-    logos: [
-      "/media/Team_Companies/GE.png",
-      "/media/Team_Companies/ABB.png",
-      "/media/Team_Companies/AXA.png",
-      "/media/Team_Companies/zurich.png",
-    ],
-    imgsrc: "/media/Team/wfd-andrea.jpg",
-  },
-  {
-    name: "Ika Afifah",
-    role: "CMO and Co-Founder",
-    link: "https://linkedin.com/in/ika-nur-afifah/",
-    imgsrc: "/media/Team/wfd-ika.jpg",
-    logos: [
-      "/media/Team_Companies/waves.png",
-      "/media/Team_Companies/TME.png",
-      "/media/Team_Companies/Tencent.jpeg",
-      "/media/Team_Companies/Bigo.jpeg",
-    ],
-  },
-  {
-    name: "Austin Taylor",
-    role: "CCO",
-    link: "https://linkedin.com/in/austintaylor19/",
-    imgsrc: "/media/Team/wfd-austin.jpg",
-    logos: [
-      "/media/Team_Companies/pegasus.png",
-      "/media/Team_Companies/Harman.png",
-      "/media/Team_Companies/Holland.jpeg",
-    ],
-  },
-  {
-    name: "Achuth Chandran",
-    role: "CFO",
-    link: "https://ae.linkedin.com/in/achuth-k-chandran-b17880102",
-    imgsrc: "/media/Home/Achuth.png",
-    logos: [
-      "/media/Home/55.png",
-      "/media/Home/52.png",
-      "/media/Home/54.png",
-      "/media/Home/53.png",
-    ],
-  },
-  {
-    name: "Melati Puspa Anisa",
-    role: "Marketing & Data",
-    imgsrc: "/media/Home/60.png",
-  },
-  {
-    name: "Pirda Fajriati",
-    role: "Graphic Design & Marketing",
-    imgsrc: "/media/Home/61.png",
-  },
-  {
-    name: "Marko Vitez",
-    role: "Smart Contract Dev",
-    imgsrc: "/media/Home/62.png",
-  },
-  {
-    name: "Manuel Guerrero",
-    role: "Community Manager",
-    imgsrc: "/media/Home/63.png",
-  },
-  {
-    name: "Hardin Santoso",
-    role: "Web Development & Content Creation",
-    imgsrc: "/media/Home/64.png",
-  },
-];

@@ -16,8 +16,7 @@ export default function Card({ img, title }: { img: string; title: string }) {
       minW={{ base: "128px", lg: "200px" }}
       w={{ base: "118px", lg: "261px" }}
       py={{ base: "20px", lg: "39px" }}
-      mx={{base:"10px", md:"17px"}}
-      
+      mx={{ base: "10px", md: "17px" }}
     >
       <Image src={img} width="100%" />
       <Text mt="32px" fontSize={{ base: "12px", lg: "20px" }} fontWeight="900">

@@ -29,17 +29,9 @@ const CustomSelectApply: FunctionComponent<Props> = ({
       <Flex justify="space-between">
         <Text mb="20px">{typeText}</Text>
       </Flex>
-
-      <InputTransition
-        unitid={"selectinputtransition" + typeText}
-        selected={type == "" ? false : true}
-        width="100%"
-        height="55px"
-        rounded="md"
-      >
         <Select
           id={"options" + typeText}
-          style={{ background: "transparent", border: "0" }}
+          style={{ border: " 1.5px solid rgba(255, 255, 255, 0.2)", background: "rgba(255, 255, 255, 0.05)" }}
           h="55px"
           shadow="sm"
           size="sm"
@@ -55,7 +47,6 @@ const CustomSelectApply: FunctionComponent<Props> = ({
             </option>
           ))}
         </Select>
-      </InputTransition>
     </Box>
   );
 };

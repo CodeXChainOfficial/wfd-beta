@@ -36,7 +36,7 @@ const CustomUpload: FunctionComponent<Props> = ({
   return (
     <Box w={w}>
       <Flex justify="space-between">
-        <Text mb="20px">{typeText}</Text>
+        <Text mb="20px" mt="20px">{typeText}</Text>
       </Flex>
       {isNull(type) && (
         <InputGroup size="sm" w="100%">
@@ -46,8 +46,8 @@ const CustomUpload: FunctionComponent<Props> = ({
           <Input
             type="text"
             h="55px"
-            bg="#FFFFFF"
-            borderColor="#FFFFFF33"
+            bg="rgba(2, 0, 23, 0.69)"
+            borderColor="1.5px solid #0FB1F5"
             placeholder="Upload here"
             focusBorderColor="purple.800"
             rounded="md"
@@ -58,7 +58,7 @@ const CustomUpload: FunctionComponent<Props> = ({
         </InputGroup>
       )}
       {!isNull(type) && (
-        <InputGroup size="sm" w="100%">
+        <InputGroup size="sm" w={{ base: "100%", lg: "50%" }}>
           <InputLeftElement
             h="55px"
             pointerEvents="none"
@@ -67,8 +67,8 @@ const CustomUpload: FunctionComponent<Props> = ({
           <Input
             type="text"
             h="55px"
-            bg="#FFFFFF"
-            borderColor="#FFFFFF33"
+            bg="rgba(2, 0, 23, 0.69)"
+            borderColor="1.5px solid #0FB1F5"
             placeholder={type.name}
             focusBorderColor="purple.800"
             rounded="md"

@@ -21,6 +21,7 @@ import Footer from "../../components/Footer";
 import CustomCoinInput from "../../components/BackProject/CustomCoinInput";
 import { useProjectData, useStore, useWallet } from "../../contexts/store";
 import { fetchData } from "../../utils/fetch";
+import PageLayout from "../../components/PageLayout";
 
 export default function BackProject() {
   const { state, dispatch } = useStore();
@@ -111,71 +112,32 @@ export default function BackProject() {
   }
 
   return (
-    <Box width="100%">
-      <Flex
-        pt={"120px"}
-        pb={"25px"}
-        px={{ base: "40px", md: "80px", lg: "120px" }}
-        direction="column"
-        style={{ fontFamily: "PilatExtended-Regular" }}
-      >
-        <Flex>
-          <Text
-            fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
-            fontWeight="normal"
-            color={"rgba(255, 255, 255, 0.54)"}
-          >
-            Home &gt;&nbsp;
-          </Text>
-          <Text
-            fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
-            fontWeight="normal"
-            color={"rgba(255, 255, 255, 0.54)"}
-          >
-            Project Detail &gt;&nbsp;
-          </Text>
-          <Text
-            fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
-            color={"rgba(255, 255, 255, 0.84)"}
-          >
-            Back the project
-          </Text>
-        </Flex>
-        <Flex>
-          <Text
-            fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "28px" }}
-            color="#4790f5"
-            fontWeight={"900"}
-          >
-            Contribute to &nbsp;
-          </Text>
-          <Text
-            as={"span"}
-            fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "28px" }}
-            fontWeight={"900"}
-          >
-            {oneprojectData?.project_title}
-          </Text>
-        </Flex>
-      </Flex>
+    <PageLayout 
+      title="Contribute"
+      subTitle1="Invest"
+      subTitle2="Back and Contribute to"
+      subTitle3="&nbsp;Project Name "
+    >
       <Flex
         width="100%"
         justify="center"
-        pb={"8em"}
-        backgroundImage="url('/media/Home/2.png')"
+        align="center"
+        py={"4em"}
+        direction="column"
+        backgroundImage="url('/media/Home/smoke-bg.png')"
+        backgroundSize={"contain"}
       >
         <Box
-          w={{ base: "300px", md: "600px", lg: "800px" }}
-          bgGradient={
-            "linear(180deg, #501992 0%, #300F71 18.84%, #09044B 75.22%)"
-          }
-          px="0px"
-          style={{ fontFamily: "Sk-Modernist" }}
-          rounded={"3xl"}
+         w={{ base: "90%", md: "600px", lg: "800px" }}
+         background="#120037"
+         backdropBlur={"54px"}
+         pt="40px"
+         style={{ fontFamily: "Sk-Modernist" }}
+         rounded={"3xl"}
         >
           {/* --------amount to back----------- */}
           <Flex
-            mt="83px"
+            mt="20px"
             textAlign={"left"}
             justify="space-between"
             align="center"
@@ -184,6 +146,7 @@ export default function BackProject() {
             <Image src="/media/Launchpad/secret-partner.png"></Image>
             <Text
               my="20px"
+              mt="20px"
               textAlign={"center"}
               justifyContent={"center"}
               fontWeight="400"
@@ -197,7 +160,7 @@ export default function BackProject() {
               spacing={12}
             >
               <CustomCoinInput
-                typeText="Amount Required"
+                typeText="Amount to Contribute to Project"
                 type={backAmount}
                 setType={onChangeBackAmount}
                 coin={coin}
@@ -205,7 +168,7 @@ export default function BackProject() {
                 w={{ base: "70%", md: "60%", lg: "50%" }}
               />
               <CustomCoinInput
-                typeText="Fees"
+                typeText="Fees on Backing Contribution"
                 type={feeAmount}
                 setType={setFeeAmount}
                 coin={coin}
@@ -272,13 +235,7 @@ export default function BackProject() {
           </Flex>
         </Box>
       </Flex>
-      <Image
-        mt={"-9em"}
-        width="100%"
-        objectFit="contain"
-        src="/media/Home/1.svg"
-      />
       <Footer />
-    </Box>
+    </PageLayout>
   );
 }
