@@ -26,11 +26,11 @@ export default function Banner() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      height={{ base: "25em", md: "55vh", lg: "100vh" }}
+      height={{ base: "45vh", md: "55vh", lg: "100vh" }}
     >
       <Container
         position={"relative"}
-        mt={{ base: "10vh", md: "12vh", lg: "15vh" }}
+        mt={{ base: "5vh", md: "12vh", lg: "15vh" }}
         zIndex={"3"}
         maxW="container.lg"
       >
@@ -53,7 +53,7 @@ export default function Banner() {
           <Box
             background={" rgba(0, 0, 19, 0.78)"}
             border={"3px solid rgba(15, 177, 245, 0.28)"}
-            width={{ base: "90%", md: "1100px" }}
+            width={{ base: "90%", md: "800px", lg: "1000px" }}
             height={"250px"}
             rounded="10px"
             paddingTop={"3%"}
@@ -129,8 +129,10 @@ export default function Banner() {
           </Box>
         </Stack>
       </Container>
-      <Center position={"absolute"} top="52">
-        <Image src="/media/Home/Circular_BG.svg" />
+      <Center position={"absolute"} top={{ base: "-10", sm: "10", md: "-20" }}>
+        <video autoPlay muted loop>
+          <source src="/media/starrybackground.webm" type="video/webm"></source>
+        </video>
       </Center>
     </Flex>
   );

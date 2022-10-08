@@ -26,14 +26,7 @@ export default function Hero() {
       flexDirection="column"
       height={{ base: "25em", md: "40vh", lg: "45vh" }}
     >
-      <Image
-        top="1em"
-        width="full"
-        position="absolute"
-        objectFit="contain"
-        opacity={0.5}
-        src="/media/Home/2.png"
-      />
+      
       
       <Container
         position={"relative"}

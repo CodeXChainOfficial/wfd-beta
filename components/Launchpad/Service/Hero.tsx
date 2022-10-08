@@ -52,7 +52,7 @@ export default function Hero() {
             fontSize={{ base: "21px", md: "28px" }}
             lineHeight={{ base: "30px", md: "42px" }}
             letterSpacing="-0.022em"
-            fontFamily="Poppins-Bold"
+            fontFamily="Calibri"
             color="#ADB2DB"
             textAlign="center"
           >

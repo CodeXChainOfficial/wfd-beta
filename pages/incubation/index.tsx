@@ -18,19 +18,14 @@ export default function Launchpad() {
   return (
     <Container>
       <Banner />
-      <Box height="100px" />
       <Whatis />
+      <Box height="100px" />
       <Whyjoin />
       <RequirementList />
-
-      <Box height="100px" />
       <WhyIncubate />
-
       <Box height="100px" />
       <UpcomingProject />
-
       <MentorPartners />
-
       <IncubationFaq />
       <Footer />
     </Container>

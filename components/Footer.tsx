@@ -29,7 +29,7 @@ const SocialMediaLinks = () => (
     gap={6}
     color="rgba(255, 255, 255, 0.5)"
     fontWeight={"500"}
-    fontFamily="Poppins"
+    fontFamily="Calibri"
     fontSize={"14px"}
     letterSpacing={"-0.022em"}
     pr={12}

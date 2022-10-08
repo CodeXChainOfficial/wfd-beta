@@ -57,7 +57,7 @@ export default function ServiceList() {
               />
             </Box>
             <VStack align={"start"}>
-              <Text fontWeight={400} fontFamily="Poppins">
+              <Text fontWeight={400} fontFamily="Calibri">
                 Launchpad Program with fully remote process accross the globe
               </Text>
             </VStack>
@@ -81,7 +81,7 @@ export default function ServiceList() {
               />
             </Box>
             <VStack align={"start"}>
-              <Text fontWeight={400} fontFamily="Poppins">
+              <Text fontWeight={400} fontFamily="Calibri">
                 Swap Services that WeFund through partners offer accross
                 multiple chain and tokens
               </Text>
@@ -106,7 +106,7 @@ export default function ServiceList() {
               />
             </Box>
             <VStack align={"start"}>
-              <Text fontWeight={400} fontFamily="Poppins">
+              <Text fontWeight={400} fontFamily="Calibri">
                 Acceleration service for project on incubation that want their
                 development accelerated and reserved for fast paced project
                 ready to go to fundraise soon
@@ -132,7 +132,7 @@ export default function ServiceList() {
               />
             </Box>
             <VStack align={"start"}>
-              <Text fontWeight={400} fontFamily="Poppins">
+              <Text fontWeight={400} fontFamily="Calibri">
                 Incubation service of WeFund that offers well packaged program
                 and partnership network to help project grow from idea to
                 realisation

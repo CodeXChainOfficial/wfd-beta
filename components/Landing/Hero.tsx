@@ -76,7 +76,7 @@ export default function Hero() {
             <Text
               w="100%"
               fontSize="16px"
-              fontFamily="Poppins"
+              fontFamily="Calibri"
               fontWeight="500"
               color="white"
             >
@@ -97,7 +97,7 @@ export default function Hero() {
             <Text
               w="100%"
               fontSize="16px"
-              fontFamily="Poppins"
+              fontFamily="Calibri"
               fontWeight="500"
               color="white"
             >

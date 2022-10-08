@@ -20,8 +20,8 @@ export default function FundraiseType({
           <Stack
             justifyContent={{ base: "right", md: "right" }}
             direction={{ base: "row", sm: "row" }}
+            mt={{ base: -36, md: 2 }}
             spacing={6}
-            mt={2}
           >
             <ProjectDropDown
               typeText="Fundraise Option"

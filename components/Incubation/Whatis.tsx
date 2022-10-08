@@ -28,7 +28,7 @@ export default function Whatis() {
         direction={{ base: "column", md: "row" }}
       >
         <Image
-          width="378px"
+          width="278px"
           zIndex="3"
           objectFit="contain"
           src="/media/Home/IC11.png"
@@ -51,7 +51,7 @@ export default function Whatis() {
               fontSize="20px"
               lineHeight="30px"
               letterSpacing="-2.2%"
-              fontFamily="Poppins-Bold"
+              fontFamily="Calibri"
               color="#ADB2DB"
               textAlign="justify"
             >

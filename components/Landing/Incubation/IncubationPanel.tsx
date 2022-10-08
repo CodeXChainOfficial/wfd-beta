@@ -11,7 +11,7 @@ const IncubationPanel = () => {
       <GridItem w="80%">
         <Flex w="100%" justify="center">
           <Image
-            src="/media/home/incubation1.png"
+            src="/media/Home/incubation1.png"
             width={{ base: "50%", md: "auto" }}
           />
         </Flex>
@@ -47,13 +47,13 @@ const IncubationPanel = () => {
               &nbsp; and see its impact to real world applications
             </chakra.span>
           </Text>
-          <Image src="/media/home/incubation2.png" width="40%" />
+          <Image src="/media/Home/incubation2.png" width="40%" />
         </Flex>
       </GridItem>
       <GridItem w="90%" mt="50px">
         <Flex w="100%" justify="center">
           <Image
-            src="/media/home/incubation3.png"
+            src="/media/Home/incubation3.png"
             width={{ base: "50%", md: "auto" }}
           />
         </Flex>
@@ -107,14 +107,14 @@ const IncubationPanel = () => {
           </li>
           </Text>
         <Image
-          src="/media/home/box.png"
+          src="/media/Home/box.png"
           width="47px"
           position="absolute"
           bottom="0px"
           right="50px"
         />
         <Image
-          src="/media/home/box.png"
+          src="/media/Home/box.png"
           width="35px"
           position="absolute"
           bottom="50px"

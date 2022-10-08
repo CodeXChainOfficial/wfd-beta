@@ -54,7 +54,7 @@ export default function LaunchTabs({ launchStage, setLaunchStage }: Props) {
         >
           <Stack
             justifyContent={{ base: "left", md: "left" }}
-            direction={{ base: "column", sm: "row" }}
+            direction={{ base: "column", md: "row" }}
             spacing={6}
             mt={2}
           >

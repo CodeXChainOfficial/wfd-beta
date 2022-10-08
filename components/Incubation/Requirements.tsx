@@ -25,8 +25,8 @@ const Item = ({ index }: { index: number }) => {
         <Image src={Datas[index].icon} w="27px" />
       </Flex>
       <Text
-        fontFamily="Poppins"
-        fontSize={{ base: "12px", md: "24px" }}
+        fontFamily="Calibri"
+        fontSize={{ base: "14px", md: "21px" }}
         fontWeight="500"
         lineHeight="36px"
         letterSpacing="-0.022em"
@@ -59,6 +59,7 @@ export default function RequirementList() {
         mt="50px"
         px={{ base: "10px", md: "120px" }}
         direction={{ base: "column", md: "row" }}
+        fontSize={{ base: "14px", md: "18px" }}
       >
         <Flex w="100%" direction="column" gap={{ base: "30px", md: "50px" }}>
           {[0, 1, 2, 3].map((value, index) => (

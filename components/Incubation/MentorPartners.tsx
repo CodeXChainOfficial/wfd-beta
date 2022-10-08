@@ -155,7 +155,7 @@ export default function MentorParners() {
               <Text
                 width="95%"
                 color="#BFBFBF"
-                fontFamily="Poppins"
+                fontFamily="Calibri"
                 fontSize="14px"
                 lineHeight="150%"
                 fontWeight="500"

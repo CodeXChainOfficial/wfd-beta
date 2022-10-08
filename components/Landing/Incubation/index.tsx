@@ -38,8 +38,8 @@ const Incubation = () => {
     >
       <TabList>
         <CustomTab>INCUBATION</CustomTab>
-        <CustomTab>FUNDRISE WITH INCUBATION</CustomTab>
-        <CustomTab>FUNDRISE WITHOUT INCUBATION</CustomTab>
+        <CustomTab>FUNDRAISE WITH INCUBATION</CustomTab>
+        <CustomTab>FUNDRAISE WITHOUT INCUBATION</CustomTab>
       </TabList>
       <TabPanels>
         <TabPanel>

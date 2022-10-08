@@ -38,6 +38,7 @@ export default function WhyIncubate() {
         alignContent={"center"}
         flexDirection={{ base: "column", md: "row" }}
         minHeight={{ base: "35vh", md: "55vh", lg: "90vh" }}
+        gap={16}
       >
         <Flex width={"100%"} flexDirection="column" gap={24}>
           <Flex width={"80%"} flexDirection="column" gap={16}>
@@ -55,7 +56,7 @@ export default function WhyIncubate() {
                   fontSize="20px"
                   lineHeight="30px"
                   letterSpacing="-2.2%"
-                  fontFamily="Poppins-Bold"
+                  fontFamily="Calibri"
                   color="#ADB2DB"
                   textAlign="justify"
                 >
@@ -85,7 +86,7 @@ export default function WhyIncubate() {
                   fontSize="20px"
                   lineHeight="30px"
                   letterSpacing="-2.2%"
-                  fontFamily="Poppins-Bold"
+                  fontFamily="Calibri"
                   color="#ADB2DB"
                   textAlign="justify"
                 >
@@ -104,8 +105,9 @@ export default function WhyIncubate() {
             </HStack>
           </Flex>
         </Flex>
-        <Flex width={"100%"} px={4}>
-          <Image width="250px" src="/media/floatingmonitor.png" />
+        <Flex width={{base:"0%", md:"70%"}}>
+          <Center>
+          <Image width="250px" src="/media/floatingmonitor.png" /></Center>
         </Flex>
         <Flex width={"100%"} flexDirection="column" gap={24}>
           <Flex width={"80%"} flexDirection="column" gap={16}>
@@ -130,7 +132,7 @@ export default function WhyIncubate() {
                   fontSize="20px"
                   lineHeight="30px"
                   letterSpacing="-2.2%"
-                  fontFamily="Poppins-Bold"
+                  fontFamily="Calibri"
                   color="#ADB2DB"
                   textAlign="justify"
                 >
@@ -163,7 +165,7 @@ export default function WhyIncubate() {
                   fontSize="20px"
                   lineHeight="30px"
                   letterSpacing="-2.2%"
-                  fontFamily="Poppins-Bold"
+                  fontFamily="Calibri"
                   color="#ADB2DB"
                   textAlign="justify"
                 >

@@ -41,24 +41,24 @@ export default FundraiseWithIncubation;
 
 const datas = [
   {
-    image: "/media/home/fundraise_with_incubation1.png",
+    image: "/media/Home/fundraise_with_incubation1.png",
     title: "After the MVP done / Graduate",
     description: " from the incubation, we start fundraising ",
   },
   {
-    image: "/media/home/fundraise_with_incubation2.png",
+    image: "/media/Home/fundraise_with_incubation2.png",
     title: "Support to achieve Milestones",
     description:
       " when a fundraise phase has been completed. So that they can fulfill it and access all the funds and use it well. ",
   },
   {
-    image: "/media/home/fundraise_with_incubation3.png",
+    image: "/media/Home/fundraise_with_incubation3.png",
     title: "Backers of the project will vote",
     description:
       " whether a project will be given the next portion of funds raised when they completed a milestone. Each voted milestone opens up more portion of fundraisers and the next milestone step.",
   },
   {
-    image: "/media/home/fundraise_with_incubation4.png",
+    image: "/media/Home/fundraise_with_incubation4.png",
     title: "Additional fundraise can be conducted",
     description:
       " when the previous one have been completed, meaning all milestone are done, and in case the projects needs it or need a immediate funds",

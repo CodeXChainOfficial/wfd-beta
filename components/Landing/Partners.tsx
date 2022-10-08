@@ -1,49 +1,49 @@
 import React, { useState } from "react";
 import { Box, Center, chakra, Flex, Image, Text } from "@chakra-ui/react";
 
-const Partners = [
+const partners = [
   {
-    img: "/media/Partners/bnb.png",
+    img: "/media/partners/bnb.png",
   },
   {
-    img: "/media/Partners/tron.png",
+    img: "/media/partners/tron.png",
   },
   {
-    img: "/media/Partners/near.png",
+    img: "/media/partners/near.png",
   },
   {
-    img: "/media/Partners/router protocol.png",
+    img: "/media/partners/router protocol.png",
   },
   {
-    img: "/media/Partners/fantom.png",
+    img: "/media/partners/fantom.png",
   },
   {
-    img: "/media/Partners/oneledger.png",
+    img: "/media/partners/oneledger.png",
   },
   {
-    img: "/media/Partners/polygon.png",
+    img: "/media/partners/polygon.png",
   },
   {
-    img: "/media/Partners/Tgrade.png",
+    img: "/media/partners/Tgrade.png",
   },
   {
-    img: "/media/Partners/CONSENSYS.png",
+    img: "/media/partners/CONSENSYS.png",
   },
   {
-    img: "/media/Partners/ABC.png",
+    img: "/media/partners/ABC.png",
   },
   {
-    img: "/media/Partners/Danxia capital.png",
+    img: "/media/partners/Danxia capital.png",
   },
   {
-    img: "/media/Partners/esol lab.png",
+    img: "/media/partners/esol lab.png",
   },
   {
-    img: "/media/Partners/octave.png",
+    img: "/media/partners/octave.png",
   },
 ];
 
-export default function KeyPartners() {
+export default function Keypartners() {
   return (
     <Flex direction="column" width="100%" mt="64px">
       <Text
@@ -66,7 +66,7 @@ export default function KeyPartners() {
         px={{ base: "1em", md: "2em" }}
         gap="20px"
       >
-        {Partners.map((item, index) => (
+        {partners.map((item, index) => (
           <Flex
             w={{ base: "80px", md: "80px" }}
             h={{ base: "80px", md: "80px" }}
