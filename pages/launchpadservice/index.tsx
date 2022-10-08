@@ -11,7 +11,7 @@ import theme from "../../theme";
 import Footer from "../../components/Footer";
 
 import Hero from "../../components/Launchpad/Service/Hero";
-import Whyjoin from "../../components/Launchpad/Service/Whyjoin";
+// import Whyjoin from "../../components/Launchpad/Service/Whyjoin";
 import HowItWork from "../../components/Launchpad/Service/HowitWork";
 import CircularOptions from "../../components/Launchpad/Service/CircularFundraiseOptions";
 
@@ -24,7 +24,7 @@ export default function Launchpad() {
     <Container>
       <Hero />
       <CircularOptions />
-      <Whyjoin />
+      {/* <Whyjoin /> */}
       <Footer />
     </Container>
   );
