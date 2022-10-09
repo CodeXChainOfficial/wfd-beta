@@ -18,7 +18,7 @@ import { ImageTransition } from "../ImageTransition";
 
 export default function Whatis() {
   return (
-    <Flex width="100%" mt="50px" align="center" justify="center">
+    <Flex width="100%" align="center" justify="center">
       <Flex
         width="80%"
         justify="space-between"

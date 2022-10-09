@@ -62,9 +62,9 @@ const BlogPage = function () {
   return (
     <PageLayout
       title=""
-      subTitle1=""
-      subTitle2="Highlight"
-      subTitle3="&nbsp;of WeFund"
+      subTitle1="Highlight"
+      subTitle2="&nbsp;of WeFund"
+      subTitle3=""
     >
       <div
         style={{
@@ -74,16 +74,13 @@ const BlogPage = function () {
           fontFamily: "Sk-Modernist-Regular",
           fontWeight: "500",
         }}
-      >
+      > 
         <Highlights />
-        <Image
-          position="absolute"
-          top="350"
-          zIndex="1"
-          width="100%"
-          objectFit="contain"
-          src="/media/Home/Circular_BG.svg"
-        />
+        <Center mt={{ base: "-10vh", md: "-24vh", lg: "-80vh", '2xl': "-88vh" }}>
+        <video autoPlay muted loop>
+          <source src="/media/starrybackground.webm" type="video/webm"></source>
+        </video>
+      </Center>
         <Center zIndex="20" mt="128px">
           <SimpleGrid
             p={{

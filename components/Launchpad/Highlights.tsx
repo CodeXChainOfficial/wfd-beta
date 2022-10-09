@@ -164,14 +164,6 @@ const projects = [
     link: "https://medium.com/@wefundofficial/wefund-is-working-with-polygon-studios-to-foray-into-ethereum-368e0dd99212",
   },
   {
-    title: "WeFund Multichain Migration to Juno",
-    date: "Tue, Jun 7 2022",
-    description:
-      "Both utilizing CosmWasm, WeFund is making migration to Juno and subsequently becames Multichain with Loop Finance structural assistance. Collaborating together for better access for everyone",
-    img: "media/partners/WFD-Juno.jpg",
-    link: "https://medium.com/@wefundofficial/wefund-to-enter-jun%C3%B8-with-migration-assistance-from-loop-ventures-84d51d76e1a",
-  },
-  {
     title: "WeFund Teaming up with Tgrade",
     date: "Thu, July 14 2022",
     description:

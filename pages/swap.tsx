@@ -278,11 +278,11 @@ export default function RouterSwap() {
           Swap
         </ButtonTransition>
       </Flex>
-      <Container h="32px" />
+      <Container h="8vh" />
       <Flex ml={24} mr={24}>
         <InfoCard />
       </Flex>
-      <Image width="100%" objectFit="contain" src="/media/Home/1.svg" />
+      <Container h="12vh" />
       <Footer />
     </>
   );
