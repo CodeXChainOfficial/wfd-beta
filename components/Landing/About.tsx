@@ -5,7 +5,7 @@ export default function AboutWeFund() {
   return (
     <>
       <Center marginTop={"48px"}>
-        <Text color="white" fontFamily="PilatExtended-Bold" fontSize="48">
+        <Text color="white" fontFamily="PilatExtended-Bold" fontSize={{base:"16", md:"24",lg:"42"}}>
           WHAT&apos;S{" "}
           <chakra.span color="#02A4FF" fontFamily="PilatExtended-Bold">
             WEFUND?
@@ -13,7 +13,7 @@ export default function AboutWeFund() {
         </Text>
       </Center>
       <Center marginTop={"16px"}>
-        <Text width="80%" textAlign="center" color="#ADB2DB" fontSize="22">
+        <Text width="80%" textAlign="center" color="#ADB2DB" fontSize={{base:"14", md:"16",lg:"18"}}>
           WeFund is a multichain incubation and crowdfunding platform that uses
           blockchain and smart contracts to make the process more transparent,
           hold project creators accountable, and minimize risk for project

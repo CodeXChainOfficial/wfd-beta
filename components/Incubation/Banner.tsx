@@ -26,7 +26,7 @@ export default function Banner() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      height={{ base: "45vh", md: "55vh", lg: "100vh" }}
+      height={{ base: "65vh", md: "55vh", lg: "100vh" }}
     >
       <Container
         position={"relative"}
@@ -129,7 +129,7 @@ export default function Banner() {
           </Box>
         </Stack>
       </Container>
-      <Center position={"absolute"} top={{ base: "-10", sm: "10", md: "-20" }}>
+      <Center position={"absolute"} top={{ base: "60", sm: "40", md: "-20" }}>
         <video autoPlay muted loop>
           <source src="/media/starrybackground.webm" type="video/webm"></source>
         </video>

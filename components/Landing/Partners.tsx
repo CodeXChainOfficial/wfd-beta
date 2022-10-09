@@ -6,7 +6,7 @@ const partners = [
     img: "/media/partners/bnb.png",
   },
   {
-    img: "/media/partners/tron.png",
+    img: "/media/partners/Tron.png",
   },
   {
     img: "/media/partners/near.png",
@@ -18,7 +18,7 @@ const partners = [
     img: "/media/partners/fantom.png",
   },
   {
-    img: "/media/partners/oneledger.png",
+    img: "/media/partners/Oneledger.png",
   },
   {
     img: "/media/partners/polygon.png",

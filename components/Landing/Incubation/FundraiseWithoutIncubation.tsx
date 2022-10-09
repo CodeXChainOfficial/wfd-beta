@@ -19,11 +19,11 @@ const FundraiseWithoutIncubation = () => {
         h="100%"
       >
         <Flex w="100%" direction="column" align="center">
-          <Image src={datas[0].image} w={{ base: "58px", md: "78px" }} />
+          <Image src={datas[0].image} w={{ base: "38px", md: "78px" }} />
           <Text
             align="justify"
             fontSize={{ base: "8px", md: "14px" }}
-            fontWeight="800"
+            fontWeight="500"
             color="#00A3FF"
             textAlign="justify"
             mt={{ base: "40px", md: "53px" }}
@@ -36,7 +36,7 @@ const FundraiseWithoutIncubation = () => {
           <Text
             align="justify"
             fontSize={{ base: "8px", md: "14px" }}
-            fontWeight="800"
+            fontWeight="500"
             color="#00A3FF"
             textAlign="justify"
           >
@@ -46,7 +46,7 @@ const FundraiseWithoutIncubation = () => {
         </Flex>
       </Flex>
       <Flex
-        w="100%"
+        w={{base:"30%", md:"100%"}}
         h="100%"
         direction="column"
         align="center"
@@ -54,17 +54,18 @@ const FundraiseWithoutIncubation = () => {
       >
         <Text
           align="justify"
-          fontSize={{ base: "34px", md: "28px" }}
+          fontSize={{ base: "16px", md: "28px" }}
           fontWeight="900"
           color="#00A3FF"
           textAlign="justify"
+          fontFamily={""}
         >
-          Fundraising start
+          Fundraising
         </Text>
-        <Image src={"/media/Home/fundraise_without_incubation5.png"} />
+        <Image src={"/media/Home/fundraise_without_incubation5.png"} visibility={{base:"hidden", md:"visible"}}/>
         <Image
-          src={"/media/Home/fundraise_without_incubation4.png"}
-          w={{ base: "60px", md: "120px" }}
+          src={"/media/Home/fundraise_without_incubation4.png"} 
+          w={{ base: "40px", md: "120px" }} 
         />
       </Flex>
       <Flex
@@ -75,11 +76,11 @@ const FundraiseWithoutIncubation = () => {
         h="100%"
       >
         <Flex w="100%" direction="column" align="center">
-          <Image src={datas[2].image} w={{ base: "58px", md: "78px" }} />
+          <Image src={datas[2].image} w={{ base: "38px", md: "78px" }} />
           <Text
             align="justify"
             fontSize={{ base: "8px", md: "14px" }}
-            fontWeight="800"
+            fontWeight="500"
             color="#00A3FF"
             textAlign="justify"
             mt={{ base: "30px", md: "53px" }}
@@ -89,7 +90,7 @@ const FundraiseWithoutIncubation = () => {
           </Text>
         </Flex>
         <Flex w="100%" direction="column">
-          <Flex w="100%" h={{ base: "90px", lg: "128px" }} justify="center">
+          <Flex w="100%" h={{ base: "50px", lg: "128px" }} justify="center">
             <Image
               src={datas[3].image}
               maxWidth="100%"
@@ -101,7 +102,7 @@ const FundraiseWithoutIncubation = () => {
           <Text
             align="justify"
             fontSize={{ base: "8px", md: "14px" }}
-            fontWeight="800"
+            fontWeight="500"
             color="#00A3FF"
             textAlign="justify"
             mt={{ base: "30px", md: "53px" }}

@@ -24,7 +24,7 @@ export default function Hero() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      height={{ base: "25em", md: "40vh", lg: "45vh" }}
+      height={{ base: "14em", md: "40vh", lg: "45vh" }}
     >
       
       
@@ -37,7 +37,7 @@ export default function Hero() {
         <Stack>
           <Text
             fontFamily="PilatExtended-Bold"
-            fontSize={{ base: "16px", md: "48px" }}
+            fontSize={{ base: "21px", md: "48px" }}
             lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
             letterSpacing={{ base: "0.1em" }}
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
@@ -46,7 +46,7 @@ export default function Hero() {
           </Text>
           <Text
             fontFamily="PilatExtended-Black"
-            fontSize={{ base: "20px", md: "48px" }}
+            fontSize={{ base: "21px", md: "48px" }}
             lineHeight={{ base: "30px", md: "1em", lg: "1.1em" }}
             letterSpacing={{ base: "0.1em" }}
             textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
