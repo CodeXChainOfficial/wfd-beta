@@ -23,7 +23,7 @@ const FundraiseWithIncubation = () => {
             <Text
               align="justify"
               fontSize="14px"
-              fontWeight="800"
+              fontWeight="500"
               color="#00A3FF"
               textAlign="justify"
             >

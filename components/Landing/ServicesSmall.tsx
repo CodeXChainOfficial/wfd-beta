@@ -28,7 +28,7 @@ export default function ServiceList() {
     <Box p={5} mb={14}>
       <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
         <Heading
-          fontSize={"3xl"}
+          fontSize={{base:"16", md:"24",lg:"42"}}
           fontFamily={"PilatExtended-Bold"}
           color={"#02A4FF"}
         >

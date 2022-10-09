@@ -19,7 +19,7 @@ const CustomTab: React.FC = (props: any) => {
       <Text
         fontFamily="PilatExtended-Bold"
         fontWeight="600"
-        fontSize={{ base: "10px", md: "14px" }}
+        fontSize={{ base: "8px", md: "14px" }}
         lineHeight="150%"
         letterSpacing="-0.022em"
       >
@@ -33,7 +33,7 @@ const Incubation = () => {
     <Tabs
       isFitted
       variant="unstyled"
-      mx={{ base: "10px", md: "110px" }}
+      mx={{ base: "5px", md: "110px" }}
       mt="110px"
     >
       <TabList>
