@@ -30,7 +30,7 @@ export default function Banner() {
     >
       <Container
         position={"relative"}
-        mt={{ base: "5vh", md: "12vh", lg: "16vh", '2xl': "26vh" }}
+        mt={{ base: "5vh", md: "12vh", lg: "14vh", '2xl': "26vh" }}
         zIndex={"3"}
         maxW="container.lg"
       >
@@ -129,7 +129,7 @@ export default function Banner() {
           </Box>
         </Stack>
       </Container>
-      <Center position={"absolute"} top={{ base: "60", sm: "0", md:"40", lg: "-48", '2xl':"-60" }}>
+      <Center position={"absolute"} top={{ base: "60", sm: "0", md:"40", lg: "-48", '2xl':"-80" }}>
         <video autoPlay muted loop>
           <source src="/media/starrybackground.webm" type="video/webm"></source>
         </video>

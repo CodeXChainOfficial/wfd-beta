@@ -48,7 +48,7 @@ const PageLayout: FunctionComponent<Props> = (props) => {
               as={"span"}
               fontFamily="Sans-Serif"
               fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
-              fontWeight={"400"}
+              fontWeight={"900"}
             >
               {props.subTitle1}
             </Text>

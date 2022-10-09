@@ -25,7 +25,7 @@ export default function Launchpad() {
       <WhyIncubate />
       <Box height="100px" />
       <UpcomingProject />
-      <MentorPartners />
+      <MentorPartners /> 
       <IncubationFaq />
       <Footer />
     </Container>

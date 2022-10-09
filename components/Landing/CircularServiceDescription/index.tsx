@@ -55,7 +55,7 @@ export default function CircularServiceDescription() {
       w="100%"
       justify="center"
       align="center"
-      mt="200px"
+      mt={{ base: "300px", lg:"400px" }}
       display={{ base: "none", md: "flex" }}
       background="url(/media/starrybackground.webm)"
     >
@@ -124,13 +124,13 @@ export default function CircularServiceDescription() {
       </Box>
       <Box
         width="100%"
-        height={{ base: "200px", md: "900px" }}
+        height={{ base: "200px", md: "900px", lg: "1000px", '2xl':"1200px" }}
         position="relative"
         mt={{ base: "-100px", md: "-300px", lg:"-400px" }}
       >
         <Center
           position="absolute"
-          top={{ base: "-100px", md: "-300px" }}
+          top={{ base: "-100px", md: "-300px",lg:"-400px",'2xl':"-500px" }}
           zIndex="1"
         >
           <video autoPlay muted loop>
