@@ -28,6 +28,7 @@ import {
 import { IoWalletOutline } from "react-icons/io5";
 import { InputTransition } from "../../components/ImageTransition";
 import { CheckIcon } from "@chakra-ui/icons";
+import ProjectApplication from "../../components/OwnerInfo/ProjectApplication";
 
 export default function index() {
   return (
@@ -429,263 +430,11 @@ export default function index() {
                 fontWeight="800"
                 fontSize="20px"
               >
-                Project Owner Incubation Goal
+                Set Project Incubation Goal
               </Text>
-              <Flex mt="26px">
-                <Box bg="rgba(18, 13, 48, 1)" borderRadius="10px" w="650px">
-                  <Flex direction="column" px="64px" py="16px">
-                    <Box flex="1" textAlign="left">
-                      <Box p={6}>
-                        <Stack
-                          direction={{
-                            base: "column",
-                            md: "row",
-                            lg: "row",
-                          }}
-                          justify={"center"}
-                          w={"100%"}
-                        >
-                          <Flex justify={"center"}></Flex>
-                          <Stack
-                            direction={"row"}
-                            justify={"center"}
-                            spacing={{
-                              base: 8,
-                              sm: 8,
-                              md: 24,
-                              lg: 32,
-                            }}
-                          >
-                            <Stack spacing={0} align={"center"}>
-                              <Text
-                                fontSize={"16px"}
-                                fontWeight={600}
-                                color={"gray.500"}
-                              >
-                                Goal
-                              </Text>
-                            </Stack>
-                            <Stack spacing={0} align={"center"}>
-                              <Text
-                                fontSize={"16px"}
-                                fontWeight={600}
-                                color={"gray.500"}
-                              >
-                                Progress
-                              </Text>
-                            </Stack>
-                            <Stack spacing={0} align={"center"}>
-                              <Text
-                                fontSize={"16px"}
-                                fontWeight={600}
-                                color={"gray.500"}
-                              >
-                                 Status Goal
-                              </Text>
-                            </Stack>
-                          </Stack>
-                        </Stack>
-                      </Box>
-                    </Box>
-                    {[...Array(2)].map((_, i) => (
-                      <VStack key={i} color="white" pt={"3em"} w={"100%"}>
-                        <Accordion allowToggle>
-                          <AccordionItem
-                            bg="#120D30"
-                            rounded={"lg"}
-                            border="0px"
-                            borderColor="gray.200"
-                            w={"100%"}
-                          >
-                            <h2>
-                              <AccordionButton>
-                                <Box flex="1" textAlign="left">
-                                  <Box p={6}>
-                                    <Stack
-                                      direction={{
-                                        base: "column",
-                                        md: "row",
-                                        lg: "row",
-                                      }}
-                                      justify={"center"}
-                                      w={"100%"}
-                                    >
-                                      <Flex justify={"center"}></Flex>
-                                      <Stack
-                                        direction={"row"}
-                                        justify={"center"}
-                                        spacing={{
-                                          base: 8,
-                                          sm: 8,
-                                          md: 24,
-                                          lg: 32,
-                                        }}
-                                      >
-                                        <Stack spacing={0} align={"center"}>
-                                          <Text
-                                            fontSize={"16px"}
-                                            fontWeight={600}
-                                            color={"gray.500"}
-                                          >
-                                            Goal
-                                          </Text>
-                                        </Stack>
-                                        <Stack spacing={0} align={"center"}>
-                                          <Text
-                                            fontSize={"16px"}
-                                            fontWeight={600}
-                                            color={"gray.500"}
-                                          >
-                                            Done
-                                          </Text>
-                                        </Stack>
-                                        <Stack
-                                          spacing={0}
-                                          align={"center"}
-                                          direction="row"
-                                        >
-                                          <Box
-                                            width={{ base: "18px", md: "20px" }}
-                                            height={{
-                                              base: "18px",
-                                              md: "20px",
-                                            }}
-                                            style={{
-                                              marginRight: "5px",
-                                              paddingTop: "1px",
-                                              paddingLeft: "2px",
-                                              border: "3px solid #3BE489",
-                                              backgroundColor: "#3BE489",
-                                              borderRadius: "50%",
-                                              display: "inline-block",
-                                            }}
-                                          >
-                                            <CheckIcon
-                                              color="#250E3F"
-                                              w={{ base: 2, md: 3 }}
-                                              h={{ base: 2, md: 3 }}
-                                              marginBottom={{
-                                                base: "30px",
-                                                md: "20px",
-                                              }}
-                                            />
-                                          </Box>
-                                          <Text
-                                            fontSize={"16px"}
-                                            fontWeight={600}
-                                            color={"gray.500"}
-                                          >
-                                            Passed
-                                          </Text>
-                                        </Stack>
-                                      </Stack>
-                                    </Stack>
-                                  </Box>
-                                </Box>
-                                <AccordionIcon />
-                              </AccordionButton>
-                            </h2>
-                            <AccordionPanel pb={4} bg="rgba(0, 0, 0, 0.33)">
-                              <Flex maxW={"250px"}>
-                                <Stack direction={"row"}>
-                                  <Text
-                                    fontSize={"14px"}
-                                    fontWeight={200}
-                                    color="white"
-                                    px={"30px"}
-                                  >
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.
-                                    Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip
-                                    ex ea commodo consequat.
-                                  </Text>
-                                  <Text
-                                    fontSize={"14px"}
-                                    fontWeight={200}
-                                    color="white"
-                                    px={"30px"}
-                                    py={"15px"}
-                                    pb="128px"
-                                  >
-                                    Started
-                                  </Text>
-                                  <Center>
-                                    <Box
-                                      width="92%"
-                                      border="1px solid rgba(255, 255, 255, 0.5)"
-                                      height="0px"
-                                    />
-                                  </Center>
-                                  <Stack
-                                    direction={{
-                                      base: "column",
-                                      sm: "row",
-                                      lg: "row",
-                                    }}
-                                    justify={"center"}
-                                    spacing={12}
-                                    width={"100%"}
-                                    px={8}
-                                    pt="16px"
-                                  >
-                                    
-                                    <Text
-                                      fontSize={{
-                                        base: "12px",
-                                        sm: "14px",
-                                        lg: "16px",
-                                      }}
-                                      fontWeight={200}
-                                      color="white"
-                                      py={"15px"}
-                                      width={{
-                                        base: "8px",
-                                        sm: "100px",
-                                        lg: "300px",
-                                      }}
-                                    >
-                                      20% Progress
-                                    </Text>
-                                    <Text
-                                      fontSize={{
-                                        base: "12px",
-                                        sm: "14px",
-                                        lg: "16px",
-                                      }}
-                                      fontWeight={200}
-                                      color="white"
-                                      py={"15px"}
-                                      width={{
-                                        base: "80px",
-                                        sm: "100px",
-                                        lg: "350px",
-                                      }}
-                                    >
-                                      Backed 2022-06-23
-                                    </Text>
-                                  </Stack>
-                                </Stack>
-                              </Flex>
-                            </AccordionPanel>
-                          </AccordionItem>
-                        </Accordion>
-                      </VStack>
-                    ))}
-                  </Flex>
-                </Box>
-              </Flex>
-              <Text
-                mt="16px"
-                fontFamily={"Montserrat"}
-                fontWeight="800"
-                fontSize="20px"
-              >
-                Set Fundraising Milestones
-              </Text>
-              <Flex mt="26px">
-                <Box bg="rgba(18, 13, 48, 1)" borderRadius="10px" w="650px">
+              <ProjectApplication/>
+              <Flex mt="36px">
+                <Box bg="rgba(18, 13, 48, 1)" borderRadius="10px">
                   <Flex direction="column" px="64px" py="16px">
                     <Flex>
                       <Center>
@@ -695,7 +444,7 @@ export default function index() {
                           fontSize="16px"
                           whiteSpace="nowrap"
                         >
-                          Milestone Name
+                          Goal Name
                         </Text>
                       </Center>
                       <InputGroup
@@ -794,36 +543,7 @@ export default function index() {
                           fontSize="16px"
                           whiteSpace="nowrap"
                         >
-                          Milestone Details
-                        </Text>
-                      </Center>
-                      <InputGroup
-                        ml="32px"
-                        style={{ background: "rgba(0, 0, 0, 0.25)" }}
-                        size="sm"
-                        border="0px"
-                      >
-                        <Textarea
-                          style={{
-                            border: " 1.5px solid rgba(255, 255, 255, 0.2)",
-                            background: "transparent",
-                          }}
-                          h="42px"
-                          height="110px"
-                          rounded="md"
-                          placeholder="Details of Goal"
-                        />
-                      </InputGroup>
-                    </Flex>
-                    <Flex mt="24px">
-                      <Center>
-                        <Text
-                          fontFamily={"Montserrat"}
-                          fontWeight="600"
-                          fontSize="16px"
-                          whiteSpace="nowrap"
-                        >
-                          Milestone Amount
+                          Goal Details
                         </Text>
                       </Center>
                       <InputGroup
@@ -837,10 +557,10 @@ export default function index() {
                             border: " 1.5px solid rgba(255, 255, 255, 0.2)",
                             background: "transparent",
                           }}
-                          type="number"
+                          type="text"
                           h="42px"
                           rounded="md"
-                          placeholder="0"
+                          placeholder="Details of Goal"
                         />
                       </InputGroup>
                     </Flex>

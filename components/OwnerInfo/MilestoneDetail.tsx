@@ -1,7 +1,16 @@
-import { Box, Center, Divider, Flex, Input, InputGroup, Progress, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Divider,
+  Flex,
+  Input,
+  InputGroup,
+  Progress,
+  Text,
+} from "@chakra-ui/react";
 import React from "react";
 import { ImageTransition, InputTransition } from "../ImageTransition";
-import { FaRegHeart } from "react-icons/all";
+import { FaRegHeart } from "react-icons/fa";
 
 export default function MilestoneDetail() {
   return (
@@ -260,9 +269,13 @@ export default function MilestoneDetail() {
             height="40px"
             rounded="md"
           >
-            <InputGroup size="sm" border="0px" style={{
-              borderRadius: 8,
-            }}>
+            <InputGroup
+              size="sm"
+              border="0px"
+              style={{
+                borderRadius: 8,
+              }}
+            >
               <Input
                 style={{ border: "0", background: "transparent" }}
                 type="text"

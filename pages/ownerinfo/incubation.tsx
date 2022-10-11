@@ -11,6 +11,7 @@ import {
   Box,
   Button,
   Center,
+  chakra,
   Flex,
   Heading,
   Image,
@@ -452,13 +453,13 @@ export default function index() {
                             direction={"row"}
                             justify={"center"}
                             spacing={{
-                              base: 8,
-                              sm: 8,
-                              md: 24,
-                              lg: 32,
+                              base: 2,
+                              sm: 2,
+                              md: 8,
+                              lg: 8,
                             }}
                           >
-                            <Stack spacing={0} align={"center"}>
+                            <Stack spacing={0} align={"left"} w="280px" pl="12">
                               <Text
                                 fontSize={"16px"}
                                 fontWeight={600}
@@ -467,7 +468,7 @@ export default function index() {
                                 Goal
                               </Text>
                             </Stack>
-                            <Stack spacing={0} align={"center"}>
+                            <Stack spacing={0} align={"left"} w="145px" pl="4">
                               <Text
                                 fontSize={"16px"}
                                 fontWeight={600}
@@ -476,13 +477,13 @@ export default function index() {
                                 Progress
                               </Text>
                             </Stack>
-                            <Stack spacing={0} align={"center"}>
+                            <Stack spacing={0} align={"left"} w="145px" pl="4">
                               <Text
                                 fontSize={"16px"}
                                 fontWeight={600}
                                 color={"gray.500"}
                               >
-                                 Status Goal
+                                Status
                               </Text>
                             </Stack>
                           </Stack>
@@ -516,14 +517,13 @@ export default function index() {
                                       <Stack
                                         direction={"row"}
                                         justify={"center"}
-                                        spacing={{
-                                          base: 8,
-                                          sm: 8,
-                                          md: 24,
-                                          lg: 32,
-                                        }}
                                       >
-                                        <Stack spacing={0} align={"center"}>
+                                        <Stack
+                                          spacing={0}
+                                          align={"left"}
+                                          w="240px"
+                                          pl="4"
+                                        >
                                           <Text
                                             fontSize={"16px"}
                                             fontWeight={600}
@@ -532,7 +532,12 @@ export default function index() {
                                             Goal
                                           </Text>
                                         </Stack>
-                                        <Stack spacing={0} align={"center"}>
+                                        <Stack
+                                          spacing={0}
+                                          align={"left"}
+                                          w="130px"
+                                          pl="4"
+                                        >
                                           <Text
                                             fontSize={"16px"}
                                             fontWeight={600}
@@ -543,8 +548,10 @@ export default function index() {
                                         </Stack>
                                         <Stack
                                           spacing={0}
-                                          align={"center"}
+                                          align={"left"}
                                           direction="row"
+                                          w="130px"
+                                          pl="4"
                                         >
                                           <Box
                                             width={{ base: "18px", md: "20px" }}
@@ -587,14 +594,28 @@ export default function index() {
                                 <AccordionIcon />
                               </AccordionButton>
                             </h2>
-                            <AccordionPanel pb={4} bg="rgba(0, 0, 0, 0.33)">
-                              <Flex maxW={"250px"}>
-                                <Stack direction={"row"}>
+                            <AccordionPanel pb={4}>
+                              <Flex
+                                gap={{
+                                  base: 2,
+                                  sm: 2,
+                                  md: 8,
+                                  lg: 8,
+                                }}
+                                background="rgba(0, 0, 0, 0.5)"
+                              >
+                                <Stack
+                                  direction={"row"}
+                                  align={"left"}
+                                  w="240px"
+                                  pl="4"
+                                  bg="rgba(0, 0, 0, 0.33)"
+                                  rounded="md"
+                                >
                                   <Text
                                     fontSize={"14px"}
                                     fontWeight={200}
                                     color="white"
-                                    px={"30px"}
                                   >
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
@@ -603,36 +624,22 @@ export default function index() {
                                     exercitation ullamco laboris nisi ut aliquip
                                     ex ea commodo consequat.
                                   </Text>
-                                  <Text
-                                    fontSize={"14px"}
-                                    fontWeight={200}
-                                    color="white"
-                                    px={"30px"}
-                                    py={"15px"}
-                                    pb="128px"
-                                  >
-                                    Started
-                                  </Text>
-                                  <Center>
-                                    <Box
-                                      width="92%"
-                                      border="1px solid rgba(255, 255, 255, 0.5)"
-                                      height="0px"
-                                    />
-                                  </Center>
-                                  <Stack
+                                </Stack>
+                                <Stack>
+                                  <Flex
                                     direction={{
                                       base: "column",
                                       sm: "row",
                                       lg: "row",
                                     }}
                                     justify={"center"}
-                                    spacing={12}
-                                    width={"100%"}
-                                    px={8}
-                                    pt="16px"
+                                    background="rgba(0, 0, 0, 0.25)"
+                                    height={"25px"}
+                                    rounded="md"
+                                    pt="2"
+                                    align={"center"}
+                                    w="130px"
                                   >
-                                    
                                     <Text
                                       fontSize={{
                                         base: "12px",
@@ -641,14 +648,130 @@ export default function index() {
                                       }}
                                       fontWeight={200}
                                       color="white"
-                                      py={"15px"}
+                                      alignContent={"center"}
+                                    >
+                                      Started
+                                    </Text>
+                                  </Flex>
+                                  <Flex
+                                    direction={{
+                                      base: "column",
+                                      sm: "row",
+                                      lg: "row",
+                                    }}
+                                    justify={"center"}
+                                    background="rgba(0, 0, 0, 0.25)"
+                                    height={"25px"}
+                                    rounded="md"
+                                    pt="2"
+                                    align={"center"}
+                                    w="130px"
+                                  >
+                                    <Text
+                                      fontSize={{
+                                        base: "12px",
+                                        sm: "14px",
+                                        lg: "16px",
+                                      }}
+                                      fontWeight={200}
+                                      color="white"
+                                      alignContent={"center"}
+                                    >
+                                      On Progress
+                                    </Text>
+                                  </Flex>
+                                  <Flex
+                                    direction={{
+                                      base: "column",
+                                      sm: "row",
+                                      lg: "row",
+                                    }}
+                                    background="#4E0588"
+                                    justify={"left"}
+                                    height={"25px"}
+                                    rounded="md"
+                                    py="2"
+                                    pl="2"
+                                    align={"center"}
+                                    w="130px"
+                                  >
+                                    <Text
+                                      fontSize={{
+                                        base: "12px",
+                                        sm: "14px",
+                                        lg: "16px",
+                                      }}
+                                      fontWeight={200}
+                                      color="white"
+                                      alignContent={"center"}
+                                    >
+                                      Done
+                                    </Text>
+                                  </Flex>
+                                  <Flex
+                                    direction={{
+                                      base: "column",
+                                      sm: "row",
+                                      lg: "row",
+                                    }}
+                                    justify={"center"}
+                                    background="rgba(0, 0, 0, 0.25)"
+                                    height={"25px"}
+                                    rounded="md"
+                                    pt="2"
+                                    align={"left"}
+                                    w="130px"
+                                  >
+                                    <Text
+                                      fontSize={{
+                                        base: "12px",
+                                        sm: "14px",
+                                        lg: "16px",
+                                      }}
+                                      fontWeight={200}
+                                      color="white"
+                                      alignContent={"center"}
+                                    >
+                                      Newly Added
+                                    </Text>
+                                  </Flex>
+                                </Stack>
+
+                                <Stack>
+                                  <Flex
+                                    direction={{
+                                      base: "column",
+                                      sm: "column",
+                                      lg: "column",
+                                    }}
+                                    rounded="md"
+                                    justify={"center"}
+                                    background="rgba(0, 0, 0, 0.25)"
+                                    pt="16px"
+                                    spacing={0}
+                                    align={"left"}
+                                    w="130px"
+                                    pl="4"
+                                  >
+                                    <Text
+                                      fontSize={{
+                                        base: "12px",
+                                        sm: "14px",
+                                        lg: "16px",
+                                      }}
+                                      fontWeight={600}
+                                      color="white"
                                       width={{
                                         base: "8px",
                                         sm: "100px",
                                         lg: "300px",
                                       }}
                                     >
-                                      20% Progress
+                                      4{" "}
+                                      <chakra.span fontWeight={200}>
+                                        {" "}
+                                        Yes
+                                      </chakra.span>
                                     </Text>
                                     <Text
                                       fontSize={{
@@ -656,18 +779,21 @@ export default function index() {
                                         sm: "14px",
                                         lg: "16px",
                                       }}
-                                      fontWeight={200}
+                                      fontWeight={600}
                                       color="white"
-                                      py={"15px"}
                                       width={{
-                                        base: "80px",
+                                        base: "8px",
                                         sm: "100px",
-                                        lg: "350px",
+                                        lg: "300px",
                                       }}
                                     >
-                                      Backed 2022-06-23
+                                      4{" "}
+                                      <chakra.span fontWeight={200}>
+                                        {" "}
+                                        Yes
+                                      </chakra.span>
                                     </Text>
-                                  </Stack>
+                                  </Flex>
                                 </Stack>
                               </Flex>
                             </AccordionPanel>
