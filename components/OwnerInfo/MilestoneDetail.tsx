@@ -1,12 +1,14 @@
-import { Box, Divider, Flex, Progress, Text } from "@chakra-ui/react";
+import { Box, Center, Divider, Flex, Input, InputGroup, Progress, Text } from "@chakra-ui/react";
 import React from "react";
-import { ImageTransition } from "../ImageTransition";
+import { ImageTransition, InputTransition } from "../ImageTransition";
+import { FaRegHeart } from "react-icons/all";
 
 export default function MilestoneDetail() {
   return (
     <>
-      <Box p="26px" width="500px" bg="rgba(19, 10, 73, 1)" borderRadius="10px">
+      <Box width="500px" bg="rgba(19, 10, 73, 1)" borderRadius="10px">
         <Flex
+          p="26px"
           lineHeight="50px"
           direction="row"
           justifyContent={"space-between"}
@@ -30,6 +32,7 @@ export default function MilestoneDetail() {
         </Flex>
         <Flex pt="16px" lineHeight="24px" direction="row">
           <Text
+            px="26px"
             verticalAlign="middle"
             fontFamily="Montserrat"
             fontSize="12px"
@@ -84,6 +87,7 @@ export default function MilestoneDetail() {
           </Text>
         </Flex>
         <Text
+          px="26px"
           pt="16px"
           verticalAlign="middle"
           fontFamily="Montserrat"
@@ -92,7 +96,7 @@ export default function MilestoneDetail() {
         >
           Milestone Vote Tally
         </Text>
-        <Flex lineHeight="26px" direction="row">
+        <Flex px="26px" lineHeight="26px" direction="row">
           <Progress
             borderRadius="18px"
             colorScheme="purple"
@@ -180,6 +184,7 @@ export default function MilestoneDetail() {
           </ImageTransition>
         </Flex>
         <Text
+          px="26px"
           mt={"16px"}
           fontFamily="Montserrat"
           fontSize="14px"
@@ -195,6 +200,7 @@ export default function MilestoneDetail() {
           culpa qui officia deserunt mollit anim id est laborum.
         </Text>
         <Text
+          px="26px"
           pt="16px"
           pb="8px"
           fontFamily="Montserrat"
@@ -204,6 +210,69 @@ export default function MilestoneDetail() {
           Comments (1)
         </Text>
         <Divider color="#FCFCFC33" />
+        <Flex px="26px" pt="12px">
+          <Flex pr="16px">
+            <Box
+              w="48px"
+              h="48px"
+              bg="rgba(217, 217, 217, 1)"
+              borderRadius={9999}
+            />
+          </Flex>
+          <Flex direction="column">
+            <Text
+              pt="2px"
+              fontFamily="Montserrat"
+              fontSize="15px"
+              fontWeight={800}
+            >
+              Brigita
+            </Text>
+            <Text
+              pt="4px"
+              fontFamily="Montserrat"
+              fontSize="14px"
+              fontWeight={400}
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam
+            </Text>
+            <Flex lineHeight="19px" pt="4px">
+              <FaRegHeart />
+              <Text
+                pl="8px"
+                verticalAlign="middle"
+                color="#A4A4A4"
+                fontFamily="Montserrat"
+                fontSize="16px"
+                fontWeight={500}
+              >
+                20
+              </Text>
+            </Flex>
+          </Flex>
+        </Flex>
+        <Box mt="16px" p="16px" bg="rgba(11, 7, 33, 1)" borderRadius="8px">
+          <InputTransition
+            unitid="comment"
+            width="100%"
+            height="40px"
+            rounded="md"
+          >
+            <InputGroup size="sm" border="0px" style={{
+              borderRadius: 8,
+            }}>
+              <Input
+                style={{ border: "0", background: "transparent" }}
+                type="text"
+                h="40px"
+                rounded="md"
+                placeholder="Write your comment here..."
+              />
+            </InputGroup>
+          </InputTransition>
+        </Box>
       </Box>
     </>
   );
