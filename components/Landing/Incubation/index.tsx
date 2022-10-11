@@ -5,6 +5,7 @@ import {
   Tab,
   TabPanel,
   Text,
+  Center,
 } from "@chakra-ui/react";
 import FundraiseWithIncubation from "./FundraiseWithIncubation";
 import FundraiseWithoutIncubation from "./FundraiseWithoutIncubation";
@@ -19,7 +20,7 @@ const CustomTab: React.FC = (props: any) => {
       <Text
         fontFamily="PilatExtended-Bold"
         fontWeight="600"
-        fontSize={{ base: "10px", md: "14px" }}
+        fontSize={{ base: "8px", md: "14px" }}
         lineHeight="150%"
         letterSpacing="-0.022em"
       >
@@ -30,29 +31,32 @@ const CustomTab: React.FC = (props: any) => {
 };
 const Incubation = () => {
   return (
-    <Tabs
-      isFitted
-      variant="unstyled"
-      mx={{ base: "10px", md: "110px" }}
-      mt="110px"
-    >
-      <TabList>
-        <CustomTab>INCUBATION</CustomTab>
-        <CustomTab>FUNDRAISE WITH INCUBATION</CustomTab>
-        <CustomTab>FUNDRAISE WITHOUT INCUBATION</CustomTab>
-      </TabList>
-      <TabPanels>
-        <TabPanel>
-          <IncubationPanel />
-        </TabPanel>
-        <TabPanel>
-          <FundraiseWithIncubation />
-        </TabPanel>
-        <TabPanel>
-          <FundraiseWithoutIncubation />
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
+    <Center>
+      <Tabs
+        isFitted
+        variant="unstyled"
+        mx={{ base: "5px", md: "110px" }}
+        mt="110px"
+        maxW={"1440px"}
+      >
+        <TabList>
+          <CustomTab>INCUBATION</CustomTab>
+          <CustomTab>FUNDRAISE WITH INCUBATION</CustomTab>
+          <CustomTab>FUNDRAISE WITHOUT INCUBATION</CustomTab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <IncubationPanel />
+          </TabPanel>
+          <TabPanel>
+            <FundraiseWithIncubation />
+          </TabPanel>
+          <TabPanel>
+            <FundraiseWithoutIncubation />
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+    </Center>
   );
 };
 

@@ -25,7 +25,7 @@ export default function Hero() {
       alignItems="center"
       flexDirection="column"
       background="#000118"
-      h="100vh"
+      h="60vh"
     >
       <Flex
         position={"relative"}
@@ -108,7 +108,7 @@ export default function Hero() {
       </Flex>
       <Flex
         position="absolute"
-        bottom="0px"
+        top="40"
         pl="64px"
         pr="64px"
         flexDirection="row"

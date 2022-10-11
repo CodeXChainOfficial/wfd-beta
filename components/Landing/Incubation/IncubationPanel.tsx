@@ -7,8 +7,9 @@ const IncubationPanel = () => {
       gap="0px 50px"
       pt={{ base: "30px", md: "80px" }}
       px={{ base: "10px", md: "100px" }}
+      fontFamily="Calibri"
     >
-      <GridItem w="80%">
+      <GridItem w="90%">
         <Flex w="100%" justify="center">
           <Image
             src="/media/Home/incubation1.png"
@@ -17,13 +18,9 @@ const IncubationPanel = () => {
         </Flex>
       </GridItem>
       <GridItem w="100%">
-        <Text
-          fontWeight="600"
-          color="#00A3FF"
-          textAlign="justify"
-        >
+        <Text fontWeight="500" color="#00A3FF" textAlign="justify" fontSize={{ base: "10px", md: "18px" }}>
           We select from pool of project applicants
-          <chakra.span fontSize={{ base: "10px", md: "14px" }} color="white">
+          <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
             &nbsp;or project from our partners (1st selection, we judge based on
             the idea, business model, financial model and team), then if it is
             match with our criteria, we will set up intro call to understand the
@@ -35,16 +32,11 @@ const IncubationPanel = () => {
       <GridItem />
       <GridItem w="100%" mt="50px">
         <Flex gap={{ base: "30px", md: "70px" }} align="center">
-          <Text
-            fontWeight="600"
-            color="#00A3FF"
-            textAlign="justify"
-          >
+          <Text fontWeight="500" color="#00A3FF" textAlign="justify" fontSize={{ base: "10px", md: "18px" }}>
             We match it against our criteria
             <br />
-            
-            <chakra.span fontSize={{ base: "10px", md: "14px" }} color="white">
-              &nbsp; and see its impact to real world applications
+            <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
+              and see its impact to real world applications such as impact to social community or value in real life activity
             </chakra.span>
           </Text>
           <Image src="/media/Home/incubation2.png" width="40%" />
@@ -59,59 +51,54 @@ const IncubationPanel = () => {
         </Flex>
       </GridItem>
       <GridItem w="100%" mt="50px" position="relative">
-        <Text
-           fontWeight="600"
-           color="#00A3FF"
-           textAlign="justify"
-        >
+        <Text fontWeight="500" color="#00A3FF" textAlign="justify" fontSize={{ base: "10px", md: "18px" }}>
           We do due diligence and research by interviewing, discussing and going
           through papers
           <br />
-        
           <li>
-            <chakra.span fontSize={{ base: "10px", md: "14px" }} color="white">
+            <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
               WeFund select project deemed credible and impactful and the
               project is published on WeFund{" "}
             </chakra.span>
           </li>
           <li>
-            <chakra.span fontSize={{ base: "10px", md: "14px" }} color="white">
+            <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
               We will onboard you and set up a set of incubations for you, set
               you up to network and connect with partners and groups that have
               similar concepts and supplementary roles to yours.{" "}
             </chakra.span>
           </li>
           <li>
-            <chakra.span fontSize={{ base: "10px", md: "14px" }} color="white">
+            <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
               Regular checkups and evaluation once a week with a weekly sprint
               goal to reach a monthly goal.{" "}
             </chakra.span>
           </li>
           <li>
-            <chakra.span fontSize={{ base: "10px", md: "14px" }} color="white">
+            <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
               Providing support for development and finances with our support
               partner
             </chakra.span>
           </li>{" "}
           <li>
-            <chakra.span fontSize={{ base: "10px", md: "14px" }} color="white">
+            <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
               Reviewing readiness for a grant and MVP
             </chakra.span>
           </li>
           <li>
             {" "}
-            <chakra.span fontSize={{ base: "10px", md: "14px" }} color="white">
+            <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
               Preparing project for a WeFund fundraise
             </chakra.span>
-
           </li>
-          </Text>
-        <Image
+        </Text>
+        {/* <Image
           src="/media/Home/box.png"
           width="47px"
           position="absolute"
           bottom="0px"
           right="50px"
+          visibility={{base:"hidden", md:"visible"}}
         />
         <Image
           src="/media/Home/box.png"
@@ -119,7 +106,8 @@ const IncubationPanel = () => {
           position="absolute"
           bottom="50px"
           right="0px"
-        />
+          visibility={{base:"hidden", md:"visible"}}
+        /> */}
       </GridItem>
     </Grid>
   );

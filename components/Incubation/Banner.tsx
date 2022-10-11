@@ -30,7 +30,11 @@ export default function Banner() {
     >
       <Container
         position={"relative"}
+<<<<<<< HEAD
         mt={{ base: "5vh", md: "12vh", lg: "16vh", '2xl': "26vh" }}
+=======
+        mt={{ base: "5vh", md: "12vh", lg: "14vh", '2xl': "26vh" }}
+>>>>>>> d069b80fd5e6fa4542da1b848e3333bae15fe7ce
         zIndex={"3"}
         maxW="container.lg"
       >
