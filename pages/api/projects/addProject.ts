@@ -22,11 +22,12 @@ export default async function handler(
   // });
   const fields = req.body;
   console.log(fields);
-  
-  const sql = `Insert into Projects Values(${fields.creator_wallet}, ${fields.project_id}, ${fields.project_company}, ${fields.project_title}, ${fields.project_description}, ${fields.project_ecosystem}, ${fields.project_fundtype}, ${fields.project_launch}, ${fields.project_createdate}, ${fields.project_saft}, ${fields.project_logo}, ${fields.project_whitepaper}, ${fields.project_website}, ${fields.email}, ${fields.teammembers}, ${fields.token_addr}, ${fields.country}, ${fields.cofounder_name}, ${fields.service_wefund}, ${fields.service_charity} `;
+
+  const sql = `Insert into Projects Values('${fields.creator_wallet}', '${fields.project_id}', '${fields.project_company}', '${fields.project_title}', '${fields.project_description}', '${fields.project_ecosystem}', '${fields.project_fundtype}', 'PRELAUNCH', '${fields.project_createddate}', '${fields.project_saft}', '${fields.project_logo}', '${fields.project_whitepaper}', '${fields.project_website}', '${fields.project_email}', '${fields.project_teammembers}', '${fields.token_addr}', '${fields.country}', '${fields.cofounder_name}', '${fields.service_wefund}', '${fields.service_charity}')`;
 
   console.log(sql);
 
   const result = await executeQuery(sql);
+  console.log(result)
   res.status(200).json({ data: result });
 }

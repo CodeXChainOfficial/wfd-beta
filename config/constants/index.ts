@@ -224,7 +224,7 @@ export const CHAINS_CONFIG = {
   bsc_testnet: {
     chainId: "0x61",
     chainName: "BSC testnet",
-    rpc: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+    rpc: "https://bsctestapi.terminet.io/rpc",
   },
   bsc: {
     chainId: "0x38",

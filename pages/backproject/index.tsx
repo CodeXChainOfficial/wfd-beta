@@ -1,18 +1,24 @@
 import React, { useEffect, useState, useRef } from "react";
-import { ethers } from "ethers"
-import {
-  Stack,
-  Box,
-  Flex,
-  Text,
-  Image,
-} from "@chakra-ui/react";
+import { ethers } from "ethers";
+import { Stack, Box, Flex, Text, Image } from "@chakra-ui/react";
 import { IoCheckmark } from "react-icons/io5";
 import { toast } from "react-toastify";
 
-import { SUCCESS_OPTION, ERROR_OPTION, WEFUND_CONTRACT, ERC20_ABI } from "../../config/constants";
+import {
+  SUCCESS_OPTION,
+  ERROR_OPTION,
+  WEFUND_CONTRACT,
+  ERC20_ABI,
+} from "../../config/constants";
 import WEFUND_ABI from "../../bsc_contract/build/WeFund.json";
-import { checkBscConnection, checkNetwork, GetOneProject, LookForTokenInfo, ParseParam, ParseParam_ProjectId } from "../../utils/utility";
+import {
+  checkBscConnection,
+  checkNetwork,
+  GetOneProject,
+  LookForTokenInfo,
+  ParseParam,
+  ParseParam_ProjectId,
+} from "../../utils/utility";
 import {
   ButtonBackTransition,
   InputTransition,
@@ -77,11 +83,7 @@ export default function BackProject() {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
 
-      const token = new ethers.Contract(
-        tokenInfo?.address,
-        ERC20_ABI,
-        signer
-      );
+      const token = new ethers.Contract(tokenInfo?.address, ERC20_ABI, signer);
 
       let res = await token.approve(WEFUND_CONTRACT, amount);
       toast("Please wait...", SUCCESS_OPTION);
@@ -96,9 +98,15 @@ export default function BackProject() {
 
       let tokenType = 0;
       switch (tokenInfo?.name.toLowerCase()) {
-        case "usdc": tokenType = 0; break;
-        case "usdt": tokenType = 1; break;
-        case "busd": tokenType = 2; break;
+        case "usdc":
+          tokenType = 0;
+          break;
+        case "usdt":
+          tokenType = 1;
+          break;
+        case "busd":
+          tokenType = 2;
+          break;
       }
       res = await contract.back(project_id, tokenType, amount, overrides);
       console.log(res);
@@ -112,7 +120,7 @@ export default function BackProject() {
   }
 
   return (
-    <PageLayout 
+    <PageLayout
       title="Contribute"
       subTitle1="Invest"
       subTitle2="Back and Contribute to"
@@ -128,12 +136,12 @@ export default function BackProject() {
         backgroundSize={"contain"}
       >
         <Box
-         w={{ base: "90%", md: "600px", lg: "800px" }}
-         background="#120037"
-         backdropBlur={"54px"}
-         pt="40px"
-         style={{ fontFamily: "Sk-Modernist" }}
-         rounded={"3xl"}
+          w={{ base: "90%", md: "600px", lg: "800px" }}
+          background="#120037"
+          backdropBlur={"54px"}
+          pt="40px"
+          style={{ fontFamily: "Sk-Modernist" }}
+          rounded={"3xl"}
         >
           {/* --------amount to back----------- */}
           <Flex
