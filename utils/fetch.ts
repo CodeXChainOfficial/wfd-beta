@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { WEFUND_CONTRACT, WEFUND_ID, CHAINS_CONFIG } from "../config/constants";
 import { ActionKind } from "../contexts/store";
-import WEFUND_ABI from "../bsc_contract/build/contracts/WeFund.json";
+import WEFUND_ABI from "../config/constants/WeFund.json";
 import { ROUTER_TOKENS } from "../config/constants/swap";
 
 export function addExtraInfo(projectData: any) {
@@ -43,18 +43,14 @@ export async function fetchData(
   if (!force) return { projectData, communityData, configData };
 
   const provider = new ethers.providers.JsonRpcProvider(
-    CHAINS_CONFIG["rinkeby"].rpc
+    CHAINS_CONFIG["bsc_testnet"].rpc
   );
-  const contract = new ethers.Contract(
-    WEFUND_CONTRACT,
-    WEFUND_ABI.abi,
-    provider
-  );
+  const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, provider);
 
   try {
-    console.log("reading")
-    
-    await fetch("/api/fetchProjects")
+    console.log("reading");
+
+    await fetch("/api/projects")
       .then((res) => res.json())
       .then((data) => {
         projectData = data.data;

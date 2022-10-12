@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 import { ButtonTransition } from "../components/ImageTransition";
 import { useStore, useWallet } from "../contexts/store";
@@ -237,55 +238,55 @@ export default function CreateProject() {
       _createDate = day + "/" + ((month + 1) % 12) + "/" + year;
     }
 
-    const client = keplrWallet.getClient();
-    const address = keplrWallet.account;
 
-    const AddProjectMsg = {
-      add_project: {
-        creator_wallet: address,
-        project_id: "0",
-        project_company: company,
-        project_title: title,
-        project_description: description,
-        project_collected: collectedAmount.toString(),
-        project_ecosystem: ecosystem,
-        project_fundtype: fundraise,
-        project_createddate: _createDate,
-        project_saft: realSAFT,
-        project_logo: logo,
-        project_whitepaper: realWhitepaer,
-        project_website: website,
-        project_email: email,
-        project_milestones: project_milestones,
-        project_teammembers: project_teammembers,
-        vesting: vesting,
-        token_addr: tokenAddress,
+    const project = {
+      creator_wallet: address,
+      project_id: "0",
+      project_company: company,
+      project_title: title,
+      project_description: description,
+      project_collected: collectedAmount.toString(),
+      project_ecosystem: ecosystem,
+      project_fundtype: fundraise,
+      project_createddate: _createDate,
+      project_saft: realSAFT,
+      project_logo: logo,
+      project_whitepaper: realWhitepaer,
+      project_website: website,
+      project_email: email,
+      project_milestones: project_milestones,
+      project_teammembers: project_teammembers,
+      vesting: vesting,
+      token_addr: tokenAddress,
 
-        country: country,
-        cofounder_name: cofounderName,
-        service_wefund: serviceWefund,
-        service_charity: serviceCharity,
-        professional_link: professionallink,
-      },
+      country: country,
+      cofounder_name: cofounderName,
+      service_wefund: serviceWefund,
+      service_charity: serviceCharity,
+      professional_link: professionallink,
     };
+    const res = await axios.post("/api/projects/addProject", project);
 
-    if (state.walletType != "keplr") {
-      toast("Connect with Keplr", ERROR_OPTION);
-      return;
-    }
-    try {
-      const res = await client.execute(
-        address,
-        WEFUND_CONTRACT,
-        AddProjectMsg,
-        "auto"
-      );
-      console.log(res);
-      fetchData(state, dispatch, true);
-      router.push("/explorer");
-    } catch (e) {
-      console.log(e);
-    }
+    // const client = keplrWallet.getClient();
+    // const address = keplrWallet.account;
+
+    // if (state.walletType != "keplr") {
+    //   toast("Connect with Keplr", ERROR_OPTION);
+    //   return;
+    // }
+    // try {
+    //   const res = await client.execute(
+    //     address,
+    //     WEFUND_CONTRACT,
+    //     AddProjectMsg,
+    //     "auto"
+    //   );
+    //   console.log(res);
+    //   fetchData(state, dispatch, true);
+    //   router.push("/explorer");
+    // } catch (e) {
+    //   console.log(e);
+    // }
   }
 
   return (
@@ -306,7 +307,6 @@ export default function CreateProject() {
             <Box
               w={{ base: "xs", sm: "xs", md: "2xl", lg: "2xl", xl: "3xl" }}
               bg="#120D30"
-
               backdropBlur={"54px"}
               borderTopColor="transparent"
               fontFamily="Sk-Modernist-Regular"
@@ -326,7 +326,6 @@ export default function CreateProject() {
                 typeText="Project Description"
                 type={description}
                 setType={setDescription}
-              
               />
               <TeamMembers
                 description={teammemberDescription}

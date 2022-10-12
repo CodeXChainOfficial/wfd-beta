@@ -32,14 +32,16 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { fields, files } = await new Promise((resolve, reject) => {
-    const form = new IncomingForm();
+  const { fields, files }: { fields: any; files: any } = await new Promise(
+    (resolve, reject) => {
+      const form = new IncomingForm();
 
-    form.parse(req, (err, fields, files) => {
-      if (err) return reject(err);
-      resolve({ fields, files });
-    });
-  });
+      form.parse(req, (err, fields, files) => {
+        if (err) return reject(err);
+        resolve({ fields, files });
+      });
+    }
+  );
 
   if (fields.base != "") {
     let sql =
@@ -49,7 +51,7 @@ export default async function handler(
       fields.referred +
       "'";
 
-    const result = await executeQuery(sql);
+    const result: any = await executeQuery(sql);
     if (result.length == 0) {
       sql =
         "INSERT INTO Referral (base, referred) VALUES ('" +
@@ -59,13 +61,13 @@ export default async function handler(
         "')";
       await executeQuery(sql);
     }
-  };
+  }
 
-  let sql =
+  const sql =
     "Select count(base) as referralCount from Referral where base='" +
     fields.referred +
     "'";
-  const result = await executeQuery(sql);
+  const result: any = await executeQuery(sql);
   res.json({
     status: "success",
     data: result[0].referralCount,

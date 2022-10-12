@@ -20,7 +20,7 @@ export const WEFUND_WALLET = "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu";
 export const WFD_TOKEN =
   "juno1x329zfyakxz9sl6a46ef9snajjcgjrykq8sje4lpj06r24trgvxqj42edl";
 
-export const WEFUND_CONTRACT = "0x003F0Cae69d7a28Bf9157c8cC27D466e00cA965e";
+export const WEFUND_CONTRACT = "0xad1bF7a44DE64315cD4a59d03B9b73Ca50a4D08a";
 export const VESTING_CONTRACT =
   "juno1qwxuxeg5q7gedvdzxssf84hw3xm9ql08jqt9t7h97d030rajjqkst4femg";
 export const STAKING_CONTRACT =
@@ -220,6 +220,11 @@ export const CHAINS_CONFIG = {
     chainId: "0x4",
     chainName: "Rinkeby",
     rpc: "https://rpc.ankr.com/eth_rinkeby",
+  },
+  bsc_testnet: {
+    chainId: "0x61",
+    chainName: "BSC testnet",
+    rpc: "https://data-seed-prebsc-1-s1.binance.org:8545/",
   },
   bsc: {
     chainId: "0x38",
