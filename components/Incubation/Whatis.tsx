@@ -18,7 +18,7 @@ import { ImageTransition } from "../ImageTransition";
 
 export default function Whatis() {
   return (
-    <Flex width="100%" align="center" justify="center">
+    <Flex width="100%" mt={{ base: "0px", md: "21px", lg: "26px" }} align="center" justify="center">
       <Flex
         width="80%"
         justify="space-between"
@@ -47,8 +47,8 @@ export default function Whatis() {
           </Text>
           <Flex direction={"row"}>
             <Text
-              fontWeight={500}
-              fontSize="20px"
+              fontWeight={"400"}
+              fontSize={{ base: "18px", md: "21px", lg: "21px",xl:"24px",'2xl':"24px" }}
               lineHeight="30px"
               letterSpacing="-2.2%"
               fontFamily="Calibri"

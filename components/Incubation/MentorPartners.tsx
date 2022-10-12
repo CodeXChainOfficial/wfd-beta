@@ -54,7 +54,7 @@ const Mentors = [
   {
     name: "Jason Galvin",
     role: "Web3 Investor",
-    link: "https://ae.linkedin.com/in/achuth-k-chandran-b17880102",
+    link: "https://www.linkedin.com/in/jasongalvin/",
     imgsrc: "/media/Team/Jason Galvin.png",
     experiences: [
       "/media/Experiences/GeneralThings.png",

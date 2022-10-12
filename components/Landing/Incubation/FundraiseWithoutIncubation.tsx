@@ -22,8 +22,8 @@ const FundraiseWithoutIncubation = () => {
           <Image src={datas[0].image} w={{ base: "38px", md: "78px" }} />
           <Text
             align="justify"
-            fontSize={{ base: "8px", md: "14px" }}
-            fontWeight="500"
+            fontSize={{ base: "8px", md: "16px" }}
+            fontWeight="400"
             color="#00A3FF"
             textAlign="justify"
             mt={{ base: "40px", md: "53px" }}
@@ -35,8 +35,8 @@ const FundraiseWithoutIncubation = () => {
         <Flex w="100%">
           <Text
             align="justify"
-            fontSize={{ base: "8px", md: "14px" }}
-            fontWeight="500"
+            fontSize={{ base: "8px", md: "16px" }}
+            fontWeight="400"
             color="#00A3FF"
             textAlign="justify"
           >
@@ -79,8 +79,8 @@ const FundraiseWithoutIncubation = () => {
           <Image src={datas[2].image} w={{ base: "38px", md: "78px" }} />
           <Text
             align="justify"
-            fontSize={{ base: "8px", md: "14px" }}
-            fontWeight="500"
+            fontSize={{ base: "8px", md: "16px" }}
+            fontWeight="400"
             color="#00A3FF"
             textAlign="justify"
             mt={{ base: "30px", md: "53px" }}
@@ -101,8 +101,8 @@ const FundraiseWithoutIncubation = () => {
           </Flex>
           <Text
             align="justify"
-            fontSize={{ base: "8px", md: "14px" }}
-            fontWeight="500"
+            fontSize={{ base: "8px", md: "16px" }}
+            fontWeight="400"
             color="#00A3FF"
             textAlign="justify"
             mt={{ base: "30px", md: "53px" }}

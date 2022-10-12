@@ -27,10 +27,11 @@ export default function Banner() {
       alignItems="center"
       flexDirection="column"
       height={{ base: "65vh", md: "60vh", lg: "70vh",xl:"80vh",'2xl':"110vh" }}
+      mb={"24em"}
     >
       <Container
         position={"relative"}
-        mt={{ base: "5vh", md: "12vh", lg: "14vh", '2xl': "26vh" }}
+        mt={{ base: "5vh", md: "12vh", lg: "16vh", '2xl': "26vh" }}
         zIndex={"3"}
         maxW="container.lg"
       >
@@ -129,7 +130,7 @@ export default function Banner() {
           </Box>
         </Stack>
       </Container>
-      <Center position={"absolute"} top={{ base: "60", sm: "0", md:"40", lg: "-48", '2xl':"-80" }}>
+      <Center position={"absolute"} top={{ base: "60", sm: "0", md:"40", lg: "-48", '2xl':"-60" }}>
         <video autoPlay muted loop>
           <source src="/media/starrybackground.webm" type="video/webm"></source>
         </video>

@@ -22,8 +22,8 @@ const FundraiseWithIncubation = () => {
             </Flex>
             <Text
               align="justify"
-              fontSize="14px"
-              fontWeight="500"
+              fontSize="16px"
+              fontWeight="400"
               color="#00A3FF"
               textAlign="justify"
             >
