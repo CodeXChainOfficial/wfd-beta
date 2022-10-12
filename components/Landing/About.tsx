@@ -12,7 +12,7 @@ export default function AboutWeFund() {
           </chakra.span>
         </Text>
       </Center>
-      <Center marginTop={"16px"}>
+      <Center my={"16px"}>
         <Text width="80%" textAlign="center" color="#ADB2DB" fontSize={{base:"14", md:"16",lg:"18"}}>
           WeFund is a multichain incubation and crowdfunding platform that uses
           blockchain and smart contracts to make the process more transparent,

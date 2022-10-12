@@ -70,16 +70,6 @@ const team = [
       "/media/Experiences/sancta.jpg",
     ],
   },
-
-  {
-    name: "Melati Puspa",
-    role: "Business Development",
-    desc: "",
-    imgsrc: "/media/Team/x.png",
-    experiences: [
-      "",
-    ],
-  },
   {
     name: "Hardin",
     role: "Project Manager",
@@ -94,6 +84,20 @@ const team = [
     ],
   },
   {
+    name: "Jason Galvin",
+    role: "Web3 Investor",
+    desc: "Investor in Web3. Experienced Tech insiders and engineers in GoPro, Bearing Point, and more",
+    link: "https://www.linkedin.com/in/jasongalvin/",
+    imgsrc: "/media/Team/Jason Galvin.png",
+    experiences: [
+      "/media/Experiences/GeneralThings.png",
+      "/media/Experiences/GoPro.jpeg",
+      "/media/Experiences/BearingPoint.jpg",
+      "/media/Experiences/flcgroup.jpg",
+      "/media/Experiences/adteractive.jpg",
+    ],
+  },
+  {
     name: "Marko",
     role: "Smart Contract developer",
     desc: "7+ years of experience as a Senior DevOps Engineer at FPT, Galaxy, TikTikTrading. Specialized in streaming systems. Devops Lead Engineer at 2 project gamefi: Lunarush, Metaspets.",
@@ -104,13 +108,31 @@ const team = [
       "/media/Experiences/FPT.png",
     ],
   },
+
+  {
+    name: "Melati Puspa",
+    role: "Business Development",
+    desc: "Data Analyst in MNC Media",
+    link: "https://www.linkedin.com/in/melati-puspa-anisa/",
+    imgsrc: "/media/Team/Melati.jfif",
+    experiences: [
+      "/media/Experiences/telkom.jpg",
+      "/media/Experiences/saxion.jpg",
+      "/media/Experiences/emurgo.png",
+      "media/Experiences/MNC.png"
+    ],
+  },
   {
     name: "Pirda Fajriati",
     role: "Graphic Designer",
-    desc: "8+ years in software development & leadership skills. 5 years of experience developing, implementing and supporting large scale streaming industry. 2 blockchain projects...",
-    imgsrc: "/media/Team/x.png",
+    desc: "Graphic Designer and UI UX",
+    link: "https://www.linkedin.com/in/pirdafajriati/",
+    imgsrc: "/media/Team/Pirda.jfif",
     experiences: [
-      "",
+      "/media/Experiences/telkom.jpg",
+      "/media/Experiences/jagadmedia.jpg",
+      "/media/Experiences/ibf.jpg",
+      "/media/Experiences/telkomcorpu.jpg",
     ],
   },
 ];

@@ -63,8 +63,7 @@ const IncubationPanel = () => {
           </li>
           <li>
             <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
-              We will onboard you and set up a set of incubations for you, set
-              you up to network and connect with partners and groups that have
+              We will onboard you and set up a set of incubations and network to connect with groups that have
               similar concepts and supplementary roles to yours.{" "}
             </chakra.span>
           </li>

@@ -27,14 +27,11 @@ export default function Banner() {
       alignItems="center"
       flexDirection="column"
       height={{ base: "65vh", md: "60vh", lg: "70vh",xl:"80vh",'2xl':"110vh" }}
+      mb={"24em"}
     >
       <Container
         position={"relative"}
-<<<<<<< HEAD
         mt={{ base: "5vh", md: "12vh", lg: "16vh", '2xl': "26vh" }}
-=======
-        mt={{ base: "5vh", md: "12vh", lg: "14vh", '2xl': "26vh" }}
->>>>>>> d069b80fd5e6fa4542da1b848e3333bae15fe7ce
         zIndex={"3"}
         maxW="container.lg"
       >

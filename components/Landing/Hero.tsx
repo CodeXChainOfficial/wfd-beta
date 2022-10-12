@@ -26,6 +26,7 @@ export default function Hero() {
       flexDirection="column"
       background="#000118"
       h="60vh"
+      mb="8em"
     >
       <Flex
         position={"relative"}
