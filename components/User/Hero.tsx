@@ -1,16 +1,12 @@
 import React from "react";
-import { useRouter } from "next/router";
 import {
-  HStack,
   Image,
   Flex,
   Text,
   Stack,
   Container,
-  Box,
   chakra,
 } from "@chakra-ui/react";
-import { useStore } from "../../contexts/store";
 
 export default function Hero() {
   return (
