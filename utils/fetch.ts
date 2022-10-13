@@ -66,7 +66,6 @@ export async function fetchData(
       projectData[id].project_collected = res[i].collected.toNumber();
       projectData[id].backerbacked_amount = res[i].backed.toNumber();
       projectData[id].backer_states = res[i].backers;
-      projectData[id].whitelist = res[i].whitelist;
       projectData[id].milestone_states = [];
       projectData[id].teammember_states = JSON.parse(
         projectData[id].teammembers

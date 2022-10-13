@@ -10,13 +10,11 @@ import {
   WEFUND_CONTRACT,
   ERC20_ABI,
 } from "../../config/constants";
-import WEFUND_ABI from "../../bsc_contract/build/WeFund.json";
+import WEFUND_ABI from "../../config/constants/WeFund.json";
 import {
   checkBscConnection,
-  checkNetwork,
   GetOneProject,
   LookForTokenInfo,
-  ParseParam,
   ParseParam_ProjectId,
 } from "../../utils/utility";
 import {
@@ -84,7 +82,6 @@ export default function BackProject() {
       const signer = provider.getSigner();
 
       const token = new ethers.Contract(tokenInfo?.address, ERC20_ABI, signer);
-
       let res = await token.approve(WEFUND_CONTRACT, amount);
       toast("Please wait...", SUCCESS_OPTION);
       await res.wait();
@@ -92,7 +89,7 @@ export default function BackProject() {
 
       const contract = new ethers.Contract(
         WEFUND_CONTRACT,
-        WEFUND_ABI.abi,
+        WEFUND_ABI,
         signer
       );
 
@@ -108,8 +105,7 @@ export default function BackProject() {
           tokenType = 2;
           break;
       }
-      res = await contract.back(project_id, tokenType, amount, overrides);
-      console.log(res);
+      res = await contract.back(project_id, tokenType, amount);
       await res.wait();
       toast("Back success!", SUCCESS_OPTION);
       fetchData(state, dispatch, true);

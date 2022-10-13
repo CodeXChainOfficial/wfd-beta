@@ -54,8 +54,7 @@ export function GetProjectStatus(mode: string) {
 }
 
 export function checkBscConnection(state: any) {
-  console.log(state.wallet?.chainId);
-  const t_chainId = NETWORK == "mainnet"? 0x38 : 0x4;
+  const t_chainId = NETWORK == "mainnet"? 0x38 : 0x61;
   if (state.walletType != "metamask" || state.wallet.chainId != t_chainId) {
     toast("Please connect to BSC Network");
     return false;

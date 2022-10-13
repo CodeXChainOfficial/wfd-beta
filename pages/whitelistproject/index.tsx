@@ -20,7 +20,7 @@ import { useStore } from "../../contexts/store";
 import { SUCCESS_OPTION, WEFUND_CONTRACT } from "../../config/constants";
 import { fetchData } from "../../utils/fetch";
 import { useMetamaskWallet } from "../../contexts/metamask";
-import WEFUND_ABI from "../../bsc_contract/build/WeFund.json";
+import WEFUND_ABI from "../../config/constants/WeFund.json";
 
 export default function WhitelistProject() {
   const { query } = useRouter();
@@ -43,7 +43,7 @@ export default function WhitelistProject() {
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
         WEFUND_CONTRACT,
-        WEFUND_ABI.abi,
+        WEFUND_ABI,
         signer
       );
 
