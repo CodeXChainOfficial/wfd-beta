@@ -8,41 +8,16 @@ import {
   Flex,
   Image,
   VStack,
-  HStack,
-  ChakraProvider,
   useDisclosure,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverHeader,
-  ButtonGroup,
-  IconButton,
-  // Link,
 } from "@chakra-ui/react";
 
 import NavbarMobile from "./mobile";
 import { RiAccountPinBoxFill } from "react-icons/ri";
 import { ButtonBackTransition } from "../ImageTransition";
 import { useStore } from "../../contexts/store";
-import {
-  FaMedium,
-  FaYoutube,
-  FaTwitter,
-  FaTelegram,
-  FaDiscord,
-  FaFlask,
-  FaRocket,
-  FaRedo,
-  FaRetweet,
-} from "react-icons/fa";
-import { SiGmail } from "react-icons/si";
 
 export default function Navbar() {
-  const { state, dispatch } = useStore();
-  const { onOpen, onClose, isOpen } = useDisclosure();
+  const { state } = useStore();
   return (
     <Flex w="100%" direction="column">
       <VStack display={{ base: "none", md: "block", lg: "block" }}>
@@ -67,8 +42,6 @@ export default function Navbar() {
                 />
               </Link>
             </Flex>
-           
-
             <DesktopNav />
           </Flex>
           <Flex mr="20px" align="center" justify="center" w="40%" h="100%">
@@ -88,7 +61,7 @@ export default function Navbar() {
             <Flex w="197px" ml="20px" mr={"10px"}>
               <ConnectWallet />
             </Flex>
-            <Link href="userinfo">
+            <Link href="/userinfo">
               <Icon
                 as={RiAccountPinBoxFill}
                 fontSize={"45px"}
