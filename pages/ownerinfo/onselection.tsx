@@ -50,7 +50,7 @@ export default function index() {
               lg: "row",
             }}
           >
-            <Center w={{ base: "100%", sm: "100%", md: "100%", lg: "450px" }}>
+            
               <VStack
                 spacing={4}
                 marginBottom={6}
@@ -60,8 +60,8 @@ export default function index() {
                   md: "center",
                   lg: "unset",
                 }}
+                w={{ base: "100%", sm: "100%", md: "100%", lg: "450px" }}
                 mx={[0, 0, 0]}
-                w={{ base: "100%", sm: "100%", md: "100%", lg: "100%" }}
               >
                 <Box
                   p="24px"
@@ -305,7 +305,6 @@ export default function index() {
                   </Box>
                 </Link>
               </VStack>
-            </Center>
             <Flex
               align={{
                 base: "center",
@@ -430,11 +429,19 @@ export default function index() {
                 fontWeight="800"
                 fontSize="20px"
               >
-                Set Project Incubation Goal
+                Project Application
               </Text>
               <ProjectApplication/>
-              <Flex mt="36px">
-                <Box bg="rgba(18, 13, 48, 1)" borderRadius="10px">
+              <Flex mt="36px" direction={"column"}>
+              <Text
+                mt="16px"
+                fontFamily={"Montserrat"}
+                fontWeight="800"
+                fontSize="20px"
+              >
+                Set Project Incubation Goal
+              </Text>
+                <Box bg="rgba(18, 13, 48, 1)" borderRadius="10px" mt="25px" w="500px">
                   <Flex direction="column" px="64px" py="16px">
                     <Flex>
                       <Center>

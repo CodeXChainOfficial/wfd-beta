@@ -328,7 +328,7 @@ export default function index() {
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Registration
+                      Milestone Set
                     </Text>
                   </Center>
                 </Flex>
@@ -352,7 +352,7 @@ export default function index() {
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Selection
+                      Fundraising
                     </Text>
                   </Center>
                 </Flex>
@@ -376,7 +376,17 @@ export default function index() {
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Set Goal
+                      Milestone 
+                    </Text>
+                  </Center>
+                  <Center>
+                    <Text
+                      color={"rgba(15, 177, 245, 1)"}
+                      fontFamily={"Montserrat"}
+                      fontWeight="600"
+                      fontSize="16px"
+                    >
+                      Begins
                     </Text>
                   </Center>
                 </Flex>
@@ -400,7 +410,7 @@ export default function index() {
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Approved
+                      Milestone
                     </Text>
                   </Center>
                   <Center>
@@ -410,23 +420,24 @@ export default function index() {
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Publish
+                      Completed
                     </Text>
                   </Center>
                 </Flex>
               </Flex>
-              <MilestoneList />
-              <MilestoneDetail />
               <Flex
                 w="full"
+                direction={"column"}
+                py={"45px"}
                 justifyContent={{
                   base: "center",
                   sm: "center",
                   md: "center",
-                  lg: "flex-end",
+                  lg: "flex-start",
                 }}
               >
-               
+                <Text fontWeight={"600"}>Milestone List</Text>
+                <MilestoneList />
               </Flex>
             </Flex>
           </Stack>

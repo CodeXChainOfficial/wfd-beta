@@ -16,7 +16,6 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Spacer,
 } from "@chakra-ui/react";
 import React from "react";
 import { ImageTransition, InputTransition } from "../ImageTransition";
@@ -36,7 +35,7 @@ export default function MilestoneDetail() {
           <ModalCloseButton />
 
           <Box
-            width="600px"
+            width="500px"
             bg="rgba(19, 10, 73, 1)"
             borderRadius="5px"
             color={"white"}
@@ -137,7 +136,7 @@ export default function MilestoneDetail() {
                 height="32px"
                 my={"12px"}
                 value={20}
-                width={"40%"}
+                width={"100%"}
               />
               <Flex direction="column">
                 <Text fontSize="12px" fontWeight={700} color="white" px="8px">
@@ -154,56 +153,68 @@ export default function MilestoneDetail() {
                   On Progress
                 </Text>
               </Flex>
-              <Spacer />
-              <Flex w="30%" direction={"column"} gap={4}>
-                <InputGroup
-                  size="sm"
-                  border="0px"
-                  width="150px"
-                  style={{
-                    borderRadius: 8,
-                    backgroundColor: "white",
+              <Box w="24px" />
+              <ImageTransition
+                border2="#23A4EC"
+                background2="#06142D"
+                border1="#06142D"
+                background1="#23A4EC"
+                border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
+                background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
+                selected={false}
+                width="150px"
+                height={{ base: "32px", md: "40px", lg: "40px" }}
+                rounded={"33px"}
+              >
+                <Text
+                  w="100%"
+                  fontSize={{
+                    base: "14px",
+                    sm: "15px",
+                    md: "15px",
+                    lg: "15px",
                   }}
+                  textAlign="center"
+                  fontFamily={"PilatExtended-Bold"}
+                  fontWeight={"800"}
+                  color="#FFFFFF"
+                  _hover={{ color: "#FFFFFF" }}
+                  transition={"all 1s"}
                 >
-                  <Input
-                    style={{ border: "0", background: "transparent" }}
-                    type="text"
-                    h="40px"
-                    rounded="md"
-                    placeholder="Report Link"
-                  />
-                </InputGroup>
-                <ImageTransition
-                  border2="#23A4EC"
-                  background2="#06142D"
-                  border1="#06142D"
-                  background1="#23A4EC"
-                  border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-                  background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
-                  selected={false}
-                  width="150px"
-                  height={{ base: "32px", md: "40px", lg: "40px" }}
-                  rounded={"md"}
+                  Ready
+                </Text>
+              </ImageTransition>
+              <Box w="24px" />
+              <ImageTransition
+                border2="#23A4EC"
+                background2="#06142D"
+                border1="#06142D"
+                background1="#23A4EC"
+                border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
+                background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
+                selected={false}
+                width="150px"
+                height={{ base: "32px", md: "40px", lg: "40px" }}
+                rounded={"33px"}
+              >
+                <Text
+                  w="100%"
+                  fontSize={{
+                    base: "14px",
+                    sm: "15px",
+                    md: "15px",
+                    lg: "15px",
+                  }}
+                  textAlign="center"
+                  fontFamily={"PilatExtended-Bold"}
+                  fontWeight={"800"}
+                  color="#FFFFFF"
+                  _hover={{ color: "#FFFFFF" }}
+                  transition={"all 1s"}
                 >
-                  <Text
-                    w="100%"
-                    fontSize={{
-                      base: "14px",
-                      sm: "15px",
-                      md: "15px",
-                      lg: "15px",
-                    }}
-                    textAlign="center"
-                    fontFamily={"PilatExtended-Bold"}
-                    fontWeight={"800"}
-                    color="#FFFFFF"
-                    _hover={{ color: "#FFFFFF" }}
-                    transition={"all 1s"}
-                  >
-                    Put to Vote
-                  </Text>
-                </ImageTransition>
-              </Flex>
+                  No
+                </Text>
+              </ImageTransition>
             </Flex>
             <Text
               px="26px"
