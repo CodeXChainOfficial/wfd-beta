@@ -61,7 +61,6 @@ export default function InvestStep0() {
         <Box
           w={{ base: "300px", md: "600px", lg: "800px" }}
           background="#0A0131"
-
           backdropBlur={"54px"}
           pt="30px"
           style={{ fontFamily: "Sk-Modernist" }}
@@ -92,20 +91,19 @@ export default function InvestStep0() {
               justify="center"
               align="center"
             >
-              
-                <Input
-                  style={{
-                    border: "1.5px solid rgba(255, 255, 255, 0.2)",
-                    background: " rgba(0, 0, 0, 0.25)",
-                  }}
-                  border="0px"
-                  h="45px"
-                  type={"password"}
-                  placeholder="Enter password"
-                  boxShadow={""}
-                  rounded="md"
-                  ref={passRef}
-                />
+              <Input
+                style={{
+                  border: "1.5px solid rgba(255, 255, 255, 0.2)",
+                  background: " rgba(0, 0, 0, 0.25)",
+                }}
+                border="0px"
+                h="45px"
+                type={"password"}
+                placeholder="Enter password"
+                boxShadow={""}
+                rounded="md"
+                ref={passRef}
+              />
               <Button
                 w="120px"
                 h="35px"

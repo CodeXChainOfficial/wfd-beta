@@ -67,7 +67,6 @@ export default function Navbar() {
                 />
               </Link>
             </Flex>
-           
 
             <DesktopNav />
           </Flex>
@@ -139,7 +138,7 @@ export const NAV_ITEMS = [
   },
   {
     label: "Invest",
-    href: "/invest/step0",
+    href: "/invest",
   },
   {
     label: "Blog",

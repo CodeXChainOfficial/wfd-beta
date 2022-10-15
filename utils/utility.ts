@@ -122,32 +122,6 @@ export function isBackable(state: any, project_id: number) {
   return false;
 }
 
-export function getAllocation(state: any, project_id: number) {
-  const one = GetOneProject(state.projectData, project_id);
-  if (one == null) return 0;
-
-  // if (project_id == WEFUND_ID)
-  return parseInt(one.project_collected);
-
-  const address = state.junoConnection?.account;
-
-  for (let i = 0; i < one.whitelist.length; i++) {
-    const info = one.whitelist[i];
-    if (
-      info.wallet == address &&
-      parseInt(info.backed) < parseInt(info.allocation)
-    ) {
-      return (
-        (((parseInt(info.allocation) - parseInt(info.backed)) / 10 ** 6) *
-          100) /
-        95
-      );
-    }
-  }
-
-  return 0;
-}
-
 export function isCommunityWallet(state: any) {
   if (state.communityData == "") return false;
   const address = state.junoConnection?.account;

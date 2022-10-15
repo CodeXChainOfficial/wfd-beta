@@ -10,45 +10,25 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
-import React, { useState, useRef, useEffect } from "react";
-import { toast } from "react-toastify";
+import React, { useState, useEffect } from "react";
 
-import {
-  ImageTransition,
-  InputTransition,
-} from "../../components/ImageTransition";
-import { WEFUND_ID } from "../../config/constants";
-import { ActionKind, useProjectData, useStore } from "../../contexts/store";
-import PageLayout from "../../components/PageLayout";
-import {
-  getAllocation,
-  ParseParam_ProjectId,
-  GetOneProject,
-} from "../../utils/utility";
-import { ERROR_OPTION } from "../../config/constants";
+import { ImageTransition } from "../../components/ImageTransition";
+import { useStore } from "../../contexts/store";
+import { ParseParam_ProjectId } from "../../utils/utility";
 import { useRouter } from "next/router";
 import OtherChainWallet from "../../components/Invest/OtherChainWallet";
 import Footer from "../../components/Footer";
+import PageLayout from "../../components/PageLayout";
 
 export default function InvestStep2() {
-  const [chain, setChain] = useState("Juno");
+  const [chain, setChain] = useState("BSC");
   const [token, setToken] = useState("");
   const [backAmount, setBackAmount] = useState("");
   const [wfdAmount, setWfdamount] = useState(0.0);
-  const [max, setMax] = useState(0);
-  const [allocation, setAllocation] = useState(0);
-  const { state, dispatch } = useStore();
+  const { state } = useStore();
   const router = useRouter();
 
   const projectId = ParseParam_ProjectId();
-
-  useEffect(() => {
-    const allocation = getAllocation(state, projectId);
-    setAllocation(allocation);
-
-    const max = allocation;
-    setMax(max);
-  }, [state.projectData, state.address]);
 
   function onChangeBackamount(val: string) {
     const amount = parseFloat(val);
@@ -58,14 +38,6 @@ export default function InvestStep2() {
   }
 
   function onNext() {
-    // if (allocation == 0) {
-    //   toast("Have no allocation any more!", ERROR_OPTION);
-    //   return;
-    // }
-    if (parseInt(backAmount) > max) {
-      toast("Exceed the allocation!", ERROR_OPTION);
-      return;
-    }
     window.localStorage.setItem("invest_chain", chain);
     window.localStorage.setItem("invest_token", token);
     window.localStorage.setItem("invest_amount", backAmount);
@@ -120,7 +92,8 @@ export default function InvestStep2() {
                   w={{ base: 2, md: 3 }}
                   h={{ base: 2, md: 3 }}
                   marginBottom={{ base: "30px", md: "20px" }}
-                /></Box>
+                />
+              </Box>
               <Text
                 fontSize={{
                   base: "12px",
@@ -149,7 +122,6 @@ export default function InvestStep2() {
                   borderRadius: "50%",
                   display: "inline-block",
                 }}
-              
               ></Box>
               <Text
                 fontSize={{
@@ -286,14 +258,6 @@ export default function InvestStep2() {
                     <Text mt={"-10px"}>{token}</Text>
                   </InputRightElement>
                 </InputGroup>
-
-                <Text
-                  align="center"
-                  mb="42px"
-                  onClick={() => setBackAmount(max.toString())}
-                >
-                  Max: {max}&nbsp;{token}
-                </Text>
               </Stack>
 
               <Stack
@@ -338,14 +302,6 @@ export default function InvestStep2() {
                     <Text mt={"-10px"}>WFD</Text>
                   </InputRightElement>
                 </InputGroup>
-                
-                <Text
-                  align="center"
-                  mb="42px"
-                  onClick={() => setBackAmount(max.toString())}
-                >
-                  Approximate Amount
-                </Text>
               </Stack>
             </Stack>
             <Flex w="100%" mt="60px" justify="center" mb="80px">

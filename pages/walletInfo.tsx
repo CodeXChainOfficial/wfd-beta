@@ -71,48 +71,11 @@ export default function UserSideSnippet() {
   async function addCommunityMember() {
     if (checkBscConnection(state) == false) return false;
 
-    for (let i = 0; i < communityData.length; i++) {
-      if (communityData[i] == state.address) {
-        toast("Already Registered", SUCCESS_OPTION);
-        return;
-      }
-    }
-    try {
-      const res = await client.execute(
-        address,
-        WEFUND_CONTRACT,
-        {
-          add_communitymember: {
-            wallet: address,
-          },
-        },
-        "auto"
-      );
-      toast("Add community member success", SUCCESS_OPTION);
-console.log(res)
-    } catch (e) {
-      console.log(e);
-    }
   }
 
   async function removeCommunityMember() {
     if (checkBscConnection(state) == false) return false;
-    try {
-      const res = await client.execute(
-        address,
-        WEFUND_CONTRACT,
-        {
-          remove_communitymember: {
-            wallet: address,
-          },
-        },
-        "auto"
-      );
-      toast("Remove community member success", SUCCESS_OPTION);
-console.log(res)
-    } catch (e) {
-      console.log(e);
-    }
+
   }
 
   function claim(project_id: number) {

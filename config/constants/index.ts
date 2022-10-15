@@ -1,4 +1,4 @@
-export const NETWORK = "testnet";
+export const NETWORK = "mainnet";
 export const WEFUND_ID = 1;
 export const REQUEST_ENDPOINT =
   "https://wefund-nodejs-gwb6v.ondigitalocean.app";
