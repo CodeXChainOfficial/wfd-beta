@@ -17,14 +17,11 @@ export const WEFUND_WALLET = "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu";
 //   "juno1ru0euvqln9ax686aev4lut0tjxq6a9u4lp8t63sgy3rugprjejjsqc3dzf";
 
 // mainnet
-export const WFD_TOKEN =
-  "juno1x329zfyakxz9sl6a46ef9snajjcgjrykq8sje4lpj06r24trgvxqj42edl";
+export const WFD_TOKEN = "0x131c6a669e275c0b10d565c7f7c319b89450dbf2";
 
 export const WEFUND_CONTRACT = "0x909b3f99BCfA839c15FA9677E7C7E12fBCd36601";
-export const VESTING_CONTRACT =
-  "juno1qwxuxeg5q7gedvdzxssf84hw3xm9ql08jqt9t7h97d030rajjqkst4femg";
-export const STAKING_CONTRACT =
-  "juno1j7jzwxjnvuq25c0kr8xnxndxmvlzn3lft6q6utn33zykuq2xysds4w7g93";
+export const VESTING_CONTRACT = "";
+export const STAKING_CONTRACT = "";
 
 export const WEFUND_JUNO_ADDRESS =
   "juno1gc3lpde7nx8khqfafw3st7j4ptd6qfccu6y04a";
@@ -61,13 +58,13 @@ export const ERROR_OPTION: any = {
 };
 
 export const TOKEN_LIST = [
-  {
-    chain: "Juno",
-    name: "JUNO",
-    denom: NETWORK == "mainnet" ? "ujuno" : "ujunox",
-    decimals: 6,
-    native: true,
-  },
+  // {
+  //   chain: "Juno",
+  //   name: "JUNO",
+  //   denom: NETWORK == "mainnet" ? "ujuno" : "ujunox",
+  //   decimals: 6,
+  //   native: true,
+  // },
   {
     chain: "Juno",
     name: "USDC",
@@ -84,13 +81,13 @@ export const TOKEN_LIST = [
     decimals: 6,
     native: true,
   },
-  {
-    chain: "BSC",
-    name: "BNB",
-    denom: "BNB",
-    decimals: 18,
-    native: true,
-  },
+  // {
+  //   chain: "BSC",
+  //   name: "BNB",
+  //   denom: "BNB",
+  //   decimals: 18,
+  //   native: true,
+  // },
   {
     chain: "BSC",
     name: "USDT",
@@ -116,16 +113,17 @@ export const TOKEN_LIST = [
     name: "BUSD",
     decimals: 6,
     native: false,
-    address: NETWORK == "mainnet"
-      ? "0x49d5cC521F75e13fa8eb4E89E9D381352C897c96" :
-      "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee"
+    address:
+      NETWORK == "mainnet"
+        ? "0x49d5cC521F75e13fa8eb4E89E9D381352C897c96"
+        : "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee",
   },
-  {
-    chain: "Tron",
-    name: "TRX",
-    decimals: 6,
-    native: true,
-  },
+  // {
+  //   chain: "Tron",
+  //   name: "TRX",
+  //   decimals: 6,
+  //   native: true,
+  // },
   {
     chain: "Tron",
     name: "USDD",
@@ -143,18 +141,18 @@ export const TOKEN_LIST = [
         ? "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"
         : "TG3XXyExBkPp9nzdajDZsozEu4BkaSJozs",
   },
-  {
-    chain: "Near",
-    name: "Near",
-    decimals: 24,
-    native: true,
-  },
-  {
-    chain: "Elrond",
-    name: "EGLD",
-    decimals: 18,
-    native: true,
-  },
+  // {
+  //   chain: "Near",
+  //   name: "Near",
+  //   decimals: 24,
+  //   native: true,
+  // },
+  // {
+  //   chain: "Elrond",
+  //   name: "EGLD",
+  //   decimals: 18,
+  //   native: true,
+  // },
   {
     chain: "Elrond",
     name: "USDC",
@@ -162,12 +160,12 @@ export const TOKEN_LIST = [
     native: false,
     address: NETWORK == "mainnet" ? "USDC-cbf0b9" : "USDC-cbf0b9",
   },
-  {
-    chain: "Polygon",
-    name: "MATIC",
-    decimals: 18,
-    native: true,
-  },
+  // {
+  //   chain: "Polygon",
+  //   name: "MATIC",
+  //   decimals: 18,
+  //   native: true,
+  // },
   {
     chain: "Polygon",
     name: "USDT",
@@ -182,12 +180,12 @@ export const TOKEN_LIST = [
     native: false,
     address: "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
   },
-  {
-    chain: "OneLedger",
-    name: "OLT",
-    decimals: 18,
-    natie: true,
-  },
+  // {
+  //   chain: "OneLedger",
+  //   name: "OLT",
+  //   decimals: 18,
+  //   natie: true,
+  // },
   {
     chain: "OneLedger",
     name: "USDT",
@@ -195,12 +193,12 @@ export const TOKEN_LIST = [
     native: false,
     address: "0xED344b7C2deD6143e32B03ea905e59dC2010Ce74",
   },
-  {
-    chain: "Fantom",
-    name: "FTM",
-    decimals: 18,
-    native: true,
-  },
+  // {
+  //   chain: "Fantom",
+  //   name: "FTM",
+  //   decimals: 18,
+  //   native: true,
+  // },
   {
     chain: "Fantom",
     name: "USDC",
@@ -215,12 +213,12 @@ export const TOKEN_LIST = [
     native: false,
     address: "0x1B27A9dE6a775F98aaA5B90B62a4e2A0B84DbDd9",
   },
-  {
-    chain: "TELOS",
-    name: "TLOS",
-    decimals: 18,
-    native: true,
-  },
+  // {
+  //   chain: "TELOS",
+  //   name: "TLOS",
+  //   decimals: 18,
+  //   native: true,
+  // },
   {
     chain: "TELOS",
     name: "USDC",
