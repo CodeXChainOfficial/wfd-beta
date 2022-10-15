@@ -29,6 +29,7 @@ import { IoWalletOutline } from "react-icons/io5";
 import { InputTransition } from "../../components/ImageTransition";
 import { CheckIcon } from "@chakra-ui/icons";
 import ProjectApplication from "../../components/OwnerInfo/ProjectApplication";
+import GoalList from "../../components/OwnerInfo/OwnerIncubationGoal";
 
 export default function index() {
   return (
@@ -605,6 +606,7 @@ export default function index() {
                   </Button>
                 </Box>
               </Flex>
+              <GoalList />
             </Flex>
           </Stack>
         </Box>
