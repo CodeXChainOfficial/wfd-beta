@@ -69,7 +69,6 @@ export default function UserSideSnippet() {
       setInvestedCount(invested_count);
       setContributes(total_backed);
       setPrjShowDatas(pShowDatas);
-      console.log(pShowDatas);
     } catch (e) {
       console.log(e);
     }

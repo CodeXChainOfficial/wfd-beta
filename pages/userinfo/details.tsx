@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import { useRouter } from "next/router";
-import Link from "next/link";
-
 import {
   Box,
   Flex,
@@ -23,66 +20,54 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  Divider,
 } from "@chakra-ui/react";
 
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { toast } from "react-toastify";
-import { WEFUND_ID } from "../../config/constants";
-
-import { checkNetwork } from "../../utils/utility";
-import { SUCCESS_OPTION } from "../../config/constants";
 import {
-  useCommunityData,
   useProjectData,
   useStore,
 } from "../../contexts/store";
-import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
-import { RiUpload2Line } from "react-icons/ri";
 import Footer from "../../components/Footer";
 import Hero from "../../components/User/Hero";
+import { useMetamaskWallet } from "../../contexts/metamask";
 
-export default function UserSideSnippet() {
-  const { state, dispatch } = useStore();
-  const [contributes, setContributes] = useState(0);
-  const [projectCount, setProjectCount] = useState(0);
-  const [activeTab, setActiveTab] = useState("Account");
-  const [tokens, setTokens] = useState<any[]>([]);
+export default function UserInfoDetail(data: any[]) {
+  const { state } = useStore();
+  const [prjShowDatas, setPrjShowDatas] = useState<any[]>([]);
+
   const projectData = useProjectData();
-  const communityData = useCommunityData();
+  const wallet = useMetamaskWallet();
+  const address = wallet.account;
 
   async function fetchContractQuery() {
     try {
-      let projectCount = 0;
-      let totalbacked = 0;
-      const tokens: any[] = [];
+      const pShowDatas = [];
 
       for (let i = 0; i < projectData.length; i++) {
         const one = projectData[i];
+
+        let one_backed = 0;
         for (let j = 0; j < one.backer_states.length; j++) {
-          if (one.backer_states[j].backer_wallet == state.address) {
-            projectCount++;
-            totalbacked += one.backer_states[j].ust_amount.amount;
+          if (
+            one.backer_states[j].addr.toLowerCase() == address.toLowerCase()
+          ) {
+            one_backed += one.backer_states[j].usdt_amount.toNumber();
+            one_backed += one.backer_states[j].usdc_amount.toNumber();
+            one_backed += one.backer_states[j].busd_amount.toNumber();
           }
         }
+        one_backed /= 10 ** 6;
 
-        if (one.project_id != WEFUND_ID && one.token_addr != "") {
-          const userInfo: any = {};
-          const pending: any = {};
-          const tokenInfo: any = {};
-
-          tokens.push({
-            project_id: one.project_id,
-            symbol: tokenInfo.symbol,
-            amount: userInfo.total_amount - userInfo.released_amount,
-            pendingAmount: pending,
-          });
-        }
+        const obj: any = {};
+        obj.logo = projectData[i].project_logo;
+        obj.title = projectData[i].project_title;
+        obj.backed = one_backed;
+        obj.description = projectData[i].project_description;
+        obj.backedPercent = projectData[i].backer_backedPercent;
+        pShowDatas.push(obj);
       }
-      setProjectCount(projectCount);
-      setContributes(totalbacked / 10 ** 6);
-      setTokens(tokens);
+      setPrjShowDatas(pShowDatas);
+      console.log(pShowDatas);
     } catch (e) {
       console.log(e);
     }
@@ -92,42 +77,6 @@ export default function UserSideSnippet() {
     fetchContractQuery();
   }, [state.address]);
 
-  async function addCommunityMember() {
-    if (checkNetwork(state) == false) return SUCCESS_OPTION;
-    for (let i = 0; i < communityData.length; i++) {
-      if (communityData[i] == state.address) {
-        toast("Already Registered", SUCCESS_OPTION);
-        return;
-      }
-    }
-  }
-
-  function removeCommunityMember() {
-    if (checkNetwork(state) == false) return false;
-  }
-
-  function claim(project_id: number) {
-    if (checkNetwork(state) == false) return false;
-  }
-
-  const responsive = {
-    superLargeDesktop: {
-      breakpoint: { max: 3000, min: 2000 },
-      items: 3,
-    },
-    desktop: {
-      breakpoint: { max: 2000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
-  };
   return (
     <>
       <Hero />
@@ -137,7 +86,7 @@ export default function UserSideSnippet() {
         m="128px"
         pb="128px"
       >
-        {[...Array(2)].map((_, i) => (
+        {prjShowDatas.map((project, i) => (
           <VStack key={i} color="white" pt={"3em"} w={"100%"}>
             <Accordion allowToggle>
               <AccordionItem
@@ -148,77 +97,75 @@ export default function UserSideSnippet() {
                 mt={"2em"}
                 w={"100%"}
               >
-                <h2>
-                  <AccordionButton>
-                    <Box flex="1" textAlign="left">
-                      <Box p={6}>
+                <AccordionButton>
+                  <Box flex="1" textAlign="left">
+                    <Box p={6}>
+                      <Stack
+                        direction={{ base: "column", md: "row", lg: "row" }}
+                        justify={"center"}
+                        spacing={{ base: 0, sm: 2, md: 36, lg: 48 }}
+                        w={"100%"}
+                      >
+                        <Flex justify={"center"}>
+                          <Avatar
+                            size={"lg"}
+                            src={project.logo}
+                            border="2px solid white"
+                          />
+                          <Center>
+                            <Stack
+                              spacing={0}
+                              align={"center"}
+                              mb={5}
+                              w={"100%"}
+                            >
+                              <Heading
+                                fontSize={"2xl"}
+                                fontWeight={500}
+                                fontFamily={"body"}
+                                color="white"
+                                px={"30px"}
+                              >
+                                {project.title}
+                              </Heading>
+                            </Stack>
+                          </Center>
+                        </Flex>
                         <Stack
-                          direction={{ base: "column", md: "row", lg: "row" }}
+                          direction={"row"}
                           justify={"center"}
-                          spacing={{ base: 0, sm: 2, md: 36, lg: 48 }}
-                          w={"100%"}
+                          spacing={{ base: 8, sm: 8, md: 24, lg: 32 }}
                         >
-                          <Flex justify={"center"}>
-                            <Avatar
-                              size={"lg"}
-                              src={"/logolink"}
-                              border="2px solid white"
-                            />
-                            <Center>
-                              <Stack
-                                spacing={0}
-                                align={"center"}
-                                mb={5}
-                                w={"100%"}
-                              >
-                                <Heading
-                                  fontSize={"2xl"}
-                                  fontWeight={500}
-                                  fontFamily={"body"}
-                                  color="white"
-                                  px={"30px"}
-                                >
-                                  WFD/Fantom
-                                </Heading>
-                              </Stack>
-                            </Center>
-                          </Flex>
-                          <Stack
-                            direction={"row"}
-                            justify={"center"}
-                            spacing={{ base: 8, sm: 8, md: 24, lg: 32 }}
-                          >
-                            <Stack spacing={0} align={"center"}>
-                              <Text
-                                fontSize={"16px"}
-                                fontWeight={600}
-                                color={"gray.500"}
-                              >
-                                Investing
-                              </Text>
-                              <Text fontWeight={600} fontSize={"20px"}>
-                                $100
-                              </Text>
-                            </Stack>
-                            <Stack spacing={0} align={"center"}>
-                              <Text
-                                fontSize={"16px"}
-                                fontWeight={600}
-                                color={"gray.500"}
-                              >
-                                Earnings
-                              </Text>
-                              <Text fontWeight={600} fontSize={"20px"}>
-                                $ 0
-                              </Text>
-                            </Stack>
+                          <Stack spacing={0} align={"center"}>
+                            <Text
+                              fontSize={"16px"}
+                              fontWeight={600}
+                              color={"gray.500"}
+                            >
+                              Investing
+                            </Text>
+                            <Text fontWeight={600} fontSize={"20px"}>
+                              $ {project.backed}
+                            </Text>
+                          </Stack>
+                          <Stack spacing={0} align={"center"}>
+                            <Text
+                              fontSize={"16px"}
+                              fontWeight={600}
+                              color={"gray.500"}
+                            >
+                              Earnings
+                            </Text>
+                            <Text fontWeight={600} fontSize={"20px"}>
+                              $ 0
+                            </Text>
                           </Stack>
                         </Stack>
-                      </Box>
+                      </Stack>
                     </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                </h2>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
                 <AccordionPanel pb={4} bg="rgba(0, 0, 0, 0.33)">
                   <Flex maxW={"250px"}>
                     <Stack>
@@ -238,11 +185,7 @@ export default function UserSideSnippet() {
                         py={"15px"}
                         pb="128px"
                       >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat.
+                        {project.description}
                       </Text>
                       <Center>
                         <Box
@@ -264,7 +207,7 @@ export default function UserSideSnippet() {
                           colorScheme="purple"
                           height="32px"
                           my={"12px"}
-                          value={20}
+                          value={project.backedPercent}
                           width={"100%"}
                         />
                         <Text
@@ -274,7 +217,7 @@ export default function UserSideSnippet() {
                           py={"15px"}
                           width={{ base: "8px", sm: "100px", lg: "300px" }}
                         >
-                          20% Progress
+                          {project.backedPercent}% Progress
                         </Text>
                         <Text
                           fontSize={{ base: "12px", sm: "14px", lg: "16px" }}
@@ -283,7 +226,7 @@ export default function UserSideSnippet() {
                           py={"15px"}
                           width={{ base: "80px", sm: "100px", lg: "350px" }}
                         >
-                          Backed 2022-06-23
+                          Last Backed {new Date().toISOString().slice(0, 10)}
                         </Text>
                       </Stack>
                     </Stack>
