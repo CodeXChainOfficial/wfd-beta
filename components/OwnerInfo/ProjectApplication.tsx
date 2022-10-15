@@ -16,7 +16,7 @@ import React from "react";
 
 export default function ProjectApplication() {
   return (
-    <Box p="40px" bg="#130A49" borderRadius="10px" mt="30px">
+    <Box p="40px" bg="#130A49" borderRadius="10px" mt="30px" w="600px">
       <Flex>
         <Flex direction="column">
           <Image alt="star" src="/media/OwnerInfo/star.svg" h="130px" />

@@ -26,15 +26,17 @@ export default function Banner() {
       position="relative"
       alignItems="center"
       flexDirection="column"
-      height={{ base: "65vh", md: "60vh", lg: "70vh",xl:"80vh",'2xl':"110vh" }}
+      height={{
+        base: "65vh",
+        md: "60vh",
+        lg: "70vh",
+        xl: "80vh",
+        "2xl": "110vh",
+      }}
     >
       <Container
         position={"relative"}
-<<<<<<< HEAD
-        mt={{ base: "5vh", md: "12vh", lg: "16vh", '2xl': "26vh" }}
-=======
-        mt={{ base: "5vh", md: "12vh", lg: "14vh", '2xl': "26vh" }}
->>>>>>> d069b80fd5e6fa4542da1b848e3333bae15fe7ce
+        mt={{ base: "5vh", md: "12vh", lg: "16vh", "2xl": "26vh" }}
         zIndex={"3"}
         maxW="container.lg"
       >
@@ -57,14 +59,14 @@ export default function Banner() {
           <Box
             background={" rgba(0, 0, 19, 0.78)"}
             border={"3px solid rgba(15, 177, 245, 0.28)"}
-            width={{ base: "90%", md: "800px", lg: "1000px",'2xl': "1200px" }}
+            width={{ base: "90%", md: "800px", lg: "1000px", "2xl": "1200px" }}
             height={"250px"}
             rounded="10px"
             paddingTop={"3%"}
           >
             <Text
               fontFamily="PilatExtended-Light"
-              fontSize={{ base: "12px", md: "20px", '2xl': "24px"}}
+              fontSize={{ base: "12px", md: "20px", "2xl": "24px" }}
               fontWeight={"500"}
               lineHeight={{ base: "35px", md: "1em", lg: "1.1em" }}
               letterSpacing={{ base: "0.022em" }}
@@ -133,7 +135,10 @@ export default function Banner() {
           </Box>
         </Stack>
       </Container>
-      <Center position={"absolute"} top={{ base: "60", sm: "0", md:"40", lg: "-48", '2xl':"-60" }}>
+      <Center
+        position={"absolute"}
+        top={{ base: "60", sm: "0", md: "40", lg: "-48", "2xl": "-60" }}
+      >
         <video autoPlay muted loop>
           <source src="/media/starrybackground.webm" type="video/webm"></source>
         </video>

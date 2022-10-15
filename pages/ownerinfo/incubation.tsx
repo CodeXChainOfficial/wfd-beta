@@ -30,6 +30,7 @@ import { IoWalletOutline } from "react-icons/io5";
 import { InputTransition } from "../../components/ImageTransition";
 import { CheckIcon } from "@chakra-ui/icons";
 import GoalList from "../../components/OwnerInfo/OwnerIncubationGoal";
+import MilestoneForIncubation from "../../components/OwnerInfo/OwnerMilestone";
 
 export default function index() {
   return (
@@ -437,61 +438,8 @@ export default function index() {
               </Text>
               <Flex mt="26px">
                 <Box bg="rgba(18, 13, 48, 1)" borderRadius="10px" w="650px">
-                  <Flex direction="column" px="64px" py="16px">
-                    <Box flex="1" textAlign="left">
-                      <Box p={6}>
-                        <Stack
-                          direction={{
-                            base: "column",
-                            md: "row",
-                            lg: "row",
-                          }}
-                          justify={"center"}
-                          w={"100%"}
-                        >
-                          <Flex justify={"center"}></Flex>
-                          <Stack
-                            direction={"row"}
-                            justify={"center"}
-                            spacing={{
-                              base: 2,
-                              sm: 2,
-                              md: 8,
-                              lg: 8,
-                            }}
-                          >
-                            <Stack spacing={0} align={"left"} w="280px" pl="12">
-                              <Text
-                                fontSize={"16px"}
-                                fontWeight={600}
-                                color={"gray.500"}
-                              >
-                                Goal
-                              </Text>
-                            </Stack>
-                            <Stack spacing={0} align={"left"} w="145px" pl="4">
-                              <Text
-                                fontSize={"16px"}
-                                fontWeight={600}
-                                color={"gray.500"}
-                              >
-                                Progress
-                              </Text>
-                            </Stack>
-                            <Stack spacing={0} align={"left"} w="145px" pl="4">
-                              <Text
-                                fontSize={"16px"}
-                                fontWeight={600}
-                                color={"gray.500"}
-                              >
-                                Status
-                              </Text>
-                            </Stack>
-                          </Stack>
-                        </Stack>
-                      </Box>
-                    </Box>
-                    <GoalList />
+                  <Flex direction="column" px="12px" py="8px">
+                    <GoalList incubation={true}/>
                   </Flex>
                 </Box>
               </Flex>
@@ -674,6 +622,7 @@ export default function index() {
                   md: "center",
                   lg: "flex-end",
                 }}
+                direction="column"
               >
                 <Box px="24px">
                   <Button
@@ -696,6 +645,7 @@ export default function index() {
                     </Text>
                   </Button>
                 </Box>
+                <MilestoneForIncubation />
               </Flex>
             </Flex>
           </Stack>

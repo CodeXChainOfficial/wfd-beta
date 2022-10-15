@@ -442,7 +442,7 @@ export default function index() {
               >
                 Set Project Incubation Goal
               </Text>
-                <Box bg="rgba(18, 13, 48, 1)" borderRadius="10px" mt="25px" w="500px">
+                <Box bg="#130A49" borderRadius="10px" mt="25px" w="600px">
                   <Flex direction="column" px="64px" py="16px">
                     <Flex>
                       <Center>
