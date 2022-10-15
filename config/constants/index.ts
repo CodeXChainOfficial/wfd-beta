@@ -20,7 +20,7 @@ export const WEFUND_WALLET = "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu";
 export const WFD_TOKEN =
   "juno1x329zfyakxz9sl6a46ef9snajjcgjrykq8sje4lpj06r24trgvxqj42edl";
 
-export const WEFUND_CONTRACT = "0x003F0Cae69d7a28Bf9157c8cC27D466e00cA965e";
+export const WEFUND_CONTRACT = "0x909b3f99BCfA839c15FA9677E7C7E12fBCd36601";
 export const VESTING_CONTRACT =
   "juno1qwxuxeg5q7gedvdzxssf84hw3xm9ql08jqt9t7h97d030rajjqkst4femg";
 export const STAKING_CONTRACT =
@@ -99,7 +99,7 @@ export const TOKEN_LIST = [
     address:
       NETWORK == "mainnet"
         ? "0x686c626E48bfC5DC98a30a9992897766fed4Abd3"
-        : "0xd92e713d051c37ebb2561803a3b5fbabc4962431",
+        : "0x337610d27c682E347C9cD60BD4b3b107C9d34dDd",
   },
   {
     chain: "BSC",
@@ -109,14 +109,16 @@ export const TOKEN_LIST = [
     address:
       NETWORK == "mainnet"
         ? "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d"
-        : "0xd92e713d051c37ebb2561803a3b5fbabc4962431",
+        : "0x64544969ed7EBf5f083679233325356EbE738930",
   },
   {
     chain: "BSC",
     name: "BUSD",
     decimals: 6,
     native: false,
-    address: "0x49d5cC521F75e13fa8eb4E89E9D381352C897c96",
+    address: NETWORK == "mainnet"
+      ? "0x49d5cC521F75e13fa8eb4E89E9D381352C897c96" :
+      "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee"
   },
   {
     chain: "Tron",
@@ -240,6 +242,11 @@ export const CHAINS_CONFIG = {
     chainId: "0x4",
     chainName: "Rinkeby",
     rpc: "https://rpc.ankr.com/eth_rinkeby",
+  },
+  bsc_testnet: {
+    chainId: "0x61",
+    chainName: "BSC testnet",
+    rpc: "https://bsctestapi.terminet.io/rpc",
   },
   bsc: {
     chainId: "0x38",

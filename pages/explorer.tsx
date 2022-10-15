@@ -1,19 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  forwardRef,
-  useCallback,
-} from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Flex, HStack, VStack, useDisclosure } from "@chakra-ui/react";
-import {
-  Sleep,
-  checkBscConnection,
-  GetProjectStatus,
-  GetOneProject,
-} from "../utils/utility";
+import { Sleep, GetProjectStatus } from "../utils/utility";
 
 import { useJunoConnection, useProjectData, useStore } from "../contexts/store";
 import Footer from "../components/Footer";
@@ -41,7 +30,11 @@ import MobileInformations from "../components/ProjectExplorer/Mobile/Information
 import MobileMainButtons from "../components/ProjectExplorer/Mobile/MainButtons";
 
 import { toast } from "react-toastify";
-import { ERROR_OPTION, SUCCESS_OPTION, WEFUND_CONTRACT } from "../config/constants";
+import {
+  ERROR_OPTION,
+  SUCCESS_OPTION,
+  WEFUND_CONTRACT,
+} from "../config/constants";
 import { fetchData } from "../utils/fetch";
 
 export default function ExplorerProject() {
@@ -110,136 +103,13 @@ export default function ExplorerProject() {
   const client = junoConnection?.getClient();
   const address = junoConnection?.account;
 
-  async function WefundApprove(project_id: number) {
-    if (!checkBscConnection(state)) return;
-
-    try {
-      const deadline = Date.now() + 1000 * 60 * 60 * 24 * 15; //for 15days
-      const result = await client.execute(
-        address,
-        WEFUND_CONTRACT,
-        {
-          wefund_approve: {
-            project_id: project_id,
-            deadline: `${deadline}`,
-          },
-        },
-        "auto"
-      );
-      toast("Wefund Approve success", SUCCESS_OPTION);
-      fetchData(state, dispatch, true);
-      console.log(result);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-  async function OpenWhitelist(project_id: number) {
-    if (!checkBscConnection(state)) return;
-
-    try {
-      const result = await client.execute(
-        address,
-        WEFUND_CONTRACT,
-        {
-          open_whitelist: {
-            project_id: project_id,
-            holder_alloc: "80",
-          },
-        },
-        "auto"
-      );
-      toast("Open whitelist success", SUCCESS_OPTION);
-      fetchData(state, dispatch, true);
-      console.log(result);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-  async function CloseWhitelist(project_id: number) {
-    if (!checkBscConnection(state)) return;
-
-    setProjectID(project_id);
-    onOpenCloseWhitelist();
-  }
-  async function confirmCloseWhitelist(project_id: number) {
-    try {
-      const result = await client.execute(
-        address,
-        WEFUND_CONTRACT,
-        {
-          close_whitelist: {
-            project_id: project_id,
-          },
-        },
-        "auto"
-      );
-      toast("Close whitelist success", SUCCESS_OPTION);
-      fetchData(state, dispatch, true);
-      console.log(result);
-    } catch (e: any) {
-      console.log(e);
-    }
-  }
-  async function JoinWhitelist(project_id: number) {
-    if (!checkBscConnection(state)) return;
-
-    try {
-      const result = await client.execute(
-        address,
-        WEFUND_CONTRACT,
-        {
-          register_whitelist: {
-            project_id: project_id,
-            card_type: state.cardInfo.card_type,
-          },
-        },
-        "auto"
-      );
-      toast("Register on whitelist success", SUCCESS_OPTION);
-      fetchData(state, dispatch, true);
-      console.log(result);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-  async function MilestoneVote(project_id: number, voted: boolean) {
-    if (!checkBscConnection(state)) return;
-
-    try {
-      const result = await client.execute(
-        address,
-        WEFUND_CONTRACT,
-        { set_milestone_vote: { project_id, wallet: address, voted } },
-        "auto"
-      );
-      toast("Milestone vote success", SUCCESS_OPTION);
-      fetchData(state, dispatch, true);
-      console.log(result);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-  async function NextFundraisingStage(project_id: number, curStage: string) {
-    let stage = parseInt(curStage);
-    const data = GetOneProject(projectData, project_id);
-
-    if (stage < data.vesting.length - 1) stage = stage + 1;
-    else return false;
-
-    try {
-      const result = await client.execute(
-        address,
-        WEFUND_CONTRACT,
-        { set_fundraising_stage: { project_id, stage: stage.toString() } },
-        "auto"
-      );
-      toast("Set Fundraising stage success", SUCCESS_OPTION);
-      fetchData(state, dispatch, true);
-      console.log(result);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  async function WefundApprove(project_id: number) {}
+  async function OpenWhitelist(project_id: number) {}
+  async function CloseWhitelist(project_id: number) {}
+  async function confirmCloseWhitelist(project_id: number) {}
+  async function JoinWhitelist(project_id: number) {}
+  async function MilestoneVote(project_id: number, voted: boolean) {}
+  async function NextFundraisingStage(project_id: number, curStage: string) {}
   function Modify(project_id: number) {
     router.push("/modify?project_id=" + project_id);
   }

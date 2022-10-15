@@ -84,7 +84,11 @@ export default function index() {
                       >
                         WFD Wallet
                       </Text>
-                      <Text fontSize="sm"  color={"rgba(15, 177, 245, 1)"} w={"full"}>
+                      <Text
+                        fontSize="sm"
+                        color={"rgba(15, 177, 245, 1)"}
+                        w={"full"}
+                      >
                         wfdvs1r.....5jzx
                       </Text>
                     </Flex>
@@ -119,8 +123,8 @@ export default function index() {
                         h="12px"
                       />
                       <Text
-            color={"rgba(15, 177, 245, 1)"}
-            ml="8px"
+                        color={"rgba(15, 177, 245, 1)"}
+                        ml="8px"
                         fontFamily="Montserrat"
                         fontSize="14px"
                         fontWeight="600"
@@ -131,8 +135,8 @@ export default function index() {
                     </Flex>
                     <Flex>
                       <Text
-            color={"rgba(15, 177, 245, 1)"}
-            ml="8px"
+                        color={"rgba(15, 177, 245, 1)"}
+                        ml="8px"
                         fontFamily="Montserrat"
                         fontSize="14px"
                         fontWeight="600"
@@ -153,8 +157,8 @@ export default function index() {
                       />
                       <Flex direction="column" ml="16px">
                         <Text
-            color={"rgba(15, 177, 245, 1)"}
-            fontFamily="Montserrat"
+                          color={"rgba(15, 177, 245, 1)"}
+                          fontFamily="Montserrat"
                           fontSize="14px"
                           fontWeight="600"
                           w={"full"}
@@ -317,8 +321,8 @@ export default function index() {
                   </BoxContainer>
                   <Center mt="20px">
                     <Text
-                          color={"rgba(15, 177, 245, 1)"}
-                          fontFamily={"Montserrat"}
+                      color={"rgba(15, 177, 245, 1)"}
+                      fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
@@ -341,8 +345,8 @@ export default function index() {
                   </BoxContainer>
                   <Center mt="20px">
                     <Text
-                          color={"rgba(15, 177, 245, 1)"}
-                          fontFamily={"Montserrat"}
+                      color={"rgba(15, 177, 245, 1)"}
+                      fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
@@ -365,8 +369,8 @@ export default function index() {
                   </BoxContainer>
                   <Center mt="20px">
                     <Text
-                          color={"rgba(15, 177, 245, 1)"}
-                          fontFamily={"Montserrat"}
+                      color={"rgba(15, 177, 245, 1)"}
+                      fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
@@ -389,8 +393,8 @@ export default function index() {
                   </BoxContainer>
                   <Center mt="20px">
                     <Text
-                          color={"rgba(15, 177, 245, 1)"}
-                          fontFamily={"Montserrat"}
+                      color={"rgba(15, 177, 245, 1)"}
+                      fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
@@ -399,8 +403,8 @@ export default function index() {
                   </Center>
                   <Center>
                     <Text
-                          color={"rgba(15, 177, 245, 1)"}
-                          fontFamily={"Montserrat"}
+                      color={"rgba(15, 177, 245, 1)"}
+                      fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
@@ -551,12 +555,15 @@ export default function index() {
                   </Flex>
                 </Box>
               </Flex>
-              <Flex w="full" justifyContent={{
-                base: "center",
-                sm: "center",
-                md: "center",
-                lg: "flex-end",
-              }}>
+              <Flex
+                w="full"
+                justifyContent={{
+                  base: "center",
+                  sm: "center",
+                  md: "center",
+                  lg: "flex-end",
+                }}
+              >
                 <Box px="24px">
                   <Button
                     mt="24px"
