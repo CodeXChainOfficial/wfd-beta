@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { WEFUND_CONTRACT, WEFUND_ID, CHAINS_CONFIG } from "../config/constants";
 import { ActionKind } from "../contexts/store";
-import WEFUND_ABI from "../config/constants/WeFund.json";
+import WEFUND_ABI from "../config/WeFund.json";
 
 export function addExtraInfo(projectData: any) {
   if (typeof projectData === "undefined" || projectData == "") return "";
