@@ -47,8 +47,8 @@ export default function Whatis() {
           </Text>
           <Flex direction={"row"}>
             <Text
-              fontWeight={500}
-              fontSize={{ base: "18px", md: "21px", lg: "21px",xl:"24px",'2xl':"26px" }}
+              fontWeight={"400"}
+              fontSize={{ base: "18px", md: "21px", lg: "21px",xl:"24px",'2xl':"24px" }}
               lineHeight="30px"
               letterSpacing="-2.2%"
               fontFamily="Calibri"

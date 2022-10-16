@@ -7,7 +7,14 @@ interface Action {
 }
 
 export interface AppContextInterface {
-  walletType: "metamask" | "trust" | "keplr" | "tron" | "near" | "elrond" | undefined;
+  walletType:
+    | "metamask"
+    | "trust"
+    | "keplr"
+    | "tron"
+    | "near"
+    | "elrond"
+    | undefined;
   junoConnection: any;
   wallet: any;
   openWalletModal: (() => void) | undefined;
@@ -113,26 +120,26 @@ export const StoreProvider: React.FC = ({ children }) => {
 export const useStore = () => useContext(StoreContext);
 
 export const useJunoConnection = () => {
-  const { state, dispatch } = useStore();
+  const { state } = useStore();
   return state.junoConnection;
 };
 
 export const useWallet = () => {
-  const { state, dispatch } = useStore();
+  const { state } = useStore();
   return state.wallet;
 };
 
 export const useProjectData = () => {
-  const { state, dispatch } = useStore();
+  const { state } = useStore();
   return state.projectData;
 };
 
 export const useCommunityData = () => {
-  const { state, dispatch } = useStore();
+  const { state } = useStore();
   return state.communityData;
 };
 
 export const useConfigData = () => {
-  const { state, dispatch } = useStore();
+  const { state } = useStore();
   return state.configData;
 };

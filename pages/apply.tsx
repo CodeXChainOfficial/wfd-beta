@@ -2,12 +2,16 @@ import React, { useState, useRef, useEffect } from "react";
 import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import axios from "axios";
+import { ethers } from "ethers";
+import WEFUND_ABI from "../config/constants/WeFund.json";
 
 import { ButtonTransition } from "../components/ImageTransition";
 import { useStore, useWallet } from "../contexts/store";
 import Footer from "../components/Footer";
 import { checkNetwork, isNull, ParseParam_ProjectId } from "../utils/utility";
 import {
+  CHAINS_CONFIG,
   WEFUND_CONTRACT,
   SUCCESS_OPTION,
   ERROR_OPTION,
@@ -16,7 +20,6 @@ import { REQUEST_ENDPOINT } from "../config/constants";
 
 import PageLayout from "../components/PageLayout";
 
-import Payment from "../components/CreateProject/Payment";
 import CustomInput from "../components/CreateProject/CustomInput";
 import CustomTextarea from "../components/CreateProject/CustomTextarea";
 import CustomCoinInput from "../components/CreateProject/CustomCoinInput";
@@ -25,13 +28,12 @@ import CustomSelect from "../components/CreateProject/CustomSelect";
 import CustomEmailInput from "../components/CreateProject/CustomEmailInput";
 import CustomUpload from "../components/CreateProject/CustomUpload";
 import TeamMembers from "../components/CreateProject/TeamMember/TeamMembers";
-import { useKeplrWallet } from "../contexts/keplrWallet";
-import { fetchData } from "../utils/fetch";
 import ApplyOpt from "../components/CreateProject/ApplyOption/ApplyOpt";
+import { useMetamaskWallet } from "../contexts/metamask";
 
 export default function CreateProject() {
   const { state, dispatch } = useStore();
-  const keplrWallet = useKeplrWallet();
+  const metamask = useMetamaskWallet();
   const router = useRouter();
 
   const [logo, setLogo] = useState("");
@@ -45,8 +47,6 @@ export default function CreateProject() {
   const [fundraise, setFundraiseOption] = useState("Token");
   const [tokenName, setTokenName] = useState("");
   const [tokenAddress, setTokenAddress] = useState("");
-  const [tokenBalance, setTokenBalance] = useState("");
-  const [communityAlloc, setCommunityAlloc] = useState("");
 
   const [fundPhase, setFundPhase] = useState([""]);
   const [fundPrice, setFundPrice] = useState([""]);
@@ -192,41 +192,15 @@ export default function CreateProject() {
     const project_teammembers = [];
     for (let i = 0; i < teammemberDescription.length; i++) {
       const teammember = {
-        teammember_description: "",
-        teammember_linkedin: "",
-        teammember_role: "",
-        teammember_name: "",
+        teammember_description: teammemberDescription[i],
+        teammember_linkedin: teammemberLinkedin[i],
+        teammember_role: teammemberRole[i],
+        teammember_name: teammemberName[i],
       };
       project_teammembers.push(teammember);
     }
 
-    const vesting = [];
-    const stage = {
-      stage_title: stageTitle[0],
-      stage_price: "6",
-      stage_amount: "10000",
-      stage_soon: "20",
-      stage_after: "5",
-      stage_period: "6",
-    };
-    vesting.push(stage);
-
-    const project_milestones = [];
-    const milestone = {
-      milestone_step: "0",
-      milestone_name: "",
-      milestone_description: "",
-      milestone_startdate: "",
-      milestone_enddate: "",
-      milestone_amount: collectedAmount.toString(),
-      milestone_type: "",
-      milestone_status: "0",
-      milestone_votes: [],
-    };
-    project_milestones.push(milestone);
-
     let _createDate = createDate;
-
     if (_createDate == "") {
       const dt = new Date();
       const [month, day, year] = [
@@ -234,57 +208,57 @@ export default function CreateProject() {
         dt.getDate(),
         dt.getFullYear(),
       ];
-      _createDate = day + "/" + ((month + 1) % 12) + "/" + year;
+      _createDate = `${year}-${month}-${day} 00-00-00`;
     }
 
-    const client = keplrWallet.getClient();
-    const address = keplrWallet.account;
+    const address = metamask.account;
+    const fundraiseJson = [fundraise];
 
-    const AddProjectMsg = {
-      add_project: {
-        creator_wallet: address,
-        project_id: "0",
-        project_company: company,
-        project_title: title,
-        project_description: description,
-        project_collected: collectedAmount.toString(),
-        project_ecosystem: ecosystem,
-        project_fundtype: fundraise,
-        project_createddate: _createDate,
-        project_saft: realSAFT,
-        project_logo: logo,
-        project_whitepaper: realWhitepaer,
-        project_website: website,
-        project_email: email,
-        project_milestones: project_milestones,
-        project_teammembers: project_teammembers,
-        vesting: vesting,
-        token_addr: tokenAddress,
-
-        country: country,
-        cofounder_name: cofounderName,
-        service_wefund: serviceWefund,
-        service_charity: serviceCharity,
-        professional_link: professionallink,
-      },
-    };
-
-    if (state.walletType != "keplr") {
-      toast("Connect with Keplr", ERROR_OPTION);
+    if (state.walletType != "metamask") {
+      toast("Connect with metamsk", ERROR_OPTION);
       return;
     }
+
+    const signer = metamask.signer;
+    const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, signer);
+
+    let res = await contract.getNumberOfProjects();
+    const projectId = res.toNumber() + 1;
+
+    const project = {
+      creator_wallet: address,
+      project_id: projectId.toString(),
+      project_company: company,
+      project_title: title,
+      project_description: description,
+      project_collected: collectedAmount.toString(),
+      project_ecosystem: ecosystem,
+      project_fundtype: JSON.stringify(fundraiseJson),
+      project_createddate: _createDate,
+      project_saft: realSAFT,
+      project_logo: logo,
+      project_whitepaper: realWhitepaer,
+      project_website: website,
+      project_email: email,
+      project_teammembers: JSON.stringify(project_teammembers),
+      token_addr: tokenAddress,
+
+      country: country,
+      cofounder_name: cofounderName,
+      service_wefund: serviceWefund,
+      service_charity: serviceCharity,
+      professional_link: professionallink,
+    };
     try {
-      const res = await client.execute(
-        address,
-        WEFUND_CONTRACT,
-        AddProjectMsg,
-        "auto"
-      );
-      console.log(res);
-      fetchData(state, dispatch, true);
-      router.push("/explorer");
+      res = await axios.post("/api/projects/addProject", project);
+
+      res = await contract.addProject(collectedAmount, [
+        [0, "1", "", "2022-03-1", "2022-03-31", "120000", "0", []],
+      ]);
+      await res.wait();
+      toast("Successed Applying", SUCCESS_OPTION);
     } catch (e) {
-      console.log(e);
+      toast("Error", ERROR_OPTION);
     }
   }
 
@@ -306,7 +280,6 @@ export default function CreateProject() {
             <Box
               w={{ base: "xs", sm: "xs", md: "2xl", lg: "2xl", xl: "3xl" }}
               bg="#120D30"
-
               backdropBlur={"54px"}
               borderTopColor="transparent"
               fontFamily="Sk-Modernist-Regular"
@@ -326,7 +299,6 @@ export default function CreateProject() {
                 typeText="Project Description"
                 type={description}
                 setType={setDescription}
-              
               />
               <TeamMembers
                 description={teammemberDescription}

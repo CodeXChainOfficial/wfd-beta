@@ -18,7 +18,12 @@ const IncubationPanel = () => {
         </Flex>
       </GridItem>
       <GridItem w="100%">
-        <Text fontWeight="500" color="#00A3FF" textAlign="justify" fontSize={{ base: "10px", md: "18px" }}>
+        <Text
+          fontWeight="500"
+          color="#00A3FF"
+          textAlign="justify"
+          fontSize={{ base: "10px", md: "18px" }}
+        >
           We select from pool of project applicants
           <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
             &nbsp;or project from our partners (1st selection, we judge based on
@@ -32,11 +37,17 @@ const IncubationPanel = () => {
       <GridItem />
       <GridItem w="100%" mt="50px">
         <Flex gap={{ base: "30px", md: "70px" }} align="center">
-          <Text fontWeight="500" color="#00A3FF" textAlign="justify" fontSize={{ base: "10px", md: "18px" }}>
+          <Text
+            fontWeight="500"
+            color="#00A3FF"
+            textAlign="justify"
+            fontSize={{ base: "10px", md: "18px" }}
+          >
             We match it against our criteria
             <br />
             <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
-              and see its impact to real world applications such as impact to social community or value in real life activity
+              and see its impact to real world applications such as impact to
+              social community or value in real life activity
             </chakra.span>
           </Text>
           <Image src="/media/Home/incubation2.png" width="40%" />
@@ -51,7 +62,12 @@ const IncubationPanel = () => {
         </Flex>
       </GridItem>
       <GridItem w="100%" mt="50px" position="relative">
-        <Text fontWeight="500" color="#00A3FF" textAlign="justify" fontSize={{ base: "10px", md: "18px" }}>
+        <Text
+          fontWeight="500"
+          color="#00A3FF"
+          textAlign="justify"
+          fontSize={{ base: "10px", md: "18px" }}
+        >
           We do due diligence and research by interviewing, discussing and going
           through papers
           <br />
@@ -63,9 +79,9 @@ const IncubationPanel = () => {
           </li>
           <li>
             <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
-              We will onboard you and set up a set of incubations for you, set
-              you up to network and connect with partners and groups that have
-              similar concepts and supplementary roles to yours.{" "}
+              We will onboard you and set up a set of incubations and network to
+              connect with groups that have similar concepts and supplementary
+              roles to yours.{" "}
             </chakra.span>
           </li>
           <li>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Box,
@@ -7,49 +7,37 @@ import {
   Button,
   HStack,
   Center,
-  Square,
   VStack,
   Stack,
   Heading,
-  Tag,
   Image,
-  Avatar,
-  Spacer,
 } from "@chakra-ui/react";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { toast } from "react-toastify";
-import { WEFUND_ID, SUCCESS_OPTION } from "../../config/constants";
-import { checkNetwork, ShortenAddress } from "../../utils/utility";
 
 import { useMetamaskWallet } from "../../contexts/metamask";
 import {
-  useCommunityData,
   useProjectData,
   useStore,
 } from "../../contexts/store";
 import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
 import { RiUpload2Line } from "react-icons/ri";
 import Footer from "../../components/Footer";
-import { shortenAddress } from "../../utils/text";
 
 export default function UserSideSnippet() {
-  const { state, dispatch } = useStore();
+  const { state } = useStore();
   const [contributes, setContributes] = useState(0);
   const [investedCount, setInvestedCount] = useState(0);
-  const [whitelistedCount, setWhitelistedCount] = useState(0);
   const [prjShowDatas, setPrjShowDatas] = useState<any[]>([]);
 
   const projectData = useProjectData();
-  const communityData = useCommunityData();
   const wallet = useMetamaskWallet();
   const address = wallet.account;
 
   async function fetchContractQuery() {
     try {
       let invested_count = 0;
-      let whitelisted_count = 0;
 
       let total_backed = 0;
       const pShowDatas = [];
@@ -72,12 +60,6 @@ export default function UserSideSnippet() {
         one_backed /= 10 ** 6;
         total_backed += one_backed;
 
-        for (let j = 0; j < one.whitelist.length; j++) {
-          if (one.whitelist[j].addr.toLowerCase() == address.toLowerCase()) {
-            whitelisted_count++;
-          }
-        }
-
         const obj: any = {};
         obj.logo = projectData[i].project_logo;
         obj.title = projectData[i].project_title;
@@ -85,10 +67,8 @@ export default function UserSideSnippet() {
         pShowDatas.push(obj);
       }
       setInvestedCount(invested_count);
-      setWhitelistedCount(whitelisted_count);
       setContributes(total_backed);
       setPrjShowDatas(pShowDatas);
-      console.log(pShowDatas);
     } catch (e) {
       console.log(e);
     }
@@ -97,16 +77,6 @@ export default function UserSideSnippet() {
   useEffect(() => {
     fetchContractQuery();
   }, [state.address]);
-
-  async function addCommunityMember() {}
-
-  function removeCommunityMember() {
-    // if (checkNetwork(state) == false) return false;
-  }
-
-  function claim(project_id: number) {
-    // if (checkNetwork(state) == false) return false;
-  }
 
   const responsive = {
     superLargeDesktop: {
@@ -165,7 +135,7 @@ export default function UserSideSnippet() {
                       {/* {wallet && wallet.config.chainName} Wallet */}
                     </Text>
                     <Text fontSize="sm" color={"#69E4FF"} w={"full"}>
-                      {shortenAddress(wallet.account)}
+                      {wallet.account}
                     </Text>
                   </VStack>
                 </Flex>
@@ -259,8 +229,8 @@ export default function UserSideSnippet() {
                 >
                   <VStack w={"full"}>
                     <Box
-                background={"rgba(15, 177, 245, 1)"}
-                w={"100%"}
+                      background={"rgba(15, 177, 245, 1)"}
+                      w={"100%"}
                       py={"20px"}
                       rounded={"lg"}
                     >
@@ -280,29 +250,8 @@ export default function UserSideSnippet() {
                   </VStack>
                   <VStack w={"full"}>
                     <Box
-                background={"rgba(15, 177, 245, 1)"}
-                w={"100%"}
-                      py={"20px"}
-                      rounded={"lg"}
-                    >
-                      <Text
-                        mt="10px"
-                        fontWeight="950"
-                        fontSize="48px"
-                        lineHeight={"160%"}
-                        align={"center"}
-                      >
-                        {whitelistedCount}
-                      </Text>
-                    </Box>
-                    <Text fontWeight="750" fontSize="21px" lineHeight={"160%"}>
-                      Whitelisted
-                    </Text>
-                  </VStack>
-                  <VStack w={"full"}>
-                    <Box
-                background={"rgba(15, 177, 245, 1)"}
-                w={"100%"}
+                      background={"rgba(15, 177, 245, 1)"}
+                      w={"100%"}
                       py={"20px"}
                       rounded={"lg"}
                     >
@@ -358,7 +307,7 @@ export default function UserSideSnippet() {
               showDots={false}
               responsive={responsive}
             >
-              {[...Array(6)].map((_, i) => (
+              {prjShowDatas.map((project, i) => (
                 <Flex key={i} justifyContent={"center"}>
                   <Center py={6}>
                     <Box
@@ -370,13 +319,17 @@ export default function UserSideSnippet() {
                       background="#120D30"
                     >
                       <Flex direction="row">
-                        <Box
+                        <Flex
                           width="180px"
                           height="260px"
                           bg="rgba(0, 0, 0, 0.49)"
                           borderRadius="15"
                           m="16px"
-                        />
+                          justify="center"
+                          align="center"
+                        >
+                          <Image src={project.logo} w="100%" />
+                        </Flex>
                         <Box>
                           <Flex pt="64px" pb={"16px"}>
                             <Center>
@@ -388,7 +341,7 @@ export default function UserSideSnippet() {
                                   color="white"
                                   px={"16px"}
                                 >
-                                  WFD/Fantom
+                                  {project.title}
                                 </Heading>
                               </Stack>
                             </Center>
@@ -420,7 +373,7 @@ export default function UserSideSnippet() {
                                   Invested
                                 </Text>
                                 <Text fontWeight={600} fontSize={"20px"}>
-                                  $ 0
+                                  $ {project.backed}
                                 </Text>
                               </Stack>
                             </Stack>
@@ -513,43 +466,6 @@ export default function UserSideSnippet() {
                         </Text>
                       </Box>
                     </Box>
-                  </VStack>
-
-                  <VStack w={{ base: "100%", md: "50%" }}>
-                    <Center>
-                      <Box
-                        bg="#120D30"
-                        py={"20px"}
-                        px={"20px"}
-                        rounded={"lg"}
-                        minH={"200px"}
-                        w={"100%"}
-                        alignContent={"center"}
-                      >
-                        <Text
-                          mt="10px"
-                          fontWeight="500"
-                          lineHeight={"160%"}
-                          align={"center"}
-                          fontSize={{ base: "14px", md: "18px", lg: "21px" }}
-                        >
-                          Register to Become Community Member
-                        </Text>
-                        <Center pt={"25px"}>
-                          <Button
-                            w={"150px"}
-                            h={"45px"}
-                            bg="rgba(0, 163, 255, 0.14)"
-                            border="1.5px solid #00A3FF"
-                            color={"#FFFFFF"}
-                            fontWeight={"600"}
-                            fontSize={"16px"}
-                          >
-                            <Text ml={"5px"}>Claim</Text>
-                          </Button>
-                        </Center>
-                      </Box>
-                    </Center>
                   </VStack>
                 </Stack>
               </Flex>
