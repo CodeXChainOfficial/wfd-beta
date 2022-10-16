@@ -3,7 +3,7 @@ export const WEFUND_ID = 1;
 export const REQUEST_ENDPOINT =
   "https://wefund-nodejs-gwb6v.ondigitalocean.app";
 
-export const WEFUND_WALLET = "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu";
+export const WEFUND_WALLET = "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
 
 // testnet
 // export const WFD_TOKEN =
@@ -18,7 +18,7 @@ export const WEFUND_WALLET = "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu";
 
 // mainnet
 export const WFD_TOKEN =
-  "juno1x329zfyakxz9sl6a46ef9snajjcgjrykq8sje4lpj06r24trgvxqj42edl";
+  "0x131C6A669e275c0B10d565c7F7c319B89450dbf2";
 
 export const WEFUND_CONTRACT = "0x909b3f99BCfA839c15FA9677E7C7E12fBCd36601";
 export const VESTING_CONTRACT =
@@ -28,15 +28,13 @@ export const STAKING_CONTRACT =
 
 export const WEFUND_JUNO_ADDRESS =
   "juno1gc3lpde7nx8khqfafw3st7j4ptd6qfccu6y04a";
-export const WEFUND_BSC_ADDRESS = "0x0dc488021475739820271d595a624892264ca641";
-export const WEFUND_TRON_WALLET = "TJ512gBWfie4ett3u8nmyYeuZHQXDamcuQ";
+export const WEFUND_BSC_ADDRESS = "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
+export const WEFUND_TRON_WALLET = "TQzceggoo7S7AoMyiLBVTKwMtN4Q9gdqW4";
 export const WEFUND_POLYGON_WALLET =
-  "0x10411e941395301eecea63bc068383b801e01e0a";
-export const WEFUND_TRUST_BNB_WALLET =
-  "bnb1na0j6fvjwgxrd4g6stu32wquwgce54msly0tth";
-export const WEFUND_NEAR_WALLET = "staking_treasury.testnet";
-export const WEFUND_ELROND_WALLET =
-  "erd1whmvknyspkqzhk20m2k3n7q9cypm69l0ezthefnqll9curk8ug5q0lwsn2";
+  "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
+export const WEFUND_TRUST_BNB_WALLET ="";
+export const WEFUND_NEAR_WALLET = "84f097a62590c92503a32336e8ad4cf166b90ea605b652bd0eb392dc9f76554c";
+export const WEFUND_ELROND_WALLET = "";
 
 export const SUCCESS_OPTION: any = {
   position: "bottom-right",
@@ -61,34 +59,13 @@ export const ERROR_OPTION: any = {
 };
 
 export const TOKEN_LIST = [
-  {
-    chain: "Juno",
-    name: "JUNO",
-    denom: NETWORK == "mainnet" ? "ujuno" : "ujunox",
-    decimals: 6,
-    native: true,
-  },
+
   {
     chain: "Juno",
     name: "USDC",
     denom:
       "ibc/EAC38D55372F38F1AFD68DF7FE9EF762DCF69F26520643CF3F9D292A738D8034",
     decimals: 6,
-    native: true,
-  },
-  {
-    chain: "Juno",
-    name: "ATOM",
-    denom:
-      "ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
-    decimals: 6,
-    native: true,
-  },
-  {
-    chain: "BSC",
-    name: "BNB",
-    denom: "BNB",
-    decimals: 18,
     native: true,
   },
   {
@@ -122,12 +99,6 @@ export const TOKEN_LIST = [
   },
   {
     chain: "Tron",
-    name: "TRX",
-    decimals: 6,
-    native: true,
-  },
-  {
-    chain: "Tron",
     name: "USDD",
     decimals: 6,
     native: false,
@@ -151,22 +122,10 @@ export const TOKEN_LIST = [
   },
   {
     chain: "Elrond",
-    name: "EGLD",
-    decimals: 18,
-    native: true,
-  },
-  {
-    chain: "Elrond",
     name: "USDC",
     decimals: 6,
     native: false,
     address: NETWORK == "mainnet" ? "USDC-cbf0b9" : "USDC-cbf0b9",
-  },
-  {
-    chain: "Polygon",
-    name: "MATIC",
-    decimals: 18,
-    native: true,
   },
   {
     chain: "Polygon",
@@ -184,22 +143,10 @@ export const TOKEN_LIST = [
   },
   {
     chain: "OneLedger",
-    name: "OLT",
-    decimals: 18,
-    natie: true,
-  },
-  {
-    chain: "OneLedger",
     name: "USDT",
     decimals: 6,
     native: false,
     address: "0xED344b7C2deD6143e32B03ea905e59dC2010Ce74",
-  },
-  {
-    chain: "Fantom",
-    name: "FTM",
-    decimals: 18,
-    native: true,
   },
   {
     chain: "Fantom",
