@@ -2,30 +2,41 @@ import PageLayout from "../../components/PageLayout";
 import Footer from "../../components/Footer";
 import React from "react";
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Avatar,
   Box,
   Button,
   Center,
+  chakra,
   Flex,
+  Heading,
   Image,
   Input,
   InputGroup,
   InputLeftElement,
   Link,
+  Progress,
   SimpleGrid,
   Stack,
   Text,
+  Textarea,
   VStack,
 } from "@chakra-ui/react";
 import { IoWalletOutline } from "react-icons/io5";
 import { InputTransition } from "../../components/ImageTransition";
-import MilestoneList from "../../components/OwnerInfo/MilestoneList";
-import MilestoneDetail from "../../components/OwnerInfo/MilestoneDetail";
+import { CheckIcon } from "@chakra-ui/icons";
+import GoalList from "../../components/OwnerInfo/OwnerIncubationGoal";
+import MilestoneForIncubation from "../../components/OwnerInfo/OwnerMilestone";
 
 export default function index() {
   return (
     <PageLayout
       title=""
-      subTitle1="Welcome Back"
+      subTitle1="Welcome Back to Incubation"
       subTitle2=""
       subTitle3="&nbsp;Project Owner"
     >
@@ -33,6 +44,7 @@ export default function index() {
         <Box color={"white"} pb={"5%"} pt="64px">
           <Stack
             color="white"
+            alignContent={"start"}
             justifyContent="center"
             direction={{
               base: "column",
@@ -43,6 +55,7 @@ export default function index() {
           >
             <Center w={{ base: "100%", sm: "100%", md: "100%", lg: "450px" }}>
               <VStack
+                h="full"
                 spacing={4}
                 marginBottom={6}
                 align={{
@@ -328,7 +341,7 @@ export default function index() {
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Milestone Set
+                      Registration
                     </Text>
                   </Center>
                 </Flex>
@@ -352,7 +365,7 @@ export default function index() {
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Fundraising
+                      Selection
                     </Text>
                   </Center>
                 </Flex>
@@ -376,17 +389,7 @@ export default function index() {
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Milestone 
-                    </Text>
-                  </Center>
-                  <Center>
-                    <Text
-                      color={"rgba(15, 177, 245, 1)"}
-                      fontFamily={"Montserrat"}
-                      fontWeight="600"
-                      fontSize="16px"
-                    >
-                      Begins
+                      Set Goal
                     </Text>
                   </Center>
                 </Flex>
@@ -410,7 +413,7 @@ export default function index() {
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Milestone
+                      Approved
                     </Text>
                   </Center>
                   <Center>
@@ -420,24 +423,229 @@ export default function index() {
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Completed
+                      Publish
                     </Text>
                   </Center>
                 </Flex>
               </Flex>
+              <Text
+                mt="16px"
+                fontFamily={"Montserrat"}
+                fontWeight="800"
+                fontSize="20px"
+              >
+                Project Owner Incubation Goal
+              </Text>
+              <Flex mt="26px">
+                <Box bg="rgba(18, 13, 48, 1)" borderRadius="10px" w="650px">
+                  <Flex direction="column" px="12px" py="8px">
+                    <GoalList incubation={true}/>
+                  </Flex>
+                </Box>
+              </Flex>
+              <Text
+                mt="16px"
+                fontFamily={"Montserrat"}
+                fontWeight="800"
+                fontSize="20px"
+              >
+                Set Fundraising Milestones
+              </Text>
+              <Flex mt="26px">
+                <Box bg="rgba(18, 13, 48, 1)" borderRadius="10px" w="650px">
+                  <Flex direction="column" px="64px" py="16px">
+                    <Flex>
+                      <Center>
+                        <Text
+                          fontFamily={"Montserrat"}
+                          fontWeight="600"
+                          fontSize="16px"
+                          whiteSpace="nowrap"
+                        >
+                          Milestone Name
+                        </Text>
+                      </Center>
+                      <InputGroup
+                        ml="32px"
+                        style={{ background: "rgba(0, 0, 0, 0.25)" }}
+                        size="sm"
+                        border="0px"
+                      >
+                        <Input
+                          style={{
+                            border: " 1.5px solid rgba(255, 255, 255, 0.2)",
+                            background: "transparent",
+                          }}
+                          type="text"
+                          h="42px"
+                          rounded="md"
+                          placeholder="Type Name"
+                        />
+                      </InputGroup>
+                    </Flex>
+                    <Flex justifyContent="space-between" w="full" mt="24px">
+                      <Flex direction="column" w="50%">
+                        <Text
+                          fontFamily={"Montserrat"}
+                          fontWeight="600"
+                          fontSize="16px"
+                          whiteSpace="nowrap"
+                        >
+                          Start Date
+                        </Text>
+                        <Box mt="16px" w="full">
+                          <InputTransition height="55px" rounded="md">
+                            <InputGroup
+                              size="xs"
+                              style={{ background: "rgba(0, 0, 0, 0.25)" }}
+                            >
+                              <InputLeftElement
+                                pointerEvents="none"
+                                fontSize="1.2em"
+                              />
+                              <Input
+                                style={{
+                                  background: "rgba(0, 0, 0, 0.25)",
+                                  border:
+                                    " 1.5px solid rgba(255, 255, 255, 0.2)",
+                                }}
+                                type="date"
+                                h="55px"
+                                focusBorderColor="purple.800"
+                                rounded="md"
+                              />
+                            </InputGroup>
+                          </InputTransition>
+                        </Box>
+                      </Flex>
+                      <Flex direction="column" ml="48px" w="50%">
+                        <Text
+                          fontFamily={"Montserrat"}
+                          fontWeight="600"
+                          fontSize="16px"
+                          whiteSpace="nowrap"
+                        >
+                          End Date
+                        </Text>
+                        <Box mt="16px" w="full">
+                          <InputTransition height="55px" rounded="md">
+                            <InputGroup
+                              size="xs"
+                              style={{ background: "rgba(0, 0, 0, 0.25)" }}
+                            >
+                              <InputLeftElement
+                                pointerEvents="none"
+                                fontSize="1.2em"
+                              />
+                              <Input
+                                style={{
+                                  background: "rgba(0, 0, 0, 0.25)",
+                                  border:
+                                    " 1.5px solid rgba(255, 255, 255, 0.2)",
+                                }}
+                                type="date"
+                                h="55px"
+                                focusBorderColor="purple.800"
+                                rounded="md"
+                              />
+                            </InputGroup>
+                          </InputTransition>
+                        </Box>
+                      </Flex>
+                    </Flex>
+                    <Flex mt="24px">
+                      <Center>
+                        <Text
+                          fontFamily={"Montserrat"}
+                          fontWeight="600"
+                          fontSize="16px"
+                          whiteSpace="nowrap"
+                        >
+                          Milestone Details
+                        </Text>
+                      </Center>
+                      <InputGroup
+                        ml="32px"
+                        style={{ background: "rgba(0, 0, 0, 0.25)" }}
+                        size="sm"
+                        border="0px"
+                      >
+                        <Textarea
+                          style={{
+                            border: " 1.5px solid rgba(255, 255, 255, 0.2)",
+                            background: "transparent",
+                          }}
+                          h="42px"
+                          height="110px"
+                          rounded="md"
+                          placeholder="Details of Goal"
+                        />
+                      </InputGroup>
+                    </Flex>
+                    <Flex mt="24px">
+                      <Center>
+                        <Text
+                          fontFamily={"Montserrat"}
+                          fontWeight="600"
+                          fontSize="16px"
+                          whiteSpace="nowrap"
+                        >
+                          Milestone Amount
+                        </Text>
+                      </Center>
+                      <InputGroup
+                        ml="32px"
+                        style={{ background: "rgba(0, 0, 0, 0.25)" }}
+                        size="sm"
+                        border="0px"
+                      >
+                        <Input
+                          style={{
+                            border: " 1.5px solid rgba(255, 255, 255, 0.2)",
+                            background: "transparent",
+                          }}
+                          type="number"
+                          h="42px"
+                          rounded="md"
+                          placeholder="0"
+                        />
+                      </InputGroup>
+                    </Flex>
+                  </Flex>
+                </Box>
+              </Flex>
               <Flex
                 w="full"
-                direction={"column"}
-                py={"45px"}
                 justifyContent={{
                   base: "center",
                   sm: "center",
                   md: "center",
-                  lg: "flex-start",
+                  lg: "flex-end",
                 }}
+                direction="column"
               >
-                <Text fontWeight={"600"}>Milestone List</Text>
-                <MilestoneList />
+                <Box px="24px">
+                  <Button
+                    mt="24px"
+                    mb={{ base: "20px", md: "5px" }}
+                    w="120px"
+                    h="50px"
+                    bg={
+                      "linear-gradient(180deg, rgba(0, 193, 255, 0.1) 0%, rgba(0, 193, 255, 0.1) 100%)"
+                    }
+                    border="1.5px solid #00A3FF"
+                    rounded="33px"
+                  >
+                    <Text
+                      fontFamily={"Gilroy"}
+                      fontWeight="800"
+                      fontSize="20px"
+                    >
+                      Add +
+                    </Text>
+                  </Button>
+                </Box>
+                <MilestoneForIncubation />
               </Flex>
             </Flex>
           </Stack>
