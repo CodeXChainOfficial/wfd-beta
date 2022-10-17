@@ -26,7 +26,6 @@ import {
   ButtonTransition,
   InputTransition,
 } from "../../components/ImageTransition";
-import Faq from "../../components/Faq";
 import PageLayout from "../../components/PageLayout";
 import {
   ParseParam_ProjectId,
@@ -142,10 +141,10 @@ export default function InvestStep3() {
       toast("Please input amount", ERROR_OPTION);
       return false;
     }
-    if (state.presale == false && parseFloat(investAmount) < 20000) {
-      toast("Input amount for private sale of at least 20,000", ERROR_OPTION);
-      return false;
-    }
+    // if (state.presale == false && parseFloat(investAmount) < 20000) {
+    //   toast("Input amount for private sale of at least 20,000", ERROR_OPTION);
+    //   return false;
+    // }
     return true;
   }
 
