@@ -13,6 +13,7 @@ import {
 import React, { useEffect, useState, useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
+import { BigNumber } from "bignumber.js";
 
 import { getJunoConfig } from "../../config";
 import {
@@ -224,14 +225,19 @@ export default function InvestStep3() {
     await createSAFTPdf(date);
 
     const tokenInfo = LookForTokenInfo(investChain, investToken);
-    const amount = tokenInfo?.decimals
-      ? Math.floor(parseFloat(investAmount) * 10 ** tokenInfo?.decimals)
-      : 0;
+    let amount = new BigNumber(parseFloat(investAmount));
+console.log(amount.toFixed());
+    amount = amount.multipliedBy(
+      new BigNumber(10).pow(tokenInfo?.decimals ? tokenInfo?.decimals : 0)
+    );
+console.log(amount.toFixed());
+    amount = amount.decimalPlaces(0, 1);
+console.log(amount.toFixed());
 
     try {
       toast("Please wait", SUCCESS_OPTION);
       await wallet.sendTokens(
-        amount,
+        amount.toFixed(),
         tokenInfo?.denom,
         tokenInfo?.address,
         tokenInfo?.native

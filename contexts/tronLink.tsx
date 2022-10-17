@@ -28,7 +28,7 @@ export interface TronLinkStore {
   readonly getBalance: () => BigNumber;
   readonly getBalanceString: () => string;
   readonly sendTokens: (
-    amount: number,
+    amount: string,
     denom: string,
     account: string,
     native: boolean
@@ -84,7 +84,7 @@ export const useTronLinkStore = create(
       return balance.toFixed() + " TRX";
     },
     sendTokens: async (
-      amount: number,
+      amount: string,
       denom: string,
       address: string,
       native: boolean
