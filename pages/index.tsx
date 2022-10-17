@@ -13,6 +13,7 @@ import KeyPartners from "../components/Landing/Partners";
 import Team from "../components/Landing/Team";
 import ServiceList from "../components/Landing/ServicesSmall";
 import Incubation from "../components/Landing/Incubation";
+import MediaAppear from "../components/Landing/MediaAppear";
 
 export default function Launchpad() {
   return (
@@ -29,7 +30,7 @@ export default function Launchpad() {
       >
         <ServiceList />
       </Box>
-      <Box height={{ base: "0px",'2xl':"300px" }} />
+      <Box height={{ base: "0px",'2xl':"100px" }} />
       <UpcomingProject
         header={
           <Text
@@ -42,6 +43,7 @@ export default function Launchpad() {
           </Text> 
         }
       />
+      <MediaAppear />
       <KeyPartners />
       <Team />
       <Footer />

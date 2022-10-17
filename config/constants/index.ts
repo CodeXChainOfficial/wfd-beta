@@ -1,4 +1,4 @@
-export const NETWORK = "mainnet";
+export const NETWORK = "testnet";
 export const WEFUND_ID = 1;
 export const REQUEST_ENDPOINT =
   "https://wefund-nodejs-gwb6v.ondigitalocean.app";
@@ -17,7 +17,8 @@ export const WEFUND_WALLET = "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
 //   "juno1ru0euvqln9ax686aev4lut0tjxq6a9u4lp8t63sgy3rugprjejjsqc3dzf";
 
 // mainnet
-export const WFD_TOKEN = "0x131c6a669e275c0b10d565c7f7c319b89450dbf2";
+export const WFD_TOKEN =
+  "0x131C6A669e275c0B10d565c7F7c319B89450dbf2";
 
 export const WEFUND_CONTRACT = "0x909b3f99BCfA839c15FA9677E7C7E12fBCd36601";
 export const VESTING_CONTRACT = ""; 
@@ -58,13 +59,6 @@ export const ERROR_OPTION: any = {
 };
 
 export const TOKEN_LIST = [
-  // {
-  //   chain: "Juno",
-  //   name: "JUNO",
-  //   denom: NETWORK == "mainnet" ? "ujuno" : "ujunox",
-  //   decimals: 6,
-  //   native: true,
-  // },
   {
     chain: "Juno",
     name: "USDC",
@@ -118,12 +112,6 @@ export const TOKEN_LIST = [
         ? "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"
         : "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee",
   },
-  // {
-  //   chain: "Tron",
-  //   name: "TRX",
-  //   decimals: 6,
-  //   native: true,
-  // },
   {
     chain: "Tron",
     name: "USDD",
@@ -266,11 +254,6 @@ export const CHAINS_CONFIG = {
     chainName: "Fantom",
     rpc: "https://rpc2.fantom.network",
   },
-  telos: {
-    chainId: "0x28",
-    chainName: "Telos",
-    rpc: "https://mainnet.telos.net/evm",
-  },
 };
 
 export const WALLET_LIST = [
@@ -293,11 +276,6 @@ export const WALLET_LIST = [
     name: "TronLink",
     icon: "/media/Wallet/tron_link.svg",
     link: "tron",
-  },
-  {
-    name: "NearWallet",
-    icon: "/media/Wallet/near_wallet.png",
-    link: "near",
   },
   {
     name: "ElrondWeb",
