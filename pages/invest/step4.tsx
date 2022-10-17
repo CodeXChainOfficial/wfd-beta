@@ -32,17 +32,17 @@ export default function InvestStep4() {
   const router = useRouter();
   const project_id = ParseParam_ProjectId();
 
-  let investAmount = "",
-    investWfdAmount = "",
-    investDate = "",
-    pdfFile = "",
-    docxFile = "";
+  const [investAmount, setInvestAmount] = useState("0");
+  const [investDate, setInvestDate] = useState("");
+  const [investWfdAmount, setInvestWfdAmount] = useState("0");
 
+  let pdfFile = "",
+    docxFile = "";
   useEffect(() => {
     if (window != undefined) {
-      investAmount = window.localStorage.getItem("invest_amount") ?? "";
-      investWfdAmount = window.localStorage.getItem("invest_wfdamount") ?? "";
-      investDate = window.localStorage.getItem("invest_date") ?? "";
+      setInvestAmount(window.localStorage.getItem("invest_amount") ?? "");
+      setInvestWfdAmount(window.localStorage.getItem("invest_wfdamount") ?? "");
+      setInvestDate(window.localStorage.getItem("invest_date") ?? "");
 
       pdfFile = window.localStorage.getItem("pdf_file") ?? "";
       docxFile = window.localStorage.getItem("docx_file") ?? "";
@@ -95,15 +95,15 @@ export default function InvestStep4() {
       subTitle3="&nbsp;to WeFund"
     >
       <Flex
-       width="100%"
-       justify="center"
-       align="center"
-       py={"4em"}
-       direction="column"
-       backgroundImage="url('/media/Home/smoke-bg.png')"
-       backgroundSize={"contain"}
+        width="100%"
+        justify="center"
+        align="center"
+        py={"4em"}
+        direction="column"
+        backgroundImage="url('/media/Home/smoke-bg.png')"
+        backgroundSize={"contain"}
       >
-         <Flex
+        <Flex
           justify="center"
           align="center"
           direction="column"
@@ -167,7 +167,8 @@ export default function InvestStep4() {
                   w={{ base: 2, md: 3 }}
                   h={{ base: 2, md: 3 }}
                   marginBottom={{ base: "30px", md: "20px" }}
-                /></Box>
+                />
+              </Box>
               <Text
                 fontSize={{
                   base: "12px",
@@ -205,7 +206,8 @@ export default function InvestStep4() {
                   w={{ base: 2, md: 3 }}
                   h={{ base: 2, md: 3 }}
                   marginBottom={{ base: "30px", md: "20px" }}
-                /></Box>
+                />
+              </Box>
               <Text
                 fontSize={{
                   base: "12px",

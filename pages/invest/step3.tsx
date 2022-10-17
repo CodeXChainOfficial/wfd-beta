@@ -35,13 +35,7 @@ import {
   checkBscConnection,
 } from "../../utils/utility";
 import { ERROR_OPTION, SUCCESS_OPTION } from "../../config/constants";
-import {
-  ActionKind,
-  useJunoConnection,
-  useProjectData,
-  useStore,
-  useWallet,
-} from "../../contexts/store";
+import { useProjectData, useStore, useWallet } from "../../contexts/store";
 import { useRouter } from "next/router";
 import { fetchData } from "../../utils/fetch";
 import Footer from "../../components/Footer";
@@ -58,10 +52,6 @@ export default function InvestStep3() {
   const canvasRef = useRef({});
   const router = useRouter();
   const wallet = useWallet();
-
-  const junoConnection = useJunoConnection();
-  const client = junoConnection?.getClient();
-  const address = junoConnection?.account;
 
   //------------parse URL for project id----------------------------
   const project_id = ParseParam_ProjectId();
@@ -231,7 +221,6 @@ export default function InvestStep3() {
 
     window.localStorage.setItem("invest_date", date);
 
-    // if (project_id == WEFUND_ID) {
     await createSAFTPdf(date);
 
     const tokenInfo = LookForTokenInfo(investChain, investToken);
@@ -240,12 +229,21 @@ export default function InvestStep3() {
       : 0;
 
     try {
+      toast("Please wait", SUCCESS_OPTION);
       await wallet.sendTokens(
         amount,
         tokenInfo?.denom,
         tokenInfo?.address,
         tokenInfo?.native
       );
+      toast("Success", SUCCESS_OPTION);
+
+      router.push({
+        pathname: "/invest/step4",
+        query: {
+          project_id: project_id,
+        },
+      });
     } catch (e) {
       window.localStorage.removeItem("action");
       toast("Failed", ERROR_OPTION);
