@@ -3,7 +3,7 @@ export const WEFUND_ID = 1;
 export const REQUEST_ENDPOINT =
   "https://wefund-nodejs-gwb6v.ondigitalocean.app";
 
-export const WEFUND_WALLET = "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu";
+export const WEFUND_WALLET = "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
 
 // testnet
 // export const WFD_TOKEN =
@@ -20,19 +20,20 @@ export const WEFUND_WALLET = "juno12v06zrrhw0vs83t83svsddgl4ndfmk9c327gsu";
 export const WFD_TOKEN = "0x131c6a669e275c0b10d565c7f7c319b89450dbf2";
 
 export const WEFUND_CONTRACT = "0x909b3f99BCfA839c15FA9677E7C7E12fBCd36601";
-export const VESTING_CONTRACT = "";
+export const VESTING_CONTRACT = ""; 
 export const STAKING_CONTRACT = "";
 
 export const WEFUND_JUNO_ADDRESS =
   "juno1gc3lpde7nx8khqfafw3st7j4ptd6qfccu6y04a";
 export const WEFUND_BSC_ADDRESS = "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
 export const WEFUND_TRON_WALLET = "TQzceggoo7S7AoMyiLBVTKwMtN4Q9gdqW4";
+export const WEFUND_POLYGON_WALLET =
+  "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
 export const WEFUND_TRUST_BNB_WALLET =
-  "bnb1na0j6fvjwgxrd4g6stu32wquwgce54msly0tth";
-export const WEFUND_NEAR_WALLET =
-  "84f097a62590c92503a32336e8ad4cf166b90ea605b652bd0eb392dc9f76554c";
+  "";
+export const WEFUND_NEAR_WALLET = "84f097a62590c92503a32336e8ad4cf166b90ea605b652bd0eb392dc9f76554c";
 export const WEFUND_ELROND_WALLET =
-  "erd1whmvknyspkqzhk20m2k3n7q9cypm69l0ezthefnqll9curk8ug5q0lwsn2";
+  "";
 
 export const SUCCESS_OPTION: any = {
   position: "bottom-right",
@@ -72,14 +73,14 @@ export const TOKEN_LIST = [
     decimals: 6,
     native: true,
   },
-  {
-    chain: "Juno",
-    name: "ATOM",
-    denom:
-      "ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
-    decimals: 6,
-    native: true,
-  },
+  //{
+  //  chain: "Juno",
+ //   name: "ATOM",
+ //   denom:
+ //     "ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9",
+ //   decimals: 6,
+ //   native: true,
+ // },
   // {
   //   chain: "BSC",
   //   name: "BNB",
@@ -152,13 +153,13 @@ export const TOKEN_LIST = [
   //   decimals: 18,
   //   native: true,
   // },
-  {
-    chain: "Elrond",
-    name: "USDC",
-    decimals: 6,
-    native: false,
-    address: NETWORK == "mainnet" ? "USDC-cbf0b9" : "USDC-cbf0b9",
-  },
+  //{
+  //  chain: "Elrond",
+  //  name: "USDC",
+  //  decimals: 6,
+  //  native: false,
+  //  address: NETWORK == "mainnet" ? "USDC-cbf0b9" : "USDC-cbf0b9",
+  //},
   // {
   //   chain: "Polygon",
   //   name: "MATIC",
@@ -185,53 +186,53 @@ export const TOKEN_LIST = [
   //   decimals: 18,
   //   natie: true,
   // },
-  {
-    chain: "OneLedger",
-    name: "USDT",
-    decimals: 6,
-    native: false,
-    address: "0xED344b7C2deD6143e32B03ea905e59dC2010Ce74",
-  },
+  //{
+  //  chain: "OneLedger",
+  //  name: "USDT",
+  //  decimals: 6,
+  //  native: false,
+  //  address: "0xED344b7C2deD6143e32B03ea905e59dC2010Ce74",
+  //},
   // {
   //   chain: "Fantom",
   //   name: "FTM",
   //   decimals: 18,
   //   native: true,
   // },
-  {
-    chain: "Fantom",
-    name: "USDC",
-    decimals: 6,
-    native: false,
-    address: "0x04068DA6C83AFCFA0e13ba15A6696662335D5B75",
-  },
-  {
-    chain: "Fantom",
-    name: "USDT",
-    decimals: 6,
-    native: false,
-    address: "0x1B27A9dE6a775F98aaA5B90B62a4e2A0B84DbDd9",
-  },
+  //{
+  //  chain: "Fantom",
+  //  name: "USDC",
+  //  decimals: 6,
+  //  native: false,
+  //  address: "0x04068DA6C83AFCFA0e13ba15A6696662335D5B75",
+  //},
+  //{
+  //  chain: "Fantom",
+  //  name: "USDT",
+  //  decimals: 6,
+  //  native: false,
+  //  address: "0x1B27A9dE6a775F98aaA5B90B62a4e2A0B84DbDd9",
+  //},
   // {
   //   chain: "TELOS",
   //   name: "TLOS",
   //   decimals: 18,
   //   native: true,
   // },
-  {
-    chain: "TELOS",
-    name: "USDC",
-    decimals: 6,
-    native: false,
-    address: "0x818ec0a7fe18ff94269904fced6ae3dae6d6dc0b",
-  },
-  {
-    chain: "TELOS",
-    name: "USDT",
-    decimals: 6,
-    native: false,
-    address: "0xefaeee334f0fd1712f9a8cc375f427d9cdd40d73",
-  },
+ // {
+ //   chain: "TELOS",
+ //   name: "USDC",
+ //   decimals: 6,
+ //   native: false,
+ //   address: "0x818ec0a7fe18ff94269904fced6ae3dae6d6dc0b",
+ // },
+ // {
+ //   chain: "TELOS",
+ //   name: "USDT",
+ //   decimals: 6,
+ //   native: false,
+ //   address: "0xefaeee334f0fd1712f9a8cc375f427d9cdd40d73",
+ // },
 ];
 
 export const CHAINS_CONFIG = {
@@ -321,19 +322,19 @@ export const WEFUND: any = {
 
   cofounder_name: "",
   country: "",
-  creator_wallet: "terra1qvyj7tqs35hckd395rglc7lsyf2acuhgdcmj77",
-  project_collected: "600000",
+  creator_wallet: "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c",
+  project_collected: "840000",
   project_company: "A.I WeFund",
   project_createddate: "28/3/2022",
   project_description:
     "WeFund is a community crowdfunding incubator for blockchain and real-world projects. WeFund's mission is to host high-quality projects that align with WeFund's investor community. Community-driven decisions on the platform for 100% transparency. Project funds managed exclusively on Terra's Anchor protocol using smart contracts and following project milestones.\n\n",
-  project_ecosystem: "Terra",
+  project_ecosystem: "BSC",
   project_email: "",
   project_id: "1",
   project_logo: "",
   project_milestones: [
     {
-      milestone_amount: "600000",
+      milestone_amount: "840000",
       milestone_description: "",
       milestone_enddate: "2022-03-31",
       milestone_name: "1",
