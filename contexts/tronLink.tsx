@@ -106,7 +106,11 @@ export const useTronLinkStore = create(
         // const balance = await contract.balanceOf(account).call();
         // const val = BigNumber.from(balance);
 
-        await contract.transfer(WEFUND_TRON_WALLET, amount).send();
+        await contract.transfer(WEFUND_TRON_WALLET, amount).send({
+          feeLimit: 100_000_000,
+          callValue: 0,
+          shouldPollResponse: true,
+        });
       }
     },
   }))

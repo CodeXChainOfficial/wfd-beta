@@ -95,7 +95,7 @@ export const TOKEN_LIST = [
     native: false,
     address:
       NETWORK == "mainnet"
-        ? "0x686c626E48bfC5DC98a30a9992897766fed4Abd3"
+        ? "0x55d398326f99059fF775485246999027B3197955"
         : "0x337610d27c682E347C9cD60BD4b3b107C9d34dDd",
   },
   {
@@ -115,7 +115,7 @@ export const TOKEN_LIST = [
     native: false,
     address:
       NETWORK == "mainnet"
-        ? "0x49d5cC521F75e13fa8eb4E89E9D381352C897c96"
+        ? "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"
         : "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee",
   },
   // {
