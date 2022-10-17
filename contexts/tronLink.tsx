@@ -28,7 +28,7 @@ export interface TronLinkStore {
   readonly getBalance: () => BigNumber;
   readonly getBalanceString: () => string;
   readonly sendTokens: (
-    amount: number,
+    amount: string,
     denom: string,
     account: string,
     native: boolean
@@ -84,7 +84,7 @@ export const useTronLinkStore = create(
       return balance.toFixed() + " TRX";
     },
     sendTokens: async (
-      amount: number,
+      amount: string,
       denom: string,
       address: string,
       native: boolean
@@ -106,7 +106,11 @@ export const useTronLinkStore = create(
         // const balance = await contract.balanceOf(account).call();
         // const val = BigNumber.from(balance);
 
-        await contract.transfer(WEFUND_TRON_WALLET, amount).send();
+        await contract.transfer(WEFUND_TRON_WALLET, amount).send({
+          feeLimit: 100_000_000,
+          callValue: 0,
+          shouldPollResponse: true,
+        });
       }
     },
   }))

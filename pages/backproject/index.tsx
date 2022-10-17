@@ -10,7 +10,7 @@ import {
   WEFUND_CONTRACT,
   ERC20_ABI,
 } from "../../config/constants";
-import WEFUND_ABI from "../../config/constants/WeFund.json";
+// import WEFUND_ABI from "../../config/constants/WeFund.json";
 import {
   checkBscConnection,
   GetOneProject,

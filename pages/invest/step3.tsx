@@ -13,6 +13,7 @@ import {
 import React, { useEffect, useState, useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
+import { BigNumber } from "bignumber.js";
 
 import { getJunoConfig } from "../../config";
 import {
@@ -26,7 +27,6 @@ import {
   ButtonTransition,
   InputTransition,
 } from "../../components/ImageTransition";
-import Faq from "../../components/Faq";
 import PageLayout from "../../components/PageLayout";
 import {
   ParseParam_ProjectId,
@@ -36,13 +36,7 @@ import {
   checkBscConnection,
 } from "../../utils/utility";
 import { ERROR_OPTION, SUCCESS_OPTION } from "../../config/constants";
-import {
-  ActionKind,
-  useJunoConnection,
-  useProjectData,
-  useStore,
-  useWallet,
-} from "../../contexts/store";
+import { useProjectData, useStore, useWallet } from "../../contexts/store";
 import { useRouter } from "next/router";
 import { fetchData } from "../../utils/fetch";
 import Footer from "../../components/Footer";
@@ -59,10 +53,6 @@ export default function InvestStep3() {
   const canvasRef = useRef({});
   const router = useRouter();
   const wallet = useWallet();
-
-  const junoConnection = useJunoConnection();
-  const client = junoConnection?.getClient();
-  const address = junoConnection?.account;
 
   //------------parse URL for project id----------------------------
   const project_id = ParseParam_ProjectId();
@@ -142,10 +132,10 @@ export default function InvestStep3() {
       toast("Please input amount", ERROR_OPTION);
       return false;
     }
-    if (state.presale == false && parseFloat(investAmount) < 20000) {
-      toast("Input amount for private sale of at least 20,000", ERROR_OPTION);
-      return false;
-    }
+    // if (state.presale == false && parseFloat(investAmount) < 20000) {
+    //   toast("Input amount for private sale of at least 20,000", ERROR_OPTION);
+    //   return false;
+    // }
     return true;
   }
 
@@ -232,21 +222,34 @@ export default function InvestStep3() {
 
     window.localStorage.setItem("invest_date", date);
 
-    // if (project_id == WEFUND_ID) {
     await createSAFTPdf(date);
 
     const tokenInfo = LookForTokenInfo(investChain, investToken);
-    const amount = tokenInfo?.decimals
-      ? Math.floor(parseFloat(investAmount) * 10 ** tokenInfo?.decimals)
-      : 0;
+    let amount = new BigNumber(parseFloat(investAmount));
+console.log(amount.toFixed());
+    amount = amount.multipliedBy(
+      new BigNumber(10).pow(tokenInfo?.decimals ? tokenInfo?.decimals : 0)
+    );
+console.log(amount.toFixed());
+    amount = amount.decimalPlaces(0, 1);
+console.log(amount.toFixed());
 
     try {
+      toast("Please wait", SUCCESS_OPTION);
       await wallet.sendTokens(
-        amount,
+        amount.toFixed(),
         tokenInfo?.denom,
         tokenInfo?.address,
         tokenInfo?.native
       );
+      toast("Success", SUCCESS_OPTION);
+
+      router.push({
+        pathname: "/invest/step4",
+        query: {
+          project_id: project_id,
+        },
+      });
     } catch (e) {
       window.localStorage.removeItem("action");
       toast("Failed", ERROR_OPTION);

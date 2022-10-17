@@ -43,7 +43,7 @@ const initialState: AppContextInterface = {
   address: undefined,
   referralCount: 0,
   referralLink: "",
-  presale: true,
+  presale: false,
   cardInfo: undefined,
 };
 
