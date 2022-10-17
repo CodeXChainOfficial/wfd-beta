@@ -44,10 +44,8 @@ const OtherChainWallet: FunctionComponent<Props> = ({
     let wallet: any;
     if (to == "metamask") wallet = metamask;
     else if (to == "keplr") wallet = keplr;
-    else if (to == "trust") wallet = trust;
     else if (to == "tron") wallet = tronLink;
-    else if (to == "near") wallet = near;
-    else if (to == "elrond") wallet = elrond;
+ 
 
     await wallet.connect();
     dispatch({ type: ActionKind.setWalletType, payload: to });
@@ -63,8 +61,6 @@ const OtherChainWallet: FunctionComponent<Props> = ({
         break;
       case "bsc":
       case "polygon":
-      case "oneledger":
-      case "fantom":
         const ethereum = window.ethereum;
         try {
           await ethereum.request({
@@ -97,12 +93,7 @@ const OtherChainWallet: FunctionComponent<Props> = ({
       case "tron":
         connectTo("tron");
         break;
-      case "near":
-        connectTo("near");
-        break;
-      case "elrond":
-        connectTo("elrond");
-        break;
+
     }
   };
 
@@ -135,10 +126,7 @@ const OtherChainWallet: FunctionComponent<Props> = ({
           <option style={{ backgroundColor: "#1B0645" }}>BSC</option>
           <option style={{ backgroundColor: "#1B0645" }}>Tron</option>
           {/* <option style={{ backgroundColor: "#1B0645" }}>Near</option> */}
-          <option style={{ backgroundColor: "#1B0645" }}>Elrond</option>
           <option style={{ backgroundColor: "#1B0645" }}>Polygon</option>
-          <option style={{ backgroundColor: "#1B0645" }}>OneLedger</option>
-          <option style={{ backgroundColor: "#1B0645" }}>Fantom</option>
         </Select>
       </Box>
       <Box ml={{ base: "0px", md: "0px", lg: "30px" }}>
