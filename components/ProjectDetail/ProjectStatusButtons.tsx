@@ -1,11 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { Flex } from "@chakra-ui/react";
 
-import {
-  isWefundWallet,
-  isCommunityWallet,
-  isBackerWallet,
-} from "../../utils/utility";
+import { isBackerWallet } from "../../utils/utility";
 
 import { ButtonTransition } from "../../components/ImageTransition";
 import { useStore } from "../../contexts/store";
@@ -15,7 +11,7 @@ interface Props {
   WefundApprove: any;
   onNext: any;
   MilestoneVote: any;
-};
+}
 const ProjectStatusButtons: FunctionComponent<Props> = ({
   data,
   WefundApprove,
@@ -26,7 +22,7 @@ const ProjectStatusButtons: FunctionComponent<Props> = ({
   return (
     <>
       <Flex alignSelf={{ base: "center", md: "center", lg: "flex-start" }}>
-        {data.project_status === "WefundVote" && isWefundWallet(state) && (
+        {data.project_status === "WefundVote" && (
           <Flex justify={"center"}>
             <ButtonTransition
               unitid="Approve"

@@ -3,7 +3,6 @@ import { Flex, Text, VStack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 import {
-  isWefundWallet,
   isCommunityWallet,
   isBackerWallet,
   isCreatorWallet,
@@ -43,13 +42,13 @@ const StatusButtons: FunctionComponent<Props> = ({
   const router = useRouter();
 
   return (
-    <VStack spaing="10px">
+    <VStack spacing="10px">
       {activeTab === "MileStoneDelivery" && (
         <Text py={2} color={"gray.400"}>
           Project Milestone step - {parseInt(data.project_milestonestep) + 1}
         </Text>
       )}
-      {activeTab === "WeFundApproval" && isWefundWallet(state) && (
+      {activeTab === "WeFundApproval" && (
         <Flex justify={"center"}>
           <ButtonTransition
             unitid={"Approve" + index}

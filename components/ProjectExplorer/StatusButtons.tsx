@@ -3,7 +3,6 @@ import { HStack, Flex, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 import {
-  isWefundWallet,
   isCommunityWallet,
   isBackerWallet,
   isCreatorWallet,
@@ -44,7 +43,7 @@ const StatusButtons: FunctionComponent<Props> = ({
   const router = useRouter();
   return (
     <HStack spacing="10px">
-      {activeTab === "WeFundApproval" && isWefundWallet(state) && (
+      {activeTab === "WeFundApproval" && (
         <ButtonTransition
           unitid={"Approve" + index}
           selected={false}
