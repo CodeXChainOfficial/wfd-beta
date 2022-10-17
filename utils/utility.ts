@@ -86,11 +86,6 @@ export function GetOneProject(projectData: any, project_id: number) {
   return projectData[index];
 }
 
-export function isWefundWallet(state: any) {
-  if (state.junoConnection?.account == WEFUND_WALLET) return true;
-  return false;
-}
-
 export function isCardHolder(state: any, project_id: number) {
   if (state.cardInfo == undefined) return false;
 

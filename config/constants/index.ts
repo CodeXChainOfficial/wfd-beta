@@ -25,13 +25,12 @@ export const STAKING_CONTRACT = "";
 
 export const WEFUND_JUNO_ADDRESS =
   "juno1gc3lpde7nx8khqfafw3st7j4ptd6qfccu6y04a";
-export const WEFUND_BSC_ADDRESS = "0x0dc488021475739820271d595a624892264ca641";
-export const WEFUND_TRON_WALLET = "TJ512gBWfie4ett3u8nmyYeuZHQXDamcuQ";
-export const WEFUND_POLYGON_WALLET =
-  "0x10411e941395301eecea63bc068383b801e01e0a";
+export const WEFUND_BSC_ADDRESS = "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
+export const WEFUND_TRON_WALLET = "TQzceggoo7S7AoMyiLBVTKwMtN4Q9gdqW4";
 export const WEFUND_TRUST_BNB_WALLET =
   "bnb1na0j6fvjwgxrd4g6stu32wquwgce54msly0tth";
-export const WEFUND_NEAR_WALLET = "staking_treasury.testnet";
+export const WEFUND_NEAR_WALLET =
+  "84f097a62590c92503a32336e8ad4cf166b90ea605b652bd0eb392dc9f76554c";
 export const WEFUND_ELROND_WALLET =
   "erd1whmvknyspkqzhk20m2k3n7q9cypm69l0ezthefnqll9curk8ug5q0lwsn2";
 
