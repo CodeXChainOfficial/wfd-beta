@@ -118,7 +118,9 @@ export const useKeplrWalletStore = create(
     },
     getBalanceString: () => {
       if (get().balance.length > 0) {
-        const balance = get().getBalance().dividedBy(10 ** 6);
+        const balance = get()
+          .getBalance()
+          .dividedBy(10 ** 6);
         return balance.toFixed() + " JUNO";
       }
       return "0 JUNO";
