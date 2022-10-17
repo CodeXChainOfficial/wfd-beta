@@ -51,9 +51,9 @@ const OtherChainWallet: FunctionComponent<Props> = ({
     dispatch({ type: ActionKind.setWalletType, payload: to });
   }
   const chains = CHAINS_CONFIG;
-  const onChangeChain = async (e: any) => {
-    setChain(e.target.value);
-    const chain: string = e.target.value.toLowerCase();
+  const onChangeChain = async (value: string) => {
+    setChain(value);
+    const chain: string = value.toLowerCase();
 
     switch (chain) {
       case "juno":
@@ -97,6 +97,10 @@ const OtherChainWallet: FunctionComponent<Props> = ({
     }
   };
 
+  useEffect(() => {
+    onChangeChain("BSC");
+  }, []);
+
   return (
     <Flex
       direction={{ base: "column", md: "column", lg: "row" }}
@@ -120,7 +124,7 @@ const OtherChainWallet: FunctionComponent<Props> = ({
           w="300px"
           value={chain}
           rounded="md"
-          onChange={onChangeChain}
+          onChange={(e) => onChangeChain(e.target.value)}
         >
           <option style={{ backgroundColor: "#1B0645" }}>Juno</option>
           <option style={{ backgroundColor: "#1B0645" }}>BSC</option>

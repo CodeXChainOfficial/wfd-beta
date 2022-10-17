@@ -8,7 +8,7 @@ import { BigNumber } from "ethers";
 import Web3 from "web3";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3Modal from "web3modal";
-import { AbiItem, Parse } from "web3-utils";
+import { AbiItem } from "web3-utils";
 import { WEFUND_BSC_ADDRESS } from "../config/constants";
 import ERC20_ABI from "../config/erc20.json";
 
@@ -38,7 +38,7 @@ export interface TrustWalletStore {
   readonly getBalance: () => BigNumber;
   readonly getBalanceString: () => string;
   readonly sendTokens: (
-    amount: number,
+    amount: string,
     denom: string,
     account: string,
     native: boolean
@@ -104,7 +104,7 @@ export const useTrustWalletStore = create(
       return get().balance.toString() + "  Trust";
     },
     sendTokens: async (
-      amount: number,
+      amount: string,
       denom: string,
       address: string,
       native: boolean
@@ -118,7 +118,7 @@ export const useTrustWalletStore = create(
         const tx = {
           from: sender,
           to: WEFUND_BSC_ADDRESS,
-          value: amount.toString(),
+          value: amount,
           nonce: nonce,
           // gasLimit: ethers.utils.hexlify(gas_limit), // 100000
           // gasPrice: gas_price,

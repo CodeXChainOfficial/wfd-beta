@@ -91,7 +91,7 @@ export const TOKEN_LIST = [
   {
     chain: "BSC",
     name: "USDT",
-    decimals: 6,
+    decimals: 18,
     native: false,
     address:
       NETWORK == "mainnet"
@@ -101,7 +101,7 @@ export const TOKEN_LIST = [
   {
     chain: "BSC",
     name: "USDC",
-    decimals: 6,
+    decimals: 18,
     native: false,
     address:
       NETWORK == "mainnet"
@@ -111,7 +111,7 @@ export const TOKEN_LIST = [
   {
     chain: "BSC",
     name: "BUSD",
-    decimals: 6,
+    decimals: 18,
     native: false,
     address:
       NETWORK == "mainnet"

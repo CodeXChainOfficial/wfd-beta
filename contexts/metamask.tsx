@@ -36,7 +36,7 @@ export interface MetamaskStore {
   readonly getBalance: () => BigNumber;
   readonly getBalanceString: () => string;
   readonly sendTokens: (
-    amount: number,
+    amount: string,
     denom: string,
     account: string,
     native: boolean
@@ -115,7 +115,7 @@ export const useMetamaskStore = create(
       return balance.toString() + " " + chain;
     },
     sendTokens: async (
-      amount: number,
+      amount: string,
       denom: string,
       address: string,
       native: boolean
@@ -131,7 +131,7 @@ export const useMetamaskStore = create(
         const tx = {
           from: sender,
           to: WEFUND_BSC_ADDRESS,
-          value: amount.toString(),
+          value: amount,
           nonce: nonce,
           // gasLimit: ethers.utils.hexlify(gas_limit), // 100000
           // gasPrice: gas_price,
@@ -142,6 +142,7 @@ export const useMetamaskStore = create(
         const contract = new ethers.Contract(address, ERC20_ABI, signer);
         // const res = await contract.balanceOf(get().account);
         // const val = BigNumber.from(res);
+        console.log(amount)
         await contract.transfer(WEFUND_BSC_ADDRESS, amount);
       }
     },
