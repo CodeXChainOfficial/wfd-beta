@@ -31,7 +31,7 @@ export default function index() {
         position="relative"
         alignItems="left"
         flexDirection="column"
-        height="40vh"
+        height="20vh"
       >
         <Container
           position={"relative"}
@@ -48,7 +48,7 @@ export default function index() {
               letterSpacing={{ base: "0.1em" }}
               textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
             >
-              Welcome Administrator{" "} 
+              Welcome $Administrator{" "} 
               <br/>
               <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
                 WEFUND Dashboard
