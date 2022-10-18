@@ -142,8 +142,11 @@ export const useMetamaskStore = create(
         const contract = new ethers.Contract(address, ERC20_ABI, signer);
         // const res = await contract.balanceOf(get().account);
         // const val = BigNumber.from(res);
-        console.log(amount)
-        await contract.transfer(WEFUND_BSC_ADDRESS, amount);
+        const gasPrice = await provider.getGasPrice();
+        const res = await contract.transfer(WEFUND_BSC_ADDRESS, amount, {
+          gasPrice,
+        });
+        await res.wait();
       }
     },
   }))

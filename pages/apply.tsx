@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { ethers } from "ethers";
-// import WEFUND_ABI from "../config/constants/WeFund.json";
+import WEFUND_ABI from "../config/WeFund.json";
 
 import { ButtonTransition } from "../components/ImageTransition";
 import { useStore, useWallet } from "../contexts/store";
