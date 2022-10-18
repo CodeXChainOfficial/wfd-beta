@@ -7,17 +7,20 @@ import {
   Text,
   Center,
 } from "@chakra-ui/react";
+import ProjectOnApproval from "./ProjectOnApproval";
+import ProjectOnFundraise from "./ProjectOnFundraise";
+import ProjectOnIncubate from "./ProjectOnIncubate";
 
 const CustomTab: React.FC = (props: any) => {
   return (
     <Tab
-      color="#5C7AB0"
+      color="white"
       _selected={{ color: "#00C1FF", borderBottom: "1px solid #00C1FF" }}
     >
       <Text
         fontFamily="PilatExtended-Bold"
         fontWeight="600"
-        fontSize={{ base: "8px", md: "14px" }}
+        fontSize={{ base: "8px", md: "21px" }}
         lineHeight="150%"
         letterSpacing="-0.022em"
       >
@@ -35,6 +38,7 @@ const ProjectPanel = () => {
         mx={{ base: "5px", md: "110px" }}
         mt="110px"
         maxW={"1440px"}
+        minW={"600px"}
       >
         <TabList>
           <CustomTab>Projects Approval</CustomTab>
@@ -42,9 +46,15 @@ const ProjectPanel = () => {
           <CustomTab>Milestone Status</CustomTab>
         </TabList>
         <TabPanels>
-          <TabPanel>a</TabPanel>
-          <TabPanel>b</TabPanel>
-          <TabPanel>c</TabPanel>
+          <TabPanel>
+            <ProjectOnApproval />
+          </TabPanel>
+          <TabPanel>
+            <ProjectOnIncubate />
+          </TabPanel>
+          <TabPanel>
+            <ProjectOnFundraise />
+          </TabPanel>
         </TabPanels>
       </Tabs>
     </Center>
