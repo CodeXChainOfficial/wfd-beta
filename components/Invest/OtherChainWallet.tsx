@@ -45,7 +45,6 @@ const OtherChainWallet: FunctionComponent<Props> = ({
     if (to == "metamask") wallet = metamask;
     else if (to == "keplr") wallet = keplr;
     else if (to == "tron") wallet = tronLink;
- 
 
     await wallet.connect();
     dispatch({ type: ActionKind.setWalletType, payload: to });
@@ -93,7 +92,6 @@ const OtherChainWallet: FunctionComponent<Props> = ({
       case "tron":
         connectTo("tron");
         break;
-
     }
   };
 

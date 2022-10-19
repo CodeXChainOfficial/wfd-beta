@@ -226,13 +226,11 @@ export default function InvestStep3() {
 
     const tokenInfo = LookForTokenInfo(investChain, investToken);
     let amount = new BigNumber(parseFloat(investAmount));
-console.log(amount.toFixed());
-    amount = amount.multipliedBy(
-      new BigNumber(10).pow(tokenInfo?.decimals ? tokenInfo?.decimals : 0)
-    );
-console.log(amount.toFixed());
-    amount = amount.decimalPlaces(0, 1);
-console.log(amount.toFixed());
+    amount = amount
+      .multipliedBy(
+        new BigNumber(10).pow(tokenInfo?.decimals ? tokenInfo?.decimals : 0)
+      )
+      .decimalPlaces(0, 1);
 
     try {
       toast("Please wait", SUCCESS_OPTION);
