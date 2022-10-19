@@ -308,7 +308,7 @@ function GoalType({ children, incubation = false }: FillProp) {
                       color="white"
                       alignContent={"center"}
                     >
-                      Newly Added
+                      Rejected
                     </Text>
                   </Flex>
                 </Stack>
