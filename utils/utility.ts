@@ -5,56 +5,26 @@ import {
   WEFUND_WALLET,
   TOKEN_LIST,
   SUCCESS_OPTION,
-  NETWORK
+  NETWORK,
 } from "../config/constants";
-import { ActionKind } from "../contexts/store";
 
-export function GetProjectStatusString(mode: string) {
-  let projectstatus = "WeFundApproval";
+export function GetProjectStatusString(mode: number) {
+  const projectStatus = [
+    "DocumentValuation",
+    "IntroCall",
+    "IncubationGoalSetup",
+    "IncubationGoal",
+    "MilestoneSetup",
+    "CrowdFundraising",
+    "MilestoneRelease",
+    "Completed",
+  ];
 
-  switch (mode) {
-    case "WefundVote":
-      projectstatus = "WeFundApproval";
-      break;
-    case "Whitelist":
-      projectstatus = "WhitelistOpen";
-      break;
-    case "Fundraising":
-      projectstatus = "Fundraising";
-      break;
-    case "Releasing":
-      projectstatus = "MileStoneDelivery";
-      break;
-    case "Done":
-      projectstatus = "ProjectComplete";
-      break;
-  }
-  return projectstatus;
-}
-export function GetProjectStatus(mode: string) {
-  let projectstatus = "";
-  switch (mode) {
-    case "WeFundApproval":
-      projectstatus = "WefundVote";
-      break;
-    case "WhitelistOpen":
-      projectstatus = "Whitelist";
-      break;
-    case "Fundraising":
-      projectstatus = "Fundraising";
-      break;
-    case "MileStoneDelivery":
-      projectstatus = "Releasing";
-      break;
-    case "ProjectComplete":
-      projectstatus = "Done";
-      break;
-  }
-  return projectstatus;
+  return projectStatus[mode];
 }
 
 export function checkBscConnection(state: any) {
-  const t_chainId = NETWORK == "mainnet"? 0x38 : 0x61;
+  const t_chainId = NETWORK == "mainnet" ? 0x38 : 0x61;
   if (state.walletType != "metamask" || state.wallet.chainId != t_chainId) {
     toast("Please connect to BSC Network");
     return false;

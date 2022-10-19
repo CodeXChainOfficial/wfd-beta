@@ -6,14 +6,11 @@ import WEFUND_ABI from "../config/WeFund.json";
 export function addExtraInfo(projectData: any) {
   if (typeof projectData === "undefined" || projectData == "") return "";
 
-  projectData[WEFUND_ID - 1].backerbacked_amount = "160000000000";
+  projectData[WEFUND_ID - 1].backerbacked_amount = 160000;
   for (let i = 0; i < projectData.length; i++) {
-    const backer_backedAmount = parseInt(projectData[i].backerbacked_amount);
+    const backer_backedAmount = projectData[i].backerbacked_amount;
     projectData[i].backer_backedPercent = Math.floor(
-      (backer_backedAmount /
-        10 ** 6 /
-        parseInt(projectData[i].project_collected)) *
-        100
+      (backer_backedAmount / projectData[i].project_collected) * 100
     );
 
     let released = 0;
@@ -59,11 +56,11 @@ export async function fetchData(
       });
 
     const res = await contract.getProjectInfo();
-
     for (let i = 0; i < res.length; i++) {
       const id = res[i].id.toNumber() - 1;
 
       projectData[id].project_collected = res[i].collected.toNumber();
+      projectData[id].project_status = res[i].status;
       projectData[id].backerbacked_amount = res[i].backed.toNumber();
       projectData[id].backer_states = res[i].backers;
       projectData[id].milestone_states = [];

@@ -7,8 +7,6 @@ import {
   HStack,
   CircularProgress,
   CircularProgressLabel,
-  Divider,
-  Container,
   Spacer,
   chakra,
 } from "@chakra-ui/react";
@@ -17,22 +15,11 @@ import { GetProjectStatusString } from "../../utils/utility";
 
 interface Props {
   data: any;
-  totalBackedMoney: number;
-  totalBackedPercent: number;
 }
 
-const ProjectInformations: FunctionComponent<Props> = ({
-  data,
-  totalBackedMoney,
-  totalBackedPercent,
-}) => {
+const ProjectInformations: FunctionComponent<Props> = ({ data }) => {
   return (
-    <VStack
-      height={{ lg: "400px" }}
-      w="full"
-      paddingLeft={{ lg: "15px" }
-      }
-    >
+    <VStack height={{ lg: "400px" }} w="full" paddingLeft={{ lg: "15px" }}>
       <Text
         mb="32px"
         w="full"
@@ -62,7 +49,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
             fontWeight={"700"}
             fontSize={"18px"}
           >
-            {GetProjectStatusString(data.project_status)}
+            {GetProjectStatusString(data?.project_status)}
           </Text>
         </Flex>
       </HStack>
@@ -83,7 +70,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
             fontWeight={"700"}
             fontSize={"18px"}
           >
-            {data.backer_states?.length}
+            {data?.backer_states?.length}
           </Text>
         </Flex>
       </HStack>
@@ -104,7 +91,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
             fontWeight={"700"}
             fontSize={"18px"}
           >
-            {data.project_collected}
+            {data?.project_collected}
           </Text>
         </Flex>
       </HStack>
@@ -125,7 +112,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
             fontWeight={"700"}
             fontSize={"18px"}
           >
-            {data.project_category}
+            {data?.project_category}
           </Text>
         </Flex>
       </HStack>
@@ -146,7 +133,7 @@ const ProjectInformations: FunctionComponent<Props> = ({
             fontWeight={"700"}
             fontSize={"18px"}
           >
-            {data.project_ecosystem}
+            {data?.project_ecosystem}
           </Text>
         </Flex>
       </HStack>
@@ -171,11 +158,16 @@ const ProjectInformations: FunctionComponent<Props> = ({
         >
           <HStack w="full">
             <VStack alignItems="flex-start" w="full">
-              <Text fontFamily={"Gilroy"} fontWeight="800" fontSize="20px">Progress</Text>
+              <Text fontFamily={"Gilroy"} fontWeight="800" fontSize="20px">
+                Progress
+              </Text>
               <Text fontFamily={"Gilroy"} fontWeight="800" fontSize="30px">
-                <chakra.span color="#69E4FF">{totalBackedMoney}</chakra.span> /{" "}
+                <chakra.span color="#69E4FF">
+                  {data?.backerbacked_amount}
+                </chakra.span>{" "}
+                /{" "}
                 <chakra.span opacity="0.38">
-                  {data.project_collected}
+                  {data?.project_collected}
                 </chakra.span>
               </Text>
             </VStack>
@@ -188,13 +180,13 @@ const ProjectInformations: FunctionComponent<Props> = ({
               }}
             >
               <CircularProgress
-                value={totalBackedPercent}
+                value={data?.backer_backedPercent}
                 p="8px"
                 size="100px"
                 color="#002E87"
               >
                 <CircularProgressLabel color="GRAY">
-                  {totalBackedPercent}%
+                  {data?.backer_backedPercent}%
                 </CircularProgressLabel>
               </CircularProgress>
             </Flex>

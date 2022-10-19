@@ -124,11 +124,7 @@ const Layout = ({ children }: Props) => {
   }, [metamaskWallet, metamaskWallet.initialized]);
 
   useEffect(() => {
-    const fetch = async () => {
-      fetchData(state, dispatch, true);
-    };
-
-    fetch();
+    fetchData(state, dispatch, true);
   }, []);
 
   //-------Near connection--------------------------------------------------
