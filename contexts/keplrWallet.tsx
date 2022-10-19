@@ -46,7 +46,7 @@ export interface KeplrWalletStore {
   readonly getBalance: () => BigNumber;
   readonly getBalanceString: () => string;
   readonly sendTokens: (
-    amount: number,
+    amount: string,
     denom: string,
     account: string,
     native: boolean
@@ -118,13 +118,15 @@ export const useKeplrWalletStore = create(
     },
     getBalanceString: () => {
       if (get().balance.length > 0) {
-        const balance = get().getBalance().dividedBy(10 ** 6);
+        const balance = get()
+          .getBalance()
+          .dividedBy(10 ** 6);
         return balance.toFixed() + " JUNO";
       }
       return "0 JUNO";
     },
     sendTokens: async (
-      amount: number,
+      amount: string,
       denom: string,
       address: string,
       native: boolean
@@ -136,7 +138,7 @@ export const useKeplrWalletStore = create(
       await client?.sendTokens(
         account,
         WEFUND_JUNO_ADDRESS,
-        [{ amount: amount.toString(), denom: denom }],
+        [{ amount: amount, denom: denom }],
         "auto"
       );
     },

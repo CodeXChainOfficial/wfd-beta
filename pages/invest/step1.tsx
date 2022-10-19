@@ -62,16 +62,7 @@ export default function InvestStep1() {
                   display: "inline-block",
                 }}
               ></Box>
-              <Text
-                fontSize={{
-                  base: "12px",
-                  sm: "12px",
-                  md: "14px",
-                  lg: "14px",
-                }}
-              >
-                Step 01
-              </Text>
+              <Text fontSize={{ base: "12px", md: "14px" }}>Step 01</Text>
             </Flex>
             <Box
               style={{
@@ -94,9 +85,7 @@ export default function InvestStep1() {
               <Text
                 fontSize={{
                   base: "12px",
-                  sm: "12px",
                   md: "14px",
-                  lg: "14px",
                 }}
               >
                 Step 02

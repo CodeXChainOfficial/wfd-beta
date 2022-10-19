@@ -1,9 +1,11 @@
 import React, { FunctionComponent, useEffect } from "react";
 import { Box, Flex, Input, Text, Select } from "@chakra-ui/react";
 import { toast } from "react-toastify";
-import { BigNumber, ethers } from "ethers";
-import { CHAINS_CONFIG, ERROR_OPTION, TOKEN_LIST } from "../../config/constants";
-import { InputTransition } from "../ImageTransition";
+import {
+  CHAINS_CONFIG,
+  ERROR_OPTION,
+  TOKEN_LIST,
+} from "../../config/constants";
 
 import { useStore, ActionKind } from "../../contexts/store";
 import { useKeplrWallet } from "../../contexts/keplrWallet";
@@ -42,18 +44,15 @@ const OtherChainWallet: FunctionComponent<Props> = ({
     let wallet: any;
     if (to == "metamask") wallet = metamask;
     else if (to == "keplr") wallet = keplr;
-    else if (to == "trust") wallet = trust;
     else if (to == "tron") wallet = tronLink;
-    else if (to == "near") wallet = near;
-    else if (to == "elrond") wallet = elrond;
 
     await wallet.connect();
     dispatch({ type: ActionKind.setWalletType, payload: to });
   }
   const chains = CHAINS_CONFIG;
-  const onChangeChain = async (e: any) => {
-    setChain(e.target.value);
-    const chain: string = e.target.value.toLowerCase();
+  const onChangeChain = async (value: string) => {
+    setChain(value);
+    const chain: string = value.toLowerCase();
 
     switch (chain) {
       case "juno":
@@ -61,8 +60,6 @@ const OtherChainWallet: FunctionComponent<Props> = ({
         break;
       case "bsc":
       case "polygon":
-      case "oneledger":
-      case "fantom":
         const ethereum = window.ethereum;
         try {
           await ethereum.request({
@@ -95,14 +92,12 @@ const OtherChainWallet: FunctionComponent<Props> = ({
       case "tron":
         connectTo("tron");
         break;
-      case "near":
-        connectTo("near");
-        break;
-      case "elrond":
-        connectTo("elrond");
-        break;
     }
   };
+
+  useEffect(() => {
+    onChangeChain("BSC");
+  }, []);
 
   return (
     <Flex
@@ -115,8 +110,34 @@ const OtherChainWallet: FunctionComponent<Props> = ({
         <Flex>
           <Text mb="20px">Select Chain</Text>
         </Flex>
+        <Select
+          id="chainselect"
+          style={{
+            border: "1.5px solid rgba(255, 255, 255, 0.2)",
+            background: "rgba(0, 0, 0, 0.25)",
+          }}
+          h="45px"
+          shadow="sm"
+          size="sm"
+          w="300px"
+          value={chain}
+          rounded="md"
+          onChange={(e) => onChangeChain(e.target.value)}
+        >
+          <option style={{ backgroundColor: "#1B0645" }}>Juno</option>
+          <option style={{ backgroundColor: "#1B0645" }}>BSC</option>
+          <option style={{ backgroundColor: "#1B0645" }}>Tron</option>
+          {/* <option style={{ backgroundColor: "#1B0645" }}>Near</option> */}
+          <option style={{ backgroundColor: "#1B0645" }}>Polygon</option>
+        </Select>
+      </Box>
+      <Box ml={{ base: "0px", md: "0px", lg: "30px" }}>
+        <Flex mt={{ base: "40px", md: "40px", lg: "0px" }}>
+          <Text mb="20px">TOKENS</Text>
+        </Flex>
+        <Box>
           <Select
-            id="chainselect"
+            id="tokenselect"
             style={{
               border: "1.5px solid rgba(255, 255, 255, 0.2)",
               background: "rgba(0, 0, 0, 0.25)",
@@ -124,50 +145,20 @@ const OtherChainWallet: FunctionComponent<Props> = ({
             h="45px"
             shadow="sm"
             size="sm"
-            w="300px"
-            value={chain}
-            rounded="md"
-            onChange={onChangeChain}
-          >
-            <option style={{ backgroundColor: "#1B0645" }}>Juno</option>
-            <option style={{ backgroundColor: "#1B0645" }}>BSC</option>
-            <option style={{ backgroundColor: "#1B0645" }}>Tron</option>
-            <option style={{ backgroundColor: "#1B0645" }}>Near</option>
-            <option style={{ backgroundColor: "#1B0645" }}>Elrond</option>
-            <option style={{ backgroundColor: "#1B0645" }}>Polygon</option>
-            <option style={{ backgroundColor: "#1B0645" }}>OneLedger</option>
-            <option style={{ backgroundColor: "#1B0645" }}>Fantom</option>
-          </Select>
-      </Box>
-      <Box ml={{ base: "0px", md: "0px", lg: "30px" }}>
-        <Flex mt={{ base: "40px", md: "40px", lg: "0px" }}>
-          <Text mb="20px">TOKENS</Text>
-        </Flex>
-        <Box>
-            <Select
-              id="tokenselect"
-              style={{
-                border: "1.5px solid rgba(255, 255, 255, 0.2)",
-                background: "rgba(0, 0, 0, 0.25)",
-              }}
-              h="45px"
-              shadow="sm"
-              size="sm"
-            selected={false}
+            // selected={false}
             width="300px"
             rounded="md"
-              value={token}
-              rounded="md"
-              onChange={(e) => {
-                setToken(e.target.value);
-              }}
-            >
-              {list.map((token, index) => (
-                <option style={{ backgroundColor: "#1B0645" }} key={index}>
-                  {token.name}
-                </option>
-              ))}
-            </Select>
+            value={token}
+            onChange={(e) => {
+              setToken(e.target.value);
+            }}
+          >
+            {list.map((token, index) => (
+              <option style={{ backgroundColor: "#1B0645" }} key={index}>
+                {token.name}
+              </option>
+            ))}
+          </Select>
         </Box>
       </Box>
     </Flex>

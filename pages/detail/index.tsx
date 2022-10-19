@@ -12,19 +12,15 @@ import ProjectMainButtons from "../../components/ProjectDetail/ProjectMainButton
 import ProjectInformations from "../../components/ProjectDetail/ProjectInformations";
 import ProjectTeamMember from "../../components/ProjectDetail/ProjectTeamMember";
 import ProjectMileStones from "../../components/ProjectDetail/ProjectMilestones";
-import VoteModal from "../../components/ProjectDetail/VoteModal";
 
-import { SUCCESS_OPTION, ERROR_OPTION } from "../../config/constants";
+import { ERROR_OPTION } from "../../config/constants";
 import {
-  checkNetwork,
   GetOneProject,
   ParseParam_ProjectId,
 } from "../../utils/utility";
 import SmokeLeft from "../../components/SmokeLeft";
-import SmokeRight from "../../components/SmokeRight";
 
 export default function ProjectDetail() {
-  // const { state, dispatch } = useStore();
   const router = useRouter();
 
   const [oneprojectData, setOneprojectData] = useState<any>({});
@@ -33,13 +29,9 @@ export default function ProjectDetail() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const projectData = useProjectData();
   const project_id = ParseParam_ProjectId();
-  const [whitelisted, setWhitelisted] = useState(false);
 
   function onNext() {
     router.push("/backproject?project_id=" + oneprojectData.project_id); //-- Should be Back Project
-  }
-  function onWhite() {
-    router.push("/whitelistproject?project_id=" + oneprojectData.project_id); //-- Should be Whitelist Project
   }
 
   //------------fectch project data------------------------------------
@@ -54,34 +46,13 @@ export default function ProjectDetail() {
           toast("Can't fetch Project Data", ERROR_OPTION);
           return;
         }
-        for (let i = 0; i < oneprojectData.milestone_states.length; i++) {
-          if (i < oneprojectData.project_milestonestep) {
-            oneprojectData.milestone_states[i].milestone_statusmessage =
-              "Released";
-          } else if (i == oneprojectData.project_milestonestep) {
-            if (oneprojectData.project_status == "3") {
-              //releasing status
-              oneprojectData.milestone_states[i].milestone_statusmessage =
-                "Voting";
-              oneprojectData.milestone_states[i].milestone_votingavailable =
-                true;
-            } else
-              oneprojectData.milestone_states[i].milestone_statusmessage =
-                "Not yet";
-          } else
-            oneprojectData.milestone_states[i].milestone_statusmessage =
-              "Not yet";
-        }
-console.log(oneprojectData)
+        
+        console.log(oneprojectData)
         setOneprojectData(oneprojectData);
 
         let totalBacked = parseInt(oneprojectData.backerbacked_amount);
         totalBacked /= 10 ** 6;
 
-        const percent = Math.floor(
-          (totalBacked / parseInt(oneprojectData.project_collected)) * 100
-        );
-        setTotalBackedPercent(percent);
         setTotalBackedMoney(totalBacked);
       } catch (e) {
         console.log(e);
@@ -107,7 +78,7 @@ console.log(oneprojectData)
         position="absolute"
         src="/media/Home/bg_coin_2.svg"
       />
-     
+
       <Center zIndex="10">
         <Text
           color="#00A3FF"
@@ -128,7 +99,6 @@ console.log(oneprojectData)
               <ProjectMainButtons
                 data={oneprojectData}
                 onNext={onNext}
-                onWhite={onWhite}
               />
             </Flex>
           </VStack>

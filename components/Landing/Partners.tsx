@@ -45,7 +45,7 @@ const partners = [
 
 export default function Keypartners() {
   return (
-    <Flex direction="column" width="100%" mt="64px">
+    <Flex direction="column" width="100%" mt="24px">
       <Text
         textAlign="center"
         color="#FFFF"

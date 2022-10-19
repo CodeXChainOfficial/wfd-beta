@@ -1,8 +1,7 @@
 import { ethers } from "ethers";
 import { WEFUND_CONTRACT, WEFUND_ID, CHAINS_CONFIG } from "../config/constants";
 import { ActionKind } from "../contexts/store";
-import WEFUND_ABI from "../bsc_contract/build/contracts/WeFund.json";
-import { ROUTER_TOKENS } from "../config/constants/swap";
+import WEFUND_ABI from "../config/WeFund.json";
 
 export function addExtraInfo(projectData: any) {
   if (typeof projectData === "undefined" || projectData == "") return "";
@@ -43,18 +42,14 @@ export async function fetchData(
   if (!force) return { projectData, communityData, configData };
 
   const provider = new ethers.providers.JsonRpcProvider(
-    CHAINS_CONFIG["rinkeby"].rpc
+    CHAINS_CONFIG["bsc_testnet"].rpc
   );
-  const contract = new ethers.Contract(
-    WEFUND_CONTRACT,
-    WEFUND_ABI.abi,
-    provider
-  );
+  const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, provider);
 
   try {
-    console.log("reading")
-    
-    await fetch("/api/fetchProjects")
+    console.log("reading");
+
+    await fetch("/api/projects")
       .then((res) => res.json())
       .then((data) => {
         projectData = data.data;
@@ -71,7 +66,6 @@ export async function fetchData(
       projectData[id].project_collected = res[i].collected.toNumber();
       projectData[id].backerbacked_amount = res[i].backed.toNumber();
       projectData[id].backer_states = res[i].backers;
-      projectData[id].whitelist = res[i].whitelist;
       projectData[id].milestone_states = [];
       projectData[id].teammember_states = JSON.parse(
         projectData[id].teammembers

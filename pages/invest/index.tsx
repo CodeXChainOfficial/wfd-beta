@@ -5,7 +5,10 @@ export default function InvestPage() {
   const router = useRouter();
   useEffect(() => {
     router.push({
-      pathname: "/invest/step0",
+      pathname: "/invest/step1",
+      query: {
+        project_id: 1,
+      },
     });
   }, []);
 }

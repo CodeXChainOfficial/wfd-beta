@@ -141,7 +141,7 @@ export default function UpcomingProject(prop: UpcomingProjectProp) {
 
   return (
     <Box id="Upcoming">
-      <Center marginTop={"48px"}>
+      <Center marginTop={"12px"}>
         {prop.header != null ? (
           prop.header
         ) : (

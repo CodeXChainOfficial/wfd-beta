@@ -18,6 +18,8 @@ import {
 } from "@chakra-ui/react";
 import { IoWalletOutline } from "react-icons/io5";
 import { InputTransition } from "../../components/ImageTransition";
+import MilestoneList from "../../components/OwnerInfo/MilestoneList";
+import MilestoneDetail from "../../components/OwnerInfo/MilestoneDetail";
 
 export default function index() {
   return (
@@ -84,7 +86,11 @@ export default function index() {
                       >
                         WFD Wallet
                       </Text>
-                      <Text fontSize="sm"  color={"rgba(15, 177, 245, 1)"} w={"full"}>
+                      <Text
+                        fontSize="sm"
+                        color={"rgba(15, 177, 245, 1)"}
+                        w={"full"}
+                      >
                         wfdvs1r.....5jzx
                       </Text>
                     </Flex>
@@ -119,8 +125,8 @@ export default function index() {
                         h="12px"
                       />
                       <Text
-            color={"rgba(15, 177, 245, 1)"}
-            ml="8px"
+                        color={"rgba(15, 177, 245, 1)"}
+                        ml="8px"
                         fontFamily="Montserrat"
                         fontSize="14px"
                         fontWeight="600"
@@ -131,8 +137,8 @@ export default function index() {
                     </Flex>
                     <Flex>
                       <Text
-            color={"rgba(15, 177, 245, 1)"}
-            ml="8px"
+                        color={"rgba(15, 177, 245, 1)"}
+                        ml="8px"
                         fontFamily="Montserrat"
                         fontSize="14px"
                         fontWeight="600"
@@ -153,8 +159,8 @@ export default function index() {
                       />
                       <Flex direction="column" ml="16px">
                         <Text
-            color={"rgba(15, 177, 245, 1)"}
-            fontFamily="Montserrat"
+                          color={"rgba(15, 177, 245, 1)"}
+                          fontFamily="Montserrat"
                           fontSize="14px"
                           fontWeight="600"
                           w={"full"}
@@ -317,12 +323,12 @@ export default function index() {
                   </BoxContainer>
                   <Center mt="20px">
                     <Text
-                          color={"rgba(15, 177, 245, 1)"}
-                          fontFamily={"Montserrat"}
+                      color={"rgba(15, 177, 245, 1)"}
+                      fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Registration
+                      Milestone Set
                     </Text>
                   </Center>
                 </Flex>
@@ -341,12 +347,12 @@ export default function index() {
                   </BoxContainer>
                   <Center mt="20px">
                     <Text
-                          color={"rgba(15, 177, 245, 1)"}
-                          fontFamily={"Montserrat"}
+                      color={"rgba(15, 177, 245, 1)"}
+                      fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Selection
+                      Fundraising
                     </Text>
                   </Center>
                 </Flex>
@@ -365,12 +371,22 @@ export default function index() {
                   </BoxContainer>
                   <Center mt="20px">
                     <Text
-                          color={"rgba(15, 177, 245, 1)"}
-                          fontFamily={"Montserrat"}
+                      color={"rgba(15, 177, 245, 1)"}
+                      fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Set Goal
+                      Milestone 
+                    </Text>
+                  </Center>
+                  <Center>
+                    <Text
+                      color={"rgba(15, 177, 245, 1)"}
+                      fontFamily={"Montserrat"}
+                      fontWeight="600"
+                      fontSize="16px"
+                    >
+                      Begins
                     </Text>
                   </Center>
                 </Flex>
@@ -389,195 +405,39 @@ export default function index() {
                   </BoxContainer>
                   <Center mt="20px">
                     <Text
-                          color={"rgba(15, 177, 245, 1)"}
-                          fontFamily={"Montserrat"}
+                      color={"rgba(15, 177, 245, 1)"}
+                      fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Approved
+                      Milestone
                     </Text>
                   </Center>
                   <Center>
                     <Text
-                          color={"rgba(15, 177, 245, 1)"}
-                          fontFamily={"Montserrat"}
+                      color={"rgba(15, 177, 245, 1)"}
+                      fontFamily={"Montserrat"}
                       fontWeight="600"
                       fontSize="16px"
                     >
-                      Publish
+                      Completed
                     </Text>
                   </Center>
                 </Flex>
               </Flex>
-              <Text
-                mt="16px"
-                fontFamily={"Montserrat"}
-                fontWeight="800"
-                fontSize="20px"
+              <Flex
+                w="full"
+                direction={"column"}
+                py={"45px"}
+                justifyContent={{
+                  base: "center",
+                  sm: "center",
+                  md: "center",
+                  lg: "flex-start",
+                }}
               >
-                Set Project Incubation Goal
-              </Text>
-              <Flex mt="36px">
-                <Box bg="rgba(18, 13, 48, 1)" borderRadius="10px">
-                  <Flex direction="column" px="64px" py="16px">
-                    <Flex>
-                      <Center>
-                        <Text
-                          fontFamily={"Montserrat"}
-                          fontWeight="600"
-                          fontSize="16px"
-                          whiteSpace="nowrap"
-                        >
-                          Goal Name
-                        </Text>
-                      </Center>
-                      <InputGroup
-                        ml="32px"
-                        style={{ background: "rgba(0, 0, 0, 0.25)" }}
-                        size="sm"
-                        border="0px"
-                      >
-                        <Input
-                          style={{
-                            border: " 1.5px solid rgba(255, 255, 255, 0.2)",
-                            background: "transparent",
-                          }}
-                          type="text"
-                          h="42px"
-                          rounded="md"
-                          placeholder="Type Name"
-                        />
-                      </InputGroup>
-                    </Flex>
-                    <Flex justifyContent="space-between" w="full" mt="24px">
-                      <Flex direction="column" w="50%">
-                        <Text
-                          fontFamily={"Montserrat"}
-                          fontWeight="600"
-                          fontSize="16px"
-                          whiteSpace="nowrap"
-                        >
-                          Start Date
-                        </Text>
-                        <Box mt="16px" w="full">
-                          <InputTransition height="55px" rounded="md">
-                            <InputGroup
-                              size="xs"
-                              style={{ background: "rgba(0, 0, 0, 0.25)" }}
-                            >
-                              <InputLeftElement
-                                pointerEvents="none"
-                                fontSize="1.2em"
-                              />
-                              <Input
-                                style={{
-                                  background: "rgba(0, 0, 0, 0.25)",
-                                  border:
-                                    " 1.5px solid rgba(255, 255, 255, 0.2)",
-                                }}
-                                type="date"
-                                h="55px"
-                                focusBorderColor="purple.800"
-                                rounded="md"
-                              />
-                            </InputGroup>
-                          </InputTransition>
-                        </Box>
-                      </Flex>
-                      <Flex direction="column" ml="48px" w="50%">
-                        <Text
-                          fontFamily={"Montserrat"}
-                          fontWeight="600"
-                          fontSize="16px"
-                          whiteSpace="nowrap"
-                        >
-                          End Date
-                        </Text>
-                        <Box mt="16px" w="full">
-                          <InputTransition height="55px" rounded="md">
-                            <InputGroup
-                              size="xs"
-                              style={{ background: "rgba(0, 0, 0, 0.25)" }}
-                            >
-                              <InputLeftElement
-                                pointerEvents="none"
-                                fontSize="1.2em"
-                              />
-                              <Input
-                                style={{
-                                  background: "rgba(0, 0, 0, 0.25)",
-                                  border:
-                                    " 1.5px solid rgba(255, 255, 255, 0.2)",
-                                }}
-                                type="date"
-                                h="55px"
-                                focusBorderColor="purple.800"
-                                rounded="md"
-                              />
-                            </InputGroup>
-                          </InputTransition>
-                        </Box>
-                      </Flex>
-                    </Flex>
-                    <Flex mt="24px">
-                      <Center>
-                        <Text
-                          fontFamily={"Montserrat"}
-                          fontWeight="600"
-                          fontSize="16px"
-                          whiteSpace="nowrap"
-                        >
-                          Goal Details
-                        </Text>
-                      </Center>
-                      <InputGroup
-                        ml="32px"
-                        style={{ background: "rgba(0, 0, 0, 0.25)" }}
-                        size="sm"
-                        border="0px"
-                      >
-                        <Input
-                          style={{
-                            border: " 1.5px solid rgba(255, 255, 255, 0.2)",
-                            background: "transparent",
-                          }}
-                          type="text"
-                          h="42px"
-                          rounded="md"
-                          placeholder="Details of Goal"
-                        />
-                      </InputGroup>
-                    </Flex>
-                  </Flex>
-                </Box>
-              </Flex>
-              <Flex w="full" justifyContent={{
-                base: "center",
-                sm: "center",
-                md: "center",
-                lg: "flex-end",
-              }}>
-                <Box px="24px">
-                  <Button
-                    mt="24px"
-                    mb={{ base: "20px", md: "5px" }}
-                    w="120px"
-                    h="50px"
-                    bg={
-                      "linear-gradient(180deg, rgba(0, 193, 255, 0.1) 0%, rgba(0, 193, 255, 0.1) 100%)"
-                    }
-                    border="1.5px solid #00A3FF"
-                    rounded="33px"
-                  >
-                    <Text
-                      fontFamily={"Gilroy"}
-                      fontWeight="800"
-                      fontSize="20px"
-                    >
-                      Add +
-                    </Text>
-                  </Button>
-                </Box>
+                <Text fontWeight={"600"}>Milestone List</Text>
+                <MilestoneList />
               </Flex>
             </Flex>
           </Stack>
