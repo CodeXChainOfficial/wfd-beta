@@ -172,7 +172,7 @@ export default function viewproject() {
                         fontWeight="600"
                         w={"full"}
                       >
-                        Voting Power
+                        Project Type
                       </Text>
                       <Text
                         mt="14px"
@@ -181,7 +181,7 @@ export default function viewproject() {
                         fontWeight="950"
                         w={"full"}
                       >
-                        XXX
+                        Incubation
                       </Text>
                     </Flex>
                   </Flex>
@@ -201,7 +201,7 @@ export default function viewproject() {
                         fontWeight="600"
                         w={"full"}
                       >
-                        Backer
+                        Remaining Step to Pass
                       </Text>
                       <Text
                         mt="14px"
@@ -210,7 +210,7 @@ export default function viewproject() {
                         fontWeight="950"
                         w={"full"}
                       >
-                        XXX
+                        2 Goals
                       </Text>
                     </Flex>
                   </Flex>
@@ -234,7 +234,7 @@ export default function viewproject() {
                         fontWeight="600"
                         w={"full"}
                       >
-                        Crypto Address
+                        Goal Set
                       </Text>
                       <Text
                         mt="14px"
@@ -243,7 +243,7 @@ export default function viewproject() {
                         fontWeight="950"
                         w={"full"}
                       >
-                        XXX
+                        4 Goals
                       </Text>
                     </Flex>
                   </Flex>
@@ -285,7 +285,7 @@ export default function viewproject() {
               p="24px"
             >
               <Text fontFamily={"Montserrat"} fontWeight="800" fontSize="20px">
-                Project Registration Status
+                Project Journey Status
               </Text>
               <Flex mt="36px">
                 <Flex direction="column">
@@ -402,23 +402,23 @@ export default function viewproject() {
               </Text>
               <IfProjectApplication />
               <Text
-                mt="16px"
+                mt="36px"
                 fontFamily={"Montserrat"}
                 fontWeight="800"
                 fontSize="20px"
               >
-                Project Goal
+                Project Goal - Ongoing Progresses
               </Text>
-              <ProjectInfoListGoal/>
+              <ProjectInfoListGoal  incubation={true}/>
               <Text
                 mt="16px"
                 fontFamily={"Montserrat"}
                 fontWeight="800"
                 fontSize="20px"
               >
-                Project Milestone
+                Project Milestone - Creation
               </Text>
-              <ProjectInfoListMilestone incubation={true}/>
+              <ProjectInfoListMilestone/>
             </Flex>
           </Stack>
         </Box>
