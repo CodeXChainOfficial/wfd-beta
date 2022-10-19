@@ -8,7 +8,8 @@ import {
   Spacer,
   VStack,
   chakra,
-  Flex, Divider,
+  Flex,
+  Divider,
 } from "@chakra-ui/react";
 
 export default function ProjectTeamMember({ data }: { data: any }) {
@@ -32,7 +33,6 @@ export default function ProjectTeamMember({ data }: { data: any }) {
           overflowY="auto"
           w="full"
           backgroundColor="#002E87"
-          
           borderRadius="10px"
           position="relative"
           m="12px"
@@ -42,7 +42,11 @@ export default function ProjectTeamMember({ data }: { data: any }) {
         >
           {data?.teammember_states?.map((member, index, row) => (
             <>
-              <HStack pt="16px" pb={index + 1 !== row.length ? "16px" : "0px"} key={index}>
+              <HStack
+                pt="16px"
+                pb={index + 1 !== row.length ? "16px" : "0px"}
+                key={index}
+              >
                 <Avatar size="md" name={member.teammember_name} mr="16px" />
                 <Flex direction="column">
                   <Text fontFamily={"Gilroy"} fontWeight="800" fontSize="24px">
@@ -52,10 +56,6 @@ export default function ProjectTeamMember({ data }: { data: any }) {
                     {member.teammember_role}
                   </Text>
                 </Flex>
-                {/* <Spacer />
-              <Text fontSize="12px" alignSelf="flex-end">
-                <chakra.span color="#48CCFF">{member.teammember_description.slice(0,100)}</chakra.span>
-              </Text> */}
               </HStack>
               {index + 1 !== row.length ? <Divider /> : null}
             </>

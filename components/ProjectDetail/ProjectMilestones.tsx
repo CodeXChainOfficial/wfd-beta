@@ -70,7 +70,10 @@ export default function ProjectMileStones({
                 <Td>{milestone.milestone_amount}</Td>
                 <Td>
                   {milestone.milestone_votingavailable && (
-                    <Button onClick={onOpen} bgGradient={"linear(#21C9FF, #1383D4)"}>
+                    <Button
+                      onClick={onOpen}
+                      bgGradient={"linear(#21C9FF, #1383D4)"}
+                    >
                       Vote &amp; Details
                     </Button>
                   )}

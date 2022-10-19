@@ -30,7 +30,7 @@ export default function Launchpad() {
       >
         <ServiceList />
       </Box>
-      <Box height={{ base: "0px",'2xl':"100px" }} />
+      <Box height={{ base: "0px", md: "100px" }} />
       <UpcomingProject
         header={
           <Text
@@ -40,7 +40,7 @@ export default function Launchpad() {
             fontWeight={"600"}
           >
             PROJECTS ON <chakra.span color={"#0FB1F5"}>WEFUND</chakra.span>
-          </Text> 
+          </Text>
         }
       />
       <MediaAppear />

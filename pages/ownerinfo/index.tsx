@@ -7,9 +7,6 @@ import {
   Center,
   Flex,
   Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Link,
   SimpleGrid,
   Stack,
@@ -17,11 +14,14 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { IoWalletOutline } from "react-icons/io5";
-import { InputTransition } from "../../components/ImageTransition";
 import MilestoneList from "../../components/OwnerInfo/MilestoneList";
-import MilestoneDetail from "../../components/OwnerInfo/MilestoneDetail";
+import { useOneProjectData } from "../../contexts/store";
+import { ParseParam_ProjectId } from "../../utils/utility";
 
 export default function index() {
+  const project_id = ParseParam_ProjectId();
+  const data = useOneProjectData(project_id);
+
   return (
     <PageLayout
       title=""
