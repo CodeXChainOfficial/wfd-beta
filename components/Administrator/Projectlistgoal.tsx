@@ -119,9 +119,9 @@ function GoalType({ children, incubation = false }: FillProp) {
         goal: "Goal 2",
         goaldetail:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-        status: "Pending",
+        status: "Done",
         statusdetailed: "Approved at 10/12/22 12:25 PM",
-        statusapproval: "Approved",
+        statusapproval: "Voting",
         vote: "0",
         yesvote: "0",
         novote: "0",
