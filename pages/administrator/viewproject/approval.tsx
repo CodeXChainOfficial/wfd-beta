@@ -1,5 +1,5 @@
-import PageLayout from "../../components/PageLayout";
-import Footer from "../../components/Footer";
+import PageLayout from "../../../components/PageLayout";
+import Footer from "../../../components/Footer";
 import React from "react";
 import {
   Accordion,
@@ -26,21 +26,23 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { IoWalletOutline } from "react-icons/io5";
-import { InputTransition } from "../../components/ImageTransition";
-import { CheckIcon } from "@chakra-ui/icons";
-import ProjectApplication from "../../components/OwnerInfo/ProjectApplication";
-import GoalList from "../../components/OwnerInfo/OwnerIncubationGoal";
-import IfProjectApplication from "../../components/Administrator/IfProjectApplication";
-import ProjectInfoListGoal from "../../components/Administrator/Projectlistgoal";
-import ProjectInfoListMilestone from "../../components/Administrator/Projectlistmilesone";
+import IfProjectApplication from "../../../components/Administrator/ViewProject/ProjectApplication";
+import { useOneProjectData, useProjectData } from "../../../contexts/store";
+import { ParseParam_ProjectId, ShortenAddress } from "../../../utils/utility";
+import { useMetamaskWallet } from "../../../contexts/metamask";
 
-export default function viewproject() {
+export default function ViewProjectApproval() {
+  const projectID = ParseParam_ProjectId();
+  const data = useOneProjectData(projectID);
+  const wallet = useMetamaskWallet();
+  const address = wallet.account;
+
   return (
     <PageLayout
       title=""
-      subTitle1="Welcome Back Admin to"
-      subTitle2=""
-      subTitle3="&nbsp;Manage $Project"
+      subTitle1="Welcome Back Admin to "
+      subTitle2=" "
+      subTitle3={` Manage ${data?.project_title}`}
     >
       <Box width={"100%"}>
         <Box color={"white"} pb={"5%"} pt="64px">
@@ -49,8 +51,6 @@ export default function viewproject() {
             justifyContent="center"
             direction={{
               base: "column",
-              sm: "column",
-              md: "column",
               lg: "row",
             }}
           >
@@ -59,11 +59,9 @@ export default function viewproject() {
               marginBottom={6}
               align={{
                 base: "center",
-                sm: "center",
-                md: "center",
                 lg: "unset",
               }}
-              w={{ base: "100%", sm: "100%", md: "100%", lg: "450px" }}
+              w={{ base: "100%", lg: "450px" }}
               mx={[0, 0, 0]}
             >
               <Box
@@ -103,7 +101,7 @@ export default function viewproject() {
                       color={"rgba(15, 177, 245, 1)"}
                       w={"full"}
                     >
-                      wfdvs1r.....5jzx
+                      {ShortenAddress(address)}
                     </Text>
                   </Flex>
                 </Flex>
@@ -401,24 +399,6 @@ export default function viewproject() {
                 Project Information
               </Text>
               <IfProjectApplication />
-              <Text
-                mt="36px"
-                fontFamily={"Montserrat"}
-                fontWeight="800"
-                fontSize="20px"
-              >
-                Project Goal - Ongoing Progresses
-              </Text>
-              <ProjectInfoListGoal  incubation={true}/>
-              <Text
-                mt="16px"
-                fontFamily={"Montserrat"}
-                fontWeight="800"
-                fontSize="20px"
-              >
-                Project Milestone - Creation
-              </Text>
-              <ProjectInfoListMilestone/>
             </Flex>
           </Stack>
         </Box>

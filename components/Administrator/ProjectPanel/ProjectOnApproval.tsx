@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Flex,
-  Text,
   Button,
   Table,
   Thead,
@@ -9,40 +8,16 @@ import {
   Tr,
   Th,
   Td,
-  TableCaption,
   Image,
   Box,
   Link,
 } from "@chakra-ui/react";
+import { useProjectData } from "../../../contexts/store";
+import { GetProjectStatusText } from "../../../utils/utility";
 
-const projectsincubate = [
-  {
-    name: "project name",
-    img: "",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    status: "Not Started",
-    progress: "Voting Goal",
-    link: "",
-  },
-  {
-    name: "project name 2",
-    img: "",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    status: "Rejected",
-    progress: "Voting Goal",
-    link: "",
-  },
-  {
-    name: "project name 3",
-    img: "",
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-    status: "Approved",
-    progress: "Voting Goal",
-    link: "",
-  },
-];
+export default function ProjectOnApproval() {
+  const projectData = useProjectData();
 
-export default function ProjectOnIncubate() {
   return (
     <Flex
       w="100%"
@@ -72,7 +47,7 @@ export default function ProjectOnIncubate() {
             </Tr>
           </Thead>
           <Tbody bg={"#130A49"} borderRadius={"10px 10px 0px 0px"}>
-            {projectsincubate.map((item, index) => (
+            {projectData.map((item, index) => (
               <Tr key={index}>
                 <Td>
                   <Flex
@@ -87,28 +62,43 @@ export default function ProjectOnIncubate() {
                     <Image
                       width="80%"
                       height="80%"
-                      src={item.img}
+                      src={item.project_logo}
                       borderRadius="50%"
                     />
                   </Flex>
                 </Td>
-                <Td minW={"200px"}>{item.name}</Td>
-                <Td maxW={"300px"}>{item.desc}</Td>
+                <Td minW={"200px"}>{item.project_title}</Td>
+                <Td maxW={"300px"}>
+                  {item.project_description.slice(0, 100)}...
+                </Td>
                 <Td>
                   <Flex minW={"120px"}>
-                    {item.status == "Not Started" && <ProgressIcon />}
-                    {item.status == "Rejected" && (
-                      <ProgressIcon rejected={true} />
+                    {/* {item.status == "Not Started" && <ProgressIcon />} */}
+                    {item.project_status <= 2 && item.rejected == true && (
+                      <>
+                        <ProgressIcon rejected={true} />
+                        Rejected
+                      </>
                     )}
-                    {item.status == "Approved" && (
-                      <ProgressIcon approved={true} />
+                    {item.project_status <= 2 && item.rejected == false && (
+                      <>
+                        <ProgressIcon voting={true} />
+                        Voting
+                      </>
                     )}
-                    {item.status}
+                    {item.project_status > 2 && (
+                      <>
+                        <ProgressIcon approved={true} />
+                        Approved
+                      </>
+                    )}
                   </Flex>
                 </Td>
-                <Td>{item.progress}</Td>
+                <Td>{GetProjectStatusText(item.project_status)}</Td>
                 <Td>
-                  <Link href={item.link}>
+                  <Link
+                    href={`/administrator/viewproject/approval?project_id=${item.project_id}`}
+                  >
                     <Button
                       colorScheme="cyan"
                       color="blue.200"
@@ -135,7 +125,7 @@ interface FillProp {
   voting?: boolean;
 }
 
-function StatusLight({
+export function StatusLight({
   children,
   going = false,
   ended = false,
@@ -207,7 +197,7 @@ function StatusLight({
     );
   }
 }
-function ProgressIcon({
+export function ProgressIcon({
   children,
   approved = false,
   rejected = false,

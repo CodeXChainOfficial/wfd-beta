@@ -56,11 +56,13 @@ export async function fetchData(
       });
 
     const res = await contract.getProjectInfo();
+
     for (let i = 0; i < res.length; i++) {
       const id = res[i].id.toNumber() - 1;
 
       projectData[id].project_collected = res[i].collected.toNumber();
       projectData[id].project_status = res[i].status;
+      projectData[id].rejected = res[i].rejected;
       projectData[id].backerbacked_amount = res[i].backed.toNumber();
       projectData[id].backer_states = res[i].backers;
       projectData[id].milestone_states = [];

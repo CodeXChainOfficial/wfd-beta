@@ -8,7 +8,7 @@ import {
   NETWORK,
 } from "../config/constants";
 
-export function GetProjectStatusString(mode: number) {
+export function GetProjectStatusText(mode: number) {
   const projectStatus = [
     "DocumentValuation",
     "IntroCall",

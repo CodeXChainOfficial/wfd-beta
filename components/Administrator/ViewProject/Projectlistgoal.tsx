@@ -115,47 +115,47 @@ function GoalType({ children, incubation = false }: FillProp) {
       end: "15 / 08 / 22",
     },
     {
-        project: "project name",
-        goal: "Goal 2",
-        goaldetail:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-        status: "Pending",
-        statusdetailed: "Approved at 10/12/22 12:25 PM",
-        statusapproval: "Approved",
-        vote: "0",
-        yesvote: "0",
-        novote: "0",
-        start: "20 / 07 / 22",
-        end: "15 / 08 / 22",
-      },
-      {
-        project: "project name",
-        goal: "Goal 3",
-        goaldetail:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-        status: "Rejected",
-        statusdetailed: "Approved at 10/12/22 12:25 PM",
-        statusapproval: "Approved",
-        vote: "0",
-        yesvote: "0",
-        novote: "0",
-        start: "20 / 07 / 22",
-        end: "15 / 08 / 22",
-      },
-      {
-        project: "project name",
-        goal: "Goal 4",
-        goaldetail:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
-        status: "Pending",
-        statusdetailed: "Approved at 10/12/22 12:25 PM",
-        statusapproval: "Approved",
-        vote: "0",
-        yesvote: "0",
-        novote: "0",
-        start: "20 / 07 / 22",
-        end: "15 / 08 / 22",
-      },
+      project: "project name",
+      goal: "Goal 2",
+      goaldetail:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+      status: "Pending",
+      statusdetailed: "Approved at 10/12/22 12:25 PM",
+      statusapproval: "Approved",
+      vote: "0",
+      yesvote: "0",
+      novote: "0",
+      start: "20 / 07 / 22",
+      end: "15 / 08 / 22",
+    },
+    {
+      project: "project name",
+      goal: "Goal 3",
+      goaldetail:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+      status: "Rejected",
+      statusdetailed: "Approved at 10/12/22 12:25 PM",
+      statusapproval: "Approved",
+      vote: "0",
+      yesvote: "0",
+      novote: "0",
+      start: "20 / 07 / 22",
+      end: "15 / 08 / 22",
+    },
+    {
+      project: "project name",
+      goal: "Goal 4",
+      goaldetail:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+      status: "Pending",
+      statusdetailed: "Approved at 10/12/22 12:25 PM",
+      statusapproval: "Approved",
+      vote: "0",
+      yesvote: "0",
+      novote: "0",
+      start: "20 / 07 / 22",
+      end: "15 / 08 / 22",
+    },
   ];
   if (incubation) {
     return (
@@ -581,7 +581,8 @@ function GoalType({ children, incubation = false }: FillProp) {
                         )}
                         {item.status == "Approved" && (
                           <ProgressIcon approved={true} />
-                        )} <Text>{item.status}</Text>
+                        )}{" "}
+                        <Text>{item.status}</Text>
                       </Flex>
                     </Td>
                     <Td>
@@ -609,10 +610,7 @@ function GoalType({ children, incubation = false }: FillProp) {
                               <ModalBody>
                                 <Text>Goal Detail</Text>
                                 <Text>{item.goaldetail}</Text>
-                                <Button
-                                  variant="solid"
-                                  colorScheme="teal"
-                                >
+                                <Button variant="solid" colorScheme="teal">
                                   Yes
                                 </Button>
                                 <Button variant="solid" colorScheme="red">

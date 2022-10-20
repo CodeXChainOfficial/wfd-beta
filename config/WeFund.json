@@ -543,9 +543,21 @@
             "type": "uint256"
           },
           {
-            "internalType": "address[]",
+            "components": [
+              {
+                "internalType": "address",
+                "name": "addr",
+                "type": "address"
+              },
+              {
+                "internalType": "bool",
+                "name": "vote",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct WeFund.Vote[]",
             "name": "wefundVotes",
-            "type": "address[]"
+            "type": "tuple[]"
           },
           {
             "components": [
@@ -617,14 +629,31 @@
             "type": "tuple[]"
           },
           {
-            "internalType": "address[]",
+            "components": [
+              {
+                "internalType": "address",
+                "name": "addr",
+                "type": "address"
+              },
+              {
+                "internalType": "bool",
+                "name": "vote",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct WeFund.Vote[]",
             "name": "backerVotes",
-            "type": "address[]"
+            "type": "tuple[]"
           },
           {
             "internalType": "uint256",
             "name": "milestoneVotesIndex",
             "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "rejected",
+            "type": "bool"
           }
         ],
         "internalType": "struct WeFund.ProjectInfo[]",

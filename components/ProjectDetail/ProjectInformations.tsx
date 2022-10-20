@@ -11,7 +11,7 @@ import {
   chakra,
 } from "@chakra-ui/react";
 
-import { GetProjectStatusString } from "../../utils/utility";
+import { GetProjectStatusText } from "../../utils/utility";
 
 interface Props {
   data: any;
@@ -49,7 +49,7 @@ const ProjectInformations: FunctionComponent<Props> = ({ data }) => {
             fontWeight={"700"}
             fontSize={"18px"}
           >
-            {GetProjectStatusString(data?.project_status)}
+            {GetProjectStatusText(data?.project_status)}
           </Text>
         </Flex>
       </HStack>

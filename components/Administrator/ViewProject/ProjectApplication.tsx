@@ -4,9 +4,6 @@ import {
   Divider,
   Flex,
   Image,
-  Table,
-  Tbody,
-  Td,
   Text,
   Th,
   Thead,
@@ -23,6 +20,7 @@ import {
   ModalHeader,
 } from "@chakra-ui/react";
 import React from "react";
+import { ProgressIcon } from "../ProjectPanel/ProjectOnApproval";
 
 const projectsinfo = [
   {
@@ -112,7 +110,14 @@ export default function IfProjectApplication() {
                 <Text>{item.document}</Text>
                 {item.document == "Voting" && (
                   <>
-                    <Button ml="12" colorScheme={"linkedin"}  variant='outline' onClick={onOpen}>Vote</Button>
+                    <Button
+                      ml="12"
+                      colorScheme={"linkedin"}
+                      variant="outline"
+                      onClick={onOpen}
+                    >
+                      Vote
+                    </Button>
                     <Modal
                       isCentered
                       onClose={onClose}
@@ -126,8 +131,12 @@ export default function IfProjectApplication() {
                         </ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
-                          <Button variant="solid" colorScheme='teal' colorScheme='teal'>Yes</Button>
-                          <Button variant="solid" colorScheme='red'>No</Button>
+                          <Button variant="solid" colorScheme="teal">
+                            Yes
+                          </Button>
+                          <Button variant="solid" colorScheme="red">
+                            No
+                          </Button>
                           <Button colorScheme="blue" mr={3} onClick={onClose}>
                             Close
                           </Button>
@@ -150,16 +159,24 @@ export default function IfProjectApplication() {
                 {item.introduction == "Pending" && <ProgressIcon />}
                 {item.introduction == "Rejected" && (
                   <ProgressIcon rejected={true} />
-                )} {item.introduction == "Voting" && (
-                    <ProgressIcon voting={true} />
-                  )}
+                )}{" "}
+                {item.introduction == "Voting" && (
+                  <ProgressIcon voting={true} />
+                )}
                 {item.introduction == "Approved" && (
                   <ProgressIcon approved={true} />
                 )}
                 <Text>{item.introduction}</Text>
                 {item.introduction == "Voting" && (
                   <>
-                    <Button ml="12" colorScheme={"linkedin"}  variant='outline' onClick={onOpen}>Vote</Button>
+                    <Button
+                      ml="12"
+                      colorScheme={"linkedin"}
+                      variant="outline"
+                      onClick={onOpen}
+                    >
+                      Vote
+                    </Button>
                     <Modal
                       isCentered
                       onClose={onClose}
@@ -173,8 +190,12 @@ export default function IfProjectApplication() {
                         </ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
-                          <Button variant="solid" colorScheme='teal'>Yes</Button>
-                          <Button variant="solid" colorScheme='red'>No</Button>
+                          <Button variant="solid" colorScheme="teal">
+                            Yes
+                          </Button>
+                          <Button variant="solid" colorScheme="red">
+                            No
+                          </Button>
                           <Button colorScheme="blue" mr={3} onClick={onClose}>
                             Close
                           </Button>
@@ -198,16 +219,21 @@ export default function IfProjectApplication() {
                 {item.discussion == "Rejected" && (
                   <ProgressIcon rejected={true} />
                 )}
-                 {item.discussion == "Voting" && (
-                  <ProgressIcon voting={true} />
-                )}
+                {item.discussion == "Voting" && <ProgressIcon voting={true} />}
                 {item.discussion == "Approved" && (
                   <ProgressIcon approved={true} />
                 )}
                 <Text>{item.discussion}</Text>
                 {item.discussion == "Voting" && (
                   <>
-                    <Button ml="12" colorScheme={"linkedin"}  variant='outline' onClick={onOpen}>Vote</Button>
+                    <Button
+                      ml="12"
+                      colorScheme={"linkedin"}
+                      variant="outline"
+                      onClick={onOpen}
+                    >
+                      Vote
+                    </Button>
                     <Modal
                       isCentered
                       onClose={onClose}
@@ -221,8 +247,12 @@ export default function IfProjectApplication() {
                         </ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
-                          <Button variant="solid" colorScheme='teal'>Yes</Button>
-                          <Button variant="solid" colorScheme='red'>No</Button>
+                          <Button variant="solid" colorScheme="teal">
+                            Yes
+                          </Button>
+                          <Button variant="solid" colorScheme="red">
+                            No
+                          </Button>
                           <Button colorScheme="blue" mr={3} onClick={onClose}>
                             Close
                           </Button>
@@ -247,9 +277,16 @@ export default function IfProjectApplication() {
                 {item.goals == "Voting" && <ProgressIcon voting={true} />}
                 {item.goals == "Approved" && <ProgressIcon approved={true} />}
                 <Text>{item.goals}</Text>
-                {item.goals== "Voting" && (
+                {item.goals == "Voting" && (
                   <>
-                    <Button ml="12" colorScheme={"linkedin"}  variant='outline' onClick={onOpen}>Vote</Button>
+                    <Button
+                      ml="12"
+                      colorScheme={"linkedin"}
+                      variant="outline"
+                      onClick={onOpen}
+                    >
+                      Vote
+                    </Button>
                     <Modal
                       isCentered
                       onClose={onClose}
@@ -263,8 +300,12 @@ export default function IfProjectApplication() {
                         </ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
-                          <Button variant="solid" colorScheme='teal'>Yes</Button>
-                          <Button variant="solid" colorScheme='red'>No</Button>
+                          <Button variant="solid" colorScheme="teal">
+                            Yes
+                          </Button>
+                          <Button variant="solid" colorScheme="red">
+                            No
+                          </Button>
                           <Button colorScheme="blue" mr={3} onClick={onClose}>
                             Close
                           </Button>
@@ -281,64 +322,4 @@ export default function IfProjectApplication() {
       ))}
     </Box>
   );
-}
-
-interface FillProp {
-  children?: React.ReactNode;
-  approved?: boolean;
-  rejected?: boolean;
-  voting?: boolean;
-}
-
-function ProgressIcon({
-  children,
-  approved = false,
-  rejected = false,
-  voting = false,
-}: FillProp) {
-  if (approved) {
-    return (
-      <Box position="relative" mr="2" ml="8" pt="1">
-        <Image
-          w="15px"
-          alt="registration icon"
-          src="/media/OwnerInfo/checkgreen.svg"
-        />
-        {children}
-      </Box>
-    );
-  } else if (rejected) {
-    return (
-      <Box position="relative" mr="2" ml="8" pt="1">
-        <Image
-          w="15px"
-          alt="registration icon"
-          src="/media/OwnerInfo/checkred.svg"
-        />
-        {children}
-      </Box>
-    );
-  } else if (voting) {
-    return (
-      <Box position="relative" mr="2" ml="8" pt="1">
-        <Image
-          w="15px"
-          alt="registration icon"
-          src="/media/OwnerInfo/voting.svg"
-        />
-        {children}
-      </Box>
-    );
-  } else {
-    return (
-      <Box position="relative" mr="2" ml="8" pt="1">
-        <Image
-          w="15px"
-          alt="registration icon"
-          src="/media/OwnerInfo/hourglass.svg"
-        />
-        {children}
-      </Box>
-    );
-  }
 }
