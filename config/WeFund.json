@@ -196,6 +196,25 @@
     "anonymous": false,
     "inputs": [
       {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
         "indexed": false,
         "internalType": "uint256",
         "name": "pid",
@@ -341,6 +360,24 @@
         "internalType": "uint256",
         "name": "_collected",
         "type": "uint256"
+      }
+    ],
+    "name": "addProject",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_collected",
+        "type": "uint256"
+      },
+      {
+        "internalType": "enum WeFund.ProjectStatus",
+        "name": "_status",
+        "type": "uint8"
       },
       {
         "components": [
@@ -385,7 +422,7 @@
         "type": "tuple[]"
       }
     ],
-    "name": "addProject",
+    "name": "addProjectByOwner",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -689,6 +726,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -697,6 +747,13 @@
       }
     ],
     "name": "removeCommunity",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -717,9 +774,27 @@
         "internalType": "address",
         "name": "_busd",
         "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_wefund",
+        "type": "address"
       }
     ],
-    "name": "setTokenAddress",
+    "name": "setAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_pid",
+        "type": "uint256"
+      }
+    ],
+    "name": "setWefundID",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -728,11 +803,11 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_addr",
+        "name": "newOwner",
         "type": "address"
       }
     ],
-    "name": "setWefundwallet",
+    "name": "transferOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

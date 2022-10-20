@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { WEFUND, NETWORK } from "../config/constants";
+import { fetchData } from "../utils/fetch";
 
 interface Action {
   type: ActionKind;
@@ -130,8 +131,13 @@ export const useWallet = () => {
 };
 
 export const useProjectData = () => {
-  const { state } = useStore();
+  const { state, dispatch } = useStore();
+  if (state.projectData.length == 0) fetchData(state, dispatch, false);
   return state.projectData;
+};
+export const useOneProjectData = (pid: number) => {
+  const projectData = useProjectData();
+  return projectData[pid > 1 ? pid - 1 : 0];
 };
 
 export const useCommunityData = () => {

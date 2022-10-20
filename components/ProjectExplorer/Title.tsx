@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
 import { Box, chakra } from "@chakra-ui/react";
-import { GetProjectStatus, GetProjectStatusString } from "../../utils/utility";
 
 interface Props {
   data: any;
@@ -11,7 +10,7 @@ const Title: FunctionComponent<Props> = ({ data, activeTab }) => {
     <Box>
       <chakra.h1 mb={"15px"} color="white" fontSize="lg" fontWeight="bold">
         Under&nbsp;
-        {GetProjectStatusString(GetProjectStatus(activeTab))}
+        {activeTab}
       </chakra.h1>
       <chakra.h1 color="white" fontSize="lg" fontWeight="bold" textAlign="left">
         {data.project_title}

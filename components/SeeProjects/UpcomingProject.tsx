@@ -151,7 +151,7 @@ export default function UpcomingProject(prop: UpcomingProjectProp) {
             fontSize={{ base: "18px", md: "25px", lg: "30px" }}
             fontWeight={"600"}
           >
-            PROJECT <chakra.span color={"#0FB1F5"}>INCUBATED</chakra.span>
+            PROJECT <chakra.span color={"#0FB1F5"}>ON WeFund</chakra.span>
           </Text>
         )}
       </Center>

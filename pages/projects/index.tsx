@@ -12,8 +12,6 @@ export default function Projects() {
     <Container>
       <Hero />
       <UpcomingProject />
-      <ProjectAccelerate />
-      <ProjectActive />
       <Footer />
     </Container>
   );

@@ -36,22 +36,7 @@ const IncubationPanel = () => {
       </GridItem>
       <GridItem />
       <GridItem w="100%" mt="50px">
-        <Flex gap={{ base: "30px", md: "70px" }} align="center">
-          <Text
-            fontWeight="500"
-            color="#00A3FF"
-            textAlign="justify"
-            fontSize={{ base: "10px", md: "18px" }}
-          >
-            We match it against our criteria
-            <br />
-            <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
-              and see its impact to real world applications such as impact to
-              social community or value in real life activity
-            </chakra.span>
-          </Text>
-          <Image src="/media/Home/incubation2.png" width="40%" />
-        </Flex>
+ 
       </GridItem>
       <GridItem w="90%" mt="50px">
         <Flex w="100%" justify="center">

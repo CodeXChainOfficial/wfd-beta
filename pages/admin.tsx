@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { SUCCESS_OPTION, WEFUND_CONTRACT } from "../config/constants";
 import { useJunoConnection, useStore } from "../contexts/store";
-import { fetchData } from "../utils/fetch";
+import { useProjectData } from "../hook/ProjectData";
 
 const admin = () => {
   const [list, setList] = useState<any[]>([]);

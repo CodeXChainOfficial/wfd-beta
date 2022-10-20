@@ -14,7 +14,7 @@ export default function AboutWeFund() {
       </Center>
       <Center my={"16px"}>
         <Text width="80%" textAlign="center" color="#ADB2DB" fontSize={{base:"14", md:"16",lg:"18"}}>
-          WeFund is a multichain incubation and crowdfunding platform that uses
+          WeFund is a multichain infrastructure and incubation crowdfunding launchpad that uses
           blockchain and smart contracts to make the process more transparent,
           hold project creators accountable, and minimize risk for project
           backers. WeFund is designed to be a platform for a large community of

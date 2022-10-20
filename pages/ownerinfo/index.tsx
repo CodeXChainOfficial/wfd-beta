@@ -7,9 +7,6 @@ import {
   Center,
   Flex,
   Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Link,
   SimpleGrid,
   Stack,
@@ -18,7 +15,6 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { IoWalletOutline } from "react-icons/io5";
-import { InputTransition } from "../../components/ImageTransition";
 import MilestoneList from "../../components/OwnerInfo/MilestoneList";
 import MilestoneDetail from "../../components/OwnerInfo/MilestoneDetail";
 import GoalList from "../../components/OwnerInfo/OwnerIncubationGoal";
@@ -73,6 +69,7 @@ function ProjectView({ projectsteps }: FillProp) {
             subTitle2=""
             subTitle3="&nbsp; Owner"
             key={index}
+
           >
             <Box width={"100%"}>
               <Box color={"white"} pb={"5%"} pt="64px">

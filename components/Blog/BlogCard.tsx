@@ -7,7 +7,8 @@ import {
   Flex,
   Link,
   SimpleGrid,
-  Icon, Text
+  Icon,
+  Text,
 } from "@chakra-ui/react";
 import { BsArrowUpRight } from "react-icons/bs";
 import { ImageTransition } from "../ImageTransition";
