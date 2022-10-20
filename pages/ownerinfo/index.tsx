@@ -7,6 +7,9 @@ import {
   Center,
   Flex,
   Image,
+  Input,
+  InputGroup,
+  InputLeftElement,
   Link,
   SimpleGrid,
   Stack,
@@ -20,6 +23,7 @@ import MilestoneDetail from "../../components/OwnerInfo/MilestoneDetail";
 import GoalList from "../../components/OwnerInfo/OwnerIncubationGoal";
 import ProjectApplication from "../../components/OwnerInfo/ProjectApplication";
 import MilestoneForIncubation from "../../components/OwnerInfo/OwnerMilestone";
+import { InputTransition } from "../../components/ImageTransition";
 
 // {
 //   project: "project name",
