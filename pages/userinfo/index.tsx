@@ -17,10 +17,8 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import { useMetamaskWallet } from "../../contexts/metamask";
-import {
-  useProjectData,
-  useStore,
-} from "../../contexts/store";
+import { useStore } from "../../contexts/store";
+import { useProjectData } from "../../hook/FetchProject";
 import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
 import { RiUpload2Line } from "react-icons/ri";
 import Footer from "../../components/Footer";

@@ -15,7 +15,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import LaunchTabs from "./LaunchTabs";
 import FundraiseType from "./FundraiseType";
-import { useProjectData, useStore } from "../../contexts/store";
+import { useProjectData } from "../../hook/FetchProject";
 import { WEFUND_ID } from "../../config/constants";
 
 interface Props {

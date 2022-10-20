@@ -17,8 +17,8 @@ import { IoWalletOutline, IoFileTrayFull, IoCallSharp } from "react-icons/io5";
 import { IoMdThumbsUp } from "react-icons/io";
 import { BsFillCalendar2CheckFill } from "react-icons/bs";
 
-import IfProjectApplication from "../../../components/Administrator/ViewProject/ProjectApplication";
-import { useOneProjectData, useProjectData } from "../../../contexts/store";
+import ProjectApplication from "../../../components/Administrator/ViewProject/ProjectApplication";
+import { useOneProjectData } from "../../../hook/FetchProject";
 import {
   GetProjectStatusText,
   ParseParam_ProjectId,
@@ -26,6 +26,29 @@ import {
 } from "../../../utils/utility";
 import { useMetamaskWallet } from "../../../contexts/metamask";
 import { WFD_TOKEN_INFO } from "../../../config/constants";
+
+export const APPLICATION_BASE_STATUS = 1;
+export const APPLICATION_START_STATUS = 0;
+export const APPLICATION_END_STATUS = 2;
+
+export const APPLICATION_STEPS = [
+  {
+    image: IoFileTrayFull,
+    label: "Registration",
+  },
+  {
+    image: BsFillCalendar2CheckFill,
+    label: "Document Check",
+  },
+  {
+    image: IoCallSharp,
+    label: "Set Calls",
+  },
+  {
+    image: IoMdThumbsUp,
+    label: "Approved to Incubation / Fundraise",
+  },
+];
 
 export default function ViewProjectApproval() {
   const [passedStatus, setPassedStatus] = useState(0);
@@ -35,17 +58,13 @@ export default function ViewProjectApproval() {
   const wallet = useMetamaskWallet();
   const address = wallet.account;
 
-  const baseStatus = 1;
-  const startStatus = 0;
-  const endStatus = 2;
-
   useEffect(() => {
     if (data) {
-      setPassedStatus(data.project_status - startStatus);
+      setPassedStatus(data.project_status - APPLICATION_START_STATUS);
       setRemainStatus(
-        data.project_status > endStatus
+        data.project_status > APPLICATION_END_STATUS
           ? 0
-          : endStatus - data.project_status + 1
+          : APPLICATION_END_STATUS - data.project_status + 1
       );
     }
   }, [data]);
@@ -62,18 +81,12 @@ export default function ViewProjectApproval() {
           <Stack
             color="white"
             justifyContent="center"
-            direction={{
-              base: "column",
-              lg: "row",
-            }}
+            direction={{ base: "column", lg: "row" }}
           >
             <VStack
               spacing={4}
               marginBottom={6}
-              align={{
-                base: "center",
-                lg: "unset",
-              }}
+              align={{ base: "center", lg: "unset" }}
               w={{ base: "100%", lg: "450px" }}
               mx={[0, 0, 0]}
             >
@@ -289,12 +302,7 @@ export default function ViewProjectApproval() {
               </Link>
             </VStack>
             <Flex
-              align={{
-                base: "center",
-                sm: "center",
-                md: "center",
-                lg: "flex-start",
-              }}
+              align={{ base: "center", lg: "flex-start" }}
               direction="column"
               p="24px"
             >
@@ -302,7 +310,7 @@ export default function ViewProjectApproval() {
                 Project Journey Status
               </Text>
               <Flex mt="36px">
-                {Steps.map((step, index, data) => {
+                {APPLICATION_STEPS.map((step, index, data) => {
                   return (
                     <>
                       <Flex
@@ -312,12 +320,14 @@ export default function ViewProjectApproval() {
                         align="center"
                       >
                         <BoxContainer
-                          filled={index < baseStatus + passedStatus}
+                          filled={
+                            index < APPLICATION_BASE_STATUS + passedStatus
+                          }
                         >
                           <step.image
                             size="50%"
                             color={
-                              index < baseStatus + passedStatus
+                              index < APPLICATION_BASE_STATUS + passedStatus
                                 ? "black"
                                 : "#42E8E0"
                             }
@@ -338,7 +348,9 @@ export default function ViewProjectApproval() {
                       {index < data.length - 1 && (
                         <Center h="82px">
                           <Dash
-                            filled={index < baseStatus + passedStatus - 1}
+                            filled={
+                              index < APPLICATION_BASE_STATUS + passedStatus - 1
+                            }
                           />
                         </Center>
                       )}
@@ -354,7 +366,7 @@ export default function ViewProjectApproval() {
               >
                 Project Information
               </Text>
-              <IfProjectApplication data={data} />
+              <ProjectApplication data={data} />
             </Flex>
           </Stack>
         </Box>
@@ -407,22 +419,3 @@ function Dash({ children, filled = false }: FillProp) {
     );
   }
 }
-
-const Steps = [
-  {
-    image: IoFileTrayFull,
-    label: "Registration",
-  },
-  {
-    image: BsFillCalendar2CheckFill,
-    label: "Document Check",
-  },
-  {
-    image: IoCallSharp,
-    label: "Set Calls",
-  },
-  {
-    image: IoMdThumbsUp,
-    label: "Approved to Incubation / Fundraise",
-  },
-];

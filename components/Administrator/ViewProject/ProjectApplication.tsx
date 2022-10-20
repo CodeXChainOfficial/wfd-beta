@@ -5,26 +5,42 @@ import {
   Flex,
   Image,
   Text,
-  Th,
-  Thead,
-  Tr,
   Modal,
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-  Progress,
   useDisclosure,
   Button,
   ModalBody,
   ModalFooter,
   ModalHeader,
+  chakra,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ProgressIcon } from "../ProjectPanel/ProjectOnApproval";
+import {
+  APPLICATION_BASE_STATUS,
+  APPLICATION_START_STATUS,
+  APPLICATION_END_STATUS,
+  APPLICATION_STEPS,
+} from "../../../pages/administrator/viewproject/approval";
+import { useCommunityData } from "../../../hook/FetchProject";
 
-export default function IfProjectApplication({ data }: { data: any }) {
+export default function ProjectApplication({ data }: { data: any }) {
+  const [votedCount, setVotedCount] = useState(0);
+  const [communityCount, setCommunityCount] = useState(1);
+
+  const communityData = useCommunityData();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  console.log(data);
+
+  useEffect(() => {
+    if (communityData.length > 0 && data) {
+      setVotedCount(
+        data.wefund_votes.filter((x: any) => x.voted == true).length
+      );
+      setCommunityCount(communityData.length);
+    }
+  }, [communityData]);
   return (
     <Box p="40px" bg="#130A49" borderRadius="10px" mt="30px" w="600px">
       <Flex w="100%">
@@ -74,224 +90,90 @@ export default function IfProjectApplication({ data }: { data: any }) {
             Progress
           </Text>
           <Flex direction={"column"} mt="2" gap="2">
-            <Flex>
-              <Image
-                top="25%"
-                left="25%"
-                alt="registration icon"
-                src="/media/OwnerInfo/document.svg"
-                mr={4}
-              />
-              <Text w="145px">Document</Text>
-              {data?.document == "Pending" && <ProgressIcon />}
-              {data?.document == "Rejected" && <ProgressIcon rejected={true} />}
-              {data?.document == "Voting" && <ProgressIcon voting={true} />}
-              {data?.document == "Approved" && <ProgressIcon approved={true} />}
-              <Text>{data?.document}</Text>
-              {data?.document == "Voting" && (
-                <>
-                  <Button
-                    ml="12"
-                    colorScheme={"linkedin"}
-                    variant="outline"
-                    onClick={onOpen}
-                  >
-                    Vote
-                  </Button>
-                  <Modal
-                    isCentered
-                    onClose={onClose}
-                    isOpen={isOpen}
-                    motionPreset="slideInBottom"
-                  >
-                    <ModalOverlay />
-                    <ModalContent>
-                      <ModalHeader>
-                        Your Choice for Project's Document
-                      </ModalHeader>
-                      <ModalCloseButton />
-                      <ModalBody>
-                        <Button variant="solid" colorScheme="teal">
-                          Yes
-                        </Button>
-                        <Button variant="solid" colorScheme="red">
-                          No
-                        </Button>
-                        <Button colorScheme="blue" mr={3} onClick={onClose}>
-                          Close
-                        </Button>
-                      </ModalBody>
-                      <ModalFooter></ModalFooter>
-                    </ModalContent>
-                  </Modal>
-                </>
-              )}
-            </Flex>
-            <Flex>
-              <Image
-                top="25%"
-                left="25%"
-                alt="registration icon"
-                src="/media/OwnerInfo/introcall.svg"
-                mr={4}
-              />
-              <Text w="145px">Introduction Calls</Text>
-              {data?.introduction == "Pending" && <ProgressIcon />}
-              {data?.introduction == "Rejected" && (
-                <ProgressIcon rejected={true} />
-              )}{" "}
-              {data?.introduction == "Voting" && <ProgressIcon voting={true} />}
-              {data?.introduction == "Approved" && (
-                <ProgressIcon approved={true} />
-              )}
-              <Text>{data?.introduction}</Text>
-              {data?.introduction == "Voting" && (
-                <>
-                  <Button
-                    ml="12"
-                    colorScheme={"linkedin"}
-                    variant="outline"
-                    onClick={onOpen}
-                  >
-                    Vote
-                  </Button>
-                  <Modal
-                    isCentered
-                    onClose={onClose}
-                    isOpen={isOpen}
-                    motionPreset="slideInBottom"
-                  >
-                    <ModalOverlay />
-                    <ModalContent>
-                      <ModalHeader>
-                        Your Choice for Project's Introduction Calls
-                      </ModalHeader>
-                      <ModalCloseButton />
-                      <ModalBody>
-                        <Button variant="solid" colorScheme="teal">
-                          Yes
-                        </Button>
-                        <Button variant="solid" colorScheme="red">
-                          No
-                        </Button>
-                        <Button colorScheme="blue" mr={3} onClick={onClose}>
-                          Close
-                        </Button>
-                      </ModalBody>
-                      <ModalFooter></ModalFooter>
-                    </ModalContent>
-                  </Modal>
-                </>
-              )}
-            </Flex>
-            <Flex>
-              <Image
-                top="25%"
-                left="25%"
-                alt="registration icon"
-                src="/media/OwnerInfo/discussion.svg"
-                mr={4}
-              />
-              <Text w="145px">Discussion Calls</Text>
-              {data?.discussion == "Pending" && <ProgressIcon />}
-              {data?.discussion == "Rejected" && (
-                <ProgressIcon rejected={true} />
-              )}
-              {data?.discussion == "Voting" && <ProgressIcon voting={true} />}
-              {data?.discussion == "Approved" && (
-                <ProgressIcon approved={true} />
-              )}
-              <Text>{data?.discussion}</Text>
-              {data?.discussion == "Voting" && (
-                <>
-                  <Button
-                    ml="12"
-                    colorScheme={"linkedin"}
-                    variant="outline"
-                    onClick={onOpen}
-                  >
-                    Vote
-                  </Button>
-                  <Modal
-                    isCentered
-                    onClose={onClose}
-                    isOpen={isOpen}
-                    motionPreset="slideInBottom"
-                  >
-                    <ModalOverlay />
-                    <ModalContent>
-                      <ModalHeader>
-                        Your Choice for Project's Discussion Calls
-                      </ModalHeader>
-                      <ModalCloseButton />
-                      <ModalBody>
-                        <Button variant="solid" colorScheme="teal">
-                          Yes
-                        </Button>
-                        <Button variant="solid" colorScheme="red">
-                          No
-                        </Button>
-                        <Button colorScheme="blue" mr={3} onClick={onClose}>
-                          Close
-                        </Button>
-                      </ModalBody>
-                      <ModalFooter></ModalFooter>
-                    </ModalContent>
-                  </Modal>
-                </>
-              )}
-            </Flex>
-            <Flex>
-              <Image
-                top="25%"
-                left="25%"
-                alt="registration icon"
-                src="/media/OwnerInfo/incugoal.svg"
-                mr={4}
-              />
-              <Text w="145px">Incubation Goal</Text>
-              {data?.goals == "Pending" && <ProgressIcon />}
-              {data?.goals == "Rejected" && <ProgressIcon rejected={true} />}
-              {data?.goals == "Voting" && <ProgressIcon voting={true} />}
-              {data?.goals == "Approved" && <ProgressIcon approved={true} />}
-              <Text>{data?.goals}</Text>
-              {data?.goals == "Voting" && (
-                <>
-                  <Button
-                    ml="12"
-                    colorScheme={"linkedin"}
-                    variant="outline"
-                    onClick={onOpen}
-                  >
-                    Vote
-                  </Button>
-                  <Modal
-                    isCentered
-                    onClose={onClose}
-                    isOpen={isOpen}
-                    motionPreset="slideInBottom"
-                  >
-                    <ModalOverlay />
-                    <ModalContent>
-                      <ModalHeader>Your Choice for Project's Goals</ModalHeader>
-                      <ModalCloseButton />
-                      <ModalBody>
-                        <Button variant="solid" colorScheme="teal">
-                          Yes
-                        </Button>
-                        <Button variant="solid" colorScheme="red">
-                          No
-                        </Button>
-                        <Button colorScheme="blue" mr={3} onClick={onClose}>
-                          Close
-                        </Button>
-                      </ModalBody>
-                      <ModalFooter></ModalFooter>
-                    </ModalContent>
-                  </Modal>
-                </>
-              )}
-            </Flex>
+            {APPLICATION_STEPS.map((step, index) => {
+              const cStatus =
+                APPLICATION_START_STATUS + index - APPLICATION_BASE_STATUS;
+              return (
+                <Flex key={index}>
+                  <step.image size="16px" color="#BFBFBF" />
+                  <Text w="145px" ml="12px">
+                    {step.label}
+                  </Text>
+                  {data?.project_status > cStatus && (
+                    <>
+                      <ProgressIcon approved={true} />
+                      Approved
+                      <chakra.span ml="20px">
+                        {communityCount}/{communityCount} Voted
+                      </chakra.span>
+                    </>
+                  )}
+                  {data?.project_status == cStatus && data?.rejected && (
+                    <>
+                      <ProgressIcon rejected={true} />
+                      Rejected
+                      <chakra.span ml="20px">
+                        {votedCount}/{communityCount} Voted
+                      </chakra.span>
+                    </>
+                  )}
+                  {data?.project_status == cStatus && data?.rejected == false && (
+                    <>
+                      <ProgressIcon voting={true} />
+                      Voting
+                      <chakra.span ml="20px">
+                        {votedCount}/{communityCount} Voted
+                      </chakra.span>
+                    </>
+                  )}
+                  {data?.project_status < cStatus && (
+                    <>
+                      <ProgressIcon />
+                      Pending
+                    </>
+                  )}
+
+                  {data?.document == "Voting" && (
+                    <>
+                      <Button
+                        ml="12"
+                        colorScheme={"linkedin"}
+                        variant="outline"
+                        onClick={onOpen}
+                      >
+                        Vote
+                      </Button>
+                      <Modal
+                        isCentered
+                        onClose={onClose}
+                        isOpen={isOpen}
+                        motionPreset="slideInBottom"
+                      >
+                        <ModalOverlay />
+                        <ModalContent>
+                          <ModalHeader>
+                            Your Choice for Project's Document
+                          </ModalHeader>
+                          <ModalCloseButton />
+                          <ModalBody>
+                            <Button variant="solid" colorScheme="teal">
+                              Yes
+                            </Button>
+                            <Button variant="solid" colorScheme="red">
+                              No
+                            </Button>
+                            <Button colorScheme="blue" mr={3} onClick={onClose}>
+                              Close
+                            </Button>
+                          </ModalBody>
+                          <ModalFooter></ModalFooter>
+                        </ModalContent>
+                      </Modal>
+                    </>
+                  )}
+                </Flex>
+              );
+            })}
           </Flex>
         </Flex>
       </Flex>

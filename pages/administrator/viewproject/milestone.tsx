@@ -26,15 +26,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { IoWalletOutline } from "react-icons/io5";
-import { InputTransition } from "../ImageTransition";
-import { CheckIcon } from "@chakra-ui/icons";
-import ProjectApplication from "../OwnerInfo/ProjectApplication";
-import GoalList from "../OwnerInfo/OwnerIncubationGoal";
-import IfProjectApplication from "../../components/Administrator/ViewProject/IfProjectApplication";
-import ProjectInfoListGoal from "../../components/Administrator/ViewProject/Projectlistgoal";
-import ProjectInfoListMilestone from "../../components/Administrator/ViewProject/Projectlistmilesone";
-import { useOneProjectData, useProjectData } from "../../contexts/store";
-import { ParseParam_ProjectId } from "../../utils/utility";
+import { useOneProjectData, useProjectData } from "../../../hook/FetchProject";
+import { ParseParam_ProjectId } from "../../../utils/utility";
 
 export default function viewproject() {
   const projectID = ParseParam_ProjectId();

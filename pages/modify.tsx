@@ -9,7 +9,8 @@ import {
   ButtonBackTransition,
   ButtonTransition,
 } from "../components/ImageTransition";
-import { useCommunityData, useProjectData, useStore } from "../contexts/store";
+import { useProjectData, useCommunityData } from "../hook/FetchProject";
+import { useStore } from "../contexts/store";
 import Footer from "../components/Footer";
 import {
   checkNetwork,
@@ -22,7 +23,6 @@ import {
   getInteger,
   getSeconds,
 } from "../utils/utility";
-import { fetchData } from "../utils/fetch";
 import {
   SUCCESS_OPTION,
   ERROR_OPTION,
