@@ -72,7 +72,7 @@ export default function Hero() {
             align="center"
             cursor="pointer"
             _hover={{ background: "#2288bb" }}
-            onClick={() => router.push("/invest/step0")}
+            onClick={() => router.push("/invest/step1")}
           >
             <Text
               w="100%"
