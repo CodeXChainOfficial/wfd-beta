@@ -21,8 +21,8 @@ export const WEFUND_POLYGON_WALLET =
 //export const WEFUND_ELROND_WALLET = "";
 export const WFD_TOKEN_INFO = {
   price: 0.09,
-  pool: "2M",
-  up: "2.4",
+  pool: 890.09778,
+  up: -5.4,
 };
 
 export const SUCCESS_OPTION: any = {

@@ -1,41 +1,54 @@
+import React, { useState, useEffect } from "react";
 import PageLayout from "../../../components/PageLayout";
 import Footer from "../../../components/Footer";
-import React from "react";
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Avatar,
   Box,
   Button,
   Center,
   Flex,
-  Heading,
   Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Link,
-  Progress,
   SimpleGrid,
   Stack,
   Text,
-  Textarea,
   VStack,
 } from "@chakra-ui/react";
-import { IoWalletOutline } from "react-icons/io5";
+import { IoWalletOutline, IoFileTrayFull, IoCallSharp } from "react-icons/io5";
+import { IoMdThumbsUp } from "react-icons/io";
+import { BsFillCalendar2CheckFill } from "react-icons/bs";
+
 import IfProjectApplication from "../../../components/Administrator/ViewProject/ProjectApplication";
 import { useOneProjectData, useProjectData } from "../../../contexts/store";
-import { ParseParam_ProjectId, ShortenAddress } from "../../../utils/utility";
+import {
+  GetProjectStatusText,
+  ParseParam_ProjectId,
+  ShortenAddress,
+} from "../../../utils/utility";
 import { useMetamaskWallet } from "../../../contexts/metamask";
+import { WFD_TOKEN_INFO } from "../../../config/constants";
 
 export default function ViewProjectApproval() {
+  const [passedStatus, setPassedStatus] = useState(0);
+  const [remainStatus, setRemainStatus] = useState(0);
   const projectID = ParseParam_ProjectId();
   const data = useOneProjectData(projectID);
   const wallet = useMetamaskWallet();
   const address = wallet.account;
+
+  const baseStatus = 1;
+  const startStatus = 0;
+  const endStatus = 2;
+
+  useEffect(() => {
+    if (data) {
+      setPassedStatus(data.project_status - startStatus);
+      setRemainStatus(
+        data.project_status > endStatus
+          ? 0
+          : endStatus - data.project_status + 1
+      );
+    }
+  }, [data]);
 
   return (
     <PageLayout
@@ -113,7 +126,7 @@ export default function ViewProjectApproval() {
                     fontWeight="950"
                     w={"full"}
                   >
-                    890.09778
+                    {WFD_TOKEN_INFO.pool}
                   </Text>
                   <Text
                     pl="8px"
@@ -137,7 +150,7 @@ export default function ViewProjectApproval() {
                       fontWeight="600"
                       w={"full"}
                     >
-                      0.2498488
+                      {WFD_TOKEN_INFO.price}
                     </Text>
                   </Flex>
                   <Flex>
@@ -149,7 +162,10 @@ export default function ViewProjectApproval() {
                       fontWeight="600"
                       w={"full"}
                     >
-                      24H : +5.74
+                      24H :{" "}
+                      {WFD_TOKEN_INFO.up > 0
+                        ? `+${WFD_TOKEN_INFO.up}%`
+                        : `-${-1 * WFD_TOKEN_INFO.up}%`}
                     </Text>
                   </Flex>
                 </Flex>
@@ -208,7 +224,7 @@ export default function ViewProjectApproval() {
                         fontWeight="950"
                         w={"full"}
                       >
-                        2 Goals
+                        {remainStatus} Goals
                       </Text>
                     </Flex>
                   </Flex>
@@ -232,7 +248,7 @@ export default function ViewProjectApproval() {
                         fontWeight="600"
                         w={"full"}
                       >
-                        Goal Set
+                        Status
                       </Text>
                       <Text
                         mt="14px"
@@ -241,7 +257,7 @@ export default function ViewProjectApproval() {
                         fontWeight="950"
                         w={"full"}
                       >
-                        4 Goals
+                        {GetProjectStatusText(data?.project_status)}
                       </Text>
                     </Flex>
                   </Flex>
@@ -286,109 +302,49 @@ export default function ViewProjectApproval() {
                 Project Journey Status
               </Text>
               <Flex mt="36px">
-                <Flex direction="column">
-                  <BoxContainer filled={true}>
-                    <Image
-                      position="absolute"
-                      top="25%"
-                      left="25%"
-                      alt="registration icon"
-                      src="/media/OwnerInfo/registration_filled.svg"
-                    />
-                  </BoxContainer>
-                  <Center mt="20px">
-                    <Text
-                      color={"rgba(15, 177, 245, 1)"}
-                      fontFamily={"Montserrat"}
-                      fontWeight="600"
-                      fontSize="16px"
-                    >
-                      Registration
-                    </Text>
-                  </Center>
-                </Flex>
-                <Center h="82px">
-                  <Dash filled={true} />
-                </Center>
-                <Flex direction="column">
-                  <BoxContainer>
-                    <Image
-                      position="absolute"
-                      top="25%"
-                      left="25%"
-                      alt="selection icon"
-                      src="/media/OwnerInfo/selection.svg"
-                    />
-                  </BoxContainer>
-                  <Center mt="20px">
-                    <Text
-                      color={"rgba(15, 177, 245, 1)"}
-                      fontFamily={"Montserrat"}
-                      fontWeight="600"
-                      fontSize="16px"
-                    >
-                      Selection
-                    </Text>
-                  </Center>
-                </Flex>
-                <Center h="82px">
-                  <Dash />
-                </Center>
-                <Flex direction="column">
-                  <BoxContainer>
-                    <Image
-                      position="absolute"
-                      top="25%"
-                      left="25%"
-                      alt="goal icon"
-                      src="/media/OwnerInfo/goal.svg"
-                    />
-                  </BoxContainer>
-                  <Center mt="20px">
-                    <Text
-                      color={"rgba(15, 177, 245, 1)"}
-                      fontFamily={"Montserrat"}
-                      fontWeight="600"
-                      fontSize="16px"
-                    >
-                      Set Goal
-                    </Text>
-                  </Center>
-                </Flex>
-                <Center h="82px">
-                  <Dash />
-                </Center>
-                <Flex direction="column">
-                  <BoxContainer>
-                    <Image
-                      position="absolute"
-                      top="25%"
-                      left="25%"
-                      alt="publish icon"
-                      src="/media/OwnerInfo/publish.svg"
-                    />
-                  </BoxContainer>
-                  <Center mt="20px">
-                    <Text
-                      color={"rgba(15, 177, 245, 1)"}
-                      fontFamily={"Montserrat"}
-                      fontWeight="600"
-                      fontSize="16px"
-                    >
-                      Approved
-                    </Text>
-                  </Center>
-                  <Center>
-                    <Text
-                      color={"rgba(15, 177, 245, 1)"}
-                      fontFamily={"Montserrat"}
-                      fontWeight="600"
-                      fontSize="16px"
-                    >
-                      Publish
-                    </Text>
-                  </Center>
-                </Flex>
+                {Steps.map((step, index, data) => {
+                  return (
+                    <>
+                      <Flex
+                        direction="column"
+                        key={index}
+                        w="82px"
+                        align="center"
+                      >
+                        <BoxContainer
+                          filled={index < baseStatus + passedStatus}
+                        >
+                          <step.image
+                            size="50%"
+                            color={
+                              index < baseStatus + passedStatus
+                                ? "black"
+                                : "#42E8E0"
+                            }
+                          />
+                        </BoxContainer>
+                        <Center mt="20px" w="130%">
+                          <Text
+                            color={"rgba(15, 177, 245, 1)"}
+                            fontFamily={"Montserrat"}
+                            fontWeight="600"
+                            fontSize="16px"
+                            align="center"
+                          >
+                            {step.label}
+                          </Text>
+                        </Center>
+                      </Flex>
+                      {index < data.length - 1 && (
+                        <Center h="82px">
+                          <Dash
+                            filled={index < baseStatus + passedStatus - 1}
+                          />
+                        </Center>
+                      )}
+                    </>
+                  );
+                })}
               </Flex>
               <Text
                 mt="16px"
@@ -398,7 +354,7 @@ export default function ViewProjectApproval() {
               >
                 Project Information
               </Text>
-              <IfProjectApplication />
+              <IfProjectApplication data={data} />
             </Flex>
           </Stack>
         </Box>
@@ -414,37 +370,21 @@ interface FillProp {
 }
 
 function BoxContainer({ children, filled = false }: FillProp) {
-  if (filled) {
-    return (
-      <Box
-        position="relative"
-        width="82px"
-        height="82px"
-        bg="rgba(66, 232, 224, 1)"
-        borderRadius="20px"
-        borderStyle="solid"
-        borderWidth="2px"
-        borderColor="rgba(66, 232, 224, 1)"
-      >
-        {children}
-      </Box>
-    );
-  } else {
-    return (
-      <Box
-        position="relative"
-        width="82px"
-        height="82px"
-        bg="rgba(0, 163, 255, 0.09)"
-        borderRadius="20px"
-        borderStyle="solid"
-        borderWidth="2px"
-        borderColor="rgba(66, 232, 224, 1)"
-      >
-        {children}
-      </Box>
-    );
-  }
+  return (
+    <Flex
+      width="82px"
+      height="82px"
+      bg={filled ? "rgba(66, 232, 224, 1)" : "rgba(0, 163, 255, 0.09)"}
+      borderRadius="20px"
+      borderStyle="solid"
+      borderWidth="2px"
+      borderColor="rgba(66, 232, 224, 1)"
+      justify="center"
+      align="center"
+    >
+      {children}
+    </Flex>
+  );
 }
 
 function Dash({ children, filled = false }: FillProp) {
@@ -467,3 +407,22 @@ function Dash({ children, filled = false }: FillProp) {
     );
   }
 }
+
+const Steps = [
+  {
+    image: IoFileTrayFull,
+    label: "Registration",
+  },
+  {
+    image: BsFillCalendar2CheckFill,
+    label: "Document Check",
+  },
+  {
+    image: IoCallSharp,
+    label: "Set Calls",
+  },
+  {
+    image: IoMdThumbsUp,
+    label: "Approved to Incubation / Fundraise",
+  },
+];
