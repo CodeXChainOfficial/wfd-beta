@@ -153,15 +153,15 @@ const CONTENTS = [
     icon: FaGlobeAsia,
   },
   {
-    title: "Acceleration",
+    title: "Swap",
     content:
-      "Acceleration service for project on incubation that want their development accelerated and reserved for fast paced project ready to go to fundraise soon",
+      "We provide a efficent Swap service for multichain adoption",
     icon: MdMoneyOff,
   },
   {
-    title: "Swap service",
+    title: "Infrastructure",
     content:
-      "WeFund through partners offer swap services accross multiple chain and tokens",
+      "WeFund provide API for all the entity want to use the crowdfunding model with milestone security",
     icon: FaExternalLinkAlt,
   },
   {

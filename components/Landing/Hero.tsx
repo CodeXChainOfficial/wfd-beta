@@ -47,7 +47,7 @@ export default function Hero() {
           >
             Multichain{" "}
             <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
-              crowdfunding, incubation,
+              crowdfunding Infrustructure,{" "} incubation,
             </chakra.span>{" "}
             and{" "}
             <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
