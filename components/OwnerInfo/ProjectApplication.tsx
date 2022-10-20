@@ -12,116 +12,156 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import { Item } from "framer-motion/types/components/Reorder/Item";
 import React from "react";
+
+const projectsinfo = [
+  {
+    name: "project name",
+    img: "",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+    status: "Selected",
+    document: "Voting",
+    introduction: "Approved",
+    discussion: "Rejected",
+    goals: "Pending",
+    link: "",
+  },
+];
 
 export default function ProjectApplication() {
   return (
     <Box p="40px" bg="#130A49" borderRadius="10px" mt="30px" w="600px">
-      <Flex>
-        <Flex direction="column">
-          <Image alt="star" src="/media/OwnerInfo/star.svg" h="130px" />
-          <Center flexDirection="column" mt="24px" bg="rgba(0, 0, 0, 0.6)">
-            <Image
-              mt="30px"
-              alt="selected"
-              src="/media/OwnerInfo/rocket.svg"
-              h="48px"
-            />
-            <Text
-              pt="8px"
-              pb="16px"
-              as="span"
-              fontFamily="Montserrat"
-              fontSize="12px"
-              fontWeight={400}
-              textAlign="center"
-              w="98px"
-            >
-              Congratulation! <br />
-              You’ve been selected by Wefund <br /> <br />
-              We will proceed you to Incubation
+      {projectsinfo.map((item, index) => (
+        <Flex key={index}>
+          <Flex direction="column">
+            <Image alt="star" src="/media/OwnerInfo/star.svg" h="130px" />
+            {item.status == "Selected" && (
+              <Center flexDirection="column" mt="24px" bg="rgba(0, 0, 0, 0.6)">
+                <Image
+                  mt="30px"
+                  alt="selected"
+                  src="/media/OwnerInfo/rocket.svg"
+                  h="48px"
+                />
+                <Text
+                  pt="8px"
+                  pb="16px"
+                  as="span"
+                  fontFamily="Montserrat"
+                  fontSize="12px"
+                  fontWeight={400}
+                  textAlign="center"
+                  w="98px"
+                >
+                  Congratulation! <br />
+                  You’ve been selected by Wefund <br /> <br />
+                  We will proceed you to Incubation
+                </Text>
+              </Center>
+            )}
+          </Flex>
+          <Flex direction="column" pl="24px">
+            <Text fontFamily="Montserrat" fontSize="20px" fontWeight={700}>
+              {item.name}
             </Text>
-          </Center>
-        </Flex>
-        <Flex direction="column" pl="24px">
-          <Text fontFamily="Montserrat" fontSize="20px" fontWeight={700}>
-            Project Name
-          </Text>
-          <Text
-            mt="8px"
-            fontFamily="Montserrat"
-            fontSize="14px"
-            fontWeight={400}
-            textAlign="justify"
-            w="350px"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </Text>
-          <Box h="24px" />
-          <Divider color="#FCFCFC33" />
-          <Box h="24px" />
-          <Text fontFamily="Montserrat" fontSize="16px" fontWeight={800}>
-            Progress
-          </Text>
-          <Flex direction={"column"} mt="2" gap="2">
-            <Flex>
-              <Image
-                top="25%"
-                left="25%"
-                alt="registration icon"
-                src="/media/OwnerInfo/document.svg"
-                mr={4}
-              />
-              <Text w="145px">Document</Text>
-              <ProgressIcon approved={true} />
-              <Text>Approved</Text>
-            </Flex>
-            <Flex>
-              <Image
-                top="25%"
-                left="25%"
-                alt="registration icon"
-                src="/media/OwnerInfo/introcall.svg"
-                mr={4}
-              />
-              <Text w="145px">Introduction Calls</Text>
-              <ProgressIcon voting={true} />
-              <Text>Voting</Text>
-            </Flex>
-            <Flex>
-              <Image
-                top="25%"
-                left="25%"
-                alt="registration icon"
-                src="/media/OwnerInfo/discussion.svg"
-                mr={4}
-              />
-              <Text w="145px">Discussion Calls</Text>
-              <ProgressIcon rejected={true} />
-              <Text>Rejected</Text>
-            </Flex>
-            <Flex>
-              <Image
-                top="25%"
-                left="25%"
-                alt="registration icon"
-                src="/media/OwnerInfo/incugoal.svg"
-                mr={4}
-              />
-              <Text w="145px">Incubation Goal</Text>
-              <ProgressIcon />
-              <Text>Pending</Text>
+            <Text
+              mt="8px"
+              fontFamily="Montserrat"
+              fontSize="14px"
+              fontWeight={400}
+              textAlign="justify"
+              w="350px"
+            >
+              {item.desc}
+            </Text>
+            <Box h="24px" />
+            <Divider color="#FCFCFC33" />
+            <Box h="24px" />
+            <Text fontFamily="Montserrat" fontSize="16px" fontWeight={800}>
+              Progress
+            </Text>
+            <Flex direction={"column"} mt="2" gap="2">
+              <Flex>
+                <Image
+                  top="25%"
+                  left="25%"
+                  alt="registration icon"
+                  src="/media/OwnerInfo/document.svg"
+                  mr={4}
+                />
+                <Text w="145px">Document</Text>
+                {item.document == "Pending" && <ProgressIcon />}
+                {item.document == "Rejected" && (
+                  <ProgressIcon rejected={true} />
+                )}
+                {item.document == "Voting" && <ProgressIcon voting={true} />}
+                {item.document == "Approved" && (
+                  <ProgressIcon approved={true} />
+                )}
+                <Text>{item.document}</Text>
+                
+              </Flex>
+              <Flex>
+                <Image
+                  top="25%"
+                  left="25%"
+                  alt="registration icon"
+                  src="/media/OwnerInfo/introcall.svg"
+                  mr={4}
+                />
+                <Text w="145px">Introduction Calls</Text>
+                {item.introduction == "Pending" && <ProgressIcon />}
+                {item.introduction == "Rejected" && (
+                  <ProgressIcon rejected={true} />
+                )} {item.introduction == "Voting" && (
+                    <ProgressIcon voting={true} />
+                  )}
+                {item.introduction == "Approved" && (
+                  <ProgressIcon approved={true} />
+                )}
+                <Text>{item.introduction}</Text>
+              </Flex>
+              <Flex>
+                <Image
+                  top="25%"
+                  left="25%"
+                  alt="registration icon"
+                  src="/media/OwnerInfo/discussion.svg"
+                  mr={4}
+                />
+                <Text w="145px">Discussion Calls</Text>
+                {item.discussion == "Pending" && <ProgressIcon />}
+                {item.discussion == "Rejected" && (
+                  <ProgressIcon rejected={true} />
+                )}
+                 {item.discussion == "Voting" && (
+                  <ProgressIcon voting={true} />
+                )}
+                {item.discussion == "Approved" && (
+                  <ProgressIcon approved={true} />
+                )}
+                <Text>{item.discussion}</Text>
+              </Flex>
+              <Flex>
+                <Image
+                  top="25%"
+                  left="25%"
+                  alt="registration icon"
+                  src="/media/OwnerInfo/incugoal.svg"
+                  mr={4}
+                />
+                <Text w="145px">Incubation Goal</Text>
+                {item.goals == "Pending" && <ProgressIcon />}
+                {item.goals == "Rejected" && <ProgressIcon rejected={true} />}
+                {item.goals == "Voting" && <ProgressIcon voting={true} />}
+                {item.goals == "Approved" && <ProgressIcon approved={true} />}
+                <Text>{item.goals}</Text>
+              </Flex>
             </Flex>
           </Flex>
-
         </Flex>
-      </Flex>
+      ))}
     </Box>
   );
 }
