@@ -137,6 +137,23 @@ const PagesLinks = () => (
   </Flex>
 );
 
+const DocsLinks = () => (
+  <Flex
+    fontSize={{ lg: "16px", base: "14px" }}
+    fontFamily="Sk-Modernist-Regular"
+    className="FlexViewMobile"
+    flexDirection={"column"}
+    width={{ md: "280px", base: "100%" }}
+    gap={{ base: "1", md: "6" }}
+    color={"rgba(255, 255, 255, 0.5)"}
+  >
+    <SimpleGrid columns={2} spacing={{base:3, md:0}} fontWeight={"700"}>
+      <Link href="https://wefund.gitbook.io/wefund-whitepaper/">Whitepaper</Link>
+      <Link href="/media/litepaper.pdf">Litepaper</Link>
+    </SimpleGrid>
+  </Flex>
+);
+
 export default function Footer() {
   return (
     <Center width={"100%"} background="#0A0131">
@@ -224,11 +241,11 @@ export default function Footer() {
 
           <Flex
             flexDirection={"column"}
-            gap={8}
+            gap={2}
             width={{ md: "50%", base: "100%" }}
             pl={{ base: 0, md: 12 }}
           >
-            <Flex>
+            <Flex direction={"column"}>
               <Text
                 mr="5px"
                 fontSize={"16px"}
@@ -239,10 +256,13 @@ export default function Footer() {
               >
                 WANNA KNOW MORE ABOUT WEFUND?
               </Text>
-              <Flex></Flex>
+              <Flex mt={4}>
+
+<DocsLinks/>
+              </Flex>
             </Flex>
-            <Flex direction={"column"}>
-              <Text mr="5px" mb="40px" color={"rgba(255, 255, 255, 0.5)"}>
+            <Flex direction={"column"} mt={10}>
+              <Text mr="5px" mb="20px" color={"rgba(255, 255, 255, 0.5)"}>
                 Subscribe to Our News
               </Text>
               <Flex>
