@@ -20,14 +20,13 @@ import React, { useEffect, useState } from "react";
 import { ProgressIcon } from "../ProjectPanel/ProjectOnApproval";
 import {
   APPLICATION_BASE_STATUS,
+  APPLICATION_START_STATUS,
+  APPLICATION_END_STATUS,
   APPLICATION_STEPS,
 } from "../../../pages/administrator/viewproject/approval";
 import { useCommunityData } from "../../../hook/FetchProject";
-import { PROJECT_STATUS } from "../../../types/ProjectStatus";
-import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../../types/ProgreessStatus";
 
-export default function ProjectApplication({ data }: { data: any }) {
-  const [yesVotedCount, setYesVotedCount] = useState(0);
+export default function ProjectMilestone({ data }: { data: any }) {
   const [votedCount, setVotedCount] = useState(0);
   const [communityCount, setCommunityCount] = useState(1);
 
@@ -35,14 +34,12 @@ export default function ProjectApplication({ data }: { data: any }) {
 
   useEffect(() => {
     if (communityData.length > 0 && data) {
-      setYesVotedCount(
+      setVotedCount(
         data.wefund_votes.filter((x: any) => x.voted == true).length
       );
-      setVotedCount(data.wefund_votes.length);
       setCommunityCount(communityData.length);
     }
   }, [communityData]);
-
   return (
     <Box p="40px" bg="#130A49" borderRadius="10px" mt="30px" w="600px">
       <Flex w="100%">
@@ -94,39 +91,47 @@ export default function ProjectApplication({ data }: { data: any }) {
           <Flex direction={"column"} mt="2" gap="2">
             {APPLICATION_STEPS.map((step, index) => {
               const cStatus =
-                PROJECT_STATUS.DocumentValuation +
-                index -
-                APPLICATION_BASE_STATUS;
-              let progress = PROGRESS_STATUS.PENDING,
-                lR,
-                rR;
-              if (data) {
-                if (data.project_status > cStatus) {
-                  progress = PROGRESS_STATUS.APPROVED;
-                  lR = communityCount;
-                  rR = communityCount;
-                } else if (data.project_status == cStatus) {
-                  if (data.rejected) progress = PROGRESS_STATUS.REJECTED;
-                  else progress = PROGRESS_STATUS.VOTING;
-                  lR = yesVotedCount;
-                  rR = votedCount;
-                } else progress = PROGRESS_STATUS.PENDING;
-              }
+                APPLICATION_START_STATUS + index - APPLICATION_BASE_STATUS;
               return (
                 <Flex key={index}>
                   <step.image size="16px" color="#BFBFBF" />
                   <Text w="145px" ml="12px">
                     {step.label}
                   </Text>
-                  <ProgressIcon progress={progress} />
-                  {PROGRESS_TEXT[progress]}
-                  {progress != PROGRESS_STATUS.PENDING && (
-                    <chakra.span ml="20px" whiteSpace="nowrap">
-                      {lR}/{rR} Voted
-                    </chakra.span>
+                  {data?.project_status > cStatus && (
+                    <>
+                      <ProgressIcon approved={true} />
+                      Approved
+                      <chakra.span ml="20px" whiteSpace="nowrap">
+                        {communityCount}/{communityCount} Voted
+                      </chakra.span>
+                    </>
                   )}
-                  {(progress == PROGRESS_STATUS.VOTING ||
-                    progress == PROGRESS_STATUS.REJECTED) && <VoteButton />}
+                  {data?.project_status == cStatus && data?.rejected && (
+                    <>
+                      <ProgressIcon rejected={true} />
+                      Rejected
+                      <chakra.span ml="20px" whiteSpace="nowrap">
+                        {votedCount}/{communityCount} Voted
+                      </chakra.span>
+                    </>
+                  )}
+                  {data?.project_status == cStatus && data?.rejected == false && (
+                    <>
+                      <ProgressIcon voting={true} />
+                      Voting
+                      <chakra.span ml="20px" whiteSpace="nowrap">
+                        {votedCount}/{communityCount} Voted
+                      </chakra.span>
+                      <VoteButton />
+                    </>
+                  )}
+                  {data?.project_status < cStatus && (
+                    <>
+                      <ProgressIcon />
+                      Pending
+                    </>
+                  )}
                 </Flex>
               );
             })}

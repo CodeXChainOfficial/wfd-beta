@@ -26,10 +26,9 @@ import {
 } from "../../../utils/utility";
 import { useMetamaskWallet } from "../../../contexts/metamask";
 import { WFD_TOKEN_INFO } from "../../../config/constants";
+import { PROJECT_STATUS } from "../../../types/ProjectStatus";
 
 export const APPLICATION_BASE_STATUS = 1;
-export const APPLICATION_START_STATUS = 0;
-export const APPLICATION_END_STATUS = 2;
 
 export const APPLICATION_STEPS = [
   {
@@ -60,11 +59,11 @@ export default function ViewProjectApproval() {
 
   useEffect(() => {
     if (data) {
-      setPassedStatus(data.project_status - APPLICATION_START_STATUS);
+      setPassedStatus(data.project_status - PROJECT_STATUS.DocumentValuation);
       setRemainStatus(
-        data.project_status > APPLICATION_END_STATUS
+        data.project_status > PROJECT_STATUS.IncubationGoalSetup
           ? 0
-          : APPLICATION_END_STATUS - data.project_status + 1
+          : PROJECT_STATUS.IncubationGoalSetup - data.project_status + 1
       );
     }
   }, [data]);

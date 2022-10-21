@@ -14,6 +14,8 @@ import {
 } from "@chakra-ui/react";
 import { useProjectData } from "../../../hook/FetchProject";
 import { GetProjectStatusText } from "../../../utils/utility";
+import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../../types/ProgreessStatus";
+import { PROJECT_STATUS } from "../../../types/ProjectStatus";
 
 export default function ProjectOnApproval() {
   const projectData = useProjectData();
@@ -47,69 +49,70 @@ export default function ProjectOnApproval() {
             </Tr>
           </Thead>
           <Tbody bg={"#130A49"} borderRadius={"10px 10px 0px 0px"}>
-            {projectData.map((item, index) => (
-              <Tr key={index}>
-                <Td>
-                  <Flex
-                    w={{ base: "45px", md: "45px" }}
-                    h={{ base: "45px", md: "45px" }}
-                    bg="white"
-                    // backgroundImage="linear-gradient(180deg, rgba(0, 56.10, 255, 0.29), rgba(87.39, 123.10, 249.69, 0))"
-                    borderRadius="50%"
-                    align="center"
-                    justify="center"
-                  >
-                    <Image
-                      width="80%"
-                      height="80%"
-                      src={item.project_logo}
+            {projectData.map((item, index) => {
+              let progress;
+              if (
+                item.project_status <= PROJECT_STATUS.IncubationGoalSetup &&
+                item.rejected == true
+              )
+                progress = PROGRESS_STATUS.REJECTED;
+              else if (
+                item.project_status <= PROJECT_STATUS.IncubationGoalSetup &&
+                item.rejected == false
+              )
+                progress = PROGRESS_STATUS.VOTING;
+              else if (item.project_status > PROJECT_STATUS.IncubationGoalSetup)
+                progress = PROGRESS_STATUS.APPROVED;
+              else progress = PROGRESS_STATUS.PENDING;
+              return (
+                <Tr key={index}>
+                  <Td>
+                    <Flex
+                      w={{ base: "45px", md: "45px" }}
+                      h={{ base: "45px", md: "45px" }}
+                      bg="white"
+                      // backgroundImage="linear-gradient(180deg, rgba(0, 56.10, 255, 0.29), rgba(87.39, 123.10, 249.69, 0))"
                       borderRadius="50%"
-                    />
-                  </Flex>
-                </Td>
-                <Td minW={"200px"}>{item.project_title}</Td>
-                <Td maxW={"300px"}>
-                  {item.project_description.slice(0, 100)}...
-                </Td>
-                <Td>
-                  <Flex minW={"120px"}>
-                    {/* {item.status == "Not Started" && <ProgressIcon />} */}
-                    {item.project_status <= 2 && item.rejected == true && (
-                      <>
-                        <ProgressIcon rejected={true} />
-                        Rejected
-                      </>
-                    )}
-                    {item.project_status <= 2 && item.rejected == false && (
-                      <>
-                        <ProgressIcon voting={true} />
-                        Voting
-                      </>
-                    )}
-                    {item.project_status > 2 && (
-                      <>
-                        <ProgressIcon approved={true} />
-                        Approved
-                      </>
-                    )}
-                  </Flex>
-                </Td>
-                <Td>{GetProjectStatusText(item.project_status)}</Td>
-                <Td>
-                  <Link
-                    href={`/administrator/viewproject/approval?project_id=${item.project_id}`}
-                  >
-                    <Button
-                      colorScheme="cyan"
-                      color="blue.200"
-                      variant="outline"
+                      align="center"
+                      justify="center"
                     >
-                      View
-                    </Button>
-                  </Link>
-                </Td>
-              </Tr>
-            ))}
+                      <Image
+                        width="80%"
+                        height="80%"
+                        src={item.project_logo}
+                        borderRadius="50%"
+                      />
+                    </Flex>
+                  </Td>
+                  <Td minW={"200px"}>{item.project_title}</Td>
+                  <Td maxW={"300px"}>
+                    {item.project_description.slice(0, 100)}...
+                  </Td>
+                  <Td>
+                    <Flex minW={"120px"}>
+                      <>
+                        <ProgressIcon progress={progress} />
+                        {PROGRESS_TEXT[progress]}
+                      </>
+                    </Flex>
+                  </Td>
+                  <Td>{GetProjectStatusText(item.project_status)}</Td>
+                  <Td>
+                    <Link
+                      href={`/administrator/viewproject/approval?project_id=${item.project_id}`}
+                    >
+                      <Button
+                        colorScheme="cyan"
+                        color="blue.200"
+                        variant="outline"
+                      >
+                        View
+                      </Button>
+                    </Link>
+                  </Td>
+                </Tr>
+              );
+            })}
           </Tbody>
         </Table>
       </Flex>
@@ -118,11 +121,7 @@ export default function ProjectOnApproval() {
 }
 interface FillProp {
   children?: React.ReactNode;
-  going?: boolean;
-  approved?: boolean;
-  rejected?: boolean;
-  ended?: boolean;
-  voting?: boolean;
+  progress: PROGRESS_STATUS;
 }
 
 export function StatusLight({
@@ -197,13 +196,8 @@ export function StatusLight({
     );
   }
 }
-export function ProgressIcon({
-  children,
-  approved = false,
-  rejected = false,
-  voting = false,
-}: FillProp) {
-  if (approved) {
+export function ProgressIcon({ children, progress }: FillProp) {
+  if (progress == PROGRESS_STATUS.APPROVED) {
     return (
       <Box position="relative" mr="2" pt="1">
         <Image
@@ -214,7 +208,7 @@ export function ProgressIcon({
         {children}
       </Box>
     );
-  } else if (rejected) {
+  } else if (progress == PROGRESS_STATUS.REJECTED) {
     return (
       <Box position="relative" mr="2" pt="1">
         <Image
@@ -225,7 +219,7 @@ export function ProgressIcon({
         {children}
       </Box>
     );
-  } else if (voting) {
+  } else if (progress == PROGRESS_STATUS.VOTING) {
     return (
       <Box position="relative" mr="2" ml="8" pt="1">
         <Image

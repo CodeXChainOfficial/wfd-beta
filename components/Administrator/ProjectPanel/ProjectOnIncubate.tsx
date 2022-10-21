@@ -15,6 +15,8 @@ import {
 import { useProjectData } from "../../../hook/FetchProject";
 import { GetProjectStatusText } from "../../../utils/utility";
 import { ProgressIcon } from "./ProjectOnApproval";
+import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../../types/ProgreessStatus";
+import { PROJECT_STATUS } from "../../../types/ProjectStatus";
 
 export default function ProjectOnIncubate() {
   const projectData = useProjectData();
@@ -48,78 +50,65 @@ export default function ProjectOnIncubate() {
             </Tr>
           </Thead>
           <Tbody bg={"#130A49"} borderRadius={"10px 10px 0px 0px"}>
-            {projectData.map((item, index) => (
-              <Tr key={index}>
-                <Td>
-                  <Flex
-                    w={{ base: "45px", md: "45px" }}
-                    h={{ base: "45px", md: "45px" }}
-                    bg="white"
-                    // backgroundImage="linear-gradient(180deg, rgba(0, 56.10, 255, 0.29), rgba(87.39, 123.10, 249.69, 0))"
-                    borderRadius="50%"
-                    align="center"
-                    justify="center"
-                  >
-                    <Image
-                      width="80%"
-                      height="80%"
-                      src={item.project_logo}
+            {projectData.map((item, index) => {
+              let progress;
+              if (item.project_status < PROJECT_STATUS.IncubationGoal) {
+                progress = PROGRESS_STATUS.PENDING;
+              } else if (
+                item.project_status >= PROJECT_STATUS.IncubationGoal &&
+                item.project_status < PROJECT_STATUS.CrowdFundraising
+              ) {
+                if (item.rejected == true) progress = PROGRESS_STATUS.REJECTED;
+                else progress = PROGRESS_STATUS.VOTING;
+              } else progress = PROGRESS_STATUS.APPROVED;
+
+              return (
+                <Tr key={index}>
+                  <Td>
+                    <Flex
+                      w={{ base: "45px", md: "45px" }}
+                      h={{ base: "45px", md: "45px" }}
+                      bg="white"
+                      // backgroundImage="linear-gradient(180deg, rgba(0, 56.10, 255, 0.29), rgba(87.39, 123.10, 249.69, 0))"
                       borderRadius="50%"
-                    />
-                  </Flex>
-                </Td>
-                <Td minW={"200px"}>{item.project_title}</Td>
-                <Td maxW={"300px"}>
-                  {item.project_description.slice(0, 100)}...
-                </Td>
-                <Td>
-                  <Flex minW={"120px"}>
-                    {item.project_status < 3 && (
-                      <>
-                        <ProgressIcon />
-                        Not Started
-                      </>
-                    )}
-                    {item.project_status >= 3 &&
-                      item.project_status < 5 &&
-                      item.rejected == true && (
-                        <>
-                          <ProgressIcon rejected={true} />
-                          Rejected
-                        </>
-                      )}
-                    {item.project_status >= 3 &&
-                      item.project_status < 5 &&
-                      item.rejected == false && (
-                        <>
-                          <ProgressIcon voting={true} />
-                          Voting
-                        </>
-                      )}
-                    {item.project_status >= 5 && (
-                      <>
-                        <ProgressIcon approved={true} />
-                        Approved
-                      </>
-                    )}
-                  </Flex>
-                </Td>
-                <Td>{GetProjectStatusText(item.project_status)}</Td>
-                <Td>
-                  <Link
-                    href={`/administrator/viewproject/incubation?project_id=${item.project_id}`}
-                  >
-                    <Button
-                      colorScheme="cyan"
-                      color="blue.200"
-                      variant="outline"
+                      align="center"
+                      justify="center"
                     >
-                      View
-                    </Button>
-                  </Link>
-                </Td>
-              </Tr>
-            ))}
+                      <Image
+                        width="80%"
+                        height="80%"
+                        src={item.project_logo}
+                        borderRadius="50%"
+                      />
+                    </Flex>
+                  </Td>
+                  <Td minW={"200px"}>{item.project_title}</Td>
+                  <Td maxW={"300px"}>
+                    {item.project_description.slice(0, 100)}...
+                  </Td>
+                  <Td>
+                    <Flex minW={"120px"}>
+                      <ProgressIcon progress={progress} />
+                      {PROGRESS_TEXT[progress]}
+                    </Flex>
+                  </Td>
+                  <Td>{GetProjectStatusText(item.project_status)}</Td>
+                  <Td>
+                    <Link
+                      href={`/administrator/viewproject/incubation?project_id=${item.project_id}`}
+                    >
+                      <Button
+                        colorScheme="cyan"
+                        color="blue.200"
+                        variant="outline"
+                      >
+                        View
+                      </Button>
+                    </Link>
+                  </Td>
+                </Tr>
+              );
+            })}
           </Tbody>
         </Table>
       </Flex>
