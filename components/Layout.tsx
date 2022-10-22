@@ -14,7 +14,6 @@ import {
   ParseParam_ProjectId,
 } from "../utils/utility";
 import { encrypt3DES, decrypt3DES } from "../utils/crypto";
-import { fetchData } from "../utils/fetch";
 import { toast } from "react-toastify";
 import { SUCCESS_OPTION } from "../config/constants";
 import { useStore, ActionKind } from "../contexts/store";
@@ -123,9 +122,10 @@ const Layout = ({ children }: Props) => {
     }
   }, [metamaskWallet, metamaskWallet.initialized]);
 
-  useEffect(() => {
-    fetchData(state, dispatch, true);
-  }, []);
+  // useEffect(() => {
+  // fetchProjectData(state, dispatch, true);
+  // fetchCommunity(state, dispatch);
+  // }, []);
 
   //-------Near connection--------------------------------------------------
   const near = useNearWallet();

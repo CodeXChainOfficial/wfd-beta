@@ -1,69 +1,95 @@
-import PageLayout from "../../components/PageLayout";
-import Footer from "../../components/Footer";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import PageLayout from "../../../components/PageLayout";
+import Footer from "../../../components/Footer";
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Avatar,
   Box,
   Button,
   Center,
   Flex,
-  Heading,
   Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Link,
-  Progress,
   SimpleGrid,
   Stack,
   Text,
-  Textarea,
   VStack,
 } from "@chakra-ui/react";
-import { IoWalletOutline } from "react-icons/io5";
-import { InputTransition } from "../../components/ImageTransition";
-import { CheckIcon } from "@chakra-ui/icons";
-import ProjectApplication from "../../components/OwnerInfo/ProjectApplication";
-import GoalList from "../../components/OwnerInfo/OwnerIncubationGoal";
-import IfProjectApplication from "../../components/Administrator/IfProjectApplication";
-import ProjectInfoListGoal from "../../components/Administrator/Projectlistgoal";
-import ProjectInfoListMilestone from "../../components/Administrator/Projectlistmilesone";
+import { IoWalletOutline, IoFileTrayFull, IoCallSharp } from "react-icons/io5";
+import { IoMdThumbsUp } from "react-icons/io";
+import { BsFillCalendar2CheckFill } from "react-icons/bs";
 
-export default function viewproject() {
+import ProjectIncubation from "../../../components/Administrator/ViewProject/ProjectIncubation";
+import { useOneProjectData } from "../../../hook/FetchProject";
+import { ParseParam_ProjectId, ShortenAddress } from "../../../utils/utility";
+import { useMetamaskWallet } from "../../../contexts/metamask";
+import { WFD_TOKEN_INFO } from "../../../config/constants";
+import { PROJECT_STATUS } from "../../../types/ProjectStatus";
+
+export const INCUBATION_BASE_STATUS = 1;
+
+export const INCUBATION_STEPS = [
+  {
+    image: IoFileTrayFull,
+    label: "Selected",
+  },
+  {
+    image: BsFillCalendar2CheckFill,
+    label: "SetGoal",
+  },
+  {
+    image: IoCallSharp,
+    label: "Goal Approved",
+  },
+  {
+    image: IoMdThumbsUp,
+    label: "All Goal Archieved",
+  },
+];
+
+export default function ViewProjectIncubation() {
+  const [passedGoals, setPassedGoals] = useState(0);
+  const [goalSet, setGoalSet] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const projectID = ParseParam_ProjectId();
+  const data = useOneProjectData(projectID);
+  const wallet = useMetamaskWallet();
+  const address = wallet.account;
+
+  useEffect(() => {
+    if (data) {
+      const length = data.incubation_goals.length;
+      setPassedGoals(length - data.incubation_index);
+      setGoalSet(length);
+
+      if (data.project_status == PROJECT_STATUS.IncubationGoal) {
+        setCurrentStep(length == 0 ? 1 : 2);
+      } else if (data.project_status == PROJECT_STATUS.MilestoneSetup) {
+        setCurrentStep(3);
+      } else if (data.project_status > PROJECT_STATUS.MilestoneSetup) {
+        setCurrentStep(4);
+      }
+    }
+  }, [data]);
+
   return (
     <PageLayout
       title=""
-      subTitle1="Welcome Back Admin to"
-      subTitle2=""
-      subTitle3="&nbsp;Manage $Project"
+      subTitle1="Welcome Back Admin to "
+      subTitle2=" "
+      subTitle3={` Manage ${data?.project_title}`}
     >
       <Box width={"100%"}>
         <Box color={"white"} pb={"5%"} pt="64px">
           <Stack
             color="white"
             justifyContent="center"
-            direction={{
-              base: "column",
-              sm: "column",
-              md: "column",
-              lg: "row",
-            }}
+            direction={{ base: "column", lg: "row" }}
           >
             <VStack
               spacing={4}
               marginBottom={6}
-              align={{
-                base: "center",
-                sm: "center",
-                md: "center",
-                lg: "unset",
-              }}
-              w={{ base: "100%", sm: "100%", md: "100%", lg: "450px" }}
+              align={{ base: "center", lg: "unset" }}
+              w={{ base: "100%", lg: "450px" }}
               mx={[0, 0, 0]}
             >
               <Box
@@ -103,7 +129,7 @@ export default function viewproject() {
                       color={"rgba(15, 177, 245, 1)"}
                       w={"full"}
                     >
-                      wfdvs1r.....5jzx
+                      {ShortenAddress(address)}
                     </Text>
                   </Flex>
                 </Flex>
@@ -115,7 +141,7 @@ export default function viewproject() {
                     fontWeight="950"
                     w={"full"}
                   >
-                    890.09778
+                    {WFD_TOKEN_INFO.pool}
                   </Text>
                   <Text
                     pl="8px"
@@ -139,7 +165,7 @@ export default function viewproject() {
                       fontWeight="600"
                       w={"full"}
                     >
-                      0.2498488
+                      {WFD_TOKEN_INFO.price}
                     </Text>
                   </Flex>
                   <Flex>
@@ -151,7 +177,10 @@ export default function viewproject() {
                       fontWeight="600"
                       w={"full"}
                     >
-                      24H : +5.74
+                      24H :{" "}
+                      {WFD_TOKEN_INFO.up > 0
+                        ? `+${WFD_TOKEN_INFO.up}%`
+                        : `-${-1 * WFD_TOKEN_INFO.up}%`}
                     </Text>
                   </Flex>
                 </Flex>
@@ -201,7 +230,7 @@ export default function viewproject() {
                         fontWeight="600"
                         w={"full"}
                       >
-                        Remaining Step to Pass
+                        Remaining Goal to Pass
                       </Text>
                       <Text
                         mt="14px"
@@ -210,7 +239,7 @@ export default function viewproject() {
                         fontWeight="950"
                         w={"full"}
                       >
-                        2 Goals
+                        {goalSet} Goals
                       </Text>
                     </Flex>
                   </Flex>
@@ -234,7 +263,7 @@ export default function viewproject() {
                         fontWeight="600"
                         w={"full"}
                       >
-                        Goal Set
+                        GoalSet
                       </Text>
                       <Text
                         mt="14px"
@@ -243,7 +272,7 @@ export default function viewproject() {
                         fontWeight="950"
                         w={"full"}
                       >
-                        4 Goals
+                        {goalSet} Goals
                       </Text>
                     </Flex>
                   </Flex>
@@ -275,12 +304,7 @@ export default function viewproject() {
               </Link>
             </VStack>
             <Flex
-              align={{
-                base: "center",
-                sm: "center",
-                md: "center",
-                lg: "flex-start",
-              }}
+              align={{ base: "center", lg: "flex-start" }}
               direction="column"
               p="24px"
             >
@@ -288,109 +312,41 @@ export default function viewproject() {
                 Project Journey Status
               </Text>
               <Flex mt="36px">
-                <Flex direction="column">
-                  <BoxContainer filled={true}>
-                    <Image
-                      position="absolute"
-                      top="25%"
-                      left="25%"
-                      alt="registration icon"
-                      src="/media/OwnerInfo/registration_filled.svg"
-                    />
-                  </BoxContainer>
-                  <Center mt="20px">
-                    <Text
-                      color={"rgba(15, 177, 245, 1)"}
-                      fontFamily={"Montserrat"}
-                      fontWeight="600"
-                      fontSize="16px"
-                    >
-                      Registration
-                    </Text>
-                  </Center>
-                </Flex>
-                <Center h="82px">
-                  <Dash filled={true} />
-                </Center>
-                <Flex direction="column">
-                  <BoxContainer>
-                    <Image
-                      position="absolute"
-                      top="25%"
-                      left="25%"
-                      alt="selection icon"
-                      src="/media/OwnerInfo/selection.svg"
-                    />
-                  </BoxContainer>
-                  <Center mt="20px">
-                    <Text
-                      color={"rgba(15, 177, 245, 1)"}
-                      fontFamily={"Montserrat"}
-                      fontWeight="600"
-                      fontSize="16px"
-                    >
-                      Selection
-                    </Text>
-                  </Center>
-                </Flex>
-                <Center h="82px">
-                  <Dash />
-                </Center>
-                <Flex direction="column">
-                  <BoxContainer>
-                    <Image
-                      position="absolute"
-                      top="25%"
-                      left="25%"
-                      alt="goal icon"
-                      src="/media/OwnerInfo/goal.svg"
-                    />
-                  </BoxContainer>
-                  <Center mt="20px">
-                    <Text
-                      color={"rgba(15, 177, 245, 1)"}
-                      fontFamily={"Montserrat"}
-                      fontWeight="600"
-                      fontSize="16px"
-                    >
-                      Set Goal
-                    </Text>
-                  </Center>
-                </Flex>
-                <Center h="82px">
-                  <Dash />
-                </Center>
-                <Flex direction="column">
-                  <BoxContainer>
-                    <Image
-                      position="absolute"
-                      top="25%"
-                      left="25%"
-                      alt="publish icon"
-                      src="/media/OwnerInfo/publish.svg"
-                    />
-                  </BoxContainer>
-                  <Center mt="20px">
-                    <Text
-                      color={"rgba(15, 177, 245, 1)"}
-                      fontFamily={"Montserrat"}
-                      fontWeight="600"
-                      fontSize="16px"
-                    >
-                      Approved
-                    </Text>
-                  </Center>
-                  <Center>
-                    <Text
-                      color={"rgba(15, 177, 245, 1)"}
-                      fontFamily={"Montserrat"}
-                      fontWeight="600"
-                      fontSize="16px"
-                    >
-                      Publish
-                    </Text>
-                  </Center>
-                </Flex>
+                {INCUBATION_STEPS.map((step, index, all) => {
+                  return (
+                    <>
+                      <Flex
+                        direction="column"
+                        key={index}
+                        w="82px"
+                        align="center"
+                      >
+                        <BoxContainer filled={index < currentStep}>
+                          <step.image
+                            size="50%"
+                            color={index < currentStep ? "black" : "#42E8E0"}
+                          />
+                        </BoxContainer>
+                        <Center mt="20px" w="130%">
+                          <Text
+                            color={"rgba(15, 177, 245, 1)"}
+                            fontFamily={"Montserrat"}
+                            fontWeight="600"
+                            fontSize="16px"
+                            align="center"
+                          >
+                            {step.label}
+                          </Text>
+                        </Center>
+                      </Flex>
+                      {index < all.length - 1 && (
+                        <Center h="82px">
+                          <Dash filled={index < currentStep - 1} />
+                        </Center>
+                      )}
+                    </>
+                  );
+                })}
               </Flex>
               <Text
                 mt="16px"
@@ -398,27 +354,9 @@ export default function viewproject() {
                 fontWeight="800"
                 fontSize="20px"
               >
-                Project Information
+                Project Owner Incubation Goal
               </Text>
-              <IfProjectApplication />
-              <Text
-                mt="36px"
-                fontFamily={"Montserrat"}
-                fontWeight="800"
-                fontSize="20px"
-              >
-                Project Goal - Ongoing Progresses
-              </Text>
-              <ProjectInfoListGoal  incubation={true}/>
-              <Text
-                mt="16px"
-                fontFamily={"Montserrat"}
-                fontWeight="800"
-                fontSize="20px"
-              >
-                Project Milestone - Creation
-              </Text>
-              <ProjectInfoListMilestone/>
+              <ProjectIncubation data={data} />
             </Flex>
           </Stack>
         </Box>
@@ -434,37 +372,21 @@ interface FillProp {
 }
 
 function BoxContainer({ children, filled = false }: FillProp) {
-  if (filled) {
-    return (
-      <Box
-        position="relative"
-        width="82px"
-        height="82px"
-        bg="rgba(66, 232, 224, 1)"
-        borderRadius="20px"
-        borderStyle="solid"
-        borderWidth="2px"
-        borderColor="rgba(66, 232, 224, 1)"
-      >
-        {children}
-      </Box>
-    );
-  } else {
-    return (
-      <Box
-        position="relative"
-        width="82px"
-        height="82px"
-        bg="rgba(0, 163, 255, 0.09)"
-        borderRadius="20px"
-        borderStyle="solid"
-        borderWidth="2px"
-        borderColor="rgba(66, 232, 224, 1)"
-      >
-        {children}
-      </Box>
-    );
-  }
+  return (
+    <Flex
+      width="82px"
+      height="82px"
+      bg={filled ? "rgba(66, 232, 224, 1)" : "rgba(0, 163, 255, 0.09)"}
+      borderRadius="20px"
+      borderStyle="solid"
+      borderWidth="2px"
+      borderColor="rgba(66, 232, 224, 1)"
+      justify="center"
+      align="center"
+    >
+      {children}
+    </Flex>
+  );
 }
 
 function Dash({ children, filled = false }: FillProp) {

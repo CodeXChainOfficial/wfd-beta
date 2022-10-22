@@ -6,7 +6,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 import { WEFUND_ID, REQUEST_ENDPOINT } from "../../config/constants";
-import { useProjectData } from "../../contexts/store";
+import { useProjectData } from "../../hook/FetchProject";
 import { GetOneProject } from "../../utils/utility";
 import { ERROR_OPTION } from "../../config/constants";
 

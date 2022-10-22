@@ -4,22 +4,9 @@ export const REQUEST_ENDPOINT =
   "https://wefund-nodejs-gwb6v.ondigitalocean.app";
 
 export const WEFUND_WALLET = "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
-
-// testnet
-// export const WFD_TOKEN =
-//   "juno17tk7s9mg2a6uupfljrhf492e7hzhkd89cvzerglyj8xguvzukksq9d75ts";
-
-// export const WEFUND_CONTRACT =
-//   "juno13kudszzwfejy3qej4kzqp26gt2ph3nx4h4r388qq7wjhjql0lljs0j58v7";
-// export const VESTING_CONTRACT =
-//   "juno108njn5xsurvg7ce882m92m6yy2l80r8zmk9q62kkxjhk44ea7mxqreuc52";
-// export const STAKING_CONTRACT =
-//   "juno1ru0euvqln9ax686aev4lut0tjxq6a9u4lp8t63sgy3rugprjejjsqc3dzf";
-
-// mainnet
 export const WFD_TOKEN = "0x131C6A669e275c0B10d565c7F7c319B89450dbf2";
 
-export const WEFUND_CONTRACT = "0xCec6Ddf172cfA193D5335839Da004699409D3b0a";
+export const WEFUND_CONTRACT = "0xc0B5941f7013336Db66b978d818CC3C189Be6860";
 export const VESTING_CONTRACT = "";
 export const STAKING_CONTRACT = "";
 
@@ -29,11 +16,14 @@ export const WEFUND_BSC_ADDRESS = "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
 export const WEFUND_TRON_WALLET = "TQzceggoo7S7AoMyiLBVTKwMtN4Q9gdqW4";
 export const WEFUND_POLYGON_WALLET =
   "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
-//export const WEFUND_TRUST_BNB_WALLET =
-//  "";
+//export const WEFUND_TRUST_BNB_WALLET = "";
 //export const WEFUND_NEAR_WALLET = "84f097a62590c92503a32336e8ad4cf166b90ea605b652bd0eb392dc9f76554c";
-//export const WEFUND_ELROND_WALLET =
-//  "";
+//export const WEFUND_ELROND_WALLET = "";
+export const WFD_TOKEN_INFO = {
+  price: 0.09,
+  pool: 890.09778,
+  up: -5.4,
+};
 
 export const SUCCESS_OPTION: any = {
   position: "bottom-right",

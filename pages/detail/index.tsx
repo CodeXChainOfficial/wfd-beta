@@ -3,7 +3,7 @@ import { Box, Flex, Spacer, VStack, useDisclosure } from "@chakra-ui/react";
 import React from "react";
 
 import { useRouter } from "next/router";
-import { useOneProjectData } from "../../contexts/store";
+import { useOneProjectData } from "../../hook/FetchProject";
 import Footer from "../../components/Footer";
 import ProjectTitle from "../../components/ProjectDetail/ProjectTitle";
 import ProjectMainButtons from "../../components/ProjectDetail/ProjectMainButtons";
@@ -18,7 +18,7 @@ export default function ProjectDetail() {
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const project_id = ParseParam_ProjectId();
-  const oneprojectData = useOneProjectData(project_id);
+  const data = useOneProjectData(project_id);
 
   function onNext() {
     router.push("/backproject?project_id=" + project_id);
@@ -57,10 +57,10 @@ export default function ProjectDetail() {
           direction={{ base: "column", md: "column", lg: "row" }}
         >
           <VStack>
-            <ProjectTitle data={oneprojectData} />
+            <ProjectTitle data={data} />
             <Flex alignContent="center">
               <ProjectMainButtons
-                data={oneprojectData}
+                data={data}
                 onNext={onNext}
                 onManage={onManage}
               />
@@ -74,15 +74,15 @@ export default function ProjectDetail() {
           direction={{ base: "column", md: "column", lg: "row" }}
         >
           <Flex w="full" flex="1">
-            <ProjectTeamMember data={oneprojectData} />
+            <ProjectTeamMember data={data} />
           </Flex>
           <Container w={24} />
           <Flex w="full" flex="1">
-            <ProjectInformations data={oneprojectData} />
+            <ProjectInformations data={data} />
           </Flex>
         </Flex>
         <Container pt="64px" />
-        <ProjectMileStones data={oneprojectData} onOpen={onOpen} />
+        <ProjectMileStones data={data} onOpen={onOpen} />
         <Container pb="128px" />
       </VStack>
       <Footer />
