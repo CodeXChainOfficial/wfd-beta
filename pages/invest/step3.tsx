@@ -40,14 +40,13 @@ import { useProjectData, useStore, useWallet } from "../../contexts/store";
 import { useRouter } from "next/router";
 import { fetchData } from "../../utils/fetch";
 import Footer from "../../components/Footer";
+import { useOneProjectData } from "../../hook/FetchProject";
 
 export default function InvestStep3() {
   const [signature, setSignature] = useState("");
   const [investTitle, setInsTitle] = useState("");
   const [investName, setInsName] = useState("");
   const [investEmail, setInsEmail] = useState("");
-
-  const [oneprojectData, setOneprojectData] = useState<any>(null);
 
   const { state, dispatch } = useStore();
   const canvasRef = useRef({});
@@ -56,20 +55,7 @@ export default function InvestStep3() {
 
   //------------parse URL for project id----------------------------
   const project_id = ParseParam_ProjectId();
-  const projectData = useProjectData();
-
-  useEffect(() => {
-    async function fetchData() {
-      const oneprojectData = GetOneProject(projectData, project_id);
-      if (oneprojectData == null) {
-        // toast("Can't fetch project data", ERROR_OPTION);
-        // console.log("can't fetch project data");
-        return;
-      }
-      setOneprojectData(oneprojectData);
-    }
-    fetchData();
-  }, [projectData, project_id]);
+  const oneprojectData = useOneProjectData(project_id);
 
   //----------------upload signature----------------------------
   function openUpload() {

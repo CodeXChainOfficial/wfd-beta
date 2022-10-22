@@ -23,10 +23,8 @@ import {
 } from "@chakra-ui/react";
 
 import "react-multi-carousel/lib/styles.css";
-import {
-  useProjectData,
-  useStore,
-} from "../../contexts/store";
+import { useStore } from "../../contexts/store";
+import { useProjectData } from "../../hook/FetchProject";
 import Footer from "../../components/Footer";
 import Hero from "../../components/User/Hero";
 import { useMetamaskWallet } from "../../contexts/metamask";

@@ -23,8 +23,8 @@ import {
 } from "../../components/ImageTransition";
 import Footer from "../../components/Footer";
 import CustomCoinInput from "../../components/BackProject/CustomCoinInput";
-import { useProjectData, useStore, useWallet } from "../../contexts/store";
-import { fetchData } from "../../utils/fetch";
+import { useStore, useWallet } from "../../contexts/store";
+import { useProjectData } from "../../hook/FetchProject";
 import PageLayout from "../../components/PageLayout";
 
 export default function BackProject() {
@@ -87,11 +87,7 @@ export default function BackProject() {
       await res.wait();
       console.log("approve done");
 
-      const contract = new ethers.Contract(
-        WEFUND_CONTRACT,
-        WEFUND_ABI,
-        signer
-      );
+      const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, signer);
 
       let tokenType = 0;
       switch (tokenInfo?.name.toLowerCase()) {
@@ -108,7 +104,7 @@ export default function BackProject() {
       res = await contract.back(project_id, tokenType, amount);
       await res.wait();
       toast("Back success!", SUCCESS_OPTION);
-      fetchData(state, dispatch, true);
+      // fetchData(state, dispatch, true);
     } catch (e) {
       toast("Failed", ERROR_OPTION);
       console.log(e);

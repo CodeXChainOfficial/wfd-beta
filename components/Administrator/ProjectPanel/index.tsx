@@ -8,7 +8,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 import ProjectOnApproval from "./ProjectOnApproval";
-import ProjectOnFundraise from "./ProjectOnFundraise";
+import ProjectOnFundraise from "./ProjectOnMilestone";
 import ProjectOnIncubate from "./ProjectOnIncubate";
 
 const CustomTab: React.FC = (props: any) => {
