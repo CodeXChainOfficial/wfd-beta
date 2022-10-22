@@ -36,7 +36,38 @@ import {
 import { CheckIcon } from "@chakra-ui/icons";
 import { FaRegHeart } from "react-icons/fa";
 import { ImageTransition, InputTransition } from "../ImageTransition";
-
+const projectsinfomilestonelist = [
+  {
+    project: "project name",
+    milestone: "milestone 1",
+    milestonedetail:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+      milestoneamount:"200",
+    status: "Pending",
+    statusdetailed: "Approved at 10/12/22 12:25 PM",
+    statusapproval: "Approved",
+    vote: "0",
+    yesvote: "0",
+    novote: "0",
+    start: "20 / 07 / 22",
+    end: "15 / 08 / 22",
+  },
+  {
+    project: "project name",
+    milestone: "milestone 1",
+    milestonedetail:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+      milestoneamount: "200",
+    status: "Pending",
+    statusdetailed: "Approved at 10/12/22 12:25 PM",
+    statusapproval: "Voting",
+    vote: "0",
+    yesvote: "0",
+    novote: "0",
+    start: "20 / 07 / 22",
+    end: "15 / 08 / 22",
+  },
+];
 interface FillProp {
   children?: React.ReactNode;
   approved?: boolean;
@@ -57,168 +88,155 @@ export default function MilestoneForIncubation() {
       display={{ base: "none", md: "block", lg: "block" }}
     >
       <Flex
-        w="100%"
-        color="white"
-        py={"25px"}
-        borderRadius="10px"
         justify="center"
         align="center"
-        flexDirection="column"
+        direction="column"
         display={{ base: "none", md: "block", lg: "block" }}
       >
-        <Flex
-          justify="center"
-          align="center"
-          direction="column"
-          display={{ base: "none", md: "block", lg: "block" }}
-        >
-          <Table variant="unstyled" size="sm">
-            <Thead bg={"#2E607C"} borderRadius={"10px 10px 0px 0px"}>
-              <Tr>
-                <Th style={{ color: "#ADB2DB" }}>Goal</Th>
-                <Th style={{ color: "#ADB2DB" }}>Start</Th>
-                <Th style={{ color: "#ADB2DB" }}>End</Th>
-                <Th style={{ color: "#ADB2DB" }}>Amount</Th>
-                <Th style={{ color: "#ADB2DB" }}>Status</Th>
-                <Th></Th>
-              </Tr>
-            </Thead>
-            <Tbody bg={"rgba(18, 13, 48, 1)"} borderRadius={"10px 10px 0px 0px"}>
-              <Tr key={0}>
-                <Td>Prototype Making</Td>
-                <Td>20 / 07 / 22</Td>
-                <Td>15 / 08 / 22</Td>
-                <Td>$ xxxx</Td>
+        <Table variant="unstyled" size="sm">
+          <Thead bg={"#2E607C"} borderRadius={"10px 10px 0px 0px"}>
+            <Tr>
+              <Th style={{ color: "#ADB2DB" }}>Goal</Th>
+              <Th style={{ color: "#ADB2DB" }}>Start</Th>
+              <Th style={{ color: "#ADB2DB" }}>End</Th>
+              <Th style={{ color: "#ADB2DB" }}>Amount</Th>
+              <Th style={{ color: "#ADB2DB" }}>Status</Th>
+              <Th></Th>
+            </Tr>
+          </Thead>
+          <Tbody bg={"#130A49"} borderRadius={"10px 10px 0px 0px"}>
+            {projectsinfomilestonelist.map((item, index) => (
+              <Tr key={index}>
+                <Td>{item.milestone}</Td>
+                <Td>{item.start}</Td>
+                <Td>{item.end}</Td>
+                <Td>{item.milestoneamount}</Td>
                 <Td>
                   <Flex>
-                    <ProgressIcon />
-                    Not Started
+                    {item.status == "Pending" && <ProgressIcon />}
+                    {item.status == "Rejected" && (
+                      <ProgressIcon rejected={true} />
+                    )}
+                    {item.status == "Voting" && <ProgressIcon voting={true} />}
+                    {item.status == "Approved" && (
+                      <ProgressIcon approved={true} />
+                    )}{" "}
+                    <Text>{item.status}</Text>
                   </Flex>
                 </Td>
                 <Td>
-                  <Button
-                    onClick={onOpen}
-                    colorScheme="telegram"
-                    variant="outline"
-                  >
-                    Edit
-                  </Button>
-                </Td>
-              </Tr>
-              <Tr key={0} border="none">
-                <Td>Prototype Making</Td>
-                <Td>20 / 07 / 22</Td>
-                <Td>15 / 08 / 22</Td>
-                <Td>$ xxxx</Td>
-                <Td>
-                  <Flex>
-                    <ProgressIcon rejected={true} />
-                    Ongoing
-                  </Flex>
-                </Td>
-                <Td>
-                  <Button
-                    onClick={onOpen}
-                    colorScheme="telegram"
-                    variant="outline"
-                  >
-                    Edit
-                  </Button>
-                </Td>
-              </Tr>
-            </Tbody>
-          </Table>
-        </Flex>
-      </Flex>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent bg="none">
-          <ModalCloseButton />
-          <Box>
-            <Flex direction="column" px="64px" py="16px">
-              <Table variant="unstyled" size="sm">
-                <Thead bg={"rgba(18, 13, 48, 1)"} borderRadius={"10px 10px 0px 0px"}>
-                  <Tr>
-                    <Th style={{ color: "#ADB2DB" }}>Goal Details</Th>
-                    <Th style={{ color: "#ADB2DB" }}>Start</Th>
-                    <Th style={{ color: "#ADB2DB" }}>End</Th>
-                    <Th style={{ color: "#ADB2DB" }}>Amount</Th>
-                    <Th style={{ color: "#ADB2DB" }}>Status</Th>
-                    <Th></Th>
-                  </Tr>
-                </Thead>
-                <Tbody
-                  bg={"rgba(18, 13, 48, 1)"}
-                  color="#130A49"
-                  borderRadius={"10px 10px 0px 0px"}
-                >
-                  <Tr key={0}>
-                    <Td>
-                      <Textarea
-                        color="#130A49"
-                        placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ex ea commodo consequat|"
-                        size="md"
-                        w="200px"
-                        bgColor={"#ADB2DB"}
-                      />
-                    </Td>
-                    <Td>
-                      <Flex mt="-10">
-                        <Input
-                          placeholder=""
-                          size="md"
-                          w="150px"
-                          type="date"
-                          bgColor={"#ADB2DB"}
-                        />
-                      </Flex>
-                    </Td>
-                    <Td>
-                      <Flex mt="-10">
-                        <Input
-                          placeholder=""
-                          size="md"
-                          w="150px"
-                          type="date"
-                          bgColor={"#ADB2DB"}
-                        />
-                      </Flex>
-                    </Td>
-                    <Td>
-                      <Flex mt="-10">
-                        <Input
-                          placeholder="2000"
-                          size="md"
-                          w="150px"
-                          type="number"
-                          bgColor={"#ADB2DB"}
-                        />
-                      </Flex>
-                    </Td>
-                    <Td>
-                      <Flex
-                        textAlign={"center"}
-                        w="100px"
-                        color="white"
-                        bgColor={"rgba(0, 0, 0, 0.3)"}
-                        p="5"
-                        w="150px"
+                <>
+                      <Button
+                        colorScheme={"linkedin"}
+                        variant="outline"
+                        onClick={onOpen}
                       >
-                        Approved at 10/12/22 12:25 PM
-                      </Flex>
-                    </Td>
-                    <Td>
-                      <Button colorScheme="telegram" variant="outline">
-                        Save
+                        Edit
                       </Button>
-                    </Td>
-                  </Tr>
-                </Tbody>
-              </Table>
-            </Flex>
-          </Box>
-        </ModalContent>
-      </Modal>
+
+                      <Modal isOpen={isOpen} onClose={onClose}>
+                        <ModalOverlay />
+                        <ModalContent bg="none">
+                          <ModalCloseButton />
+                          <Box>
+                            <Flex direction="column" px="64px" py="16px">
+                              <Table variant="unstyled" size="sm">
+                                <Thead
+                                  bg={"rgba(18, 13, 48, 1)"}
+                                  borderRadius={"10px 10px 0px 0px"}
+                                >
+                                  <Tr>
+                                    <Th style={{ color: "#ADB2DB" }}>
+                                      Goal Details
+                                    </Th>
+                                    <Th style={{ color: "#ADB2DB" }}>Start</Th>
+                                    <Th style={{ color: "#ADB2DB" }}>End</Th>
+                                    <Th style={{ color: "#ADB2DB" }}>Amount</Th>
+                                    <Th style={{ color: "#ADB2DB" }}>Status</Th>
+                                    <Th></Th>
+                                  </Tr>
+                                </Thead>
+                                <Tbody
+                                  bg={"rgba(18, 13, 48, 1)"}
+                                  color="#130A49"
+                                  borderRadius={"10px 10px 0px 0px"}
+                                >
+                                  <Tr key={0}>
+                                    <Td>
+                                      <Textarea
+                                        color="#130A49"
+                                        placeholder={item.milestonedetail}
+                                        size="md"
+                                        w="200px"
+                                        bgColor={"#ADB2DB"}
+                                      />
+                                    </Td>
+                                    <Td>
+                                      <Flex mt="-10">
+                                        <Input
+                                          placeholder={item.end}
+                                          size="md"
+                                          w="150px"
+                                          type="date"
+                                          bgColor={"#ADB2DB"}
+                                        />
+                                      </Flex>
+                                    </Td>
+                                    <Td>
+                                      <Flex mt="-10">
+                                        <Input
+                                          placeholder={item.start}
+                                          size="md"
+                                          w="150px"
+                                          type="date"
+                                          bgColor={"#ADB2DB"}
+                                        />
+                                      </Flex>
+                                    </Td>
+                                    <Td>
+                                      <Flex mt="-10">
+                                        <Input
+                                          placeholder={item.milestoneamount}
+                                          size="md"
+                                          w="150px"
+                                          type="number"
+                                          bgColor={"#ADB2DB"}
+                                        />
+                                      </Flex>
+                                    </Td>
+                                    <Td>
+                                      <Flex
+                                        textAlign={"center"}
+                                        w="100px"
+                                        color="white"
+                                        bgColor={"rgba(0, 0, 0, 0.3)"}
+                                        p="5"
+                                      >
+                                        {item.statusdetailed}
+                                      </Flex>
+                                    </Td>
+                                    <Td>
+                                      <Button
+                                        colorScheme="telegram"
+                                        variant="outline"
+                                      >
+                                        Save
+                                      </Button>
+                                    </Td>
+                                  </Tr>
+                                </Tbody>
+                              </Table>
+                            </Flex>
+                          </Box>
+                        </ModalContent>
+                      </Modal>
+                    </>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Flex>
     </Flex>
   );
 }

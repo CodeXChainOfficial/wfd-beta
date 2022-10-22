@@ -47,7 +47,7 @@ export default function Hero() {
           >
             Multichain{" "}
             <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
-              crowdfunding, incubation,
+              crowdfunding Infrustructure,{" "} incubation,
             </chakra.span>{" "}
             and{" "}
             <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
@@ -72,7 +72,7 @@ export default function Hero() {
             align="center"
             cursor="pointer"
             _hover={{ background: "#2288bb" }}
-            onClick={() => router.push("/invest/step0")}
+            onClick={() => router.push("/invest/step1")}
           >
             <Text
               w="100%"

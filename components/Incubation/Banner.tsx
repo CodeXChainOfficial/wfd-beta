@@ -27,10 +27,7 @@ export default function Banner() {
       alignItems="center"
       flexDirection="column"
       height={{
-        base: "65vh",
-        md: "60vh",
-        lg: "70vh",
-        xl: "80vh",
+        base: "90vh",
         "2xl": "110vh",
       }}
     >
@@ -135,13 +132,20 @@ export default function Banner() {
           </Box>
         </Stack>
       </Container>
-      <Center
-        position={"absolute"}
-        top={{ base: "60", sm: "0", md: "40", lg: "-48", "2xl": "-60" }}
-      >
-        <video autoPlay muted loop>
+      <Center position={"absolute"} w="100%">
+        <chakra.video
+          autoPlay
+          muted
+          loop
+          width="100%"
+          height={{
+            base: "90vh",
+            "2xl": "110vh",
+          }}
+          objectFit="cover"
+        >
           <source src="/media/starrybackground.webm" type="video/webm"></source>
-        </video>
+        </chakra.video>
       </Center>
     </Flex>
   );
