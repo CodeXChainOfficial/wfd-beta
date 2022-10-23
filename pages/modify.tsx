@@ -5,10 +5,7 @@ import { toast } from "react-toastify";
 import { REQUEST_ENDPOINT } from "../config/constants";
 
 import { useKeplrWallet } from "../contexts/keplrWallet";
-import {
-  ButtonBackTransition,
-  ButtonTransition,
-} from "../components/ImageTransition";
+import { ButtonTransition } from "../components/ImageTransition";
 import { useProjectData, useCommunityData } from "../hook/FetchProject";
 import { useStore } from "../contexts/store";
 import Footer from "../components/Footer";
