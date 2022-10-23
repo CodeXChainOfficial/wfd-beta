@@ -4,14 +4,10 @@ import {
   Box,
   Flex,
   Text,
-  Button,
-  HStack,
   Center,
-  Square,
   VStack,
   Stack,
   Heading,
-  Tag,
   Image,
   Avatar,
   Accordion,
@@ -21,16 +17,16 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react";
+import axios from "axios";
 
 import "react-multi-carousel/lib/styles.css";
-import { useStore } from "../../contexts/store";
+import { WEFUND_ID } from "../../config/constants";
 import { useProjectData } from "../../hook/FetchProject";
 import Footer from "../../components/Footer";
 import Hero from "../../components/User/Hero";
 import { useMetamaskWallet } from "../../contexts/metamask";
 
-export default function UserInfoDetail(data: any[]) {
-  const { state } = useStore();
+export default function UserInfoDetail() {
   const [prjShowDatas, setPrjShowDatas] = useState<any[]>([]);
 
   const projectData = useProjectData();
@@ -42,30 +38,47 @@ export default function UserInfoDetail(data: any[]) {
       const pShowDatas = [];
 
       for (let i = 0; i < projectData.length; i++) {
-        const one = projectData[i];
-
-        let one_backed = 0;
-        for (let j = 0; j < one.backer_states.length; j++) {
-          if (
-            one.backer_states[j].addr.toLowerCase() == address.toLowerCase()
-          ) {
-            one_backed += one.backer_states[j].usdt_amount.toNumber();
-            one_backed += one.backer_states[j].usdc_amount.toNumber();
-            one_backed += one.backer_states[j].busd_amount.toNumber();
+        if (projectData[i].project_id == WEFUND_ID) {
+          if (address) {
+            const { data } = await axios.post("/api/investors/fetch", {
+              wallet: address,
+            });
+            console.log(data);
+            if (!data.error) {
+              const obj: any = {};
+              obj.logo = projectData[i].project_logo;
+              obj.title = projectData[i].project_title;
+              obj.backed = data.amount;
+              obj.wfd = data.wfd_amount;
+              pShowDatas.push(obj);
+            }
           }
-        }
-        one_backed /= 10 ** 6;
+        } else {
+          const one = projectData[i];
 
-        const obj: any = {};
-        obj.logo = projectData[i].project_logo;
-        obj.title = projectData[i].project_title;
-        obj.backed = one_backed;
-        obj.description = projectData[i].project_description;
-        obj.backedPercent = projectData[i].backer_backedPercent;
-        pShowDatas.push(obj);
+          let one_backed = 0;
+          let one_wfd = 0;
+          for (let j = 0; j < one.backer_states.length; j++) {
+            if (
+              one.backer_states[j].addr.toLowerCase() == address.toLowerCase()
+            ) {
+              one_backed += one.backer_states[j].usdt_amount.toNumber();
+              one_backed += one.backer_states[j].usdc_amount.toNumber();
+              one_backed += one.backer_states[j].busd_amount.toNumber();
+              one_wfd += one.backer_states[j].wfd_amount.toNumber();
+            }
+          }
+          one_backed /= 10 ** 6;
+
+          const obj: any = {};
+          obj.logo = projectData[i].project_logo;
+          obj.title = projectData[i].project_title;
+          obj.backed = one_backed;
+          obj.wfd = one_wfd;
+          pShowDatas.push(obj);
+        }
       }
       setPrjShowDatas(pShowDatas);
-      console.log(pShowDatas);
     } catch (e) {
       console.log(e);
     }
@@ -73,7 +86,7 @@ export default function UserInfoDetail(data: any[]) {
 
   useEffect(() => {
     fetchContractQuery();
-  }, [state.address]);
+  }, [address]);
 
   return (
     <>

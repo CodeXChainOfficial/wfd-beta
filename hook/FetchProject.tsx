@@ -1,18 +1,6 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import React, { useEffect } from "react";
 import { ethers } from "ethers";
-import {
-  WEFUND,
-  NETWORK,
-  CHAINS_CONFIG,
-  WEFUND_CONTRACT,
-  WEFUND_ID,
-} from "../config/constants";
+import { CHAINS_CONFIG, WEFUND_CONTRACT, WEFUND_ID } from "../config/constants";
 import WEFUND_ABI from "../config/WeFund.json";
 import { AppContextInterface, ActionKind, useStore } from "../contexts/store";
 
@@ -44,6 +32,8 @@ export const fetchProjectData = async (
   dispatch: React.Dispatch<any>,
   force = false
 ) => {
+  let projectData = state.projectData;
+
   if (force == false) {
     return state.projectData;
   }
@@ -54,36 +44,38 @@ export const fetchProjectData = async (
   const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, provider);
 
   try {
-    let projectData: any[] = [];
-    console.log("reading");
+    console.log("fetching from mysql");
 
     await fetch("/api/projects")
       .then((res) => res.json())
       .then((data) => {
-        projectData = data.data;
-      })
-      .catch((e) => {
-        console.log("Error:" + e);
+        if (data.error) throw "connection error";
+        projectData = data;
       });
 
     const res = await contract.getProjectInfo();
-
+    console.log("fetching from smart contract");
+console.log(res)
     for (let i = 0; i < res.length; i++) {
-      const id = res[i].id.toNumber() - 1;
-
-      projectData[id].project_collected = res[i].collected.toNumber();
-      projectData[id].project_status = res[i].status;
-      projectData[id].rejected = res[i].rejected;
-      projectData[id].backerbacked_amount = res[i].backed.toNumber();
-      projectData[id].backer_states = res[i].backers;
-      projectData[id].milestone_states = res[i].milestones;
-      projectData[id].teammember_states = JSON.parse(
-        projectData[id].teammembers
-      );
-      projectData[id].fund_type = JSON.parse(projectData[id].project_fundtype);
-      projectData[id].wefund_votes = res[i].wefundVotes;
-      projectData[id].incubation_goals = res[i].incubationGoals;
-      projectData[id].incubation_index = res[i].incubationGoalVoteIndex;
+      const id = res[i].id.toNumber();
+      if (id != 0) {
+        for (let j = 0; j < projectData.length; j++) {
+          if (projectData[j].project_id == id) {
+            projectData[j].project_collected = res[i].collected.toNumber();
+            projectData[j].project_status = res[i].status;
+            projectData[j].backerbacked_amount = res[i].backed.toNumber();
+            projectData[j].backer_states = res[i].backers;
+            projectData[j].milestone_states = res[i].milestones;
+            projectData[j].teammember_states = JSON.parse(
+              projectData[j].teammembers
+            );
+            projectData[j].fund_type = JSON.parse(
+              projectData[j].project_fundtype
+            );
+            break;
+          }
+        }
+      }
     }
     console.log(projectData);
     projectData = addExtraInfo(projectData);
@@ -92,6 +84,7 @@ export const fetchProjectData = async (
     console.log(e);
   }
 };
+
 export const useProjectData = () => {
   const { state, dispatch } = useStore();
 

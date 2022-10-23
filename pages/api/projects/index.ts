@@ -7,7 +7,6 @@ export default async function handler(
 ) {
   const sql = "Select * from Projects";
   const result: any = await executeQuery(sql);
-  console.log(result)
   if (result.error) res.status(500).json(result);
   else res.status(200).json(result);
 }

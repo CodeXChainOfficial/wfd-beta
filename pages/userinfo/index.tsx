@@ -46,15 +46,12 @@ export default function UserSideSnippet() {
 
       for (let i = 0; i < projectData.length; i++) {
         if (projectData[i].project_id == WEFUND_ID) {
-          console.log(address);
           if (address) {
             const { data } = await axios.post("/api/investors/fetch", {
               wallet: address,
             });
             console.log(data);
             if (!data.error) {
-              console.log(data);
-
               const obj: any = {};
               obj.logo = projectData[i].project_logo;
               obj.title = projectData[i].project_title;
@@ -62,6 +59,7 @@ export default function UserSideSnippet() {
               obj.wfd = data.wfd_amount;
               pShowDatas.push(obj);
               total_backed += data.amount;
+              invested_count++;
             }
           }
         } else {
@@ -377,7 +375,7 @@ export default function UserSideSnippet() {
               showDots={false}
               responsive={responsive}
             >
-              {prjShowDatas.length == 0 && (
+              {/* {prjShowDatas.length == 0 && (
                 <Flex justifyContent={"center"}>
                   <Center py={6}>
                     <Box
@@ -485,7 +483,7 @@ export default function UserSideSnippet() {
                     </Box>
                   </Center>
                 </Flex>
-              )}
+              )} */}
               {prjShowDatas.map((project, i) => (
                 <Flex key={i} justifyContent={"center"}>
                   <Center py={6}>
