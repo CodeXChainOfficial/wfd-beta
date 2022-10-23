@@ -39,8 +39,8 @@ import { useStore, useWallet } from "../../contexts/store";
 import { useRouter } from "next/router";
 import Footer from "../../components/Footer";
 import axios from "axios";
-import { useMetamaskWallet } from "../../contexts/metamask";
 import { useOneProjectData } from "../../hook/FetchProject";
+import { useMetamaskWallet } from "../../contexts/metamask";
 
 export default function InvestStep3() {
   const [signature, setSignature] = useState("");
@@ -51,8 +51,9 @@ export default function InvestStep3() {
   const { state, dispatch } = useStore();
   const canvasRef = useRef({});
   const router = useRouter();
-  const wallet = useMetamaskWallet();
-  const address = wallet.account;
+  const wallet = useWallet();
+  const metamask = useMetamaskWallet();
+  const address = metamask.account;
 
   //------------parse URL for project id----------------------------
   const project_id = ParseParam_ProjectId();
@@ -217,7 +218,7 @@ export default function InvestStep3() {
       .decimalPlaces(0, 1);
 
     try {
-      toast("Please wait", SUCCESS_OPTION);
+      toast("Please wait", { ...SUCCESS_OPTION, autoClose: false });
 
       await wallet.sendTokens(
         amount.toFixed(),
@@ -232,7 +233,7 @@ export default function InvestStep3() {
         wfd_amount: investWfdAmount,
         date: Date.now() / 1000,
       });
-
+      toast.dismiss();
       toast("Success", SUCCESS_OPTION);
 
       router.push({
@@ -242,6 +243,7 @@ export default function InvestStep3() {
         },
       });
     } catch (e) {
+      toast.dismiss();
       window.localStorage.removeItem("action");
       toast("Failed", ERROR_OPTION);
       console.log(e);
