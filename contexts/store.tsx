@@ -1,6 +1,11 @@
-import React, { createContext, useContext, useReducer } from "react";
-import { WEFUND, NETWORK } from "../config/constants";
-import { fetchData } from "../utils/fetch";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
+import { NETWORK } from "../config/constants";
 
 interface Action {
   type: ActionKind;
@@ -128,21 +133,6 @@ export const useJunoConnection = () => {
 export const useWallet = () => {
   const { state } = useStore();
   return state.wallet;
-};
-
-export const useProjectData = () => {
-  const { state, dispatch } = useStore();
-  if (state.projectData.length == 0) fetchData(state, dispatch, false);
-  return state.projectData;
-};
-export const useOneProjectData = (pid: number) => {
-  const projectData = useProjectData();
-  return projectData[pid > 1 ? pid - 1 : 0];
-};
-
-export const useCommunityData = () => {
-  const { state } = useStore();
-  return state.communityData;
 };
 
 export const useConfigData = () => {

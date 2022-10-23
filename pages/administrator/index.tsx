@@ -1,24 +1,6 @@
-import PageLayout from "../../components/PageLayout";
 import Footer from "../../components/Footer";
 import React from "react";
-import {
-  Box,
-  Button,
-  Center,
-  chakra,
-  Container,
-  Flex,
-  Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Link,
-  SimpleGrid,
-  Stack,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
-import { IoWalletOutline } from "react-icons/io5";
+import { chakra, Container, Flex, Stack, Text } from "@chakra-ui/react";
 import ProjectPanel from "../../components/Administrator/ProjectPanel";
 
 export default function index() {

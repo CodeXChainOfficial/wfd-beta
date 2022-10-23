@@ -17,9 +17,12 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import { useMetamaskWallet } from "../../contexts/metamask";
-import { useProjectData, useStore } from "../../contexts/store";
+import { useStore } from "../../contexts/store";
+import { useProjectData } from "../../hook/FetchProject";
 import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
+import { FaArrowRight } from "react-icons/fa";
 import { RiUpload2Line } from "react-icons/ri";
+import { MdCancel } from "react-icons/md";
 import Footer from "../../components/Footer";
 import axios from "axios";
 import { WEFUND_ID } from "../../config/constants";
@@ -126,13 +129,21 @@ export default function UserSideSnippet() {
           justifyContent="center"
           direction={{ base: "column", sm: "column", md: "row", lg: "row" }}
         >
-          <Center w={{ base: "100%", sm: "100%", md: "14%", lg: "14%" }}>
+          <Center
+            w={{ base: "100%", sm: "100%", md: "25%", lg: "30%", "2xl": "40%" }}
+          >
             <VStack
               spacing={4}
               marginBottom={6}
               align="left"
               mx={[0, 0, 0]}
-              w={{ base: "100%", sm: "100%", md: "100%", lg: "100%" }}
+              w={{
+                base: "100%",
+                sm: "100%",
+                md: "100%",
+                lg: "390px",
+                "2xl": "80%",
+              }}
             >
               <Box _hover={{ shadow: "lg" }} position="relative" rounded="md">
                 <Flex>
@@ -166,7 +177,8 @@ export default function UserSideSnippet() {
                 px={4}
                 py={5}
                 _hover={{ shadow: "lg" }}
-                background={"rgba(15, 177, 245, 1)"}
+                background={"#130A49"}
+                minW={{ base: "0px", md: "380px" }}
                 position="relative"
                 rounded="md"
               >
@@ -234,11 +246,11 @@ export default function UserSideSnippet() {
               </HStack>
             </VStack>
           </Center>
-          <Flex pt="76px" justifyContent="space-between">
+          <Flex pt="62px" justifyContent="space-between">
             <Flex color={"white"}>
               <Stack pl={3} align="left" w={"100%"}>
                 <Stack
-                  w="700px"
+                  w={{ base: "400px", lg: "500px", "2xl": "700px" }}
                   direction={{
                     base: "column",
                     lg: "row",
@@ -248,64 +260,100 @@ export default function UserSideSnippet() {
                   pb="14px"
                   align="stretch"
                   justify="center"
+                  spacing={5}
                 >
                   <VStack w={"full"}>
                     <Box
-                      background={"rgba(15, 177, 245, 1)"}
+                      background={" rgba(0, 102, 153, 0.14)"}
                       w={"100%"}
-                      py={"20px"}
+                      py={"40px"}
                       rounded={"lg"}
                     >
                       <Text
+                        fontWeight="400"
+                        fontSize="18px"
+                        lineHeight={"160%"}
+                        align={"center"}
+                        color={"#00A3FF"}
+                      >
+                        Amount Contributed
+                      </Text>
+                      <Text
                         mt="10px"
                         fontWeight="950"
-                        fontSize="48px"
+                        fontSize="32px"
                         lineHeight={"160%"}
                         align={"center"}
                       >
                         $ {contributes}
                       </Text>
                     </Box>
-                    <Text fontWeight="750" fontSize="21px" lineHeight={"160%"}>
-                      Contribution
-                    </Text>
                   </VStack>
                   <VStack w={"full"}>
                     <Box
-                      background={"rgba(15, 177, 245, 1)"}
+                      background={" rgba(0, 102, 153, 0.14)"}
                       w={"100%"}
-                      py={"20px"}
+                      py={"40px"}
                       rounded={"lg"}
                     >
                       <Text
+                        fontWeight="400"
+                        fontSize="18px"
+                        lineHeight={"160%"}
+                        align={"center"}
+                        color={"#00A3FF"}
+                      >
+                        Project Backed
+                      </Text>
+                      <Text
                         mt="10px"
                         fontWeight="950"
-                        fontSize="48px"
+                        fontSize="32px"
                         lineHeight={"160%"}
                         align={"center"}
                       >
                         {investedCount}
                       </Text>
                     </Box>
-                    <Text fontWeight="750" fontSize="21px" lineHeight={"160%"}>
-                      Project Backed
-                    </Text>
                   </VStack>
                 </Stack>
                 <Box alignSelf="end" paddingEnd="16px">
-                  <Link href={"userinfo/details"}>
-                    <Button
-                      w={"150px"}
-                      h={"50px"}
-                      bg="rgba(0, 163, 255, 0.14)"
-                      border="1.5px solid #00A3FF"
-                      color={"#FFFFFF"}
-                      fontWeight={"600"}
-                      fontSize={"16px"}
-                    >
-                      <Text ml={"5px"}>Details</Text>
-                    </Button>
-                  </Link>
+                  {prjShowDatas.length !== 0 && (
+                    <Link href={"userinfo/details"}>
+                      <Button
+                        w={"150px"}
+                        h={"50px"}
+                        bg="rgba(0, 163, 255, 0.14)"
+                        border="1.5px solid #00A3FF"
+                        color={"#FFFFFF"}
+                        fontWeight={"600"}
+                        fontSize={"16px"}
+                      >
+                        <Text ml={"5px"} mr="4">
+                          Details
+                        </Text>
+                        <FaArrowRight />
+                      </Button>
+                    </Link>
+                  )}
+                  {prjShowDatas.length == 0 && (
+                    <Link href={"#"}>
+                      <Button
+                        w={"150px"}
+                        h={"50px"}
+                        bg=" rgba(255, 255, 255, 0.5)"
+                        border="1.5px solid  rgba(255, 255, 255, 0.5)"
+                        color={"#FFFFFF"}
+                        fontWeight={"600"}
+                        fontSize={"16px"}
+                      >
+                        <Text ml={"5px"} mr="4">
+                          Details
+                        </Text>
+                        <MdCancel />
+                      </Button>
+                    </Link>
+                  )}
                 </Box>
               </Stack>
             </Flex>
@@ -329,6 +377,115 @@ export default function UserSideSnippet() {
               showDots={false}
               responsive={responsive}
             >
+              {prjShowDatas.length == 0 && (
+                <Flex justifyContent={"center"}>
+                  <Center py={6}>
+                    <Box
+                      maxW="500px"
+                      w="full"
+                      bg={"white"}
+                      boxShadow={"2xl"}
+                      rounded={"md"}
+                      background="#120D30"
+                    >
+                      <Flex direction="row">
+                        <Flex
+                          width="180px"
+                          height="260px"
+                          bg="rgba(0, 0, 0, 0.49)"
+                          borderRadius="15"
+                          m="16px"
+                          justify="center"
+                          align="center"
+                        >
+                          <Image src="" w="100%" />
+                        </Flex>
+                        <Box>
+                          <Flex pt="64px" pb={"16px"}>
+                            <Center>
+                              <Stack spacing={0} align={"center"}>
+                                <Heading
+                                  fontSize={"2xl"}
+                                  fontWeight={500}
+                                  fontFamily={"body"}
+                                  color="white"
+                                  px={"16px"}
+                                >
+                                  No project was backed
+                                </Heading>
+                              </Stack>
+                            </Center>
+                          </Flex>
+                          <Box pt="16px" pl="16px" pr="32px">
+                            <Stack
+                              direction={"row"}
+                              justify={"center"}
+                              spacing={24}
+                            >
+                              <Stack spacing={2} align={"center"}>
+                                <Text
+                                  fontSize={"16px"}
+                                  fontWeight={600}
+                                  color={"gray.500"}
+                                >
+                                  Rewards
+                                </Text>
+                                <Text fontWeight={600} fontSize={"20px"}>
+                                  -
+                                </Text>
+                              </Stack>
+                              <Stack spacing={2} align={"center"}>
+                                <Text
+                                  fontSize={"16px"}
+                                  fontWeight={600}
+                                  color={"gray.500"}
+                                >
+                                  Invested
+                                </Text>
+                                <Text fontWeight={600} fontSize={"20px"}>
+                                  $ xx
+                                </Text>
+                              </Stack>
+                            </Stack>
+
+                            <Stack
+                              pt="8px"
+                              direction={"row"}
+                              justify={"center"}
+                              spacing={24}
+                            >
+                              <Stack spacing={2} align={"center"}>
+                                <Text
+                                  fontSize={"16px"}
+                                  fontWeight={600}
+                                  color={"gray.500"}
+                                >
+                                  Earnings
+                                </Text>
+                                <Text fontWeight={600} fontSize={"20px"}>
+                                  $0
+                                </Text>
+                              </Stack>
+                              <Stack spacing={2} align={"center"}>
+                                <Text
+                                  fontSize={"16px"}
+                                  fontWeight={600}
+                                  color={"gray.500"}
+                                >
+                                  Vesting
+                                </Text>
+                                <Text fontWeight={600} fontSize={"20px"}>
+                                  -
+                                </Text>
+                              </Stack>
+                            </Stack>
+                          </Box>
+                        </Box>
+                      </Flex>
+                    </Box>
+                  </Center>
+                </Flex>
+              )}
               {prjShowDatas.map((project, i) => (
                 <Flex key={i} justifyContent={"center"}>
                   <Center py={6}>
@@ -457,10 +614,11 @@ export default function UserSideSnippet() {
                   align="center"
                   direction={{ base: "column", md: "row", lg: "row" }}
                 >
-                  <VStack w={{ base: "100%", md: "50%" }}>
+                  <VStack w={{ base: "100%", md: "100%" }}>
                     <Box
                       bg="#120D30"
                       py={"20px"}
+                      px={"50px"}
                       rounded={"lg"}
                       minH={"136px"}
                       fontSize={{ base: "14px", md: "18px", lg: "21px" }}
