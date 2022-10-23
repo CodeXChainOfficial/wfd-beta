@@ -221,6 +221,10 @@ export default function CreateProject() {
 
     const signer = metamask.signer;
     const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, signer);
+    // const provider = new ethers.providers.JsonRpcProvider(
+    //   CHAINS_CONFIG["bsc_testnet"].rpc
+    // );
+    // const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, provider);
 
     let res = await contract.getNumberOfProjects();
     const projectId = res.toNumber() + 1;
@@ -251,13 +255,14 @@ export default function CreateProject() {
     };
     try {
       res = await axios.post("/api/projects/addProject", project);
-
-      res = await contract.addProject(collectedAmount, [
-        [0, "1", "", "2022-03-1", "2022-03-31", "120000", "0", []],
-      ]);
+      if (res?.error) {
+        throw "connection error";
+      }
+      res = await contract.addProject(collectedAmount);
       await res.wait();
       toast("Successed Applying", SUCCESS_OPTION);
     } catch (e) {
+      console.log(e);
       toast("Error", ERROR_OPTION);
     }
   }

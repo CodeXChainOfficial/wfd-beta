@@ -68,7 +68,7 @@ export default async function handler(
     fields.referred +
     "'";
   const result: any = await executeQuery(sql);
-  res.json({
+  res.status(200).json({
     status: "success",
     data: result[0].referralCount,
   });

@@ -20,10 +20,12 @@ import { useMetamaskWallet } from "../../contexts/metamask";
 import { useStore } from "../../contexts/store";
 import { useProjectData } from "../../hook/FetchProject";
 import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
+import { FaArrowRight } from "react-icons/fa";
 import { RiUpload2Line } from "react-icons/ri";
-import Footer from "../../components/Footer";
-import { FaArrowRight, FaCross } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
+import Footer from "../../components/Footer";
+import axios from "axios";
+import { WEFUND_ID } from "../../config/constants";
 
 export default function UserSideSnippet() {
   const { state } = useStore();
@@ -43,28 +45,51 @@ export default function UserSideSnippet() {
       const pShowDatas = [];
 
       for (let i = 0; i < projectData.length; i++) {
-        const one = projectData[i];
+        if (projectData[i].project_id == WEFUND_ID) {
+          console.log(address);
+          if (address) {
+            const { data } = await axios.post("/api/investors/fetch", {
+              wallet: address,
+            });
+            console.log(data);
+            if (!data.error) {
+              console.log(data);
 
-        let one_backed = 0;
-        for (let j = 0; j < one.backer_states.length; j++) {
-          if (
-            one.backer_states[j].addr.toLowerCase() == address.toLowerCase()
-          ) {
-            invested_count++;
-
-            one_backed += one.backer_states[j].usdt_amount.toNumber();
-            one_backed += one.backer_states[j].usdc_amount.toNumber();
-            one_backed += one.backer_states[j].busd_amount.toNumber();
+              const obj: any = {};
+              obj.logo = projectData[i].project_logo;
+              obj.title = projectData[i].project_title;
+              obj.backed = data.amount;
+              obj.wfd = data.wfd_amount;
+              pShowDatas.push(obj);
+              total_backed += data.amount;
+            }
           }
-        }
-        one_backed /= 10 ** 6;
-        total_backed += one_backed;
+        } else {
+          const one = projectData[i];
 
-        const obj: any = {};
-        obj.logo = projectData[i].project_logo;
-        obj.title = projectData[i].project_title;
-        obj.backed = one_backed;
-        pShowDatas.push(obj);
+          let one_backed = 0;
+          let one_wfd = 0;
+          for (let j = 0; j < one.backer_states.length; j++) {
+            if (
+              one.backer_states[j].addr.toLowerCase() == address.toLowerCase()
+            ) {
+              invested_count++;
+              one_backed += one.backer_states[j].usdt_amount.toNumber();
+              one_backed += one.backer_states[j].usdc_amount.toNumber();
+              one_backed += one.backer_states[j].busd_amount.toNumber();
+              one_wfd += one.backer_states[j].wfd_amount.toNumber();
+            }
+          }
+          one_backed /= 10 ** 6;
+          total_backed += one_backed;
+
+          const obj: any = {};
+          obj.logo = projectData[i].project_logo;
+          obj.title = projectData[i].project_title;
+          obj.backed = one_backed;
+          obj.wfd = one_wfd;
+          pShowDatas.push(obj);
+        }
       }
       setInvestedCount(invested_count);
       setContributes(total_backed);
@@ -76,7 +101,7 @@ export default function UserSideSnippet() {
 
   useEffect(() => {
     fetchContractQuery();
-  }, [state.address]);
+  }, [address]);
 
   const responsive = {
     superLargeDesktop: {
@@ -293,23 +318,23 @@ export default function UserSideSnippet() {
                   </VStack>
                 </Stack>
                 <Box alignSelf="end" paddingEnd="16px">
-                {prjShowDatas.length !== 0 && (
+                  {prjShowDatas.length !== 0 && (
                     <Link href={"userinfo/details"}>
-                    <Button
-                      w={"150px"}
-                      h={"50px"}
-                      bg="rgba(0, 163, 255, 0.14)"
-                      border="1.5px solid #00A3FF"
-                      color={"#FFFFFF"}
-                      fontWeight={"600"}
-                      fontSize={"16px"}
-                    >
-                      <Text ml={"5px"} mr="4">
-                        Details
-                      </Text>
-                      <FaArrowRight />
-                    </Button>
-                  </Link>
+                      <Button
+                        w={"150px"}
+                        h={"50px"}
+                        bg="rgba(0, 163, 255, 0.14)"
+                        border="1.5px solid #00A3FF"
+                        color={"#FFFFFF"}
+                        fontWeight={"600"}
+                        fontSize={"16px"}
+                      >
+                        <Text ml={"5px"} mr="4">
+                          Details
+                        </Text>
+                        <FaArrowRight />
+                      </Button>
+                    </Link>
                   )}
                   {prjShowDatas.length == 0 && (
                     <Link href={"#"}>
@@ -325,7 +350,7 @@ export default function UserSideSnippet() {
                         <Text ml={"5px"} mr="4">
                           Details
                         </Text>
-                        <MdCancel/>
+                        <MdCancel />
                       </Button>
                     </Link>
                   )}
