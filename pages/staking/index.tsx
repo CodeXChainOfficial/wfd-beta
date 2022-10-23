@@ -24,7 +24,7 @@ import {
   WFD_TOKEN,
   SUCCESS_OPTION,
 } from "../../config/constants";
-import { fetchData } from "../../utils/fetch";
+import { fetchProjectData } from "../../hook/FetchProject";
 import { toast } from "react-toastify";
 
 export default function Staking() {
