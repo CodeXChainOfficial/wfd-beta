@@ -48,8 +48,11 @@ export default function UserInfoDetail() {
               const obj: any = {};
               obj.logo = projectData[i].project_logo;
               obj.title = projectData[i].project_title;
+              obj.description = projectData[i].project_description;
               obj.backed = data.amount;
               obj.wfd = data.wfd_amount;
+              obj.backedPercent = projectData[i].backer_backedPercent;
+              obj.lastBackedDate = new Date(data.date * 1000).toDateString();
               pShowDatas.push(obj);
             }
           }
@@ -73,8 +76,10 @@ export default function UserInfoDetail() {
           const obj: any = {};
           obj.logo = projectData[i].project_logo;
           obj.title = projectData[i].project_title;
+          obj.description = projectData[i].project_description;
           obj.backed = one_backed;
           obj.wfd = one_wfd;
+          obj.backedPercent = projectData[i].backer_backedPercent;
           pShowDatas.push(obj);
         }
       }
@@ -94,12 +99,12 @@ export default function UserInfoDetail() {
       <Box
         border="3px solid rgba(15, 177, 245, 0.28)"
         borderRadius="15px"
-        m="128px"
+        m={{ base: "1", md: "128px" }}
         pb="128px"
       >
         {prjShowDatas.map((project, i) => (
           <VStack key={i} color="white" pt={"3em"} w={"100%"}>
-            <Accordion allowToggle>
+            <Accordion allowToggle w="100%">
               <AccordionItem
                 bg="#120D30"
                 rounded={"lg"}
@@ -109,139 +114,124 @@ export default function UserInfoDetail() {
                 w={"100%"}
               >
                 <AccordionButton>
-                  <Box flex="1" textAlign="left">
-                    <Box p={6}>
-                      <Stack
-                        direction={{ base: "column", md: "row", lg: "row" }}
-                        justify={"center"}
-                        spacing={{ base: 0, sm: 2, md: 36, lg: 48 }}
-                        w={"100%"}
-                      >
-                        <Flex justify={"center"}>
-                          <Avatar
-                            size={"lg"}
-                            src={project.logo}
-                            border="2px solid white"
-                          />
-                          <Center>
-                            <Stack
-                              spacing={0}
-                              align={"center"}
-                              mb={5}
-                              w={"100%"}
-                            >
-                              <Heading
-                                fontSize={"2xl"}
-                                fontWeight={500}
-                                fontFamily={"body"}
-                                color="white"
-                                px={"30px"}
-                              >
-                                {project.title}
-                              </Heading>
-                            </Stack>
-                          </Center>
-                        </Flex>
-                        <Stack
-                          direction={"row"}
-                          justify={"center"}
-                          spacing={{ base: 8, sm: 8, md: 24, lg: 32 }}
-                        >
-                          <Stack spacing={0} align={"center"}>
-                            <Text
-                              fontSize={"16px"}
-                              fontWeight={600}
-                              color={"gray.500"}
-                            >
-                              Investing
-                            </Text>
-                            <Text fontWeight={600} fontSize={"20px"}>
-                              $ {project.backed}
-                            </Text>
-                          </Stack>
-                          <Stack spacing={0} align={"center"}>
-                            <Text
-                              fontSize={"16px"}
-                              fontWeight={600}
-                              color={"gray.500"}
-                            >
-                              Earnings
-                            </Text>
-                            <Text fontWeight={600} fontSize={"20px"}>
-                              $ 0
-                            </Text>
-                          </Stack>
-                        </Stack>
-                      </Stack>
-                    </Box>
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-                <AccordionPanel pb={4} bg="rgba(0, 0, 0, 0.33)">
-                  <Flex maxW={"250px"}>
-                    <Stack>
-                      <Text
-                        fontSize={"xl"}
+                  <Stack
+                    direction={{ base: "column", md: "row", lg: "row" }}
+                    justify="space-between"
+                    spacing={{ base: 0, sm: 2, md: 36, lg: 48 }}
+                    w={"100%"}
+                    p={{ base: "1", md: "3" }}
+                  >
+                    <Flex justify="center" align="center">
+                      <Avatar
+                        size={"lg"}
+                        src={project.logo}
+                        border="2px solid white"
+                      />
+                      <Heading
+                        fontSize={"2xl"}
                         fontWeight={500}
+                        fontFamily={"body"}
                         color="white"
                         px={"30px"}
                       >
-                        Descriptions
-                      </Text>
-                      <Text
-                        fontSize={"14px"}
-                        fontWeight={200}
-                        color="white"
-                        px={"30px"}
-                        py={"15px"}
-                        pb="128px"
-                      >
-                        {project.description}
-                      </Text>
-                      <Center>
-                        <Box
-                          width="92%"
-                          border="1px solid rgba(255, 255, 255, 0.5)"
-                          height="0px"
-                        />
-                      </Center>
-                      <Stack
-                        direction={{ base: "column", sm: "row", lg: "row" }}
-                        justify={"center"}
-                        spacing={12}
-                        width={"100%"}
-                        px={8}
-                        pt="16px"
-                      >
-                        <Progress
-                          borderRadius="18px"
-                          colorScheme="purple"
-                          height="32px"
-                          my={"12px"}
-                          value={project.backedPercent}
-                          width={"100%"}
-                        />
+                        {project.title}
+                      </Heading>
+                    </Flex>
+                    <Stack
+                      direction={"row"}
+                      justify={"center"}
+                      spacing={{ base: 8, sm: 8, md: 24, lg: 32 }}
+                    >
+                      <Stack spacing={0} align={"center"}>
                         <Text
-                          fontSize={{ base: "12px", sm: "14px", lg: "16px" }}
-                          fontWeight={200}
-                          color="white"
-                          py={"15px"}
-                          width={{ base: "8px", sm: "100px", lg: "300px" }}
+                          fontSize={"16px"}
+                          fontWeight={600}
+                          color={"gray.500"}
                         >
-                          {project.backedPercent}% Progress
+                          Investing
                         </Text>
+                        <Text fontWeight={600} fontSize={"20px"}>
+                          $ {project.backed}
+                        </Text>
+                      </Stack>
+                      <Stack spacing={0} align={"center"}>
                         <Text
-                          fontSize={{ base: "12px", sm: "14px", lg: "16px" }}
-                          fontWeight={200}
-                          color="white"
-                          py={"15px"}
-                          width={{ base: "80px", sm: "100px", lg: "350px" }}
+                          fontSize={"16px"}
+                          fontWeight={600}
+                          color={"gray.500"}
                         >
-                          Last Backed {new Date().toISOString().slice(0, 10)}
+                          Earnings
+                        </Text>
+                        <Text fontWeight={600} fontSize={"20px"}>
+                          $ 0
                         </Text>
                       </Stack>
                     </Stack>
-                  </Flex>
+                  </Stack>
+                  <AccordionIcon />
+                </AccordionButton>
+                <AccordionPanel pb={4} bg="rgba(0, 0, 0, 0.33)" w="100%">
+                  <Stack w="100%">
+                    <Text
+                      fontSize={"xl"}
+                      fontWeight={500}
+                      color="white"
+                      px={"30px"}
+                    >
+                      Descriptions
+                    </Text>
+                    <Text
+                      fontSize={"14px"}
+                      fontWeight={200}
+                      color="white"
+                      px={"30px"}
+                      py={"15px"}
+                      pb={{ base: "30px", md: "128px" }}
+                    >
+                      {project.description}
+                    </Text>
+                    <Center>
+                      <Box
+                        width="92%"
+                        border="1px solid rgba(255, 255, 255, 0.5)"
+                        height="0px"
+                      />
+                    </Center>
+                    <Stack
+                      direction={{ base: "column", sm: "row", lg: "row" }}
+                      align="center"
+                      spacing={{ base: "3", md: "12" }}
+                      width={"100%"}
+                      px={{ base: "1", md: "8" }}
+                      pt="16px"
+                    >
+                      <Progress
+                        borderRadius="18px"
+                        colorScheme="purple"
+                        height="32px"
+                        my={"12px"}
+                        value={project.backedPercent}
+                        w="100%"
+                      />
+                      <Text
+                        fontSize={{ base: "12px", sm: "14px", lg: "16px" }}
+                        fontWeight={200}
+                        color="white"
+                        whiteSpace="nowrap"
+                      >
+                        {project.backedPercent}% Progress
+                      </Text>
+                      <Text
+                        fontSize={{ base: "12px", sm: "14px", lg: "16px" }}
+                        fontWeight={200}
+                        color="white"
+                        whiteSpace="nowrap"
+                      >
+                        Last Backed <br />
+                        {project.lastBackedDate ?? "__________"}
+                      </Text>
+                    </Stack>
+                  </Stack>
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>

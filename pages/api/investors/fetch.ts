@@ -13,10 +13,12 @@ export default async function handler(
   }
 
   let amount = 0,
-    wfd_amount = 0;
+    wfd_amount = 0,
+    date = 0;
   for (let i = 0; i < result.length; i++) {
     amount += result[i].amount;
     wfd_amount += result[i].wfd_amount;
+    date = result[i].date;
   }
-  res.status(200).json({ amount, wfd_amount });
+  res.status(200).json({ amount, wfd_amount, date });
 }

@@ -46,7 +46,9 @@ export default function UserSideSnippet() {
 
       for (let i = 0; i < projectData.length; i++) {
         if (projectData[i].project_id == WEFUND_ID) {
+          console.log(address)
           if (address) {
+            console.log("fetching")
             const { data } = await axios.post("/api/investors/fetch", {
               wallet: address,
             });
