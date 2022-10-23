@@ -39,7 +39,7 @@ export const fetchProjectData = async (
   }
 
   const provider = new ethers.providers.JsonRpcProvider(
-    CHAINS_CONFIG["bsc_testnet"].rpc
+    CHAINS_CONFIG["bsc"].rpc
   );
   const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, provider);
 
@@ -105,7 +105,7 @@ export const fetchCommunity = async (
   dispatch: React.Dispatch<any>
 ) => {
   const provider = new ethers.providers.JsonRpcProvider(
-    CHAINS_CONFIG["bsc_testnet"].rpc
+    CHAINS_CONFIG["bsc"].rpc
   );
 
   try {

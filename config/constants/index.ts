@@ -1,4 +1,4 @@
-export const NETWORK = "testnet";
+export const NETWORK = "mainnet";
 export const WEFUND_ID = 1;
 export const REQUEST_ENDPOINT =
   "https://wefund-nodejs-gwb6v.ondigitalocean.app";
@@ -6,7 +6,7 @@ export const REQUEST_ENDPOINT =
 export const WEFUND_WALLET = "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
 export const WFD_TOKEN = "0x131C6A669e275c0B10d565c7F7c319B89450dbf2";
 
-export const WEFUND_CONTRACT = "0xc0B5941f7013336Db66b978d818CC3C189Be6860";
+export const WEFUND_CONTRACT = "0x8578A2C14074794f929110724477C1B88E42978b";
 export const VESTING_CONTRACT = "";
 export const STAKING_CONTRACT = "";
 
