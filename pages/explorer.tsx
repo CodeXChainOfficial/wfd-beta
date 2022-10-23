@@ -2,9 +2,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import React, { useState, useEffect } from "react";
 import { Box, Flex, HStack, VStack, useDisclosure } from "@chakra-ui/react";
-import { Sleep, GetProjectStatus } from "../utils/utility";
+import { Sleep, GetProjectStatusText } from "../utils/utility";
 
-import { useJunoConnection, useProjectData, useStore } from "../contexts/store";
+import { useProjectData } from "../hook/FetchProject";
+import { useJunoConnection, useStore } from "../contexts/store";
 import Footer from "../components/Footer";
 import PageLayout from "../components/PageLayout";
 
@@ -70,7 +71,7 @@ export default function ExplorerProject() {
     async function fetch(force = false) {
       try {
         const activeProjectData = projectData.filter(
-          (project) => project.project_status == GetProjectStatus(activeTab)
+          (project) => project.project_status == GetProjectStatusText(activeTab)
         );
 
         dispatch({ type: "setActiveProjectData", payload: activeProjectData });
