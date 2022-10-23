@@ -48,8 +48,7 @@ export default function index() {
               letterSpacing={{ base: "0.1em" }}
               textShadow="0px 10px 10px rgba(9, 2, 90, 0.73)"
             >
-              Welcome $Administrator{" "} 
-              <br/>
+              Welcome $Administrator <br />
               <chakra.span fontFamily="PilatExtended-Bold" color={"#0FB1F5"}>
                 WEFUND Dashboard
               </chakra.span>
@@ -62,5 +61,3 @@ export default function index() {
     </>
   );
 }
-
-

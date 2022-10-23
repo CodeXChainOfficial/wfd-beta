@@ -17,13 +17,12 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import { useMetamaskWallet } from "../../contexts/metamask";
-import {
-  useProjectData,
-  useStore,
-} from "../../contexts/store";
+import { useProjectData, useStore } from "../../contexts/store";
 import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
 import { RiUpload2Line } from "react-icons/ri";
 import Footer from "../../components/Footer";
+import axios from "axios";
+import { WEFUND_ID } from "../../config/constants";
 
 export default function UserSideSnippet() {
   const { state } = useStore();
@@ -43,28 +42,51 @@ export default function UserSideSnippet() {
       const pShowDatas = [];
 
       for (let i = 0; i < projectData.length; i++) {
-        const one = projectData[i];
+        if (projectData[i].project_id == WEFUND_ID) {
+          console.log(address);
+          if (address) {
+            const { data } = await axios.post("/api/investors/fetch", {
+              wallet: address,
+            });
+            console.log(data);
+            if (!data.error) {
+              console.log(data);
 
-        let one_backed = 0;
-        for (let j = 0; j < one.backer_states.length; j++) {
-          if (
-            one.backer_states[j].addr.toLowerCase() == address.toLowerCase()
-          ) {
-            invested_count++;
-
-            one_backed += one.backer_states[j].usdt_amount.toNumber();
-            one_backed += one.backer_states[j].usdc_amount.toNumber();
-            one_backed += one.backer_states[j].busd_amount.toNumber();
+              const obj: any = {};
+              obj.logo = projectData[i].project_logo;
+              obj.title = projectData[i].project_title;
+              obj.backed = data.amount;
+              obj.wfd = data.wfd_amount;
+              pShowDatas.push(obj);
+              total_backed += data.amount;
+            }
           }
-        }
-        one_backed /= 10 ** 6;
-        total_backed += one_backed;
+        } else {
+          const one = projectData[i];
 
-        const obj: any = {};
-        obj.logo = projectData[i].project_logo;
-        obj.title = projectData[i].project_title;
-        obj.backed = one_backed;
-        pShowDatas.push(obj);
+          let one_backed = 0;
+          let one_wfd = 0;
+          for (let j = 0; j < one.backer_states.length; j++) {
+            if (
+              one.backer_states[j].addr.toLowerCase() == address.toLowerCase()
+            ) {
+              invested_count++;
+              one_backed += one.backer_states[j].usdt_amount.toNumber();
+              one_backed += one.backer_states[j].usdc_amount.toNumber();
+              one_backed += one.backer_states[j].busd_amount.toNumber();
+              one_wfd += one.backer_states[j].wfd_amount.toNumber();
+            }
+          }
+          one_backed /= 10 ** 6;
+          total_backed += one_backed;
+
+          const obj: any = {};
+          obj.logo = projectData[i].project_logo;
+          obj.title = projectData[i].project_title;
+          obj.backed = one_backed;
+          obj.wfd = one_wfd;
+          pShowDatas.push(obj);
+        }
       }
       setInvestedCount(invested_count);
       setContributes(total_backed);
@@ -76,7 +98,7 @@ export default function UserSideSnippet() {
 
   useEffect(() => {
     fetchContractQuery();
-  }, [state.address]);
+  }, [address]);
 
   const responsive = {
     superLargeDesktop: {

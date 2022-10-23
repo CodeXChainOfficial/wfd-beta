@@ -44,42 +44,42 @@ export async function fetchData(
   const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, provider);
 
   try {
-    console.log("reading");
+    console.log("fetching from mysql");
 
     await fetch("/api/projects")
       .then((res) => res.json())
       .then((data) => {
-        projectData = data.data;
-      })
-      .catch((e) => {
-        console.log("Error:" + e);
+        if (data.error) throw "connection error";
+        projectData = data;
       });
 
     const res = await contract.getProjectInfo();
+    console.log("fetching from smart contract");
+
+    let iProject = 0;
     for (let i = 0; i < res.length; i++) {
-      const id = res[i].id.toNumber() - 1;
-
-      projectData[id].project_collected = res[i].collected.toNumber();
-      projectData[id].project_status = res[i].status;
-      projectData[id].backerbacked_amount = res[i].backed.toNumber();
-      projectData[id].backer_states = res[i].backers;
-      projectData[id].milestone_states = [];
-      projectData[id].teammember_states = JSON.parse(
-        projectData[id].teammembers
-      );
-      projectData[id].fund_type = JSON.parse(projectData[id].project_fundtype);
-
-      for (let j = 0; j < res[i].milestones.length; j++) {
-        const obj: any = {};
-        obj.milestone_amount = res[i].milestones[j].amount.toNumber();
-        obj.milestone_description = res[i].milestones[j].description;
-        obj.milestone_enddate = res[i].milestones[j].end_date;
-        obj.milestone_name = res[i].milestones[j].name;
-        obj.milestone_startdate = res[i].milestones[j].start_date;
-        obj.milestone_status = res[i].milestones[j].status;
-        obj.milestone_step = res[i].milestones[j].step.toNumber();
-        obj.votes = res[i].milestones[j].votes;
-        projectData[id].milestone_states.push(obj);
+      const id = res[i].id.toNumber();
+      if (id != 0) {
+        while (iProject < projectData.length) {
+          if (projectData[iProject].project_id == id) {
+            projectData[iProject].project_collected =
+              res[i].collected.toNumber();
+            projectData[iProject].project_status = res[i].status;
+            projectData[iProject].backerbacked_amount =
+              res[i].backed.toNumber();
+            projectData[iProject].backer_states = res[i].backers;
+            projectData[iProject].milestone_states = res[i].milestones;
+            projectData[iProject].teammember_states = JSON.parse(
+              projectData[iProject].teammembers
+            );
+            projectData[iProject].fund_type = JSON.parse(
+              projectData[iProject].project_fundtype
+            );
+            iProject++;
+            break;
+          }
+          iProject++;
+        }
       }
     }
     console.log(projectData);
@@ -88,8 +88,6 @@ export async function fetchData(
   } catch (e) {
     console.log(e);
   }
-
-  //------------------------------------------------------------------
 
   return { projectData, communityData, configData };
 }

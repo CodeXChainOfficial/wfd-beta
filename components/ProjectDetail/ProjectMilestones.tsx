@@ -63,11 +63,11 @@ export default function ProjectMileStones({
           >
             {data?.milestone_states?.map((milestone: any, index: number) => (
               <Tr key={index}>
-                <Td>{milestone.milestone_step}</Td>
-                <Td>{milestone.milestone_name} </Td>
-                <Td>{milestone.milestone_startdate}</Td>
-                <Td>{milestone.milestone_enddate}</Td>
-                <Td>{milestone.milestone_amount}</Td>
+                <Td>{milestone.step.toNumber()}</Td>
+                <Td>{milestone.name} </Td>
+                <Td>{milestone.start_date}</Td>
+                <Td>{milestone.end_date}</Td>
+                <Td>{milestone.amount.toNumber()}</Td>
                 <Td>
                   {milestone.milestone_votingavailable && (
                     <Button

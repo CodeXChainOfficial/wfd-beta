@@ -15,7 +15,6 @@ import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
 import { BigNumber } from "bignumber.js";
 
-import { getJunoConfig } from "../../config";
 import {
   REQUEST_ENDPOINT,
   WEFUND_CONTRACT,
@@ -40,6 +39,8 @@ import { useProjectData, useStore, useWallet } from "../../contexts/store";
 import { useRouter } from "next/router";
 import { fetchData } from "../../utils/fetch";
 import Footer from "../../components/Footer";
+import axios from "axios";
+import { useMetamaskWallet } from "../../contexts/metamask";
 
 export default function InvestStep3() {
   const [signature, setSignature] = useState("");
@@ -52,7 +53,8 @@ export default function InvestStep3() {
   const { state, dispatch } = useStore();
   const canvasRef = useRef({});
   const router = useRouter();
-  const wallet = useWallet();
+  const wallet = useMetamaskWallet();
+  const address = wallet.account;
 
   //------------parse URL for project id----------------------------
   const project_id = ParseParam_ProjectId();
@@ -206,6 +208,8 @@ export default function InvestStep3() {
     const investChain = window.localStorage.getItem("invest_chain") ?? "";
     const investAmount = window.localStorage.getItem("invest_amount") ?? "";
     const investToken = window.localStorage.getItem("invest_token") ?? "";
+    const investWfdAmount =
+      window.localStorage.getItem("invest_wfdamount") ?? "";
     //----------verify connection--------------------------------
     if (checkValication() == false) return false;
     window.localStorage.setItem("invest_name", investName);
@@ -234,12 +238,21 @@ export default function InvestStep3() {
 
     try {
       toast("Please wait", SUCCESS_OPTION);
+
       await wallet.sendTokens(
         amount.toFixed(),
         tokenInfo?.denom,
         tokenInfo?.address,
         tokenInfo?.native
       );
+
+      await axios.post("/api/investors/invest", {
+        wallet: address,
+        amount: investAmount,
+        wfd_amount: investWfdAmount,
+        date: Date.now() / 1000,
+      });
+
       toast("Success", SUCCESS_OPTION);
 
       router.push({
@@ -253,74 +266,6 @@ export default function InvestStep3() {
       toast("Failed", ERROR_OPTION);
       console.log(e);
     }
-    // } else {
-    //   await createSAFTDocx(date);
-    //   const res = await backProject();
-    //   if (res) router.push("/invest/step4?project_id=" + project_id);
-    // }
-  }
-
-  async function backProject() {
-    if (!checkBscConnection(state)) return false;
-
-    const investChain = window.localStorage.getItem("invest_chain") ?? "";
-    const investAmount = window.localStorage.getItem("invest_amount") ?? "";
-    const investWFDAmount =
-      window.localStorage.getItem("invest_wfdamount") ?? "";
-
-    const targetAmount = parseInt(oneprojectData.project_collected) * 10 ** 6;
-    const leftAmount = targetAmount - oneprojectData.backerbacked_amount;
-
-    if (leftAmount <= 0) {
-      toast(
-        "Backer allocation has already been collected! You can't back this project.",
-        ERROR_OPTION
-      );
-      return false;
-    }
-
-    const amount = Math.ceil(parseFloat(investAmount) * 10 ** 6);
-    const maxAmount = (leftAmount * 100) / 95;
-
-    if (amount > maxAmount) {
-      toast(
-        "Investment amount should be less than " +
-          (maxAmount / 10 ** 6).toString() +
-          " JUNO",
-        ERROR_OPTION
-      );
-      return false;
-    }
-
-    const backProjectMsg = {
-      back2_project: {
-        project_id: `${project_id}`,
-        backer_wallet: address,
-        fundraising_stage: oneprojectData.fundraising_stage,
-        token_amount: `${investWFDAmount}`,
-        otherchain: investChain,
-        otherchain_wallet: "walletAddress",
-      },
-    };
-
-    try {
-      const denom = getJunoConfig(NETWORK).stakingToken;
-      const res = await client.execute(
-        address,
-        WEFUND_CONTRACT,
-        backProjectMsg,
-        "auto",
-        "deposit",
-        [{ denom: denom, amount: amount.toString() }]
-      );
-      toast("Deposit success", SUCCESS_OPTION);
-
-      fetchData(state, dispatch, true);
-      return true;
-    } catch (e) {
-      console.log(e);
-    }
-    return false;
   }
 
   return (
