@@ -202,12 +202,7 @@ export default function InvestStep3() {
     window.localStorage.setItem("invest_title", investTitle);
 
     const currentDate = new Date();
-    const date =
-      currentDate.getDate() +
-      "/" +
-      (currentDate.getMonth() + 1) +
-      "/" +
-      currentDate.getFullYear();
+    const date = currentDate.getDate() + "/" + (currentDate.getMonth() + 1);
 
     window.localStorage.setItem("invest_date", date);
 
@@ -224,19 +219,19 @@ export default function InvestStep3() {
     try {
       toast("Please wait", SUCCESS_OPTION);
 
-      await wallet.sendTokens(
-        amount.toFixed(),
-        tokenInfo?.denom,
-        tokenInfo?.address,
-        tokenInfo?.native
-      );
+      // await wallet.sendTokens(
+      //   amount.toFixed(),
+      //   tokenInfo?.denom,
+      //   tokenInfo?.address,
+      //   tokenInfo?.native
+      // );
 
-      await axios.post("/api/investors/invest", {
-        wallet: address,
-        amount: investAmount,
-        wfd_amount: investWfdAmount,
-        date: Date.now() / 1000,
-      });
+      // await axios.post("/api/investors/invest", {
+      //   wallet: address,
+      //   amount: investAmount,
+      //   wfd_amount: investWfdAmount,
+      //   date: Date.now() / 1000,
+      // });
 
       toast("Success", SUCCESS_OPTION);
 
