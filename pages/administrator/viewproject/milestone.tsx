@@ -1,5 +1,5 @@
-import PageLayout from "../PageLayout";
-import Footer from "../Footer";
+import PageLayout from "../../../components/PageLayout";
+import Footer from "../../../components/Footer";
 import React from "react";
 import {
   Accordion,
