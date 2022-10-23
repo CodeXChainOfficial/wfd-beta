@@ -285,7 +285,22 @@
         "components": [
           {
             "internalType": "string",
-            "name": "goal",
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "start_date",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "end_date",
             "type": "string"
           }
         ],
@@ -337,11 +352,6 @@
             "internalType": "uint256",
             "name": "amount",
             "type": "uint256"
-          },
-          {
-            "internalType": "string",
-            "name": "status",
-            "type": "string"
           }
         ],
         "internalType": "struct WeFund.MilestoneInfo",
@@ -410,11 +420,6 @@
             "internalType": "uint256",
             "name": "amount",
             "type": "uint256"
-          },
-          {
-            "internalType": "string",
-            "name": "status",
-            "type": "string"
           }
         ],
         "internalType": "struct WeFund.MilestoneInfo[]",
@@ -442,6 +447,11 @@
       {
         "internalType": "uint256",
         "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "wfd_amount",
         "type": "uint256"
       }
     ],
@@ -529,7 +539,22 @@
             "components": [
               {
                 "internalType": "string",
-                "name": "goal",
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "start_date",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "end_date",
                 "type": "string"
               }
             ],
@@ -580,6 +605,11 @@
                 "internalType": "uint256",
                 "name": "busd_amount",
                 "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "wfd_amount",
+                "type": "uint256"
               }
             ],
             "internalType": "struct WeFund.BackerInfo[]",
@@ -617,11 +647,6 @@
                 "internalType": "uint256",
                 "name": "amount",
                 "type": "uint256"
-              },
-              {
-                "internalType": "string",
-                "name": "status",
-                "type": "string"
               }
             ],
             "internalType": "struct WeFund.MilestoneInfo[]",
@@ -776,6 +801,19 @@
       }
     ],
     "name": "removeCommunity",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_pid",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeProject",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
