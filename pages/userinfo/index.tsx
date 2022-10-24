@@ -16,8 +16,7 @@ import {
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import { useMetamaskWallet } from "../../contexts/metamask";
-import { useStore } from "../../contexts/store";
+import { useStore, useWallet } from "../../contexts/store";
 import { useProjectData } from "../../hook/FetchProject";
 import { IoDownloadOutline, IoWalletOutline } from "react-icons/io5";
 import { FaArrowRight } from "react-icons/fa";
@@ -34,7 +33,7 @@ export default function UserSideSnippet() {
   const [prjShowDatas, setPrjShowDatas] = useState<any[]>([]);
 
   const projectData = useProjectData();
-  const wallet = useMetamaskWallet();
+  const wallet = useWallet();
   const address = wallet.account;
 
   async function fetchContractQuery() {
@@ -48,7 +47,6 @@ export default function UserSideSnippet() {
         if (projectData[i].project_id == WEFUND_ID) {
           console.log(address)
           if (address) {
-            console.log("fetching")
             const { data } = await axios.post("/api/investors/fetch", {
               wallet: address,
             });
@@ -377,7 +375,7 @@ export default function UserSideSnippet() {
               showDots={false}
               responsive={responsive}
             >
-              {/* {prjShowDatas.length == 0 && (
+              {prjShowDatas.length == 0 && (
                 <Flex justifyContent={"center"}>
                   <Center py={6}>
                     <Box
@@ -485,7 +483,7 @@ export default function UserSideSnippet() {
                     </Box>
                   </Center>
                 </Flex>
-              )} */}
+              )}
               {prjShowDatas.map((project, i) => (
                 <Flex key={i} justifyContent={"center"}>
                   <Center py={6}>
