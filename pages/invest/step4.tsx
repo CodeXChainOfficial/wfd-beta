@@ -90,7 +90,7 @@ export default function InvestStep4() {
   return (
     <PageLayout
       title="Contribute"
-      subTitle1="Invest"
+      subTitle1=""
       subTitle2="Contribute"
       subTitle3="&nbsp;to WeFund"
     >
@@ -265,7 +265,7 @@ export default function InvestStep4() {
                 maxW={"390px"}
               >
                 You have invested in WeFund. For more update, please get in
-                touch with us. We will confirm your investment status via email.{" "}
+                touch with us. {" "}
               </Text>
             </Flex>
             {/* --------Table confirmation dekstop---------- */}
