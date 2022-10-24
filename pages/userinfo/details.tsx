@@ -32,7 +32,6 @@ export default function UserInfoDetail() {
   const projectData = useProjectData();
   const wallet = useWallet();
   const address = wallet.account;
-
   async function fetchContractQuery() {
     try {
       const pShowDatas = [];
