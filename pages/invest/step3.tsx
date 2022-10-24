@@ -251,7 +251,7 @@ export default function InvestStep3() {
   return (
     <PageLayout
       title="Contribute"
-      subTitle1="Invest"
+      subTitle1=""
       subTitle2="Contribute"
       subTitle3="&nbsp;to WeFund"
     >
