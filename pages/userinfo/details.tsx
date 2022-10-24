@@ -24,13 +24,13 @@ import { WEFUND_ID } from "../../config/constants";
 import { useProjectData } from "../../hook/FetchProject";
 import Footer from "../../components/Footer";
 import Hero from "../../components/User/Hero";
-import { useMetamaskWallet } from "../../contexts/metamask";
+import { useWallet } from "../../contexts/store";
 
 export default function UserInfoDetail() {
   const [prjShowDatas, setPrjShowDatas] = useState<any[]>([]);
 
   const projectData = useProjectData();
-  const wallet = useMetamaskWallet();
+  const wallet = useWallet();
   const address = wallet.account;
 
   async function fetchContractQuery() {
