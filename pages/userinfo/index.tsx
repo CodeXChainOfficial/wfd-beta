@@ -165,7 +165,7 @@ export default function UserSideSnippet() {
                     >
                       {/* {wallet && wallet.config.chainName} Wallet */}
                     </Text>
-                    <Text fontSize="sm" color={"#69E4FF"} w={"full"}>
+                    <Text fontSize="sm" color={"#69E4FF"} maxW="200px">
                       {wallet.account}
                     </Text>
                   </VStack>
@@ -246,9 +246,9 @@ export default function UserSideSnippet() {
           </Center>
           <Flex pt="62px" justifyContent="space-between">
             <Flex color={"white"}>
-              <Stack pl={3} align="left" w={"100%"}>
+              <Stack pl={{base:0, md: 4, lg: 12, '2xl': 2}} align="left" w={"100%"}>
                 <Stack
-                  w={{ base: "400px", lg: "500px", "2xl": "700px" }}
+                  w={{ base: "280px", lg: "500px", "2xl": "700px" }}
                   direction={{
                     base: "column",
                     lg: "row",
@@ -379,7 +379,7 @@ export default function UserSideSnippet() {
                 <Flex justifyContent={"center"}>
                   <Center py={6}>
                     <Box
-                      maxW="500px"
+                      maxW={{base:"300px", md:"500px"}}
                       w="full"
                       bg={"white"}
                       boxShadow={"2xl"}
@@ -487,8 +487,8 @@ export default function UserSideSnippet() {
               {prjShowDatas.map((project, i) => (
                 <Flex key={i} justifyContent={"center"}>
                   <Center py={6}>
-                    <Box
-                      maxW="500px"
+                  <Box
+                      maxW={{base:"300px", md:"500px"}}
                       w="full"
                       bg={"white"}
                       boxShadow={"2xl"}

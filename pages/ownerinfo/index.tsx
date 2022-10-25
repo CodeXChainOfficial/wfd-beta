@@ -329,7 +329,8 @@ function ProjectView({ projectsteps }: FillProp) {
                     >
                       Project {item.steptype} Status
                     </Text>
-                    <Flex mt="36px">
+                    <Flex mt="36px" visibility={{ base: "collapse", md: "visible" }}
+                W={{ base: "0px", md: "400px" }}>
                       <Flex direction="column">
                         <BoxContainer filled={true}>
                           <Image
@@ -980,7 +981,8 @@ function ProjectView({ projectsteps }: FillProp) {
                     >
                       Project {item.steptype} Status
                     </Text>
-                    <Flex mt="36px">
+                    <Flex mt="36px" visibility={{ base: "collapse", md: "visible" }}
+                W={{ base: "0px", md: "400px" }}>
                       <Flex direction="column">
                         <BoxContainer filled={true}>
                           <Image
@@ -1248,7 +1250,7 @@ function ProjectView({ projectsteps }: FillProp) {
                         </Flex>
                       </Flex>
                     </Box>
-                    <SimpleGrid columns={1} spacing={6} p="24px" w="450px">
+                    <SimpleGrid columns={1} spacing={6} p="24px" w="400px">
                       <Box bg="#120D30" borderRadius="20px">
                         <Flex p="24px">
                           <Image
@@ -1383,7 +1385,8 @@ function ProjectView({ projectsteps }: FillProp) {
                     >
                       Project {item.steptype} Status
                     </Text>
-                    <Flex mt="36px">
+                    <Flex mt="36px" visibility={{ base: "collapse", md: "visible" }}
+                W={{ base: "0px", md: "400px" }}>
                       <Flex direction="column">
                         <BoxContainer filled={true}>
                           <Image
