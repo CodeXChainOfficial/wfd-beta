@@ -12,11 +12,8 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-import {
-  useStore,
-  useCommunityData,
-  useJunoConnection,
-} from "../contexts/store";
+import { useStore, useJunoConnection } from "../contexts/store";
+import { useCommunityData } from "../hook/FetchProject";
 import {
   InputTransition,
   ButtonTransition,

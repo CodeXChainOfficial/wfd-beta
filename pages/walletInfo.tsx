@@ -1,20 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 import { Box, Flex, Text, Button, HStack } from "@chakra-ui/react";
-import { toast } from "react-toastify";
-import { WEFUND_CONTRACT, WEFUND_ID } from "../config/constants";
+import { WEFUND_ID } from "../config/constants";
 
-import { checkBscConnection, checkNetwork } from "../utils/utility";
-import { SUCCESS_OPTION } from "../config/constants";
-import {
-  useCommunityData,
-  useJunoConnection,
-  useProjectData,
-  useStore,
-} from "../contexts/store";
+import { checkBscConnection } from "../utils/utility";
+import { useJunoConnection, useStore } from "../contexts/store";
+import { useProjectData, useCommunityData } from "../hook/FetchProject";
 
 export default function UserSideSnippet() {
   const { state, dispatch } = useStore();
@@ -70,12 +63,10 @@ export default function UserSideSnippet() {
 
   async function addCommunityMember() {
     if (checkBscConnection(state) == false) return false;
-
   }
 
   async function removeCommunityMember() {
     if (checkBscConnection(state) == false) return false;
-
   }
 
   function claim(project_id: number) {

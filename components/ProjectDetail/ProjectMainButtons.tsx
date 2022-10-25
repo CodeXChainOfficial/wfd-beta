@@ -10,7 +10,11 @@ interface Props {
   onManage: () => void;
 }
 
-const ProjectMainButtons: FunctionComponent<Props> = ({ data, onNext, onManage }) => {
+const ProjectMainButtons: FunctionComponent<Props> = ({
+  data,
+  onNext,
+  onManage,
+}) => {
   return (
     <Flex
       alignSelf={{
@@ -70,7 +74,7 @@ const ProjectMainButtons: FunctionComponent<Props> = ({ data, onNext, onManage }
           </a>
         </ImageTransition>
       </Flex>
-      <Flex
+      {/* <Flex
         mt={{ base: "20px", md: "20px", lg: "30px" }}
         mb={{ base: "40px", md: "40px", lg: "20px" }}
         ml={{ base: "0px", md: "0px", lg: "10px" }}
@@ -115,7 +119,7 @@ const ProjectMainButtons: FunctionComponent<Props> = ({ data, onNext, onManage }
         >
           <Box color="white">Manage</Box>
         </ImageTransition>
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 };

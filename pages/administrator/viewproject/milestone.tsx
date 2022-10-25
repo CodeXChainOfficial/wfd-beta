@@ -1,33 +1,22 @@
-import PageLayout from "../PageLayout";
-import Footer from "../Footer";
+import PageLayout from "../../../components/PageLayout";
+import Footer from "../../../components/Footer";
 import React from "react";
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Avatar,
   Box,
   Button,
   Center,
   Flex,
-  Heading,
   Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Link,
-  Progress,
   SimpleGrid,
   Stack,
   Text,
-  Textarea,
   VStack,
 } from "@chakra-ui/react";
 import { IoWalletOutline } from "react-icons/io5";
 import { useOneProjectData, useProjectData } from "../../../hook/FetchProject";
 import { ParseParam_ProjectId } from "../../../utils/utility";
+import ProjectMilestone from "../../../components/Administrator/ViewProject/ProjectMilestone";
 
 export default function viewproject() {
   const projectID = ParseParam_ProjectId();
@@ -399,7 +388,7 @@ export default function viewproject() {
               >
                 Project Milestone - Creation
               </Text>
-              <ProjectInfoListMilestone />
+              <ProjectMilestone />
             </Flex>
           </Stack>
         </Box>
