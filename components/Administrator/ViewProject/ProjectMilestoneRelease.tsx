@@ -20,13 +20,15 @@ import {
   ModalBody,
   ModalFooter,
   ModalHeader,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
 import { useCommunityData } from "../../../hook/FetchProject";
 import { ProgressIcon } from "../ProjectPanel/ProjectOnApproval";
 import { PROJECT_STATUS } from "../../../types/ProjectStatus";
 import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../../types/ProgreessStatus";
 
-export default function ProjectMilestone({ data }: { data: any }) {
+export default function ProjectMilestoneRelease({ data }: { data: any }) {
   const [yesVotedCount, setYesVotedCount] = useState(0);
   const [votedCount, setVotedCount] = useState(0);
   const [communityCount, setCommunityCount] = useState(1);
@@ -44,22 +46,45 @@ export default function ProjectMilestone({ data }: { data: any }) {
   }, [communityData]);
 
   return (
-    <VStack color="white" w={"100%"} bg="#120D30" borderRadius="10px" p="10">
+    <VStack
+      color="white"
+      w={"100%"}
+      bg="#120D30"
+      borderRadius="10px"
+      p="10"
+      fontSize={"16px"}
+      fontWeight={600}
+    >
+      <Grid templateColumns="20% 20% 20% 20% 12%" gap="20px" w="100%">
+        <GridItem>
+          <Text>Milestone</Text>
+        </GridItem>
+        <GridItem>
+          <Text>Voting Time</Text>
+        </GridItem>
+        <GridItem>
+          <Text>Progress</Text>
+        </GridItem>
+        <GridItem>
+          <Text>Status</Text>
+        </GridItem>
+        <GridItem />
+      </Grid>
       {data?.milestone_states.map((milestone: any, index: number) => {
         let progress = 0,
           yes = 0,
           no = 0,
           all = 0;
         if (
-          data.project_status > PROJECT_STATUS.MilestoneSetup ||
-          (data.project_status == PROJECT_STATUS.MilestoneSetup &&
+          data.project_status > PROJECT_STATUS.MilestoneRelease ||
+          (data.project_status == PROJECT_STATUS.MilestoneRelease &&
             data.incubation_index > index)
         ) {
           progress = PROGRESS_STATUS.APPROVED;
           yes = communityCount;
           all = communityCount;
         } else if (
-          data.project_status == PROJECT_STATUS.MilestoneSetup &&
+          data.project_status == PROJECT_STATUS.MilestoneRelease &&
           data.milestone_index == index
         ) {
           if (data.rejected) progress = PROGRESS_STATUS.REJECTED;
@@ -79,34 +104,64 @@ export default function ProjectMilestone({ data }: { data: any }) {
               borderColor="gray.200"
               w={"100%"}
             >
-              <AccordionButton w="100%" p="4" justifyContent="space-between">
-                <Text fontSize={"16px"} fontWeight={600} color={"white"}>
-                  Milestone {milestone.step.toNumber()}
-                </Text>
-
-                <Flex gap="10px">
-                  <ProgressIcon progress={progress} />
-                  {PROGRESS_TEXT[progress]}
-                  {(progress == PROGRESS_STATUS.VOTING ||
-                    progress == PROGRESS_STATUS.REJECTED) && <VoteButton />}
-                  <AccordionIcon />
-                </Flex>
+              <AccordionButton
+                w="100%"
+                py="2"
+                px="0"
+                justifyContent="space-between"
+              >
+                <Grid templateColumns="20% 20% 20% 20% 12%" gap="20px" w="100%">
+                  <GridItem display="flex" w="100%">
+                    <Text>Milestone {milestone.step.toNumber()}</Text>
+                  </GridItem>
+                  <GridItem display="flex" w="100%">
+                    <Text>68h 28m 31s</Text>
+                  </GridItem>
+                  <GridItem />
+                  <GridItem display="flex" w="100%">
+                    <ProgressIcon progress={progress} />
+                    {PROGRESS_TEXT[progress]}
+                    {(progress == PROGRESS_STATUS.VOTING ||
+                      progress == PROGRESS_STATUS.REJECTED) && <VoteButton />}
+                  </GridItem>
+                  <GridItem>
+                    <AccordionIcon />
+                  </GridItem>
+                </Grid>
               </AccordionButton>
-              <AccordionPanel pb={4}>
-                <Flex gap={{ base: 2, sm: 2, md: 8 }}>
-                  <Flex
-                    direction="row"
-                    align="left"
+              <AccordionPanel pb={4} px="0">
+                <Grid templateColumns="20% 20% 20% 20% 12%" gap="20px" w="100%">
+                  <GridItem
+                    display="flex"
+                    alignItems="left"
                     bg="rgba(0, 0, 0, 0.33)"
                     rounded="md"
-                    p="1"
-                    w="50%"
+                    h="100%"
                   >
                     <Text fontSize={"14px"} fontWeight={200} color="white">
                       {milestone.description}
                     </Text>
-                  </Flex>
-                  <Flex direction="column" w="20%">
+                  </GridItem>
+                  <GridItem
+                    bg="rgba(0, 0, 0, 0.33)"
+                    rounded="md"
+                    p="1"
+                    h="100%"
+                  >
+                    <Text fontSize={"14px"} fontWeight={200} color="#5761D7">
+                      Start
+                    </Text>
+                    <Text>{milestone.start_date}</Text>
+                    <Text fontSize={"14px"} fontWeight={200} color="#5761D7">
+                      End
+                    </Text>
+                    <Text>{milestone.end_date}</Text>
+                    <Text fontSize={"14px"} fontWeight={200} color="#5761D7">
+                      CountDown
+                    </Text>
+                    <Text>68h 28m 31s</Text>
+                  </GridItem>
+                  <GridItem display="flex" flexDirection="column">
                     {PROGRESS_TEXT.map((label, index) => (
                       <Flex
                         direction={{ base: "column", sm: "row", lg: "row" }}
@@ -127,14 +182,14 @@ export default function ProjectMilestone({ data }: { data: any }) {
                         </Text>
                       </Flex>
                     ))}
-                  </Flex>
-                  <Flex
-                    direction="column"
+                  </GridItem>
+                  <GridItem
+                    display="flex"
+                    flexDirection="column"
                     rounded="md"
-                    justify="space-between"
+                    justifyContent="space-between"
                     background="rgba(0, 0, 0, 0.25)"
-                    align="left"
-                    w="30%"
+                    alignItems="left"
                     py="1"
                     px="2"
                   >
@@ -162,8 +217,9 @@ export default function ProjectMilestone({ data }: { data: any }) {
                     >
                       {yes}/{all} voted
                     </Text>
-                  </Flex>
-                </Flex>
+                  </GridItem>
+                  <GridItem />
+                </Grid>
               </AccordionPanel>
             </AccordionItem>
           </Accordion>

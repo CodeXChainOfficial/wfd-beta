@@ -95,7 +95,7 @@ export default function ProjectOnMilestone() {
                   <Td>{GetProjectStatusText(item.project_status)}</Td>
                   <Td>
                     <Link
-                      href={`/administrator/viewproject/incubation?project_id=${item.project_id}`}
+                      href={`/administrator/viewproject/milestone?project_id=${item.project_id}`}
                     >
                       <Button
                         colorScheme="cyan"
