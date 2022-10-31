@@ -1,6 +1,11 @@
 import React, { useEffect } from "react";
 import { ethers } from "ethers";
-import { CHAINS_CONFIG, WEFUND_CONTRACT, WEFUND_ID } from "../config/constants";
+import {
+  CHAINS_CONFIG,
+  NETWORK,
+  WEFUND_CONTRACT,
+  WEFUND_ID,
+} from "../config/constants";
 import WEFUND_ABI from "../config/WeFund.json";
 import { AppContextInterface, ActionKind, useStore } from "../contexts/store";
 
@@ -39,7 +44,7 @@ export const fetchProjectData = async (
   }
 
   const provider = new ethers.providers.JsonRpcProvider(
-    CHAINS_CONFIG["bsc"].rpc
+    CHAINS_CONFIG[NETWORK == "mainnet" ? "bsc" : "bsc_testnet"].rpc
   );
   const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, provider);
 
@@ -55,7 +60,7 @@ export const fetchProjectData = async (
 
     const res = await contract.getProjectInfo();
     console.log("fetching from smart contract");
-console.log(res)
+    console.log(res);
     for (let i = 0; i < res.length; i++) {
       const id = res[i].id.toNumber();
       if (id != 0) {
@@ -65,7 +70,14 @@ console.log(res)
             projectData[j].project_status = res[i].status;
             projectData[j].backerbacked_amount = res[i].backed.toNumber();
             projectData[j].backer_states = res[i].backers;
+
             projectData[j].milestone_states = res[i].milestones;
+            projectData[j].milestone_index = res[i].milestoneVoteIndex;
+            projectData[j].incubation_goals = res[i].incubationGoals;
+            projectData[j].incubation_index = res[i].incubationGoalVoteIndex;
+            projectData[j].wefund_votes = res[i].wefundVotes;
+            projectData[j].backer_votes = res[i].backerVotes;
+
             projectData[j].teammember_states = JSON.parse(
               projectData[j].teammembers
             );
@@ -105,7 +117,7 @@ export const fetchCommunity = async (
   dispatch: React.Dispatch<any>
 ) => {
   const provider = new ethers.providers.JsonRpcProvider(
-    CHAINS_CONFIG["bsc"].rpc
+    CHAINS_CONFIG[NETWORK == "mainnet" ? "bsc" : "bsc_testnet"].rpc
   );
 
   try {
