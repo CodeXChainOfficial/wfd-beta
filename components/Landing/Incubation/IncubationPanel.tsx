@@ -35,9 +35,7 @@ const IncubationPanel = () => {
         </Text>
       </GridItem>
       <GridItem />
-      <GridItem w="100%" mt="50px">
- 
-      </GridItem>
+      <GridItem w="100%" mt="50px"></GridItem>
       <GridItem w="90%" mt="50px">
         <Flex w="100%" justify="center">
           <Image
@@ -46,16 +44,19 @@ const IncubationPanel = () => {
           />
         </Flex>
       </GridItem>
-      <GridItem w="100%" mt="50px" position="relative">
-        <Text
-          fontWeight="500"
-          color="#00A3FF"
-          textAlign="justify"
-          fontSize={{ base: "10px", md: "18px" }}
-        >
-          We do due diligence and research by interviewing, discussing and going
-          through papers
-          <br />
+      <GridItem
+        w="100%"
+        mt="50px"
+        position="relative"
+        fontWeight="500"
+        color="#00A3FF"
+        textAlign="justify"
+        fontSize={{ base: "10px", md: "18px" }}
+      >
+        We do due diligence and research by interviewing, discussing and going
+        through papers
+        <br />
+        <ul>
           <li>
             <chakra.span fontSize={{ base: "10px", md: "18px" }} color="white">
               WeFund select project deemed credible and impactful and the
@@ -92,7 +93,7 @@ const IncubationPanel = () => {
               Preparing project for a WeFund fundraise
             </chakra.span>
           </li>
-        </Text>
+        </ul>
         {/* <Image
           src="/media/Home/box.png"
           width="47px"

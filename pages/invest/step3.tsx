@@ -51,7 +51,7 @@ export default function InvestStep3() {
   const canvasRef = useRef({});
   const router = useRouter();
   const wallet = useWallet();
-  const address = wallet.account;
+  const address = wallet?.account;
 
   //------------parse URL for project id----------------------------
   const project_id = ParseParam_ProjectId();
