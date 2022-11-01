@@ -162,100 +162,100 @@ export default function index() {
                     </Flex>
                   </Flex>
                 </Box>
-                
-              <SimpleGrid columns={1} spacing={6} p="24px" w="450px">
-                <Box bg="#120D30" borderRadius="20px">
-                  <Flex p="24px">
-                    <Image
-                      alt="voting power"
-                      src="/media/OwnerInfo/voting_power.svg"
-                      h="64px"
-                    />
-                    <Flex direction="column" ml="16px">
-                      <Text
-                        color={"rgba(15, 177, 245, 1)"}
-                        fontFamily="Montserrat"
-                        fontSize="14px"
-                        fontWeight="600"
-                        w={"full"}
-                      >
-                        Project Type
-                      </Text>
-                      <Text
-                        mt="14px"
-                        fontFamily="Pilat Extended"
-                        fontSize="20px"
-                        fontWeight="950"
-                        w={"full"}
-                      >
-                        Incubation
-                      </Text>
+
+                <SimpleGrid columns={1} spacing={6} p="24px" w="450px">
+                  <Box bg="#120D30" borderRadius="20px">
+                    <Flex p="24px">
+                      <Image
+                        alt="voting power"
+                        src="/media/OwnerInfo/voting_power.svg"
+                        h="64px"
+                      />
+                      <Flex direction="column" ml="16px">
+                        <Text
+                          color={"rgba(15, 177, 245, 1)"}
+                          fontFamily="Montserrat"
+                          fontSize="14px"
+                          fontWeight="600"
+                          w={"full"}
+                        >
+                          Project Type
+                        </Text>
+                        <Text
+                          mt="14px"
+                          fontFamily="Pilat Extended"
+                          fontSize="20px"
+                          fontWeight="950"
+                          w={"full"}
+                        >
+                          Incubation
+                        </Text>
+                      </Flex>
                     </Flex>
-                  </Flex>
-                </Box>
-                <Box bg="#120D30" borderRadius="20px">
-                  <Flex p="24px">
-                    <Image
-                      alt="backer"
-                      src="/media/OwnerInfo/backer.svg"
-                      h="64px"
-                    />
-                    <Flex direction="column" ml="16px">
-                      <Text
-                        color={"rgba(15, 177, 245, 1)"}
-                        fontFamily="Montserrat"
-                        fontSize="14px"
-                        fontWeight="600"
-                        w={"full"}
-                      >
-                        Remaining Step to Pass
-                      </Text>
-                      <Text
-                        mt="14px"
-                        fontFamily="Pilat Extended"
-                        fontSize="20px"
-                        fontWeight="950"
-                        w={"full"}
-                      >
-                        2 Goals
-                      </Text>
+                  </Box>
+                  <Box bg="#120D30" borderRadius="20px">
+                    <Flex p="24px">
+                      <Image
+                        alt="backer"
+                        src="/media/OwnerInfo/backer.svg"
+                        h="64px"
+                      />
+                      <Flex direction="column" ml="16px">
+                        <Text
+                          color={"rgba(15, 177, 245, 1)"}
+                          fontFamily="Montserrat"
+                          fontSize="14px"
+                          fontWeight="600"
+                          w={"full"}
+                        >
+                          Remaining Step to Pass
+                        </Text>
+                        <Text
+                          mt="14px"
+                          fontFamily="Pilat Extended"
+                          fontSize="20px"
+                          fontWeight="950"
+                          w={"full"}
+                        >
+                          2 Goals
+                        </Text>
+                      </Flex>
                     </Flex>
-                  </Flex>
-                </Box>
-                <Box bg="#120D30" borderRadius="20px">
-                  <Flex p="24px">
-                    <Box
-                      height="64px"
-                      width="46px"
-                      bg="rgba(22.31, 115.39, 255, 0.42)"
-                      borderRadius="10"
-                      borderWidth="2"
-                      borderStyle="solid"
-                      borderColor="rgba(105.19, 120.17, 255, 0.51)"
-                    />
-                    <Flex direction="column" ml="16px">
-                      <Text
-                        color={"rgba(15, 177, 245, 1)"}
-                        fontFamily="Montserrat"
-                        fontSize="14px"
-                        fontWeight="600"
-                        w={"full"}
-                      >
-                        Goal Set
-                      </Text>
-                      <Text
-                        mt="14px"
-                        fontFamily="Pilat Extended"
-                        fontSize="20px"
-                        fontWeight="950"
-                        w={"full"}
-                      >
-                        4 Goals
-                      </Text>
+                  </Box>
+                  <Box bg="#120D30" borderRadius="20px">
+                    <Flex p="24px">
+                      <Box
+                        height="64px"
+                        width="46px"
+                        bg="rgba(22.31, 115.39, 255, 0.42)"
+                        borderRadius="10"
+                        borderWidth="2"
+                        borderStyle="solid"
+                        borderColor="rgba(105.19, 120.17, 255, 0.51)"
+                      />
+                      <Flex direction="column" ml="16px">
+                        <Text
+                          color={"rgba(15, 177, 245, 1)"}
+                          fontFamily="Montserrat"
+                          fontSize="14px"
+                          fontWeight="600"
+                          w={"full"}
+                        >
+                          Goal Set
+                        </Text>
+                        <Text
+                          mt="14px"
+                          fontFamily="Pilat Extended"
+                          fontSize="20px"
+                          fontWeight="950"
+                          w={"full"}
+                        >
+                          4 Goals
+                        </Text>
+                      </Flex>
                     </Flex>
-                  </Flex>
-                </Box>
-              </SimpleGrid>
+                  </Box>
+                </SimpleGrid>
                 <Link href="/" target="_blank">
                   <Box px="24px">
                     <Button
@@ -411,7 +411,7 @@ export default function index() {
               <Flex mt="26px">
                 <Box bg="rgba(18, 13, 48, 1)" borderRadius="10px" w="650px">
                   <Flex direction="column" px="12px" py="8px">
-                    <GoalList incubation={true}/>
+                    <GoalList incubation={true} />
                   </Flex>
                 </Box>
               </Flex>

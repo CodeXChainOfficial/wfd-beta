@@ -73,7 +73,6 @@ function ProjectView({ projectsteps }: FillProp) {
             subTitle2=""
             subTitle3="&nbsp; Owner"
             key={index}
-
           >
             <Box width={"100%"}>
               <Box color={"white"} pb={"5%"} pt="64px">

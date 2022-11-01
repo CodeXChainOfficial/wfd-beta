@@ -23,13 +23,16 @@ import {
   Grid,
   GridItem,
 } from "@chakra-ui/react";
-import { useCommunityData } from "../../../hook/FetchProject";
-import { ProgressIcon } from "../ProjectPanel/ProjectOnApproval";
-import { PROJECT_STATUS } from "../../../types/ProjectStatus";
-import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../../types/ProgreessStatus";
-import VoteButton from "../VoteButton";
+import { useCommunityData } from "../../../../hook/FetchProject";
+import { ProgressIcon } from "../../ProjectPanel/ProjectOnApproval";
+import { PROJECT_STATUS } from "../../../../types/ProjectStatus";
+import {
+  PROGRESS_STATUS,
+  PROGRESS_TEXT,
+} from "../../../../types/ProgreessStatus";
+import VoteButton from "../../VoteButton";
 
-export default function ProjectMilestoneRelease({ data }: { data: any }) {
+export default function ProjectMilestone({ data }: { data: any }) {
   const [yesVotedCount, setYesVotedCount] = useState(0);
   const [votedCount, setVotedCount] = useState(0);
   const [communityCount, setCommunityCount] = useState(1);
@@ -52,27 +55,18 @@ export default function ProjectMilestoneRelease({ data }: { data: any }) {
       w={"100%"}
       bg="#120D30"
       borderRadius="10px"
-      p={{ base: "1", md: "10" }}
-      fontSize={{ base: "12px", md: "16px" }}
-      fontWeight={600}
+      px="4"
+      py="8"
     >
       <Grid
-        templateColumns="3fr 2fr 2fr 2fr 1fr"
-        gap={{ base: "1px", md: "20px" }}
+        templateColumns="50% 40% 10%"
         w="100%"
+        gap={{ base: "1px", md: "10px" }}
+        fontSize={{ base: "12px", md: "16px" }}
+        px={{ base: "0px", md: "15px" }}
       >
-        <GridItem>
-          <Text>Milestone</Text>
-        </GridItem>
-        <GridItem>
-          <Text>Voting Time</Text>
-        </GridItem>
-        <GridItem>
-          <Text>Progress</Text>
-        </GridItem>
-        <GridItem>
-          <Text>Status</Text>
-        </GridItem>
+        <GridItem>Milestone</GridItem>
+        <GridItem>Status</GridItem>
         <GridItem />
       </Grid>
       {data?.milestone_states.map((milestone: any, index: number) => {
@@ -81,15 +75,15 @@ export default function ProjectMilestoneRelease({ data }: { data: any }) {
           no = 0,
           all = 0;
         if (
-          data.project_status > PROJECT_STATUS.MilestoneRelease ||
-          (data.project_status == PROJECT_STATUS.MilestoneRelease &&
+          data.project_status > PROJECT_STATUS.MilestoneSetup ||
+          (data.project_status == PROJECT_STATUS.MilestoneSetup &&
             data.incubation_index > index)
         ) {
           progress = PROGRESS_STATUS.APPROVED;
           yes = communityCount;
           all = communityCount;
         } else if (
-          data.project_status == PROJECT_STATUS.MilestoneRelease &&
+          data.project_status == PROJECT_STATUS.MilestoneSetup &&
           data.milestone_index == index
         ) {
           if (data.rejected) progress = PROGRESS_STATUS.REJECTED;
@@ -109,24 +103,18 @@ export default function ProjectMilestoneRelease({ data }: { data: any }) {
               borderColor="gray.200"
               w={"100%"}
             >
-              <AccordionButton
-                w="100%"
-                py="2"
-                px="0"
-                fontSize={{ base: "12px", md: "16px" }}
-                fontWeight={600}
-              >
+              <AccordionButton w="100%" p="0">
                 <Grid
-                  templateColumns="3fr 2fr 2fr 2fr 1fr"
-                  gap={{ base: "1px", md: "20px" }}
+                  templateColumns="50% 40% 10%"
                   w="100%"
+                  gap={{ base: "1px", md: "10px" }}
+                  fontSize={{ base: "10px", md: "16px" }}
+                  px={{ base: "0px", md: "15px" }}
                 >
-                  <GridItem display="flex">
+                  <GridItem display="flex" alignItems="center">
                     Milestone {milestone.step.toNumber()}
                   </GridItem>
-                  <GridItem display="flex">68h 28m 31s</GridItem>
-                  <GridItem />
-                  <GridItem display="flex">
+                  <GridItem display="flex" alignItems="center">
                     <ProgressIcon progress={progress} />
                     {PROGRESS_TEXT[progress]}
                     {(progress == PROGRESS_STATUS.VOTING ||
@@ -137,73 +125,48 @@ export default function ProjectMilestoneRelease({ data }: { data: any }) {
                   </GridItem>
                 </Grid>
               </AccordionButton>
-              <AccordionPanel pb={4} px="0">
+              <AccordionPanel px="0" pb={4}>
                 <Grid
-                  templateColumns="3fr 2fr 2fr 2fr 1fr"
-                  gap={{ base: "3px", md: "20px" }}
+                  templateColumns="50% 40% 10%"
                   w="100%"
+                  gap={{ base: "1px", md: "10px" }}
                   fontSize={{ base: "10px", md: "12px" }}
+                  px={{ base: "0px", md: "15px" }}
                 >
                   <GridItem
                     display="flex"
-                    alignItems="left"
-                    bg="rgba(0, 0, 0, 0.33)"
-                    rounded="md"
-                    h="100%"
-                  >
-                    {milestone.description}
-                  </GridItem>
-                  <GridItem
                     bg="rgba(0, 0, 0, 0.33)"
                     rounded="md"
                     p="1"
-                    h="100%"
+                    w="50%"
                   >
-                    <Text color="#5761D7">Start</Text>
-                    <Text>{milestone.start_date}</Text>
-                    <Text color="#5761D7">End</Text>
-                    <Text>{milestone.end_date}</Text>
-                    <Text color="#5761D7">CountDown</Text>
-                    <Text>68h 28m 31s</Text>
+                    {milestone.description}
                   </GridItem>
-                  <GridItem display="flex" flexDirection="column">
-                    {PROGRESS_TEXT.map((label, index) => (
-                      <Flex
-                        direction={{ base: "column", sm: "row", lg: "row" }}
-                        justify="left"
-                        background={
-                          progress == index ? "#4E0588" : "rgba(0, 0, 0, 0.25)"
-                        }
-                        rounded="md"
-                        p="1"
-                        key={index}
-                      >
-                        {label}
-                      </Flex>
-                    ))}
-                  </GridItem>
+
                   <GridItem
                     display="flex"
                     flexDirection="column"
                     rounded="md"
-                    justifyContent="space-between"
                     background="rgba(0, 0, 0, 0.25)"
-                    alignItems="left"
                     py="1"
                     px="2"
                   >
-                    <Text>
-                      {yes} <chakra.span fontWeight={200}> Yes</chakra.span>
-                    </Text>
-                    <Text>
-                      {no} <chakra.span fontWeight={200}> No</chakra.span>
-                    </Text>
+                    <Flex w="100%">
+                      <Text>
+                        {yes}&nbsp;
+                        <chakra.span fontWeight={200}>
+                          &nbsp; Yes&nbsp;&nbsp;&nbsp;
+                        </chakra.span>
+                      </Text>
+                      <Text>
+                        {no} <chakra.span fontWeight={200}> No</chakra.span>
+                      </Text>
+                    </Flex>
                     <Text>
                       {yes}/{all} voted
                     </Text>
                     <VoteButton />
                   </GridItem>
-                  <GridItem />
                 </Grid>
               </AccordionPanel>
             </AccordionItem>

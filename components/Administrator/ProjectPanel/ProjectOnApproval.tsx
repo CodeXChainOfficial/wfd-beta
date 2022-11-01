@@ -202,6 +202,7 @@ export function ProgressIcon({ children, progress }: FillProp) {
       <Box position="relative" mr="2" pt="1">
         <Image
           w="15px"
+          minW="15px"
           alt="registration icon"
           src="/media/OwnerInfo/checkgreen.svg"
         />
@@ -213,6 +214,7 @@ export function ProgressIcon({ children, progress }: FillProp) {
       <Box position="relative" mr="2" pt="1">
         <Image
           w="15px"
+          minW="15px"
           alt="registration icon"
           src="/media/OwnerInfo/checkred.svg"
         />
@@ -221,9 +223,10 @@ export function ProgressIcon({ children, progress }: FillProp) {
     );
   } else if (progress == PROGRESS_STATUS.VOTING) {
     return (
-      <Box position="relative" mr="2" ml="8" pt="1">
+      <Box position="relative" mr="2" pt="1">
         <Image
           w="15px"
+          minW="15px"
           alt="registration icon"
           src="/media/OwnerInfo/voting.svg"
         />
@@ -235,6 +238,7 @@ export function ProgressIcon({ children, progress }: FillProp) {
       <Box position="relative" mr="2" pt="1">
         <Image
           w="15px"
+          minW="15px"
           alt="registration icon"
           src="/media/OwnerInfo/hourglass.svg"
         />
