@@ -10,12 +10,9 @@ import {
   Grid,
   GridItem,
 } from "@chakra-ui/react";
-import ProgressIcon from "../../../ProgressIcon";
-import { PROJECT_STATUS } from "../../../../types/ProjectStatus";
-import {
-  PROGRESS_STATUS,
-  PROGRESS_TEXT,
-} from "../../../../types/ProgreessStatus";
+import ProgressIcon from "../../ProgressIcon";
+import { PROJECT_STATUS } from "../../../types/ProjectStatus";
+import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../../types/ProgreessStatus";
 
 export default function ProjectApplyIncubation({ data }: { data: any }) {
   return (

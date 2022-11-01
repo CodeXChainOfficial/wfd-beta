@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { useProjectData } from "../../../hook/FetchProject";
 import { GetProjectStatusText } from "../../../utils/utility";
-import { ProgressIcon } from "./ProjectOnApproval";
+import ProgressIcon from "../../ProgressIcon";
 import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../../types/ProgreessStatus";
 import { PROJECT_STATUS } from "../../../types/ProjectStatus";
 

@@ -12,14 +12,10 @@ import {
   Grid,
   GridItem,
 } from "@chakra-ui/react";
-import { useCommunityData } from "../../../../hook/FetchProject";
-import ProgressIcon from "../../../ProgressIcon";
-import { PROJECT_STATUS } from "../../../../types/ProjectStatus";
-import {
-  PROGRESS_STATUS,
-  PROGRESS_TEXT,
-} from "../../../../types/ProgreessStatus";
-import VoteButton from "../../VoteButton";
+import { useCommunityData } from "../../../hook/FetchProject";
+import ProgressIcon from "../../ProgressIcon";
+import { PROJECT_STATUS } from "../../../types/ProjectStatus";
+import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../../types/ProgreessStatus";
 
 export default function ProjectIncubation({ data }: { data: any }) {
   const [yesVotedCount, setYesVotedCount] = useState(0);
@@ -115,7 +111,7 @@ export default function ProjectIncubation({ data }: { data: any }) {
                     {PROGRESS_TEXT[progress]}
                     {/* {(progress == PROGRESS_STATUS.VOTING ||
                       progress == PROGRESS_STATUS.REJECTED) && <VoteButton />} */}
-                    <VoteButton />
+                    {/* <VoteButton /> */}
                   </GridItem>
                   <GridItem>
                     <AccordionIcon />

@@ -2,29 +2,18 @@ import React, { useState, useEffect } from "react";
 import {
   Flex,
   Text,
-  Button,
-  Box,
   Accordion,
   AccordionButton,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
   chakra,
-  Stack,
   VStack,
-  Modal,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
-  useDisclosure,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
   Grid,
   GridItem,
 } from "@chakra-ui/react";
 import { useCommunityData } from "../../../hook/FetchProject";
-import { ProgressIcon } from "../ProjectPanel/ProjectOnApproval";
+import ProgressIcon from "../../ProgressIcon";
 import { PROJECT_STATUS } from "../../../types/ProjectStatus";
 import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../../types/ProgreessStatus";
 import VoteButton from "../VoteButton";

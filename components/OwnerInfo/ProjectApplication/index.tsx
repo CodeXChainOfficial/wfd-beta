@@ -10,18 +10,14 @@ import {
   GridItem,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import ProgressIcon from "../../../ProgressIcon";
+import ProgressIcon from "../../ProgressIcon";
 import {
   APPLICATION_BASE_STATUS,
   APPLICATION_STEPS,
-} from "../../../../pages/administrator/viewproject/approval";
-import { useCommunityData } from "../../../../hook/FetchProject";
-import { PROJECT_STATUS } from "../../../../types/ProjectStatus";
-import {
-  PROGRESS_STATUS,
-  PROGRESS_TEXT,
-} from "../../../../types/ProgreessStatus";
-import VoteButton from "../../VoteButton";
+} from "../../../pages/administrator/viewproject/approval";
+import { useCommunityData } from "../../../hook/FetchProject";
+import { PROJECT_STATUS } from "../../../types/ProjectStatus";
+import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../../types/ProgreessStatus";
 
 export default function ProjectApplication({ data }: { data: any }) {
   const [yesVotedCount, setYesVotedCount] = useState(0);
@@ -147,8 +143,8 @@ export default function ProjectApplication({ data }: { data: any }) {
                       {lR}/{rR} Voted
                     </chakra.span>
                   )}
-                  {(progress == PROGRESS_STATUS.VOTING ||
-                    progress == PROGRESS_STATUS.REJECTED) && <VoteButton />}
+                  {/* {(progress == PROGRESS_STATUS.VOTING ||
+                    progress == PROGRESS_STATUS.REJECTED) && <VoteButton />} */}
                 </GridItem>
               </Grid>
             );
