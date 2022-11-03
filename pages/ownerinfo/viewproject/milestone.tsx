@@ -16,40 +16,36 @@ import {
 import { IoWalletOutline, IoFileTrayFull, IoCallSharp } from "react-icons/io5";
 import { IoMdThumbsUp } from "react-icons/io";
 import { BsFillCalendar2CheckFill } from "react-icons/bs";
-
-import ProjectIncubation from "../../../components/Administrator/ViewProject/ProjectIncubation";
 import { useOneProjectData } from "../../../hook/FetchProject";
 import { ParseParam_ProjectId, ShortenAddress } from "../../../utils/utility";
 import { useMetamaskWallet } from "../../../contexts/metamask";
 import { WFD_TOKEN_INFO } from "../../../config/constants";
 import { PROJECT_STATUS } from "../../../types/ProjectStatus";
-import ProjectMilestone from "../../../components/Administrator/ViewProject/ProjectIncubation/Milestone";
+import ProjectMilestoneRelease from "../../../components/OwnerInfo/ProjectMilestoneRelease";
 import { BoxContainer, Dash } from "./approval";
 
-export const INCUBATION_BASE_STATUS = 1;
-
-export const INCUBATION_STEPS = [
+export const MILESTONE_STEPS = [
   {
     image: IoFileTrayFull,
-    label: "Selected",
+    label: "Fundraising",
   },
   {
     image: BsFillCalendar2CheckFill,
-    label: "SetGoal",
+    label: "SetMilestone",
   },
   {
     image: IoCallSharp,
-    label: "Goal Approved",
+    label: "Milestone Approved",
   },
   {
     image: IoMdThumbsUp,
-    label: "All Goal Archieved",
+    label: "All Milestone Archieved",
   },
 ];
 
-export default function ViewProjectIncubation() {
-  const [passedGoals, setPassedGoals] = useState(0);
-  const [goalSet, setGoalSet] = useState(0);
+export default function ViewProjectMilestone() {
+  const [remainingSteps, setRemainingSteps] = useState(0);
+  const [milestoneStep, setMilestoneStep] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
 
   const projectID = ParseParam_ProjectId();
@@ -59,16 +55,18 @@ export default function ViewProjectIncubation() {
 
   useEffect(() => {
     if (data) {
-      const length = data.incubation_goals.length;
-      setPassedGoals(length - data.incubation_index);
-      setGoalSet(length);
+      const length = data.milestone_states.length;
 
-      if (data.project_status == PROJECT_STATUS.IncubationGoal) {
-        setCurrentStep(length == 0 ? 1 : 2);
-      } else if (data.project_status == PROJECT_STATUS.MilestoneSetup) {
+      if (data.project_status == PROJECT_STATUS.CrowdFundraising) {
+        setCurrentStep(0);
+        setRemainingSteps(length);
+      } else if (data.project_status == PROJECT_STATUS.MilestoneRelease) {
+        setCurrentStep(2);
+        setRemainingSteps(length - data.milestone_index);
+        setMilestoneStep(data.milestone_index);
+      } else if (data.project_status > PROJECT_STATUS.Completed) {
         setCurrentStep(3);
-      } else if (data.project_status > PROJECT_STATUS.MilestoneSetup) {
-        setCurrentStep(4);
+        setMilestoneStep(length);
       }
     }
   }, [data]);
@@ -76,14 +74,13 @@ export default function ViewProjectIncubation() {
   return (
     <PageLayout
       title=""
-      subTitle1="Welcome Back Admin to "
+      subTitle1="Welcome Back to Milestone"
       subTitle2=" "
-      subTitle3={` Manage ${data?.project_title}`}
+      subTitle3={` Project Owner!`}
     >
       <Stack
         width={"100%"}
         color="white"
-        justifyContent="center"
         direction={{ base: "column", lg: "row" }}
         px={{ base: "10px", md: "100px" }}
         pb={"5%"}
@@ -195,7 +192,7 @@ export default function ViewProjectIncubation() {
               <Flex p="24px">
                 <Image
                   alt="voting power"
-                  src="/media/OwnerInfo/voting_power.svg"
+                  src="/media/OwnerInfo/milestone.svg"
                   h="64px"
                 />
                 <Flex direction="column" ml="16px">
@@ -215,7 +212,7 @@ export default function ViewProjectIncubation() {
                     fontWeight="950"
                     w={"full"}
                   >
-                    Incubation
+                    Milestone
                   </Text>
                 </Flex>
               </Flex>
@@ -235,7 +232,7 @@ export default function ViewProjectIncubation() {
                     fontWeight="600"
                     w={"full"}
                   >
-                    Remaining Goal to Pass
+                    Remaining progress to Pass
                   </Text>
                   <Text
                     mt="14px"
@@ -244,7 +241,7 @@ export default function ViewProjectIncubation() {
                     fontWeight="950"
                     w={"full"}
                   >
-                    {goalSet} Goals
+                    {remainingSteps} Steps
                   </Text>
                 </Flex>
               </Flex>
@@ -268,7 +265,7 @@ export default function ViewProjectIncubation() {
                     fontWeight="600"
                     w={"full"}
                   >
-                    GoalSet
+                    Status
                   </Text>
                   <Text
                     mt="14px"
@@ -277,7 +274,7 @@ export default function ViewProjectIncubation() {
                     fontWeight="950"
                     w={"full"}
                   >
-                    {goalSet} Goals
+                    Milestone {milestoneStep} Voting
                   </Text>
                 </Flex>
               </Flex>
@@ -314,9 +311,9 @@ export default function ViewProjectIncubation() {
             Project Journey Status
           </Text>
           <Flex mt="36px" w="100%">
-            {INCUBATION_STEPS.map((step, index, all) => {
+            {MILESTONE_STEPS.map((step, index, all) => {
               return (
-                <Flex key={index}>
+                <>
                   <Flex
                     direction="column"
                     key={index}
@@ -344,7 +341,7 @@ export default function ViewProjectIncubation() {
                       <Dash filled={index < currentStep - 1} />
                     </Center>
                   )}
-                </Flex>
+                </>
               );
             })}
           </Flex>
@@ -352,21 +349,12 @@ export default function ViewProjectIncubation() {
             mt="16px"
             fontFamily={"Montserrat"}
             fontWeight="800"
-            fontSize={{ base: "16px", md: "20px" }}
+            fontSize={{ base: "16p", md: "20px" }}
           >
-            Project Incubation Goal
+            Project Owner Milestone
           </Text>
-          <ProjectIncubation data={data} />
 
-          <Text
-            mt="16px"
-            fontFamily={"Montserrat"}
-            fontWeight="800"
-            fontSize={{ base: "16px", md: "20px" }}
-          >
-            Project Milestone
-          </Text>
-          <ProjectMilestone data={data} />
+          <ProjectMilestoneRelease data={data} />
         </Flex>
       </Stack>
       <Footer />

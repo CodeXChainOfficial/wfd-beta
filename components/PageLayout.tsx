@@ -50,7 +50,7 @@ const PageLayout: FunctionComponent<Props> = (props) => {
               fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
               fontWeight={"900"}
             >
-              {props.subTitle1}
+              {props.subTitle1}&nbsp;
             </Text>
             <Text
               fontFamily="Sans-Serif"

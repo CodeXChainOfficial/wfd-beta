@@ -16,15 +16,13 @@ import {
 import { IoWalletOutline, IoFileTrayFull, IoCallSharp } from "react-icons/io5";
 import { IoMdThumbsUp } from "react-icons/io";
 import { BsFillCalendar2CheckFill } from "react-icons/bs";
-
-import ProjectIncubation from "../../../components/Administrator/ViewProject/ProjectIncubation";
 import { useOneProjectData } from "../../../hook/FetchProject";
 import { ParseParam_ProjectId, ShortenAddress } from "../../../utils/utility";
 import { useMetamaskWallet } from "../../../contexts/metamask";
 import { WFD_TOKEN_INFO } from "../../../config/constants";
 import { PROJECT_STATUS } from "../../../types/ProjectStatus";
-import ProjectMilestone from "../../../components/Administrator/ViewProject/ProjectMilestone";
 import ProjectMilestoneRelease from "../../../components/Administrator/ViewProject/ProjectMilestoneRelease";
+import { BoxContainer, Dash } from "./approval";
 
 export const MILESTONE_STEPS = [
   {
@@ -60,14 +58,14 @@ export default function ViewProjectMilestone() {
       const length = data.milestone_states.length;
 
       if (data.project_status == PROJECT_STATUS.CrowdFundraising) {
-        setCurrentStep(0);
+        setCurrentStep(1);
         setRemainingSteps(length);
       } else if (data.project_status == PROJECT_STATUS.MilestoneRelease) {
-        setCurrentStep(2);
+        setCurrentStep(3);
         setRemainingSteps(length - data.milestone_index);
         setMilestoneStep(data.milestone_index);
       } else if (data.project_status > PROJECT_STATUS.Completed) {
-        setCurrentStep(3);
+        setCurrentStep(4);
         setMilestoneStep(length);
       }
     }
@@ -83,7 +81,6 @@ export default function ViewProjectMilestone() {
       <Stack
         width={"100%"}
         color="white"
-        justifyContent="center"
         direction={{ base: "column", lg: "row" }}
         px={{ base: "10px", md: "100px" }}
         pb={"5%"}
@@ -185,7 +182,12 @@ export default function ViewProjectMilestone() {
               </Flex>
             </Flex>
           </Box>
-          <SimpleGrid columns={1} spacing={6} p="24px" w="450px">
+          <SimpleGrid
+            columns={1}
+            spacing={6}
+            p="24px"
+            w={{ base: "100%", md: "450px" }}
+          >
             <Box bg="#120D30" borderRadius="20px">
               <Flex p="24px">
                 <Image
@@ -302,7 +304,7 @@ export default function ViewProjectMilestone() {
         <Flex
           align={{ base: "center", lg: "flex-start" }}
           direction="column"
-          p="24px"
+          p={{ base: "5px", md: "24px" }}
           w="100%"
         >
           <Text fontFamily={"Montserrat"} fontWeight="800" fontSize="20px">
@@ -311,20 +313,23 @@ export default function ViewProjectMilestone() {
           <Flex mt="36px" w="100%">
             {MILESTONE_STEPS.map((step, index, all) => {
               return (
-                <>
-                  <Flex direction="column" key={index} w="82px" align="center">
-                    <BoxContainer filled={index < currentStep}>
-                      <step.image
-                        size="50%"
-                        color={index < currentStep ? "black" : "#42E8E0"}
-                      />
-                    </BoxContainer>
+                <Flex key={index}>
+                  <Flex
+                    direction="column"
+                    key={index}
+                    align="center"
+                    w={{ base: "50px", md: "82px" }}
+                  >
+                    <BoxContainer
+                      filled={index < currentStep}
+                      image={step.image}
+                    />
                     <Center mt="20px" w="130%">
                       <Text
                         color={"rgba(15, 177, 245, 1)"}
                         fontFamily={"Montserrat"}
                         fontWeight="600"
-                        fontSize="16px"
+                        fontSize={{ base: "12px", md: "16px" }}
                         align="center"
                       >
                         {step.label}
@@ -332,11 +337,11 @@ export default function ViewProjectMilestone() {
                     </Center>
                   </Flex>
                   {index < all.length - 1 && (
-                    <Center h="82px">
+                    <Center h={{ base: "50px", md: "82px" }}>
                       <Dash filled={index < currentStep - 1} />
                     </Center>
                   )}
-                </>
+                </Flex>
               );
             })}
           </Flex>
@@ -344,7 +349,7 @@ export default function ViewProjectMilestone() {
             mt="16px"
             fontFamily={"Montserrat"}
             fontWeight="800"
-            fontSize="20px"
+            fontSize={{ base: "16p", md: "20px" }}
           >
             Project Milestone Release
           </Text>
@@ -355,48 +360,4 @@ export default function ViewProjectMilestone() {
       <Footer />
     </PageLayout>
   );
-}
-
-interface FillProp {
-  children?: React.ReactNode;
-  filled?: boolean;
-}
-
-function BoxContainer({ children, filled = false }: FillProp) {
-  return (
-    <Flex
-      width="82px"
-      height="82px"
-      bg={filled ? "rgba(66, 232, 224, 1)" : "rgba(0, 163, 255, 0.09)"}
-      borderRadius="20px"
-      borderStyle="solid"
-      borderWidth="2px"
-      borderColor="rgba(66, 232, 224, 1)"
-      justify="center"
-      align="center"
-    >
-      {children}
-    </Flex>
-  );
-}
-
-function Dash({ children, filled = false }: FillProp) {
-  if (filled) {
-    return <Box width="72px" height="5px" bg="rgba(66, 232, 224, 1)" />;
-  } else {
-    return (
-      <Flex>
-        <Box
-          ml="6px"
-          mr="6px"
-          width="17px"
-          height="4px"
-          bg="rgba(66, 232, 224, 1)"
-        />
-        <Box mr="6px" width="17px" height="4px" bg="rgba(66, 232, 224, 1)" />
-        <Box mr="6px" width="17px" height="4px" bg="rgba(66, 232, 224, 1)" />
-        {children}
-      </Flex>
-    );
-  }
 }

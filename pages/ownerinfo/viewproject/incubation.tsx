@@ -17,14 +17,15 @@ import { IoWalletOutline, IoFileTrayFull, IoCallSharp } from "react-icons/io5";
 import { IoMdThumbsUp } from "react-icons/io";
 import { BsFillCalendar2CheckFill } from "react-icons/bs";
 
-import ProjectIncubation from "../../../components/Administrator/ViewProject/ProjectIncubation";
+import { BoxContainer, Dash } from "./approval";
 import { useOneProjectData } from "../../../hook/FetchProject";
 import { ParseParam_ProjectId, ShortenAddress } from "../../../utils/utility";
 import { useMetamaskWallet } from "../../../contexts/metamask";
 import { WFD_TOKEN_INFO } from "../../../config/constants";
 import { PROJECT_STATUS } from "../../../types/ProjectStatus";
-import ProjectMilestone from "../../../components/Administrator/ViewProject/ProjectIncubation/Milestone";
-import { BoxContainer, Dash } from "./approval";
+import ProjectMilestone from "../../../components/OwnerInfo/ProjectIncubation/Milestone";
+import ProjectIncubation from "../../../components/OwnerInfo/ProjectIncubation";
+import SetMilestone from "../../../components/OwnerInfo/ProjectIncubation/SetMilestone";
 
 export const INCUBATION_BASE_STATUS = 1;
 
@@ -76,9 +77,9 @@ export default function ViewProjectIncubation() {
   return (
     <PageLayout
       title=""
-      subTitle1="Welcome Back Admin to "
+      subTitle1="Welcome Back to Incubation "
       subTitle2=" "
-      subTitle3={` Manage ${data?.project_title}`}
+      subTitle3={` Project Owner!`}
     >
       <Stack
         width={"100%"}
@@ -316,7 +317,7 @@ export default function ViewProjectIncubation() {
           <Flex mt="36px" w="100%">
             {INCUBATION_STEPS.map((step, index, all) => {
               return (
-                <Flex key={index}>
+                <>
                   <Flex
                     direction="column"
                     key={index}
@@ -344,7 +345,7 @@ export default function ViewProjectIncubation() {
                       <Dash filled={index < currentStep - 1} />
                     </Center>
                   )}
-                </Flex>
+                </>
               );
             })}
           </Flex>
@@ -354,7 +355,7 @@ export default function ViewProjectIncubation() {
             fontWeight="800"
             fontSize={{ base: "16px", md: "20px" }}
           >
-            Project Incubation Goal
+            Project Owner Incubation Goal
           </Text>
           <ProjectIncubation data={data} />
 
@@ -364,8 +365,9 @@ export default function ViewProjectIncubation() {
             fontWeight="800"
             fontSize={{ base: "16px", md: "20px" }}
           >
-            Project Milestone
+            Set Fundraising Milestone
           </Text>
+          <SetMilestone data={data} />
           <ProjectMilestone data={data} />
         </Flex>
       </Stack>
