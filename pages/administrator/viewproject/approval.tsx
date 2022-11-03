@@ -311,7 +311,7 @@ export default function ViewProjectApproval() {
           <Flex mt="36px" w="100%">
             {APPLICATION_STEPS.map((step, index, data) => {
               return (
-                <>
+                <Flex key={index}>
                   <Flex
                     direction="column"
                     key={index}
@@ -343,7 +343,7 @@ export default function ViewProjectApproval() {
                       />
                     </Center>
                   )}
-                </>
+                </Flex>
               );
             })}
           </Flex>

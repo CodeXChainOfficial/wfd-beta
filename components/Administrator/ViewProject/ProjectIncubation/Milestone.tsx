@@ -22,22 +22,6 @@ import {
 import VoteButton from "../../VoteButton";
 
 export default function ProjectMilestone({ data }: { data: any }) {
-  const [yesVotedCount, setYesVotedCount] = useState(0);
-  const [votedCount, setVotedCount] = useState(0);
-  const [communityCount, setCommunityCount] = useState(1);
-
-  const communityData = useCommunityData();
-
-  useEffect(() => {
-    if (communityData.length > 0 && data) {
-      setYesVotedCount(
-        data.wefund_votes.filter((x: any) => x.voted == true).length
-      );
-      setVotedCount(data.wefund_votes.length);
-      setCommunityCount(communityData.length);
-    }
-  }, [communityData]);
-
   return (
     <VStack
       color="white"
@@ -58,110 +42,142 @@ export default function ProjectMilestone({ data }: { data: any }) {
         <GridItem>Status</GridItem>
         <GridItem />
       </Grid>
-      {data?.milestone_states.map((milestone: any, index: number) => {
-        let progress = 0,
-          yes = 0,
-          no = 0,
-          all = 0;
-        if (
-          data.project_status > PROJECT_STATUS.MilestoneSetup ||
-          (data.project_status == PROJECT_STATUS.MilestoneSetup &&
-            data.incubation_index > index)
-        ) {
-          progress = PROGRESS_STATUS.APPROVED;
-          yes = communityCount;
-          all = communityCount;
-        } else if (
-          data.project_status == PROJECT_STATUS.MilestoneSetup &&
-          data.milestone_index == index
-        ) {
-          if (data.rejected) progress = PROGRESS_STATUS.REJECTED;
-          else progress = PROGRESS_STATUS.VOTING;
-          yes = yesVotedCount;
-          no = votedCount - yes;
-          all = votedCount;
-        } else {
-          progress = PROGRESS_STATUS.PENDING;
-        }
-
-        return (
-          <Accordion allowToggle key={index} w="100%">
-            <AccordionItem
-              rounded={"lg"}
-              border="0px"
-              borderColor="gray.200"
-              w={"100%"}
-            >
-              <AccordionButton w="100%" p="0">
-                <Grid
-                  templateColumns="50% 40% 10%"
-                  w="100%"
-                  gap={{ base: "1px", md: "10px" }}
-                  fontSize={{ base: "10px", md: "16px" }}
-                  px={{ base: "0px", md: "15px" }}
-                >
-                  <GridItem display="flex" alignItems="center">
-                    Milestone {milestone.step.toNumber()}
-                  </GridItem>
-                  <GridItem display="flex" alignItems="center">
-                    <ProgressIcon progress={progress} />
-                    {PROGRESS_TEXT[progress]}
-                    {(progress == PROGRESS_STATUS.VOTING ||
-                      progress == PROGRESS_STATUS.REJECTED) && <VoteButton />}
-                  </GridItem>
-                  <GridItem>
-                    <AccordionIcon />
-                  </GridItem>
-                </Grid>
-              </AccordionButton>
-              <AccordionPanel px="0" pb={4}>
-                <Grid
-                  templateColumns="50% 40% 10%"
-                  w="100%"
-                  gap={{ base: "1px", md: "10px" }}
-                  fontSize={{ base: "10px", md: "12px" }}
-                  px={{ base: "0px", md: "15px" }}
-                >
-                  <GridItem
-                    display="flex"
-                    bg="rgba(0, 0, 0, 0.33)"
-                    rounded="md"
-                    p="1"
-                    w="50%"
-                  >
-                    {milestone.description}
-                  </GridItem>
-
-                  <GridItem
-                    display="flex"
-                    flexDirection="column"
-                    rounded="md"
-                    background="rgba(0, 0, 0, 0.25)"
-                    py="1"
-                    px="2"
-                  >
-                    <Flex w="100%">
-                      <Text>
-                        {yes}&nbsp;
-                        <chakra.span fontWeight={200}>
-                          &nbsp; Yes&nbsp;&nbsp;&nbsp;
-                        </chakra.span>
-                      </Text>
-                      <Text>
-                        {no} <chakra.span fontWeight={200}> No</chakra.span>
-                      </Text>
-                    </Flex>
-                    <Text>
-                      {yes}/{all} voted
-                    </Text>
-                    <VoteButton />
-                  </GridItem>
-                </Grid>
-              </AccordionPanel>
-            </AccordionItem>
-          </Accordion>
-        );
-      })}
+      {data?.milestone_states.map((milestone: any, index: number) => (
+        <Milestone
+          data={data}
+          milestone={milestone}
+          index={index}
+          key={index}
+        />
+      ))}
     </VStack>
   );
 }
+
+interface Props {
+  data: any;
+  milestone: any;
+  index: number;
+}
+const Milestone = ({ data, milestone, index }: Props) => {
+  const [yesVotedCount, setYesVotedCount] = useState(0);
+  const [votedCount, setVotedCount] = useState(0);
+  const [communityCount, setCommunityCount] = useState(1);
+
+  const communityData = useCommunityData();
+
+  useEffect(() => {
+    if (communityData.length > 0 && data) {
+      setYesVotedCount(
+        data.wefund_votes.filter((x: any) => x.voted == true).length
+      );
+      setVotedCount(data.wefund_votes.length);
+      setCommunityCount(communityData.length);
+    }
+  }, [data, communityData]);
+
+  let progress = 0,
+    yes = 0,
+    no = 0,
+    all = 0;
+  if (
+    data.project_status > PROJECT_STATUS.MilestoneSetup ||
+    (data.project_status == PROJECT_STATUS.MilestoneSetup &&
+      data.milestone_index > index)
+  ) {
+    progress = PROGRESS_STATUS.APPROVED;
+    yes = communityCount;
+    all = communityCount;
+  } else if (
+    data.project_status == PROJECT_STATUS.MilestoneSetup &&
+    data.milestone_index == index
+  ) {
+    if (data.rejected) progress = PROGRESS_STATUS.REJECTED;
+    else progress = PROGRESS_STATUS.VOTING;
+    yes = yesVotedCount;
+    no = votedCount - yes;
+    all = votedCount;
+  } else {
+    progress = PROGRESS_STATUS.PENDING;
+  }
+
+  return (
+    <Accordion allowToggle key={index} w="100%">
+      <AccordionItem
+        rounded={"lg"}
+        border="0px"
+        borderColor="gray.200"
+        w={"100%"}
+      >
+        <AccordionButton w="100%" p="0">
+          <Grid
+            templateColumns="50% 40% 10%"
+            w="100%"
+            gap={{ base: "1px", md: "10px" }}
+            fontSize={{ base: "10px", md: "16px" }}
+            px={{ base: "0px", md: "15px" }}
+          >
+            <GridItem display="flex" alignItems="center">
+              Milestone {milestone.step.toNumber()}
+            </GridItem>
+            <GridItem display="flex" alignItems="center" gap="10px">
+              <ProgressIcon progress={progress} />
+              {PROGRESS_TEXT[progress]}
+              {(progress == PROGRESS_STATUS.VOTING ||
+                progress == PROGRESS_STATUS.REJECTED) && (
+                <VoteButton data={data} />
+              )}
+            </GridItem>
+            <GridItem>
+              <AccordionIcon />
+            </GridItem>
+          </Grid>
+        </AccordionButton>
+        <AccordionPanel px="0" pb={4}>
+          <Grid
+            templateColumns="50% 40% 10%"
+            w="100%"
+            gap={{ base: "1px", md: "10px" }}
+            fontSize={{ base: "10px", md: "12px" }}
+            px={{ base: "0px", md: "15px" }}
+          >
+            <GridItem
+              display="flex"
+              bg="rgba(0, 0, 0, 0.33)"
+              rounded="md"
+              p="1"
+              w="50%"
+            >
+              {milestone.description}
+            </GridItem>
+
+            <GridItem
+              display="flex"
+              flexDirection="column"
+              rounded="md"
+              background="rgba(0, 0, 0, 0.25)"
+              py="1"
+              px="2"
+            >
+              <Flex w="100%">
+                <Text>
+                  {yes}&nbsp;
+                  <chakra.span fontWeight={200}>
+                    &nbsp; Yes&nbsp;&nbsp;&nbsp;
+                  </chakra.span>
+                </Text>
+                <Text>
+                  {no} <chakra.span fontWeight={200}> No</chakra.span>
+                </Text>
+              </Flex>
+              <Text>
+                {yes}/{all} voted
+              </Text>
+              <VoteButton data={data} />
+            </GridItem>
+          </Grid>
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  );
+};

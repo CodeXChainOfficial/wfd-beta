@@ -254,12 +254,14 @@ export default function CreateProject() {
       professional_link: professionallink,
     };
     try {
+      res = await contract.addProject(collectedAmount);
+      await res.wait();
+
       res = await axios.post("/api/projects/addProject", project);
       if (res?.error) {
         throw "connection error";
       }
-      res = await contract.addProject(collectedAmount);
-      await res.wait();
+
       toast("Successed Applying", SUCCESS_OPTION);
     } catch (e) {
       console.log(e);

@@ -58,14 +58,14 @@ export default function ViewProjectMilestone() {
       const length = data.milestone_states.length;
 
       if (data.project_status == PROJECT_STATUS.CrowdFundraising) {
-        setCurrentStep(0);
+        setCurrentStep(1);
         setRemainingSteps(length);
       } else if (data.project_status == PROJECT_STATUS.MilestoneRelease) {
-        setCurrentStep(2);
+        setCurrentStep(3);
         setRemainingSteps(length - data.milestone_index);
         setMilestoneStep(data.milestone_index);
       } else if (data.project_status > PROJECT_STATUS.Completed) {
-        setCurrentStep(3);
+        setCurrentStep(4);
         setMilestoneStep(length);
       }
     }
@@ -313,7 +313,7 @@ export default function ViewProjectMilestone() {
           <Flex mt="36px" w="100%">
             {MILESTONE_STEPS.map((step, index, all) => {
               return (
-                <>
+                <Flex key={index}>
                   <Flex
                     direction="column"
                     key={index}
@@ -341,7 +341,7 @@ export default function ViewProjectMilestone() {
                       <Dash filled={index < currentStep - 1} />
                     </Center>
                   )}
-                </>
+                </Flex>
               );
             })}
           </Flex>

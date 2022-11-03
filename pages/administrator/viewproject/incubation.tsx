@@ -316,7 +316,7 @@ export default function ViewProjectIncubation() {
           <Flex mt="36px" w="100%">
             {INCUBATION_STEPS.map((step, index, all) => {
               return (
-                <>
+                <Flex key={index}>
                   <Flex
                     direction="column"
                     key={index}
@@ -344,7 +344,7 @@ export default function ViewProjectIncubation() {
                       <Dash filled={index < currentStep - 1} />
                     </Center>
                   )}
-                </>
+                </Flex>
               );
             })}
           </Flex>
@@ -364,7 +364,7 @@ export default function ViewProjectIncubation() {
             fontWeight="800"
             fontSize={{ base: "16px", md: "20px" }}
           >
-            Project Mileston
+            Project Milestone
           </Text>
           <ProjectMilestone data={data} />
         </Flex>

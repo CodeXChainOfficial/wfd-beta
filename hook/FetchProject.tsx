@@ -19,15 +19,23 @@ export function addExtraInfo(projectData: any) {
       (backer_backedAmount / projectData[i].project_collected) * 100
     );
 
+    if (projectData[i].milestone_states == undefined) {
+      projectData[i].backer_states = [];
+      projectData[i].milestone_states = [];
+      projectData[i].incubation_goal = [];
+      projectData[i].wefund_votes = [];
+      projectData[i].backer_votes = [];
+    }
+
+    const length = projectData[i].milestone_states.length;
     let released = 0;
-    for (let j = 0; j < projectData[i].milestone_states.length; j++) {
+    for (let j = 0; j < length; j++) {
       if (projectData[i].milestone_states[j].status == 2) {
         released++;
       }
     }
-    projectData[i].releasedPercent = Math.floor(
-      (released / projectData[i].milestone_states.length) * 100
-    );
+    projectData[i].releasedPercent =
+      length == 0 ? 0 : Math.floor((released / length) * 100);
   }
 
   return projectData;
@@ -72,7 +80,7 @@ export const fetchProjectData = async (
             projectData[j].backer_states = res[i].backers;
 
             projectData[j].milestone_states = res[i].milestones;
-            projectData[j].milestone_index = res[i].milestoneVoteIndex;
+            projectData[j].milestone_index = res[i].milestoneVotesIndex;
             projectData[j].incubation_goals = res[i].incubationGoals;
             projectData[j].incubation_index = res[i].incubationGoalVoteIndex;
             projectData[j].wefund_votes = res[i].wefundVotes;
