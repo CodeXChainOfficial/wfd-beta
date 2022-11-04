@@ -17,6 +17,7 @@ import LaunchTabs from "./LaunchTabs";
 import FundraiseType from "./FundraiseType";
 import { useProjectData } from "../../hook/FetchProject";
 import { WEFUND_ID } from "../../config/constants";
+import { PROJECT_STATUS } from "../../types/ProjectStatus";
 
 interface Props {
   data: any;
@@ -130,12 +131,14 @@ export default function UpcomingProject(prop: UpcomingProjectProp) {
     const res = projects.filter(
       (x) =>
         x.project_id != WEFUND_ID &&
+        x.project_status > PROJECT_STATUS.IncubationGoalSetup &&
         x.project_launch.toLowerCase() == launchStage.toLocaleLowerCase() &&
         (fundraiseToken.toLowerCase() == "all" ||
           x.fund_type.findIndex(
             (token: string) => token == fundraiseToken.toLowerCase()
           ) != -1)
     );
+    console.log(res)
     setProjects(res);
   }, [projectData, launchStage, fundraiseToken]);
 

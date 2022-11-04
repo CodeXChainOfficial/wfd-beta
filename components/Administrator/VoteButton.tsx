@@ -84,7 +84,7 @@ const VoteButton = ({ data }: { data: any }) => {
 
   return (
     <>
-      <Popover>
+      <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
         <PopoverTrigger>
           <Button
             colorScheme={"linkedin"}

@@ -8,24 +8,27 @@ import {
 } from "../config/constants";
 import WEFUND_ABI from "../config/WeFund.json";
 import { AppContextInterface, ActionKind, useStore } from "../contexts/store";
+import { PROJECT_STATUS } from "../types/ProjectStatus";
 
 export function addExtraInfo(projectData: any) {
   if (typeof projectData === "undefined" || projectData == "") return "";
 
   projectData[WEFUND_ID - 1].backerbacked_amount = 160000;
   for (let i = 0; i < projectData.length; i++) {
-    const backer_backedAmount = projectData[i].backerbacked_amount;
-    projectData[i].backer_backedPercent = Math.floor(
-      (backer_backedAmount / projectData[i].project_collected) * 100
-    );
-
+    //not registred on Smart Contract
     if (projectData[i].milestone_states == undefined) {
+      projectData[i].project_status = PROJECT_STATUS.DocumentValuation;
       projectData[i].backer_states = [];
       projectData[i].milestone_states = [];
       projectData[i].incubation_goal = [];
       projectData[i].wefund_votes = [];
       projectData[i].backer_votes = [];
     }
+
+    const backer_backedAmount = projectData[i].backerbacked_amount;
+    projectData[i].backer_backedPercent = Math.floor(
+      (backer_backedAmount / projectData[i].project_collected) * 100
+    );
 
     const length = projectData[i].milestone_states.length;
     let released = 0;
