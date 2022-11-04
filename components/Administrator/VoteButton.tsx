@@ -2,24 +2,12 @@ import React from "react";
 import {
   Text,
   Flex,
-  Modal,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
   useDisclosure,
   Button,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
   Popover,
   PopoverTrigger,
   PopoverContent,
-  PopoverHeader,
   PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
 } from "@chakra-ui/react";
 import { useMetamaskWallet } from "../../contexts/metamask";
 import { ethers } from "ethers";
@@ -33,8 +21,9 @@ import { PROJECT_STATUS } from "../../types/ProjectStatus";
 import { fetchProjectData } from "../../hook/FetchProject";
 import { useStore } from "../../contexts/store";
 import { toast } from "react-toastify";
+import { PROJECT_INFO } from "../../types/Project";
 
-const VoteButton = ({ data }: { data: any }) => {
+const VoteButton = ({ data }: { data: PROJECT_INFO }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const metamask = useMetamaskWallet();
   const signer = metamask.signer;
@@ -72,7 +61,7 @@ const VoteButton = ({ data }: { data: any }) => {
           break;
       }
       await res.wait();
-      fetchProjectData(state, dispatch, true);
+      await fetchProjectData(state, dispatch, true);
       toast.dismiss();
       toast("Success", SUCCESS_OPTION);
     } catch (e) {
@@ -118,49 +107,6 @@ const VoteButton = ({ data }: { data: any }) => {
           </PopoverBody>
         </PopoverContent>
       </Popover>
-      {/* 
-      <Button
-        colorScheme={"linkedin"}
-        variant="outline"
-        onClick={onOpen}
-        fontSize={{ base: "10px", md: "12px" }}
-        w="80px"
-        h="30px"
-      >
-        Vote
-      </Button>
-      <Modal
-        isCentered
-        onClose={onClose}
-        isOpen={isOpen}
-        motionPreset="slideInBottom"
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Pick your choice</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody display="flex" gap="10px">
-            <Button
-              variant="solid"
-              colorScheme="teal"
-              onClick={() => vote(true)}
-            >
-              Yes
-            </Button>
-            <Button
-              variant="solid"
-              colorScheme="red"
-              onClick={() => vote(false)}
-            >
-              No
-            </Button>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalBody>
-          <ModalFooter></ModalFooter>
-        </ModalContent>
-      </Modal> */}
     </>
   );
 };

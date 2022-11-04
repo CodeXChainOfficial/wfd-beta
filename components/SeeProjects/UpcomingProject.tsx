@@ -138,7 +138,6 @@ export default function UpcomingProject(prop: UpcomingProjectProp) {
             (token: string) => token == fundraiseToken.toLowerCase()
           ) != -1)
     );
-    console.log(res)
     setProjects(res);
   }, [projectData, launchStage, fundraiseToken]);
 

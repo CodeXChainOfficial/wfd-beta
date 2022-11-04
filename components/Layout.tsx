@@ -21,6 +21,7 @@ import { useNearWallet } from "../contexts/nearWallet";
 import { useElrondWeb } from "../contexts/elrond";
 import WalletModal from "./WalletModal";
 import { useMetamaskWallet } from "../contexts/metamask";
+import { fetchCommunity, fetchProjectData } from "../hook/FetchProject";
 
 type Props = {
   children?: ReactNode;
@@ -122,10 +123,10 @@ const Layout = ({ children }: Props) => {
     }
   }, [metamaskWallet, metamaskWallet.initialized]);
 
-  // useEffect(() => {
-  // fetchProjectData(state, dispatch, true);
-  // fetchCommunity(state, dispatch);
-  // }, []);
+  useEffect(() => {
+    fetchProjectData(state, dispatch, true, true);
+    fetchCommunity(state, dispatch, true);
+  }, []);
 
   //-------Near connection--------------------------------------------------
   const near = useNearWallet();
@@ -192,7 +193,7 @@ const Layout = ({ children }: Props) => {
             };
             console.log(transaction.toPlainObject());
             const config = getElrondConfig(NETWORK);
-            const res = await axios.post(
+            await axios.post(
               `${config.apiAddress}/transactions`,
               transaction.toPlainObject(),
               { timeout: parseInt(config.apiTimeout) }

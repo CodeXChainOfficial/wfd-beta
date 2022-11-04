@@ -18,7 +18,7 @@ import { IoMdThumbsUp } from "react-icons/io";
 import { BsFillCalendar2CheckFill } from "react-icons/bs";
 
 import ProjectIncubation from "../../../components/Administrator/ViewProject/ProjectIncubation";
-import { useOneProjectData } from "../../../hook/FetchProject";
+import { useOneProjectData, useProjectData } from "../../../hook/FetchProject";
 import { ParseParam_ProjectId, ShortenAddress } from "../../../utils/utility";
 import { useMetamaskWallet } from "../../../contexts/metamask";
 import { WFD_TOKEN_INFO } from "../../../config/constants";
@@ -57,6 +57,15 @@ export default function ViewProjectIncubation() {
   const wallet = useMetamaskWallet();
   const address = wallet.account;
 
+  const [, updateState] = React.useState();
+  const forceUpdate = React.useCallback(() => updateState({}), []);
+  const pj = useProjectData();
+  useEffect(() => {
+    forceUpdate();
+    console.log("update")
+  }, [pj]);
+console.log(data)
+console.log("render")
   useEffect(() => {
     if (data) {
       const length = data.incubation_goals.length;

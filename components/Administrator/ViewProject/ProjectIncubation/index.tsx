@@ -20,8 +20,13 @@ import {
   PROGRESS_TEXT,
 } from "../../../../types/ProgreessStatus";
 import VoteButton from "../../VoteButton";
+import {
+  INCUBATION_GOAL_INFO,
+  PROJECT_INFO,
+  VOTE_INFO,
+} from "../../../../types/Project";
 
-export default function ProjectIncubation({ data }: { data: any }) {
+export default function ProjectIncubation({ data }: { data: PROJECT_INFO }) {
   return (
     <VStack
       color="white"
@@ -43,16 +48,18 @@ export default function ProjectIncubation({ data }: { data: any }) {
         <GridItem>Status</GridItem>
         <GridItem />
       </Grid>
-      {data?.incubation_goals.map((goal: any, index: number) => (
-        <Goal data={data} goal={goal} index={index} key={index} />
-      ))}
+      {data?.incubation_goals.map(
+        (goal: INCUBATION_GOAL_INFO, index: number) => (
+          <Goal data={data} goal={goal} index={index} key={index} />
+        )
+      )}
     </VStack>
   );
 }
 
 interface Props {
-  data: any;
-  goal: any;
+  data: PROJECT_INFO;
+  goal: INCUBATION_GOAL_INFO;
   index: number;
 }
 const Goal = ({ data, goal, index }: Props) => {
@@ -65,11 +72,13 @@ const Goal = ({ data, goal, index }: Props) => {
   useEffect(() => {
     if (communityData.length > 0 && data) {
       setYesVotedCount(
-        data.wefund_votes.filter((x: any) => x.voted == true).length
+        data.wefund_votes.filter((x: VOTE_INFO) => x.vote == true).length
       );
       setVotedCount(data.wefund_votes.length);
       setCommunityCount(communityData.length);
     }
+    console.log("incuabton render")
+    console.log(data)
   }, [data, communityData]);
 
   let progress = 0,

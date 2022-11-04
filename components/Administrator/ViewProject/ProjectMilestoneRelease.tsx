@@ -17,8 +17,17 @@ import ProgressIcon from "../../ProgressIcon";
 import { PROJECT_STATUS } from "../../../types/ProjectStatus";
 import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../../types/ProgreessStatus";
 import VoteButton from "../VoteButton";
+import {
+  MILESTONE_INFO,
+  PROJECT_INFO,
+  VOTE_INFO,
+} from "../../../types/Project";
 
-export default function ProjectMilestoneRelease({ data }: { data: any }) {
+export default function ProjectMilestoneRelease({
+  data,
+}: {
+  data: PROJECT_INFO;
+}) {
   return (
     <VStack
       color="white"
@@ -48,21 +57,23 @@ export default function ProjectMilestoneRelease({ data }: { data: any }) {
         </GridItem>
         <GridItem />
       </Grid>
-      {data?.milestone_states.map((milestone: any, index: number) => (
-        <Milestone
-          data={data}
-          milestone={milestone}
-          index={index}
-          key={index}
-        />
-      ))}
+      {data?.milestone_states.map(
+        (milestone: MILESTONE_INFO, index: number) => (
+          <Milestone
+            data={data}
+            milestone={milestone}
+            index={index}
+            key={index}
+          />
+        )
+      )}
     </VStack>
   );
 }
 
 interface Props {
-  data: any;
-  milestone: any;
+  data: PROJECT_INFO;
+  milestone: MILESTONE_INFO;
   index: number;
 }
 
@@ -76,7 +87,7 @@ const Milestone = ({ data, milestone, index }: Props) => {
   useEffect(() => {
     if (communityData.length > 0 && data) {
       setYesVotedCount(
-        data.wefund_votes.filter((x: any) => x.voted == true).length
+        data.wefund_votes.filter((x: VOTE_INFO) => x.vote == true).length
       );
       setVotedCount(data.wefund_votes.length);
       setCommunityCount(communityData.length);
@@ -128,9 +139,7 @@ const Milestone = ({ data, milestone, index }: Props) => {
             gap={{ base: "1px", md: "20px" }}
             w="100%"
           >
-            <GridItem display="flex">
-              Milestone {milestone.step.toNumber()}
-            </GridItem>
+            <GridItem display="flex">{milestone.name}</GridItem>
             <GridItem display="flex">68h 28m 31s</GridItem>
             <GridItem />
             <GridItem display="flex">
