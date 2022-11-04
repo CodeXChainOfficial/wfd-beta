@@ -20,7 +20,7 @@ export function addExtraInfo(projectData: any) {
       projectData[i].project_status = PROJECT_STATUS.DocumentValuation;
       projectData[i].backer_states = [];
       projectData[i].milestone_states = [];
-      projectData[i].incubation_goal = [];
+      projectData[i].incubation_goals = [];
       projectData[i].wefund_votes = [];
       projectData[i].backer_votes = [];
     }
@@ -55,7 +55,8 @@ export const fetchProjectData = async (
   }
 
   const provider = new ethers.providers.JsonRpcProvider(
-    CHAINS_CONFIG[NETWORK == "mainnet" ? "bsc" : "bsc_testnet"].rpc
+    // CHAINS_CONFIG[NETWORK == "mainnet" ? "bsc" : "bsc_testnet"].rpc
+    CHAINS_CONFIG["bsc_testnet"].rpc
   );
   const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, provider);
 

@@ -57,13 +57,13 @@ interface Props {
 const Goal = ({ data, goal, index }: Props) => {
   let progress = 0;
   if (
-    data.project_status > PROJECT_STATUS.IncubationGoalSetup ||
-    (data.project_status == PROJECT_STATUS.IncubationGoalSetup &&
+    data.project_status > PROJECT_STATUS.IncubationGoal ||
+    (data.project_status == PROJECT_STATUS.IncubationGoal &&
       data.incubation_index > index)
   ) {
     progress = PROGRESS_STATUS.APPROVED;
   } else if (
-    data.project_status == PROJECT_STATUS.IncubationGoalSetup &&
+    data.project_status == PROJECT_STATUS.IncubationGoal &&
     data.incubation_index == index
   ) {
     if (data.rejected) progress = PROGRESS_STATUS.REJECTED;
