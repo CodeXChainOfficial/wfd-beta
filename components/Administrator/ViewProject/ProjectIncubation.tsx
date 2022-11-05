@@ -60,8 +60,7 @@ export default function ProjectIncubation({ data }: { data: any }) {
           all = communityCount;
         } else if (
           data.project_status == PROJECT_STATUS.IncubationGoalSetup &&
-          data.incubation_index == index &&
-          data.rejected
+          data.incubation_index == index
         ) {
           if (data.rejected) progress = PROGRESS_STATUS.REJECTED;
           else progress = PROGRESS_STATUS.VOTING;
@@ -81,8 +80,8 @@ export default function ProjectIncubation({ data }: { data: any }) {
               w={"100%"}
             >
               <AccordionButton w="100%" p="4" justifyContent="space-between">
-                <Text fontSize={"16px"} fontWeight={600} color={"gray.500"}>
-                  {goal.goal}
+                <Text fontSize={"16px"} fontWeight={600} color={"white"}>
+                  {goal.title}
                 </Text>
 
                 <Flex gap="10px">

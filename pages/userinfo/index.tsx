@@ -34,7 +34,7 @@ export default function UserSideSnippet() {
 
   const projectData = useProjectData();
   const wallet = useWallet();
-  const address = wallet.account;
+  const address = wallet?.account;
 
   async function fetchContractQuery() {
     try {
@@ -45,7 +45,6 @@ export default function UserSideSnippet() {
 
       for (let i = 0; i < projectData.length; i++) {
         if (projectData[i].project_id == WEFUND_ID) {
-          console.log(address)
           if (address) {
             const { data } = await axios.post("/api/investors/fetch", {
               wallet: address,
@@ -165,8 +164,8 @@ export default function UserSideSnippet() {
                     >
                       {/* {wallet && wallet.config.chainName} Wallet */}
                     </Text>
-                    <Text fontSize="sm" color={"#69E4FF"} maxW="200px">
-                      {wallet.account}
+                    <Text fontSize="sm" color={"#69E4FF"} w={"full"}>
+                      {address}
                     </Text>
                   </VStack>
                 </Flex>
