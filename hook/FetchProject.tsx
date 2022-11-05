@@ -48,7 +48,7 @@ export const fetchProjectData = async (
   force = false,
   total = false
 ) => {
-  let projectData = state.projectData;
+  let projectData = JSON.parse(JSON.stringify(state.projectData));
 
   if (force == false) {
     return state.projectData;
@@ -106,7 +106,7 @@ export const fetchProjectData = async (
     }
     console.log(projectData);
     projectData = addExtraInfo(projectData);
-    dispatch({ type: ActionKind.setProjectData, payload: [...projectData] });
+    dispatch({ type: ActionKind.setProjectData, payload: projectData });
   } catch (e) {
     toast("Fetch Error", ERROR_OPTION);
     console.log(e);

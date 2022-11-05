@@ -77,8 +77,6 @@ const Goal = ({ data, goal, index }: Props) => {
       setVotedCount(data.wefund_votes.length);
       setCommunityCount(communityData.length);
     }
-    console.log("incuabton render")
-    console.log(data)
   }, [data, communityData]);
 
   let progress = 0,
