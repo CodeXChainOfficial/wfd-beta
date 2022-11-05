@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
-  Flex,
   Accordion,
   AccordionButton,
   AccordionIcon,
@@ -16,8 +15,14 @@ import {
   PROGRESS_STATUS,
   PROGRESS_TEXT,
 } from "../../../../types/ProgreessStatus";
+import { INCUBATION_GOAL_INFO, PROJECT_INFO } from "../../../../types/Project";
 
-export default function ProjectApplyIncubation({ data }: { data: any }) {
+export default function ProjectApplyIncubation({
+  data,
+}: {
+  data: PROJECT_INFO;
+}) {
+  
   return (
     <VStack
       color="white"
@@ -41,35 +46,45 @@ export default function ProjectApplyIncubation({ data }: { data: any }) {
         <GridItem>Status</GridItem>
         <GridItem />
       </Grid>
-      {data?.incubation_goals.map((goal: any, index: number) => (
-        <Goal data={data} goal={goal} index={index} key={index} />
-      ))}
+      {data?.incubation_goals.map(
+        (goal: INCUBATION_GOAL_INFO, index: number) => (
+          <Goal data={data} goal={goal} index={index} key={index} />
+        )
+      )}
     </VStack>
   );
 }
 
 interface Props {
-  data: any;
-  goal: any;
+  data: PROJECT_INFO;
+  goal: INCUBATION_GOAL_INFO;
   index: number;
 }
 
 const Goal = ({ data, goal, index }: Props) => {
   let progress = 0;
   if (
-    data.project_status > PROJECT_STATUS.IncubationGoalSetup ||
-    (data.project_status == PROJECT_STATUS.IncubationGoalSetup &&
+    data.project_status > PROJECT_STATUS.IncubationGoal ||
+    (data.project_status == PROJECT_STATUS.IncubationGoal &&
       data.incubation_index > index)
   ) {
     progress = PROGRESS_STATUS.APPROVED;
   } else if (
-    data.project_status == PROJECT_STATUS.IncubationGoalSetup &&
+    data.project_status == PROJECT_STATUS.IncubationGoal &&
     data.incubation_index == index
   ) {
     if (data.rejected) progress = PROGRESS_STATUS.REJECTED;
     else progress = PROGRESS_STATUS.VOTING;
   } else {
     progress = PROGRESS_STATUS.PENDING;
+  }
+
+  let approved = "";
+  if (goal) {
+    const date = new Date(goal.approved_date.toNumber()).toDateString();
+    approved = goal.approved_date.gt(0)
+      ? `approved at ${date}`
+      : "Not approved yet";
   }
 
   return (
@@ -145,7 +160,7 @@ const Goal = ({ data, goal, index }: Props) => {
               justifyContent="center"
               borderRadius="5px"
             >
-              {goal.approved_date}
+              {approved}
             </GridItem>
             <GridItem />
           </Grid>

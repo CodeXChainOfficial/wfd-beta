@@ -22,8 +22,9 @@ import {
   PROGRESS_TEXT,
 } from "../../../../types/ProgreessStatus";
 import VoteButton from "../../VoteButton";
+import { PROJECT_INFO, VOTE_INFO } from "../../../../types/Project";
 
-export default function ProjectApplication({ data }: { data: any }) {
+export default function ProjectApplication({ data }: { data: PROJECT_INFO }) {
   return (
     <Flex
       p={{ base: "10px", md: "40px" }}
@@ -96,7 +97,7 @@ export default function ProjectApplication({ data }: { data: any }) {
 }
 
 interface Props {
-  data: any;
+  data: PROJECT_INFO;
   step: any;
   index: number;
 }
@@ -104,13 +105,13 @@ interface Props {
 const Step = ({ data, step, index }: Props) => {
   const [yesVotedCount, setYesVotedCount] = useState(0);
   const [votedCount, setVotedCount] = useState(0);
-  const [communityCount, setCommunityCount] = useState(1);
+  const [communityCount, setCommunityCount] = useState(0);
   const communityData = useCommunityData();
 
   useEffect(() => {
     if (communityData.length > 0 && data) {
       setYesVotedCount(
-        data.wefund_votes.filter((x: any) => x.voted == true).length
+        data.wefund_votes.filter((x: VOTE_INFO) => x.vote == true).length
       );
       setVotedCount(data.wefund_votes.length);
       setCommunityCount(communityData.length);

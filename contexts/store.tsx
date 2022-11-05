@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { NETWORK } from "../config/constants";
+import { PROJECT_INFO } from "../types/Project";
 
 interface Action {
   type: ActionKind;
@@ -25,9 +26,9 @@ export interface AppContextInterface {
   wallet: any;
   openWalletModal: (() => void) | undefined;
   net: string;
-  activeProjectData: any[];
-  projectData: any[];
-  communityData: any[];
+  activeProjectData: PROJECT_INFO[];
+  projectData: PROJECT_INFO[];
+  communityData: string[];
   configData: any[];
   address: any;
   referralCount: number;

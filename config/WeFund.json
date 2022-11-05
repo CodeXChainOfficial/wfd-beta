@@ -80,6 +80,25 @@
     "inputs": [
       {
         "indexed": false,
+        "internalType": "uint256",
+        "name": "length",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "IncubationGoalRemoved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
         "internalType": "bool",
         "name": "voted",
         "type": "bool"
@@ -138,6 +157,25 @@
       }
     ],
     "name": "MilestoneReleaseVoted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "length",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "MilestoneRemoved",
     "type": "event"
   },
   {
@@ -302,6 +340,11 @@
             "internalType": "string",
             "name": "end_date",
             "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "approved_date",
+            "type": "uint256"
           }
         ],
         "internalType": "struct WeFund.IncubationGoalInfo",
@@ -556,6 +599,11 @@
                 "internalType": "string",
                 "name": "end_date",
                 "type": "string"
+              },
+              {
+                "internalType": "uint256",
+                "name": "approved_date",
+                "type": "uint256"
               }
             ],
             "internalType": "struct WeFund.IncubationGoalInfo[]",
@@ -801,6 +849,42 @@
       }
     ],
     "name": "removeCommunity",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "pid",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_index",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeIncubationGoal",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "pid",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_index",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeMilestone",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
