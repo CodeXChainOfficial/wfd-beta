@@ -1,7 +1,5 @@
-/* eslint-disable prettier/prettier */
 import React, { FunctionComponent } from "react";
-import { ChakraProvider, Flex, Box, Text } from "@chakra-ui/react";
-import theme from "../theme";
+import { Flex, Text } from "@chakra-ui/react";
 
 interface Props {
   title: string;
@@ -15,9 +13,9 @@ const PageLayout: FunctionComponent<Props> = (props) => {
       color={"white"}
       width={"100%"}
       pt={"120px"}
-          direction="column"
-          style={{ fontFamily: "Sans-Serif" }}
-          align="center"
+      direction="column"
+      style={{ fontFamily: "Sans-Serif" }}
+      align="center"
     >
       {/* <Flex
           px={{ base: "40px", md: "80px", lg: "120px" }} align="center">
@@ -42,33 +40,32 @@ const PageLayout: FunctionComponent<Props> = (props) => {
               {props.title}
             </Text>
           </Flex> */}
-          <Flex
-          px={{ base: "40px", md: "80px", lg: "120px" }}>
-            <Text
-              as={"span"}
-              fontFamily="Sans-Serif"
-              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
-              fontWeight={"900"}
-            >
-              {props.subTitle1}
-            </Text>
-            <Text
-              fontFamily="Sans-Serif"
-              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
-              color="#00A3FF"
-              fontWeight={"900"}
-            >
-              {props.subTitle2}
-            </Text>
-            <Text
-              as={"span"}
-              fontFamily="Sans-Serif"
-              fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
-              fontWeight={"900"}
-            >
-              {props.subTitle3}
-            </Text>
-          </Flex>
+      <Flex px={{ base: "40px", md: "80px", lg: "120px" }}>
+        <Text
+          as={"span"}
+          fontFamily="Sans-Serif"
+          fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
+          fontWeight={"900"}
+        >
+          {props.subTitle1}&nbsp;
+        </Text>
+        <Text
+          fontFamily="Sans-Serif"
+          fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
+          color="#00A3FF"
+          fontWeight={"900"}
+        >
+          {props.subTitle2}
+        </Text>
+        <Text
+          as={"span"}
+          fontFamily="Sans-Serif"
+          fontSize={{ base: "12px", sm: "16px", md: "25px", lg: "36px" }}
+          fontWeight={"900"}
+        >
+          {props.subTitle3}
+        </Text>
+      </Flex>
       {/* <Flex
         mb={"30px"}
         width={"100%"}
@@ -104,10 +101,15 @@ const PageLayout: FunctionComponent<Props> = (props) => {
         </Flex>
       </Flex> */}
 
-      <Flex direction='column' w="100%" justify="center" align="center" color='white'>
+      <Flex
+        direction="column"
+        w="100%"
+        justify="center"
+        align="center"
+        color="white"
+      >
         {props.children}
       </Flex>
-
     </Flex>
   );
 };

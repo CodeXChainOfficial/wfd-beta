@@ -30,7 +30,7 @@ export default function UserSideSnippet() {
   const { state } = useStore();
   const [contributes, setContributes] = useState(0);
   const [investedCount, setInvestedCount] = useState(0);
-  const [prjShowDatas, setPrjShowDatas] = useState<any[]>([]);
+  const [prjShowDatas, setPrjShowDatas] = useState<PROJECT_SHOW_DATA[]>([]);
 
   const projectData = useProjectData();
   const wallet = useWallet();

@@ -16,69 +16,58 @@ import {
 import { IoWalletOutline, IoFileTrayFull, IoCallSharp } from "react-icons/io5";
 import { IoMdThumbsUp } from "react-icons/io";
 import { BsFillCalendar2CheckFill } from "react-icons/bs";
+import { IconType } from "react-icons/lib";
 
-import ProjectIncubation from "../../../components/Administrator/ViewProject/ProjectIncubation";
-import { useOneProjectData, useProjectData } from "../../../hook/FetchProject";
-import { ParseParam_ProjectId, ShortenAddress } from "../../../utils/utility";
+import { useOneProjectData } from "../../../hook/FetchProject";
+import {
+  GetProjectStatusText,
+  ParseParam_ProjectId,
+  ShortenAddress,
+} from "../../../utils/utility";
 import { useMetamaskWallet } from "../../../contexts/metamask";
 import { WFD_TOKEN_INFO } from "../../../config/constants";
 import { PROJECT_STATUS } from "../../../types/ProjectStatus";
-import ProjectMilestone from "../../../components/Administrator/ViewProject/ProjectIncubation/Milestone";
-import { BoxContainer, Dash } from "./approval";
+import ProjectApplication from "../../../components/OwnerInfo/ProjectApplication";
+import ProjectApplyIncubation from "../../../components/OwnerInfo/ProjectApplication/Incubation";
+import SetIncubation from "../../../components/OwnerInfo/ProjectApplication/SetIncubation";
 
-export const INCUBATION_BASE_STATUS = 1;
+export const APPLICATION_BASE_STATUS = 1;
 
-export const INCUBATION_STEPS = [
+export const APPLICATION_STEPS = [
   {
     image: IoFileTrayFull,
-    label: "Selected",
+    label: "Registration",
   },
   {
     image: BsFillCalendar2CheckFill,
-    label: "SetGoal",
+    label: "Document Check",
   },
   {
     image: IoCallSharp,
-    label: "Goal Approved",
+    label: "Set Calls",
   },
   {
     image: IoMdThumbsUp,
-    label: "All Goal Archieved",
+    label: "Approved to Incubation / Fundraise",
   },
 ];
 
-export default function ViewProjectIncubation() {
-  const [passedGoals, setPassedGoals] = useState(0);
-  const [goalSet, setGoalSet] = useState(0);
-  const [currentStep, setCurrentStep] = useState(0);
-
+export default function ViewProjectApproval() {
+  const [passedStatus, setPassedStatus] = useState(0);
+  const [remainStatus, setRemainStatus] = useState(0);
   const projectID = ParseParam_ProjectId();
   const data = useOneProjectData(projectID);
   const wallet = useMetamaskWallet();
   const address = wallet.account;
 
-  const [, updateState] = React.useState();
-  const forceUpdate = React.useCallback(() => updateState({}), []);
-  const pj = useProjectData();
-  useEffect(() => {
-    forceUpdate();
-    console.log("update")
-  }, [pj]);
-console.log(data)
-console.log("render")
   useEffect(() => {
     if (data) {
-      const length = data.incubation_goals.length;
-      setPassedGoals(length - data.incubation_index);
-      setGoalSet(length);
-
-      if (data.project_status == PROJECT_STATUS.IncubationGoal) {
-        setCurrentStep(length == 0 ? 1 : 2);
-      } else if (data.project_status == PROJECT_STATUS.MilestoneSetup) {
-        setCurrentStep(3);
-      } else if (data.project_status > PROJECT_STATUS.MilestoneSetup) {
-        setCurrentStep(4);
-      }
+      setPassedStatus(data.project_status - PROJECT_STATUS.DocumentValuation);
+      setRemainStatus(
+        data.project_status > PROJECT_STATUS.IncubationGoalSetup
+          ? 0
+          : PROJECT_STATUS.IncubationGoalSetup - data.project_status + 1
+      );
     }
   }, [data]);
 
@@ -87,16 +76,15 @@ console.log("render")
       title=""
       subTitle1="Welcome Back Admin to "
       subTitle2=" "
-      subTitle3={` Manage ${data?.project_title}`}
+      subTitle3={` Project Applicant!`}
     >
       <Stack
-        width={"100%"}
         color="white"
-        justifyContent="center"
         direction={{ base: "column", lg: "row" }}
-        px={{ base: "10px", md: "100px" }}
         pb={"5%"}
         pt="64px"
+        px={{ base: "0px", md: "64px" }}
+        w="100%"
       >
         <VStack
           spacing={4}
@@ -244,7 +232,7 @@ console.log("render")
                     fontWeight="600"
                     w={"full"}
                   >
-                    Remaining Goal to Pass
+                    Remaining Step to Pass
                   </Text>
                   <Text
                     mt="14px"
@@ -253,7 +241,7 @@ console.log("render")
                     fontWeight="950"
                     w={"full"}
                   >
-                    {goalSet} Goals
+                    {remainStatus} Goals
                   </Text>
                 </Flex>
               </Flex>
@@ -277,7 +265,7 @@ console.log("render")
                     fontWeight="600"
                     w={"full"}
                   >
-                    GoalSet
+                    Status
                   </Text>
                   <Text
                     mt="14px"
@@ -286,7 +274,7 @@ console.log("render")
                     fontWeight="950"
                     w={"full"}
                   >
-                    {goalSet} Goals
+                    {GetProjectStatusText(data?.project_status)}
                   </Text>
                 </Flex>
               </Flex>
@@ -316,16 +304,15 @@ console.log("render")
         <Flex
           align={{ base: "center", lg: "flex-start" }}
           direction="column"
-          p={{ base: "5px", md: "24px" }}
-          w="100%"
+          p="24px"
         >
           <Text fontFamily={"Montserrat"} fontWeight="800" fontSize="20px">
             Project Journey Status
           </Text>
           <Flex mt="36px" w="100%">
-            {INCUBATION_STEPS.map((step, index, all) => {
+            {APPLICATION_STEPS.map((step, index, data) => {
               return (
-                <Flex key={index}>
+                <>
                   <Flex
                     direction="column"
                     key={index}
@@ -333,7 +320,7 @@ console.log("render")
                     w={{ base: "50px", md: "82px" }}
                   >
                     <BoxContainer
-                      filled={index < currentStep}
+                      filled={index < APPLICATION_BASE_STATUS + passedStatus}
                       image={step.image}
                     />
                     <Center mt="20px" w="130%">
@@ -348,12 +335,16 @@ console.log("render")
                       </Text>
                     </Center>
                   </Flex>
-                  {index < all.length - 1 && (
+                  {index < data.length - 1 && (
                     <Center h={{ base: "50px", md: "82px" }}>
-                      <Dash filled={index < currentStep - 1} />
+                      <Dash
+                        filled={
+                          index < APPLICATION_BASE_STATUS + passedStatus - 1
+                        }
+                      />
                     </Center>
                   )}
-                </Flex>
+                </>
               );
             })}
           </Flex>
@@ -361,24 +352,61 @@ console.log("render")
             mt="16px"
             fontFamily={"Montserrat"}
             fontWeight="800"
-            fontSize={{ base: "16px", md: "20px" }}
+            fontSize="20px"
           >
-            Project Incubation Goal
+            Project Information
           </Text>
-          <ProjectIncubation data={data} />
+          <ProjectApplication data={data} />
 
           <Text
-            mt="16px"
+            mt="43px"
             fontFamily={"Montserrat"}
             fontWeight="800"
-            fontSize={{ base: "16px", md: "20px" }}
+            fontSize="20px"
           >
-            Project Milestone
+            Set Project Incubation Goal
           </Text>
-          <ProjectMilestone data={data} />
+          <SetIncubation data={data} />
+          <ProjectApplyIncubation data={data} />
         </Flex>
       </Stack>
       <Footer />
     </PageLayout>
+  );
+}
+
+interface FillProp {
+  filled?: boolean;
+  image: IconType;
+}
+
+export function BoxContainer(props: FillProp) {
+  return (
+    <Flex
+      w="100%"
+      h={{ base: "50px", md: "82px" }}
+      bg={props.filled ? "rgba(66, 232, 224, 1)" : "rgba(0, 163, 255, 0.09)"}
+      borderRadius="20px"
+      borderStyle="solid"
+      borderWidth="2px"
+      borderColor="rgba(66, 232, 224, 1)"
+      justify="center"
+      align="center"
+    >
+      <props.image size="50%" color={props.filled ? "black" : "#42E8E0"} />
+    </Flex>
+  );
+}
+
+export function Dash({ filled = false }: { filled: boolean }) {
+  return (
+    <Box
+      width={{ base: "25px", md: "72px" }}
+      border={
+        filled
+          ? "2px solid rgba(66, 232, 224, 1)"
+          : "2px dashed rgba(66, 232, 224, 1)"
+      }
+    />
   );
 }
