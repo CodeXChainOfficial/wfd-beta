@@ -12,16 +12,12 @@ import {
   Grid,
   GridItem,
 } from "@chakra-ui/react";
-import { useCommunityData } from "../../../hook/FetchProject";
-import ProgressIcon from "../../ProgressIcon";
-import { PROJECT_STATUS } from "../../../types/ProjectStatus";
-import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../../types/ProgreessStatus";
-import VoteButton from "../VoteButton";
-import {
-  MILESTONE_INFO,
-  PROJECT_INFO,
-  VOTE_INFO,
-} from "../../../types/Project";
+import { useCommunityData } from "../../hook/FetchProject";
+import ProgressIcon from "../ProgressIcon";
+import { PROJECT_STATUS } from "../../types/ProjectStatus";
+import { PROGRESS_STATUS, PROGRESS_TEXT } from "../../types/ProgreessStatus";
+import { MILESTONE_INFO, PROJECT_INFO, VOTE_INFO } from "../../types/Project";
+// import VoteButton from "../VoteButton";
 
 export default function ProjectMilestoneRelease({
   data,
@@ -39,15 +35,12 @@ export default function ProjectMilestoneRelease({
       fontWeight={600}
     >
       <Grid
-        templateColumns="3fr 2fr 2fr 2fr 1fr"
+        templateColumns="3fr 2fr 2fr 1fr"
         gap={{ base: "1px", md: "20px" }}
         w="100%"
       >
         <GridItem>
           <Text>Milestone</Text>
-        </GridItem>
-        <GridItem>
-          <Text>Voting Time</Text>
         </GridItem>
         <GridItem>
           <Text>Progress</Text>
@@ -92,7 +85,7 @@ const Milestone = ({ data, milestone, index }: Props) => {
       setVotedCount(data.wefund_votes.length);
       setCommunityCount(communityData.length);
     }
-  }, [data, communityData]);
+  }, [communityData]);
 
   let progress = 0,
     yes = 0,
@@ -135,20 +128,17 @@ const Milestone = ({ data, milestone, index }: Props) => {
           fontWeight={600}
         >
           <Grid
-            templateColumns="3fr 2fr 2fr 2fr 1fr"
+            templateColumns="3fr 2fr 2fr 1fr"
             gap={{ base: "1px", md: "20px" }}
             w="100%"
           >
             <GridItem display="flex">{milestone.name}</GridItem>
-            <GridItem display="flex">68h 28m 31s</GridItem>
             <GridItem />
             <GridItem display="flex">
               <ProgressIcon progress={progress} />
               {PROGRESS_TEXT[progress]}
-              {(progress == PROGRESS_STATUS.VOTING ||
-                progress == PROGRESS_STATUS.REJECTED) && (
-                <VoteButton data={data} />
-              )}
+              {/* {(progress == PROGRESS_STATUS.VOTING ||
+              progress == PROGRESS_STATUS.REJECTED) && <VoteButton />} */}
             </GridItem>
             <GridItem>
               <AccordionIcon />
@@ -157,7 +147,7 @@ const Milestone = ({ data, milestone, index }: Props) => {
         </AccordionButton>
         <AccordionPanel pb={4} px="0">
           <Grid
-            templateColumns="3fr 2fr 2fr 2fr 1fr"
+            templateColumns="3fr 2fr 2fr 1fr"
             gap={{ base: "3px", md: "20px" }}
             w="100%"
             fontSize={{ base: "10px", md: "12px" }}
@@ -170,14 +160,6 @@ const Milestone = ({ data, milestone, index }: Props) => {
               h="100%"
             >
               {milestone.description}
-            </GridItem>
-            <GridItem bg="rgba(0, 0, 0, 0.33)" rounded="md" p="1" h="100%">
-              <Text color="#5761D7">Start</Text>
-              <Text>{milestone.start_date}</Text>
-              <Text color="#5761D7">End</Text>
-              <Text>{milestone.end_date}</Text>
-              <Text color="#5761D7">CountDown</Text>
-              <Text>68h 28m 31s</Text>
             </GridItem>
             <GridItem display="flex" flexDirection="column">
               {PROGRESS_TEXT.map((label, index) => (
@@ -214,7 +196,7 @@ const Milestone = ({ data, milestone, index }: Props) => {
               <Text>
                 {yes}/{all} voted
               </Text>
-              <VoteButton data={data} />
+              {/* <VoteButton /> */}
             </GridItem>
             <GridItem />
           </Grid>

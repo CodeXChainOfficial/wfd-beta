@@ -30,6 +30,7 @@ import CustomUpload from "../components/CreateProject/CustomUpload";
 import TeamMembers from "../components/CreateProject/TeamMember/TeamMembers";
 import ApplyOpt from "../components/CreateProject/ApplyOption/ApplyOpt";
 import { useMetamaskWallet } from "../contexts/metamask";
+import { fetchProjectData } from "../hook/FetchProject";
 
 export default function CreateProject() {
   const { state, dispatch } = useStore();
@@ -221,10 +222,6 @@ export default function CreateProject() {
 
     const signer = metamask.signer;
     const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, signer);
-    // const provider = new ethers.providers.JsonRpcProvider(
-    //   CHAINS_CONFIG["bsc_testnet"].rpc
-    // );
-    // const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, provider);
 
     let res = await contract.getNumberOfProjects();
     const projectId = res.toNumber() + 1;
@@ -254,16 +251,22 @@ export default function CreateProject() {
       professional_link: professionallink,
     };
     try {
+      toast("Please wait", { ...SUCCESS_OPTION, autoClose: false });
+      res = await contract.addProject(collectedAmount);
+      await res.wait();
+
       res = await axios.post("/api/projects/addProject", project);
       if (res?.error) {
         throw "connection error";
       }
-      res = await contract.addProject(collectedAmount);
-      await res.wait();
+      toast.dismiss();
+
+      await fetchProjectData(state, dispatch, true);
       toast("Successed Applying", SUCCESS_OPTION);
     } catch (e) {
-      console.log(e);
+      toast.dismiss();
       toast("Error", ERROR_OPTION);
+      console.log(e);
     }
   }
 
