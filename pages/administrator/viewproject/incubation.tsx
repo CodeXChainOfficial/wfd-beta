@@ -57,15 +57,6 @@ export default function ViewProjectIncubation() {
   const wallet = useMetamaskWallet();
   const address = wallet.account;
 
-  const [, updateState] = React.useState();
-  const forceUpdate = React.useCallback(() => updateState({}), []);
-  const pj = useProjectData();
-  useEffect(() => {
-    forceUpdate();
-    console.log("update")
-  }, [pj]);
-console.log(data)
-console.log("render")
   useEffect(() => {
     if (data) {
       const length = data.incubation_goals.length;

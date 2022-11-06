@@ -126,7 +126,7 @@ const Milestone = ({ data, milestone, index, onDelete }: Props) => {
   if (
     data.project_status > PROJECT_STATUS.MilestoneSetup ||
     (data.project_status == PROJECT_STATUS.MilestoneSetup &&
-      data.incubation_index > index)
+      data.milestone_index > index)
   ) {
     progress = PROGRESS_STATUS.APPROVED;
     yes = communityCount;
