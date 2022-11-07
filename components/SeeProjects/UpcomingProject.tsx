@@ -128,16 +128,31 @@ export default function UpcomingProject(prop: UpcomingProjectProp) {
 
   useEffect(() => {
     const projects = projectData;
-    const res = projects.filter(
-      (x) =>
+
+    const res = projects.filter((x) => {
+      let condition =
         x.project_id != WEFUND_ID &&
-        x.project_status > PROJECT_STATUS.IncubationGoalSetup &&
-        x.project_launch.toLowerCase() == launchStage.toLocaleLowerCase() &&
+        // x.project_launch.toLowerCase() == launchStage.toLocaleLowerCase() &&
         (fundraiseToken.toLowerCase() == "all" ||
           x.fund_type.findIndex(
             (token: string) => token == fundraiseToken.toLowerCase()
-          ) != -1)
-    );
+          ) != -1);
+      if (launchStage.toLowerCase() == "prelaunch")
+        condition =
+          condition &&
+          x.project_status > PROJECT_STATUS.IncubationGoalSetup &&
+          x.project_status < PROJECT_STATUS.CrowdFundraising;
+      else if (launchStage.toLowerCase() == "launch")
+        condition =
+          condition &&
+          x.project_status >= PROJECT_STATUS.CrowdFundraising &&
+          x.project_status < PROJECT_STATUS.Completed;
+      else if (launchStage.toLowerCase() == "completed")
+        condition = condition && x.project_status == PROJECT_STATUS.Completed;
+
+      if (condition) return true;
+      else return false;
+    });
     setProjects(res);
   }, [projectData, launchStage, fundraiseToken]);
 
