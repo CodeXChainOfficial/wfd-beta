@@ -18,9 +18,10 @@ import FundraiseType from "./FundraiseType";
 import { useProjectData } from "../../hook/FetchProject";
 import { WEFUND_ID } from "../../config/constants";
 import { PROJECT_STATUS } from "../../types/ProjectStatus";
+import { PROJECT_INFO } from "../../types/Project";
 
 interface Props {
-  data: any;
+  data: PROJECT_INFO;
   index: number;
   selectedIndex?: number;
   setSelected: React.Dispatch<React.SetStateAction<number>>;
@@ -29,6 +30,16 @@ function ProjectItem({ data, index, selectedIndex, setSelected }: Props) {
   const router = useRouter();
   const selected = selectedIndex == index;
 
+  let launchStage = "PRELAUNCH";
+  if (data) {
+    if (
+      data.project_status >= PROJECT_STATUS.CrowdFundraising &&
+      data.project_status < PROJECT_STATUS.Completed
+    )
+      launchStage = "LAUNCH";
+    else if (data.project_status == PROJECT_STATUS.Completed)
+      launchStage = "COMPLETED";
+  }
   return (
     <Box>
       <Box
@@ -86,7 +97,7 @@ function ProjectItem({ data, index, selectedIndex, setSelected }: Props) {
             fontFamily={"PilatExtended-Regular"}
             fontWeight={500}
           >
-            {data.project_launch.toUpperCase()}
+            {launchStage.toUpperCase()}
           </Text>
 
           <SimpleGrid
