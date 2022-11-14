@@ -31,6 +31,7 @@ import TeamMembers from "../components/CreateProject/TeamMember/TeamMembers";
 import ApplyOpt from "../components/CreateProject/ApplyOption/ApplyOpt";
 import { useMetamaskWallet } from "../contexts/metamask";
 import { fetchProjectData } from "../hook/FetchProject";
+import CustomTelegramInput from "../components/CreateProject/CustomTelegramInput";
 
 export default function CreateProject() {
   const { state, dispatch } = useStore();
@@ -49,6 +50,7 @@ export default function CreateProject() {
   const [tokenName, setTokenName] = useState("");
   const [tokenAddress, setTokenAddress] = useState("");
 
+  const [opt, setOpt] = useState("Incubation");
   const [fundPhase, setFundPhase] = useState([""]);
   const [fundPrice, setFundPrice] = useState([""]);
   const [fundAmount, setFundAmount] = useState([""]);
@@ -73,6 +75,7 @@ export default function CreateProject() {
   const [cofounderName, setCofounderName] = useState("");
   const [signature, setSignature] = useState("");
   const [email, setEmail] = useState("");
+  const [telegram, setTelegram] = useState("");
   const [serviceWefund, setServiceWefund] = useState("5");
   const [serviceCharity, setServiceCharity] = useState("0");
   const [website, setWebsite] = useState("");
@@ -233,6 +236,7 @@ export default function CreateProject() {
       project_title: title,
       project_description: description,
       project_collected: collectedAmount.toString(),
+      project_option: opt,
       project_ecosystem: ecosystem,
       project_fundtype: JSON.stringify(fundraiseJson),
       project_createddate: _createDate,
@@ -241,6 +245,7 @@ export default function CreateProject() {
       project_whitepaper: realWhitepaer,
       project_website: website,
       project_email: email,
+      project_telegram: telegram,
       project_teammembers: JSON.stringify(project_teammembers),
       token_addr: tokenAddress,
 
@@ -319,6 +324,8 @@ export default function CreateProject() {
                 setLinkedin={setTeammemberLinkedin}
               />
               <ApplyOpt
+                opt={opt}
+                setOpt={setOpt}
                 fundPhase={fundPhase}
                 setFundPhase={setFundPhase}
                 fundPrice={fundPrice}
@@ -379,12 +386,24 @@ export default function CreateProject() {
                   w={{ base: "100%", md: "50%", lg: "50%" }}
                 />
               </Stack>
-              <CustomEmailInput
-                typeText="Email"
-                type={email}
-                setType={setEmail}
-                w="100%"
-              />
+              <Stack
+                mt="30px"
+                direction={{ base: "column", md: "row", lg: "row" }}
+                spacing="30px"
+              >
+                <CustomEmailInput
+                  typeText="Email"
+                  type={email}
+                  setType={setEmail}
+                  w={{ base: "100%", lg: "50%" }}
+                />
+                <CustomTelegramInput
+                  typeText="Email"
+                  type={telegram}
+                  setType={setTelegram}
+                  w={{ base: "100%", lg: "50%" }}
+                />
+              </Stack>
               <Stack
                 mt="30px"
                 direction={{ base: "column", md: "row", lg: "row" }}
