@@ -25,6 +25,7 @@ import { WFD_TOKEN_INFO } from "../../../config/constants";
 import { PROJECT_STATUS } from "../../../types/ProjectStatus";
 import ProjectMilestone from "../../../components/Administrator/ViewProject/ProjectIncubation/Milestone";
 import { BoxContainer, Dash } from "./approval";
+import ProjectInfoPanel from "../../../components/Administrator/ProjectInfoPanel";
 
 export const INCUBATION_BASE_STATUS = 1;
 
@@ -367,6 +368,7 @@ export default function ViewProjectIncubation() {
             Project Milestone
           </Text>
           <ProjectMilestone data={data} />
+          <ProjectInfoPanel data={data} />
         </Flex>
       </Stack>
       <Footer />
