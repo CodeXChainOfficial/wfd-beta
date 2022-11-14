@@ -29,6 +29,7 @@ import { WFD_TOKEN_INFO } from "../../../config/constants";
 import { PROJECT_STATUS } from "../../../types/ProjectStatus";
 import ProjectApplyIncubation from "../../../components/Administrator/ViewProject/ProjectApplication/Incubation";
 import { IconType } from "react-icons/lib";
+import ProjectInfoPanel from "../../../components/Administrator/ProjectInfoPanel";
 
 export const APPLICATION_BASE_STATUS = 1;
 
@@ -357,6 +358,7 @@ export default function ViewProjectApproval() {
           </Text>
           <ProjectApplication data={data} />
           <ProjectApplyIncubation data={data} />
+          <ProjectInfoPanel data={data} />
         </Flex>
       </Stack>
       <Footer />
