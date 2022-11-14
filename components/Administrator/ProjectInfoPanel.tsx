@@ -27,7 +27,32 @@ export default function ProjectInfoPanel({ data }: { data: PROJECT_INFO }) {
         fontSize={{ base: "10px", md: "16px" }}
         gap="10px"
       >
+        <GridItem>{data.project_option}</GridItem>
         <GridItem></GridItem>
+        <GridItem></GridItem>
+        <GridItem>
+          <Text>Documentation</Text>
+          <Text>Legal</Text>
+          <Text>Tokenomics</Text>
+        </GridItem>
+        <GridItem>Email</GridItem>
+        <GridItem>{data.email}</GridItem>
+        <GridItem>Telegram</GridItem>
+        <GridItem>{data.telegram}</GridItem>
+        <GridItem>% for WeFund</GridItem>
+        <GridItem>{data.service_wefund}</GridItem>
+        <GridItem>% for Charity</GridItem>
+        <GridItem>{data.service_charity}</GridItem>
+        <GridItem>
+          Fundraising
+          <br />
+          Option
+        </GridItem>
+        <GridItem>
+          {data.fund_type.map((type) => (
+            <Text key={type}>{type}</Text>
+          ))}
+        </GridItem>
       </Grid>
     </Box>
   );

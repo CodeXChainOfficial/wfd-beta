@@ -58,6 +58,8 @@ export interface PROJECT_INFO {
   token_addr: string;
   country: string;
   cofounder_name: string;
+  service_wefund: string;
+  service_charity: string;
 
   project_collected: number;
   project_status: number;
