@@ -21,13 +21,14 @@ export default function ProjectInfoPanel({ data }: { data: PROJECT_INFO }) {
       borderRadius="10px"
       mt="30px"
     >
-      <Text>Apply Option</Text>
+      <Text fontSize={{ base: "14px", md: "16px" }}>Apply Option</Text>
       <Grid
         templateColumns="1fr 1fr 1fr 1fr"
-        fontSize={{ base: "10px", md: "16px" }}
         gap="10px"
+        fontSize={{ base: "12px", md: "14px" }}
+        mt="10px"
       >
-        <GridItem>{data.project_option}</GridItem>
+        <GridItem>{data?.project_option}</GridItem>
         <GridItem></GridItem>
         <GridItem></GridItem>
         <GridItem>
@@ -36,20 +37,20 @@ export default function ProjectInfoPanel({ data }: { data: PROJECT_INFO }) {
           <Text>Tokenomics</Text>
         </GridItem>
         <GridItem>Email</GridItem>
-        <GridItem>{data.email}</GridItem>
+        <GridItem>{data?.email}</GridItem>
         <GridItem>Telegram</GridItem>
-        <GridItem>{data.telegram}</GridItem>
+        <GridItem>{data?.telegram}</GridItem>
         <GridItem>% for WeFund</GridItem>
-        <GridItem>{data.service_wefund}</GridItem>
+        <GridItem>{data?.service_wefund}</GridItem>
         <GridItem>% for Charity</GridItem>
-        <GridItem>{data.service_charity}</GridItem>
+        <GridItem>{data?.service_charity}</GridItem>
         <GridItem>
           Fundraising
           <br />
           Option
         </GridItem>
         <GridItem>
-          {data.fund_type.map((type) => (
+          {data?.fund_type.map((type) => (
             <Text key={type}>{type}</Text>
           ))}
         </GridItem>
