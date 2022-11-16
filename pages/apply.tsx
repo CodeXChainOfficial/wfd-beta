@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+
+import * as sapphire from "@oasisprotocol/sapphire-paratime";
 import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
@@ -219,39 +221,46 @@ export default function CreateProject() {
       toast("Connect with metamsk", ERROR_OPTION);
       return;
     }
-
-    const signer = metamask.signer;
-    const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, signer);
-
-    let res = await contract.getNumberOfProjects();
-    const projectId = res.toNumber() + 1;
-
-    const project = {
-      creator_wallet: address,
-      project_id: projectId.toString(),
-      project_company: company,
-      project_title: title,
-      project_description: description,
-      project_collected: collectedAmount.toString(),
-      project_ecosystem: ecosystem,
-      project_fundtype: JSON.stringify(fundraiseJson),
-      project_createddate: _createDate,
-      project_saft: realSAFT,
-      project_logo: logo,
-      project_whitepaper: realWhitepaer,
-      project_website: website,
-      project_email: email,
-      project_teammembers: JSON.stringify(project_teammembers),
-      token_addr: tokenAddress,
-
-      country: country,
-      cofounder_name: cofounderName,
-      service_wefund: serviceWefund,
-      service_charity: serviceCharity,
-      professional_link: professionallink,
-    };
     try {
+      let contract = new ethers.Contract(
+        WEFUND_CONTRACT,
+        WEFUND_ABI,
+        sapphire.wrap(
+          new ethers.providers.JsonRpcProvider(CHAINS_CONFIG["sapphire"].rpc)
+        )
+      );
+      let res = await contract.getNumberOfProjects();
+
+      const projectId = res.toNumber() + 1;
+      const project = {
+        creator_wallet: address,
+        project_id: projectId.toString(),
+        project_company: company,
+        project_title: title,
+        project_description: description,
+        project_collected: collectedAmount.toString(),
+        project_ecosystem: ecosystem,
+        project_fundtype: JSON.stringify(fundraiseJson),
+        project_createddate: _createDate,
+        project_saft: realSAFT,
+        project_logo: logo,
+        project_whitepaper: realWhitepaer,
+        project_website: website,
+        project_email: email,
+        project_teammembers: JSON.stringify(project_teammembers),
+        token_addr: tokenAddress,
+
+        country: country,
+        cofounder_name: cofounderName,
+        service_wefund: serviceWefund,
+        service_charity: serviceCharity,
+        professional_link: professionallink,
+      };
       toast("Please wait", { ...SUCCESS_OPTION, autoClose: false });
+
+      const signer = metamask.signer;
+      contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, signer);
+
       res = await contract.addProject(collectedAmount);
       await res.wait();
 

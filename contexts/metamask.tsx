@@ -1,17 +1,11 @@
-import React, {
-  createContext,
-  useContext,
-  useReducer,
-  useEffect,
-  ReactNode,
-} from "react";
+import React, { useEffect, ReactNode } from "react";
 
+import * as sapphire from "@oasisprotocol/sapphire-paratime";
 import { createTrackedSelector } from "react-tracked";
 import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import { BigNumber, ethers } from "ethers";
-import { useWeb3React } from "@web3-react/core";
 
 import {
   WEFUND_BSC_ADDRESS,
@@ -62,7 +56,7 @@ export const useMetamaskStore = create(
     connect: async () => {
       try {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
+        const signer = sapphire.wrap(provider.getSigner());
 
         const accounts = await provider.send("eth_requestAccounts", []);
         const account = accounts[0];
@@ -73,9 +67,7 @@ export const useMetamaskStore = create(
           signer: signer,
           chainId: res.chainId,
         });
-        // const { chainId } = await provider.getNetwork();
       } catch (err: any) {
-        // toast.error(err?.message);
         toast.error("Metamask not available", ERROR_OPTION);
         set({ initializing: false });
       }
