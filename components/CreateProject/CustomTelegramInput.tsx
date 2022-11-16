@@ -14,7 +14,7 @@ interface Props {
   setType: Dispatch<SetStateAction<any>>;
   w: any;
 }
-const CustomEmailInput: FunctionComponent<Props> = ({
+const CustomTelegramInput: FunctionComponent<Props> = ({
   typeText,
   type,
   setType,
@@ -43,9 +43,9 @@ const CustomEmailInput: FunctionComponent<Props> = ({
         />
         <Input
           style={{ background: "transparent", border: "0" }}
-          type="email"
+          type="text"
           h="55px"
-          placeholder="example@email.com"
+          placeholder="@TelegramID"
           rounded="md"
           value={type}
           onChange={(e) => {
@@ -57,4 +57,4 @@ const CustomEmailInput: FunctionComponent<Props> = ({
   );
 };
 
-export default CustomEmailInput;
+export default CustomTelegramInput;

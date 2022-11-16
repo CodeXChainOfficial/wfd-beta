@@ -17,12 +17,13 @@ import {
   useMemo,
 } from "react";
 
-import { InputTransition } from "../../ImageTransition";
 import ApplyIncubation from "./ApplyIncubation";
 import ApplyFundraising from "./ApplySeeddraising";
 import ApplyIDO from "./ApplyIDO";
 
 interface Props {
+  opt: string;
+  setOpt: Dispatch<SetStateAction<string>>;
   fundPhase: string[];
   setFundPhase: Dispatch<SetStateAction<string[]>>;
   fundPrice: string[];
@@ -44,6 +45,8 @@ interface Props {
 }
 
 const ApplyOpt: FunctionComponent<Props> = ({
+  opt,
+  setOpt,
   fundPhase,
   setFundPhase,
   fundPrice,
@@ -63,28 +66,28 @@ const ApplyOpt: FunctionComponent<Props> = ({
   IDOVesting,
   setIDOVesting,
 }) => {
-  const [opt, setOpt] = useState("Incubation");
-
   return (
     <Box mt="40px" w="100%">
       <Flex justify="space-between">
         <Text mb="20px">Apply Options</Text>
       </Flex>
-      
-        <Select
-          id="prjchain"
-          style={{ background: "parent", border: "0" }}
-          h="55px"
-          size="sm"
-          w="full"
-          rounded="md"
-          onChange={(e) => setOpt(e.target.value)}
-          style={{ border: " 1.5px solid rgba(255, 255, 255, 0.2)", background: "rgba(255, 255, 255, 0.05)" }}
-        >
-          <option style={{ backgroundColor: "#1B0645" }}>Incubation</option>
-          <option style={{ backgroundColor: "#1B0645" }}>Fundraising</option>
-          <option style={{ backgroundColor: "#1B0645" }}>IDO</option>
-        </Select>
+
+      <Select
+        id="prjchain"
+        h="55px"
+        size="sm"
+        w="full"
+        rounded="md"
+        onChange={(e) => setOpt(e.target.value)}
+        style={{
+          border: " 1.5px solid rgba(255, 255, 255, 0.2)",
+          background: "rgba(255, 255, 255, 0.05)",
+        }}
+      >
+        <option style={{ backgroundColor: "#1B0645" }}>Incubation</option>
+        <option style={{ backgroundColor: "#1B0645" }}>Fundraising</option>
+        <option style={{ backgroundColor: "#1B0645" }}>IDO</option>
+      </Select>
       {opt == "Incubation" && (
         <ApplyIncubation needs={prjNeed} setNeeds={setPrjNeed} />
       )}

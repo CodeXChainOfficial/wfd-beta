@@ -23,6 +23,7 @@ import { WFD_TOKEN_INFO } from "../../../config/constants";
 import { PROJECT_STATUS } from "../../../types/ProjectStatus";
 import ProjectMilestoneRelease from "../../../components/Administrator/ViewProject/ProjectMilestoneRelease";
 import { BoxContainer, Dash } from "./approval";
+import ProjectInfoPanel from "../../../components/Administrator/ProjectInfoPanel";
 
 export const MILESTONE_STEPS = [
   {
@@ -355,6 +356,7 @@ export default function ViewProjectMilestone() {
           </Text>
 
           <ProjectMilestoneRelease data={data} />
+          <ProjectInfoPanel data={data} />
         </Flex>
       </Stack>
       <Footer />

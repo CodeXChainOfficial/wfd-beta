@@ -43,6 +43,7 @@ export interface PROJECT_INFO {
   project_company: string;
   project_title: string;
   project_description: string;
+  project_option: string;
   project_ecosystem: string;
   project_fundtype: string;
   project_launch: string;
@@ -52,10 +53,13 @@ export interface PROJECT_INFO {
   project_whitepaper: string;
   project_website: string;
   email: string;
+  telegram: string;
   teammembers: string;
   token_addr: string;
   country: string;
   cofounder_name: string;
+  service_wefund: string;
+  service_charity: string;
 
   project_collected: number;
   project_status: number;
