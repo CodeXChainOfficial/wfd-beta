@@ -129,7 +129,11 @@ export const useProjectData = () => {
 
 export const useOneProjectData = (pid: number) => {
   const { state, dispatch } = useStore();
-  return state.projectData[pid > 1 ? pid - 1 : 0];
+  for(let i=0; i<state.projectData.length; i++)
+    if(state.projectData[i].project_id == pid){
+      return state.projectData[i];
+    }
+  return undefined;
 };
 
 export const fetchCommunity = async (
@@ -183,116 +187,114 @@ export const initContract = async () => {
   const BUSD = "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee";
 
   let res;
-  // res = await contract.addCommunity("0x686c626E48bfC5DC98a30a9992897766fed4Abd3");
+  // res = await contract.addCommunity("0xFFfCd0B404c3d8AE38Ea2966bAD5A75D5Ab6ce0F");
   // await res.wait();
 
-  res = await contract.addCommunity(
-    "0x0961B8b67CdA06f145f634A5F7c453A15E072C40"
-  );
-  await res.wait();
+  // res = await contract.addCommunity(
+  //   "0x0961B8b67CdA06f145f634A5F7c453A15E072C40"
+  // );
+  // await res.wait();
 
   // // res = await contract.removeCommunity("0xFFfCd0B404c3d8AE38Ea2966bAD5A75D5Ab6ce0F");
   // // await res.wait();
 
-  // // res = await contract.removeCommunity("0x686c626E48bfC5DC98a30a9992897766fed4Abd3");
-  // // await res.wait();
 
-  // // res = await contract.addCommunity("0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c");
-  // // await res.wait();
-
-  res = await contract.setAddress(USDC, USDT, BUSD, WEFUND_WALLET);
+  res = await contract.addCommunity("0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c");
   await res.wait();
 
-  res = await contract.setWefundID(1);
-  await res.wait();
+  // res = await contract.setAddress(USDC, USDT, BUSD, WEFUND_WALLET);
+  // await res.wait();
 
-  res = await contract.getProjectInfo();
-  console.log(res);
+  // res = await contract.setWefundID(1);
+  // await res.wait();
 
-  res = await contract.addProjectByOwner(600000, "3", [
-    [0, "1", "", "2023-03-1", "2023-03-31", "600000"],
-  ]);
-  await res.wait();
-  console.log("1");
+  // res = await contract.getProjectInfo();
+  // console.log(res);
 
-  res = await contract.addProjectByOwner(390000, "3", [
-    [0, "1", "", "2023-03-1", "2023-03-31", "390000"],
-  ]);
-  await res.wait();
-  console.log("2");
+  // res = await contract.addProjectByOwner(600000, "3", [
+  //   [0, "1", "", "2023-03-1", "2023-03-31", "600000"],
+  // ]);
+  // await res.wait();
+  // console.log("1");
 
-  res = await contract.addProjectByOwner(250000, "3", [
-    [0, "1", "", "2023-03-1", "2023-03-31", "250000"],
-  ]);
-  await res.wait();
-  console.log("3");
+  // res = await contract.addProjectByOwner(390000, "3", [
+  //   [0, "1", "", "2023-03-1", "2023-03-31", "390000"],
+  // ]);
+  // await res.wait();
+  // console.log("2");
 
-  res = await contract.addProjectByOwner(600000, "3", [
-    [0, "1", "", "2023-03-1", "2023-03-31", "600000"],
-  ]);
-  await res.wait();
-  console.log("4");
+  // res = await contract.addProjectByOwner(250000, "3", [
+  //   [0, "1", "", "2023-03-1", "2023-03-31", "250000"],
+  // ]);
+  // await res.wait();
+  // console.log("3");
 
-  res = await contract.addProjectByOwner(120000, "3", [
-    [0, "1", "", "2023-03-1", "2023-03-31", "120000"],
-  ]);
-  await res.wait();
-  console.log("5");
+  // res = await contract.addProjectByOwner(600000, "3", [
+  //   [0, "1", "", "2023-03-1", "2023-03-31", "600000"],
+  // ]);
+  // await res.wait();
+  // console.log("4");
 
-  res = await contract.addProjectByOwner(120000, "3", [
-    [0, "1", "", "2023-03-1", "2023-03-31", "120000"],
-  ]);
-  await res.wait();
-  console.log("6");
+  // res = await contract.addProjectByOwner(120000, "3", [
+  //   [0, "1", "", "2023-03-1", "2023-03-31", "120000"],
+  // ]);
+  // await res.wait();
+  // console.log("5");
 
-  res = await contract.addProjectByOwner(4080000, "3", [
-    [0, "1", "", "2023-03-1", "2023-03-31", "4080000"],
-  ]);
-  await res.wait();
-  console.log("7");
+  // res = await contract.addProjectByOwner(120000, "3", [
+  //   [0, "1", "", "2023-03-1", "2023-03-31", "120000"],
+  // ]);
+  // await res.wait();
+  // console.log("6");
 
-  res = await contract.addProjectByOwner(120000, "3", [
-    [0, "1", "", "2023-03-1", "2023-03-31", "120000"],
-  ]);
-  await res.wait();
-  console.log("8");
+  // res = await contract.addProjectByOwner(4080000, "3", [
+  //   [0, "1", "", "2023-03-1", "2023-03-31", "4080000"],
+  // ]);
+  // await res.wait();
+  // console.log("7");
 
-  res = await contract.addIncubationGoal("1", [
-    "goal 1",
-    "goal 1 description",
-    "2022-1-1",
-    "2022-1-3",
-    0,
-  ]);
-  await res.wait();
+  // res = await contract.addProjectByOwner(120000, "3", [
+  //   [0, "1", "", "2023-03-1", "2023-03-31", "120000"],
+  // ]);
+  // await res.wait();
+  // console.log("8");
 
-  res = await contract.addIncubationGoal("1", [
-    "goal 2",
-    "goal 2 description",
-    "2022-1-1",
-    "2022-1-3",
-    0,
-  ]);
-  await res.wait();
+  // res = await contract.addIncubationGoal("1", [
+  //   "goal 1",
+  //   "goal 1 description",
+  //   "2022-1-1",
+  //   "2022-1-3",
+  //   0,
+  // ]);
+  // await res.wait();
 
-  res = await contract.addIncubationGoal("2", [
-    "goal 1",
-    "goal 1 description",
-    "2022-1-1",
-    "2022-1-3",
-    0,
-  ]);
-  await res.wait();
+  // res = await contract.addIncubationGoal("1", [
+  //   "goal 2",
+  //   "goal 2 description",
+  //   "2022-1-1",
+  //   "2022-1-3",
+  //   0,
+  // ]);
+  // await res.wait();
 
-  res = await contract.addIncubationGoal("2", [
-    "goal 2",
-    "goal 2 description",
-    "2022-1-1",
-    "2022-1-3",
-    0,
-  ]);
-  await res.wait();
+  // res = await contract.addIncubationGoal("2", [
+  //   "goal 1",
+  //   "goal 1 description",
+  //   "2022-1-1",
+  //   "2022-1-3",
+  //   0,
+  // ]);
+  // await res.wait();
 
-  res = await contract.getProjectInfo();
-  console.log(res);
+  // res = await contract.addIncubationGoal("2", [
+  //   "goal 2",
+  //   "goal 2 description",
+  //   "2022-1-1",
+  //   "2022-1-3",
+  //   0,
+  // ]);
+  // await res.wait();
+
+  // res = await contract.getProjectInfo();
+  // console.log(res);
 };
