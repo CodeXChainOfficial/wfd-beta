@@ -9,7 +9,8 @@ export const WEFUND_WALLET = "0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c";
 export const WFD_TOKEN = "0x131C6A669e275c0B10d565c7F7c319B89450dbf2";
 
 // export const WEFUND_CONTRACT = "0xf1c418a1A9E6faCCF09CD11A7A2E43d3770c40C2"; // mainnet
-export const WEFUND_CONTRACT = "0x17886A51Ae90ee6A6dD29bb69E18a3e1acA64e17"; //testnet
+// export const WEFUND_CONTRACT = "0x17886A51Ae90ee6A6dD29bb69E18a3e1acA64e17"; //testnet
+export const WEFUND_CONTRACT = "0x37Da3aC7e0A19B01174DE5796033D0F6af8B12B9"; //sapphire
 
 export const VESTING_CONTRACT = "";
 export const STAKING_CONTRACT = "";
@@ -249,6 +250,11 @@ export const CHAINS_CONFIG = {
     chainId: "0xFA",
     chainName: "Fantom",
     rpc: "https://rpc2.fantom.network",
+  },
+  sapphire: {
+    chainId: "0x5aff",
+    chainName: "Sapphire ParaTime Testnet",
+    rpc: "https://testnet.sapphire.oasis.dev",
   },
 };
 

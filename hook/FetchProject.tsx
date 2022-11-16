@@ -6,14 +6,16 @@ import {
   NETWORK,
   WEFUND_CONTRACT,
   WEFUND_ID,
+  WEFUND_WALLET,
 } from "../config/constants";
 import WEFUND_ABI from "../config/WeFund.json";
 import { AppContextInterface, ActionKind, useStore } from "../contexts/store";
 import { PROJECT_STATUS } from "../types/ProjectStatus";
 import { PROJECT_INFO } from "../types/Project";
 import { toast } from "react-toastify";
+import * as sapphire from "@oasisprotocol/sapphire-paratime";
 
-export function addExtraInfo(projectData: PROJECT_INFO[]) {
+function addExtraInfo(projectData: PROJECT_INFO[]) {
   if (typeof projectData === "undefined" || projectData.length == 0) return [];
 
   projectData[WEFUND_ID - 1].backerbacked_amount = 160000;
@@ -42,22 +44,29 @@ export function addExtraInfo(projectData: PROJECT_INFO[]) {
 
   return projectData;
 }
+
 export const fetchProjectData = async (
   state: AppContextInterface,
   dispatch: React.Dispatch<any>,
   force = false,
   total = false
 ) => {
-  let projectData = JSON.parse(JSON.stringify(state.projectData));
+  // await initContract();
 
   if (force == false) {
     return state.projectData;
   }
 
+  let projectData = JSON.parse(JSON.stringify(state.projectData));
+
   const provider = new ethers.providers.JsonRpcProvider(
-    CHAINS_CONFIG[NETWORK == "mainnet" ? "bsc" : "bsc_testnet"].rpc
+    CHAINS_CONFIG["sapphire"].rpc
   );
-  const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, provider);
+  const contract = new ethers.Contract(
+    WEFUND_CONTRACT,
+    WEFUND_ABI,
+    sapphire.wrap(provider)
+  );
 
   try {
     if (total == true) {
@@ -133,11 +142,15 @@ export const fetchCommunity = async (
   }
 
   const provider = new ethers.providers.JsonRpcProvider(
-    CHAINS_CONFIG[NETWORK == "mainnet" ? "bsc" : "bsc_testnet"].rpc
+    CHAINS_CONFIG["sapphire"].rpc
   );
 
   try {
-    const contract = new ethers.Contract(WEFUND_CONTRACT, WEFUND_ABI, provider);
+    const contract = new ethers.Contract(
+      WEFUND_CONTRACT,
+      WEFUND_ABI,
+      sapphire.wrap(provider)
+    );
     console.log("reading Community");
     const res = await contract.getCommunity();
     console.log(res);
@@ -155,4 +168,131 @@ export const useCommunityData = () => {
   }, []);
 
   return state.communityData;
+};
+
+export const initContract = async () => {
+  const contract = new ethers.Contract(
+    WEFUND_CONTRACT,
+    WEFUND_ABI,
+    sapphire.wrap(
+      new ethers.providers.Web3Provider(window.ethereum).getSigner()
+    )
+  );
+  const USDC = "0x64544969ed7EBf5f083679233325356EbE738930";
+  const USDT = "0x337610d27c682E347C9cD60BD4b3b107C9d34dDd";
+  const BUSD = "0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee";
+
+  let res;
+  // res = await contract.addCommunity("0x686c626E48bfC5DC98a30a9992897766fed4Abd3");
+  // await res.wait();
+
+  res = await contract.addCommunity(
+    "0x0961B8b67CdA06f145f634A5F7c453A15E072C40"
+  );
+  await res.wait();
+
+  // // res = await contract.removeCommunity("0xFFfCd0B404c3d8AE38Ea2966bAD5A75D5Ab6ce0F");
+  // // await res.wait();
+
+  // // res = await contract.removeCommunity("0x686c626E48bfC5DC98a30a9992897766fed4Abd3");
+  // // await res.wait();
+
+  // // res = await contract.addCommunity("0x09Bb243F4b7BF5952BB4196c6968D3453DBEf71c");
+  // // await res.wait();
+
+  res = await contract.setAddress(USDC, USDT, BUSD, WEFUND_WALLET);
+  await res.wait();
+
+  res = await contract.setWefundID(1);
+  await res.wait();
+
+  res = await contract.getProjectInfo();
+  console.log(res);
+
+  res = await contract.addProjectByOwner(600000, "3", [
+    [0, "1", "", "2023-03-1", "2023-03-31", "600000"],
+  ]);
+  await res.wait();
+  console.log("1");
+
+  res = await contract.addProjectByOwner(390000, "3", [
+    [0, "1", "", "2023-03-1", "2023-03-31", "390000"],
+  ]);
+  await res.wait();
+  console.log("2");
+
+  res = await contract.addProjectByOwner(250000, "3", [
+    [0, "1", "", "2023-03-1", "2023-03-31", "250000"],
+  ]);
+  await res.wait();
+  console.log("3");
+
+  res = await contract.addProjectByOwner(600000, "3", [
+    [0, "1", "", "2023-03-1", "2023-03-31", "600000"],
+  ]);
+  await res.wait();
+  console.log("4");
+
+  res = await contract.addProjectByOwner(120000, "3", [
+    [0, "1", "", "2023-03-1", "2023-03-31", "120000"],
+  ]);
+  await res.wait();
+  console.log("5");
+
+  res = await contract.addProjectByOwner(120000, "3", [
+    [0, "1", "", "2023-03-1", "2023-03-31", "120000"],
+  ]);
+  await res.wait();
+  console.log("6");
+
+  res = await contract.addProjectByOwner(4080000, "3", [
+    [0, "1", "", "2023-03-1", "2023-03-31", "4080000"],
+  ]);
+  await res.wait();
+  console.log("7");
+
+  res = await contract.addProjectByOwner(120000, "3", [
+    [0, "1", "", "2023-03-1", "2023-03-31", "120000"],
+  ]);
+  await res.wait();
+  console.log("8");
+
+  res = await contract.addIncubationGoal("1", [
+    "goal 1",
+    "goal 1 description",
+    "2022-1-1",
+    "2022-1-3",
+    0,
+  ]);
+  await res.wait();
+
+  res = await contract.addIncubationGoal("1", [
+    "goal 2",
+    "goal 2 description",
+    "2022-1-1",
+    "2022-1-3",
+    0,
+  ]);
+  await res.wait();
+
+  res = await contract.addIncubationGoal("2", [
+    "goal 1",
+    "goal 1 description",
+    "2022-1-1",
+    "2022-1-3",
+    0,
+  ]);
+  await res.wait();
+
+  res = await contract.addIncubationGoal("2", [
+    "goal 2",
+    "goal 2 description",
+    "2022-1-1",
+    "2022-1-3",
+    0,
+  ]);
+  await res.wait();
+
+  res = await contract.getProjectInfo();
+  console.log(res);
 };

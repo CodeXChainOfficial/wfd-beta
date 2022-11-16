@@ -84,7 +84,7 @@ const Layout = ({ children }: Props) => {
     const connectToBSC = async () => {
       const ethereum = window.ethereum;
       const chains = CHAINS_CONFIG;
-      const chain = NETWORK == "mainnet" ? "bsc" : "bsc_testnet";
+      const chain = "sapphire";
       try {
         await ethereum.request({
           method: "wallet_switchEthereumChain",
