@@ -407,7 +407,7 @@ export default function CreateProject() {
                   w={{ base: "100%", lg: "50%" }}
                 />
                 <CustomTelegramInput
-                  typeText="Email"
+                  typeText="Telegram"
                   type={telegram}
                   setType={setTelegram}
                   w={{ base: "100%", lg: "50%" }}

@@ -24,6 +24,7 @@ export async function executeQuery(query: string) {
     await db.end();
     return results;
   } catch (error) {
+    console.log(error)
     return { error };
   }
 }
