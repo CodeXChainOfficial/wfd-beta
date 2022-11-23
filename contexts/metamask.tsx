@@ -1,6 +1,5 @@
 import React, { useEffect, ReactNode } from "react";
 
-import * as sapphire from "@oasisprotocol/sapphire-paratime";
 import { createTrackedSelector } from "react-tracked";
 import { toast } from "react-toastify";
 import create from "zustand";
@@ -56,7 +55,7 @@ export const useMetamaskStore = create(
     connect: async () => {
       try {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = sapphire.wrap(provider.getSigner());
+        const signer = provider.getSigner();
 
         const accounts = await provider.send("eth_requestAccounts", []);
         const account = accounts[0];

@@ -1,6 +1,6 @@
 import { ToastOptions } from "react-toastify";
 
-export const NETWORK = "testnet";
+export const NETWORK = "mainnet";
 export const WEFUND_ID = 1;
 export const REQUEST_ENDPOINT =
   "https://wefund-nodejs-gwb6v.ondigitalocean.app";
@@ -10,7 +10,7 @@ export const WFD_TOKEN = "0x131C6A669e275c0B10d565c7F7c319B89450dbf2";
 
 // export const WEFUND_CONTRACT = "0xf1c418a1A9E6faCCF09CD11A7A2E43d3770c40C2"; // mainnet
 // export const WEFUND_CONTRACT = "0x17886A51Ae90ee6A6dD29bb69E18a3e1acA64e17"; //testnet
-export const WEFUND_CONTRACT = "0x37Da3aC7e0A19B01174DE5796033D0F6af8B12B9"; //sapphire
+export const WEFUND_CONTRACT = "0xC566F4a74518b3A8cB74Cbb84718E081687017EC"; //emerald
 
 export const VESTING_CONTRACT = "";
 export const STAKING_CONTRACT = "";
@@ -256,6 +256,11 @@ export const CHAINS_CONFIG = {
     chainName: "Sapphire ParaTime Testnet",
     rpc: "https://testnet.sapphire.oasis.dev",
   },
+  emerald: {
+    chainId: "0xa516",
+    chainName: "Oasis Emerald paratime mainnet",
+    rpc: "https://emerald.oasis.dev"
+  }
 };
 
 export const WALLET_LIST = [

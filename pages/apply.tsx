@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import * as sapphire from "@oasisprotocol/sapphire-paratime";
 import { Box, Flex, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
@@ -228,9 +227,7 @@ export default function CreateProject() {
       let contract = new ethers.Contract(
         WEFUND_CONTRACT,
         WEFUND_ABI,
-        sapphire.wrap(
-          new ethers.providers.JsonRpcProvider(CHAINS_CONFIG["sapphire"].rpc)
-        )
+        new ethers.providers.JsonRpcProvider(CHAINS_CONFIG["emerald"].rpc)
       );
       let res = await contract.getNumberOfProjects();
 
@@ -254,7 +251,7 @@ export default function CreateProject() {
         project_telegram: telegram,
         project_teammembers: JSON.stringify(project_teammembers),
         token_addr: tokenAddress,
-  
+
         country: country,
         cofounder_name: cofounderName,
         service_wefund: serviceWefund,
