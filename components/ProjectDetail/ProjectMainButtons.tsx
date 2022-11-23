@@ -3,6 +3,8 @@ import React, { FunctionComponent } from "react";
 import { Flex, Box, Icon } from "@chakra-ui/react";
 import { ImageTransition } from "../ImageTransition";
 import { BsArrowUpRight } from "react-icons/bs";
+import { useMetamaskWallet } from "../../contexts/metamask";
+import { useRouter } from "next/router";
 
 interface Props {
   data: any;
@@ -15,6 +17,11 @@ const ProjectMainButtons: FunctionComponent<Props> = ({
   onNext,
   onManage,
 }) => {
+  const router = useRouter();
+  const metamask = useMetamaskWallet();
+  const address = metamask.account;
+  const isCreator = address.toLowerCase() == data?.creator_wallet.toLowerCase();
+
   return (
     <Flex
       alignSelf={{
@@ -100,6 +107,32 @@ const ProjectMainButtons: FunctionComponent<Props> = ({
           </Box>
         </ImageTransition>
       </Flex>
+      {isCreator &&
+        <Flex
+          mt={{ base: "20px", md: "20px", lg: "30px" }}
+          ml={{ base: "0px", md: "0px", lg: "10px" }}
+          alignSelf={{ base: "center", md: "center", lg: "flex-start" }}
+        >
+          <ImageTransition
+            unitid="creator"
+            border1="linear-gradient(180deg, #FE8600 0%, #F83E00 100%)"
+            background1="linear-gradient(180deg, #FE8600 0%, #F83E00  100%)"
+            border2="linear-gradient(180deg, #FE8600 0%, #F83E00 100%)"
+            background2="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
+            border3="linear-gradient(180deg, #FE8600 0%, #F83E00 100%)"
+            background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
+            selected={false}
+            width="200px"
+            height="50px"
+            rounded="33px"
+            onClick={() => router.push(`/ownerinfo?project_id=${data.project_id}`)}
+          >
+            <a href="#">
+              <Box color="white">Manage Project</Box>
+            </a>
+          </ImageTransition>
+        </Flex>
+      }
       {/* <Flex
         mt={{ base: "20px", md: "20px", lg: "30px" }}
         mb={{ base: "40px", md: "40px", lg: "20px" }}
