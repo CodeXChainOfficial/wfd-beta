@@ -67,11 +67,37 @@ const ProjectMainButtons: FunctionComponent<Props> = ({
           width="200px"
           height="50px"
           rounded="33px"
-          onClick={() => {}}
+          onClick={() => { }}
         >
           <a href="#">
             <Box color="white">See Whitepaper</Box>
           </a>
+        </ImageTransition>
+      </Flex>
+      <Flex
+        mt={{ base: "20px", md: "20px", lg: "30px" }}
+        ml={{ base: "0px", md: "0px", lg: "10px" }}
+        alignSelf={{ base: "center", md: "center", lg: "flex-start" }}
+      >
+        <ImageTransition
+          unitid="visit"
+          border1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
+          background1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
+          border2="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
+          background2="linear-gradient(180deg, #1A133E 0%, #1A133E 100%)"
+          border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
+          background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
+          selected={false}
+          width="200px"
+          height="50px"
+          rounded="33px"
+          onClick={() =>
+            window.open("https://docs.google.com/forms/d/e/1FAIpQLSdXwDhqH0oQaV4Z5szOVjtN7E-8f1lCBssPOtHloJltN5Cz4Q/viewform?usp=sharing", "_blank", "noopener,noreferrer")
+          }
+        >
+          <Box color="white">
+            Whitelist
+          </Box>
         </ImageTransition>
       </Flex>
       {/* <Flex
