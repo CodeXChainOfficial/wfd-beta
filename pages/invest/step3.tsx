@@ -24,8 +24,6 @@ export default function InvestStep3() {
   const canvasRef = useRef({});
   const router = useRouter();
   const wallet = useWallet();
-  const address = wallet?.account;
-console.log(address)
   function openUpload() {
     if (typeof document !== "undefined") {
       const fileSelector = document.getElementById("fileSelector");

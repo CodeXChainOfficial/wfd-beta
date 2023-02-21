@@ -1,7 +1,7 @@
 import React from "react";
 import { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
-import theme from "../components/themeA";
+import theme from "../components/Theme";
 
 import "../styles/fonts.css";
 

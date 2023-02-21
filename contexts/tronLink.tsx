@@ -1,16 +1,10 @@
-import React, {
-  createContext,
-  useContext,
-  useReducer,
-  useEffect,
-  ReactNode,
-} from "react";
+import React, { useEffect, ReactNode } from "react";
 import { createTrackedSelector } from "react-tracked";
 import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import BigNumber from "bignumber.js";
-import { WEFUND_TRON_WALLET, ERC20_ABI } from "../config/constants";
+import { WEFUND_TRON_WALLET } from "../config/constants";
 
 declare let window: any;
 

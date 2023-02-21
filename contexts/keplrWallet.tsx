@@ -7,7 +7,6 @@ import type { AppConfig } from "../config";
 import { getJunoConfig, keplrConfig } from "../config";
 import type { ReactNode } from "react";
 import { createTrackedSelector } from "react-tracked";
-import type { State } from "zustand";
 import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";

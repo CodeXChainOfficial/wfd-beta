@@ -1,17 +1,10 @@
-import React, {
-  createContext,
-  useContext,
-  useReducer,
-  useEffect,
-  ReactNode,
-} from "react";
+import React, { useEffect, ReactNode } from "react";
 
 import { createTrackedSelector } from "react-tracked";
 import { toast } from "react-toastify";
 import create from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import { BigNumber, ethers } from "ethers";
-import { useWeb3React } from "@web3-react/core";
 
 import {
   WEFUND_BSC_ADDRESS,

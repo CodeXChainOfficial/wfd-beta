@@ -14,7 +14,6 @@ import {
   WEFUND_ELROND_WALLET,
 } from "../config/constants";
 import axios from "axios";
-import { ParseParam_ProjectId } from "../utils/utility";
 
 export interface ElrondWebStore {
   connected: boolean;
@@ -67,8 +66,6 @@ export const useElrondWebStore = create(
       try {
         const provider = new WalletProvider(config.walletAddress);
         window.localStorage.setItem("action", "elrond_connection");
-        const project_id = ParseParam_ProjectId();
-        window.localStorage.setItem("project_id", project_id.toString());
 
         await provider.login();
       } catch (err: any) {
@@ -120,7 +117,7 @@ export const useElrondWebStore = create(
         };
       } else {
         const address_encoded = new Buffer(address).toString("hex");
-        const value_encoded = amount.toString(16);
+        const value_encoded = amount.toString();
         let data = "ESDTTransfer@" + address_encoded;
         if (value_encoded.length % 2 == 0) data += "@" + value_encoded;
         else data += "@0" + value_encoded;
@@ -142,8 +139,6 @@ export const useElrondWebStore = create(
         };
       }
       window.localStorage.setItem("action", "elrond_investing");
-      const project_id = ParseParam_ProjectId();
-      window.localStorage.setItem("project_id", project_id.toString());
       await provider.signTransactions([transaction]);
     },
   }))

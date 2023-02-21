@@ -7,12 +7,7 @@ import { CHAINS_CONFIG, ERROR_OPTION, NETWORK } from "../config/constants";
 
 import Navbar from "./Navbar";
 import Container from "./Container";
-import {
-  getInteger,
-  ParseParam,
-  ParseParam_Address,
-  ParseParam_ProjectId,
-} from "../utils/utility";
+
 import { toast } from "react-toastify";
 import { SUCCESS_OPTION } from "../config/constants";
 import { useStore, ActionKind } from "../contexts/store";
