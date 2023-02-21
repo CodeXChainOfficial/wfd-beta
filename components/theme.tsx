@@ -17,6 +17,13 @@ const theme = extendTheme({
   },
   fonts,
   breakpoints,
+  components: {
+    Button: {
+      baseStyle: {
+        fontWeight: "normal",
+      },
+    },
+  },
 });
 
 export default theme;

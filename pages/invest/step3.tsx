@@ -1,39 +1,13 @@
 import { CheckIcon } from "@chakra-ui/icons";
-import {
-  chakra,
-  Box,
-  Flex,
-  Text,
-  Input,
-  InputGroup,
-  Select,
-  InputLeftElement,
-  HStack,
-  Button,
-} from "@chakra-ui/react";
-import React, { useEffect, useState, useRef } from "react";
+import { Box, Flex, Text, Input, HStack, Button } from "@chakra-ui/react";
+import React, { useState, useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "react-toastify";
 import { BigNumber } from "bignumber.js";
 
-import {
-  REQUEST_ENDPOINT,
-  WEFUND_CONTRACT,
-  WEFUND_ID,
-  NETWORK,
-} from "../../config/constants";
-import {
-  ImageTransition,
-  ButtonTransition,
-  InputTransition,
-} from "../../components/ImageTransition";
+import { REQUEST_ENDPOINT } from "../../config/constants";
 import PageLayout from "../../components/PageLayout";
-import {
-  ParseParam_ProjectId,
-  checkNetwork,
-  LookForTokenInfo,
-  checkBscConnection,
-} from "../../utils/utility";
+import { checkNetwork, LookForTokenInfo } from "../../utils/utility";
 import { ERROR_OPTION, SUCCESS_OPTION } from "../../config/constants";
 import { useStore, useWallet } from "../../contexts/store";
 import { useRouter } from "next/router";
@@ -41,18 +15,16 @@ import Footer from "../../components/Footer";
 import axios from "axios";
 
 export default function InvestStep3() {
-  const [signature, setSignature] = useState("");
+  const [_, setSignature] = useState("");
   const [investTitle, setInsTitle] = useState("");
   const [investName, setInsName] = useState("");
   const [investEmail, setInsEmail] = useState("");
 
-  const { state, dispatch } = useStore();
+  const { state } = useStore();
   const canvasRef = useRef({});
   const router = useRouter();
   const wallet = useWallet();
   const address = wallet?.account;
-
-  const project_id = ParseParam_ProjectId();
 
   function openUpload() {
     if (typeof document !== "undefined") {
@@ -196,12 +168,7 @@ export default function InvestStep3() {
       toast.dismiss();
       toast("Success", SUCCESS_OPTION);
 
-      router.push({
-        pathname: "/invest/step4",
-        query: {
-          project_id: project_id,
-        },
-      });
+      router.push("/invest/step4");
     } catch (e) {
       toast.dismiss();
       window.localStorage.removeItem("action");
