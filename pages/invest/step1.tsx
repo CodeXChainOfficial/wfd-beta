@@ -21,7 +21,6 @@ export default function InvestStep1() {
   const Document = useMemo(() => <SAFTTemplate />, []);
 
   function onNext() {
-    console.log(condition);
     if (condition) router.push("/invest/step2");
   }
   return (
@@ -161,7 +160,6 @@ export default function InvestStep1() {
           </Flex>
         </Box>
       </Flex>
-      <Footer />
     </PageLayout>
   );
 }

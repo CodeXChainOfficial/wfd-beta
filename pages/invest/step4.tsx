@@ -314,7 +314,7 @@ export default function InvestStep4() {
           </Flex>
           {/* --------Table confirmation mobile---------- */}
           <Flex
-            maxWidth={{ base: "350px", md: "350px", lg: "0px" }}
+            maxWidth={{ base: "100%", md: "100%", lg: "0px" }}
             maxHeight={{ base: "999px", md: "999px", lg: "0px" }}
             justify="center"
             align="center"
@@ -402,7 +402,6 @@ export default function InvestStep4() {
           </Flex>
         </Box>
       </Box>
-      <Footer />
     </PageLayout>
   );
 }

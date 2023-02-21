@@ -1,6 +1,6 @@
 import { ToastOptions } from "react-toastify";
 
-export const NETWORK = "mainnet";
+export const NETWORK = "testnet";
 export const WEFUND_ID = 1;
 export const REQUEST_ENDPOINT =
   "https://wefund-nodejs-gwb6v.ondigitalocean.app";

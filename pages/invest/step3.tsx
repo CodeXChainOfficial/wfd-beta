@@ -25,7 +25,7 @@ export default function InvestStep3() {
   const router = useRouter();
   const wallet = useWallet();
   const address = wallet?.account;
-
+console.log(address)
   function openUpload() {
     if (typeof document !== "undefined") {
       const fileSelector = document.getElementById("fileSelector");
@@ -159,12 +159,12 @@ export default function InvestStep3() {
         tokenInfo?.native
       );
 
-      await axios.post("/api/investors/invest", {
-        wallet: address,
-        amount: investAmount,
-        wfd_amount: investWfdAmount,
-        date: Date.now() / 1000,
-      });
+      // await axios.post("/api/investors/invest", {
+      //   wallet: address,
+      //   amount: investAmount,
+      //   wfd_amount: investWfdAmount,
+      //   date: Date.now() / 1000,
+      // });
       toast.dismiss();
       toast("Success", SUCCESS_OPTION);
 
@@ -376,7 +376,7 @@ export default function InvestStep3() {
                 _focusVisible={{ border: "solid 0px" }}
                 rounded="md"
                 placeholder="Your title"
-                value={investName}
+                value={investTitle}
                 onChange={(e) => setInsTitle(e.target.value)}
               />
             </Box>
@@ -473,8 +473,6 @@ export default function InvestStep3() {
           {/* <Faq /> */}
         </Box>
       </Box>
-
-      <Footer />
     </PageLayout>
   );
 }

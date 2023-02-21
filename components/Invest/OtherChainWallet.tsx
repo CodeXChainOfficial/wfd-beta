@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import {
   CHAINS_CONFIG,
   ERROR_OPTION,
+  NETWORK,
   TOKEN_LIST,
 } from "../../config/constants";
 
@@ -27,7 +28,10 @@ const OtherChainWallet: FunctionComponent<Props> = ({
   chain,
   setChain,
 }) => {
-  const list = TOKEN_LIST.filter((item) => item.chain == chain);
+  const list = TOKEN_LIST.filter(
+    (item) => item.chain.toLowerCase() == chain.toLowerCase()
+  );
+
   useEffect(() => {
     setToken(list[0].name);
   }, [chain]);
@@ -49,16 +53,20 @@ const OtherChainWallet: FunctionComponent<Props> = ({
     await wallet.connect();
     dispatch({ type: ActionKind.setWalletType, payload: to });
   }
+
   const chains = CHAINS_CONFIG;
   const onChangeChain = async (value: string) => {
     setChain(value);
-    const chain: string = value.toLowerCase();
+
+    let chain: string = value.toLowerCase();
+    if (NETWORK == "testnet" && chain == "bsc") chain = "bsc_testnet";
 
     switch (chain) {
       case "juno":
         connectTo("keplr");
         break;
       case "bsc":
+      case "bsc_testnet":
       case "polygon":
         const ethereum = window.ethereum;
         try {

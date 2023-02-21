@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import OtherChainWallet from "../../components/Invest/OtherChainWallet";
 import Footer from "../../components/Footer";
 import PageLayout from "../../components/PageLayout";
+import { useWallet } from "../../contexts/store";
 
 export default function InvestStep2() {
   const [chain, setChain] = useState("BSC");
@@ -223,7 +224,8 @@ export default function InvestStep2() {
               >
                 <Input
                   style={{ border: "0", background: "transparent" }}
-                  h="55px"
+                  h="100%"
+                  pl="25px"
                   border="solid 0px"
                   rounded="md"
                   _focusVisible={{ border: "solid 0px" }}
@@ -292,7 +294,6 @@ export default function InvestStep2() {
           </Flex>
         </Box>
       </Box>
-      <Footer />
     </PageLayout>
   );
 }
