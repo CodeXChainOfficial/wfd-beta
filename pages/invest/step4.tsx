@@ -12,18 +12,13 @@ import {
   TableCaption,
   Image,
   HStack,
+  Button,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-import { useStore } from "../../contexts/store";
-import { ImageTransition } from "../../components/ImageTransition";
 import PageLayout from "../../components/PageLayout";
-import {
-  SUCCESS_OPTION,
-  WEFUND_ID,
-  REQUEST_ENDPOINT,
-} from "../../config/constants";
+import { SUCCESS_OPTION, REQUEST_ENDPOINT } from "../../config/constants";
 import { useRouter } from "next/router";
 import Footer from "../../components/Footer";
 
@@ -42,7 +37,7 @@ export default function InvestStep4() {
       setInvestDate(window.localStorage.getItem("invest_date") ?? "");
 
       pdfFile = window.localStorage.getItem("pdf_file") ?? "";
-      docxFile = window.localStorage.getItem("docx_file") ?? "";
+      // docxFile = window.localStorage.getItem("docx_file") ?? "";
     }
   }, []);
   //---------------notification setting---------------------------------
@@ -397,24 +392,13 @@ export default function InvestStep4() {
           </Flex>
 
           <Flex w="100%" mt="60px" justify="center" mb="170px">
-            <ImageTransition
-              unitid="submit"
-              border1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-              background1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-              border2="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-              background2="#10144B"
-              border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-              background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
-              selected={false}
-              width="200px"
-              height="50px"
-              rounded="33px"
-              onClick={() => {
-                router.push("/");
-              }}
+            <Button
+              colorScheme="pink"
+              w="200px"
+              onClick={() => router.push("/")}
             >
-              <Box color="white">Back Home</Box>
-            </ImageTransition>
+              Back Home
+            </Button>
           </Flex>
         </Box>
       </Box>
