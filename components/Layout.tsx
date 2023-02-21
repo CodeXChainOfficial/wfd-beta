@@ -13,7 +13,6 @@ import {
   ParseParam_Address,
   ParseParam_ProjectId,
 } from "../utils/utility";
-import { encrypt3DES, decrypt3DES } from "../utils/crypto";
 import { toast } from "react-toastify";
 import { SUCCESS_OPTION } from "../config/constants";
 import { useStore, ActionKind } from "../contexts/store";
@@ -21,7 +20,6 @@ import { useNearWallet } from "../contexts/nearWallet";
 import { useElrondWeb } from "../contexts/elrond";
 import WalletModal from "./WalletModal";
 import { useMetamaskWallet } from "../contexts/metamask";
-import { fetchCommunity, fetchProjectData } from "../hook/FetchProject";
 
 type Props = {
   children?: ReactNode;
@@ -29,57 +27,14 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   const router = useRouter();
-  const { state, dispatch } = useStore();
-
+  const { dispatch } = useStore();
   const metamaskWallet = useMetamaskWallet();
-  const address = metamaskWallet?.account;
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   useEffect(() => {
     dispatch({ type: ActionKind.setWalletModal, payload: onOpen });
   }, []);
 
-  useEffect(() => {
-    async function confirmReferral() {
-      if (address != null) {
-        const referralLink =
-          "https://wefund.app/?referral=" +
-          encrypt3DES(address, "wefundkeyreferral");
-
-        dispatch({ type: ActionKind.setReferralLink, payload: referralLink });
-
-        let referral = ParseParam("referral");
-        if (referral != null) {
-          referral = referral.split(" ").join("+");
-          let base;
-          try {
-            base = decrypt3DES(referral, "wefundkeyreferral");
-          } catch (e) {
-            console.log(e);
-          }
-
-          const formData = new FormData();
-          formData.append("base", base);
-          formData.append("referred", address);
-
-          const requestOptions = {
-            method: "POST",
-            body: formData,
-          };
-
-          const result = await fetch("/api/checkreferral", requestOptions);
-          const res = await result.json();
-          dispatch({
-            type: "setReferralCount",
-            payload: res.data,
-          });
-        }
-      }
-    }
-    confirmReferral();
-  }, [address]);
-
-  //------Metamask connection-----------------------------
   useEffect(() => {
     const connectToBSC = async () => {
       const ethereum = window.ethereum;
@@ -122,11 +77,6 @@ const Layout = ({ children }: Props) => {
       });
     }
   }, [metamaskWallet, metamaskWallet.initialized]);
-
-  useEffect(() => {
-    fetchProjectData(state, dispatch, true, true);
-    fetchCommunity(state, dispatch, true);
-  }, []);
 
   //-------Near connection--------------------------------------------------
   const near = useNearWallet();

@@ -67,7 +67,6 @@ const OtherChainWallet: FunctionComponent<Props> = ({
             params: [{ chainId: chains[chain].chainId }],
           });
         } catch (switchError: any) {
-          // This error code indicates that the chain has not been added to MetaMask.
           if (switchError.code === 4902) {
             try {
               await ethereum.request({
@@ -81,11 +80,9 @@ const OtherChainWallet: FunctionComponent<Props> = ({
                 ],
               });
             } catch (addError) {
-              // handle "add" error
               toast("Can't switch to " + chain.toUpperCase(), ERROR_OPTION);
             }
           }
-          // handle other "switch" errors
         }
         connectTo("metamask");
         break;

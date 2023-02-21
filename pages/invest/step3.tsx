@@ -9,6 +9,7 @@ import {
   Select,
   InputLeftElement,
   HStack,
+  Button,
 } from "@chakra-ui/react";
 import React, { useEffect, useState, useRef } from "react";
 import SignatureCanvas from "react-signature-canvas";
@@ -29,7 +30,6 @@ import {
 import PageLayout from "../../components/PageLayout";
 import {
   ParseParam_ProjectId,
-  GetOneProject,
   checkNetwork,
   LookForTokenInfo,
   checkBscConnection,
@@ -39,7 +39,6 @@ import { useStore, useWallet } from "../../contexts/store";
 import { useRouter } from "next/router";
 import Footer from "../../components/Footer";
 import axios from "axios";
-import { useOneProjectData } from "../../hook/FetchProject";
 
 export default function InvestStep3() {
   const [signature, setSignature] = useState("");
@@ -53,11 +52,8 @@ export default function InvestStep3() {
   const wallet = useWallet();
   const address = wallet?.account;
 
-  //------------parse URL for project id----------------------------
   const project_id = ParseParam_ProjectId();
-  const oneprojectData = useOneProjectData(project_id);
 
-  //----------------upload signature----------------------------
   function openUpload() {
     if (typeof document !== "undefined") {
       const fileSelector = document.getElementById("fileSelector");
@@ -79,7 +75,7 @@ export default function InvestStep3() {
       };
     }
   }
-  //---------------on next------------------------------------
+
   function checkValication() {
     const investChain = window.localStorage.getItem("invest_chain") ?? "";
     const investAmount = window.localStorage.getItem("invest_amount") ?? "";
@@ -118,10 +114,7 @@ export default function InvestStep3() {
       toast("Please input amount", ERROR_OPTION);
       return false;
     }
-    // if (state.presale == false && parseFloat(investAmount) < 20000) {
-    //   toast("Input amount for private sale of at least 20,000", ERROR_OPTION);
-    //   return false;
-    // }
+
     return true;
   }
 
@@ -135,7 +128,7 @@ export default function InvestStep3() {
     formData.append("investAmount", investAmount);
     formData.append("investDate", date);
     formData.append("investSignature", (canvasRef.current as any).toDataURL());
-    formData.append("presale", state.presale.toString());
+    formData.append("presale", "presale");
 
     const requestOptions = {
       method: "POST",
@@ -156,38 +149,7 @@ export default function InvestStep3() {
         console.log("Error:" + e);
       });
   }
-  async function createSAFTDocx(date: string) {
-    const investAmount = window.localStorage.getItem("invest_amount") ?? "";
 
-    const formData = new FormData();
-    formData.append("docxTemplate", oneprojectData?.project_saft);
-    formData.append("purchaserName", investName);
-    formData.append("purchaserTitle", investTitle);
-    formData.append("purchaserEmail", investEmail);
-    formData.append("purchaserAmount", investAmount);
-    formData.append("purchaserDate", date);
-    const canvas: any = canvasRef.current;
-    formData.append("purchaserSignature", canvas.toDataURL());
-
-    const requestOptions = {
-      method: "POST",
-      body: formData,
-    };
-
-    toast("Uploading", SUCCESS_OPTION);
-
-    await fetch(REQUEST_ENDPOINT + "/docxmake", requestOptions)
-      .then((res) => res.json())
-      .then((data) => {
-        toast.dismiss();
-
-        window.localStorage.setItem("docx_file", data.data);
-        console.log(data);
-      })
-      .catch((e) => {
-        console.log("Error:" + e);
-      });
-  }
   async function onNext() {
     const investChain = window.localStorage.getItem("invest_chain") ?? "";
     const investAmount = window.localStorage.getItem("invest_amount") ?? "";
@@ -256,384 +218,295 @@ export default function InvestStep3() {
       subTitle3="&nbsp;to WeFund"
     >
       <Flex
-        width="100%"
         justify="center"
         align="center"
-        py={"4em"}
         direction="column"
-        backgroundImage="url('/media/Home/smoke-bg.png')"
-        backgroundSize={"contain"}
+        style={{ fontFamily: "PilatExtended-Regular" }}
       >
-        <Flex
-          justify="center"
-          align="center"
-          direction="column"
-          style={{ fontFamily: "PilatExtended-Regular" }}
-        >
-          <HStack mt="50px" mb="50px" w="400px" justifyContent={"center"}>
-            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
-              <Box
-                width={{ base: "18px", md: "20px" }}
-                height={{ base: "18px", md: "20px" }}
-                style={{
-                  paddingTop: "1px",
-                  paddingLeft: "2px",
-                  border: "3px solid #3BE489",
-                  backgroundColor: "#3BE489",
-                  borderRadius: "50%",
-                  display: "inline-block",
-                }}
-              >
-                <CheckIcon
-                  color="#250E3F"
-                  w={{ base: 2, md: 3 }}
-                  h={{ base: 2, md: 3 }}
-                  marginBottom={{ base: "30px", md: "20px" }}
-                />
-              </Box>
-              <Text
-                fontSize={{
-                  base: "12px",
-                  sm: "12px",
-                  md: "14px",
-                  lg: "14px",
-                }}
-              >
-                Step 01
-              </Text>
-            </Flex>
+        <HStack mt="50px" mb="50px" w="400px" justifyContent={"center"}>
+          <Flex direction={"column"} w="80px" align={"center"} gap={2}>
             <Box
+              width={{ base: "18px", md: "20px" }}
+              height={{ base: "18px", md: "20px" }}
               style={{
-                height: "0x",
-                width: "15%",
-                border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
-                background: " rgba(255, 255, 255, 0.3799999952316284)",
+                paddingTop: "1px",
+                paddingLeft: "2px",
+                border: "3px solid #3BE489",
+                backgroundColor: "#3BE489",
+                borderRadius: "50%",
+                display: "inline-block",
               }}
-            />
-            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
-              <Box
-                width={{ base: "18px", md: "20px" }}
-                height={{ base: "18px", md: "20px" }}
-                style={{
-                  paddingTop: "1px",
-                  paddingLeft: "2px",
-                  border: "3px solid #3BE489",
-                  backgroundColor: "#3BE489",
-                  borderRadius: "50%",
-                  display: "inline-block",
-                }}
-              >
-                <CheckIcon
-                  color="#250E3F"
-                  w={{ base: 2, md: 3 }}
-                  h={{ base: 2, md: 3 }}
-                  marginBottom={{ base: "30px", md: "20px" }}
-                />
-              </Box>
-              <Text
-                fontSize={{
-                  base: "12px",
-                  sm: "12px",
-                  md: "14px",
-                  lg: "14px",
-                }}
-              >
-                Step 02
-              </Text>
-            </Flex>
+            >
+              <CheckIcon
+                color="#250E3F"
+                w={{ base: 2, md: 3 }}
+                h={{ base: 2, md: 3 }}
+                marginBottom={{ base: "30px", md: "20px" }}
+              />
+            </Box>
+            <Text
+              fontSize={{
+                base: "12px",
+                sm: "12px",
+                md: "14px",
+                lg: "14px",
+              }}
+            >
+              Step 01
+            </Text>
+          </Flex>
+          <Box
+            style={{
+              height: "0x",
+              width: "15%",
+              border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
+              background: " rgba(255, 255, 255, 0.3799999952316284)",
+            }}
+          />
+          <Flex direction={"column"} w="80px" align={"center"} gap={2}>
             <Box
+              width={{ base: "18px", md: "20px" }}
+              height={{ base: "18px", md: "20px" }}
               style={{
-                height: "0px",
-                width: "15%",
-                border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
-                background: " rgba(255, 255, 255, 0.3799999952316284)",
+                paddingTop: "1px",
+                paddingLeft: "2px",
+                border: "3px solid #3BE489",
+                backgroundColor: "#3BE489",
+                borderRadius: "50%",
+                display: "inline-block",
+              }}
+            >
+              <CheckIcon
+                color="#250E3F"
+                w={{ base: 2, md: 3 }}
+                h={{ base: 2, md: 3 }}
+                marginBottom={{ base: "30px", md: "20px" }}
+              />
+            </Box>
+            <Text
+              fontSize={{
+                base: "12px",
+                sm: "12px",
+                md: "14px",
+                lg: "14px",
+              }}
+            >
+              Step 02
+            </Text>
+          </Flex>
+          <Box
+            style={{
+              height: "0px",
+              width: "15%",
+              border: "2px solid rgba(255, 255, 255, 0.3799999952316284)",
+              background: " rgba(255, 255, 255, 0.3799999952316284)",
+            }}
+          ></Box>
+          <Flex direction={"column"} w="80px" align={"center"} gap={2}>
+            <Box
+              width={{ base: "30px", md: "20px" }}
+              height={{ base: "18px", md: "20px" }}
+              style={{
+                border: "3px solid #3BE489",
+                borderRadius: "50%",
+                display: "inline-block",
               }}
             ></Box>
-            <Flex direction={"column"} w="80px" align={"center"} gap={2}>
-              <Box
-                width={{ base: "30px", md: "20px" }}
-                height={{ base: "18px", md: "20px" }}
-                style={{
-                  border: "3px solid #3BE489",
-                  borderRadius: "50%",
-                  display: "inline-block",
-                }}
-              ></Box>
-              <Text
-                fontSize={{
-                  base: "12px",
-                  sm: "12px",
-                  md: "14px",
-                  lg: "14px",
-                }}
-              >
-                Confirm
-              </Text>
-            </Flex>
-          </HStack>
-        </Flex>
-        <Box
-          w={{ base: "90%", md: "600px", lg: "800px" }}
-          background="#120037"
-          backdropBlur={"54px"}
-          pt="40px"
-          style={{ fontFamily: "Sk-Modernist" }}
-          rounded={"3xl"}
-        >
-          <Box
-            width={"100%"}
-            style={{ fontFamily: "Sk-Modernist-Regular" }}
-            px="10px"
-          >
-            <Flex
-              justify="center"
-              align="center"
-              direction="column"
-              style={{ fontFamily: "PilatExtended-Regular" }}
+            <Text
+              fontSize={{
+                base: "12px",
+                sm: "12px",
+                md: "14px",
+                lg: "14px",
+              }}
             >
-              <Text
-                fontSize={{ base: "15px", md: "15px", lg: "22px" }}
-                fontWeight={"300"}
-                fontFamily={"PilatExtended-Bold"}
-              >
-                Please <span style={{ color: "#00A3FF" }}>share with us</span>{" "}
-                this information
-              </Text>
-              <Text
-                fontSize={{ base: "14px", md: "14px", lg: "16px" }}
-                color="rgba(255, 255, 255, 0.54)"
-                fontWeight={"normal"}
-                mt={"20px"}
-                textAlign={"center"}
-              >
-                Please fill in all fields to finalize the SAFT process
-              </Text>
-            </Flex>
-
-            {/* -----------------Name and Title----------------- */}
-            <Flex
-              direction={{ base: "column", md: "column", lg: "column" }}
-              ml="0px"
-              mt="40px"
-              justify="center"
-              align="center"
-              gap={4}
-            >
-              <Box>
-                <Flex
-                  ml={{ base: "0px", md: "0px", lg: "0px" }}
-                  justify="center"
-                >
-                  <Text mb="20px">Name</Text>
-                </Flex>
-
-                <InputGroup
-                  size={{ base: "200px", lg: "sm" }}
-                  bg="transparent"
-                  h="45px"
-                  width="300px"
-                  alignItems="center"
-                  style={{
-                    border: "1.5px solid rgba(255, 255, 255, 0.2)",
-                    background: " rgba(0, 0, 0, 0.25)",
-                  }}
-                  rounded="md"
-                >
-                  <InputLeftElement
-                    style={{ background: "transparent" }}
-                    pointerEvents="none"
-                    color="gray.300"
-                    fontSize="1.2em"
-                    // children=" "
-                  />
-                  <Input
-                    h="100%"
-                    pl="25px"
-                    style={{ border: "0", background: "transparent" }}
-                    border="solid 0px"
-                    _focusVisible={{ border: "solid 0px" }}
-                    rounded="md"
-                    placeholder="Type Name"
-                    value={investName}
-                    onChange={(e) => {
-                      setInsName(e.target.value);
-                    }}
-                  />
-                </InputGroup>
-              </Box>
-              <Box ml={{ base: "0px", md: "0px", lg: "0px" }}>
-                <Flex
-                  ml={{ base: "0px", md: "0px", lg: "0px" }}
-                  mt={{ base: "40px", md: "40px", lg: "0px" }}
-                  justify="center"
-                >
-                  <Text mb="20px">Title</Text>
-                </Flex>
-                <InputGroup
-                  size={{ base: "200px", lg: "sm" }}
-                  bg="transparent"
-                  h="45px"
-                  width="300px"
-                  alignItems="center"
-                  style={{
-                    border: "1.5px solid rgba(255, 255, 255, 0.2)",
-                    background: " rgba(0, 0, 0, 0.25)",
-                  }}
-                  rounded="md"
-                >
-                  <InputLeftElement
-                    style={{ background: "transparent" }}
-                    pointerEvents="none"
-                    color="gray.300"
-                    fontSize="1.2em"
-                    // children=" "
-                  />
-                  <Input
-                    h="100%"
-                    pl="25px"
-                    style={{ border: "0", background: "transparent" }}
-                    border="solid 0px"
-                    _focusVisible={{ border: "solid 0px" }}
-                    rounded="md"
-                    placeholder="Your title"
-                    value={investTitle}
-                    onChange={(e) => {
-                      setInsTitle(e.target.value);
-                    }}
-                  />
-                </InputGroup>
-              </Box>
-            </Flex>
-
-            <Flex
-              direction={{ base: "column", md: "column", lg: "column" }}
-              mt="20px"
-              justify="center"
-              align="center"
-              gap={4}
-            >
-              <Box
-                ml={{ base: "0px", md: "0px", lg: "0px" }}
-                mt={{ base: "0px", md: "0px", lg: "0px" }}
-              >
-                <Flex justify="center">
-                  <Text mb="20px">Email</Text>
-                </Flex>
-
-                <InputGroup
-                  size={{ base: "200px", lg: "sm" }}
-                  bg="transparent"
-                  h="45px"
-                  width="300px"
-                  alignItems="center"
-                  style={{
-                    border: "1.5px solid rgba(255, 255, 255, 0.2)",
-                    background: " rgba(0, 0, 0, 0.25)",
-                  }}
-                  rounded="md"
-                >
-                  <InputLeftElement
-                    style={{ background: "transparent" }}
-                    pointerEvents="none"
-                    color="gray.300"
-                    fontSize="1.2em"
-                    // children=" "
-                  />
-                  <Input
-                    h="100%"
-                    pl="25px"
-                    style={{ border: "0", background: "transparent" }}
-                    border="solid 0px"
-                    _focusVisible={{ border: "solid 0px" }}
-                    rounded="md"
-                    type="email"
-                    placeholder="example@email.com"
-                    value={investEmail}
-                    onChange={(e) => {
-                      setInsEmail(e.target.value);
-                    }}
-                  />
-                </InputGroup>
-              </Box>
-              <Box ml={{ base: "0px", md: "0px", lg: "0px" }}>
-                <Flex
-                  mt={{ base: "40px", md: "40px", lg: "0px" }}
-                  justify="center"
-                >
-                  <Text mb="20px">Signature</Text>
-                </Flex>
-                <Box>
-                  <Flex justify="center" w="300px" rounded="md" bg="white">
-                    <SignatureCanvas
-                      ref={canvasRef as any}
-                      penColor="black"
-                      canvasProps={{ width: 300, height: 100 }}
-                    />
-                  </Flex>
-                  <Flex
-                    style={{ cursor: "pointer" }}
-                    mt="20px"
-                    justify="left"
-                    fontSize="14px"
-                  >
-                    <ButtonTransition
-                      unitid="clear"
-                      selected={false}
-                      width="100px"
-                      height="40px"
-                      rounded="20px"
-                      onClick={() => {
-                        if (canvasRef.current)
-                          (canvasRef.current as any).clear();
-                      }}
-                    >
-                      <Box>Clear</Box>
-                    </ButtonTransition>
-                    <ButtonTransition
-                      unitid="Open Signature"
-                      selected={false}
-                      width="150px"
-                      height="40px"
-                      rounded="20px"
-                      ml="40px"
-                      onClick={() => openUpload()}
-                    >
-                      <Box>Open Signature</Box>
-                    </ButtonTransition>
-                  </Flex>
-                </Box>
-                <input
-                  type="file"
-                  id="fileSelector"
-                  name="userFile"
-                  style={{ display: "none" }}
-                  onChange={(e) => onChangeSignature(e)}
-                />
-              </Box>
-            </Flex>
-
-            <Flex w="100%" mt="60px" justify="center" mb="170px">
-              <ImageTransition
-                unitid="submit"
-                border1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-                background1="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-                border2="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-                background2="#10144B"
-                border3="linear-gradient(180deg, #00A3FF 0%, #0047FF 100%)"
-                background3="linear-gradient(180deg, #171347 0%, #171347 100%)"
-                selected={false}
-                width="200px"
-                height="50px"
-                rounded="33px"
-                onClick={() => onNext()}
-              >
-                <Box color="white">Confirm</Box>
-              </ImageTransition>
-            </Flex>
-            {/* <Faq /> */}
-          </Box>
-        </Box>
+              Confirm
+            </Text>
+          </Flex>
+        </HStack>
       </Flex>
+      <Box
+        w={{ base: "90%", md: "600px", lg: "800px" }}
+        background="#540d56"
+        backdropBlur={"54px"}
+        pt="40px"
+        style={{ fontFamily: "Sk-Modernist" }}
+        rounded={"3xl"}
+      >
+        <Box
+          width={"100%"}
+          style={{ fontFamily: "Sk-Modernist-Regular" }}
+          px="10px"
+        >
+          <Flex
+            justify="center"
+            align="center"
+            direction="column"
+            style={{ fontFamily: "PilatExtended-Regular" }}
+          >
+            <Text
+              fontSize={{ base: "15px", md: "15px", lg: "22px" }}
+              fontWeight={"300"}
+              fontFamily={"PilatExtended-Bold"}
+            >
+              Please <span style={{ color: "#00A3FF" }}>share with us</span>{" "}
+              this information
+            </Text>
+            <Text
+              fontSize={{ base: "14px", md: "14px", lg: "16px" }}
+              color="rgba(255, 255, 255, 0.54)"
+              fontWeight={"normal"}
+              mt={"20px"}
+              textAlign={"center"}
+            >
+              Please fill in all fields to finalize the SAFT process
+            </Text>
+          </Flex>
+
+          {/* -----------------Name and Title----------------- */}
+          <Flex
+            direction={{ base: "column", md: "column", lg: "column" }}
+            ml="0px"
+            mt="40px"
+            justify="center"
+            align="center"
+            gap={4}
+          >
+            <Box>
+              <Flex ml={{ base: "0px", md: "0px", lg: "0px" }} justify="center">
+                <Text mb="20px">Name</Text>
+              </Flex>
+
+              <Input
+                w="300px"
+                h="45px"
+                style={{
+                  border: "1.5px solid rgba(255, 255, 255, 0.2)",
+                  background: " rgba(0, 0, 0, 0.25)",
+                }}
+                _focusVisible={{ border: "solid 0px" }}
+                rounded="md"
+                placeholder="Type Name"
+                value={investName}
+                onChange={(e) => setInsName(e.target.value)}
+              />
+            </Box>
+            <Box ml={{ base: "0px", md: "0px", lg: "0px" }}>
+              <Flex
+                ml={{ base: "0px", md: "0px", lg: "0px" }}
+                mt={{ base: "40px", md: "40px", lg: "0px" }}
+                justify="center"
+              >
+                <Text mb="20px">Title</Text>
+              </Flex>
+              <Input
+                w="300px"
+                h="45px"
+                style={{
+                  border: "1.5px solid rgba(255, 255, 255, 0.2)",
+                  background: " rgba(0, 0, 0, 0.25)",
+                }}
+                _focusVisible={{ border: "solid 0px" }}
+                rounded="md"
+                placeholder="Your title"
+                value={investName}
+                onChange={(e) => setInsTitle(e.target.value)}
+              />
+            </Box>
+          </Flex>
+
+          <Flex
+            direction={{ base: "column", md: "column", lg: "column" }}
+            mt="20px"
+            justify="center"
+            align="center"
+            gap={4}
+          >
+            <Box
+              ml={{ base: "0px", md: "0px", lg: "0px" }}
+              mt={{ base: "0px", md: "0px", lg: "0px" }}
+            >
+              <Flex justify="center">
+                <Text mb="20px">Email</Text>
+              </Flex>
+
+              <Input
+                w="300px"
+                h="45px"
+                style={{
+                  border: "1.5px solid rgba(255, 255, 255, 0.2)",
+                  background: " rgba(0, 0, 0, 0.25)",
+                }}
+                _focusVisible={{ border: "solid 0px" }}
+                rounded="md"
+                placeholder="example@email.com"
+                value={investEmail}
+                onChange={(e) => setInsEmail(e.target.value)}
+              />
+            </Box>
+            <Box ml={{ base: "0px", md: "0px", lg: "0px" }}>
+              <Flex
+                mt={{ base: "40px", md: "40px", lg: "0px" }}
+                justify="center"
+              >
+                <Text mb="20px">Signature</Text>
+              </Flex>
+              <Box>
+                <Flex justify="center" w="300px" rounded="md" bg="white">
+                  <SignatureCanvas
+                    ref={canvasRef as any}
+                    penColor="black"
+                    canvasProps={{ width: 300, height: 100 }}
+                  />
+                </Flex>
+                <Flex
+                  style={{ cursor: "pointer" }}
+                  mt="20px"
+                  justify="left"
+                  fontSize="14px"
+                >
+                  <Button
+                    colorScheme="pink"
+                    width="100px"
+                    height="40px"
+                    rounded="20px"
+                    onClick={() => {
+                      if (canvasRef.current) (canvasRef.current as any).clear();
+                    }}
+                  >
+                    Clear
+                  </Button>
+                  <Button
+                    colorScheme="pink"
+                    width="150px"
+                    height="40px"
+                    rounded="20px"
+                    ml="40px"
+                    onClick={() => openUpload()}
+                  >
+                    Open Signature
+                  </Button>
+                </Flex>
+              </Box>
+              <input
+                type="file"
+                id="fileSelector"
+                name="userFile"
+                style={{ display: "none" }}
+                onChange={(e) => onChangeSignature(e)}
+              />
+            </Box>
+          </Flex>
+
+          <Flex w="100%" mt="60px" justify="center" mb="170px">
+            <Button colorScheme="pink" w="200px" onClick={() => onNext()}>
+              Confirm
+            </Button>
+          </Flex>
+          {/* <Faq /> */}
+        </Box>
+      </Box>
+
       <Footer />
     </PageLayout>
   );

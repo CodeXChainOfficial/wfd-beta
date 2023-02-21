@@ -17,29 +17,6 @@ const PageLayout: FunctionComponent<Props> = (props) => {
       style={{ fontFamily: "Sans-Serif" }}
       align="center"
     >
-      {/* <Flex
-          px={{ base: "40px", md: "80px", lg: "120px" }} align="center">
-            <Text
-              fontSize={{ base: "10px", sm: "12px", md: "16px", lg: "16px" }}
-              fontWeight="normal"
-              color={"rgba(255, 255, 255, 0.54)"}
-            >
-              Home &gt;&nbsp;
-            </Text>
-            <Text
-              fontSize={{ base: "10px", sm: "12px", md: "16px", lg: "16px" }}
-              fontWeight="normal"
-              color={"rgba(255, 255, 255, 0.54)"}
-            >
-              {props.subTitle1} &gt;&nbsp;
-            </Text>
-            <Text
-              fontSize={{ base: "10px", sm: "12px", md: "16px", lg: "16px" }}
-              color={"rgba(255, 255, 255, 0.84)"}
-            >
-              {props.title}
-            </Text>
-          </Flex> */}
       <Flex px={{ base: "40px", md: "80px", lg: "120px" }}>
         <Text
           as={"span"}
@@ -66,41 +43,6 @@ const PageLayout: FunctionComponent<Props> = (props) => {
           {props.subTitle3}
         </Text>
       </Flex>
-      {/* <Flex
-        mb={"30px"}
-        width={"100%"}
-      >
-        <Flex pt="95px" justify="center">
-          <Text
-              fontSize={{ base: "10px", sm: "14px", md: "16px", lg: "16px" }}
-              fontWeight="normal"
-              color={"rgba(255, 255, 255, 0.54)"}
-          >
-            Home &gt;&nbsp;
-          </Text>
-          <Text fontSize="16px" color={"rgba(255, 255, 255, 0.84)"}>
-            {props.title}
-          </Text>
-        </Flex>
-        <Flex
-          mt="11px"
-          pb="55px"
-          mb="20px"
-          justify="center"
-          style={{ fontFamily: "PilatExtended-Bold" }}
-        >
-          <Text
-            fontSize={{ base: "20px", md: "25px", lg: "40px" }}
-            color="#4790f5"
-          >
-            {props.subTitle1}
-          </Text>
-          <Text fontSize={{ base: "20px", md: "25px", lg: "40px" }}>
-            &nbsp;{props.subTitle2}
-          </Text>
-        </Flex>
-      </Flex> */}
-
       <Flex
         direction="column"
         w="100%"

@@ -1,14 +1,9 @@
 import React from "react";
 import { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
-import theme from "../components/theme";
-import { ParallaxProvider } from "react-scroll-parallax";
+import theme from "../components/Theme";
 
-import "../styles/global.css";
-import "../styles/ConnectWallet.css";
 import "../styles/fonts.css";
-import "../styles/CreateProject.css";
-import "../styles/transition.css";
 
 import Layout from "../components/Layout";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,16 +26,14 @@ function App({ Component, pageProps }: AppProps): React.ReactNode {
               <KeplrWalletProvider>
                 <MetamaskProvider>
                   <ChakraProvider resetCSS theme={theme}>
-                    <ParallaxProvider>
-                      <Layout>
-                        <Component {...pageProps} />
-                        <ToastContainer
-                          position="top-right"
-                          autoClose={5000}
-                          hideProgressBar={false}
-                        />
-                      </Layout>
-                    </ParallaxProvider>
+                    <Layout>
+                      <Component {...pageProps} />
+                      <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                      />
+                    </Layout>
                   </ChakraProvider>
                 </MetamaskProvider>
               </KeplrWalletProvider>

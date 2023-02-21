@@ -3,12 +3,7 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  Button,
   Flex,
   Image,
   Text,
@@ -28,7 +23,7 @@ interface Props {
   isOpen: boolean;
 }
 const WalletModal: FunctionComponent<Props> = ({ onClose, isOpen }) => {
-  const { state, dispatch } = useStore();
+  const { dispatch } = useStore();
   const keplr = useKeplrWallet();
   const metamask = useMetamaskWallet();
   const trust = useTrustWallet();
@@ -44,6 +39,7 @@ const WalletModal: FunctionComponent<Props> = ({ onClose, isOpen }) => {
     else if (to == "tron") wallet = tronLink;
     else if (to == "near") wallet = near;
     else if (to == "elrond") wallet = elrond;
+    onClose();
 
     await wallet.connect();
     dispatch({ type: ActionKind.setWalletType, payload: to });
@@ -53,10 +49,8 @@ const WalletModal: FunctionComponent<Props> = ({ onClose, isOpen }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent width="300px">
-        {/* <ModalHeader>Modal Title</ModalHeader> */}
-        {/* <ModalCloseButton /> */}
         <ModalBody>
-          <Flex width="100%" justify="center" py="50px" px="30px">
+          <Flex width="100%" justify="center" p={4}>
             <Flex width="100%" direction="column">
               {WALLET_LIST.map((wallet: any, index: number) => (
                 <Flex
@@ -64,7 +58,9 @@ const WalletModal: FunctionComponent<Props> = ({ onClose, isOpen }) => {
                   align="center"
                   height="60px"
                   cursor="pointer"
+                  p={1}
                   _hover={{ background: "red.100" }}
+                  rounded={4}
                   onClick={() => connectTo(wallet.link)}
                 >
                   <Image src={wallet.icon} width="50px" rounded="10px" />
